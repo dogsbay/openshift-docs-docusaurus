@@ -225,7 +225,9 @@ jobs:
           if [ "$b" -gt 0 ]; then
             {
               echo "<details><summary>Broken links and anchors ($b targets)</summary>"; echo; echo '```'
-              sed -n '/Exhaustive list of all broken/,/^\[SUCCESS\]/p' "$RUNNER_TEMP/docusaurus-build.log" | head -400
+              # awk, not `head -N`: head exits at N lines and sed gets SIGPIPE,
+              # which under pipefail failed a step whose build had SUCCEEDED.
+              sed -n '/Exhaustive list of all broken/,/^\[SUCCESS\]/p' "$RUNNER_TEMP/docusaurus-build.log" | awk 'NR<=400'
               echo '```'; echo "</details>"
             } >> "$GITHUB_STEP_SUMMARY"
           fi
