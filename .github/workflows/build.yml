@@ -1,0 +1,375 @@
+name: Build Docusaurus site
+
+# OpenShift docs → Docusaurus 3, published to this repo's GitHub Pages.
+#
+# This repo does no conversion of its own. It CONSUMES the Dogsbay MD that
+# dogsbay/openshift-docs-markdown already produces from upstream AsciiDoc
+# (one content branch per OpenShift version) and runs the last leg only:
+#
+#   Dogsbay MD  --(dogsbay site build --export docusaurus)-->  docs/ + sidebars.js + config
+#              --(docusaurus build)-->  build/  --> GitHub Pages
+#
+# The export runs through `site build` rather than `convert` on purpose: it
+# is the same page set the Astro site gets — attributes, conditionals and
+# includes resolved by the preprocessor, and `routablesFrom: nav` applied —
+# so the three published sites (Astro, MkDocs, Docusaurus) are built from
+# identical pages and can be compared page for page.
+#
+# Layout mirrors the markdown repo: `main` holds this workflow and nothing
+# else; the exported Docusaurus PROJECT is committed to a content branch named
+# after the source branch, so what changed in the exporter is a readable
+# diff. The BUILT HTML is not committed — it is deployed from the artefact.
+#
+# Pages must already be enabled with source "GitHub Actions" (done once at
+# repo creation: `gh api repos/<owner>/<repo>/pages -X POST -f
+# build_type=workflow`). configure-pages' `enablement: true` cannot do it
+# with GITHUB_TOKEN — the action's own docs say it needs another token — and
+# the sibling repos never exercised that path (Pages already existed there).
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Content branch of openshift-docs-markdown (e.g. enterprise-4.22)"
+        required: true
+        default: "enterprise-4.22"
+  schedule:
+    # Two hours after the markdown repo's Monday 05:00 sync. Not guaranteed
+    # to run after it — scheduled runs slip under load — so a late sync just
+    # means this run builds last week's branch, and next Monday catches up.
+    - cron: "0 7 * * 1"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: branch-${{ github.event.inputs.branch || 'enterprise-4.22' }}
+  cancel-in-progress: false
+
+env:
+  # `beta` dist-tag. `--export docusaurus` exists from 0.2.0-beta.109.
+  DOGSBAY_VERSION: beta
+  SOURCE_REPO: dogsbay/openshift-docs-markdown
+  BRANCH: ${{ github.event.inputs.branch || 'enterprise-4.22' }}
+  # Routable pages — the nav-selected ~1,800, not the ~11,900 markdown files
+  # (the rest are include fragments). Below this the export broke.
+  MIN_PAGES: "1000"
+  # GitHub refuses to publish a site over 1 GB. Measured on 4.22: 345 MB.
+  MAX_SITE_MB: "950"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - name: Checkout this repo (main — workflow only)
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      # Only enterprise-* branches exist upstream, and the same name becomes
+      # a branch HERE — this stops a typo creating a stray orphan branch, and
+      # stops `main` (which holds this workflow) ever receiving content.
+      - name: Validate the branch name
+        run: |
+          set -euo pipefail
+          case "$BRANCH" in
+            enterprise-*) ;;
+            *) echo "::error::only enterprise-* content branches are supported; got '$BRANCH'"; exit 1 ;;
+          esac
+
+      # Sparse, cone mode: `markdown/` plus the root files (dogsbay.config.yml,
+      # which the build reads for attributes, excludeFromRoutes and
+      # routablesFrom). The branch also carries the built Astro `site/` —
+      # ~700 MB we never need — and sparse mode adds --filter=blob:none, so
+      # those blobs are never even downloaded. Symlinks inside markdown/ are
+      # materialised as on the Astro build; includes resolve through them.
+      - name: Checkout the Dogsbay MD source branch
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          ref: ${{ env.BRANCH }}
+          path: source
+          sparse-checkout: markdown
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Record the source commit
+        id: src
+        working-directory: source
+        run: |
+          set -euo pipefail
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+          if [ ! -f dogsbay.config.yml ] || [ ! -d markdown ]; then
+            echo "::error::$SOURCE_REPO@$BRANCH has no markdown/ + dogsbay.config.yml — run its sync workflow first"
+            exit 1
+          fi
+          echo "markdown/: $(find markdown -name '*.md' | wc -l) file(s)"
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dogsbay CLI
+        run: npm install -g "dogsbay@${DOGSBAY_VERSION}"
+
+      - name: Record the exact toolchain
+        id: tools
+        run: echo "cli=$(dogsbay --version)" >> "$GITHUB_OUTPUT"
+
+      # --site-url carries the Pages path: the exporter splits it into
+      # Docusaurus `url` (origin) + `baseUrl` (path) — Docusaurus rejects a
+      # path inside `url`, and without the baseUrl every link resolves to
+      # <owner>.github.io/docs/… and 404s on a project site.
+      # Derived from GITHUB_REPOSITORY, like the sibling repos, not from the
+      # event payload.
+      #
+      # --export-out is outside the checkout; the commit step copies in what
+      # it wants, so nothing stray rides along.
+      - name: Export Dogsbay MD → Docusaurus project
+        run: |
+          set -euo pipefail
+          OWNER="${GITHUB_REPOSITORY_OWNER}"
+          REPO="${GITHUB_REPOSITORY#*/}"
+          dogsbay site build source --no-astro \
+            --export docusaurus --export-out "$RUNNER_TEMP/out" \
+            --site-url "https://${OWNER}.github.io/${REPO}"
+
+      - name: Refuse an implausibly small export
+        id: count
+        run: |
+          set -euo pipefail
+          n=$(find "$RUNNER_TEMP/out/docs" -name '*.md*' | wc -l)
+          echo "pages=$n" >> "$GITHUB_OUTPUT"
+          echo "exported $n page(s)"
+          if [ "$n" -lt "$MIN_PAGES" ]; then
+            echo "::error::only $n pages (< $MIN_PAGES) — refusing to publish what looks like a broken export"
+            exit 1
+          fi
+
+      # The exported package.json pins Docusaurus 3 + the remark plugins the
+      # standard profile wires (math, mermaid, definition lists) with caret
+      # ranges and no lockfile. The lockfile from the LAST build is committed
+      # on the content branch and reused here, so a dependency that moves
+      # shows up as a diff in package-lock.json next to the build that broke,
+      # instead of as a Monday failure with no change anywhere. `npm install`,
+      # not `ci`: package.json legitimately changes when the exporter's pins
+      # do, and `ci` would refuse.
+      - name: Reuse the content branch's lockfile
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch --depth 1 origin "$BRANCH"
+            if git show "origin/$BRANCH:package-lock.json" > "$RUNNER_TEMP/out/package-lock.json" 2>/dev/null; then
+              echo "reusing package-lock.json from $BRANCH"
+            else
+              rm -f "$RUNNER_TEMP/out/package-lock.json"; echo "no lockfile on $BRANCH yet"
+            fi
+          fi
+
+      - name: Install Docusaurus project deps
+        working-directory: ${{ runner.temp }}/out
+        run: npm install --no-audit --no-fund
+
+      # To the step summary, which survives a runner that dies of memory or
+      # disk without uploading its logs — the failure the Astro sibling
+      # chased for two runs.
+      - name: Runner capacity before the build
+        run: |
+          set -euo pipefail
+          { echo '### Runner capacity before the build'; echo '```'; free -m; echo; df -h /; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          free -m
+
+      # onBrokenLinks/onBrokenMarkdownLinks are `warn` in the emitted config:
+      # what remains is the source's own (measured on 4.22: 12 pages with
+      # broken links, ~350 broken anchors, all traced upstream). The
+      # exhaustive report lands in the step summary; the count is per TARGET
+      # (`-> linking to` lines), not per page.
+      #
+      # Heap: derived from the runner (3/4 of RAM) rather than hardcoded —
+      # ubuntu-latest is 16 GB for public repos and 7 GB for private ones,
+      # and a fixed 8 GB cap on the latter is an OOM-kill with no log.
+      # Measured locally: ~12 min on 4 cores; a 2-core runner roughly doubles
+      # that, hence the timeout. DOCUSAURUS_SSR_CONCURRENCY bounds peak memory
+      # during static generation (default 32).
+      - name: Build with Docusaurus
+        id: built
+        working-directory: ${{ runner.temp }}/out
+        env:
+          DOCUSAURUS_SSR_CONCURRENCY: "8"
+        run: |
+          set -euo pipefail
+          heap=$(( $(free -m | awk '/^Mem:/{print $2}') * 3 / 4 ))
+          echo "node heap cap: ${heap} MB"
+          NODE_OPTIONS="--max-old-space-size=${heap}" \
+            npx docusaurus build 2>&1 | tee "$RUNNER_TEMP/docusaurus-build.log" | tail -20
+          b=$(grep -c -E '^\s*-> linking to' "$RUNNER_TEMP/docusaurus-build.log" || true)
+          echo "broken=$b" >> "$GITHUB_OUTPUT"
+          h=$(find build -name '*.html' | wc -l)
+          mb=$(find build -type f -printf '%s\n' | awk '{s+=$1} END{printf "%d", s/1048576}')
+          echo "html=$h" >> "$GITHUB_OUTPUT"
+          echo "mb=$mb" >> "$GITHUB_OUTPUT"
+          echo "built $h HTML page(s), $mb MB, $b broken link/anchor target(s)"
+          if [ "$h" -lt "$MIN_PAGES" ]; then
+            echo "::error::only $h HTML pages — build did not produce the site"
+            exit 1
+          fi
+          if [ "$mb" -gt "$MAX_SITE_MB" ]; then
+            echo "::error::build is ${mb} MB — over GitHub Pages' 1 GB limit; refusing to deploy"
+            exit 1
+          fi
+          if [ "$b" -gt 0 ]; then
+            {
+              echo "<details><summary>Broken links and anchors ($b targets)</summary>"; echo; echo '```'
+              sed -n '/Exhaustive list of all broken/,/^\[SUCCESS\]/p' "$RUNNER_TEMP/docusaurus-build.log" | head -400
+              echo '```'; echo "</details>"
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+          # A no-op for an Actions deploy (the artefact is served as-is, Jekyll
+          # never runs); protects a branch-based deploy of this output.
+          touch build/.nojekyll
+
+      - name: Show the build errors
+        if: failure() && steps.built.conclusion == 'failure'
+        run: grep -n -E 'ERROR|Error|error' "$RUNNER_TEMP/docusaurus-build.log" | head -80 || tail -80 "$RUNNER_TEMP/docusaurus-build.log"
+
+      # Before the commit, so a push race cannot lose a finished deploy: here
+      # the artefact is the deliverable and the committed project is the
+      # record (the Astro sibling made the opposite call for the opposite
+      # reason).
+      - name: Upload Pages artefact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/out/build
+          retention-days: 1
+
+      - name: Commit the exported project to the content branch
+        env:
+          SHA: ${{ steps.src.outputs.sha }}
+          SHORT: ${{ steps.src.outputs.short }}
+          PAGES: ${{ steps.count.outputs.pages }}
+          CLI: ${{ steps.tools.outputs.cli }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Belt and braces with the validation step above.
+          if [ "$BRANCH" = main ]; then
+            echo "::error::refusing to write content onto main"; exit 1
+          fi
+
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch --depth 1 origin "$BRANCH"
+            git checkout -B "$BRANCH" "origin/$BRANCH"
+          else
+            # First run: an orphan, so content history stays apart from
+            # main's. main's README.md and .github/ are left UNTRACKED in the
+            # tree by `rm --cached`; the explicit `git add` below never
+            # picks them up, so the workflow does not leak onto the branch.
+            git checkout --orphan "$BRANCH"
+            git rm -rfq --cached . || true
+          fi
+
+          # Replace wholesale so deletions propagate — the rm is unconditional
+          # so a directory the export no longer emits (static/ on a corpus
+          # with no images) disappears rather than lingering. node_modules and
+          # the built build/ stay out (the latter is the Pages artefact).
+          FILES="docs static src docusaurus.config.js sidebars.js package.json package-lock.json"
+          for f in $FILES; do
+            rm -rf "$f"
+            if [ -e "$RUNNER_TEMP/out/$f" ]; then
+              cp -r "$RUNNER_TEMP/out/$f" "$f"
+            else
+              echo "::warning::export has no $f"
+            fi
+          done
+
+          cat > .gitignore <<'GITIGNORE'
+          node_modules/
+          build/
+          .docusaurus/
+          # Left behind by the workflow's checkout and preprocessor; never content.
+          source/
+          .dogsbay/
+          GITIGNORE
+
+          cat > README.md <<EOF
+          # OpenShift docs — \`$BRANCH\` as a Docusaurus project
+
+          Generated. Do not edit by hand; the next build overwrites everything.
+
+          | | |
+          |---|---|
+          | Source | [dogsbay/openshift-docs-markdown@\`$SHORT\`](https://github.com/$SOURCE_REPO/commit/$SHA) (branch \`$BRANCH\`) |
+          | Pages | $PAGES |
+          | Exported by | dogsbay $CLI (\`site build --export docusaurus\`) |
+
+          \`npm install && npx docusaurus build\` here reproduces the published
+          site. Regenerate from the [\`main\`](../../tree/main) branch:
+          Actions → **Build Docusaurus site**.
+          EOF
+
+          git add $FILES README.md .gitignore
+          if git diff --cached --quiet; then
+            echo "no change since the last build — nothing to commit"
+          else
+            git commit -m "export($BRANCH): openshift-docs-markdown@$SHORT — $PAGES pages" \
+                       -m "Source: $SOURCE_REPO@$SHA / dogsbay $CLI"
+            git push origin "$BRANCH"
+          fi
+
+      - name: Summary
+        if: always()
+        env:
+          PAGES: ${{ steps.count.outputs.pages }}
+          HTML: ${{ steps.built.outputs.html }}
+          MB: ${{ steps.built.outputs.mb }}
+          BROKEN: ${{ steps.built.outputs.broken }}
+          SHORT: ${{ steps.src.outputs.short }}
+        run: |
+          {
+            echo "### Docusaurus build \`$BRANCH\`"
+            echo ""
+            echo "- source: \`$SOURCE_REPO@${SHORT:-?}\`"
+            echo "- pages: ${PAGES:-?}"
+            echo "- built HTML: ${HTML:-?} (${MB:-?} MB, limit $MAX_SITE_MB)"
+            echo "- broken link/anchor targets: ${BROKEN:-?} (report above when > 0)"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  # Separate job so it can be gated. Pages on this plan are PUBLIC whatever
+  # the repo's visibility.
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+      actions: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # The artefact is only needed between the two jobs; left alone it
+      # counts against Actions storage on every run.
+      - name: Free the Pages artefact
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          gh api --paginate "repos/$REPO/actions/runs/$RUN_ID/artifacts" \
+            --jq '.artifacts[].id' | while read -r id; do
+            gh api -X DELETE "repos/$REPO/actions/artifacts/$id" || true
+          done
