@@ -1,0 +1,313 @@
+---
+title: Allowing non-cluster administrators to install Operators
+sidebar_position: 8
+---
+
+# Allowing non-cluster administrators to install Operators {#olm-creating-policy}
+
+<a id="olm-creating-policy"></a>
+
+Cluster administrators can use *Operator groups* to allow regular users to install Operators.
+
+**Additional resources**
+
+- [Operator groups](/docs/operators/understanding/olm/olm-understanding-operatorgroups#olm-understanding-operatorgroups)
+
+## Understanding Operator installation policy {#olm-policy-understanding_olm-creating-policy}
+
+By default, Operator Lifecycle Manager (OLM) runs with `cluster-admin` privileges and grants any permissions that an Operator author specifies in its cluster service version (CSV).
+
+Operator authors can specify any set of permissions in the cluster service version (CSV), and OLM consequently grants it to the Operator.
+
+To ensure that an Operator cannot achieve cluster-scoped privileges and that users cannot escalate privileges using OLM, Cluster administrators can manually audit Operators before they are added to the cluster. Cluster administrators are also provided tools for determining and constraining which actions are allowed during an Operator installation or upgrade using service accounts.
+
+Cluster administrators can associate an Operator group with a service account that has a set of privileges granted to it. The service account sets policy on Operators to ensure they only run within predetermined boundaries by using role-based access control (RBAC) rules. As a result, the Operator is unable to do anything that is not explicitly permitted by those rules.
+
+By employing Operator groups, users with enough privileges can install Operators with a limited scope. As a result, more of the Operator Framework tools can safely be made available to more users, providing a richer experience for building applications with Operators.
+
+:::note
+
+Role-based access control (RBAC) for `Subscription` objects is automatically granted to every user with the `edit` or `admin` role in a namespace. However, RBAC does not exist on `OperatorGroup` objects; this absence is what prevents regular users from installing Operators. Preinstalling Operator groups is effectively what gives installation privileges.
+
+:::
+
+Keep the following points in mind when associating an Operator group with a service account:
+
+- The `APIService` and `CustomResourceDefinition` resources are always created by OLM using the `cluster-admin` role. A service account associated with an Operator group should never be granted privileges to write these resources.
+- Any Operator tied to this Operator group is now confined to the permissions granted to the specified service account. If the Operator asks for permissions that are outside the scope of the service account, the install fails with appropriate errors so the cluster administrator can troubleshoot and resolve the issue.
+
+### Installation scenarios {#olm-policy-scenarios_olm-creating-policy}
+
+To predict the success of an installation or update operation, review the scenarios Operator Lifecycle Manager (OLM) considers when installing or upgrading an Operator.
+
+OLM considers the following Operator group scenarios When installing or upgrading an Operator:
+
+- A cluster administrator creates a new Operator group and specifies a service account. All Operator(s) associated with this Operator group are installed and run against the privileges granted to the service account.
+- A cluster administrator creates a new Operator group and does not specify any service account. OpenShift Container Platform maintains backward compatibility, so the default behavior remains and Operator installs and upgrades are permitted.
+- For existing Operator groups that do not specify a service account, the default behavior remains and Operator installs and upgrades are permitted.
+- A cluster administrator updates an existing Operator group and specifies a service account. OLM allows the existing Operator to continue to run with their current privileges. When such an existing Operator is going through an upgrade, it is reinstalled and run against the privileges granted to the service account like any new Operator.
+- A service account specified by an Operator group changes by adding or removing permissions, or the existing service account is swapped with a new one. When existing Operators go through an upgrade, it is reinstalled and run against the privileges granted to the updated service account like any new Operator.
+- A cluster administrator removes the service account from an Operator group. The default behavior remains and Operator installs and upgrades are permitted.
+
+### Installation workflow {#olm-policy-workflow_olm-creating-policy}
+
+To troubleshoot installation or update issues, review the workflow Operator Lifecycle Manager (OLM) follows during the installation process.
+
+When an Operator group specifies a service account, OLM completes the following steps:
+
+1. OLM picks up the `Subscription` object.
+2. OLM fetches the Operator group linked to the subscription.
+3. OLM checks if the Operator group specifies a service account.
+4. OLM creates a client scoped to the service account and uses it to install the Operator, ensuring permissions remain confined to that service account.
+5. OLM creates a new service account with the permissions specified in the CSV and assigns it to the Operator. The Operator then runs using this assigned service account.
+
+## Scoping Operator installations {#olm-policy-scoping-operator-install_olm-creating-policy}
+
+To provide scoping rules to Operator installations and upgrades on Operator Lifecycle Manager (OLM), associate a service account with an Operator group.
+
+Using this example, a cluster administrator can confine a set of Operators to a designated namespace.
+
+**Prerequisites**
+
+- You have access to the cluster as a user with the `cluster-admin` role.
+- You have installed the OpenShift CLI (`oc`).
+
+**Procedure**
+
+1. Create a new namespace:
+   ```terminal title="Example command that creates a Namespace object"
+   $ cat <<EOF | oc create -f -
+   apiVersion: v1
+   kind: Namespace
+   metadata:
+     name: scoped
+   EOF
+   ```
+2. Allocate permissions that you want the Operator(s) to be confined to. This involves creating a new service account, relevant role(s), and role binding(s) in the newly created, designated namespace:
+   1. Create a service account by running the following command:
+      ```terminal title="Example command that creates a ServiceAccount object"
+      $ cat <<EOF | oc create -f -
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: scoped
+        namespace: scoped
+      EOF
+      ```
+   2. Create a secret by running the following command:
+      ```terminal title="Example command that creates a long-lived API token Secret object"
+      $ cat <<EOF | oc create -f -
+      apiVersion: v1
+      kind: Secret
+      type: kubernetes.io/service-account-token
+      metadata:
+        name: scoped
+        namespace: scoped
+        annotations:
+          kubernetes.io/service-account.name: scoped
+      EOF
+      ```
+
+      The secret must be a long-lived API token, which is used by the service account.
+   3. Create a role by running the following command.
+      :::warning
+
+      In this example, the role grants the service account permissions to do anything in the designated namespace for demonostration purposes only. In a production environment, you should create a more fine-grained set of permissions. For more information, see "Fine-grained permissions".
+
+      :::
+
+      ```terminal title="Example command that creates Role and RoleBinding objects"
+      $ cat <<EOF | oc create -f -
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: Role
+      metadata:
+        name: scoped
+        namespace: scoped
+      rules:
+      - apiGroups: ["*"]
+        resources: ["*"]
+        verbs: ["*"]
+      ---
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        name: scoped-bindings
+        namespace: scoped
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: Role
+        name: scoped
+      subjects:
+      - kind: ServiceAccount
+        name: scoped
+        namespace: scoped
+      EOF
+      ```
+3. Create an `OperatorGroup` object in the designated namespace by running the following command. This Operator group targets the designated namespace to ensure that its tenancy is confined to it. In addition, Operator groups allow a user to specify a service account.
+   ```terminal title="Example command that creates an OperatorGroup object"
+   $ cat <<EOF | oc create -f -
+   apiVersion: operators.coreos.com/v1
+   kind: OperatorGroup
+   metadata:
+     name: scoped
+     namespace: scoped
+   spec:
+     serviceAccountName: scoped
+     targetNamespaces:
+     - scoped
+   EOF
+   ```
+
+   Specify the service account created in the previous step. Any Operator installed in the designated namespace is tied to this Operator group and therefore to the service account specified.
+4. Create a `Subscription` object in the designated namespace to install an Operator:
+   ```terminal title="Example command that creates a Subscription object"
+   $ cat <<EOF | oc create -f -
+   apiVersion: operators.coreos.com/v1alpha1
+   kind: Subscription
+   metadata:
+     name: openshift-cert-manager-operator
+     namespace: scoped
+   spec:
+     channel: stable-v1
+     name: openshift-cert-manager-operator
+     source: <catalog_source_name>
+     sourceNamespace: <catalog_source_namespace>
+   EOF
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;catalog_source_name&gt;</code></dt>
+   <dd>Specifies a catalog source that already exists in the designated namespace or one that is in the global catalog namespace, for example <code>redhat-operators</code>.</dd>
+   <dt><code>&lt;catalog_source_namespace&gt;</code></dt>
+   <dd>Specifies a namespace where the catalog source was created, for example <code>openshift-marketplace</code> for the <code>redhat-operators</code> catalog. Any Operator tied to this Operator group is confined to the permissions granted to the specified service account. If the Operator requests permissions that are outside the scope of the service account, the installation fails with relevant errors.</dd>
+   </dl>
+
+### Fine-grained permissions {#olm-policy-fine-grained-permissions_olm-creating-policy}
+
+Operator Lifecycle Manager (OLM) uses the service account specified in the Operator group to restrict an Operator to a designated namespace. During Operator installation and updates, OLM uses this service account to manage cluster resources.
+
+To restrict Operators to a designated namespace, grant the following permissions to the service account:
+
+- `ClusterServiceVersion`
+- `Subscription`
+- `Secret`
+- `ServiceAccount`
+- `Service`
+- `ClusterRole` and `ClusterRoleBinding`
+- `Role` and `RoleBinding`
+
+:::note
+
+The following role configuration is a generic example. Your Operator might require additional rules.
+
+:::
+
+```yaml
+kind: Role
+rules:
+- apiGroups: ["operators.coreos.com"]
+  resources: ["subscriptions", "clusterserviceversions"]
+  verbs: ["get", "create", "update", "patch"]
+- apiGroups: [""]
+  resources: ["services", "serviceaccounts"]
+  verbs: ["get", "create", "update", "patch"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["roles", "rolebindings"]
+  verbs: ["get", "create", "update", "patch"]
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["list", "watch", "get", "create", "update", "patch", "delete"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["list", "watch", "get", "create", "update", "patch", "delete"]
+```
+
+Set permissions in the `rules.apiGroups` fields for `apps` and core `""` resources so the service account can create deployments and pods.
+
+If an Operator specifies a pull secret, add the following permissions:
+
+```yaml
+kind: ClusterRole
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get"]
+---
+kind: Role
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["create", "update", "patch"]
+```
+
+The `ClusterRole` object allows the service account to retrieve secrets from the OLM namespace.
+
+## Operator catalog access control {#olm-policy-catalog-access_olm-creating-policy}
+
+The Operators in a catalog created in the global catalog `openshift-marketplace` namespace are available cluster-wide to all namespaces. The Operators in a catalog created in other namespaces are available in the same namespace as the catalog.
+
+On clusters where non-cluster administrator users have been delegated Operator installation privileges, cluster administrators might want to further control or restrict the set of Operators those users are allowed to install. This can be achieved with the following actions:
+
+1. Disable all of the default global catalogs.
+2. Enable custom, curated catalogs in the same namespace where the relevant Operator groups have been preinstalled.
+
+**Additional resources**
+
+- [Disabling the default OperatorHub catalog sources](/docs/operators/admin/olm-managing-custom-catalogs#olm-restricted-networks-operatorhub_olm-managing-custom-catalogs)
+- [Adding a catalog source to a cluster](/docs/operators/admin/olm-managing-custom-catalogs#olm-creating-catalog-from-index_olm-managing-custom-catalogs)
+
+## Troubleshooting permission failures {#olm-policy-troubleshooting_olm-creating-policy}
+
+If an Operator installation fails due to a lack of permissions, identify which specific permissions are missing.
+
+**Procedure**
+
+1. Review the `Subscription` object. Its status has an object reference `installPlanRef` that points to the `InstallPlan` object that attempted to create the necessary `[Cluster]Role[Binding]` object(s) for the Operator:
+   ```yaml
+   apiVersion: operators.coreos.com/v1
+   kind: Subscription
+   metadata:
+     name: etcd
+     namespace: scoped
+   status:
+     installPlanRef:
+       apiVersion: operators.coreos.com/v1
+       kind: InstallPlan
+       name: install-4plp8
+       namespace: scoped
+       resourceVersion: "117359"
+       uid: 2c1df80e-afea-11e9-bce3-5254009c9c23
+   ```
+2. Check the status of the `InstallPlan` object for any errors:
+   ```yaml
+   apiVersion: operators.coreos.com/v1
+   kind: InstallPlan
+   status:
+     conditions:
+     - lastTransitionTime: "2019-07-26T21:13:10Z"
+       lastUpdateTime: "2019-07-26T21:13:10Z"
+       message: 'error creating clusterrole etcdoperator.v0.9.4-clusterwide-dsfx4: clusterroles.rbac.authorization.k8s.io
+         is forbidden: User "system:serviceaccount:scoped:scoped" cannot create resource
+         "clusterroles" in API group "rbac.authorization.k8s.io" at the cluster scope'
+       reason: InstallComponentFailed
+       status: "False"
+       type: Installed
+     phase: Failed
+   ```
+
+   The error message tells you:
+
+   - The type of resource it failed to create, including the API group of the resource. In this case, it was `clusterroles` in the `rbac.authorization.k8s.io` group.
+   - The name of the resource.
+   - The type of error: `is forbidden` tells you that the user does not have enough permission to do the operation.
+   - The name of the user who attempted to create or update the resource. In this case, it refers to the service account specified in the Operator group.
+   - The scope of the operation: `cluster scope` or not.
+     The user can add the missing permission to the service account and then iterate.
+
+     :::note
+
+     Operator Lifecycle Manager (OLM) does not currently provide the complete list of errors on the first try.
+
+     :::

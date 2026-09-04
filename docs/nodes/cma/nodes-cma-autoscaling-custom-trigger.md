@@ -1,0 +1,445 @@
+---
+title: Understanding custom metrics autoscaler triggers
+sidebar_position: 4
+---
+
+# Understanding custom metrics autoscaler triggers {#nodes-cma-autoscaling-custom-overview-trigger}
+
+<a id="nodes-cma-autoscaling-custom-overview-trigger"></a>
+
+Triggers, also known as scalers, provide the metrics that the Custom Metrics Autoscaler Operator uses to scale your pods.
+
+The custom metrics autoscaler currently supports the Prometheus, CPU, memory, Apache Kafka, and cron triggers.
+
+You use a `ScaledObject` or `ScaledJob` custom resource to configure triggers for specific objects, as described in the sections that follow.
+
+You can configure a certificate authority [to use with your scaled objects](/docs/nodes/cma/nodes-cma-autoscaling-custom-trigger-auth#nodes-cma-autoscaling-custom-trigger-auth) or  [for all scalers in the cluster](/docs/nodes/cma/nodes-cma-autoscaling-custom#nodes-cma-autoscaling-custom-ca_nodes-cma-autoscaling-custom).
+
+## Understanding the Prometheus trigger {#nodes-cma-autoscaling-custom-trigger-prom_nodes-cma-autoscaling-custom-trigger}
+
+You can scale pods based on Prometheus metrics, which can use the installed OpenShift Container Platform monitoring or an external Prometheus server as the metrics source. See "Configuring the custom metrics autoscaler to use OpenShift Container Platform monitoring" for information on the configurations required to use the OpenShift Container Platform monitoring as a source for metrics.
+
+:::note
+
+If Prometheus is collecting metrics from the application that the custom metrics autoscaler is scaling, do not set the minimum replicas to `0` in the custom resource. If there are no application pods, the custom metrics autoscaler does not have any metrics to scale on.
+
+:::
+
+```yaml title="Example scaled object with a Prometheus target"
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: prom-scaledobject
+  namespace: my-namespace
+spec:
+# ...
+  triggers:
+  - type: prometheus (1)
+    metadata:
+      serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9092 (2)
+      namespace: kedatest (3)
+      metricName: http_requests_total (4)
+      threshold: '5' (5)
+      query: sum(rate(http_requests_total{job="test-app"}[1m])) (6)
+      authModes: basic (7)
+      cortexOrgID: my-org (8)
+      ignoreNullValues: "false" (9)
+      unsafeSsl: "false" (10)
+      timeout: 1000 (11)
+```
+
+1. Specifies Prometheus as the trigger type.
+2. Specifies the address of the Prometheus server. This example uses  OpenShift Container Platform monitoring.
+3. Optional: Specifies the namespace of the object you want to scale. This parameter is mandatory if using OpenShift Container Platform monitoring as a source for the metrics.
+4. Specifies the name to identify the metric in the `external.metrics.k8s.io` API. If you are using more than one trigger, all metric names must be unique.
+5. Specifies the value that triggers scaling. Must be specified as a quoted string value.
+6. Specifies the Prometheus query to use.
+7. Specifies the authentication method to use. Prometheus scalers support bearer authentication (`bearer`), basic authentication (`basic`), or TLS authentication (`tls`). You configure the specific authentication parameters in a trigger authentication, as discussed in a following section. As needed, you can also use a secret.
+8. Optional: Passes the `X-Scope-OrgID` header to multi-tenant [Cortex](https://cortexmetrics.io/) or [Mimir](https://grafana.com/oss/mimir/) storage for Prometheus. This parameter is required only with multi-tenant Prometheus storage, to indicate which data Prometheus should return.
+9. Optional: Specifies how the trigger should proceed if the Prometheus target is lost.
+   - If `true`, the trigger continues to operate if the Prometheus target is lost. This is the default behavior.
+   - If `false`, the trigger returns an error if the Prometheus target is lost.
+10. Optional: Specifies whether the certificate check should be skipped. For example, you might skip the check if you are running in a test environment and using self-signed certificates at the Prometheus endpoint.
+    - If `false`, the certificate check is performed. This is the default behavior.
+    - If `true`, the certificate check is not performed.
+      :::warning
+
+      Skipping the check is not recommended.
+
+      :::
+11. Optional: Specifies an HTTP request timeout in milliseconds for the HTTP client used by this Prometheus trigger. This value overrides any global timeout setting.
+
+### Configuring GPU-based autoscaling with Prometheus and DCGM metrics {#nodes-cma-autoscaling-custom-trigger-prom-gpu_nodes-cma-autoscaling-custom-trigger}
+
+You can use the Custom Metrics Autoscaler with NVIDIA Data Center GPU Manager (DCGM) metrics to scale workloads based on GPU utilization. This is particularly useful for AI and machine learning workloads that require GPU resources.
+
+```yaml title="Example scaled object with a Prometheus target for GPU-based autoscaling"
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: gpu-scaledobject
+  namespace: my-namespace
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: gpu-deployment
+  minReplicaCount: 1 (1)
+  maxReplicaCount: 5 (2)
+  triggers:
+  - type: prometheus
+    metadata:
+      serverAddress: https://thanos-querier.openshift-monitoring.svc.cluster.local:9092
+      namespace: my-namespace
+      metricName: gpu_utilization
+      threshold: '90' (3)
+      query: SUM(DCGM_FI_DEV_GPU_UTIL{instance=~".+", gpu=~".+"}) (4)
+      authModes: bearer
+    authenticationRef:
+      name: keda-trigger-auth-prometheus
+```
+
+1. Specifies the minimum number of replicas to maintain. For GPU workloads, this should not be set to `0` to ensure that metrics continue to be collected.
+2. Specifies the maximum number of replicas allowed during scale-up operations.
+3. Specifies the GPU utilization percentage threshold that triggers scaling. When the average GPU utilization exceeds 90%, the autoscaler scales up the deployment.
+4. Specifies a Prometheus query using NVIDIA DCGM metrics to monitor GPU utilization across all GPU devices. The `DCGM_FI_DEV_GPU_UTIL` metric provides GPU utilization percentages.
+
+### Configuring the custom metrics autoscaler to use OpenShift Container Platform monitoring {#nodes-cma-autoscaling-custom-prometheus-config_nodes-cma-autoscaling-custom-trigger}
+
+You can use the installed OpenShift Container Platform Prometheus monitoring as a source for the metrics used by the custom metrics autoscaler. However, there are some additional configurations you must perform.
+
+For your scaled objects to be able to read the OpenShift Container Platform Prometheus metrics, you must use a trigger authentication or a cluster trigger authentication in order to provide the authentication information required. The following procedure differs depending on which trigger authentication method you use. For more information on trigger authentications, see "Understanding custom metrics autoscaler trigger authentications".
+
+:::note
+
+These steps are not required for an external Prometheus source.
+
+:::
+
+You must perform the following tasks, as described in this section:
+
+- Create a service account.
+- Create the trigger authentication.
+- Create a role.
+- Add that role to the service account.
+- Reference the token in the trigger authentication object used by Prometheus.
+
+**Prerequisites**
+
+- OpenShift Container Platform monitoring must be installed.
+- Monitoring of user-defined workloads must be enabled in OpenShift Container Platform monitoring, as described in the **Creating a user-defined workload monitoring config map** section.
+- The Custom Metrics Autoscaler Operator must be installed.
+
+**Procedure**
+
+1. Change to the appropriate project:
+   ```terminal
+   $ oc project <project_name> (1)
+   ```
+
+   1. Specifies one of the following projects:
+      - If you are using a trigger authentication, specify the project with the object you want to scale.
+      - If you are using a cluster trigger authentication, specify the `openshift-keda` project.
+2. Create a service account if your cluster does not have one:
+   1. Create a `service account` object by using the following command:
+      ```terminal
+      $ oc create serviceaccount thanos (1)
+      ```
+
+      1. Specifies the name of the service account.
+3. Create a trigger authentication with the service account token:
+   1. Create a YAML file similar to the following:
+      ```yaml
+      apiVersion: keda.sh/v1alpha1
+      kind: <authentication_method> (1)
+      metadata:
+        name: keda-trigger-auth-prometheus
+      spec:
+        boundServiceAccountToken: (2)
+          - parameter: bearerToken (3)
+            serviceAccountName: thanos (4)
+      ```
+
+      1. Specifies one of the following trigger authentication methods:
+         - If you are using a trigger authentication, specify `TriggerAuthentication`. This example configures a trigger authentication.
+         - If you are using a cluster trigger authentication, specify `ClusterTriggerAuthentication`.
+      2. Specifies that this trigger authentication uses a bound service account token for authorization when connecting to the metrics endpoint.
+      3. Specifies the authentication parameter to supply by using the token. Here, the example uses bearer authentication.
+      4. Specifies the name of the service account to use.
+   2. Create the CR object:
+      ```terminal
+      $ oc create -f <file-name>.yaml
+      ```
+4. Create a role for reading Thanos metrics:
+   1. Create a YAML file with the following parameters:
+      ```yaml
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: Role
+      metadata:
+        name: thanos-metrics-reader
+      rules:
+      - apiGroups:
+        - ""
+        resources:
+        - pods
+        verbs:
+        - get
+      - apiGroups:
+        - metrics.k8s.io
+        resources:
+        - pods
+        - nodes
+        verbs:
+        - get
+        - list
+        - watch
+      ```
+   2. Create the CR object:
+      ```terminal
+      $ oc create -f <file-name>.yaml
+      ```
+5. Create a role binding for reading Thanos metrics:
+   1. Create a YAML file similar to the following:
+      ```yaml
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: <binding_type> (1)
+      metadata:
+        name: thanos-metrics-reader (2)
+        namespace: my-project (3)
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: Role
+        name: thanos-metrics-reader
+      subjects:
+      - kind: ServiceAccount
+        name: thanos (4)
+        namespace: <namespace_name> (5)
+      ```
+
+      1. Specifies one of the following object types:
+         - If you are using a trigger authentication, specify `RoleBinding`.
+         - If you are using a cluster trigger authentication, specify `ClusterRoleBinding`.
+      2. Specifies the name of the role you created.
+      3. Specifies one of the following projects:
+         - If you are using a trigger authentication, specify the project with the object you want to scale.
+         - If you are using a cluster trigger authentication, specify the `openshift-keda` project.
+      4. Specifies the name of the service account to bind to the role.
+      5. Specifies the project where you previously created the service account.
+   2. Create the CR object:
+      ```terminal
+      $ oc create -f <file-name>.yaml
+      ```
+
+You can now deploy a scaled object or scaled job to enable autoscaling for your application, as described in "Understanding how to add custom metrics autoscalers". To use OpenShift Container Platform monitoring as the source, in the trigger, or scaler, you must include the following parameters:
+
+- `triggers.type` must be `prometheus`
+- `triggers.metadata.serverAddress` must be `https://thanos-querier.openshift-monitoring.svc.cluster.local:9092`
+- `triggers.metadata.authModes` must be `bearer`
+- `triggers.metadata.namespace` must be set to the namespace of the object to scale
+- `triggers.authenticationRef` must point to the trigger authentication resource specified in the previous step
+
+**Additional resources**
+
+- [Understanding custom metrics autoscaler trigger authentications](/docs/nodes/cma/nodes-cma-autoscaling-custom-trigger-auth#nodes-cma-autoscaling-custom-trigger-auth)
+
+## Understanding the CPU trigger {#nodes-cma-autoscaling-custom-trigger-cpu_nodes-cma-autoscaling-custom-trigger}
+
+You can scale pods based on CPU metrics. This trigger uses cluster metrics as the source for metrics.
+
+The custom metrics autoscaler scales the pods associated with an object to maintain the CPU usage that you specify. The autoscaler increases or decreases the number of replicas between the minimum and maximum numbers to maintain the specified CPU utilization across all pods. The memory trigger considers the memory utilization of the entire pod. If the pod has multiple containers, the memory trigger considers the total memory utilization of all containers in the pod.
+
+:::note
+
+- This trigger cannot be used with the `ScaledJob` custom resource.
+- When using a memory trigger to scale an object, the object does not scale to `0`, even if you are using multiple triggers.
+
+:::
+
+```yaml title="Example scaled object with a CPU target"
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: cpu-scaledobject
+  namespace: my-namespace
+spec:
+# ...
+  triggers:
+  - type: cpu (1)
+    metricType: Utilization (2)
+    metadata:
+      value: '60' (3)
+  minReplicaCount: 1 (4)
+```
+
+1. Specifies CPU as the trigger type.
+2. Specifies the type of metric to use, either `Utilization` or `AverageValue`.
+3. Specifies the value that triggers scaling. Must be specified as a quoted string value.
+   - When using `Utilization`, the target value is the average of the resource metrics across all relevant pods, represented as a percentage of the requested value of the resource for the pods.
+   - When using `AverageValue`, the target value is the average of the metrics across all relevant pods.
+4. Specifies the minimum number of replicas when scaling down. For a CPU trigger, enter a value of `1` or greater, because the HPA cannot scale to zero if you are using only CPU metrics.
+
+## Understanding the memory trigger {#nodes-cma-autoscaling-custom-trigger-memory_nodes-cma-autoscaling-custom-trigger}
+
+You can scale pods based on memory metrics. This trigger uses cluster metrics as the source for metrics.
+
+The custom metrics autoscaler scales the pods associated with an object to maintain the average memory usage that you specify. The autoscaler increases and decreases the number of replicas between the minimum and maximum numbers to maintain the specified memory utilization across all pods. The memory trigger considers the memory utilization of entire pod. If the pod has multiple containers, the memory utilization is the sum of all of the containers.
+
+:::note
+
+- This trigger cannot be used with the `ScaledJob` custom resource.
+- When using a memory trigger to scale an object, the object does not scale to `0`, even if you are using multiple triggers.
+
+:::
+
+```yaml title="Example scaled object with a memory target"
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: memory-scaledobject
+  namespace: my-namespace
+spec:
+# ...
+  triggers:
+  - type: memory (1)
+    metricType: Utilization (2)
+    metadata:
+      value: '60' (3)
+      containerName: api (4)
+```
+
+1. Specifies memory as the trigger type.
+2. Specifies the type of metric to use, either `Utilization` or `AverageValue`.
+3. Specifies the value that triggers scaling. Must be specified as a quoted string value.
+   - When using `Utilization`, the target value is the average of the resource metrics across all relevant pods, represented as a percentage of the requested value of the resource for the pods.
+   - When using `AverageValue`, the target value is the average of the metrics across all relevant pods.
+4. Optional: Specifies an individual container to scale, based on the memory utilization of only that container, rather than the entire pod. In this example, only the container named `api` is to be scaled.
+
+## Understanding the Kafka trigger {#nodes-cma-autoscaling-custom-trigger-kafka_nodes-cma-autoscaling-custom-trigger}
+
+You can scale pods based on an Apache Kafka topic or other services that support the Kafka protocol. The custom metrics autoscaler does not scale higher than the number of Kafka partitions, unless you set the `allowIdleConsumers` parameter to `true` in the scaled object or scaled job.
+
+:::note
+
+If the number of consumer groups exceeds the number of partitions in a topic, the extra consumer groups remain idle. To avoid this, by default the number of replicas does not exceed:
+
+- The number of partitions on a topic, if a topic is specified
+- The number of partitions of all topics in the consumer group, if no topic is specified
+- The `maxReplicaCount` specified in scaled object or scaled job CR
+
+You can use the `allowIdleConsumers` parameter to disable these default behaviors.
+
+:::
+
+```yaml title="Example scaled object with a Kafka target"
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: kafka-scaledobject
+  namespace: my-namespace
+spec:
+# ...
+  triggers:
+  - type: kafka (1)
+    metadata:
+      topic: my-topic (2)
+      bootstrapServers: my-cluster-kafka-bootstrap.openshift-operators.svc:9092 (3)
+      consumerGroup: my-group (4)
+      lagThreshold: '10' (5)
+      activationLagThreshold: '5' (6)
+      offsetResetPolicy: latest (7)
+      allowIdleConsumers: true (8)
+      scaleToZeroOnInvalidOffset: false (9)
+      excludePersistentLag: false (10)
+      version: '1.0.0' (11)
+      partitionLimitation: '1,2,10-20,31' (12)
+      tls: enable (13)
+```
+
+1. Specifies Kafka as the trigger type.
+2. Specifies the name of the Kafka topic on which Kafka is processing the offset lag.
+3. Specifies a comma-separated list of Kafka brokers to connect to.
+4. Specifies the name of the Kafka consumer group used for checking the offset on the topic and processing the related lag.
+5. Optional: Specifies the average target value that triggers scaling. Must be specified as a quoted string value. The default is `5`.
+6. Optional: Specifies the target value for the activation phase. Must be specified as a quoted string value.
+7. Optional: Specifies the Kafka offset reset policy for the Kafka consumer. The available values are: `latest` and `earliest`. The default is `latest`.
+8. Optional: Specifies whether the number of Kafka replicas can exceed the number of partitions on a topic.
+   - If `true`, the number of Kafka replicas can exceed the number of partitions on a topic. This allows for idle Kafka consumers.
+   - If `false`, the number of Kafka replicas cannot exceed the number of partitions on a topic. This is the default.
+9. Specifies how the trigger behaves when a Kafka partition does not have a valid offset.
+   - If `true`, the consumers are scaled to zero for that partition.
+   - If `false`, the scaler keeps a single consumer for that partition. This is the default.
+10. Optional: Specifies whether the trigger includes or excludes partition lag for partitions whose current offset is the same as the current offset of the previous polling cycle.
+    - If `true`, the scaler excludes partition lag in these partitions.
+    - If `false`, the trigger includes all consumer lag in all partitions. This is the default.
+11. Optional: Specifies the version of your Kafka brokers. Must be specified as a quoted string value. The default is `1.0.0`.
+12. Optional: Specifies a comma-separated list of partition IDs to scope the scaling on. If set, only the listed IDs are considered when calculating lag. Must be specified as a quoted string value. The default is to consider all partitions.
+13. Optional: Specifies whether to use TSL client authentication for Kafka. The default is `disable`. For information on configuring TLS, see "Understanding custom metrics autoscaler trigger authentications".
+
+## Understanding the Cron trigger {#nodes-cma-autoscaling-custom-trigger-cron_nodes-cma-autoscaling-custom-trigger}
+
+You can scale pods based on a time range.
+
+When the time range starts, the custom metrics autoscaler scales the pods associated with an object from the configured minimum number of pods to the specified number of desired pods. At the end of the time range, the pods are scaled back to the configured minimum. The time period must be configured in [cron format](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#writing-a-cronjob-spec).
+
+The following example scales the pods associated with this scaled object from `0` to `100` from 6:00 AM to 6:30 PM India Standard Time.
+
+```yaml title="Example scaled object with a Cron trigger"
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: cron-scaledobject
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: my-deployment
+  minReplicaCount: 0 (1)
+  maxReplicaCount: 100 (2)
+  cooldownPeriod: 300
+  triggers:
+  - type: cron (3)
+    metadata:
+      timezone: Asia/Kolkata (4)
+      start: "0 6 * * *" (5)
+      end: "30 18 * * *" (6)
+      desiredReplicas: "100" (7)
+```
+
+1. Specifies the minimum number of pods to scale down to at the end of the time frame.
+2. Specifies the maximum number of replicas when scaling up. This value should be the same as `desiredReplicas`. The default is `100`.
+3. Specifies a Cron trigger.
+4. Specifies the timezone for the time frame. This value must be from the [IANA Time Zone Database](https://data.iana.org/time-zones/tzdb-2021a/zone1970.tab).
+5. Specifies the start of the time frame.
+6. Specifies the end of the time frame.
+7. Specifies the number of pods to scale to between the start and end of the time frame. This value should be the same as `maxReplicaCount`.
+
+## Understanding the Kubernetes workload trigger {#nodes-cma-autoscaling-custom-trigger-workload_nodes-cma-autoscaling-custom-trigger}
+
+You can scale pods based on the number of pods matching a specific label selector.
+
+The Custom Metrics Autoscaler Operator tracks the number of pods with a specific label that are in the same namespace, then calculates a *relation* based on the number of labeled pods to the pods for the scaled object. Using this relation, the Custom Metrics Autoscaler Operator scales the object according to the scaling policy in the `ScaledObject` or `ScaledJob` specification.
+
+The pod counts includes pods with a `Succeeded` or `Failed` phase.
+
+For example, if you have a `frontend` deployment and a `backend` deployment. You can use a `kubernetes-workload` trigger to scale the `backend` deployment based on the number of `frontend` pods. If number of `frontend` pods goes up, the Operator would scale the `backend` pods to maintain the specified ratio. In this example, if there are 10 pods with the `app=frontend` pod selector, the Operator scales the backend pods to 5 in order to maintain the `0.5` ratio set in the scaled object.
+
+```yaml title="Example scaled object with a Kubernetes workload trigger"
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: workload-scaledobject
+  namespace: my-namespace
+spec:
+  triggers:
+  - type: kubernetes-workload (1)
+    metadata:
+      podSelector: 'app=frontend' (2)
+      value: '0.5' (3)
+      activationValue: '3.1' (4)
+```
+
+1. Specifies a Kubernetes workload trigger.
+2. Specifies one or more pod selectors and/or set-based selectors, separated with commas, to use to get the pod count.
+3. Specifies the target relation between the scaled workload and the number of pods that match the selector. The relation is calculated following the following formula:
+   ```
+   relation = (pods that match the selector) / (scaled workload pods)
+   ```
+4. Optional: Specifies the target value for scaler activation phase. The default is `0`.

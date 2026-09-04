@@ -1,0 +1,336 @@
+---
+title: Adding compute machines to bare metal
+sidebar_position: 5
+---
+
+# Adding compute machines to bare metal {#adding-bare-metal-compute-user-infra}
+
+<a id="adding-bare-metal-compute-user-infra"></a>
+
+To scale your OpenShift Container Platform cluster on bare-metal or platform-agnostic infrastructure, you can add more compute machines. Create RHCOS machines, then approve their certificate signing requests.
+
+## Prerequisites {#adding-bare-metal-compute-user-infra-prereqs_adding-bare-metal-compute-user-infra}
+
+There are several prerequisites that must be completed before you add compute machines to your cluster.
+
+The following prerequisites must be met:
+
+- You [installed a cluster on bare metal](/docs/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal).
+- You [installed a cluster on any platform](/docs/installing/installing_platform_agnostic/installing-platform-agnostic#installing-platform-agnostic).
+- You have installation media and Red Hat Enterprise Linux CoreOS (RHCOS) images that you used to create your cluster. If you do not have these files, you must obtain them by following the instructions in the [installation procedure](/docs/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal).
+- If a DHCP server is available for your user-provisioned infrastructure, you have added the details for the additional compute machines to your DHCP server configuration. This includes a persistent IP address, DNS server information, and a hostname for each machine.
+- You have updated your DNS configuration to include the record name and IP address of each compute machine that you are adding. You have validated that DNS lookup and reverse DNS lookup resolve correctly.
+
+:::warning
+
+If you do not have access to the Red Hat Enterprise Linux CoreOS (RHCOS) images that were used to create your cluster, you can add more compute machines to your OpenShift Container Platform cluster with newer versions of Red Hat Enterprise Linux CoreOS (RHCOS) images. For instructions, see [Adding new nodes to UPI cluster fails after upgrading to OpenShift 4.6+](https://access.redhat.com/solutions/5514051).
+
+:::
+
+## Creating Red Hat Enterprise Linux CoreOS (RHCOS) machines {#creating-rhcos-machines-bare-metal}
+
+Before you add more compute machines to a cluster that you installed on bare metal infrastructure, you must create RHCOS machines for it to use. You can either use an ISO image or network PXE booting to create the machines.
+
+:::note
+
+You must use the same ISO image that you used to install a cluster to deploy all new nodes in a cluster. It is recommended to use the same Ignition config file. The nodes automatically upgrade themselves on the first boot before running the workloads. You can add the nodes before or after the upgrade.
+
+:::
+
+### Creating RHCOS machines by using an ISO image {#machine-user-infra-machines-iso_adding-bare-metal-compute-user-infra}
+
+To scale your OpenShift Container Platform bare metal cluster, you can create more Red Hat Enterprise Linux CoreOS (RHCOS) compute machines by using an ISO image.
+
+**Prerequisites**
+
+- You have obtained the URL of the Ignition config file for the compute machines for your cluster. You uploaded this file to your HTTP server during installation.
+- You must have the OpenShift CLI (`oc`) installed.
+
+**Procedure**
+
+1. Extract the Ignition config file from the cluster by running the following command:
+   ```terminal
+   $ oc extract -n openshift-machine-api secret/worker-user-data-managed --keys=userData --to=- > worker.ign
+   ```
+2. Upload the `worker.ign` Ignition config file you exported from your cluster to your HTTP server. Note the URLs of these files.
+3. You can validate that the ignition files are available on the URLs. The following example gets the Ignition config files for the compute node:
+   ```terminal
+   $ curl -k http://<HTTP_server>/worker.ign
+   ```
+4. You can access the ISO image for booting your new machine by running the following command:
+   ```terminal
+   RHCOS_VHD_ORIGIN_URL=$(oc -n openshift-machine-config-operator get configmap/coreos-bootimages -o jsonpath='{.data.stream}' | jq -r '.architectures.<architecture>.artifacts.metal.formats.iso.disk.location')
+   ```
+5. Use the ISO file to install RHCOS on more compute machines. Use the same method that you used when you created machines before you installed the cluster:
+   - Burn the ISO image to a disk and boot it directly.
+   - Use ISO redirection with a LOM interface.
+6. Boot the RHCOS ISO image without specifying any options, or interrupting the live boot sequence. Wait for the installer to boot into a shell prompt in the RHCOS live environment.
+   :::note
+
+   You can interrupt the RHCOS installation boot process to add kernel arguments. However, for this ISO procedure you must use the `coreos-installer` command as outlined in the following steps, instead of adding kernel arguments.
+
+   :::
+7. Run the `coreos-installer` command by using `sudo`. The `core` user does not have the root privileges required to perform the installation. Specify the options that meet your installation requirements. At a minimum, you must specify the URL that points to the Ignition config file for the node type, and the device that you are installing to.
+   ```terminal
+   $ sudo coreos-installer install --ignition-url=http://<HTTP_server>/<node_type>.ign <device> --ignition-hash=sha512-<digest>
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;digest&gt;</code></dt>
+   <dd>Specifies the Ignition config file SHA512 digest obtained through an HTTP URL to validate the authenticity of the Ignition config file on the cluster node.</dd>
+   </dl>
+
+   :::note
+
+   If you want to provide your Ignition config files through an HTTPS server that uses TLS, you can add the internal certificate authority (CA) to the system trust store before running `coreos-installer`.
+
+   :::
+
+   The following example initializes a compute node installation to the `/dev/sda` device. The Ignition config file for the compute node is obtained from an HTTP web server with the IP address 192.168.1.2:
+
+   ```terminal
+   $ sudo coreos-installer install --ignition-url=http://192.168.1.2:80/installation_directory/worker.ign /dev/sda --ignition-hash=sha512-a5a2d43879223273c9b60af66b44202a1d1248fc01cf156c46d4a79f552b6bad47bc8cc78ddf0116e80c59d2ea9e32ba53bc807afbca581aa059311def2c3e3b
+   ```
+8. Monitor the progress of the RHCOS installation on the console of the machine.
+   :::warning
+
+   Ensure that the installation is successful on each node before commencing with the OpenShift Container Platform installation. Observing the installation process can also help to determine the cause of RHCOS installation issues that might arise.
+
+   :::
+9. Continue to create more compute machines for your cluster.
+
+### Creating RHCOS machines by PXE or iPXE booting {#machine-user-infra-machines-pxe_adding-bare-metal-compute-user-infra}
+
+To scale your OpenShift Container Platform bare metal cluster, you can create more Red Hat Enterprise Linux CoreOS (RHCOS) compute machines by using PXE or iPXE booting.
+
+**Prerequisites**
+
+- You have obtained the URL of the Ignition config file for the compute machines for your cluster. You uploaded this file to your HTTP server during installation.
+- You have obtained the URLs of the RHCOS ISO image, compressed metal BIOS, `kernel`, and `initramfs` files that you uploaded to your HTTP server during cluster installation.
+- You have access to the PXE booting infrastructure that you used to create the machines for your OpenShift Container Platform cluster during installation. The machines must boot from their local disks after RHCOS is installed on them.
+- If you use UEFI, you have access to the `grub.conf` file that you modified during OpenShift Container Platform installation.
+
+**Procedure**
+
+1. Confirm that your PXE or iPXE installation for the RHCOS images is correct.
+   - For PXE:
+     ```
+     DEFAULT pxeboot
+     TIMEOUT 20
+     PROMPT 0
+     LABEL pxeboot
+         KERNEL http://<HTTP_server>/rhcos-<version>-live-kernel-<architecture>
+         APPEND initrd=http://<HTTP_server>/rhcos-<version>-live-initramfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/worker.ign coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img
+     ```
+
+     where:
+
+     <dl>
+     <dt><code>KERNEL</code></dt>
+     <dd>Specifies the location of the live <code>kernel</code> file that you uploaded to your HTTP server.</dd>
+     <dt><code>APPEND</code></dt>
+     <dd>Specifies the locations of the RHCOS files that you uploaded to your HTTP server:</dd>
+     <dt><code>initrd</code></dt>
+     <dd>Specifies the location of the live <code>initramfs</code> file.</dd>
+     <dt><code>coreos.inst.ignition_url</code></dt>
+     <dd>Specifies the location of the worker Ignition config file. This parameter supports only HTTP and HTTPS.</dd>
+     <dt><code>coreos.live.rootfs_url</code></dt>
+     <dd>Specifies the location of the live <code>rootfs</code> file. This parameter supports only HTTP and HTTPS.</dd>
+     </dl>
+
+     :::note
+
+     This configuration does not enable serial console access on machines with a graphical console. To configure a different console, add one or more `console=` arguments to the `APPEND` line. For example, add `console=tty0 console=ttyS0` to set the first PC serial port as the primary console and the graphical console as a secondary console. For more information on setting up a serial terminal and/or console in RHCOS, see "How does one set up a serial terminal and/or console in Red Hat Enterprise Linux?".
+
+     :::
+   - For iPXE (`x86_64` + `aarch64`):
+     ```
+     kernel http://<HTTP_server>/rhcos-<version>-live-kernel-<architecture> initrd=main coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/worker.ign
+     initrd --name main http://<HTTP_server>/rhcos-<version>-live-initramfs.<architecture>.img
+     boot
+     ```
+
+     where:
+
+     <dl>
+     <dt><code>kernel</code></dt>
+     <dd>Specifies the location of the <code>kernel</code> file that you uploaded to your HTTP server.</dd>
+     <dt><code>initrd=main</code></dt>
+     <dd>Specifies an argument that is required for booting on UEFI systems.</dd>
+     <dt><code>coreos.live.rootfs_url</code></dt>
+     <dd>Specifies the location of the <code>rootfs</code> file that you uploaded to your HTTP server.</dd>
+     <dt><code>coreos.inst.ignition_url</code></dt>
+     <dd>Specifies the location of the worker Ignition config file that you uploaded to your HTTP server.</dd>
+     <dt><code>initrd --name main</code></dt>
+     <dd>Specifies the location of the <code>initramfs</code> file that you uploaded to your HTTP server.</dd>
+     </dl>
+
+     :::note
+
+     - If you use multiple NICs, specify a single interface in the `ip` option. For example, to use DHCP on a NIC named `eno1`, set `ip=eno1:dhcp`.
+     - This configuration does not enable serial console access on machines with a graphical console. To configure a different console, add one or more `console=` arguments to the `kernel` line. For example, add `console=tty0 console=ttyS0` to set the first PC serial port as the primary console and the graphical console as a secondary console. For more information on setting up a serial terminal and/or console in RHCOS, see "How does one set up a serial terminal and/or console in Red Hat Enterprise Linux?" in the Additional resources section and "Enabling the serial console for PXE and ISO installation" in the "Advanced RHCOS installation configuration" section.
+
+     :::
+
+     :::note
+
+     To network boot the CoreOS `kernel` on `aarch64` architecture, you need to use a version of iPXE build with the `IMAGE_GZIP` option enabled. For more information, see "IMAGE_GZIP option in iPXE".
+
+     :::
+   - For PXE (with UEFI and GRUB as second stage) on `aarch64`:
+     ```
+     menuentry 'Install CoreOS' {
+         linux rhcos-<version>-live-kernel-<architecture>  coreos.live.rootfs_url=http://<HTTP_server>/rhcos-<version>-live-rootfs.<architecture>.img coreos.inst.install_dev=/dev/sda coreos.inst.ignition_url=http://<HTTP_server>/worker.ign
+         initrd rhcos-<version>-live-initramfs.<architecture>.img
+     }
+     ```
+
+     where:
+
+     <dl>
+     <dt><code>linux</code></dt>
+     <dd>Specifies the location of the live <code>kernel</code> file on your TFTP server.</dd>
+     <dt><code>coreos.live.rootfs_url</code></dt>
+     <dd>Specifies the location of the live <code>rootfs</code> file.</dd>
+     <dt><code>coreos.inst.ignition_url</code></dt>
+     <dd>Specifies the location of the worker Ignition config file.</dd>
+     <dt><code>initrd</code></dt>
+     <dd>Specifies the location of the live <code>initramfs</code> file on your TFTP server.</dd>
+     </dl>
+
+     :::note
+
+     If you use multiple NICs, specify a single interface in the `ip` option. For example, to use DHCP on a NIC named `eno1`, set `ip=eno1:dhcp`.
+
+     :::
+2. Use the PXE or iPXE infrastructure to create the required compute machines for your cluster.
+
+**Additional resources**
+
+- [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux? (Red Hat Knowledgebase article)](https://access.redhat.com/articles/7212)
+- [`IMAGE_GZIP` option in iPXE (iPXE documentation)](https://ipxe.org/buildcfg/image_gzip)
+
+## Approving the certificate signing requests for your machines {#installation-approve-csrs_adding-bare-metal-compute-user-infra}
+
+To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
+
+**Prerequisites**
+
+- You added machines to your cluster.
+
+**Procedure**
+
+1. Confirm that the cluster recognizes the machines:
+   ```terminal
+   $ oc get nodes
+   ```
+
+   ```terminal title="Example output"
+   NAME      STATUS    ROLES   AGE  VERSION
+   master-0  Ready     master  63m  v1.35.4
+   master-1  Ready     master  63m  v1.35.4
+   master-2  Ready     master  64m  v1.35.4
+   ```
+
+   The output lists all of the machines that you created.
+
+   :::note
+
+   The preceding output might not include the compute nodes until you approve some CSRs.
+
+   :::
+2. Review the pending CSRs and ensure that you see the client requests with the `Pending` or `Approved` status for each machine that you added to the cluster:
+   ```terminal
+   $ oc get csr
+   ```
+
+   ```terminal title="Example output"
+   NAME        AGE     REQUESTOR                                                                   CONDITION
+   csr-8b2br   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending
+   csr-8vnps   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending
+   ...
+   ```
+
+   In this example, two machines are joining the cluster. You might see more approved CSRs in the list.
+3. If the CSRs were not approved, after all of the pending CSRs for the machines you added are in `Pending` status, approve the CSRs for your cluster machines:
+   :::note
+
+   You must approve your CSRs within an hour of adding the machines to the cluster. If you do not approve them within an hour, the certificates rotate, and more than two certificates are present for each node. You must approve all of these certificates. After you approve the client CSR, the kubelet creates a secondary CSR for the serving certificate, which requires manual approval. The `machine-approver` then automatically approves later serving certificate renewal requests if the kubelet requests a new certificate with the same parameters.
+
+   :::
+
+   :::note
+
+   For clusters running on platforms that are not machine API enabled, such as bare metal and other user-provisioned infrastructure, you must implement a method of automatically approving the kubelet serving certificate requests (CSRs). If you do not approve a request, the `oc exec`, `oc rsh`, and `oc logs` commands cannot succeed, because the API server requires a serving certificate when it connects to the kubelet. Any operation that contacts the kubelet endpoint requires this certificate approval to be in place. The method must watch for new CSRs, confirm that the `node-bootstrapper` service account in the `system:node` or `system:admin` groups submitted the CSR, and confirm the identity of the node.
+
+   :::
+
+   - To approve them individually, run the following command for each valid CSR:
+     ```terminal
+     $ oc adm certificate approve <csr_name>
+     ```
+
+     where:
+
+     <dl>
+     <dt><code>&lt;csr_name&gt;</code></dt>
+     <dd>Specifies the name of a CSR from the list of current CSRs.</dd>
+     </dl>
+   - To approve all pending CSRs, run the following command:
+     ```terminal
+     $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
+     ```
+
+     :::note
+
+     Some Operators might not become available until you approve some CSRs. Each node submits two CSRs, so you might need to run the command to approve CSRs many times.
+
+     :::
+4. After you approve your client requests, review the server requests for each machine that you added to the cluster:
+   ```terminal
+   $ oc get csr
+   ```
+
+   ```terminal title="Example output"
+   NAME        AGE     REQUESTOR                                                                   CONDITION
+   csr-bfd72   5m26s   system:node:ip-10-0-50-126.us-east-2.compute.internal                       Pending
+   csr-c57lv   5m26s   system:node:ip-10-0-95-157.us-east-2.compute.internal                       Pending
+   ...
+   ```
+5. If the remaining CSRs are not approved, and are in the `Pending` status, approve the CSRs for your cluster machines:
+   - To approve them individually, run the following command for each valid CSR:
+     ```terminal
+     $ oc adm certificate approve <csr_name>
+     ```
+
+     where:
+
+     <dl>
+     <dt><code>&lt;csr_name&gt;</code></dt>
+     <dd>Specifies the name of a CSR from the list of current CSRs.</dd>
+     </dl>
+   - To approve all pending CSRs, run the following command:
+     ```terminal
+     $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
+     ```
+6. After you approve all client and server CSRs, the machines have the `Ready` status. Verify this by running the following command:
+   ```terminal
+   $ oc get nodes
+   ```
+
+   ```terminal title="Example output"
+   NAME      STATUS    ROLES   AGE  VERSION
+   master-0  Ready     master  73m  v1.35.4
+   master-1  Ready     master  73m  v1.35.4
+   master-2  Ready     master  74m  v1.35.4
+   worker-0  Ready     worker  11m  v1.35.4
+   worker-1  Ready     worker  11m  v1.35.4
+   ```
+
+   :::note
+
+   You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.
+
+   :::

@@ -1,0 +1,556 @@
+---
+title: Load balancing on RHOSP
+sidebar_position: 4
+---
+
+# Load balancing on RHOSP {#load-balancing-openstack}
+
+<a id="load-balancing-openstack"></a>
+
+To distribute network traffic and communications activity evenly across your compute instances in RHOSP, configure load balancing services.
+
+## Limitations of load balancer services {#nw-osp-loadbalancer-limitations_load-balancing-openstack}
+
+OpenShift Container Platform clusters on Red Hat OpenStack Platform (RHOSP) use Octavia to handle load balancer services. As a result of this choice, such clusters might have functional limitations.
+
+OpenShift Container Platform clusters on Red Hat OpenStack Platform (RHOSP) use Octavia to handle load balancer services. As a result, your cluster has several functional limitations.
+
+RHOSP Octavia has two supported providers: Amphora and OVN. These providers differ in available features and implementation details. These distinctions affect load balancer services that you create on your cluster.
+
+### Local external traffic policies {#nw-osp-loadbalancer-etp-local_load-balancing-openstack}
+
+You can set the external traffic policy (ETP) parameter, `.spec.externalTrafficPolicy`, on a load balancer service to preserve the source IP address of incoming traffic when it reaches service endpoint pods.
+
+If your cluster uses the Amphora Octavia provider, the source IP of the traffic is replaced with the IP address of the Amphora VM. This behavior does not occur if your cluster uses the OVN Octavia provider.
+
+Having the `ETP` option set to `Local` requires creating health monitors for the load balancer. Without health monitors, traffic can be routed to a node that does not have a functional endpoint, which causes the connection to drop. To force Cloud Provider OpenStack to create health monitors, you must set the value of the `create-monitor` option in the cloud provider configuration to `true`.
+
+In RHOSP 16.2, the OVN Octavia provider does not support health monitors. Therefore, setting the ETP to `Local` is unsupported.
+
+In RHOSP 16.2, the Amphora Octavia provider does not support HTTP monitors on UDP pools. As a result, UDP load balancer services have `UDP-CONNECT` monitors created instead. Due to implementation details, this configuration only functions properly with the OVN-Kubernetes CNI plugin.
+
+## Scaling clusters for application traffic by using Octavia {#installation-osp-api-octavia_load-balancing-openstack}
+
+To distribute traffic across multiple virtual machines (VMs), configure your cluster that runs on Red Hat OpenStack Platform (RHOSP) to use the Octavia load balancing service. By using this feature, you can mitigate the bottleneck that single machines or addresses create.
+
+You must create your own Octavia load balancer to use it for application network scaling.
+
+### Scaling clusters by using Octavia {#installation-osp-api-scaling_load-balancing-openstack}
+
+If you want to use multiple API load balancers, create an Octavia load balancer and then configure your cluster to use it.
+
+**Prerequisites**
+
+- Octavia is available on your Red Hat OpenStack Platform (RHOSP) deployment.
+
+**Procedure**
+
+1. From the command-line interface (CLI), create an Octavia load balancer that uses the Amphora driver:
+   ```terminal
+   $ openstack loadbalancer create --name API_OCP_CLUSTER --vip-subnet-id <id_of_worker_vms_subnet>
+   ```
+
+   You can use a name of your choice instead of `API_OCP_CLUSTER`.
+2. After the load balancer becomes active, create listeners:
+   ```terminal
+   $ openstack loadbalancer listener create --name API_OCP_CLUSTER_6443 --protocol HTTPS--protocol-port 6443 API_OCP_CLUSTER
+   ```
+
+   :::note
+
+   To view the status of the load balancer, enter `openstack loadbalancer list`.
+
+   :::
+3. Create a pool that uses the round-robin algorithm and has session persistence enabled:
+   ```terminal
+   $ openstack loadbalancer pool create --name API_OCP_CLUSTER_pool_6443 --lb-algorithm ROUND_ROBIN --session-persistence type=<source_IP_address> --listener API_OCP_CLUSTER_6443 --protocol HTTPS
+   ```
+4. To ensure that control-plane machines are available, create a health monitor:
+   ```terminal
+   $ openstack loadbalancer healthmonitor create --delay 5 --max-retries 4 --timeout 10 --type TCP API_OCP_CLUSTER_pool_6443
+   ```
+5. Add the control plane machines as members of the load balancer pool:
+   ```terminal
+   $ for SERVER in $(MASTER-0-IP MASTER-1-IP MASTER-2-IP)
+   do
+     openstack loadbalancer member create --address $SERVER  --protocol-port 6443 API_OCP_CLUSTER_pool_6443
+   done
+   ```
+6. Optional: To reuse the cluster API floating IP address, unset it:
+   ```terminal
+   $ openstack floating ip unset $API_FIP
+   ```
+7. Add either the unset `API_FIP` or a new address to the created load balancer VIP:
+   ```terminal
+   $ openstack floating ip set  --port $(openstack loadbalancer show -c <vip_port_id> -f value API_OCP_CLUSTER) $API_FIP
+   ```
+
+   Your cluster now uses Octavia for load balancing.
+
+## Services for a user-managed load balancer {#nw-osp-services-external-load-balancer_load-balancing-openstack}
+
+You can configure an OpenShift Container Platform cluster on Red Hat OpenStack Platform (RHOSP) to use a user-managed load balancer in place of the default load balancer.
+
+:::warning
+
+Configuring a user-managed load balancer depends on your vendor’s load balancer.
+
+The information and examples in this section are for guideline purposes only. Consult the vendor documentation for more specific information about the vendor’s load balancer.
+
+:::
+
+Red Hat supports the following services for a user-managed load balancer:
+
+- Ingress Controller
+- OpenShift API
+- OpenShift MachineConfig API
+
+You can choose whether you want to configure one or all of these services for a user-managed load balancer. Configuring only the Ingress Controller service is a common configuration option. To better understand each service, view the following diagrams:
+
+**Figure 1. Example network workflow that shows an Ingress Controller operating in an OpenShift Container Platform environment**
+
+![An image that shows an example network workflow of an Ingress Controller operating in an OpenShift Container Platform environment.](/images/external-load-balancer-default.png)
+
+**Figure 2. Example network workflow that shows an OpenShift API operating in an OpenShift Container Platform environment**
+
+![An image that shows an example network workflow of an OpenShift API operating in an OpenShift Container Platform environment.](/images/external-load-balancer-openshift-api.png)
+
+**Figure 3. Example network workflow that shows an OpenShift **`MachineConfig`** API operating in an OpenShift Container Platform environment**
+
+![An image that shows an example network workflow of an OpenShift `MachineConfig` API operating in an OpenShift Container Platform environment.](/images/external-load-balancer-machine-config-api.png)
+
+The following configuration options are supported for user-managed load balancers:
+
+- Use a node selector to map the Ingress Controller to a specific set of nodes. You must assign a static IP address to each node in this set, or configure each node to receive the same IP address from the Dynamic Host Configuration Protocol (DHCP). Infrastructure nodes commonly receive this type of configuration.
+- Target all IP addresses on a subnet. This configuration can reduce the effort required to maintain the load balancer, because you can create and destroy nodes within those networks without reconfiguring the load balancer targets. If you deploy your ingress pods by using a machine set on a smaller network, such as a `/27` or `/28`, you can simplify your load balancer targets.
+  :::tip
+
+  You can list all IP addresses that exist in a network by checking the machine config pool’s resources.
+
+  :::
+
+Before you configure a user-managed load balancer for your OpenShift Container Platform cluster, consider the following information:
+
+- For a front-end IP address, you can use the same IP address for the front-end IP address, the Ingress Controller load balancer, and API load balancer. Check the vendor’s documentation for this capability.
+- For a back-end IP address, ensure that an IP address for an OpenShift Container Platform control plane node does not change during the lifetime of the user-managed load balancer. You can achieve this by completing one of the following actions:
+  - Assign a static IP address to each control plane node.
+  - Configure each node to receive the same IP address from the DHCP every time the node requests a DHCP lease. Depending on the vendor, the DHCP lease might be in the form of an IP reservation or a static DHCP assignment.
+- Manually define each node that runs the Ingress Controller in the user-managed load balancer for the Ingress Controller back-end service. For example, if the Ingress Controller moves to an undefined node, a connection outage can occur.
+
+### Configuring a user-managed load balancer {#nw-osp-configuring-external-load-balancer_load-balancing-openstack}
+
+You can configure an OpenShift Container Platform cluster on Red Hat OpenStack Platform (RHOSP) to use a user-managed load balancer in place of the default load balancer.
+
+:::warning
+
+Before you configure a user-managed load balancer, ensure that you read the "Services for a user-managed load balancer" section.
+
+:::
+
+Read the following prerequisites that apply to the service that you want to configure for your user-managed load balancer.
+
+:::note
+
+MetalLB, which runs on a cluster, functions as a user-managed load balancer.
+
+:::
+
+**Prerequisites**
+
+The following list details OpenShift API prerequisites:
+
+- You defined a front-end IP address.
+- TCP ports 6443 and 22623 are exposed on the front-end IP address of your load balancer. Check the following items:
+  - Port 6443 provides access to the OpenShift API service.
+  - Port 22623 can provide ignition startup configurations to nodes.
+- The front-end IP address and port 6443 are reachable by all users of your system with a location external to your OpenShift Container Platform cluster.
+- The front-end IP address and port 22623 are reachable only by OpenShift Container Platform nodes.
+- The load balancer backend can communicate with OpenShift Container Platform control plane nodes on port 6443 and 22623.
+
+The following list details Ingress Controller prerequisites:
+
+- You defined a front-end IP address.
+- TCP port 443 and port 80 are exposed on the front-end IP address of your load balancer.
+- The front-end IP address, port 80 and port 443 are reachable by all users of your system with a location external to your OpenShift Container Platform cluster.
+- The front-end IP address, port 80 and port 443 are reachable by all nodes that operate in your OpenShift Container Platform cluster.
+- The load balancer backend can communicate with OpenShift Container Platform nodes that run the Ingress Controller on ports 80, 443, and 1936.
+
+The following list details prerequisites for health check URL specifications:
+
+You can configure most load balancers by setting health check URLs that determine if a service is available or unavailable. OpenShift Container Platform provides these health checks for the OpenShift API, Machine Configuration API, and Ingress Controller backend services.
+
+The following example shows a Kubernetes API health check specification for a backend service:
+
+```terminal
+Path: HTTPS:6443/readyz
+Healthy threshold: 2
+Unhealthy threshold: 2
+Timeout: 10
+Interval: 10
+```
+
+The following example shows a Machine Config API health check specification for a backend service:
+
+```terminal
+Path: HTTPS:22623/healthz
+Healthy threshold: 2
+Unhealthy threshold: 2
+Timeout: 10
+Interval: 10
+```
+
+The following example shows a Ingress Controller health check specification for a backend service:
+
+```terminal
+Path: HTTP:1936/healthz/ready
+Healthy threshold: 2
+Unhealthy threshold: 2
+Timeout: 5
+Interval: 10
+```
+
+**Procedure**
+
+1. Configure the HAProxy Ingress Controller, so that you can enable access to the cluster from your load balancer on ports 6443, 22623, 443, and 80. Depending on your needs, you can specify the IP address of a single subnet or IP addresses from multiple subnets in your HAProxy configuration.
+   ```terminal title="Example HAProxy configuration with one listed subnet"
+   # ...
+   listen my-cluster-api-6443
+       bind 192.168.1.100:6443
+       mode tcp
+       balance roundrobin
+     option httpchk
+     http-check connect
+     http-check send meth GET uri /readyz
+     http-check expect status 200
+       server my-cluster-master-2 192.168.1.101:6443 check inter 10s rise 2 fall 2
+       server my-cluster-master-0 192.168.1.102:6443 check inter 10s rise 2 fall 2
+       server my-cluster-master-1 192.168.1.103:6443 check inter 10s rise 2 fall 2
+
+   listen my-cluster-machine-config-api-22623
+       bind 192.168.1.100:22623
+       mode tcp
+       balance roundrobin
+     option httpchk
+     http-check connect
+     http-check send meth GET uri /healthz
+     http-check expect status 200
+       server my-cluster-master-2 192.168.1.101:22623 check inter 10s rise 2 fall 2
+       server my-cluster-master-0 192.168.1.102:22623 check inter 10s rise 2 fall 2
+       server my-cluster-master-1 192.168.1.103:22623 check inter 10s rise 2 fall 2
+
+   listen my-cluster-apps-443
+       bind 192.168.1.100:443
+       mode tcp
+       balance roundrobin
+     option httpchk
+     http-check connect
+     http-check send meth GET uri /healthz/ready
+     http-check expect status 200
+       server my-cluster-worker-0 192.168.1.111:443 check port 1936 inter 10s rise 2 fall 2
+       server my-cluster-worker-1 192.168.1.112:443 check port 1936 inter 10s rise 2 fall 2
+       server my-cluster-worker-2 192.168.1.113:443 check port 1936 inter 10s rise 2 fall 2
+
+   listen my-cluster-apps-80
+      bind 192.168.1.100:80
+      mode tcp
+      balance roundrobin
+     option httpchk
+     http-check connect
+     http-check send meth GET uri /healthz/ready
+     http-check expect status 200
+       server my-cluster-worker-0 192.168.1.111:80 check port 1936 inter 10s rise 2 fall 2
+       server my-cluster-worker-1 192.168.1.112:80 check port 1936 inter 10s rise 2 fall 2
+       server my-cluster-worker-2 192.168.1.113:80 check port 1936 inter 10s rise 2 fall 2
+   # ...
+   ```
+
+   ```terminal title="Example HAProxy configuration with multiple listed subnets"
+   # ...
+   listen api-server-6443
+       bind *:6443
+       mode tcp
+         server master-00 192.168.83.89:6443 check inter 1s
+         server master-01 192.168.84.90:6443 check inter 1s
+         server master-02 192.168.85.99:6443 check inter 1s
+         server bootstrap 192.168.80.89:6443 check inter 1s
+
+   listen machine-config-server-22623
+       bind *:22623
+       mode tcp
+         server master-00 192.168.83.89:22623 check inter 1s
+         server master-01 192.168.84.90:22623 check inter 1s
+         server master-02 192.168.85.99:22623 check inter 1s
+         server bootstrap 192.168.80.89:22623 check inter 1s
+
+   listen ingress-router-80
+       bind *:80
+       mode tcp
+       balance source
+         server worker-00 192.168.83.100:80 check inter 1s
+         server worker-01 192.168.83.101:80 check inter 1s
+
+   listen ingress-router-443
+       bind *:443
+       mode tcp
+       balance source
+         server worker-00 192.168.83.100:443 check inter 1s
+         server worker-01 192.168.83.101:443 check inter 1s
+
+   listen ironic-api-6385
+       bind *:6385
+       mode tcp
+       balance source
+         server master-00 192.168.83.89:6385 check inter 1s
+         server master-01 192.168.84.90:6385 check inter 1s
+         server master-02 192.168.85.99:6385 check inter 1s
+         server bootstrap 192.168.80.89:6385 check inter 1s
+
+   listen inspector-api-5050
+       bind *:5050
+       mode tcp
+       balance source
+         server master-00 192.168.83.89:5050 check inter 1s
+         server master-01 192.168.84.90:5050 check inter 1s
+         server master-02 192.168.85.99:5050 check inter 1s
+         server bootstrap 192.168.80.89:5050 check inter 1s
+   # ...
+   ```
+2. Use the `curl` CLI command to verify that the user-managed load balancer and its resources are operational:
+   1. Verify that the cluster machine configuration API is accessible to the Kubernetes API server resource, by running the following command and observing the response:
+      ```terminal
+      $ curl https://<loadbalancer_ip_address>:6443/version --insecure
+      ```
+
+      If the configuration is correct, you receive a JSON object in response:
+
+      ```json
+      {
+        "major": "1",
+        "minor": "11+",
+        "gitVersion": "v1.11.0+ad103ed",
+        "gitCommit": "ad103ed",
+        "gitTreeState": "clean",
+        "buildDate": "2019-01-09T06:44:10Z",
+        "goVersion": "go1.10.3",
+        "compiler": "gc",
+        "platform": "linux/amd64"
+      }
+      ```
+   2. Verify that the cluster machine configuration API is accessible to the Machine config server resource, by running the following command and observing the output:
+      ```terminal
+      $ curl -v https://<loadbalancer_ip_address>:22623/healthz --insecure
+      ```
+
+      If the configuration is correct, the output from the command shows the following response:
+
+      ```terminal
+      HTTP/1.1 200 OK
+      Content-Length: 0
+      ```
+   3. Verify that the controller is accessible to the Ingress Controller resource on port 80, by running the following command and observing the output:
+      ```terminal
+      $ curl -I -L -H "Host: console-openshift-console.apps.<cluster_name>.<base_domain>" http://<load_balancer_front_end_IP_address>
+      ```
+
+      If the configuration is correct, the output from the command shows the following response:
+
+      ```terminal
+      HTTP/1.1 302 Found
+      content-length: 0
+      location: https://console-openshift-console.apps.ocp4.private.opequon.net/
+      cache-control: no-cache
+      ```
+   4. Verify that the controller is accessible to the Ingress Controller resource on port 443, by running the following command and observing the output:
+      ```terminal
+      $ curl -I -L --insecure --resolve console-openshift-console.apps.<cluster_name>.<base_domain>:443:<Load Balancer Front End IP Address> https://console-openshift-console.apps.<cluster_name>.<base_domain>
+      ```
+
+      If the configuration is correct, the output from the command shows the following response:
+
+      ```terminal
+      HTTP/1.1 200 OK
+      referrer-policy: strict-origin-when-cross-origin
+      set-cookie: csrf-token=UlYWOyQ62LWjw2h003xtYSKlh1a0Py2hhctw0WmV2YEdhJjFyQwWcGBsja261dGLgaYO0nxzVErhiXt6QepA7g==; Path=/; Secure; SameSite=Lax
+      x-content-type-options: nosniff
+      x-dns-prefetch-control: off
+      x-frame-options: DENY
+      x-xss-protection: 1; mode=block
+      date: Wed, 04 Oct 2023 16:29:38 GMT
+      content-type: text/html; charset=utf-8
+      set-cookie: 1e2670d92730b515ce3a1bb65da45062=1bf5e9573c9a2760c964ed1659cc1673; path=/; HttpOnly; Secure; SameSite=None
+      cache-control: private
+      ```
+3. Configure the DNS records for your cluster to target the front-end IP addresses of the user-managed load balancer. You must update records to your DNS server for the cluster API and applications over the load balancer. The following examples shows modified DNS records:
+   ```dns
+   <load_balancer_ip_address>  A  api.<cluster_name>.<base_domain>
+   A record pointing to Load Balancer Front End
+   ```
+
+   ```dns
+   <load_balancer_ip_address>   A apps.<cluster_name>.<base_domain>
+   A record pointing to Load Balancer Front End
+   ```
+
+   :::warning
+
+   DNS propagation might take some time for each DNS record to become available. Ensure that each DNS record propagates before validating each record.
+
+   :::
+4. For your OpenShift Container Platform cluster to use the user-managed load balancer, you must specify the following configuration in your cluster’s `install-config.yaml` file:
+   ```yaml
+   # ...
+   platform:
+     openstack:
+       loadBalancer:
+         type: <loadBalancer_type>
+       apiVIPs:
+       - <api_ip>
+       ingressVIPs:
+       - <ingress_ip>
+   # ...
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;loadBalancer_type&gt;</code></dt>
+   <dd>Specifies the load balancer type. Set to <code>UserManaged</code> to specify a user-managed load balancer for your cluster. The parameter defaults to <code>OpenShiftManagedDefault</code>, which denotes the default internal load balancer. For services defined in an <code>openshift-kni-infra</code> namespace, a user-managed load balancer can deploy the <code>coredns</code> service to pods in your cluster but ignores <code>keepalived</code> and <code>haproxy</code> services.</dd>
+   <dt><code>&lt;api_ip&gt;</code></dt>
+   <dd>Specifies the user-managed load balancer’s public IP address for the Kubernetes API. Mandatory parameter.</dd>
+   <dt><code>&lt;ingress_ip&gt;</code></dt>
+   <dd>Specifies the user-managed load balancer’s public IP address for ingress traffic. Mandatory parameter.</dd>
+   </dl>
+
+**Verification**
+
+1. Use the `curl` CLI command to verify that the user-managed load balancer and DNS record configuration are operational:
+   1. Verify that you can access the cluster API, by running the following command and observing the output:
+      ```terminal
+      $ curl https://api.<cluster_name>.<base_domain>:6443/version --insecure
+      ```
+
+      If the configuration is correct, you receive a JSON object in response:
+
+      ```json
+      {
+        "major": "1",
+        "minor": "11+",
+        "gitVersion": "v1.11.0+ad103ed",
+        "gitCommit": "ad103ed",
+        "gitTreeState": "clean",
+        "buildDate": "2019-01-09T06:44:10Z",
+        "goVersion": "go1.10.3",
+        "compiler": "gc",
+        "platform": "linux/amd64"
+        }
+      ```
+   2. Verify that you can access the cluster machine configuration, by running the following command and observing the output:
+      ```terminal
+      $ curl -v https://api.<cluster_name>.<base_domain>:22623/healthz --insecure
+      ```
+
+      If the configuration is correct, the output from the command shows the following response:
+
+      ```terminal
+      HTTP/1.1 200 OK
+      Content-Length: 0
+      ```
+   3. Verify that you can access each cluster application on port 80, by running the following command and observing the output:
+      ```terminal
+      $ curl http://console-openshift-console.apps.<cluster_name>.<base_domain> -I -L --insecure
+      ```
+
+      If the configuration is correct, the output from the command shows the following response:
+
+      ```terminal
+      HTTP/1.1 302 Found
+      content-length: 0
+      location: https://console-openshift-console.apps.<cluster-name>.<base domain>/
+      cache-control: no-cacheHTTP/1.1 200 OK
+      referrer-policy: strict-origin-when-cross-origin
+      set-cookie: csrf-token=39HoZgztDnzjJkq/JuLJMeoKNXlfiVv2YgZc09c3TBOBU4NI6kDXaJH1LdicNhN1UsQWzon4Dor9GWGfopaTEQ==; Path=/; Secure
+      x-content-type-options: nosniff
+      x-dns-prefetch-control: off
+      x-frame-options: DENY
+      x-xss-protection: 1; mode=block
+      date: Tue, 17 Nov 2020 08:42:10 GMT
+      content-type: text/html; charset=utf-8
+      set-cookie: 1e2670d92730b515ce3a1bb65da45062=9b714eb87e93cf34853e87a92d6894be; path=/; HttpOnly; Secure; SameSite=None
+      cache-control: private
+      ```
+   4. Verify that you can access each cluster application on port 443, by running the following command and observing the output:
+      ```terminal
+      $ curl https://console-openshift-console.apps.<cluster_name>.<base_domain> -I -L --insecure
+      ```
+
+      If the configuration is correct, the output from the command shows the following response:
+
+      ```terminal
+      HTTP/1.1 200 OK
+      referrer-policy: strict-origin-when-cross-origin
+      set-cookie: csrf-token=UlYWOyQ62LWjw2h003xtYSKlh1a0Py2hhctw0WmV2YEdhJjFyQwWcGBsja261dGLgaYO0nxzVErhiXt6QepA7g==; Path=/; Secure; SameSite=Lax
+      x-content-type-options: nosniff
+      x-dns-prefetch-control: off
+      x-frame-options: DENY
+      x-xss-protection: 1; mode=block
+      date: Wed, 04 Oct 2023 16:29:38 GMT
+      content-type: text/html; charset=utf-8
+      set-cookie: 1e2670d92730b515ce3a1bb65da45062=1bf5e9573c9a2760c964ed1659cc1673; path=/; HttpOnly; Secure; SameSite=None
+      cache-control: private
+      ```
+
+## Specifying a floating IP address in the Ingress Controller {#nw-osp-specify-floating-ip_load-balancing-openstack}
+
+To establish external access to your OpenShift Container Platform cluster on Red Hat OpenStack Platform (RHOSP), use the automatically assigned floating IP address. The floating IP address is associated with your Ingress port.
+
+You might want to precreate a floating IP address before updating your DNS records and cluster deployment. In this situation, you can define a floating IP address to the Ingress Controller. You can do this regardless of whether you are using Octavia or a user-managed cluster.
+
+**Procedure**
+
+1. Create the Ingress Controller custom resource (CR) file with the floating IPs:
+   ```yaml title="Example Ingress config sample-ingress.yaml"
+   apiVersion: operator.openshift.io/v1
+   kind: IngressController
+   metadata:
+     namespace: openshift-ingress-operator
+     name: <name>
+   spec:
+     domain: <domain>
+     endpointPublishingStrategy:
+       type: LoadBalancerService
+       loadBalancer:
+         scope: External
+         providerParameters:
+           type: OpenStack
+           openstack:
+             floatingIP: <ingress_port_IP>
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>metadata.name</code></dt>
+   <dd>Specifies the name of your Ingress Controller. If you are using the default Ingress Controller, the value for this field is <code>default</code>.</dd>
+   <dt><code>spec.domain</code></dt>
+   <dd>Specifies the DNS name serviced by the Ingress Controller.</dd>
+   <dt><code>loadBalancer.scope</code></dt>
+   <dd>You must set the scope to <code>External</code> to use a floating IP address.</dd>
+   <dt><code>openstack.floatingIP</code></dt>
+   <dd>Specifies the floating IP address associated with the port your Ingress Controller is listening on.</dd>
+   </dl>
+2. Apply the CR file by running the following command:
+   ```terminal
+   $ oc apply -f sample-ingress.yaml
+   ```
+3. Update your DNS records with the Ingress Controller endpoint:
+   ```text
+   *.apps.<name>.<domain>. IN A <ingress_port_IP>
+   ```
+4. Continue with creating your OpenShift Container Platform cluster.
+
+**Verification**
+
+- Confirm that the load balancer was successfully provisioned by checking the `IngressController` conditions using the following command:
+  ```terminal
+  $ oc get ingresscontroller -n openshift-ingress-operator <name> -o jsonpath="{.status.conditions}" | yq -PC
+  ```

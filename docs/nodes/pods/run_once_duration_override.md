@@ -1,0 +1,28 @@
+---
+title: Run Once Duration Override Operator overview
+sidebar_position: 1
+---
+
+# Run Once Duration Override Operator overview {#run-once-duration-override-about}
+
+<a id="run-once-duration-override-about"></a>
+
+The Run Once Duration Override Operator enforces time limits on run-once pods to prevent tasks from running indefinitely and consuming cluster resources.
+
+## About the Run Once Duration Override Operator {#rodoo-about_run-once-duration-override-about}
+
+The Run Once Duration Override Operator enforces time limits on run-once pods to prevent tasks such as builds and deployments from running indefinitely.
+
+OpenShift Container Platform relies on run-once pods to perform tasks such as deploying a pod or performing a build. Run-once pods are pods that have a `RestartPolicy` of `Never` or `OnFailure`.
+
+Cluster administrators can use the Run Once Duration Override Operator to force a limit on the time that those run-once pods can be active. After the time limit expires, the cluster tries to actively terminate those pods.
+
+To apply the run-once duration override from the Run Once Duration Override Operator to run-once pods, you must enable it on each applicable namespace.
+
+If both the run-once pod and the Run Once Duration Override Operator have their `activeDeadlineSeconds` value set, the lower of the two values is used.
+
+:::note
+
+You cannot install the Run Once Duration Override Operator on clusters managed by the HyperShift Operator.
+
+:::

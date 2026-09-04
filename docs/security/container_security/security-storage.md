@@ -1,0 +1,54 @@
+---
+title: Securing attached storage
+sidebar_position: 12
+---
+
+# Securing attached storage {#security-storage}
+
+<a id="security-storage"></a>
+
+You should understand how OpenShift Container Platform secures attached storage to protect persistent data in containerized workloads. OpenShift Container Platform uses Security-Enhanced Linux (SELinux) capabilities, group ID (GID) annotations, and Container Storage Interface (CSI)-compliant storage providers to isolate storage access and prevent unauthorized data exposure.
+
+## Persistent volume plugins {#security-network-storage-persistent_security-storage}
+
+Containers are useful for both stateless and stateful applications. Protecting attached storage is a key element of securing stateful services. Using the Container Storage Interface (CSI), OpenShift Container Platform can incorporate storage from any storage back end that supports the CSI interface.
+
+OpenShift Container Platform provides plugins for multiple types of storage, including:
+
+- Red Hat OpenShift Data Foundation *
+- AWS Elastic Block Stores (EBS) *
+- AWS Elastic File System (EFS) *
+- Azure Disk *
+- Azure File *
+- OpenStack Cinder *
+- Google Compute Engine (GCE) Persistent Disks *
+- VMware vSphere *
+- Network File System (NFS)
+- FlexVolume
+- Fibre Channel
+- Internet Small Computer Systems Interface (iSCSI)
+
+Plugins for those storage types with dynamic provisioning are marked with an asterisk (*). Data in transit is encrypted via HTTPS for all OpenShift Container Platform components communicating with each other.
+
+You can mount a persistent volume (PV) on a host in any way supported by your storage type. Different types of storage have different capabilities and each PV’s access modes are set to the specific modes supported by that particular volume.
+
+For example, NFS can support multiple read/write clients, but a specific NFS PV might be exported on the server as read-only. Each PV has its own set of access modes describing that specific PV’s capabilities, such as `ReadWriteOnce`, `ReadOnlyMany`, and `ReadWriteMany`.
+
+## Shared storage {#security-network-storage-shared_security-storage}
+
+For shared storage providers such as Network File System (NFS), the persistent volume (PV) registers its group ID (GID) as an annotation on the PV resource.
+
+Then, when the PV is claimed by the pod, the annotated GID is added to the supplemental groups of the pod, giving that pod access to the contents of the shared storage.
+
+## Block storage {#security-network-storage-block_security-storage}
+
+For block storage providers such as AWS Elastic Block Store (EBS), Google Compute Engine (GCE) Persistent Disks, and Internet Small Computer Systems Interface (iSCSI), OpenShift Container Platform uses Security-Enhanced Linux (SELinux) capabilities to secure the root of the mounted volume for non-privileged pods, making the mounted volume owned by and only visible to the container with which it is associated.
+
+**Additional resources**
+
+- [Understanding persistent storage](/docs/storage/understanding-persistent-storage#understanding-persistent-storage)
+- [Configuring CSI volumes](/docs/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)
+- [Dynamic provisioning](/docs/storage/dynamic-provisioning#dynamic-provisioning)
+- [Persistent storage using NFS](/docs/storage/persistent_storage/persistent-storage-nfs#persistent-storage-using-nfs)
+- [Persistent storage using AWS Elastic Block Store](/docs/storage/persistent_storage/persistent-storage-aws#persistent-storage-aws)
+- [Persistent storage using GCE Persistent Disk](/docs/storage/persistent_storage/persistent-storage-gce#persistent-storage-using-gce)

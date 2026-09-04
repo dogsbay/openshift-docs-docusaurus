@@ -1,0 +1,22 @@
+{
+  "name": "openshift-container-platform",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "serve": "docusaurus serve"
+  },
+  "dependencies": {
+    "@docusaurus/core": "^3.7.0",
+    "@docusaurus/preset-classic": "^3.7.0",
+    "@docusaurus/theme-mermaid": "^3.7.0",
+    "@mermaid-js/layout-elk": "^0.1.7",
+    "katex": "^0.16.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rehype-katex": "^7.0.0",
+    "remark-definition-list": "^2.0.0",
+    "remark-math": "^6.0.0"
+  }
+}

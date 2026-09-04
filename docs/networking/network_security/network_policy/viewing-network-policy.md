@@ -1,0 +1,110 @@
+---
+title: Viewing a network policy
+sidebar_position: 3
+---
+
+# Viewing a network policy {#viewing-network-policy}
+
+<a id="viewing-network-policy"></a>
+
+As a cluster administrator, you can view a network policy for a namespace.
+
+## Example NetworkPolicy object {#nw-networkpolicy-object_viewing-network-policy}
+
+Reference the example `NetworkPolicy` object to understand how to configure this object.
+
+```yaml
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-27107
+spec:
+  podSelector:
+    matchLabels:
+      app: mongodb
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: app
+    ports:
+    - protocol: TCP
+      port: 27017
+```
+
+where:
+
+`name`
+: The name of the NetworkPolicy object.
+
+`spec.podSelector`
+: A selector that describes the pods to which the policy applies. The policy object can only select pods in the project that defines the NetworkPolicy object.
+
+`ingress.from.podSelector`
+: A selector that matches the pods from which the policy object allows ingress traffic. The selector matches pods in the same namespace as the NetworkPolicy.
+
+`ingress.ports`
+: A list of one or more destination ports on which to accept traffic.
+
+## View network policies using the CLI {#nw-networkpolicy-view-cli_viewing-network-policy}
+
+You can examine the network policies in a namespace.
+
+:::note
+
+If you log in with `cluster-admin` privileges, you can edit network policies in any namespace in the cluster.
+
+:::
+
+:::note
+
+If you log in with `cluster-admin` privileges, you can edit network policies in any namespace in the cluster. In the web console, you can edit policies directly in YAML or by using the **Actions** menu.
+
+:::
+
+**Prerequisites**
+
+- You installed the OpenShift CLI (`oc`).
+- You are logged in to the cluster with a user with `admin` privileges.
+- You are working in the namespace where the network policy exists.
+
+**Procedure**
+
+1. List network policies in a namespace.
+   1. To view network policy objects defined in a namespace enter the following command:
+      ```terminal
+      $ oc get networkpolicy
+      ```
+   2. Optional: To examine a specific network policy enter the following command:
+      ```terminal
+      $ oc describe networkpolicy <policy_name> -n <namespace>
+      ```
+
+      where:
+
+      <dl>
+      <dt><code>&lt;policy_name&gt;</code></dt>
+      <dd>Specifies the name of the network policy to inspect.</dd>
+      <dt><code>&lt;namespace&gt;</code></dt>
+      <dd>Optional: Specifies the namespace if the object is defined in a different namespace than the current namespace.</dd>
+      </dl>
+
+      ```terminal
+      $ oc describe networkpolicy allow-same-namespace
+      ```
+
+      ```text
+      Name:         allow-same-namespace
+      Namespace:    ns1
+      Created on:   2021-05-24 22:28:56 -0400 EDT
+      Labels:       <none>
+      Annotations:  <none>
+      Spec:
+        PodSelector:     <none> (Allowing the specific traffic to all pods in this namespace)
+        Allowing ingress traffic:
+          To Port: <any> (traffic allowed to all ports)
+          From:
+            PodSelector: <none>
+        Not affecting egress traffic
+        Policy Types: Ingress
+      ```

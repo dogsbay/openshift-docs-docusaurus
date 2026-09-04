@@ -1,0 +1,23 @@
+---
+title: About high availability for virtual machines
+sidebar_position: 12
+---
+
+# About high availability for virtual machines {#virt-high-availability-for-vms}
+
+<a id="virt-high-availability-for-vms"></a>
+
+You can enable high availability for virtual machines (VMs) by manually deleting a failed node to trigger VM failover or by configuring remediating nodes.
+
+Manually deleting a failed node
+: If a node fails and machine health checks are not deployed on your cluster, virtual machines with `runStrategy: Always` configured are not automatically relocated to healthy nodes. To trigger VM failover, you must manually delete the `Node` object.
+
+Configuring remediating nodes
+: You can configure remediating nodes by installing the Self Node Remediation Operator or the Fence Agents Remediation Operator from the software catalog and enabling machine health checks or node remediation checks.
+
+For more information on remediation, fencing, and maintaining nodes, see the "Workload Availability for Red Hat OpenShift" documentation.
+
+**Additional resources**
+
+- [Workload Availability for Red Hat OpenShift](https://docs.redhat.com/en/documentation/workload_availability_for_red_hat_openshift/24.3)
+- [Delete a failed node to trigger virtual machine failover](/docs/virt/nodes/virt-eviction-strategies#virt-delete-failed-node-vm-failover_virt-eviction-strategies)

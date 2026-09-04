@@ -1,0 +1,108 @@
+---
+title: Creating DNS records on Google Cloud Platform
+sidebar_position: 7
+---
+
+# Creating DNS records on Google Cloud Platform {#creating-dns-records-on-gcp}
+
+<a id="creating-dns-records-on-gcp"></a>
+
+To create DNS records on Google Cloud, use the External DNS Operator. The DNS Operator manages external name resolution for your cluster services.
+
+:::warning
+
+Using the External DNS Operator on a cluster with Google Cloud Workload Identity enabled is not supported. For more information about the Google Cloud Workload Identity, see [Google Cloud Workload Identity](/docs/authentication/managing_cloud_provider_credentials/cco-short-term-creds#cco-short-term-creds-gcp_cco-short-term-creds).
+
+:::
+
+## Creating DNS records on a public managed zone for Google Cloud {#nw-control-dns-records-public-managed-zone-gcp_creating-dns-records-on-gcp}
+
+To create DNS records on Google Cloud, use the External DNS Operator. The DNS Operator manages external name resolution for your cluster services.
+
+**Prerequisites**
+
+- You must have administrator privileges.
+
+**Procedure**
+
+1. Copy the `gcp-credentials` secret in the `encoded-gcloud.json` file by running the following command:
+   ```terminal
+   $ oc get secret gcp-credentials -n kube-system --template='{{$v := index .data "service_account.json"}}{{$v}}' | base64 -d - > decoded-gcloud.json
+   ```
+2. Export your Google credentials by running the following command:
+   ```terminal
+   $ export GOOGLE_CREDENTIALS=decoded-gcloud.json
+   ```
+3. Activate your account by using the following command:
+   ```terminal
+   $ gcloud auth activate-service-account  <client_email as per decoded-gcloud.json> --key-file=decoded-gcloud.json
+   ```
+4. Set your project by running the following command:
+   ```terminal
+   $ gcloud config set project <project_id as per decoded-gcloud.json>
+   ```
+5. Get a list of routes by running the following command:
+   ```terminal
+   $ oc get routes --all-namespaces | grep console
+   ```
+
+   ```terminal title="Example output"
+   openshift-console          console             console-openshift-console.apps.test.gcp.example.com                       console             https   reencrypt/Redirect     None
+   openshift-console          downloads           downloads-openshift-console.apps.test.gcp.example.com                     downloads           http    edge/Redirect          None
+   ```
+6. Get a list of managed zones, such as `qe-cvs4g-private-zone test.gcp.example.com`, by running the following command:
+   ```terminal
+   $ gcloud dns managed-zones list | grep test.gcp.example.com
+   ```
+7. Create a YAML file, for example, `external-dns-sample-gcp.yaml`, that defines the `ExternalDNS` object:
+   ```yaml title="Example external-dns-sample-gcp.yaml file"
+   apiVersion: externaldns.olm.openshift.io/v1beta1
+   kind: ExternalDNS
+   metadata:
+     name: sample-gcp
+   spec:
+     domains:
+       - filterType: Include
+         matchType: Exact
+         name: test.gcp.example.com
+     provider:
+       type: GCP
+     source:
+       openshiftRouteOptions:
+         routerName: default
+       type: OpenShiftRoute
+   # ...
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>metadata.name</code></dt>
+   <dd>Specifies the External DNS name.</dd>
+   </dl>
+
+`spec.domains.filterType`
+: By default, all hosted zones are selected as potential targets. You can include your hosted zone.
+
+`spec.domains.matchType`
+: Specifies the domain of the target that must match the string defined by the `name` key.
+
+`spec.domains.name`
+: Specifies the exact domain of the zone you want to update. The hostname of the routes must be subdomains of the specified domain.
+
+`spec.provider.type`
+: Specifies the provider type.
+
+`source.openshiftRouteOptions`
+: Specifies options for the source of DNS records.
+
+`openshiftRouteOptions.routerName`
+: If the source type is `OpenShiftRoute`, you can pass the OpenShift Ingress Controller name. External DNS selects the canonical hostname of that router as the target while creating a CNAME record.
+
+`type`
+: Specifies the `route` resource as the source for Google Cloud DNS records.
+
+1. Check the DNS records created for OpenShift Container Platform routes by running the following command:
+   ```terminal
+   $ gcloud dns record-sets list --zone=qe-cvs4g-private-zone | grep console
+   ```

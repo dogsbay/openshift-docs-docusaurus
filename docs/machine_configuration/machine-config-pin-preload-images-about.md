@@ -1,0 +1,160 @@
+---
+title: Pinning images to nodes
+sidebar_position: 5
+---
+
+# Pinning images to nodes {#machine-config-pin-preload-images-about}
+
+<a id="machine-config-pin-preload-images-about"></a>
+
+You can prevent a slow, unreliable connection to an image registry from interfering with operations that require pulled images by pulling those images in advance and *pinning* those images to a specific machine config pool (MCP) before they are actually needed.
+
+This problem can affect clusters that have low bandwidth, clusters with unreliable internet connectivity, or clusters in a disconnected environment. For example, a cluster update might require pulling more than one hundred images. Failure to pull those images could cause retries that can interfere with the update process and might cause the update to fail.
+
+By pinning images, you can ensure that the images are available to your nodes when needed for operations such as updating a cluster or deploying an application. You can provide a more consistent update, which is important when scheduling updates into maintenance windows. When deploying applications, you can pin images to ensure that the images are available, so that you can deploy in a more reliable manner.
+
+You can pin images to specific nodes by using a `PinnedImageSet` custom resource (CR), as described in *Pinning images*. Pinned images are stored on the nodes in the `/etc/crio/crio.conf.d/50-pinned-images` file on those nodes. The contents of the file appear similar to the following example:
+
+```terminal
+[crio]
+  [crio.image]
+    pinned_images = ["quay.io/openshift-release-dev/ocp-release@sha256:4198606580b69c8335ad7ae531c3a74e51aee25db5faaf368234e8c8dae5cbea", "quay.io/openshift-release-dev/ocp-release@sha256:513cf1028aa1a021fa73d0601427a0fbcf6d212b88aaf9d76d4e4841a061e44e", "quay.io/openshift-release-dev/ocp-release@sha256:61eae2d261e54d1b8a0e05f6b5326228b00468364563745eed88460af04f909b"]
+```
+
+Another benefit to pinned images is that image garbage collection does not remove the pinned images.
+
+Before pulling the images, the Machine Config Operator (MCO) verifies that there is enough storage space available on each affected node. If the node has sufficient space, the MCO creates the pinned image file, pulls the images, and reloads CRI-O. If there is not sufficient space, the MCO does not pull the images and presents an error message.
+
+## Pinning images {#machine-config-pin-preload-images_machine-config-operator}
+
+You can pin images to your nodes by using a `PinnedImageSet` custom resource (CR) making the images available to your nodes when needed for operations such as updating a cluster or deploying an application.
+
+The pinned image set defines the list of images to pre-load and the machine config pool to which the images should be pinned.
+
+The images are stored in the `/etc/crio/crio.conf.d/50-pinned-images` file on the nodes.
+
+:::note
+
+Only images that you can successfully inspect with the `podman manifest inspect <IMAGE_URL>` command can be used with a pinned image set. Image inspections could fail due to unsupported manifest formats, registry authorization issues, invalid schemas, network connectivity issues, or other issues.
+
+:::
+
+**Procedure**
+
+1. Create a YAML file that defines the `PinnedImageSet` object, similar to the following example:
+   ```yaml
+   apiVersion: machineconfiguration.openshift.io/v1
+   kind: PinnedImageSet
+   metadata:
+     labels:
+       machineconfiguration.openshift.io/role: worker
+     name: worker-pinned-images
+   spec:
+     pinnedImages:
+      - name: quay.io/openshift-release-dev/ocp-release@sha256:513cf1028aa1a021fa73d0601427a0fbcf6d212b88aaf9d76d4e4841a061e44e
+      - name: quay.io/openshift-release-dev/ocp-release@sha256:61eae2d261e54d1b8a0e05f6b5326228b00468364563745eed88460af04f909b
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>metadata.labels</code></dt>
+   <dd>Specifies an optional node selector to specify the machine config pool to pin the images to. If not specified, the images are pinned to all nodes in the cluster.</dd>
+   <dt><code>spec.pinnedImages</code></dt>
+   <dd>Specifies a list of one or more images to pre-load.</dd>
+   </dl>
+2. Create the `PinnedImageSet` object by running the following command:
+   ```terminal
+   $ oc create -f <file_name>.yaml
+   ```
+
+**Verification**
+
+- Check that the pinned image set is reported in the machine config node object for the affected machine config pool by running the following command:
+  ```terminal
+  $ oc describe machineconfignode <machine_config_node_name>
+  ```
+
+  ```terminal title="Example command"
+  $ oc describe machineconfignode ci-ln-25hlkvt-72292-jrs48-worker-a-2bdj
+  ```
+
+  ```terminal title="Example output for a successful image pull and pin"
+  apiVersion: machineconfiguration.openshift.io/v1
+  kind: MachineConfigNode
+  metadata:
+    creationTimestamp: "2025-04-28T18:40:29Z"
+    generation: 3
+    name: <machine_config_node_name>
+  # ...
+  status
+    pinnedImageSets:
+    - currentGeneration: 1
+      desiredGeneration: 1
+      name: worker-pinned-images
+  ```
+
+  where:
+
+  <dl>
+  <dt><code>status.pinnedImageSets</code></dt>
+  <dd>Specifies that the <code>PinnedImageSet</code> object you created is associated with the machine config node.</dd>
+  </dl>
+
+  Any failures or error messages would appear in the `MachineConfigNode` object status fields, as shown in the following example:
+
+  ```terminal title="Example output for a failed image pull and pin"
+  apiVersion: machineconfiguration.openshift.io/v1
+  kind: MachineConfigNode
+  metadata:
+    creationTimestamp: "2025-04-28T18:40:29Z"
+    generation: 3
+    name: <machine_config_node_name>
+  # ...
+    - lastTransitionTime: "2025-04-29T19:37:23Z"
+      message: One or more PinnedImageSet is experiencing an error. See PinnedImageSet
+        list for more details.
+      reason: PrefetchFailed
+      status: "True"
+      type: PinnedImageSetsDegraded
+    configVersion:
+      current: rendered-worker-cef1b52c532e19a20add12e369261fba
+      desired: rendered-worker-cef1b52c532e19a20add12e369261fba
+    observedGeneration: 3
+    pinnedImageSets:
+    - desiredGeneration: 1
+      lastFailedGeneration: 1
+      lastFailedGenerationError: 'failed to execute podman manifest inspect for "quay.io/rh-ee/machine-config-operator@sha256:65d3a308767b1773b6e3499dde6ef085753d7e20e685f78841079":
+        exit status 125'
+      name: worker-pinned-images
+  ```
+- Check that the pinned image file is created and contains the correct images.
+  1. Start a debug session for a node by running the following command:
+     ```terminal
+     $ oc debug node/<node_name>
+     ```
+  2. Set `/host` as the root directory within the debug shell by running the following command:
+     ```terminal
+     sh-5.1# chroot /host
+     ```
+  3. Verify the contents of the pinned image file by running the following command:
+     ```terminal
+     $ cat /etc/crio/crio.conf.d/50-pinned-images
+     ```
+
+     ```terminal title="Example output"
+     [crio]
+       [crio.image]
+         pinned_images = ["quay.io/openshift-release-dev/ocp-release@sha256:4198606580b69c8335ad7ae531c3a74e51aee25db5faaf368234e8c8dae5cbea", "quay.io/openshift-release-dev/ocp-release@sha256:513cf1028aa1a021fa73d0601427a0fbcf6d212b88aaf9d76d4e4841a061e44e", "quay.io/openshift-release-dev/ocp-release@sha256:61eae2d261e54d1b8a0e05f6b5326228b00468364563745eed88460af04f909b"]
+     ```
+
+     where:
+
+     <dl>
+     <dt><code>pinnedImages</code></dt>
+     <dd>Specifies the images that have been pulled and pinned for the affected machine config pool.</dd>
+     </dl>
+
+**Additional resources**
+
+- [About checking machine config node status](/docs/machine_configuration#checking-mco-node-status_machine-config-overview)

@@ -1,0 +1,1690 @@
+---
+title: Installing a cluster on AWS with customizations
+sidebar_position: 3
+---
+
+# Installing a cluster on AWS with customizations {#installing-aws-customizations}
+
+<a id="installing-aws-customizations"></a>
+
+In OpenShift Container Platform version 4.22, you can install a cluster on Amazon Web Services (AWS) by using installer-provisioned infrastructure with customizations, including network configuration options.
+
+In each, you modify parameters in the `install-config.yaml` file before you install the cluster. By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations.
+
+You must set most of the network configuration parameters during installation, and you can modify only `kubeProxy` configuration parameters in a running cluster.
+
+:::note
+
+The scope of the OpenShift Container Platform installation configurations is intentionally narrow. It is designed for simplicity and ensured success. You can complete many more OpenShift Container Platform configuration tasks after an installation completes.
+
+:::
+
+## Prerequisites {#installing-aws-default-prereqs_installing-aws-customizations}
+
+Before you install a cluster on Amazon Web Services (AWS) by using installer-provisioned infrastructure with customizations, you must meet several prerequisites.
+
+The following prerequisites must be met:
+
+- You reviewed details about the [OpenShift Container Platform installation and update](/docs/architecture/architecture-installation#architecture-installation) processes.
+- You read the documentation on [selecting a cluster installation method and preparing it for users](/docs/installing/overview/installing-preparing#installing-preparing).
+- You [configured an AWS account](/docs/installing/installing_aws/installing-aws-account#installing-aws-account) to host the cluster.
+  :::warning
+
+  If you have an AWS profile stored on your computer, it must not use a temporary session token that you generated while using a multi-factor authentication device. The cluster continues to use your current AWS credentials to create AWS resources for the entire life of the cluster, so you must use long-term credentials. To generate appropriate keys, see [Managing Access Keys for IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) in the AWS documentation. You can supply the keys when you run the installation program.
+
+  :::
+- If you use a firewall, you [configured it to allow the sites](/docs/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall) that your cluster requires access to.
+
+## Obtaining an AWS Marketplace image {#installation-aws-marketplace-subscribe_installing-aws-customizations}
+
+If you are deploying an OpenShift Container Platform cluster by using an Amazon Web Services (AWS) Marketplace image, you must first subscribe through AWS. Subscribing to the offer provides you with the Amazon Machine Image (AMI) ID that the installation program uses to deploy compute nodes.
+
+:::note
+
+You should only modify the RHCOS image for compute machines to use an AWS Marketplace image. Control plane machines and infrastructure nodes do not require an OpenShift Container Platform subscription and use the public RHCOS default image by default, which does not incur subscription costs on your AWS bill. Therefore, you should not modify the cluster default boot image or the control plane boot images. Applying the AWS Marketplace image to them will incur additional licensing costs that cannot be recovered.
+
+:::
+
+**Prerequisites**
+
+- You have an AWS account to buy the offer. This account does not have to be the same account that you use to install the cluster.
+
+**Procedure**
+
+1. Complete the OpenShift Container Platform subscription from the [AWS Marketplace](https://aws.amazon.com/marketplace/fulfillment?productId=59ead7de-2540-4653-a8b0-fa7926d5c845).
+2. Record the AMI ID for your specific AWS region. As part of the installation process, you must update the `install-config.yaml` file with this value before deploying the cluster.
+   ```yaml title="Sample install-config.yaml file with AWS Marketplace compute nodes"
+   apiVersion: v1
+   baseDomain: example.com
+   compute:
+   - hyperthreading: Enabled
+     name: worker
+     platform:
+       aws:
+         amiID: ami-06c4d345f7c207239
+         type: m5.4xlarge
+     replicas: 3
+   metadata:
+     name: test-cluster
+   platform:
+     aws:
+       region: us-east-2
+   sshKey: ssh-ed25519 AAAA...
+   pullSecret: '{"auths": ...}'
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>compute.platform.aws.amiID</code></dt>
+   <dd>Specifies the AMI ID from your AWS Marketplace subscription.</dd>
+   <dt><code>platform.aws.region</code></dt>
+   <dd>Specifies the <code>platform.aws.region</code> parameter. Your AMI ID is associated with a specific AWS region. When creating the installation configuration file, ensure that you select the same AWS region that you specified when configuring your subscription.</dd>
+   </dl>
+
+## Network configuration phases {#nw-network-config_installing-aws-customizations}
+
+There are two phases prior to OpenShift Container Platform installation where you can customize the network configuration. Customize settings in the `install-config.yaml` file and in the Cluster Network Operator manifest across two configuration phases.
+
+Phase 1
+: You can customize the following network-related fields in the `install-config.yaml` file before you create the manifest files:
+
+  - `networking.networkType`
+  - `networking.clusterNetwork`
+  - `networking.serviceNetwork`
+  - `networking.machineNetwork`
+  - `nodeNetworking`
+
+  For more information, see "Installation configuration parameters".
+
+  :::note
+
+  Set the `networking.machineNetwork` to match the Classless Inter-Domain Routing (CIDR) where the preferred subnet is located.
+
+  :::
+
+  :::warning
+
+  The CIDR range `172.17.0.0/16` is reserved by `libVirt`. You cannot use any other CIDR range that overlaps with the `172.17.0.0/16` CIDR range for networks in your cluster.
+
+  :::
+
+Phase 2
+: After creating the manifest files by running `openshift-install create manifests`, you can define a customized Cluster Network Operator manifest with only the fields you want to modify. You can use the manifest to specify an advanced network configuration.
+
+During phase 2, you cannot override the values that you specified in phase 1 in the `install-config.yaml` file. However, you can customize the network plugin during phase 2.
+
+## Creating the installation configuration file {#installation-initializing_installing-aws-customizations}
+
+You can customize the OpenShift Container Platform cluster you install on Amazon Web Services (AWS).
+
+**Prerequisites**
+
+- You have the OpenShift Container Platform installation program and the pull secret for your cluster.
+
+**Procedure**
+
+1. Create the `install-config.yaml` file.
+   1. Change to the directory that contains the installation program and run the following command:
+      ```terminal
+      $ ./openshift-install create install-config --dir <installation_directory>
+      ```
+
+      - `<installation_directory>`: For `<installation_directory>`, specify the directory name to store the files that the installation program creates.
+        When specifying the directory:
+      - Verify that the directory has the `execute` permission. This permission is required to run Terraform binaries under the installation directory.
+      - Use an empty directory. Some installation assets, such as bootstrap X.509 certificates, have short expiration intervals, therefore you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
+   2. At the prompts, provide the configuration details for your cloud:
+      1. Optional: Select an SSH key to use to access your cluster machines.
+         :::note
+
+         For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
+
+         :::
+      2. Select **AWS** as the platform to target.
+      3. If you do not have an Amazon Web Services (AWS) profile stored on your computer, enter the AWS access key ID and secret access key for the user that you configured to run the installation program.
+      4. Select the AWS region to deploy the cluster to.
+      5. Select the base domain for the Route 53 service that you configured for your cluster.
+      6. Enter a descriptive name for your cluster.
+2. Modify the `install-config.yaml` file. You can find more information about the available parameters in the "Installation configuration parameters" section.
+   :::note
+
+   If you are installing a three-node cluster, be sure to set the `compute.replicas` parameter to `0`. This ensures that the cluster’s control planes are schedulable. For more information, see "Installing a three-node cluster on AWS".
+
+   :::
+3. Back up the `install-config.yaml` file so that you can use it to install multiple clusters.
+   :::warning
+
+   The `install-config.yaml` file is consumed during the installation process. If you want to reuse the file, you must back it up now.
+
+   :::
+
+**Additional resources**
+
+- [Installation configuration parameters for AWS](/docs/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
+
+### Minimum resource requirements for cluster installation {#installation-minimum-resource-requirements_installing-aws-customizations}
+
+To ensure that your OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.
+
+**Minimum resource requirements**
+
+<table>
+<thead>
+<tr>
+  <th>Machine</th>
+  <th>Operating system</th>
+  <th>vCPU</th>
+  <th>Virtual RAM</th>
+  <th>Storage</th>
+  <th>Input/Output Per Second (IOPS)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Bootstrap</td>
+  <td>RHCOS</td>
+  <td>4</td>
+  <td>16 GB</td>
+  <td>100 GB</td>
+  <td>300</td>
+</tr>
+<tr>
+  <td>Control plane</td>
+  <td>RHCOS</td>
+  <td>4</td>
+  <td>16 GB</td>
+  <td>100 GB</td>
+  <td>300</td>
+</tr>
+<tr>
+  <td>Compute</td>
+  <td>RHCOS</td>
+  <td>2</td>
+  <td>8 GB</td>
+  <td>100 GB</td>
+  <td>300</td>
+</tr>
+</tbody>
+</table>
+
+- One vCPU is equal to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = vCPUs.
+- OpenShift Container Platform and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes which require a 10 ms p99 fsync duration. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.
+- As with all user-provisioned installations, if you choose to use RHEL compute machines in your cluster, you take responsibility for all operating system life cycle management and maintenance, including performing system updates, applying patches, and completing all other required tasks. OpenShift Container Platform 4.10 and later do not support RHEL 7 compute machines.
+
+:::note
+
+In OpenShift Container Platform version 4.22, RHCOS uses RHEL version 9.8, which updates the micro-architecture requirements. Each architecture requires the following minimum instruction set architectures (ISA):
+
+- x86-64 architecture requires x86-64-v2 ISA
+- ARM64 architecture requires ARMv8.0-A ISA
+- ppc64le architecture requires IBM(R) Power9 ISA
+- s390x architecture requires IBM(R) z14 ISA
+
+For more information, see [Architectures](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/9.8_release_notes/index#architectures) in the RHEL documentation.
+
+:::
+
+If an instance type for your platform meets the minimum requirements for cluster machines, it is supported to use in OpenShift Container Platform.
+
+**Additional resources**
+
+- [Optimizing storage](/docs/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
+
+### Tested instance types for AWS {#installation-aws-tested-machine-types_installing-aws-customizations}
+
+To ensure cluster stability and performance, use one of the tested Amazon Web Services (AWS) instance types for your OpenShift Container Platform machines.
+
+The following AWS instance types have been tested with OpenShift Container Platform.
+
+:::note
+
+Use the machine types included in the following charts for your AWS instances. If you use an instance type that is not listed in the chart, ensure that the instance size you use matches the minimum resource requirements in "Minimum resource requirements for cluster installation".
+
+:::
+
+See the following machine types based on 64-bit x86 architecture:
+
+- `c4.*`
+- `c5.*`
+- `c5a.*`
+- `i3.*`
+- `m4.*`
+- `m5.*`
+- `m5a.*`
+- `m6a.*`
+- `m6i.*`
+- `m7a.*`
+- `m7i.*`
+- `m7i-flex.*`
+- `r4.*`
+- `r5.*`
+- `r5a.*`
+- `r6i.*`
+- `t3.*`
+- `t3a.*`
+
+### Tested instance types for AWS on 64-bit ARM infrastructures {#installation-aws-arm-tested-machine-types_installing-aws-customizations}
+
+To ensure cluster stability and performance, use one of the tested Amazon Web Services (AWS) 64-bit ARM instance types for your OpenShift Container Platform machines.
+
+The following AWS 64-bit ARM instance types have been tested with OpenShift Container Platform.
+
+:::note
+
+Use the machine types included in the following charts for your AWS ARM instances. If you use an instance type that is not listed in the chart, ensure that the instance size you use matches the minimum resource requirements listed in "Minimum resource requirements for cluster installation".
+
+:::
+
+See the following machine types based on 64-bit ARM architecture:
+
+- `c6g.*`
+- `c7g.*`
+- `c8g.*`
+- `m6g.*`
+- `m7g.*`
+- `m7gd.*`
+- `r8g.*`
+
+### Enabling a user-managed DNS {#installation-aws-enabling-user-managed-DNS_installing-aws-customizations}
+
+You can install a cluster with a domain name server (DNS) solution that you manage instead of the default cluster-provisioned DNS solution that uses the Route 53 service for Amazon Web Services (AWS).
+
+For example, your organization’s security policies might not allow the use of public DNS services such as Amazon Web Services DNS. In such scenarios, you can use your own DNS service to bypass the public DNS service and manage your own DNS for the IP addresses of the API and Ingress services.
+
+If you enable user-managed DNS during installation, the installation program provisions DNS records for the API and Ingress services only within the cluster. To ensure access from outside the cluster, you must provision the DNS records in an external DNS service of your choice for the API and Ingress services after installation.
+
+:::warning
+
+User-provisioned DNS is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+
+For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+
+:::
+
+**Procedure**
+
+- Before you deploy your cluster, use a text editor to open the `install-config.yaml` file  and add the following stanza:
+  - To enable user-managed DNS:
+    ```yaml
+    featureSet: CustomNoUpgrade
+    featureGates: ["AWSClusterHostedDNSInstall=true"]
+
+    # ...
+
+    platform:
+      aws:
+        userProvisionedDNS: Enabled
+    ```
+
+    where:
+
+    <dl>
+    <dt><code>userProvisionedDNS</code></dt>
+    <dd>Enables user-provisioned DNS management.</dd>
+    </dl>
+
+**Next steps**
+
+For information about provisioning your DNS records for the API server and the Ingress services, see "Provisioning your own DNS records".
+
+### Sample customized install-config.yaml file for AWS {#installation-aws-config-yaml-customizations_installing-aws-customizations}
+
+You can customize the installation configuration file (`install-config.yaml`) to specify more details about your OpenShift Container Platform cluster’s platform or modify the values of the required parameters.
+
+:::warning
+
+This sample YAML file is provided for reference only. You must obtain your `install-config.yaml` file by using the installation program and modify it. For a full list and description of all installation configuration parameters, see *Installation configuration parameters for AWS*.
+
+:::
+
+```yaml title="Sample install-config.yaml file for AWS"
+apiVersion: v1
+baseDomain: example.com
+sshKey: ssh-ed25519 AAAA...
+pullSecret: '{"auths": ...}'
+metadata:
+  name: example-cluster
+controlPlane:
+  name: master
+  platform:
+    aws:
+      type: m6i.xlarge
+  replicas: 3
+compute:
+-  name: worker
+  platform:
+    aws:
+      type: c5.4xlarge
+  replicas: 3
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+platform:
+  aws:
+    region: us-west-2
+```
+
+- Parameters at the first level of indentation apply to the cluster globally.
+- The `controlPlane` stanza applies to control plane machines.
+- The `compute` stanza applies to compute machines.
+- The `networking` stanza applies to the cluster networking configuration. If you do not provide networking values, the installation program provides default values.
+- The `platform` stanza applies to the infrastructure platform that hosts the cluster.
+
+**Additional resources**
+
+- [Installation configuration parameters for AWS](/docs/installing/installing_aws/installation-config-parameters-aws#installation-config-parameters-aws)
+
+### Configuring the cluster-wide proxy during installation {#installation-configure-proxy_installing-aws-customizations}
+
+Production environments can deny direct access to the internet and instead have an HTTP or HTTPS proxy available. You can configure a new OpenShift Container Platform cluster to use a proxy by configuring the proxy settings in the `install-config.yaml` file.
+
+**Prerequisites**
+
+- You have an existing `install-config.yaml` file.
+- You have reviewed the sites that your cluster requires access to and determined whether any of them need to bypass the proxy. By default, the proxy handles all cluster egress traffic, including calls to hosting cloud provider APIs. You added sites to the `Proxy` object’s `spec.noProxy` field to bypass the proxy if necessary.
+  :::note
+
+  The `Proxy` object `status.noProxy` field includes the values of the `networking.machineNetwork[].cidr`, `networking.clusterNetwork[].cidr`, and `networking.serviceNetwork[]` fields from your installation configuration.
+
+  For installations on Amazon Web Services (AWS), Google Cloud, Microsoft Azure, and Red Hat OpenStack Platform (RHOSP), the `Proxy` object `status.noProxy` field also includes the instance metadata endpoint (`169.254.169.254`).
+
+  :::
+
+**Procedure**
+
+1. Edit your `install-config.yaml` file and add the proxy settings. For example:
+   ```yaml
+   apiVersion: v1
+   baseDomain: my.domain.com
+   proxy:
+     httpProxy: http://<username>:<pswd>@<ip>:<port>
+     httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: ec2.<aws_region>.amazonaws.com,elasticloadbalancing.<aws_region>.amazonaws.com,s3.<aws_region>.amazonaws.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>proxy.httpProxy</code></dt>
+   <dd>Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be <code>http</code>.</dd>
+   <dt><code>proxy.httpsProxy</code></dt>
+   <dd>Specifies a proxy URL to use for creating HTTPS connections outside the cluster.</dd>
+   <dt><code>proxy.noProxy</code></dt>
+   <dd>Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with <code>.</code> to match subdomains only. For example, <code>.y.com</code> matches <code>x.y.com</code>, but not <code>y.com</code>. Use <code>*</code> to bypass the proxy for all destinations. If you have added the Amazon <code>EC2</code>, <code>Elastic Load Balancing</code>, and <code>S3</code> VPC endpoints to your VPC, you must add these endpoints to the <code>noProxy</code> field.</dd>
+   <dt><code>additionalTrustBundle</code></dt>
+   <dd>If you specify this value, the installation program generates a config map named <code>user-ca-bundle</code> in the <code>openshift-config</code> namespace to hold the additional CA certificates. If you specify <code>additionalTrustBundle</code> and at least one proxy setting, the <code>Proxy</code> object references the <code>user-ca-bundle</code> config map in the <code>trustedCA</code> field. The Cluster Network Operator then creates a <code>trusted-ca-bundle</code> config map that merges the contents specified for the <code>trustedCA</code> parameter with the RHCOS trust bundle. You must set the <code>additionalTrustBundle</code> field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.</dd>
+   <dt><code>additionalTrustBundlePolicy</code></dt>
+   <dd>Specifies the policy that determines the configuration of the <code>Proxy</code> object to reference the <code>user-ca-bundle</code> config map in the <code>trustedCA</code> field. The allowed values are <code>Proxyonly</code> and <code>Always</code>. Use <code>Proxyonly</code> to reference the <code>user-ca-bundle</code> config map only when you configure an <code>http/https</code> proxy. Use <code>Always</code> to always reference the <code>user-ca-bundle</code> config map. The default value is <code>Proxyonly</code>. Optional parameter.</dd>
+   </dl>
+
+   :::note
+
+   The installation program does not support the proxy `readinessEndpoints` field.
+
+   :::
+
+   :::note
+
+   If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+
+   ```terminal
+   $ ./openshift-install wait-for install-complete --log-level debug
+   ```
+
+   :::
+2. Save the file and reference it when installing OpenShift Container Platform.
+   The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
+
+   :::note
+
+   Only the `Proxy` object named `cluster` is supported, and you cannot create additional proxies.
+
+   :::
+
+## Alternatives to storing administrator-level secrets in the kube-system project {#installing-aws-manual-modes_installing-aws-customizations}
+
+By default, administrator secrets are stored in the `kube-system` project.
+
+If you configured the `credentialsMode` parameter in the `install-config.yaml` file to `Manual`, you must use one of the following alternatives:
+
+- To manage long-term cloud credentials manually, follow the procedure in "Manually creating long-term credentials".
+- To implement short-term credentials that are managed outside the cluster for individual components, follow the procedures in "Configuring an AWS cluster to use short-term credentials".
+
+### Manually creating long-term credentials {#manually-create-iam_installing-aws-customizations}
+
+The Cloud Credential Operator (CCO) can be put into manual mode prior to installation in environments where the cloud identity and access management (IAM) APIs are not reachable, or the administrator prefers not to store an administrator-level credential secret in the cluster `kube-system` namespace.
+
+**Procedure**
+
+1. If you did not set the `credentialsMode` parameter in the `install-config.yaml` configuration file to `Manual`, modify the value as shown:
+   ```yaml title="Sample configuration file snippet"
+   apiVersion: v1
+   baseDomain: example.com
+   credentialsMode: Manual
+   # ...
+   ```
+2. If you have not previously created installation manifest files, do so by running the following command:
+   ```terminal
+   $ openshift-install create manifests --dir <installation_directory>
+   ```
+
+   where `<installation_directory>` is the directory in which the installation program creates files.
+3. Set a `$RELEASE_IMAGE` variable with the release image from your installation file by running the following command:
+   ```terminal
+   $ RELEASE_IMAGE=$(./openshift-install version | awk '/release image/ {print $3}')
+   ```
+4. Extract the list of `CredentialsRequest` custom resources (CRs) from the OpenShift Container Platform release image by running the following command:
+   ```terminal
+   $ oc adm release extract \
+     --from=$RELEASE_IMAGE \
+     --credentials-requests \
+     --included \
+     --install-config=<path_to_directory_with_installation_configuration>/install-config.yaml \
+     --to=<path_to_directory_for_credentials_requests>
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>--included</code></dt>
+   <dd>Specifies only the manifests that your specific cluster configuration requires.</dd>
+   <dt><code>&lt;path_to_directory_with_installation_configuration&gt;</code></dt>
+   <dd>Specifies the location of the <code>install-config.yaml</code> file.</dd>
+   <dt><code>&lt;path_to_directory_for_credentials_requests&gt;</code></dt>
+   <dd>Specifies the path to the directory where you want to store the <code>CredentialsRequest</code> objects. If the specified directory does not exist, this command creates it. This command creates a YAML file for each <code>CredentialsRequest</code> object.</dd>
+   </dl>
+
+   ```yaml title="Sample CredentialsRequest object"
+   apiVersion: cloudcredential.openshift.io/v1
+   kind: CredentialsRequest
+   metadata:
+     name: <component_credentials_request>
+     namespace: openshift-cloud-credential-operator
+     ...
+   spec:
+     providerSpec:
+       apiVersion: cloudcredential.openshift.io/v1
+       kind: AWSProviderSpec
+       statementEntries:
+       - effect: Allow
+         action:
+         - iam:GetUser
+         - iam:GetUserPolicy
+         - iam:ListAccessKeys
+         resource: "*"
+     ...
+   ```
+5. Create YAML files for secrets in the `openshift-install` manifests directory that you generated previously. The secrets must be stored using the namespace and secret name defined in the `spec.secretRef` for each `CredentialsRequest` object.
+   ```yaml title="Sample CredentialsRequest object with secrets"
+   apiVersion: cloudcredential.openshift.io/v1
+   kind: CredentialsRequest
+   metadata:
+     name: <component_credentials_request>
+     namespace: openshift-cloud-credential-operator
+     ...
+   spec:
+     providerSpec:
+       apiVersion: cloudcredential.openshift.io/v1
+       kind: AWSProviderSpec
+       statementEntries:
+       - effect: Allow
+         action:
+         - s3:CreateBucket
+         - s3:DeleteBucket
+         resource: "*"
+         ...
+     secretRef:
+       name: <component_secret>
+       namespace: <component_namespace>
+     ...
+   ```
+
+   ```yaml title="Sample Secret object"
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: <component_secret>
+     namespace: <component_namespace>
+   data:
+     aws_access_key_id: <base64_encoded_aws_access_key_id>
+     aws_secret_access_key: <base64_encoded_aws_secret_access_key>
+   ```
+
+   :::warning
+
+   Before upgrading a cluster that uses manually maintained credentials, you must ensure that the CCO is in an upgradeable state.
+
+   :::
+
+### Configuring an AWS cluster to use short-term credentials {#installing-aws-with-short-term-creds_installing-aws-customizations}
+
+To install a cluster that is configured to use the AWS Security Token Service (STS), you must configure the CCO utility and create the required AWS resources for your cluster.
+
+#### Configuring the Cloud Credential Operator utility {#cco-ccoctl-configuring_installing-aws-customizations}
+
+To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
+
+:::note
+
+The `ccoctl` utility is a Linux binary that must run in a Linux environment.
+
+:::
+
+**Prerequisites**
+
+- You have access to an OpenShift Container Platform account with cluster administrator access.
+- You have installed the OpenShift CLI (`oc`).
+- You have created an AWS account for the `ccoctl` utility to use with the following permissions: **Required **`iam`** permissions**
+  - `iam:CreateOpenIDConnectProvider`
+  - `iam:CreateRole`
+  - `iam:DeleteOpenIDConnectProvider`
+  - `iam:DeleteRole`
+  - `iam:DeleteRolePolicy`
+  - `iam:GetOpenIDConnectProvider`
+  - `iam:GetRole`
+  - `iam:GetUser`
+  - `iam:ListOpenIDConnectProviders`
+  - `iam:ListRolePolicies`
+  - `iam:ListRoles`
+  - `iam:PutRolePolicy`
+  - `iam:TagOpenIDConnectProvider`
+  - `iam:TagRole`
+
+  **Required **`s3`** permissions**
+
+  - `s3:CreateBucket`
+  - `s3:DeleteBucket`
+  - `s3:DeleteObject`
+  - `s3:GetBucketAcl`
+  - `s3:GetBucketTagging`
+  - `s3:GetObject`
+  - `s3:GetObjectAcl`
+  - `s3:GetObjectTagging`
+  - `s3:ListBucket`
+  - `s3:PutBucketAcl`
+  - `s3:PutBucketPolicy`
+  - `s3:PutBucketPublicAccessBlock`
+  - `s3:PutBucketTagging`
+  - `s3:PutObject`
+  - `s3:PutObjectAcl`
+  - `s3:PutObjectTagging`
+
+  **Required **`cloudfront`** permissions**
+
+  - `cloudfront:ListCloudFrontOriginAccessIdentities`
+  - `cloudfront:ListDistributions`
+  - `cloudfront:ListTagsForResource`
+- If you plan to store the OIDC configuration in a private S3 bucket that is accessed by the IAM identity provider through a public CloudFront distribution URL, the AWS account that runs the `ccoctl` utility requires the following additional permissions:
+  - `cloudfront:CreateCloudFrontOriginAccessIdentity`
+  - `cloudfront:CreateDistribution`
+  - `cloudfront:DeleteCloudFrontOriginAccessIdentity`
+  - `cloudfront:DeleteDistribution`
+  - `cloudfront:GetCloudFrontOriginAccessIdentity`
+  - `cloudfront:GetCloudFrontOriginAccessIdentityConfig`
+  - `cloudfront:GetDistribution`
+  - `cloudfront:TagResource`
+  - `cloudfront:UpdateDistribution`
+
+  :::note
+
+  These additional permissions support the use of the `--create-private-s3-bucket` option when processing credentials requests with the `ccoctl aws create-all` command.
+
+  :::
+
+**Procedure**
+
+1. Set a variable for the OpenShift Container Platform release image by running the following command:
+   ```terminal
+   $ RELEASE_IMAGE=$(./openshift-install version | awk '/release image/ {print $3}')
+   ```
+2. Obtain the CCO container image from the OpenShift Container Platform release image by running the following command:
+   ```terminal
+   $ CCO_IMAGE=$(oc adm release info --image-for='cloud-credential-operator' $RELEASE_IMAGE -a ~/.pull-secret)
+   ```
+
+   :::note
+
+   Ensure that the architecture of the `$RELEASE_IMAGE` matches the architecture of the environment in which you will use the `ccoctl` tool.
+
+   :::
+3. Extract the `ccoctl` binary from the CCO container image within the OpenShift Container Platform release image by running the following command:
+   ```terminal
+   $ oc image extract $CCO_IMAGE \
+     --file="/usr/bin/ccoctl.<rhel_version>" \
+     -a ~/.pull-secret
+   ```
+
+   For `<rhel_version>`, specify the value that corresponds to the version of Red Hat Enterprise Linux (RHEL) that the host uses. If no value is specified, `ccoctl.rhel8` is used by default. The following values are valid:
+
+   - `rhel8`: Specify this value for hosts that use RHEL 8.
+   - `rhel9`: Specify this value for hosts that use RHEL 9.
+     :::note
+
+     The `ccoctl` binary is created in the directory from where you executed the command and not in `/usr/bin/`. You must rename the directory or move the `ccoctl.<rhel_version>` binary to `ccoctl`.
+
+     :::
+4. Change the permissions to make `ccoctl` executable by running the following command:
+   ```terminal
+   $ chmod 775 ccoctl
+   ```
+
+**Verification**
+
+- To verify that `ccoctl` is ready to use, display the help file. Use a relative file name when you run the command, for example:
+  ```terminal
+  $ ./ccoctl
+  ```
+
+  ```terminal title="Example output"
+  OpenShift credentials provisioning tool
+
+  Usage:
+    ccoctl [command]
+
+  Available Commands:
+    aws          Manage credentials objects for AWS cloud
+    azure        Manage credentials objects for Azure
+    gcp          Manage credentials objects for Google cloud
+    help         Help about any command
+    ibmcloud     Manage credentials objects for IBM Cloud
+    nutanix      Manage credentials objects for Nutanix
+
+  Flags:
+    -h, --help   help for ccoctl
+
+  Use "ccoctl [command] --help" for more information about a command.
+  ```
+
+#### Creating AWS resources with a single command {#cco-ccoctl-creating-at-once_installing-aws-customizations}
+
+If the process the `ccoctl` tool uses to create AWS resources automatically meets the requirements of your organization, you can use the `ccoctl aws create-all` command to automate the creation of AWS resources.
+
+Otherwise, you can create the AWS resources individually. For more information, see "Creating AWS resources individually".
+
+:::note
+
+By default, `ccoctl` creates objects in the directory in which the commands are run. To create the objects in a different directory, use the `--output-dir` flag. This procedure uses `<path_to_ccoctl_output_dir>` to refer to this directory.
+
+:::
+
+**Prerequisites**
+
+You must have:
+
+- Extracted and prepared the `ccoctl` binary.
+
+**Procedure**
+
+1. Set a `$RELEASE_IMAGE` variable with the release image from your installation file by running the following command:
+   ```terminal
+   $ RELEASE_IMAGE=$(./openshift-install version | awk '/release image/ {print $3}')
+   ```
+2. Extract the list of `CredentialsRequest` objects from the OpenShift Container Platform release image by running the following command:
+   ```terminal
+   $ oc adm release extract \
+     --from=$RELEASE_IMAGE \
+     --credentials-requests \
+     --included \
+     --install-config=<path_to_directory_with_installation_configuration>/install-config.yaml \
+     --to=<path_to_directory_for_credentials_requests>
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>--included</code></dt>
+   <dd>Specifies to include only the manifests that your specific cluster configuration requires.</dd>
+   <dt><code>&lt;path_to_directory_with_installation_configuration&gt;</code></dt>
+   <dd>Specifies the location of the <code>install-config.yaml</code> file.</dd>
+   <dt><code>&lt;path_to_directory_for_credentials_requests&gt;</code></dt>
+   <dd>Specifies the path to the directory where you want to store the <code>CredentialsRequest</code> objects. If the specified directory does not exist, this command creates it.</dd>
+   </dl>
+
+   :::note
+
+   This command might take a few moments to run.
+
+   :::
+3. Use the `ccoctl` tool to process all `CredentialsRequest` objects by running the following command:
+   ```terminal
+   $ ccoctl aws create-all \
+     --name=<name> \
+     --region=<aws_region> \
+     --credentials-requests-dir=<path_to_credentials_requests_directory> \
+     --output-dir=<path_to_ccoctl_output_dir> \
+     --create-private-s3-bucket \
+     --permissions-boundary-arn=<policy_arn>
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;name&gt;</code></dt>
+   <dd>Specifies the name used to tag any cloud resources that are created for tracking.</dd>
+   <dt><code>&lt;aws_region&gt;</code></dt>
+   <dd>Specifies the AWS region in which cloud resources will be created.</dd>
+   <dt><code>&lt;path_to_credentials_requests_directory&gt;</code></dt>
+   <dd>Specifies the directory containing the files for the component <code>CredentialsRequest</code> objects.</dd>
+   <dt><code>&lt;path_to_ccoctl_output_dir&gt;</code></dt>
+   <dd>Specifies the directory in which you want the <code>ccoctl</code> utility to create objects. By default, the utility creates objects in the directory in which the commands are run. This parameter is optional.</dd>
+   <dt><code>--create-private-s3-bucket</code></dt>
+   <dd>Specifies that the OpenID Connect (OIDC) configuration files should be stored in a private S3 bucket that is accessed by the IAM identity provider through a public CloudFront distribution URL. Note that by default, the <code>ccoctl</code> utility stores the OIDC configuration files in a public S3 bucket and uses the S3 URL as the public OIDC endpoint. This parameter is optional.</dd>
+   <dt><code>&lt;policy_arn&gt;</code></dt>
+   <dd>Specifies the Amazon Resource Name (ARN) of the AWS IAM policy to use as the permissions boundary for the IAM roles created by the <code>ccoctl</code> utility. This parameter is optional.</dd>
+   </dl>
+
+   :::note
+
+   If your cluster uses Technology Preview features that are enabled by the `TechPreviewNoUpgrade` feature set, you must include the `--enable-tech-preview` parameter.
+
+   :::
+
+**Verification**
+
+- To verify that the OpenShift Container Platform secrets are created, list the files in the `<path_to_ccoctl_output_dir>/manifests` directory:
+  ```terminal
+  $ ls <path_to_ccoctl_output_dir>/manifests
+  ```
+
+  ```text title="Example output"
+  cluster-authentication-02-config.yaml
+  openshift-cloud-credential-operator-cloud-credential-operator-iam-ro-creds-credentials.yaml
+  openshift-cloud-network-config-controller-cloud-credentials-credentials.yaml
+  openshift-cluster-api-capa-manager-bootstrap-credentials-credentials.yaml
+  openshift-cluster-csi-drivers-ebs-cloud-credentials-credentials.yaml
+  openshift-image-registry-installer-cloud-credentials-credentials.yaml
+  openshift-ingress-operator-cloud-credentials-credentials.yaml
+  openshift-machine-api-aws-cloud-credentials-credentials.yaml
+  ```
+
+  You can verify that the IAM roles are created by querying AWS. For more information, refer to AWS documentation on listing IAM roles.
+
+#### Creating AWS resources individually {#cco-ccoctl-creating-individually_installing-aws-customizations}
+
+If you need to review the JSON files that the `ccoctl` tool creates before modifying AWS resources, or if the process the `ccoctl` tool uses to create AWS resources automatically does not meet the requirements of your organization, you can create the AWS resources individually.
+
+This option might be useful for an organization that shares the responsibility for creating these resources among different users or departments.
+
+Otherwise, you can use the `ccoctl aws create-all` command to create the AWS resources automatically. For more information, see "Creating AWS resources with a single command".
+
+:::note
+
+By default, `ccoctl` creates objects in the directory in which the commands are run. To create the objects in a different directory, use the `--output-dir` flag. This procedure uses `<path_to_ccoctl_output_dir>` to refer to this directory.
+
+Some `ccoctl` commands make AWS API calls to create or modify AWS resources. You can use the `--dry-run` flag to avoid making API calls. Using this flag creates JSON files on the local file system instead. You can review and modify the JSON files and then apply them with the AWS CLI tool using the `--cli-input-json` parameters.
+
+:::
+
+**Prerequisites**
+
+- Extract and prepare the `ccoctl` binary.
+
+**Procedure**
+
+1. Generate the public and private RSA key files that are used to set up the OpenID Connect provider for the cluster by running the following command:
+   ```terminal
+   $ ccoctl aws create-key-pair
+   ```
+
+   ```text title="Example output"
+   2021/04/13 11:01:02 Generating RSA keypair
+   2021/04/13 11:01:03 Writing private key to /<path_to_ccoctl_output_dir>/serviceaccount-signer.private
+   2021/04/13 11:01:03 Writing public key to /<path_to_ccoctl_output_dir>/serviceaccount-signer.public
+   2021/04/13 11:01:03 Copying signing key for use by installer
+   ```
+
+   where `serviceaccount-signer.private` and `serviceaccount-signer.public` are the generated key files.
+
+   This command also creates a private key that the cluster requires during installation in `/<path_to_ccoctl_output_dir>/tls/bound-service-account-signing-key.key`.
+2. Create an OpenID Connect identity provider and S3 bucket on AWS by running the following command:
+   ```terminal
+   $ ccoctl aws create-identity-provider \
+     --name=<name> \
+     --region=<aws_region> \
+     --public-key-file=<path_to_ccoctl_output_dir>/serviceaccount-signer.public
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;name&gt;</code></dt>
+   <dd>Specifies the name used to tag any cloud resources that are created for tracking.</dd>
+   <dt><code>&lt;aws_region&gt;</code></dt>
+   <dd>Specifies the AWS region in which cloud resources will be created.</dd>
+   <dt><code>&lt;path_to_ccoctl_output_dir&gt;</code></dt>
+   <dd>Specifies the path to the public key file that the <code>ccoctl aws create-key-pair</code> command generated.</dd>
+   </dl>
+
+   ```text title="Example output"
+   2021/04/13 11:16:09 Bucket <name>-oidc created
+   2021/04/13 11:16:10 OpenID Connect discovery document in the S3 bucket <name>-oidc at .well-known/openid-configuration updated
+   2021/04/13 11:16:10 Reading public key
+   2021/04/13 11:16:10 JSON web key set (JWKS) in the S3 bucket <name>-oidc at keys.json updated
+   2021/04/13 11:16:18 Identity Provider created with ARN: arn:aws:iam::<aws_account_id>:oidc-provider/<name>-oidc.s3.<aws_region>.amazonaws.com
+   ```
+
+   where `openid-configuration` is a discovery document and `keys.json` is a JSON web key set file.
+
+   This command also creates a YAML configuration file in `/<path_to_ccoctl_output_dir>/manifests/cluster-authentication-02-config.yaml`. This file sets the issuer URL field for the service account tokens that the cluster generates, so that the AWS IAM identity provider trusts the tokens.
+3. Create IAM roles for each component in the cluster:
+   1. Set a `$RELEASE_IMAGE` variable with the release image from your installation file by running the following command:
+      ```terminal
+      $ RELEASE_IMAGE=$(./openshift-install version | awk '/release image/ {print $3}')
+      ```
+   2. Extract the list of `CredentialsRequest` objects from the OpenShift Container Platform release image:
+      ```terminal
+      $ oc adm release extract \
+        --from=$RELEASE_IMAGE \
+        --credentials-requests \
+        --included \
+        --install-config=<path_to_directory_with_installation_configuration>/install-config.yaml \
+        --to=<path_to_directory_for_credentials_requests>
+      ```
+
+      where:
+
+      <dl>
+      <dt><code>--included</code></dt>
+      <dd>Specifies the <code>--included</code> parameter, which includes only the manifests that your specific cluster configuration requires.</dd>
+      <dt><code>--install-config</code></dt>
+      <dd>Specifies the location of the <code>install-config.yaml</code> file.</dd>
+      <dt><code>-to</code></dt>
+      <dd>Specifies the path to the directory where you want to store the <code>CredentialsRequest</code> objects. If the specified directory does not exist, this command creates it.</dd>
+      </dl>
+   3. Use the `ccoctl` tool to process all `CredentialsRequest` objects by running the following command:
+      ```terminal
+      $ ccoctl aws create-iam-roles \
+        --name=<name> \
+        --region=<aws_region> \
+        --credentials-requests-dir=<path_to_credentials_requests_directory> \
+        --identity-provider-arn=arn:aws:iam::<aws_account_id>:oidc-provider/<name>-oidc.s3.<aws_region>.amazonaws.com
+      ```
+
+      :::note
+
+      For AWS environments that use alternative IAM API endpoints, such as GovCloud, you must also specify your region with the `--region` parameter.
+
+      If your cluster uses Technology Preview features that are enabled by the `TechPreviewNoUpgrade` feature set, you must include the `--enable-tech-preview` parameter.
+
+      :::
+
+      For each `CredentialsRequest` object, `ccoctl` creates an IAM role with a trust policy that is tied to the specified OIDC identity provider, and a permissions policy as defined in each `CredentialsRequest` object from the OpenShift Container Platform release image.
+
+**Verification**
+
+- To verify that the OpenShift Container Platform secrets are created, list the files in the `<path_to_ccoctl_output_dir>/manifests` directory:
+  ```terminal
+  $ ls <path_to_ccoctl_output_dir>/manifests
+  ```
+
+  ```text title="Example output"
+  cluster-authentication-02-config.yaml
+  openshift-cloud-credential-operator-cloud-credential-operator-iam-ro-creds-credentials.yaml
+  openshift-cloud-network-config-controller-cloud-credentials-credentials.yaml
+  openshift-cluster-api-capa-manager-bootstrap-credentials-credentials.yaml
+  openshift-cluster-csi-drivers-ebs-cloud-credentials-credentials.yaml
+  openshift-image-registry-installer-cloud-credentials-credentials.yaml
+  openshift-ingress-operator-cloud-credentials-credentials.yaml
+  openshift-machine-api-aws-cloud-credentials-credentials.yaml
+  ```
+
+  You can verify that the IAM roles are created by querying AWS. For more information, refer to AWS documentation on listing IAM roles.
+
+#### Incorporating the Cloud Credential Operator utility manifests {#cco-ccoctl-install-creating-manifests_installing-aws-customizations}
+
+To implement short-term security credentials managed outside the cluster for individual components, you must move the manifest files that the Cloud Credential Operator utility (`ccoctl`) created to the correct directories for the installation program.
+
+**Prerequisites**
+
+- You have configured an account with the cloud platform that hosts your cluster.
+- You have configured the Cloud Credential Operator utility (`ccoctl`).
+- You have created the cloud provider resources that are required for your cluster with the `ccoctl` utility.
+
+**Procedure**
+
+1. If you did not set the `credentialsMode` parameter in the `install-config.yaml` configuration file to `Manual`, modify the value as shown:
+   ```yaml title="Sample configuration file snippet"
+   apiVersion: v1
+   baseDomain: example.com
+   credentialsMode: Manual
+   # ...
+   ```
+2. If you have not previously created installation manifest files, do so by running the following command:
+   ```terminal
+   $ openshift-install create manifests --dir <installation_directory>
+   ```
+
+   where `<installation_directory>` is the directory in which the installation program creates files.
+3. Copy the manifests that the `ccoctl` utility generated to the `manifests` directory that the installation program created by running the following command:
+   ```terminal
+   $ cp /<path_to_ccoctl_output_dir>/manifests/* ./manifests/
+   ```
+4. Copy the `tls` directory that contains the private key to the installation directory:
+   ```terminal
+   $ cp -a /<path_to_ccoctl_output_dir>/tls .
+   ```
+
+## Cluster Network Operator configuration {#nw-operator-cr_installing-aws-customizations}
+
+To manage cluster networking, configure the Cluster Network Operator (CNO) `Network` custom resource (CR) named `cluster` so the cluster uses the correct IP ranges and network plugin settings for reliable pod and service connectivity. Some settings and fields are inherited at the time of install or by the `default.Network.type` plugin, OVN-Kubernetes.
+
+The CNO configuration inherits the following fields during cluster installation from the `Network` API in the `Network.config.openshift.io` API group:
+
+`clusterNetwork`
+: IP address pools from which pod IP addresses are allocated.
+
+`serviceNetwork`
+: IP address pool for services.
+
+`defaultNetwork.type`
+: Cluster network plugin. `OVNKubernetes` is the only supported plugin during installation.
+
+You can specify the cluster network plugin configuration for your cluster by setting the fields for the `defaultNetwork` object in the CNO object named `cluster`.
+
+### Cluster Network Operator configuration object {#nw-operator-cr-cno-object_installing-aws-customizations}
+
+The fields for the Cluster Network Operator (CNO) are described in the following table:
+
+**Cluster Network Operator configuration object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>metadata.name</code></td>
+  <td><code>string</code></td>
+  <td>The name of the CNO object. This name is always <code>cluster</code>.</td>
+</tr>
+<tr>
+  <td><code>spec.clusterNetwork</code></td>
+  <td><code>array</code></td>
+  <td>A list specifying the blocks of IP addresses from which pod IP addresses are allocated and the subnet prefix length assigned to each individual node in the cluster. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre><code>spec:&#10;  clusterNetwork:&#10;  - cidr: 10.128.0.0/19&#10;    hostPrefix: 23&#10;  - cidr: fd01::/48&#10;    hostPrefix: 64</code></pre><br><br>If you install a cluster on AWS with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.</td>
+</tr>
+<tr>
+  <td><code>spec.serviceNetwork</code></td>
+  <td><code>array</code></td>
+  <td>A block of IP addresses for services. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre><code>spec:&#10;  serviceNetwork:&#10;  - 172.30.0.0/14&#10;  - fd02::/112</code></pre><br><br>If you install a cluster on AWS with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.<br><br>   You can customize this field only in the <code>install-config.yaml</code> file before you create the manifests. The value is read-only in the manifest file. </td>
+</tr>
+<tr>
+  <td><code>spec.defaultNetwork</code></td>
+  <td><code>object</code></td>
+  <td>Configures the network plugin for the cluster network.</td>
+</tr>
+<tr>
+  <td><code>spec.additionalRoutingCapabilities.providers</code></td>
+  <td><code>array</code></td>
+  <td>This setting enables a dynamic routing provider. The FRR routing capability provider is required for the route advertisement feature. The only supported value is <code>FRR</code>.<br><br><ul><li><code>FRR</code>: The FRR routing provider</li></ul><br><br><pre><code>spec:&#10;  additionalRoutingCapabilities:&#10;    providers:&#10;    - FRR</code></pre></td>
+</tr>
+</tbody>
+</table>
+
+:::warning
+
+For a cluster that needs to deploy objects across multiple networks, ensure that you specify the same value for the `clusterNetwork.hostPrefix` parameter for each network type that is defined in the `install-config.yaml` file. Setting a different value for each `clusterNetwork.hostPrefix` parameter can impact the OVN-Kubernetes network plugin, where the plugin cannot effectively route object traffic among different nodes.
+
+:::
+
+### defaultNetwork object configuration {#nw-operator-cr-defaultnetwork_installing-aws-customizations}
+
+The values for the `defaultNetwork` object are defined in the following table:
+
+`defaultNetwork`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>type</code></td>
+  <td><code>string</code></td>
+  <td><code>OVNKubernetes</code>. The Red Hat OpenShift Networking network plugin is selected during installation. This value cannot be changed after cluster installation.<div class="alert alert--secondary"><strong>Note</strong><p>OpenShift Container Platform uses the OVN-Kubernetes network plugin by default.</p></div></td>
+</tr>
+<tr>
+  <td><code>ovnKubernetesConfig</code></td>
+  <td><code>object</code></td>
+  <td>This object is only valid for the OVN-Kubernetes network plugin.</td>
+</tr>
+</tbody>
+</table>
+
+### Configuration for the OVN-Kubernetes network plugin {#nw-operator-configuration-parameters-for-ovn-sdn_installing-aws-customizations}
+
+The following table describes the configuration fields for the OVN-Kubernetes network plugin:
+
+`ovnKubernetesConfig`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>mtu</code></td>
+  <td><code>integer</code></td>
+  <td> The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This is detected automatically based on the MTU of the primary network interface. You do not normally need to override the detected MTU.<br><br>If the auto-detected value is not what you expect it to be, confirm that the MTU on the primary network interface on your nodes is correct. You cannot use this option to change the MTU value of the primary network interface on the nodes.<br><br>If your cluster requires different MTU values for different nodes, you must set this value to <code>100</code> less than the lowest MTU value in your cluster. For example, if some nodes in your cluster have an MTU of <code>9001</code>, and some have an MTU of <code>1500</code>, you must set this value to <code>1400</code>.  </td>
+</tr>
+<tr>
+  <td><code>genevePort</code></td>
+  <td><code>integer</code></td>
+  <td> The port to use for all Geneve packets. The default value is <code>6081</code>. This value cannot be changed after cluster installation.  </td>
+</tr>
+<tr>
+  <td><code>ipsecConfig</code></td>
+  <td><code>object</code></td>
+  <td> Specify a configuration object for customizing the IPsec configuration.  </td>
+</tr>
+<tr>
+  <td><code>ipv4</code></td>
+  <td><code>object</code></td>
+  <td>Specifies a configuration object for IPv4 settings.</td>
+</tr>
+<tr>
+  <td><code>ipv6</code></td>
+  <td><code>object</code></td>
+  <td>Specifies a configuration object for IPv6 settings.</td>
+</tr>
+<tr>
+  <td><code>policyAuditConfig</code></td>
+  <td><code>object</code></td>
+  <td>Specify a configuration object for customizing network policy audit logging. If unset, the defaults audit log settings are used.</td>
+</tr>
+<tr>
+  <td><code>routeAdvertisements</code></td>
+  <td><code>string</code></td>
+  <td>Specifies whether to advertise cluster network routes. The default value is <code>Disabled</code>.<ul><li><code>Enabled</code>: Import routes to the cluster network and advertise cluster network routes as configured in <code>RouteAdvertisements</code> objects.</li><li><code>Disabled</code>: Do not import routes to the cluster network or advertise cluster network routes.</li></ul></td>
+</tr>
+<tr>
+  <td><code>gatewayConfig</code></td>
+  <td><code>object</code></td>
+  <td>Optional: Specify a configuration object for customizing how egress traffic is sent to the node gateway. Valid values are <code>Shared</code> and <code>Local</code>. The default value is <code>Shared</code>. In the default setting, the Open vSwitch (OVS) outputs traffic directly to the node IP interface. If you are using hardware offloading, Red Hat recommends to use the default <code>Shared</code> gateway mode to bypass the host routing plane. In the <code>Local</code> setting, it traverses the host network; consequently, it gets applied to the routing table of the host.<br><br><div class="alert alert--secondary"><strong>Note</strong><p>While migrating egress traffic, you can expect some disruption to workloads and service traffic until the Cluster Network Operator (CNO) successfully rolls out the changes.</p></div></td>
+</tr>
+</tbody>
+</table>
+
+`ovnKubernetesConfig.ipv4`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>internalTransitSwitchSubnet</code></td>
+  <td>string</td>
+  <td>If your existing network infrastructure overlaps with the <code>100.88.0.0/16</code> IPv4 subnet, you can specify a different IP address range for internal use by OVN-Kubernetes. The subnet for the distributed transit switch that enables east-west traffic. This subnet cannot overlap with any other subnets used by OVN-Kubernetes or on the host itself. It must be large enough to accommodate one IP address per node in your cluster.<br><br>The default value is <code>100.88.0.0/16</code>.</td>
+</tr>
+<tr>
+  <td><code>internalJoinSubnet</code></td>
+  <td>string</td>
+  <td>If your existing network infrastructure overlaps with the <code>100.64.0.0/16</code> IPv4 subnet, you can specify a different IP address range for internal use by OVN-Kubernetes. You must ensure that the IP address range does not overlap with any other subnet used by your OpenShift Container Platform installation. The IP address range must be larger than the maximum number of nodes that can be added to the cluster. For example, if the <code>clusterNetwork.cidr</code> value is <code>10.128.0.0/14</code> and the <code>clusterNetwork.hostPrefix</code> value is <code>/23</code>, then the maximum number of nodes is <code>2^(23-14)=512</code>.<br><br>The default value is <code>100.64.0.0/16</code>.</td>
+</tr>
+</tbody>
+</table>
+
+`ovnKubernetesConfig.ipv6`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>internalTransitSwitchSubnet</code></td>
+  <td>string</td>
+  <td>If your existing network infrastructure overlaps with the <code>fd97::/64</code> IPv6 subnet, you can specify a different IP address range for internal use by OVN-Kubernetes. The subnet for the distributed transit switch that enables east-west traffic. This subnet cannot overlap with any other subnets used by OVN-Kubernetes or on the host itself. It must be large enough to accommodate one IP address per node in your cluster.<br><br>The default value is <code>fd97::/64</code>.</td>
+</tr>
+<tr>
+  <td><code>internalJoinSubnet</code></td>
+  <td>string</td>
+  <td>If your existing network infrastructure overlaps with the <code>fd98::/64</code> IPv6 subnet, you can specify a different IP address range for internal use by OVN-Kubernetes. You must ensure that the IP address range does not overlap with any other subnet used by your OpenShift Container Platform installation. The IP address range must be larger than the maximum number of nodes that can be added to the cluster.<br><br>The default value is <code>fd98::/64</code>.</td>
+</tr>
+</tbody>
+</table>
+
+`policyAuditConfig`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>rateLimit</code></td>
+  <td>integer</td>
+  <td>The maximum number of messages to generate every second per node. The default value is <code>20</code> messages per second.</td>
+</tr>
+<tr>
+  <td><code>maxFileSize</code></td>
+  <td>integer</td>
+  <td>The maximum size for the audit log in bytes. The default value is <code>50000000</code> or 50 MB.</td>
+</tr>
+<tr>
+  <td><code>maxLogFiles</code></td>
+  <td>integer</td>
+  <td>The maximum number of log files that are retained.</td>
+</tr>
+<tr>
+  <td><code>destination</code></td>
+  <td>string</td>
+  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A Unix Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
+</tr>
+<tr>
+  <td><code>syslogFacility</code></td>
+  <td>string</td>
+  <td>The syslog facility, such as <code>kern</code>, as defined by RFC5424. The default value is <code>local0</code>.</td>
+</tr>
+</tbody>
+</table>
+
+<a name="gatewayConfig-object_installing-aws-customizations"></a>
+
+`gatewayConfig`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>routingViaHost</code></td>
+  <td><code>boolean</code></td>
+  <td>Set this field to <code>true</code> to send egress traffic from pods to the host networking stack. For highly-specialized installations and applications that rely on manually configured routes in the kernel routing table, you might want to route egress traffic to the host networking stack. By default, egress traffic is processed in OVN to exit the cluster and is not affected by specialized routes in the kernel routing table. The default value is <code>false</code>.<br><br>This field has an interaction with the Open vSwitch hardware offloading feature. If you set this field to <code>true</code>, you do not receive the performance benefits of the offloading because egress traffic is processed by the host networking stack.</td>
+</tr>
+<tr>
+  <td><code>ipForwarding</code></td>
+  <td><code>object</code></td>
+  <td>You can control IP forwarding for all traffic on OVN-Kubernetes managed interfaces by using the <code>ipForwarding</code> specification in the <code>Network</code> resource. Specify <code>Restricted</code> to only allow IP forwarding for Kubernetes related traffic. Specify <code>Global</code> to allow forwarding of all IP traffic. For new installations, the default is <code>Restricted</code>. For updates to OpenShift Container Platform 4.14 or later, the default is <code>Global</code>.<div class="alert alert--secondary"><strong>Note</strong><p>The default value of <code>Restricted</code> sets the IP forwarding to drop.</p></div></td>
+</tr>
+<tr>
+  <td><code>ipv4</code></td>
+  <td><code>object</code></td>
+  <td>Optional: Specify an object to configure the internal OVN-Kubernetes masquerade address for host to service traffic for IPv4 addresses.</td>
+</tr>
+<tr>
+  <td><code>ipv6</code></td>
+  <td><code>object</code></td>
+  <td>Optional: Specify an object to configure the internal OVN-Kubernetes masquerade address for host to service traffic for IPv6 addresses.</td>
+</tr>
+</tbody>
+</table>
+
+<a name="gatewayconfig-ipv4-object_installing-aws-customizations"></a>
+
+`gatewayConfig.ipv4`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>internalMasqueradeSubnet</code></td>
+  <td><code>string</code></td>
+  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<div class="alert alert--warning"><strong>Important</strong><p>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</p></div></td>
+</tr>
+</tbody>
+</table>
+
+<a name="gatewayconfig-ipv6-object_installing-aws-customizations"></a>
+
+`gatewayConfig.ipv6`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>internalMasqueradeSubnet</code></td>
+  <td><code>string</code></td>
+  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<div class="alert alert--warning"><strong>Important</strong><p>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</p></div></td>
+</tr>
+</tbody>
+</table>
+
+<a name="nw-operator-cr-ipsec_installing-aws-customizations"></a>
+
+`ipsecConfig`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>mode</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the behavior of the IPsec implementation. Must be one of the following values:<br><br><ul><li><code>Disabled</code>: IPsec is not enabled on cluster nodes.</li><li><code>External</code>: IPsec is enabled for network traffic with external hosts.</li><li><code>Full</code>: IPsec is enabled for pod traffic and network traffic with external hosts.</li></ul></td>
+</tr>
+</tbody>
+</table>
+
+```yaml title="Example OVN-Kubernetes configuration with IPSec enabled"
+defaultNetwork:
+  type: OVNKubernetes
+  ovnKubernetesConfig:
+    mtu: 1400
+    genevePort: 6081
+    ipsecConfig:
+      mode: Full
+```
+
+## Specifying advanced network configuration {#modifying-nwoperator-config-startup_installing-aws-customizations}
+
+To integrate your OpenShift Container Platform cluster with your existing network environment, you can specify advanced network configuration in a manifest before you install the cluster. Advanced network configuration can be configured only during cluster installation.
+
+:::warning
+
+Customizing your network configuration by modifying the OpenShift Container Platform manifest files created by the installation program is not supported. Applying a manifest file that you create, as in the following procedure, is supported.
+
+:::
+
+**Prerequisites**
+
+- You have created the `install-config.yaml` file and completed any modifications to it.
+
+**Procedure**
+
+1. Change to the directory that contains the installation program and create the manifests:
+   ```terminal
+   $ ./openshift-install create manifests --dir <installation_directory>
+   ```
+
+   The `<installation_directory>` specifies the name of the directory that contains the `install-config.yaml` file for your cluster.
+2. Create a stub manifest file for the advanced network configuration that is named `cluster-network-03-config.yml` in the `<installation_directory>/manifests/` directory:
+   ```yaml
+   apiVersion: operator.openshift.io/v1
+   kind: Network
+   metadata:
+     name: cluster
+   spec:
+   ```
+3. Specify the advanced network configuration for your cluster in the `cluster-network-03-config.yml` file, such as in the following example:
+   ```yaml title="Enable IPsec for the OVN-Kubernetes network provider"
+   apiVersion: operator.openshift.io/v1
+   kind: Network
+   metadata:
+     name: cluster
+   spec:
+     defaultNetwork:
+       ovnKubernetesConfig:
+         ipsecConfig:
+           mode: Full
+   ```
+4. Optional: Back up the `manifests/cluster-network-03-config.yml` file. The installation program consumes the `manifests/` directory when you create the Ignition config files.
+5. Remove the Kubernetes manifest files that define the control plane machines and compute `MachineSets`:
+   ```terminal
+   $ rm -f openshift/99_openshift-cluster-api_master-machines-*.yaml openshift/99_openshift-cluster-api_worker-machineset-*.yaml
+   ```
+
+   Because you create and manage these resources yourself, you do not have to initialize them.
+
+   - You can preserve the `MachineSet` files to create compute machines by using the machine API, but you must update references to them to match your environment.
+
+**Additional resources**
+
+- [Configuring Ingress cluster traffic on AWS using a Network Load Balancer](/docs/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-aws#nw-configuring-ingress-cluster-traffic-aws-network-load-balancer_configuring-ingress-cluster-traffic-aws)
+
+## Configuring an Ingress Controller Network Load Balancer on a new AWS cluster {#nw-aws-nlb-new-cluster_installing-aws-customizations}
+
+You can create an Ingress Controller backed by an Amazon Web Services Network Load Balancer (NLB) on a new cluster in situations where you need more transparent networking capabilities.
+
+**Prerequisites**
+
+- Create and edit the `install-config.yaml` file. For instructions, see "Creating the installation configuration file" in the *Additonal resources* section.
+
+**Procedure**
+
+1. Change to the directory that contains the installation program and create the manifests:
+   ```terminal
+   $ ./openshift-install create manifests --dir <installation_directory>
+   ```
+
+   - For `<installation_directory>`, specify the name of the directory that contains the `install-config.yaml` file for your cluster.
+2. Create a file that is named `cluster-ingress-default-ingresscontroller.yaml` in the `<installation_directory>/manifests/` directory:
+   ```terminal
+   $ touch <installation_directory>/manifests/cluster-ingress-default-ingresscontroller.yaml
+   ```
+
+   <dl>
+   <dt><code>&lt;installation_directory&gt;</code></dt>
+   <dd>Specifies the directory name that contains the <code>manifests/</code> directory for your cluster.</dd>
+   </dl>
+3. Check the several network configuration files that exist in the `manifests/` directory by entering the following command:
+   ```terminal
+   $ ls <installation_directory>/manifests/cluster-ingress-default-ingresscontroller.yaml
+   ```
+
+   ```terminal title="Example output"
+   cluster-ingress-default-ingresscontroller.yaml
+   ```
+4. Open the `cluster-ingress-default-ingresscontroller.yaml` file in an editor and enter a custom resource (CR) that describes the Operator configuration you want:
+   ```yaml
+   apiVersion: operator.openshift.io/v1
+   kind: IngressController
+   metadata:
+     creationTimestamp: null
+     name: default
+     namespace: openshift-ingress-operator
+   spec:
+     endpointPublishingStrategy:
+       loadBalancer:
+         scope: External
+         providerParameters:
+           type: AWS
+           aws:
+             type: NLB
+       type: LoadBalancerService
+   ```
+5. Save the `cluster-ingress-default-ingresscontroller.yaml` file and quit the text editor.
+6. Optional: Back up the `manifests/cluster-ingress-default-ingresscontroller.yaml` file because the installation program deletes the `manifests/` directory during cluster creation.
+
+## Configuring hybrid networking with OVN-Kubernetes {#configuring-hybrid-ovnkubernetes_installing-aws-customizations}
+
+To configure hybrid networking with OVN-Kubernetes, you can set `hybridOverlayConfig` during installation or patch the Cluster Network Operator (CNO) after installation.
+
+:::note
+
+This configuration is necessary to run both Linux and Windows nodes in the same cluster.
+
+:::
+
+**Prerequisites**
+
+- You defined `OVNKubernetes` for the `networking.networkType` parameter in the `install-config.yaml` file. See the installation documentation for configuring OpenShift Container Platform network customizations on your chosen cloud provider for more information.
+
+**Procedure**
+
+1. Change to the directory that contains the installation program and create the manifests:
+   ```terminal
+   $ ./openshift-install create manifests --dir <installation_directory>
+   ```
+
+   For the `<installation_directory>`, specify the name of the directory that contains the `install-config.yaml` file for your cluster.
+2. Create a stub manifest file for the advanced network configuration that is named `cluster-network-03-config.yml` in the `<installation_directory>/manifests/` directory:
+   ```terminal
+   $ cat <<EOF > <installation_directory>/manifests/cluster-network-03-config.yml
+   apiVersion: operator.openshift.io/v1
+   kind: Network
+   metadata:
+     name: cluster
+   spec:
+   EOF
+   ```
+
+   For `<installation_directory>`, specify the directory name that contains the `manifests/` directory for your cluster.
+3. Open the `cluster-network-03-config.yml` file in an editor and specify a hybrid networking configuration similar to the following example:
+   ```yaml
+   apiVersion: operator.openshift.io/v1
+   kind: Network
+   metadata:
+     name: cluster
+   spec:
+     defaultNetwork:
+       ovnKubernetesConfig:
+         hybridOverlayConfig:
+           hybridClusterNetwork:
+           - cidr: 10.132.0.0/14
+             hostPrefix: 23
+           hybridOverlayVXLANPort: 9898
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>spec.defaultNetwork.ovnKubernetesConfig.hybridOverlayConfig.hybridClusterNetwork</code></dt>
+   <dd>Specifies the CIDR configuration used for nodes on the additional overlay network. The <code>hybridClusterNetwork</code> CIDR must not overlap with the <code>clusterNetwork</code> CIDR.</dd>
+   <dt><code>spec.defaultNetwork.ovnKubernetesConfig.hybridOverlayConfig.hybridOverlayVXLANPort</code></dt>
+   <dd>Specifies a custom VXLAN port for the additional overlay network. This is required for running Windows nodes in a cluster installed on vSphere, and must not be configured for any other cloud provider. The custom port can be any open port excluding the default <code>6081</code> port. For more information on this requirement, see <a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/kubernetes/common-problems#pod-to-pod-connectivity-between-hosts-is-broken-on-my-kubernetes-cluster-running-on-vsphere">Pod-to-pod connectivity between hosts is broken</a> in the Microsoft documentation.</dd>
+   </dl>
+
+   :::note
+
+   Windows Server Long-Term Servicing Channel (LTSC): Windows Server 2019 is not supported on clusters with a custom `hybridOverlayVXLANPort` value because this Windows server version does not support selecting a custom VXLAN port.
+
+   :::
+4. Save the `cluster-network-03-config.yml` file and quit the text editor.
+5. Optional: Back up the `manifests/cluster-network-03-config.yml` file. The installation program deletes the `manifests/` directory when creating the cluster.
+
+**Additional resources**
+
+- [Understanding Windows container workloads](/docs/windows_containers/understanding-windows-container-workloads#understanding-windows-container-workloads)
+
+## Deploying the cluster {#installation-launching-installer_installing-aws-customizations}
+
+To deploy your OpenShift Container Platform cluster, you can initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions infrastructure and completes cluster setup.
+
+:::warning
+
+You can run the `create cluster` command of the installation program only once, during initial installation.
+
+:::
+
+**Prerequisites**
+
+- You have configured an account with the cloud platform that hosts your cluster.
+- You have the OpenShift Container Platform installation program and the pull secret for your cluster.
+- You have verified that the cloud provider account on your host has the correct permissions to deploy the cluster. An account with incorrect permissions causes the installation process to fail with an error message that displays the missing permissions.
+
+**Procedure**
+
+1. In the directory that contains the installation program, initialize the cluster deployment by running the following command:
+
+```terminal
+$ ./openshift-install create cluster --dir <installation_directory> \
+    --log-level=info
+```
+
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
+  1. Optional: Remove or disable the `AdministratorAccess` policy from the IAM account that you used to install the cluster.
+     :::note
+
+     The elevated permissions provided by the `AdministratorAccess` policy are required only during installation.
+
+     :::
+
+**Verification**
+
+When the cluster deployment completes successfully:
+
+- The terminal displays directions for accessing your cluster, including a link to the web console and credentials for the `kubeadmin` user.
+- Credential information also outputs to `<installation_directory>/.openshift_install.log`.
+  :::warning
+
+  Do not delete the installation program or the files that the installation program creates. Both are required to delete the cluster.
+
+  :::
+
+  ```terminal title="Example output"
+  ...
+  INFO Install complete!
+  INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/home/myuser/install_dir/auth/kubeconfig'
+  INFO Access the OpenShift web-console here: https://console-openshift-console.apps.mycluster.example.com
+  INFO Login to the console with user: "kubeadmin", and password: "password"
+  INFO Time elapsed: 36m22s
+  ```
+
+  :::warning
+
+  - The Ignition config files that the installation program generates contain certificates that expire after 24 hours, which are then renewed at that time. If the cluster is shut down before renewing the certificates and the cluster is later restarted after the 24 hours have elapsed, the cluster automatically recovers the expired certificates. The exception is that you must manually approve the pending `node-bootstrapper` certificate signing requests (CSRs) to recover kubelet certificates. See the documentation for *Recovering from expired control plane certificates* for more information.
+  - It is recommended that you use Ignition config files within 12 hours after they are generated because the 24-hour certificate rotates from 16 to 22 hours after the cluster is installed. By using the Ignition config files within 12 hours, you can avoid installation failure if the certificate update runs during installation.
+
+  :::
+
+## Provisioning your own DNS records {#installation-aws-provisioning-own-dns-records_installing-aws-customizations}
+
+Use your cluster name and base cluster domain to configure a CNAME record for the API service `api.<cluster_name>.<base_domain>.` with the API load balancer DNS name. Similarly, use the load balancer DNS name of the Ingress service to provision a CNAME record for the `*.apps.<cluster_name>.<base_domain>.` hostname by using your cluster name and base cluster domain.
+
+:::warning
+
+User-provisioned DNS is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+
+For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+
+:::
+
+**Prerequisites**
+
+- You have installed the AWS CLI.
+
+**Procedure**
+
+1. Add the `userProvisionedDNS` parameter to the `install-config.yaml` file and enable the parameter. For more information, see "Enabling a user-managed DNS".
+2. Install your cluster.
+3. If you are installing a private cluster, set the `api_lb_name` variable by running the following command:
+   ```terminal
+   $ api_lb_name="${INFRA_ID}-int"
+   ```
+4. If you are installing a public cluster, set the `api_lb_name` variable by running the following command:
+   ```terminal
+   $ api_lb_name="${INFRA_ID}-ext"
+   ```
+5. To retrieve the DNS name of the API service, run the following command:
+   ```terminal
+   $ aws --region ${REGION} elbv2 describe-load-balancers --names ${api_lb_name} --query 'LoadBalancers[*].DNSName' --output text
+   ```
+6. Use the DNS name and your cluster name and base cluster domain to configure your own DNS record with the `api.<cluster_name>.<base_domain>.` hostname.
+7. To retrieve the DNS name of the Ingress service, run the following command:
+   ```terminal
+   $ ingress_lb_name=$(aws --region ${REGION} resourcegroupstaggingapi get-resources --resource-type-filters elasticloadbalancing:loadbalancer --tag-filters Key=kubernetes.io/cluster/${INFRA_ID},Values=owned Key=kubernetes.io/service-name,Values=openshift-ingress/router-default --query 'ResourceTagMappingList[*].ResourceARN | [0]' --output text | awk -F'/' '{print $2}')
+   ```
+8. Run the following command, which uses the variable `ingress_lb_name` generated from the previous command:
+   ```terminal
+   $ aws --region ${REGION} elb describe-load-balancers --load-balancer-names ${ingress_lb_name} --query 'LoadBalancerDescriptions[].DNSName' --output text
+   ```
+9. Use the DNS name and your cluster name and base cluster domain to configure your own DNS record with the `*.apps.<cluster_name>.<base_domain>.` hostname.
+
+## Logging in to the cluster by using the CLI {#cli-logging-in-kubeadmin_installing-aws-customizations}
+
+To log in to your cluster as the default system user, export the `kubeconfig` file. This configuration enables the CLI to authenticate and connect to the specific API server created during OpenShift Container Platform installation.
+
+The `kubeconfig` file is specific to a cluster and OpenShift Container Platform generates it during installation.
+
+**Prerequisites**
+
+- You deployed an OpenShift Container Platform cluster.
+- You installed the OpenShift CLI (`oc`).
+
+**Procedure**
+
+1. Export the `kubeadmin` credentials by running the following command:
+   ```terminal
+   $ export KUBECONFIG=<installation_directory>/auth/kubeconfig
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;installation_directory&gt;</code></dt>
+   <dd>Specifies the path to the directory that stores the installation files.</dd>
+   </dl>
+2. Verify you can run `oc` commands successfully using the exported configuration by running the following command:
+   ```terminal
+   $ oc whoami
+   ```
+
+   ```terminal title="Example output"
+   system:admin
+   ```
+
+**Next steps**
+
+- "Customize your cluster"
+- "Remote health reporting"
+
+## Logging in to the cluster by using the web console {#logging-in-by-using-the-web-console_installing-aws-customizations}
+
+To verify that your cluster deployed successfully and access its features, log in to the OpenShift Container Platform web console as the `kubeadmin` user.
+
+**Prerequisites**
+
+- You have access to the installation host.
+- You completed a cluster installation and all cluster Operators are available.
+
+**Procedure**
+
+1. Obtain the password for the `kubeadmin` user from the `kubeadmin-password` file on the installation host:
+   ```terminal
+   $ cat <installation_directory>/auth/kubeadmin-password
+   ```
+
+   :::note
+
+   Or, you can obtain the `kubeadmin` password from the `<installation_directory>/.openshift_install.log` log file on the installation host.
+
+   :::
+2. List the OpenShift Container Platform web console route:
+   ```terminal
+   $ oc get routes -n openshift-console | grep 'console-openshift'
+   ```
+
+   :::note
+
+   Or, you can obtain the OpenShift Container Platform route from the `<installation_directory>/.openshift_install.log` log file on the installation host.
+
+   :::
+
+   ```terminal title="Example output"
+   console     console-openshift-console.apps.<cluster_name>.<base_domain>            console     https   reencrypt/Redirect   None
+   ```
+3. Navigate to the route detailed in the output of the preceding command in a web browser and log in as the `kubeadmin` user.
+
+**Additional resources**
+
+- [Accessing the web console](/docs/web_console/web-console#web-console)
+- [Validating an installation](/docs/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation)
+- [Customize your cluster](/docs/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Remote health reporting](/docs/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [Removing cloud provider credentials](/docs/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)

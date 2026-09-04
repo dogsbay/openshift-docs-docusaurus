@@ -1,0 +1,61 @@
+---
+title: Scheduling pods using a scheduler profile
+sidebar_position: 2
+---
+
+# Scheduling pods using a scheduler profile {#nodes-scheduler-profiles}
+
+<a id="nodes-scheduler-profiles"></a>
+
+You can use a scheduling profile to configure how the scheduler spreads pods across nodes to enforce low or high node utilization.
+
+## About scheduler profiles {#nodes-scheduler-profiles-about_nodes-scheduler-profiles}
+
+You can use scheduler profiles to determine how the cluster distributes pods across nodes based on node resource utilization.
+
+The following scheduler profiles are available:
+
+`LowNodeUtilization`
+: This profile attempts to spread pods evenly across nodes to get low resource usage per node. This profile provides the default scheduler behavior.
+
+`HighNodeUtilization`
+: This profile attempts to place as many pods as possible on to as few nodes as possible. This minimizes node count and has high resource usage per node.
+
+:::note
+
+Switching to the `HighNodeUtilization` scheduler profile will result in all pods of a `ReplicaSet` object being scheduled on the same node. This will add an increased risk for pod failure if the node fails.
+
+:::
+
+`NoScoring`
+: This is a low-latency profile that strives for the quickest scheduling cycle by disabling all score plugins. This might sacrifice better scheduling decisions for faster ones.
+
+## Configuring a scheduler profile {#nodes-scheduler-profiles-configuring_nodes-scheduler-profiles}
+
+To customize how the cluster distributes pods across your nodes based on resource use, you can configure a specific scheduler profile.
+
+**Prerequisites**
+
+- Access to the cluster as a user with the `cluster-admin` role.
+
+**Procedure**
+
+1. Edit the `Scheduler` object:
+   ```terminal
+   $ oc edit scheduler cluster
+   ```
+2. Specify the profile to use in the `spec.profile` field:
+   ```yaml
+   apiVersion: config.openshift.io/v1
+   kind: Scheduler
+   metadata:
+     name: cluster
+   #...
+   spec:
+     mastersSchedulable: false
+     profile: HighNodeUtilization
+   #...
+   ```
+
+   Set `spec.profile` to `LowNodeUtilization`, `HighNodeUtilization`, or `NoScoring`.
+3. Save the file to apply the changes.

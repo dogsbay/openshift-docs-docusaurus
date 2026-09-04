@@ -1,0 +1,264 @@
+---
+title: Adding bare-metal compute machines to a vSphere cluster
+sidebar_position: 4
+---
+
+# Adding bare-metal compute machines to a vSphere cluster {#adding-bare-metal-compute-vsphere-user-infra}
+
+<a id="adding-bare-metal-compute-vsphere-user-infra"></a>
+
+To support workloads requiring direct hardware access, extend your existing VMware vSphere cluster by adding bare-metal compute machines. This creates a hybrid architecture that combines a virtualized control plane with the performance of physical hardware.
+
+This procedure supports clusters installed using installer-provisioned infrastructure, user-provisioned infrastructure, or the Assisted Installer.
+
+:::warning
+
+Bare-metal nodes on vSphere clusters is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+
+For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+
+:::
+
+:::warning
+
+Bare-metal compute machines added to a vSphere cluster are unmanaged by the Machine API. You cannot use compute machine sets or the cluster autoscaler to manage these compute machines. Lifecycle tasks such as provisioning and replacement must be performed manually.
+
+:::
+
+## Prerequisites {#_prerequisites}
+
+- You have an existing OpenShift Container Platform cluster installed on vSphere.
+- You have bare-metal hardware with network connectivity to the existing cluster’s machine network.
+- You have configured the network for the new bare-metal compute machines, including:
+  - DHCP: Persistent IP addresses and hostname reservations.
+  - DNS: Forward and reverse DNS resolution for the new hostnames.
+- You have obtained the Red Hat Enterprise Linux CoreOS (RHCOS) ISO image that matches your cluster version. You can download this from the **Cluster Details** page on the Red Hat Hybrid Cloud Console or extract it from the cluster payload.
+
+:::warning
+
+To use this feature, you must explicitly disable the native vSphere Container Storage Interface (CSI) driver for the entire cluster. This means existing vSphere virtual machines will lose the ability to provision or attach vSphere volumes. You must ensure that all workloads (virtual and physical) are migrated to an alternative storage solution before proceeding.
+
+:::
+
+**Additional resources**
+
+- [Disabling and enabling storage on vSphere](/docs/storage/container_storage_interface/persistent-storage-csi-vsphere#persistent-storage-csi-vsphere-disable-storage-procedure_persistent-storage-csi-vsphere)
+
+## Creating RHCOS machines using an ISO image {#bare-metal-vsphere-iso_adding-bare-metal-compute-vsphere-user-infra}
+
+To add bare-metal compute machines to your VMware vSphere cluster, you must manually provision them using an RHCOS ISO image and the `coreos-installer` utility.
+
+:::warning
+
+Bare-metal nodes on vSphere clusters is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+
+For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+
+:::
+
+**Prerequisites**
+
+- You have access to the RHCOS ISO image that matches your cluster version.
+- You have an HTTP server accessible to the bare-metal machine to host the Ignition config file.
+- You have disabled the vSphere CSI driver.
+- The OpenShift CLI (`oc`) is installed.
+
+**Procedure**
+
+1. Extract the Ignition config file for the worker node type from the cluster by running the following command:
+   ```terminal
+   $ oc extract -n openshift-machine-api secret/worker-user-data-managed --keys=userData --to=- > worker.ign
+   ```
+2. Upload the `worker.ign` Ignition config file to your HTTP server. Record the URL of this file.
+3. Validate that the Ignition file is accessible from the network. The following example uses `curl` to verify the file presence:
+   ```terminal
+   $ curl -I http://<http_server>/worker.ign
+   ```
+4. Boot the bare-metal machine using the RHCOS ISO image.
+5. From the installation console, run the `coreos-installer` command:
+   ```terminal
+   $ sudo coreos-installer install /dev/sda \
+       --ignition-url=http://<http_server>/worker.ign \
+       --insecure-ignition \
+       --platform=metal
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>/dev/sda</code></dt>
+   <dd>Specifies the target install device for your hardware.</dd>
+   <dt><code>&lt;http_server&gt;</code></dt>
+   <dd>Specifies the address of your web server.</dd>
+   </dl>
+6. Reboot the machine:
+   ```terminal
+   $ reboot
+   ```
+7. Monitor the boot process. After the machine reboots, it attempts to join the cluster and generates certificate signing requests (CSRs).
+
+**Verification**
+
+- Verify that the new compute machine has joined the cluster and is in the `Ready` state:
+  ```terminal
+  $ oc get nodes
+  ```
+
+## Approving the certificate signing requests for your machines {#installation-approve-csrs_adding-bare-metal-compute-vsphere-user-infra}
+
+To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
+
+**Prerequisites**
+
+- You added machines to your cluster.
+
+**Procedure**
+
+1. Confirm that the cluster recognizes the machines:
+   ```terminal
+   $ oc get nodes
+   ```
+
+   ```terminal title="Example output"
+   NAME      STATUS    ROLES   AGE  VERSION
+   master-0  Ready     master  63m  v1.35.4
+   master-1  Ready     master  63m  v1.35.4
+   master-2  Ready     master  64m  v1.35.4
+   ```
+
+   The output lists all of the machines that you created.
+
+   :::note
+
+   The preceding output might not include the compute nodes until you approve some CSRs.
+
+   :::
+2. Review the pending CSRs and ensure that you see the client requests with the `Pending` or `Approved` status for each machine that you added to the cluster:
+   ```terminal
+   $ oc get csr
+   ```
+
+   ```terminal title="Example output"
+   NAME        AGE     REQUESTOR                                                                   CONDITION
+   csr-8b2br   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending
+   csr-8vnps   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending
+   ...
+   ```
+
+   In this example, two machines are joining the cluster. You might see more approved CSRs in the list.
+3. If the CSRs were not approved, after all of the pending CSRs for the machines you added are in `Pending` status, approve the CSRs for your cluster machines:
+   :::note
+
+   You must approve your CSRs within an hour of adding the machines to the cluster. If you do not approve them within an hour, the certificates rotate, and more than two certificates are present for each node. You must approve all of these certificates. After you approve the client CSR, the kubelet creates a secondary CSR for the serving certificate, which requires manual approval. The `machine-approver` then automatically approves later serving certificate renewal requests if the kubelet requests a new certificate with the same parameters.
+
+   :::
+
+   :::note
+
+   For clusters running on platforms that are not machine API enabled, such as bare metal and other user-provisioned infrastructure, you must implement a method of automatically approving the kubelet serving certificate requests (CSRs). If you do not approve a request, the `oc exec`, `oc rsh`, and `oc logs` commands cannot succeed, because the API server requires a serving certificate when it connects to the kubelet. Any operation that contacts the kubelet endpoint requires this certificate approval to be in place. The method must watch for new CSRs, confirm that the `node-bootstrapper` service account in the `system:node` or `system:admin` groups submitted the CSR, and confirm the identity of the node.
+
+   :::
+
+   - To approve them individually, run the following command for each valid CSR:
+     ```terminal
+     $ oc adm certificate approve <csr_name>
+     ```
+
+     where:
+
+     <dl>
+     <dt><code>&lt;csr_name&gt;</code></dt>
+     <dd>Specifies the name of a CSR from the list of current CSRs.</dd>
+     </dl>
+   - To approve all pending CSRs, run the following command:
+     ```terminal
+     $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve
+     ```
+
+     :::note
+
+     Some Operators might not become available until you approve some CSRs. Each node submits two CSRs, so you might need to run the command to approve CSRs many times.
+
+     :::
+4. After you approve your client requests, review the server requests for each machine that you added to the cluster:
+   ```terminal
+   $ oc get csr
+   ```
+
+   ```terminal title="Example output"
+   NAME        AGE     REQUESTOR                                                                   CONDITION
+   csr-bfd72   5m26s   system:node:ip-10-0-50-126.us-east-2.compute.internal                       Pending
+   csr-c57lv   5m26s   system:node:ip-10-0-95-157.us-east-2.compute.internal                       Pending
+   ...
+   ```
+5. If the remaining CSRs are not approved, and are in the `Pending` status, approve the CSRs for your cluster machines:
+   - To approve them individually, run the following command for each valid CSR:
+     ```terminal
+     $ oc adm certificate approve <csr_name>
+     ```
+
+     where:
+
+     <dl>
+     <dt><code>&lt;csr_name&gt;</code></dt>
+     <dd>Specifies the name of a CSR from the list of current CSRs.</dd>
+     </dl>
+   - To approve all pending CSRs, run the following command:
+     ```terminal
+     $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
+     ```
+6. After you approve all client and server CSRs, the machines have the `Ready` status. Verify this by running the following command:
+   ```terminal
+   $ oc get nodes
+   ```
+
+   ```terminal title="Example output"
+   NAME      STATUS    ROLES   AGE  VERSION
+   master-0  Ready     master  73m  v1.35.4
+   master-1  Ready     master  73m  v1.35.4
+   master-2  Ready     master  74m  v1.35.4
+   worker-0  Ready     worker  11m  v1.35.4
+   worker-1  Ready     worker  11m  v1.35.4
+   ```
+
+   :::note
+
+   You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.
+
+   :::
+
+## Remove the cloud provider uninitialized taint from bare-metal nodes {#bare-metal-vsphere-remove-uninit-taint_adding-bare-metal-compute-vsphere-user-infra}
+
+After a bare-metal node joins a VMware vSphere cluster, the vSphere Cloud Controller Manager (CCM) cannot remove the `node.cloudprovider.kubernetes.io/uninitialized` taint automatically. You must manually remove this taint so that workloads can be scheduled on the node.
+
+The vSphere CCM attempts to initialize each node by searching vCenter for a matching virtual machine. Because a bare-metal node is physical hardware and not a VM in vCenter, the CCM cannot find a match and never removes the taint automatically.
+
+:::note
+
+The CCM logs errors similar to `No VM found` for bare-metal nodes. These errors are expected and do not indicate a problem with the node or the cluster.
+
+:::
+
+**Prerequisites**
+
+- The bare-metal node has joined the cluster and its certificate signing requests (CSRs) have been approved.
+- You have installed the OpenShift CLI (`oc`).
+- You have cluster administrator privileges.
+
+**Procedure**
+
+- Remove the `node.cloudprovider.kubernetes.io/uninitialized` taint from each bare-metal node by running the following command:
+  ```terminal
+  $ oc adm taint nodes <node_name> node.cloudprovider.kubernetes.io/uninitialized:NoSchedule-
+  ```
+
+  Replace `<node_name>` with the name of the bare-metal node as shown in the output of `oc get nodes`.
+
+**Verification**
+
+- Verify that the taint has been removed by running the following command and confirming that `node.cloudprovider.kubernetes.io/uninitialized` does not appear in the output:
+  ```terminal
+  $ oc describe node <node_name> | grep Taint
+  ```
+
+  Replace `<node_name>` with the name of the bare-metal node as shown in the output of `oc get nodes`.

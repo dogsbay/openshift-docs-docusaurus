@@ -1,0 +1,43 @@
+---
+title: Content Security Policy (CSP)
+sidebar_position: 4
+---
+
+# Content Security Policy (CSP) {#content-security-policy_{context}}
+
+<a id="content-security-policy_{context}"></a>
+
+Specify Content Security Policy (CSP) directives for your dynamic plugin using the `contentSecurityPolicy` field in `ConsolePluginSpec`. CSP restricts which sources supply scripts, styles, images, and fonts, mitigating risks for plugins loading resources externally.
+
+:::warning
+
+The console currently uses the `Content-Security-Policy-Report-Only` response header, so the browser will only warn about CSP violations in the web console and enforcement of CSP policies will be limited. CSP violations will be logged in the browser console, but the associated CSP directives will not be enforced. This feature is behind a `feature-gate`, so you will need to manually enable it.
+
+:::
+
+## Key features of Content Security Policy (CSP) {#content-security-policy-overview_content-security-policy}
+
+A Content Security Policy (CSP) is delivered to the browser in the `Content-Security-Policy-Report-Only` response header. The policy is specified as a series of directives and values. Each directive type serves a different purpose, and each directive can have a list of values representing allowed sources.
+
+### Directive Types {#content-security-policy-directive-types_content-security-policy}
+
+The supported directive types include `DefaultSrc`, `ScriptSrc`, `StyleSrc`, `ImgSrc`, and `FontSrc`. These directives allow you to specify valid sources for loading different types of content for your plugin. Each directive type serves a different purpose. For example, `ScriptSrc` defines valid JavaScript sources, while `ImgSrc` controls where images can be loaded from.
+
+### Values {#content-security-policy-values_content-security-policy}
+
+Each directive can have a list of values representing allowed sources. For example, `ScriptSrc` can specify multiple external scripts. These values are restricted to 1024 characters and cannot include whitespace, commas, or semicolons. Additionally, single-quoted strings and wildcard characters (`*`) are disallowed.
+
+### Unified Policy {#content-security-policy-unified-policy_content-security-policy}
+
+The OpenShift Container Platform web console aggregates the CSP directives across all enabled `ConsolePlugin` custom resources (CRs) and merges them with its own default policy. The combined policy is then applied with the `Content-Security-Policy-Report-Only` HTTP response header.
+
+### Validation Rules {#content-security-policy-validation-rules_content-security-policy}
+
+- Each directive can have up to 16 unique values.
+- The total size of all values across directives must not exceed 8192 bytes (8KB).
+- Each value must be unique, and additional validation rules are in place to ensure no quotes, spaces, commas, or wildcard symbols are used.
+
+**Additional resources**
+
+- [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
+- [Enabling feature sets using the web console](/docs/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-console_nodes-cluster-enabling)

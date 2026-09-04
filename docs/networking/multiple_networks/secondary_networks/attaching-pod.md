@@ -1,0 +1,301 @@
+---
+title: Attaching a pod to a secondary network
+sidebar_position: 3
+---
+
+# Attaching a pod to a secondary network {#attaching-pod}
+
+<a id="attaching-pod"></a>
+
+To enable a pod to use additional network interfaces beyond the primary cluster network in OpenShift Container Platform, you can attach the pod to a secondary network. Secondary networks provide additional connectivity options for your workloads.
+
+## Adding a pod to a secondary network {#nw-multus-add-pod_attaching-pod}
+
+To enable a pod to use additional network interfaces in OpenShift Container Platform, you can attach the pod to a secondary network. The pod continues to send normal cluster-related network traffic over the default network.
+
+When a pod is created, a secondary network is attached to the pod. However, if a pod already exists, you cannot attach a secondary network to it.
+
+The pod must be in the same namespace as the secondary network.
+
+**Prerequisites**
+
+- Install the OpenShift CLI (`oc`).
+- Log in to the cluster.
+
+**Procedure**
+
+1. Add an annotation to the `Pod` object. Only one of the following annotation formats can be used:
+   1. To attach a secondary network without any customization, add an annotation with the following format:
+      ```yaml
+      metadata:
+        annotations:
+          k8s.v1.cni.cncf.io/networks: <network>[,<network>,...]
+      ```
+
+      where:
+
+      <dl>
+      <dt><code>k8s.v1.cni.cncf.io/networks</code></dt>
+      <dd>Specifies the name of the secondary network to associate with the pod. To specify more than one secondary network, separate each network with a comma. Do not include whitespace between the comma. If you specify the same secondary network multiple times, that pod will have multiple network interfaces attached to that network.</dd>
+      </dl>
+   2. To attach a secondary network with customizations, add an annotation with the following format:
+      ```yaml
+      metadata:
+        annotations:
+          k8s.v1.cni.cncf.io/networks: |-
+            [
+              {
+                "name": "<network>",
+                "namespace": "<namespace>",
+                "default-route": ["<default_route>"]
+              }
+            ]
+      ```
+
+      where:
+
+      <dl>
+      <dt><code>&lt;network&gt;</code></dt>
+      <dd>Specifies the name of the secondary network defined by a <code>NetworkAttachmentDefinition</code> object.</dd>
+      <dt><code>&lt;namespace&gt;</code></dt>
+      <dd>Specifies the namespace where the <code>NetworkAttachmentDefinition</code> object is defined.</dd>
+      <dt><code>&lt;default-route&gt;</code></dt>
+      <dd>Optional parameter. Specifies an override for the default route, such as <code>192.168.17.1</code>.</dd>
+      </dl>
+2. Create the pod by entering the following command.
+   ```terminal
+   $ oc create -f <name>.yaml
+   ```
+
+   Replace `<name>` with the name of the pod.
+3. Optional: Confirm that the annotation exists in the `pod` CR by entering the following command. Replace `<name>` with the name of the pod.
+   ```terminal
+   $ oc get pod <name> -o yaml
+   ```
+
+   In the following example, the `example-pod` pod is attached to the `net1` secondary network:
+
+   ```terminal
+   $ oc get pod example-pod -o yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     annotations:
+       k8s.v1.cni.cncf.io/networks: macvlan-bridge
+       k8s.v1.cni.cncf.io/network-status: |-
+         [{
+             "name": "ovn-kubernetes",
+             "interface": "eth0",
+             "ips": [
+                 "10.128.2.14"
+             ],
+             "default": true,
+             "dns": {}
+         },{
+             "name": "macvlan-bridge",
+             "interface": "net1",
+             "ips": [
+                 "20.2.2.100"
+             ],
+             "mac": "22:2f:60:a5:f8:00",
+             "dns": {}
+         }]
+     name: example-pod
+     namespace: default
+   spec:
+     ...
+   status:
+     ...
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>k8s.v1.cni.cncf.io/network-status</code></dt>
+   <dd>Specifies a JSON array of objects. Each object describes the status of a secondary network attached to the pod. The annotation value is stored as a plain text value.</dd>
+   </dl>
+
+### Specifying pod-specific addressing and routing options {#nw-multus-advanced-annotations_attaching-pod}
+
+To set static IP addresses, MAC addresses, and default routes for a pod in OpenShift Container Platform, you can configure pod-specific addressing and routing options using JSON-formatted annotations. With these annotations, you can customize network behavior for individual pods on secondary networks.
+
+**Prerequisites**
+
+- The pod must be in the same namespace as the secondary network.
+- Install the OpenShift CLI (`oc`).
+- You must log in to the cluster.
+
+**Procedure**
+
+1. Edit the `Pod` resource definition. If you are editing an existing `Pod` resource, run the following command to edit its definition in the default editor. Replace `<name>` with the name of the `Pod` resource to edit.
+   ```terminal
+   $ oc edit pod <name>
+   ```
+2. In the `Pod` resource definition, add the `k8s.v1.cni.cncf.io/networks` parameter to the pod `metadata` mapping. The `k8s.v1.cni.cncf.io/networks` accepts a JSON string of a list of objects that reference the name of `NetworkAttachmentDefinition` custom resource (CR) names in addition to specifying additional properties.
+   ```yaml
+   metadata:
+     annotations:
+       k8s.v1.cni.cncf.io/networks: '[<network>[,<network>,...]]'
+   # ...
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;network&gt;</code></dt>
+   <dd>Replace with a JSON object as shown in the following examples. The single quotes are required.</dd>
+   </dl>
+
+   In the following example the annotation specifies which network attachment will have the default route, using the `default-route` parameter.
+
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: example-pod
+     annotations:
+       k8s.v1.cni.cncf.io/networks: '[
+       {
+         "name": "net1"
+       },
+       {
+         "name": "net2",
+         "default-route": ["192.0.2.1"]
+       }]'
+   spec:
+     containers:
+     - name: example-pod
+       command: ["/bin/bash", "-c", "sleep 2000000000000"]
+       image: centos/tools
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>net1</code>, <code>net2</code></dt>
+   <dd>Specifies the name of the <code>NetworkAttachmentDefinition</code> resource that defines the secondary network to associate with the pod.</dd>
+   <dt><code>192.0.2.1</code></dt>
+   <dd>Specifies a value of a gateway for traffic to be routed over if no other routing entry is present in the routing table. If more than one <code>default-route</code> key is specified, this will cause the pod to fail to become active.</dd>
+   </dl>
+
+   The default route will cause any traffic that is not specified in other routes to be routed to the gateway.
+
+   :::warning
+
+   Setting the default route to an interface other than the default network interface for OpenShift Container Platform may cause traffic that is anticipated for pod-to-pod traffic to be routed over another interface.
+
+   :::
+
+   To verify the routing properties of a pod, the `oc` command may be used to execute the `ip` command within a pod.
+
+   ```terminal
+   $ oc exec -it <pod_name> -- ip route
+   ```
+
+   :::note
+
+   You may also reference the pod’s `k8s.v1.cni.cncf.io/network-status` to see which secondary network has been assigned the default route, by the presence of the `default-route` key in the JSON-formatted list of objects.
+
+   :::
+
+   To set a static IP address or MAC address for a pod you can use the JSON formatted annotations. This requires you create networks that specifically allow for this functionality. This can be specified in a rawCNIConfig for the CNO.
+3. Edit the CNO CR by running the following command:
+   ```terminal
+   $ oc edit networks.operator.openshift.io cluster
+   ```
+
+   The following YAML describes the configuration parameters for the CNO:
+
+   ```terminal title="Cluster Network Operator YAML configuration"
+   name: <name>
+   namespace: <namespace>
+   rawCNIConfig: '{
+     ...
+   }'
+   type: Raw
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>name</code></dt>
+   <dd>Specifies a name for the secondary network attachment that you are creating. The name must be unique within the specified <code>namespace</code>.</dd>
+   <dt><code>namespace</code></dt>
+   <dd>Specifies the namespace to create the network attachment in. If you do not specify a value, then the <code>default</code> namespace is used.</dd>
+   <dt><code>rawCNIConfig</code></dt>
+   <dd>Specifies the CNI plugin configuration in JSON format, which is based on the following template.</dd>
+   </dl>
+
+   The following object describes the configuration parameters for utilizing static MAC address and IP address using the macvlan CNI plugin:
+
+   ```json title="macvlan CNI plugin JSON configuration object using static IP and MAC address"
+   {
+     "cniVersion": "0.3.1",
+     "name": "<name>",
+     "plugins": [{
+         "type": "macvlan",
+         "capabilities": { "ips": true },
+         "master": "eth0",
+         "mode": "bridge",
+         "ipam": {
+           "type": "static"
+         }
+       }, {
+         "capabilities": { "mac": true },
+         "type": "tuning"
+       }]
+   }
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>name</code></dt>
+   <dd>Specifies the name for the secondary network attachment to create. The name must be unique within the specified <code>namespace</code>.</dd>
+   <dt><code>plugins</code></dt>
+   <dd>Specifies an array of CNI plugin configurations. The first object specifies a macvlan plugin configuration and the second object specifies a tuning plugin configuration.</dd>
+   <dt><code>ips</code></dt>
+   <dd>Specifies that a request is made to enable the static IP address functionality of the CNI plugin runtime configuration capabilities.</dd>
+   <dt><code>master</code></dt>
+   <dd>Specifies the interface that the macvlan plugin uses.</dd>
+   <dt><code>mac</code></dt>
+   <dd>Specifies that a request is made to enable the static MAC address functionality of a CNI plugin.</dd>
+   </dl>
+
+   The above network attachment can be referenced in a JSON formatted annotation, along with keys to specify which static IP and MAC address will be assigned to a given pod.
+4. Edit the pod by entering the following command:
+   ```terminal
+   $ oc edit pod <name>
+   ```
+
+   ```yaml title="macvlan CNI plugin JSON configuration object using static IP and MAC address"
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: example-pod
+     annotations:
+       k8s.v1.cni.cncf.io/networks: '[
+         {
+           "name": "<name>",
+           "ips": [ "192.0.2.205/24" ],
+           "mac": "CA:FE:C0:FF:EE:00"
+         }
+       ]'
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>metadata.name</code></dt>
+   <dd>Specifies the name for the secondary network attachment to create. The name must be unique within the specified <code>namespace</code>.</dd>
+   <dt><code>metadata.annotations.k8s.v1.cni.cncf.io/ips</code></dt>
+   <dd>Specifies an IP address including the subnet mask.</dd>
+   <dt><code>metadata.annotations.k8s.v1.cni.cncf.io/mac</code></dt>
+   <dd>Specifies the MAC address.</dd>
+   </dl>
+
+   :::note
+
+   Static IP addresses and MAC addresses do not have to be used at the same time. You can use them individually, or together.
+
+   :::

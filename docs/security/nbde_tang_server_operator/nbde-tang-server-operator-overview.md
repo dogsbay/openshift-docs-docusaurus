@@ -1,0 +1,12 @@
+---
+title: NBDE Tang Server Operator overview
+sidebar_position: 1
+---
+
+# NBDE Tang Server Operator overview
+
+<a id="nbde-tang-server-operator-overview"></a>
+
+Network-bound Disk Encryption (NBDE) provides an automated unlocking of LUKS-encrypted volumes using one or more dedicated network-binding servers. The client side of NBDE is called the Clevis decryption policy framework and the server side is represented by Tang.
+
+The NBDE Tang Server Operator allows the automation of deployments of one or several Tang servers in the OpenShift Container Platform (OCP) environment.

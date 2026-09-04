@@ -1,0 +1,30 @@
+---
+title: Managing data volume annotations
+sidebar_position: 11
+---
+
+# Managing data volume annotations {#virt-managing-data-volume-annotations}
+
+<a id="virt-managing-data-volume-annotations"></a>
+
+Data volume (DV) annotations allow you to manage pod behavior. You can add one or more annotations to a data volume, which then propagates to the created importer pods.
+
+## Example: Data volume annotations {#virt-dv-annotations_virt-managing-data-volume-annotations}
+
+You can configure data volume (DV) annotations to control which network the importer pod uses. The `v1.multus-cni.io/default-network: bridge-network` annotation causes the pod to use the Multus network named `bridge-network` as its default network.
+
+If you want the importer pod to use both the default network from the cluster and the secondary Multus network, use the `k8s.v1.cni.cncf.io/networks: <network_name>` annotation.
+
+Multus network annotation example:
+
+```yaml
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: datavolume-example
+  annotations:
+    v1.multus-cni.io/default-network: bridge-network
+# ...
+```
+
+The `v1.multus-cni.io/default-network` annotation specifies the Multus network name.

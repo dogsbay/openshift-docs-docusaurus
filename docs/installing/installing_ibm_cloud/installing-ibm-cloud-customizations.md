@@ -1,0 +1,1270 @@
+---
+title: Installing a cluster on IBM Cloud with customizations
+sidebar_position: 5
+---
+
+# Installing a cluster on IBM Cloud with customizations {#installing-ibm-cloud-customizations}
+
+<a id="installing-ibm-cloud-customizations"></a>
+
+In OpenShift Container Platform version 4.22, you can install a customized cluster on IBM Cloud(R) by using installer-provisioned infrastructure. Change parameters in the `install-config.yaml` file before you install the cluster.
+
+By customizing your network configuration, your cluster can coexist with existing IP address allocations in your environment and integrate with existing MTU and VXLAN configurations.
+
+You must set most of the network configuration parameters during installation, and you can change only `kubeProxy` configuration parameters in a running cluster.
+
+## Prerequisites for installing a cluster on IBM Cloud(R) {#prereqs-ibm-cloud-installer-provisioned_installing-ibm-cloud-customizations}
+
+Before installing an OpenShift Container Platform cluster on IBM Cloud(R) by using installer-provisioned infrastructure, ensure that you have configured your IBM Cloud(R) account, firewall, and the `ccoctl` utility.
+
+- You reviewed details about the OpenShift Container Platform installation and update processes.
+- You read the documentation on selecting a cluster installation method and preparing it for users.
+- You configured an IBM Cloud(R) account to host the cluster.
+- If you use a firewall, you configured it to allow the sites that your cluster requires access to.
+- You configured the `ccoctl` utility before you installed the cluster.
+
+**Additional resources**
+
+- [OpenShift Container Platform installation and update](/docs/architecture/architecture-installation#architecture-installation)
+- [Selecting a cluster installation method and preparing it for users](/docs/installing/overview/installing-preparing#installing-preparing)
+- [Configuring an IBM Cloud(R) account](/docs/installing/installing_ibm_cloud/installing-ibm-cloud-account#installing-ibm-cloud-account)
+- [Configuring your firewall](/docs/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
+- [Configuring IAM for IBM Cloud(R)](/docs/installing/installing_ibm_cloud/configuring-iam-ibm-cloud#configuring-iam-ibm-cloud)
+
+## Internet access for OpenShift Container Platform {#cluster-entitlements_installing-ibm-cloud-customizations}
+
+In OpenShift Container Platform 4.22, you require access to the internet to install your cluster.
+
+You must have internet access to perform the following actions:
+
+- Access Red Hat Hybrid Cloud Console to download the installation program and perform subscription management. If the cluster has internet access and you do not disable Telemetry, that service automatically entitles your cluster.
+- Access Quay.io to obtain the packages that are required to install your cluster.
+- Obtain the packages that are required to perform cluster updates.
+
+:::warning
+
+If your cluster cannot have direct internet access, you can perform a restricted network installation on some types of infrastructure that you provision. During that process, you download the required content and use it to populate a mirror registry with the installation packages. With some installation types, the environment that you install your cluster in will not require internet access. Before you update the cluster, you update the content of the mirror registry.
+
+:::
+
+## Generating a key pair for cluster node SSH access {#ssh-agent-using_installing-ibm-cloud-customizations}
+
+During an OpenShift Container Platform installation, you can provide an SSH public key to the installation program. The key is passed to the Red Hat Enterprise Linux CoreOS (RHCOS) nodes through their Ignition config files and is used to authenticate SSH access to the nodes. The key is added to the `~/.ssh/authorized_keys` list for the `core` user on each node, which enables password-less authentication.
+
+The key is added to the `~/.ssh/authorized_keys` list for the `core` user on each node, which enables password-less authentication. After the key is passed to the nodes, you can use the key pair to SSH in to the RHCOS nodes as the user `core`. To access the nodes through SSH, the private key identity must be managed by SSH for your local user.
+
+If you want to SSH in to your cluster nodes to perform installation debugging or disaster recovery, you must provide the SSH public key during the installation process. The `./openshift-install gather` command also requires the SSH public key to be in place on the cluster nodes.
+
+:::warning
+
+Do not skip this procedure in production environments, where disaster recovery and debugging is required.
+
+:::
+
+:::note
+
+You must use a local key, not one that you configured with platform-specific approaches.
+
+:::
+
+**Procedure**
+
+1. If you do not have an existing SSH key pair on your local machine to use for authentication onto your cluster nodes, create one. For example, on a computer that uses a Linux operating system, run the following command:
+   ```terminal
+   $ ssh-keygen -t ed25519 -N '' -f <path>/<file_name>
+   ```
+
+   Specifies the path and file name, such as `~/.ssh/id_ed25519`, of the new SSH key. If you have an existing key pair, ensure your public key is in the your `~/.ssh` directory.
+
+   :::note
+
+   If you plan to install an OpenShift Container Platform cluster that uses the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the `x86_64`, `ppc64le`, and `s390x` architectures, do not create a key that uses the `ed25519` algorithm. Instead, create a key that uses the `rsa` or `ecdsa` algorithm.
+
+   :::
+2. View the public SSH key:
+   ```terminal
+   $ cat <path>/<file_name>.pub
+   ```
+
+   For example, run the following to view the `~/.ssh/id_ed25519.pub` public key:
+
+   ```terminal
+   $ cat ~/.ssh/id_ed25519.pub
+   ```
+3. Add the SSH private key identity to the SSH agent for your local user, if it has not already been added. SSH agent management of the key is required for password-less SSH authentication onto your cluster nodes, or if you want to use the `./openshift-install gather` command.
+   :::note
+
+   On some distributions, default SSH private key identities such as `~/.ssh/id_rsa` and `~/.ssh/id_dsa` are managed automatically.
+
+   :::
+
+   1. If the `ssh-agent` process is not already running for your local user, start it as a background task:
+      ```terminal
+      $ eval "$(ssh-agent -s)"
+      ```
+
+      ```terminal title="Example output"
+      Agent pid 31874
+      ```
+
+      :::note
+
+      If your cluster is in FIPS mode, only use FIPS-compliant algorithms to generate the SSH key. The key must be either RSA or ECDSA.
+
+      :::
+4. Add your SSH private key to the `ssh-agent`:
+   ```terminal
+   $ ssh-add <path>/<file_name>
+   ```
+
+   Specifies the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`
+
+   ```terminal title="Example output"
+   Identity added: /home/<you>/<path>/<file_name> (<computer_name>)
+   ```
+
+**Next steps**
+
+- When you install OpenShift Container Platform, provide the SSH public key to the installation program.
+
+## Obtaining the installation program {#installation-obtaining-installer_installing-ibm-cloud-customizations}
+
+Before you install OpenShift Container Platform, download the installation file on
+
+the host you are using for installation.
+
+**Prerequisites**
+
+- You have a computer that runs Linux or macOS, with 500 MB of local disk space.
+
+**Procedure**
+
+1. Go to the [Cluster Type](https://console.redhat.com/openshift/install) page on the Red Hat Hybrid Cloud Console. If you have a Red Hat account, log in with your credentials. If you do not, create an account.
+   :::tip
+
+   You can also [download the binaries for a specific OpenShift Container Platform release](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/).
+
+   :::
+2. Select your infrastructure provider from the **Run it yourself** section of the page.
+3. Select your host operating system and architecture from the dropdown menus under **OpenShift Installer** and click **Download Installer**.
+4. Place the downloaded file in the directory where you want to store the installation configuration files.
+   :::warning
+
+   - The installation program creates several files on the computer that you use to install your cluster. You must keep the installation program and the files that the installation program creates after you finish installing the cluster. Both of the files are required to delete the cluster.
+   - Deleting the files created by the installation program does not remove your cluster, even if the cluster failed during installation. To remove your cluster, complete the OpenShift Container Platform uninstallation procedures for your specific cloud provider.
+
+   :::
+5. Extract the installation program. For example, on a computer that uses a Linux operating system, run the following command:
+   ```terminal
+   $ tar -xvf openshift-install-linux.tar.gz
+   ```
+6. Download your installation [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret). This pull secret allows you to authenticate with the services that are provided by the included authorities, including Quay.io, which serves the container images for OpenShift Container Platform components.
+   :::tip
+
+   Alternatively, you can retrieve the installation program from the [Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/), where you can specify a version of the installation program to download. However, you must have an active subscription to access this page.
+
+   :::
+
+## Exporting the API key {#installation-ibm-cloud-export-variables_installing-ibm-cloud-customizations}
+
+You must set the API key you created as a global variable; the installation program ingests the variable during startup to set the API key.
+
+**Prerequisites**
+
+- You have created either a user API key or service ID API key for your IBM Cloud(R) account.
+
+**Procedure**
+
+- Export your API key for your account as a global variable:
+  ```terminal
+  $ export IC_API_KEY=<api_key>
+  ```
+
+  :::warning
+
+  You must set the variable name exactly as specified; the installation program expects the variable name to be present during startup.
+
+  :::
+
+## Creating the installation configuration file {#installation-initializing_installing-ibm-cloud-customizations}
+
+You can customize the OpenShift Container Platform cluster you install on IBM Cloud(R).
+
+**Prerequisites**
+
+- You have the OpenShift Container Platform installation program and the pull secret for your cluster.
+
+**Procedure**
+
+1. Create the `install-config.yaml` file.
+   1. Change to the directory that contains the installation program and run the following command:
+      ```terminal
+      $ ./openshift-install create install-config --dir <installation_directory>
+      ```
+
+      - `<installation_directory>`: For `<installation_directory>`, specify the directory name to store the files that the installation program creates.
+        When specifying the directory:
+      - Verify that the directory has the `execute` permission. This permission is required to run Terraform binaries under the installation directory.
+      - Use an empty directory. Some installation assets, such as bootstrap X.509 certificates, have short expiration intervals, therefore you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
+   2. At the prompts, provide the configuration details for your cloud:
+      1. Optional: Select an SSH key to use to access your cluster machines.
+         :::note
+
+         For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
+
+         :::
+      2. Select **ibmcloud** as the platform to target.
+      3. Select the region to deploy the cluster to.
+      4. Select the base domain to deploy the cluster to. The base domain corresponds to the public DNS zone that you created for your cluster.
+      5. Enter a descriptive name for your cluster.
+2. Modify the `install-config.yaml` file. You can find more information about the available parameters in the "Installation configuration parameters" section.
+3. Back up the `install-config.yaml` file so that you can use it to install multiple clusters.
+   :::warning
+
+   The `install-config.yaml` file is consumed during the installation process. If you want to reuse the file, you must back it up now.
+
+   :::
+
+**Additional resources**
+
+- [Installation configuration parameters for IBM Cloud(R)](/docs/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-config-parameters-ibm-cloud-vpc)
+
+### Minimum resource requirements for cluster installation {#installation-minimum-resource-requirements_installing-ibm-cloud-customizations}
+
+To ensure that your OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.
+
+**Minimum resource requirements**
+
+<table>
+<thead>
+<tr>
+  <th>Machine</th>
+  <th>Operating system</th>
+  <th>vCPU</th>
+  <th>Virtual RAM</th>
+  <th>Storage</th>
+  <th>Input/Output Per Second (IOPS)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Bootstrap</td>
+  <td>RHCOS</td>
+  <td>4</td>
+  <td>16 GB</td>
+  <td>100 GB</td>
+  <td>300</td>
+</tr>
+<tr>
+  <td>Control plane</td>
+  <td>RHCOS</td>
+  <td>4</td>
+  <td>16 GB</td>
+  <td>100 GB</td>
+  <td>300</td>
+</tr>
+<tr>
+  <td>Compute</td>
+  <td>RHCOS</td>
+  <td>2</td>
+  <td>8 GB</td>
+  <td>100 GB</td>
+  <td>300</td>
+</tr>
+</tbody>
+</table>
+
+:::note
+
+In OpenShift Container Platform version 4.22, RHCOS uses RHEL version 9.8, which updates the micro-architecture requirements. Each architecture requires the following minimum instruction set architectures (ISA):
+
+- x86-64 architecture requires x86-64-v2 ISA
+- ARM64 architecture requires ARMv8.0-A ISA
+- ppc64le architecture requires IBM(R) Power9 ISA
+- s390x architecture requires IBM(R) z14 ISA
+
+For more information, see [Architectures](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/9.8_release_notes/index#architectures) in the RHEL documentation.
+
+:::
+
+If an instance type for your platform meets the minimum requirements for cluster machines, it is supported to use in OpenShift Container Platform.
+
+**Additional resources**
+
+- [Optimizing storage](/docs/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
+
+### Tested instance types for IBM Cloud {#installation-ibm-cloud-tested-machine-types_installing-ibm-cloud-customizations}
+
+Use these tested IBM Cloud(R) instance types to ensure compatibility when selecting machine types for your OpenShift Container Platform cluster.
+
+See the following machine series:
+
+- `bx2-8x32`
+- `bx2d-4x16`
+- `bx3d-4x20`
+- `bx3dc-8x40`
+- `cx2-8x16`
+- `cx2d-4x8`
+- `cx3d-8x20`
+- `cx3dc-4x10`
+- `gx2-8x64x1v100`
+- `gx3-16x80x1l4`
+- `gx3d-160x1792x8h100`
+- `mx2-8x64`
+- `mx2d-4x32`
+- `mx3d-4x40`
+- `ox2-8x64`
+- `ux2d-2x56`
+- `vx2d-4x56`
+
+### Sample customized install-config.yaml file for IBM Cloud {#installation-ibm-cloud-config-yaml_installing-ibm-cloud-customizations}
+
+You can customize the `install-config.yaml` file to specify more details about your OpenShift Container Platform cluster’s platform or change the values of the required parameters.
+
+:::warning
+
+This sample YAML file is for reference only. You must obtain your `install-config.yaml` file by using the installation program and then change it.
+
+:::
+
+```yaml
+apiVersion: v1
+baseDomain: example.com
+controlPlane:
+  hyperthreading: Enabled
+  name: master
+  platform:
+    ibmcloud: {}
+  replicas: 3
+compute:
+- hyperthreading: Enabled
+  name: worker
+  platform:
+    ibmcloud: {}
+  replicas: 3
+metadata:
+  name: test-cluster
+networking:
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 10.0.0.0/16
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  ibmcloud:
+    region: us-south
+credentialsMode: Manual
+publish: External
+pullSecret: '{"auths": ...}'
+fips: false
+sshKey: ssh-ed25519 AAAA...
+```
+
+where:
+
+`baseDomain`
+: Specifies the base domain of your cluster. The installation program prompts you for this value. This value is required.
+
+`metadata.name`
+: Specifies the name of your cluster. The installation program prompts you for this value. This value is required.
+
+`platform.ibmcloud.region`
+: Specifies the IBM Cloud(R) region to deploy the cluster to. The installation program prompts you for this value. This value is required.
+
+`pullSecret`
+: Specifies your pull secret. The installation program prompts you for this value. This value is required.
+
+`compute`
+: Specifies parameters where, if you do not supply values, the installation program uses the default value. The first line of the `compute` section must begin with a hyphen, `-`. Although both sections currently define a single machine pool, it is possible that OpenShift Container Platform will support defining multiple compute pools during installation.
+
+`compute.hyperthreading`
+: Specifies whether to enable or disable simultaneous multithreading, also known as Hyper-Threading. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores. You can disable it by setting the parameter value to `Disabled`. If you disable simultaneous multithreading in some cluster machines, you must disable it in all cluster machines.
+
+`controlPlane`
+: Specifies parameters where, if you do not supply values, the installation program uses the default value. The `controlPlane` section is a single mapping, and its first line must not begin with a hyphen. Only one control plane pool is used.
+
+`controlPlane.hyperthreading`
+: Specifies whether to enable or disable simultaneous multithreading, also known as Hyper-Threading. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores. You can disable it by setting the parameter value to `Disabled`. If you disable simultaneous multithreading in some cluster machines, you must disable it in all cluster machines.
+
+  :::warning
+
+  If you disable simultaneous multithreading, ensure that your capacity planning accounts for the dramatically decreased machine performance. Use larger machine types, such as `n1-standard-8`, for your machines if you disable simultaneous multithreading.
+
+  :::
+
+`networking`
+: Specifies the cluster networking configuration. If you do not supply these parameters and values, the installation program uses the default value.
+
+`networking.networkType`
+: Specifies the cluster network plugin to install. The default value `OVNKubernetes` is the only supported value.
+
+`fips`
+: Specifies whether to enable or disable FIPS mode. By default, FIPS mode is not enabled. If FIPS mode is enabled, the Red Hat Enterprise Linux CoreOS (RHCOS) machines that OpenShift Container Platform runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with RHCOS instead.
+
+  :::warning
+
+  To enable FIPS mode for your cluster, you must run the installation program from a Red Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see [Installing the system in FIPS mode](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/security_hardening/assembly_installing-the-system-in-fips-mode_security-hardening).
+
+  When running Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.
+
+  :::
+
+`sshKey`
+: Specifies the SSH key to use to access the machines in your cluster. This value is optional.
+
+  :::note
+
+  For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
+
+  :::
+
+### Configuring the cluster-wide proxy during installation {#installation-configure-proxy_installing-ibm-cloud-customizations}
+
+Production environments can deny direct access to the internet and instead have an HTTP or HTTPS proxy available. You can configure a new OpenShift Container Platform cluster to use a proxy by configuring the proxy settings in the `install-config.yaml` file.
+
+**Prerequisites**
+
+- You have an existing `install-config.yaml` file.
+- You have reviewed the sites that your cluster requires access to and determined whether any of them need to bypass the proxy. By default, the proxy handles all cluster egress traffic, including calls to hosting cloud provider APIs. You added sites to the `Proxy` object’s `spec.noProxy` field to bypass the proxy if necessary.
+  :::note
+
+  The `Proxy` object `status.noProxy` field includes the values of the `networking.machineNetwork[].cidr`, `networking.clusterNetwork[].cidr`, and `networking.serviceNetwork[]` fields from your installation configuration.
+
+  For installations on Amazon Web Services (AWS), Google Cloud, Microsoft Azure, and Red Hat OpenStack Platform (RHOSP), the `Proxy` object `status.noProxy` field also includes the instance metadata endpoint (`169.254.169.254`).
+
+  :::
+
+**Procedure**
+
+1. Edit your `install-config.yaml` file and add the proxy settings. For example:
+   ```yaml
+   apiVersion: v1
+   baseDomain: my.domain.com
+   proxy:
+     httpProxy: http://<username>:<pswd>@<ip>:<port>
+     httpsProxy: https://<username>:<pswd>@<ip>:<port>
+     noProxy: example.com
+   additionalTrustBundle: |
+       -----BEGIN CERTIFICATE-----
+       <MY_TRUSTED_CA_CERT>
+       -----END CERTIFICATE-----
+   additionalTrustBundlePolicy: <policy_to_add_additionalTrustBundle>
+   # ...
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>proxy.httpProxy</code></dt>
+   <dd>Specifies a proxy URL to use for creating HTTP connections outside the cluster. The URL scheme must be <code>http</code>.</dd>
+   <dt><code>proxy.httpsProxy</code></dt>
+   <dd>Specifies a proxy URL to use for creating HTTPS connections outside the cluster.</dd>
+   <dt><code>proxy.noProxy</code></dt>
+   <dd>Specifies a comma-separated list of destination domain names, IP addresses, or other network CIDRs to exclude from proxying. Preface a domain with <code>.</code> to match subdomains only. For example, <code>.y.com</code> matches <code>x.y.com</code>, but not <code>y.com</code>. Use <code>*</code> to bypass the proxy for all destinations.</dd>
+   <dt><code>additionalTrustBundle</code></dt>
+   <dd>If you specify this value, the installation program generates a config map named <code>user-ca-bundle</code> in the <code>openshift-config</code> namespace to hold the additional CA certificates. If you specify <code>additionalTrustBundle</code> and at least one proxy setting, the <code>Proxy</code> object references the <code>user-ca-bundle</code> config map in the <code>trustedCA</code> field. The Cluster Network Operator then creates a <code>trusted-ca-bundle</code> config map that merges the contents specified for the <code>trustedCA</code> parameter with the RHCOS trust bundle. You must set the <code>additionalTrustBundle</code> field unless an authority from the RHCOS trust bundle signs the proxy’s identity certificate.</dd>
+   <dt><code>additionalTrustBundlePolicy</code></dt>
+   <dd>Specifies the policy that determines the configuration of the <code>Proxy</code> object to reference the <code>user-ca-bundle</code> config map in the <code>trustedCA</code> field. The allowed values are <code>Proxyonly</code> and <code>Always</code>. Use <code>Proxyonly</code> to reference the <code>user-ca-bundle</code> config map only when you configure an <code>http/https</code> proxy. Use <code>Always</code> to always reference the <code>user-ca-bundle</code> config map. The default value is <code>Proxyonly</code>. Optional parameter.</dd>
+   </dl>
+
+   :::note
+
+   The installation program does not support the proxy `readinessEndpoints` field.
+
+   :::
+
+   :::note
+
+   If the installation program times out, restart and then complete the deployment by using the `wait-for` command of the installation program. For example:
+
+   ```terminal
+   $ ./openshift-install wait-for install-complete --log-level debug
+   ```
+
+   :::
+2. Save the file and reference it when installing OpenShift Container Platform.
+   The installation program creates a cluster-wide proxy named `cluster` that uses the proxy settings in the `install-config.yaml` file. If you do not give proxy settings, the installation program still creates a `cluster` `Proxy` object, but it has a nil `spec`.
+
+   :::note
+
+   Only the `Proxy` object named `cluster` is supported, and you cannot create additional proxies.
+
+   :::
+
+## Manually creating IAM {#manually-create-iam-ibm-cloud_installing-ibm-cloud-customizations}
+
+To install OpenShift Container Platform, the Cloud Credential Operator (CCO) must operate in manual mode. While the installation program configures the CCO for manual mode, you must specify the identity and access management secrets for your cloud provider.
+
+You can use the Cloud Credential Operator (CCO) utility (`ccoctl`) to create the required IBM Cloud(R) resources.
+
+**Prerequisites**
+
+- You have configured the `ccoctl` binary.
+- You have an existing `install-config.yaml` file.
+
+**Procedure**
+
+1. Edit the `install-config.yaml` configuration file so that the file includes the `credentialsMode` parameter set to `Manual`.
+   ```yaml title="Example install-config.yaml configuration file"
+   apiVersion: v1
+   baseDomain: cluster1.example.com
+   credentialsMode: Manual
+   compute:
+   - architecture: amd64
+     hyperthreading: Enabled
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>credentialsMode</code></dt>
+   <dd>Specifies the CCO credentials mode. Set the value to <code>Manual</code>.</dd>
+   </dl>
+2. To generate the manifests, run the following command from the directory that includes the installation program:
+   ```terminal
+   $ ./openshift-install create manifests --dir <installation_directory>
+   ```
+3. From the directory that includes the installation program, set a `$RELEASE_IMAGE` variable with the release image from your installation file by running the following command:
+   ```terminal
+   $ RELEASE_IMAGE=$(./openshift-install version | awk '/release image/ {print $3}')
+   ```
+4. Extract the list of `CredentialsRequest` custom resources (CRs) from the OpenShift Container Platform release image by running the following command:
+   ```terminal
+   $ oc adm release extract \
+     --from=$RELEASE_IMAGE \
+     --credentials-requests \
+     --included \
+     --install-config=<path_to_directory_with_installation_configuration>/install-config.yaml \
+     --to=<path_to_directory_for_credentials_requests>
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>--included</code></dt>
+   <dd>Specifies that only the manifests that your specific cluster configuration requires are included.</dd>
+   <dt><code>--install-config</code></dt>
+   <dd>Specifies the location of the <code>install-config.yaml</code> file.</dd>
+   <dt><code>--to</code></dt>
+   <dd>Specifies the path to the directory where you want to store the <code>CredentialsRequest</code> objects. If the specified directory does not exist, this command creates it. This command creates a YAML file for each <code>CredentialsRequest</code> object.</dd>
+   </dl>
+
+   ```yaml title="Sample CredentialsRequest object"
+     apiVersion: cloudcredential.openshift.io/v1
+     kind: CredentialsRequest
+     metadata:
+       labels:
+         controller-tools.k8s.io: "1.0"
+       name: openshift-image-registry-ibmcos
+       namespace: openshift-cloud-credential-operator
+     spec:
+       secretRef:
+         name: installer-cloud-credentials
+         namespace: openshift-image-registry
+       providerSpec:
+         apiVersion: cloudcredential.openshift.io/v1
+         kind: IBMCloudProviderSpec
+         policies:
+         - attributes:
+           - name: serviceName
+             value: cloud-object-storage
+           roles:
+           - crn:v1:bluemix:public:iam::::role:Viewer
+           - crn:v1:bluemix:public:iam::::role:Operator
+           - crn:v1:bluemix:public:iam::::role:Editor
+           - crn:v1:bluemix:public:iam::::serviceRole:Reader
+           - crn:v1:bluemix:public:iam::::serviceRole:Writer
+         - attributes:
+           - name: resourceType
+             value: resource-group
+           roles:
+           - crn:v1:bluemix:public:iam::::role:Viewer
+   ```
+5. Create the service ID for each credential request, assign the policies defined, create an API key, and generate the secret:
+   ```terminal
+   $ ccoctl ibmcloud create-service-id \
+     --credentials-requests-dir=<path_to_credential_requests_directory> \
+     --name=<cluster_name> \
+     --output-dir=<installation_directory> \
+     --resource-group-name=<resource_group_name>
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;path_to_credential_requests_directory&gt;</code></dt>
+   <dd>Specifies the directory that has the files for the <code>CredentialsRequest</code> objects.</dd>
+   <dt><code>&lt;cluster_name&gt;</code></dt>
+   <dd>Specifies the name of the OpenShift Container Platform cluster.</dd>
+   <dt><code>&lt;installation_directory&gt;</code></dt>
+   <dd>Specifies the directory in which you want the <code>ccoctl</code> utility to create objects. By default, the utility creates objects in the directory in which you run the commands. This parameter is optional.</dd>
+   <dt><code>&lt;resource_group_name&gt;</code></dt>
+   <dd>Specifies the name of the resource group used for scoping the access policies. This parameter is optional.</dd>
+   </dl>
+
+   :::note
+
+   If you enabled Technology Preview features by using the `TechPreviewNoUpgrade` feature set for your cluster, you must include the `--enable-tech-preview` parameter in the configuration for the `CredentialsRequest` object.
+
+   If you provided a wrong resource group name, the installation fails during the bootstrap phase. To find the correct resource group name, run the following command:
+
+   ```terminal
+   $ grep resourceGroupName <installation_directory>/manifests/cluster-infrastructure-02-config.yml
+   ```
+
+   :::
+
+**Verification**
+
+- Check that the appropriate secrets exist in the `manifests` directory of your cluster.
+
+## Network configuration phases {#nw-network-config_installing-ibm-cloud-customizations}
+
+There are two phases prior to OpenShift Container Platform installation where you can customize the network configuration. Customize settings in the `install-config.yaml` file and in the Cluster Network Operator manifest across two configuration phases.
+
+Phase 1
+: You can customize the following network-related fields in the `install-config.yaml` file before you create the manifest files:
+
+  - `networking.networkType`
+  - `networking.clusterNetwork`
+  - `networking.serviceNetwork`
+  - `networking.machineNetwork`
+  - `nodeNetworking`
+
+  For more information, see "Installation configuration parameters".
+
+  :::note
+
+  Set the `networking.machineNetwork` to match the Classless Inter-Domain Routing (CIDR) where the preferred subnet is located.
+
+  :::
+
+  :::warning
+
+  The CIDR range `172.17.0.0/16` is reserved by `libVirt`. You cannot use any other CIDR range that overlaps with the `172.17.0.0/16` CIDR range for networks in your cluster.
+
+  :::
+
+Phase 2
+: After creating the manifest files by running `openshift-install create manifests`, you can define a customized Cluster Network Operator manifest with only the fields you want to modify. You can use the manifest to specify an advanced network configuration.
+
+During phase 2, you cannot override the values that you specified in phase 1 in the `install-config.yaml` file. However, you can customize the network plugin during phase 2.
+
+## Specifying advanced network configuration {#modifying-nwoperator-config-startup_installing-ibm-cloud-customizations}
+
+To integrate your OpenShift Container Platform cluster with your existing network environment, you can specify advanced network configuration in a manifest before you install the cluster. Advanced network configuration can be configured only during cluster installation.
+
+:::warning
+
+Customizing your network configuration by modifying the OpenShift Container Platform manifest files created by the installation program is not supported. Applying a manifest file that you create, as in the following procedure, is supported.
+
+:::
+
+**Prerequisites**
+
+- You have created the `install-config.yaml` file and completed any modifications to it.
+
+**Procedure**
+
+1. Change to the directory that contains the installation program and create the manifests:
+   ```terminal
+   $ ./openshift-install create manifests --dir <installation_directory>
+   ```
+
+   The `<installation_directory>` specifies the name of the directory that contains the `install-config.yaml` file for your cluster.
+2. Create a stub manifest file for the advanced network configuration that is named `cluster-network-03-config.yml` in the `<installation_directory>/manifests/` directory:
+   ```yaml
+   apiVersion: operator.openshift.io/v1
+   kind: Network
+   metadata:
+     name: cluster
+   spec:
+   ```
+3. Specify the advanced network configuration for your cluster in the `cluster-network-03-config.yml` file, such as in the following example:
+   ```yaml title="Enable IPsec for the OVN-Kubernetes network provider"
+   apiVersion: operator.openshift.io/v1
+   kind: Network
+   metadata:
+     name: cluster
+   spec:
+     defaultNetwork:
+       ovnKubernetesConfig:
+         ipsecConfig:
+           mode: Full
+   ```
+4. Optional: Back up the `manifests/cluster-network-03-config.yml` file. The installation program consumes the `manifests/` directory when you create the Ignition config files.
+5. Remove the Kubernetes manifest files that define the control plane machines and compute `MachineSets`:
+   ```terminal
+   $ rm -f openshift/99_openshift-cluster-api_master-machines-*.yaml openshift/99_openshift-cluster-api_worker-machineset-*.yaml
+   ```
+
+   Because you create and manage these resources yourself, you do not have to initialize them.
+
+   - You can preserve the `MachineSet` files to create compute machines by using the machine API, but you must update references to them to match your environment.
+
+## Cluster Network Operator configuration {#nw-operator-cr_installing-ibm-cloud-customizations}
+
+To manage cluster networking, configure the Cluster Network Operator (CNO) `Network` custom resource (CR) named `cluster` so the cluster uses the correct IP ranges and network plugin settings for reliable pod and service connectivity. Some settings and fields are inherited at the time of install or by the `default.Network.type` plugin, OVN-Kubernetes.
+
+The CNO configuration inherits the following fields during cluster installation from the `Network` API in the `Network.config.openshift.io` API group:
+
+`clusterNetwork`
+: IP address pools from which pod IP addresses are allocated.
+
+`serviceNetwork`
+: IP address pool for services.
+
+`defaultNetwork.type`
+: Cluster network plugin. `OVNKubernetes` is the only supported plugin during installation.
+
+You can specify the cluster network plugin configuration for your cluster by setting the fields for the `defaultNetwork` object in the CNO object named `cluster`.
+
+### Cluster Network Operator configuration object {#nw-operator-cr-cno-object_installing-ibm-cloud-customizations}
+
+The fields for the Cluster Network Operator (CNO) are described in the following table:
+
+**Cluster Network Operator configuration object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>metadata.name</code></td>
+  <td><code>string</code></td>
+  <td>The name of the CNO object. This name is always <code>cluster</code>.</td>
+</tr>
+<tr>
+  <td><code>spec.clusterNetwork</code></td>
+  <td><code>array</code></td>
+  <td>A list specifying the blocks of IP addresses from which pod IP addresses are allocated and the subnet prefix length assigned to each individual node in the cluster. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre><code>spec:&#10;  clusterNetwork:&#10;  - cidr: 10.128.0.0/19&#10;    hostPrefix: 23&#10;  - cidr: fd01::/48&#10;    hostPrefix: 64</code></pre><br><br>If you install a cluster on AWS with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.</td>
+</tr>
+<tr>
+  <td><code>spec.serviceNetwork</code></td>
+  <td><code>array</code></td>
+  <td>A block of IP addresses for services. If you use dual-stack networking, specify IPv4 and IPv6 address families. For example:<br><br><pre><code>spec:&#10;  serviceNetwork:&#10;  - 172.30.0.0/14&#10;  - fd02::/112</code></pre><br><br>If you install a cluster on AWS with dual-stack networking, the order of addresses must match the dual-stack configuration you selected. For example, if you specified the <code>DualStackIPv4Primary</code>, list the IPv4 address first.<br><br>   You can customize this field only in the <code>install-config.yaml</code> file before you create the manifests. The value is read-only in the manifest file. </td>
+</tr>
+<tr>
+  <td><code>spec.defaultNetwork</code></td>
+  <td><code>object</code></td>
+  <td>Configures the network plugin for the cluster network.</td>
+</tr>
+<tr>
+  <td><code>spec.additionalRoutingCapabilities.providers</code></td>
+  <td><code>array</code></td>
+  <td>This setting enables a dynamic routing provider. The FRR routing capability provider is required for the route advertisement feature. The only supported value is <code>FRR</code>.<br><br><ul><li><code>FRR</code>: The FRR routing provider</li></ul><br><br><pre><code>spec:&#10;  additionalRoutingCapabilities:&#10;    providers:&#10;    - FRR</code></pre></td>
+</tr>
+</tbody>
+</table>
+
+:::warning
+
+For a cluster that needs to deploy objects across multiple networks, ensure that you specify the same value for the `clusterNetwork.hostPrefix` parameter for each network type that is defined in the `install-config.yaml` file. Setting a different value for each `clusterNetwork.hostPrefix` parameter can impact the OVN-Kubernetes network plugin, where the plugin cannot effectively route object traffic among different nodes.
+
+:::
+
+### defaultNetwork object configuration {#nw-operator-cr-defaultnetwork_installing-ibm-cloud-customizations}
+
+The values for the `defaultNetwork` object are defined in the following table:
+
+`defaultNetwork`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>type</code></td>
+  <td><code>string</code></td>
+  <td><code>OVNKubernetes</code>. The Red Hat OpenShift Networking network plugin is selected during installation. This value cannot be changed after cluster installation.<div class="alert alert--secondary"><strong>Note</strong><p>OpenShift Container Platform uses the OVN-Kubernetes network plugin by default.</p></div></td>
+</tr>
+<tr>
+  <td><code>ovnKubernetesConfig</code></td>
+  <td><code>object</code></td>
+  <td>This object is only valid for the OVN-Kubernetes network plugin.</td>
+</tr>
+</tbody>
+</table>
+
+### Configuration for the OVN-Kubernetes network plugin {#nw-operator-configuration-parameters-for-ovn-sdn_installing-ibm-cloud-customizations}
+
+The following table describes the configuration fields for the OVN-Kubernetes network plugin:
+
+`ovnKubernetesConfig`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>mtu</code></td>
+  <td><code>integer</code></td>
+  <td> The maximum transmission unit (MTU) for the Geneve (Generic Network Virtualization Encapsulation) overlay network. This is detected automatically based on the MTU of the primary network interface. You do not normally need to override the detected MTU.<br><br>If the auto-detected value is not what you expect it to be, confirm that the MTU on the primary network interface on your nodes is correct. You cannot use this option to change the MTU value of the primary network interface on the nodes.<br><br>If your cluster requires different MTU values for different nodes, you must set this value to <code>100</code> less than the lowest MTU value in your cluster. For example, if some nodes in your cluster have an MTU of <code>9001</code>, and some have an MTU of <code>1500</code>, you must set this value to <code>1400</code>.  </td>
+</tr>
+<tr>
+  <td><code>genevePort</code></td>
+  <td><code>integer</code></td>
+  <td> The port to use for all Geneve packets. The default value is <code>6081</code>. This value cannot be changed after cluster installation.  </td>
+</tr>
+<tr>
+  <td><code>ipsecConfig</code></td>
+  <td><code>object</code></td>
+  <td> Specify a configuration object for customizing the IPsec configuration.  </td>
+</tr>
+<tr>
+  <td><code>ipv4</code></td>
+  <td><code>object</code></td>
+  <td>Specifies a configuration object for IPv4 settings.</td>
+</tr>
+<tr>
+  <td><code>ipv6</code></td>
+  <td><code>object</code></td>
+  <td>Specifies a configuration object for IPv6 settings.</td>
+</tr>
+<tr>
+  <td><code>policyAuditConfig</code></td>
+  <td><code>object</code></td>
+  <td>Specify a configuration object for customizing network policy audit logging. If unset, the defaults audit log settings are used.</td>
+</tr>
+<tr>
+  <td><code>routeAdvertisements</code></td>
+  <td><code>string</code></td>
+  <td>Specifies whether to advertise cluster network routes. The default value is <code>Disabled</code>.<ul><li><code>Enabled</code>: Import routes to the cluster network and advertise cluster network routes as configured in <code>RouteAdvertisements</code> objects.</li><li><code>Disabled</code>: Do not import routes to the cluster network or advertise cluster network routes.</li></ul></td>
+</tr>
+<tr>
+  <td><code>gatewayConfig</code></td>
+  <td><code>object</code></td>
+  <td>Optional: Specify a configuration object for customizing how egress traffic is sent to the node gateway. Valid values are <code>Shared</code> and <code>Local</code>. The default value is <code>Shared</code>. In the default setting, the Open vSwitch (OVS) outputs traffic directly to the node IP interface. If you are using hardware offloading, Red Hat recommends to use the default <code>Shared</code> gateway mode to bypass the host routing plane. In the <code>Local</code> setting, it traverses the host network; consequently, it gets applied to the routing table of the host.<br><br><div class="alert alert--secondary"><strong>Note</strong><p>While migrating egress traffic, you can expect some disruption to workloads and service traffic until the Cluster Network Operator (CNO) successfully rolls out the changes.</p></div></td>
+</tr>
+</tbody>
+</table>
+
+`ovnKubernetesConfig.ipv4`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>internalTransitSwitchSubnet</code></td>
+  <td>string</td>
+  <td>If your existing network infrastructure overlaps with the <code>100.88.0.0/16</code> IPv4 subnet, you can specify a different IP address range for internal use by OVN-Kubernetes. The subnet for the distributed transit switch that enables east-west traffic. This subnet cannot overlap with any other subnets used by OVN-Kubernetes or on the host itself. It must be large enough to accommodate one IP address per node in your cluster.<br><br>The default value is <code>100.88.0.0/16</code>.</td>
+</tr>
+<tr>
+  <td><code>internalJoinSubnet</code></td>
+  <td>string</td>
+  <td>If your existing network infrastructure overlaps with the <code>100.64.0.0/16</code> IPv4 subnet, you can specify a different IP address range for internal use by OVN-Kubernetes. You must ensure that the IP address range does not overlap with any other subnet used by your OpenShift Container Platform installation. The IP address range must be larger than the maximum number of nodes that can be added to the cluster. For example, if the <code>clusterNetwork.cidr</code> value is <code>10.128.0.0/14</code> and the <code>clusterNetwork.hostPrefix</code> value is <code>/23</code>, then the maximum number of nodes is <code>2^(23-14)=512</code>.<br><br>The default value is <code>100.64.0.0/16</code>.</td>
+</tr>
+</tbody>
+</table>
+
+`ovnKubernetesConfig.ipv6`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>internalTransitSwitchSubnet</code></td>
+  <td>string</td>
+  <td>If your existing network infrastructure overlaps with the <code>fd97::/64</code> IPv6 subnet, you can specify a different IP address range for internal use by OVN-Kubernetes. The subnet for the distributed transit switch that enables east-west traffic. This subnet cannot overlap with any other subnets used by OVN-Kubernetes or on the host itself. It must be large enough to accommodate one IP address per node in your cluster.<br><br>The default value is <code>fd97::/64</code>.</td>
+</tr>
+<tr>
+  <td><code>internalJoinSubnet</code></td>
+  <td>string</td>
+  <td>If your existing network infrastructure overlaps with the <code>fd98::/64</code> IPv6 subnet, you can specify a different IP address range for internal use by OVN-Kubernetes. You must ensure that the IP address range does not overlap with any other subnet used by your OpenShift Container Platform installation. The IP address range must be larger than the maximum number of nodes that can be added to the cluster.<br><br>The default value is <code>fd98::/64</code>.</td>
+</tr>
+</tbody>
+</table>
+
+`policyAuditConfig`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>rateLimit</code></td>
+  <td>integer</td>
+  <td>The maximum number of messages to generate every second per node. The default value is <code>20</code> messages per second.</td>
+</tr>
+<tr>
+  <td><code>maxFileSize</code></td>
+  <td>integer</td>
+  <td>The maximum size for the audit log in bytes. The default value is <code>50000000</code> or 50 MB.</td>
+</tr>
+<tr>
+  <td><code>maxLogFiles</code></td>
+  <td>integer</td>
+  <td>The maximum number of log files that are retained.</td>
+</tr>
+<tr>
+  <td><code>destination</code></td>
+  <td>string</td>
+  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A Unix Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
+</tr>
+<tr>
+  <td><code>syslogFacility</code></td>
+  <td>string</td>
+  <td>The syslog facility, such as <code>kern</code>, as defined by RFC5424. The default value is <code>local0</code>.</td>
+</tr>
+</tbody>
+</table>
+
+<a name="gatewayConfig-object_installing-ibm-cloud-customizations"></a>
+
+`gatewayConfig`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>routingViaHost</code></td>
+  <td><code>boolean</code></td>
+  <td>Set this field to <code>true</code> to send egress traffic from pods to the host networking stack. For highly-specialized installations and applications that rely on manually configured routes in the kernel routing table, you might want to route egress traffic to the host networking stack. By default, egress traffic is processed in OVN to exit the cluster and is not affected by specialized routes in the kernel routing table. The default value is <code>false</code>.<br><br>This field has an interaction with the Open vSwitch hardware offloading feature. If you set this field to <code>true</code>, you do not receive the performance benefits of the offloading because egress traffic is processed by the host networking stack.</td>
+</tr>
+<tr>
+  <td><code>ipForwarding</code></td>
+  <td><code>object</code></td>
+  <td>You can control IP forwarding for all traffic on OVN-Kubernetes managed interfaces by using the <code>ipForwarding</code> specification in the <code>Network</code> resource. Specify <code>Restricted</code> to only allow IP forwarding for Kubernetes related traffic. Specify <code>Global</code> to allow forwarding of all IP traffic. For new installations, the default is <code>Restricted</code>. For updates to OpenShift Container Platform 4.14 or later, the default is <code>Global</code>.<div class="alert alert--secondary"><strong>Note</strong><p>The default value of <code>Restricted</code> sets the IP forwarding to drop.</p></div></td>
+</tr>
+<tr>
+  <td><code>ipv4</code></td>
+  <td><code>object</code></td>
+  <td>Optional: Specify an object to configure the internal OVN-Kubernetes masquerade address for host to service traffic for IPv4 addresses.</td>
+</tr>
+<tr>
+  <td><code>ipv6</code></td>
+  <td><code>object</code></td>
+  <td>Optional: Specify an object to configure the internal OVN-Kubernetes masquerade address for host to service traffic for IPv6 addresses.</td>
+</tr>
+</tbody>
+</table>
+
+<a name="gatewayconfig-ipv4-object_installing-ibm-cloud-customizations"></a>
+
+`gatewayConfig.ipv4`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>internalMasqueradeSubnet</code></td>
+  <td><code>string</code></td>
+  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<div class="alert alert--warning"><strong>Important</strong><p>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</p></div></td>
+</tr>
+</tbody>
+</table>
+
+<a name="gatewayconfig-ipv6-object_installing-ibm-cloud-customizations"></a>
+
+`gatewayConfig.ipv6`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>internalMasqueradeSubnet</code></td>
+  <td><code>string</code></td>
+  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<div class="alert alert--warning"><strong>Important</strong><p>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</p></div></td>
+</tr>
+</tbody>
+</table>
+
+<a name="nw-operator-cr-ipsec_installing-ibm-cloud-customizations"></a>
+
+`ipsecConfig`** object**
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>mode</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the behavior of the IPsec implementation. Must be one of the following values:<br><br><ul><li><code>Disabled</code>: IPsec is not enabled on cluster nodes.</li><li><code>External</code>: IPsec is enabled for network traffic with external hosts.</li><li><code>Full</code>: IPsec is enabled for pod traffic and network traffic with external hosts.</li></ul></td>
+</tr>
+</tbody>
+</table>
+
+```yaml title="Example OVN-Kubernetes configuration with IPSec enabled"
+defaultNetwork:
+  type: OVNKubernetes
+  ovnKubernetesConfig:
+    mtu: 1400
+    genevePort: 6081
+    ipsecConfig:
+      mode: Full
+```
+
+## Deploying the cluster {#installation-launching-installer_installing-ibm-cloud-customizations}
+
+To deploy your OpenShift Container Platform cluster, you can initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions infrastructure and completes cluster setup.
+
+:::warning
+
+You can run the `create cluster` command of the installation program only once, during initial installation.
+
+:::
+
+**Prerequisites**
+
+- You have configured an account with the cloud platform that hosts your cluster.
+- You have the OpenShift Container Platform installation program and the pull secret for your cluster.
+- You have verified that the cloud provider account on your host has the correct permissions to deploy the cluster. An account with incorrect permissions causes the installation process to fail with an error message that displays the missing permissions.
+
+**Procedure**
+
+- In the directory that contains the installation program, initialize the cluster deployment by running the following command:
+
+```terminal
+$ ./openshift-install create cluster --dir <installation_directory> \
+    --log-level=info
+```
+
+- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
+- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
+
+**Verification**
+
+When the cluster deployment completes successfully:
+
+- The terminal displays directions for accessing your cluster, including a link to the web console and credentials for the `kubeadmin` user.
+- Credential information also outputs to `<installation_directory>/.openshift_install.log`.
+  :::warning
+
+  Do not delete the installation program or the files that the installation program creates. Both are required to delete the cluster.
+
+  :::
+
+  ```terminal title="Example output"
+  ...
+  INFO Install complete!
+  INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/home/myuser/install_dir/auth/kubeconfig'
+  INFO Access the OpenShift web-console here: https://console-openshift-console.apps.mycluster.example.com
+  INFO Login to the console with user: "kubeadmin", and password: "password"
+  INFO Time elapsed: 36m22s
+  ```
+
+  :::warning
+
+  - The Ignition config files that the installation program generates contain certificates that expire after 24 hours, which are then renewed at that time. If the cluster is shut down before renewing the certificates and the cluster is later restarted after the 24 hours have elapsed, the cluster automatically recovers the expired certificates. The exception is that you must manually approve the pending `node-bootstrapper` certificate signing requests (CSRs) to recover kubelet certificates. See the documentation for *Recovering from expired control plane certificates* for more information.
+  - It is recommended that you use Ignition config files within 12 hours after they are generated because the 24-hour certificate rotates from 16 to 22 hours after the cluster is installed. By using the Ignition config files within 12 hours, you can avoid installation failure if the certificate update runs during installation.
+
+  :::
+
+## Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-ibm-cloud-customizations}
+
+To manage your cluster and deploy applications from the command line on Linux, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
+
+:::warning
+
+If you installed an earlier version of `oc`, you cannot use it to complete all of the commands in OpenShift Container Platform.
+
+Download and install the new version of `oc`.
+
+:::
+
+**Procedure**
+
+1. Navigate to the [Download OpenShift Container Platform](https://access.redhat.com/downloads/content/290) page on the Red Hat Customer Portal.
+2. Select the architecture from the **Product Variant** list.
+3. Select the appropriate version from the **Version** list.
+4. Click **Download Now** next to the **OpenShift v4.22 Linux Clients** entry and save the file.
+5. Unpack the archive:
+   ```terminal
+   $ tar xvf <file>
+   ```
+6. Place the `oc` binary in a directory that is on your `PATH`.
+   To check your `PATH`, execute the following command:
+
+   ```terminal
+   $ echo $PATH
+   ```
+
+**Verification**
+
+- After you install the OpenShift CLI, it is available using the `oc` command:
+  ```terminal
+  $ oc <command>
+  ```
+
+## Installing the OpenShift CLI on Windows {#cli-installing-cli-windows_installing-ibm-cloud-customizations}
+
+To manage your cluster and deploy applications from the command line on Windows, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
+
+:::warning
+
+If you installed an earlier version of `oc`, you cannot use it to complete all of the commands in OpenShift Container Platform.
+
+Download and install the new version of `oc`.
+
+:::
+
+**Procedure**
+
+1. Navigate to the [Download OpenShift Container Platform](https://access.redhat.com/downloads/content/290) page on the Red Hat Customer Portal.
+2. Select the appropriate version from the **Version** list.
+3. Click **Download Now** next to the **OpenShift v4.22 Windows Client** entry and save the file.
+4. Extract the archive with a ZIP program.
+5. Move the `oc` binary to a directory that is on your `PATH` variable.
+   To check your `PATH` variable, open the command prompt and execute the following command:
+
+   ```terminal
+   C:\> path
+   ```
+
+**Verification**
+
+- After you install the OpenShift CLI, it is available using the `oc` command:
+  ```terminal
+  C:\> oc <command>
+  ```
+
+## Installing the OpenShift CLI on macOS {#cli-installing-cli-macos_installing-ibm-cloud-customizations}
+
+To manage your cluster and deploy applications from the command line on macOS, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
+
+:::warning
+
+If you installed an earlier version of `oc`, you cannot use it to complete all of the commands in OpenShift Container Platform.
+
+Download and install the new version of `oc`.
+
+:::
+
+**Procedure**
+
+1. Navigate to the [Download OpenShift Container Platform](https://access.redhat.com/downloads/content/290) page on the Red Hat Customer Portal.
+2. Select the architecture from the **Product Variant** list.
+3. Select the appropriate version from the **Version** list.
+4. Click **Download Now** next to the **OpenShift v4.22 macOS Clients** entry and save the file.
+   :::note
+
+   For macOS arm64, choose the **OpenShift v4.22 macOS arm64 Client** entry.
+
+   :::
+5. Unpack and unzip the archive.
+6. Move the `oc` binary to a directory on your `PATH` variable.
+   To check your `PATH` variable, open a terminal and execute the following command:
+
+   ```terminal
+   $ echo $PATH
+   ```
+
+**Verification**
+
+- Verify your installation by using an `oc` command:
+  ```terminal
+  $ oc <command>
+  ```
+
+## Logging in to the cluster by using the CLI {#cli-logging-in-kubeadmin_installing-ibm-cloud-customizations}
+
+To log in to your cluster as the default system user, export the `kubeconfig` file. This configuration enables the CLI to authenticate and connect to the specific API server created during OpenShift Container Platform installation.
+
+The `kubeconfig` file is specific to a cluster and OpenShift Container Platform generates it during installation.
+
+**Prerequisites**
+
+- You deployed an OpenShift Container Platform cluster.
+- You installed the OpenShift CLI (`oc`).
+
+**Procedure**
+
+1. Export the `kubeadmin` credentials by running the following command:
+   ```terminal
+   $ export KUBECONFIG=<installation_directory>/auth/kubeconfig
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;installation_directory&gt;</code></dt>
+   <dd>Specifies the path to the directory that stores the installation files.</dd>
+   </dl>
+2. Verify you can run `oc` commands successfully using the exported configuration by running the following command:
+   ```terminal
+   $ oc whoami
+   ```
+
+   ```terminal title="Example output"
+   system:admin
+   ```
+
+**Next steps**
+
+- "Customize your cluster"
+- "Remote health reporting"
+
+**Additional resources**
+
+- [Accessing the web console](/docs/web_console/web-console#web-console)
+
+## Telemetry access for OpenShift Container Platform {#cluster-telemetry_installing-ibm-cloud-customizations}
+
+To provide metrics about cluster health and the success of updates, the Telemetry service requires internet access. When connected, this service runs automatically by default and registers your cluster to [OpenShift Cluster Manager](https://console.redhat.com/openshift).
+
+After you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the *Additional resources* section.
+
+**Additional resources**
+
+- [Customize your cluster](/docs/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [About remote health monitoring](/docs/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)

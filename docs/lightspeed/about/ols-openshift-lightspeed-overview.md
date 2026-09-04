@@ -1,0 +1,16 @@
+---
+title: OpenShift Lightspeed overview
+sidebar_position: 1
+---
+
+# OpenShift Lightspeed overview {#ols-openshift-lightspeed-overview}
+
+<a id="ols-openshift-lightspeed-overview"></a>
+
+Red Hat OpenShift Lightspeed provides intelligent, natural language processing capabilities designed to make Red Hat cloud-native application platforms easier to use for beginners and more efficient for experienced professionals.
+
+:::note
+
+Because OpenShift Lightspeed releases on a different cadence from OpenShift Container Platform, the OpenShift Lightspeed documentation is available as a separate documentation set at [About Red Hat OpenShift Lightspeed](https://docs.redhat.com/en/documentation/red_hat_openshift_lightspeed/1.0/html/about/index).
+
+:::

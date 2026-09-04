@@ -1,0 +1,311 @@
+---
+title: "Secret [v1]"
+sidebar_position: 8
+---
+
+# Secret [v1]
+
+<a id="secret-v1"></a>
+
+Description
+: Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes.
+
+Type
+: ```
+  `object`
+  ```
+
+## Specification {#_specification}
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
+| `data` | `object (string)` | Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4 |
+| `immutable` | `boolean` | Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil. |
+| `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
+| `metadata` | [`ObjectMeta`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `stringData` | `object (string)` | stringData allows specifying non-binary secret data in string form. It is provided as a write-only input field for convenience. All keys and values are merged into the data field on write, overwriting any existing values. The stringData field is never output when reading from the API. |
+| `type` | `string` | Used to facilitate programmatic handling of secret data. More info: https://kubernetes.io/docs/concepts/configuration/secret/#secret-types |
+
+## API endpoints {#_api_endpoints}
+
+The following API endpoints are available:
+
+- `/api/v1/secrets`
+  - `GET`: list or watch objects of kind Secret
+- `/api/v1/watch/secrets`
+  - `GET`: watch individual changes to a list of Secret. deprecated: use the 'watch' parameter with a list operation instead.
+- `/api/v1/namespaces/{namespace}/secrets`
+  - `DELETE`: delete collection of Secret
+  - `GET`: list or watch objects of kind Secret
+  - `POST`: create a Secret
+- `/api/v1/watch/namespaces/{namespace}/secrets`
+  - `GET`: watch individual changes to a list of Secret. deprecated: use the 'watch' parameter with a list operation instead.
+- `/api/v1/namespaces/{namespace}/secrets/{name}`
+  - `DELETE`: delete a Secret
+  - `GET`: read the specified Secret
+  - `PATCH`: partially update the specified Secret
+  - `PUT`: replace the specified Secret
+- `/api/v1/watch/namespaces/{namespace}/secrets/{name}`
+  - `GET`: watch changes to an object of kind Secret. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.
+
+### /api/v1/secrets {#_apiv1secrets}
+
+HTTP method
+: ```
+  `GET`
+  ```
+
+Description
+: ```
+  list or watch objects of kind Secret
+  ```
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`SecretList`](/docs/rest_api/objects#io-k8s-api-core-v1-SecretList) schema |
+| 401 - Unauthorized | Empty |
+
+### /api/v1/watch/secrets {#_apiv1watchsecrets}
+
+HTTP method
+: ```
+  `GET`
+  ```
+
+Description
+: ```
+  watch individual changes to a list of Secret. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
+  ```
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 401 - Unauthorized | Empty |
+
+### /api/v1/namespaces/{namespace}/secrets {#_apiv1namespaces_namespace_secrets}
+
+HTTP method
+: ```
+  `DELETE`
+  ```
+
+Description
+: ```
+  delete collection of Secret
+  ```
+
+**Query parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `dryRun` | `string` | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed |
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`Status`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 401 - Unauthorized | Empty |
+
+HTTP method
+: ```
+  `GET`
+  ```
+
+Description
+: ```
+  list or watch objects of kind Secret
+  ```
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`SecretList`](/docs/rest_api/objects#io-k8s-api-core-v1-SecretList) schema |
+| 401 - Unauthorized | Empty |
+
+HTTP method
+: ```
+  `POST`
+  ```
+
+Description
+: ```
+  create a Secret
+  ```
+
+**Query parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `dryRun` | `string` | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed |
+| `fieldValidation` | `string` | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. |
+
+**Body parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `body` | [`Secret`](/docs/rest_api/security_apis/secret-v1#secret-v1) schema |  |
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`Secret`](/docs/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 201 - Created | [`Secret`](/docs/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 202 - Accepted | [`Secret`](/docs/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 401 - Unauthorized | Empty |
+
+### /api/v1/watch/namespaces/{namespace}/secrets {#_apiv1watchnamespaces_namespace_secrets}
+
+HTTP method
+: ```
+  `GET`
+  ```
+
+Description
+: ```
+  watch individual changes to a list of Secret. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead.
+  ```
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 401 - Unauthorized | Empty |
+
+### /api/v1/namespaces/{namespace}/secrets/{name} {#_apiv1namespaces_namespace_secrets_name}
+
+**Global path parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `name` | `string` | name of the Secret |
+
+HTTP method
+: ```
+  `DELETE`
+  ```
+
+Description
+: ```
+  delete a Secret
+  ```
+
+**Query parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `dryRun` | `string` | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed |
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`Status`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 202 - Accepted | [`Status`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-Status) schema |
+| 401 - Unauthorized | Empty |
+
+HTTP method
+: ```
+  `GET`
+  ```
+
+Description
+: ```
+  read the specified Secret
+  ```
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`Secret`](/docs/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 401 - Unauthorized | Empty |
+
+HTTP method
+: ```
+  `PATCH`
+  ```
+
+Description
+: ```
+  partially update the specified Secret
+  ```
+
+**Query parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `dryRun` | `string` | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed |
+| `fieldValidation` | `string` | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. |
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`Secret`](/docs/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 201 - Created | [`Secret`](/docs/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 401 - Unauthorized | Empty |
+
+HTTP method
+: ```
+  `PUT`
+  ```
+
+Description
+: ```
+  replace the specified Secret
+  ```
+
+**Query parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `dryRun` | `string` | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed |
+| `fieldValidation` | `string` | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. |
+
+**Body parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `body` | [`Secret`](/docs/rest_api/security_apis/secret-v1#secret-v1) schema |  |
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`Secret`](/docs/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 201 - Created | [`Secret`](/docs/rest_api/security_apis/secret-v1#secret-v1) schema |
+| 401 - Unauthorized | Empty |
+
+### /api/v1/watch/namespaces/{namespace}/secrets/{name} {#_apiv1watchnamespaces_namespace_secrets_name}
+
+**Global path parameters**
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `name` | `string` | name of the Secret |
+
+HTTP method
+: ```
+  `GET`
+  ```
+
+Description
+: ```
+  watch changes to an object of kind Secret. deprecated: use the &#x27;watch&#x27; parameter with a list operation instead, filtered to a single item with the &#x27;fieldSelector&#x27; parameter.
+  ```
+
+**HTTP responses**
+
+| HTTP code | Reponse body |
+| --- | --- |
+| 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
+| 401 - Unauthorized | Empty |

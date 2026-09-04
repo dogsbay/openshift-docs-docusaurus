@@ -1,0 +1,312 @@
+---
+title: Troubleshooting the control plane machine set
+sidebar_position: 7
+---
+
+# Troubleshooting the control plane machine set {#cpmso-troubleshooting}
+
+<a id="cpmso-troubleshooting"></a>
+
+Use the following information to understand and recover from issues you might encounter.
+
+## Checking the control plane machine set custom resource state {#cpmso-checking-status_cpmso-troubleshooting}
+
+Check the state of the control plane machine set custom resource to determine if it is active, inactive, or missing before making configuration changes.
+
+**Procedure**
+
+- Determine the state of the CR by running the following command:
+  ```terminal
+  $ oc get controlplanemachineset.machine.openshift.io cluster \
+    --namespace openshift-machine-api
+  ```
+
+  - A result of `Active` indicates that the `ControlPlaneMachineSet` CR exists and is activated. No administrator action is required.
+  - A result of `Inactive` indicates that a `ControlPlaneMachineSet` CR exists but is not activated.
+  - A result of `NotFound` indicates that there is no existing `ControlPlaneMachineSet` CR.
+
+**Next steps**
+
+To use the control plane machine set, you must ensure that a `ControlPlaneMachineSet` CR with the correct settings for your cluster exists.
+
+- If your cluster has an existing CR, you must verify that the configuration in the CR is correct for your cluster.
+- If your cluster does not have an existing CR, you must create one with the correct configuration for your cluster.
+
+**Additional resources**
+
+- [Activating the control plane machine set custom resource](/docs/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started)
+- [Creating a control plane machine set custom resource](/docs/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-creating-cr_cpmso-getting-started)
+
+## Adding a missing Azure internal load balancer {#cpmso-ts-ilb-missing_cpmso-troubleshooting}
+
+Add the required `internalLoadBalancer` parameter to Azure control plane resources to ensure proper load balancing configuration.
+
+For more information about where this parameter is located in the Azure provider specification, see the sample Azure provider specification. The placement in the control plane `Machine` CR is similar.
+
+**Procedure**
+
+1. List the control plane machines in your cluster by running the following command:
+   ```terminal
+   $ oc get machines \
+     -l machine.openshift.io/cluster-api-machine-role==master \
+     -n openshift-machine-api
+   ```
+2. For each control plane machine, edit the CR by running the following command:
+   ```terminal
+   $ oc edit machine <control_plane_machine_name>
+   ```
+3. Add the `internalLoadBalancer` parameter with the correct details for your cluster and save your changes.
+4. Edit your control plane machine set CR by running the following command:
+   ```terminal
+   $ oc edit controlplanemachineset.machine.openshift.io cluster \
+     -n openshift-machine-api
+   ```
+5. Add the `internalLoadBalancer` parameter with the correct details for your cluster and save your changes.
+
+**Next steps**
+
+- For clusters that use the default `RollingUpdate` update strategy, the Operator automatically propagates the changes to your control plane configuration.
+- For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually.
+
+**Additional resources**
+
+- [Sample Microsoft Azure provider specification](/docs/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-azure#cpmso-yaml-provider-spec-azure_cpmso-config-options-azure)
+
+## Recovering a degraded etcd Operator {#cpmso-ts-etcd-degraded_cpmso-troubleshooting}
+
+Recover a degraded etcd Operator by removing failed members to restore cluster state after machine health check operations.
+
+For example, while performing remediation, the machine health check might delete a control plane machine that is hosting etcd. If the etcd member is not reachable at that time, the etcd Operator becomes degraded.
+
+When the etcd Operator is degraded, manual intervention is required to force the Operator to remove the failed member and restore the cluster state.
+
+**Procedure**
+
+1. List the control plane machines in your cluster by running the following command:
+   ```terminal
+   $ oc get machines \
+     -l machine.openshift.io/cluster-api-machine-role==master \
+     -n openshift-machine-api \
+     -o wide
+   ```
+
+   Any of the following conditions might indicate a failed control plane machine:
+
+   - The `STATE` value is `stopped`.
+   - The `PHASE` value is `Failed`.
+   - The `PHASE` value is `Deleting` for more than ten minutes.
+
+   :::warning
+
+   Before continuing, ensure that your cluster has two healthy control plane machines. Performing the actions in this procedure on more than one control plane machine risks losing etcd quorum and can cause data loss.
+
+   If you have lost the majority of your control plane hosts, leading to etcd quorum loss, then you must follow the disaster recovery procedure "Restoring to an earlier cluster state" instead of this procedure.
+
+   :::
+2. Edit the machine CR for the failed control plane machine by running the following command:
+   ```terminal
+   $ oc edit machine <control_plane_machine_name>
+   ```
+3. Remove the contents of the `lifecycleHooks` parameter from the failed control plane machine and save your changes.
+   The etcd Operator removes the failed machine from the cluster and can then safely add new etcd members.
+
+**Additional resources**
+
+- [Restoring to an earlier cluster state](/docs/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)
+
+## Upgrading clusters that run on RHOSP {#cpmso-ts-openstack-upgrade_cpmso-troubleshooting}
+
+Review post-upgrade requirements for clusters running on Red Hat OpenStack Platform (RHOSP) to ensure control plane machine sets function correctly.
+
+For clusters that run on RHOSP that were created with OpenShift Container Platform 4.13 or earlier, you might have to perform post-upgrade tasks before you can use control plane machine sets.
+
+### Configuring RHOSP clusters that have machines with root volume availability zones after an upgrade {#cpmso-openstack-ts-root-volume-azs_cpmso-troubleshooting}
+
+For some clusters that run on Red Hat OpenStack Platform (RHOSP) that you upgrade, you must manually update machine resources before you can use control plane machine sets if the following configurations are true:
+
+- The upgraded cluster was created with OpenShift Container Platform 4.13 or earlier.
+- The cluster infrastructure is installer-provisioned.
+- Machines were distributed across multiple availability zones.
+- Machines were configured to use root volumes for which block storage availability zones were not defined.
+
+To understand why this procedure is necessary, see [Solution #7024383](https://access.redhat.com/solutions/7013893).
+
+**Procedure**
+
+1. For all control plane machines, edit the provider spec for all control plane machines that match the environment. For example, to edit the machine `master-0`, enter the following command:
+   ```terminal
+   $ oc edit machine/<cluster_id>-master-0 -n openshift-machine-api
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;cluster_id&gt;</code></dt>
+   <dd>Specifies the ID of the upgraded cluster.</dd>
+   </dl>
+2. In the provider spec, set the value of the property `rootVolume.availabilityZone` to the volume of the availability zone you want to use.
+   ```yaml title="An example RHOSP provider spec"
+   providerSpec:
+     value:
+       apiVersion: machine.openshift.io/v1alpha1
+       availabilityZone: az0
+         cloudName: openstack
+       cloudsSecret:
+         name: openstack-cloud-credentials
+         namespace: openshift-machine-api
+       flavor: m1.xlarge
+       image: rhcos-4.14
+       kind: OpenstackProviderSpec
+       metadata:
+         creationTimestamp: null
+       networks:
+       - filter: {}
+         subnets:
+         - filter:
+             name: refarch-lv7q9-nodes
+             tags: openshiftClusterID=refarch-lv7q9
+       rootVolume:
+           availabilityZone: nova
+           diskSize: 30
+           sourceUUID: rhcos-4.12
+           volumeType: fast-0
+       securityGroups:
+       - filter: {}
+         name: refarch-lv7q9-master
+       serverGroupName: refarch-lv7q9-master
+       serverMetadata:
+         Name: refarch-lv7q9-master
+         openshiftClusterID: refarch-lv7q9
+       tags:
+       - openshiftClusterID=refarch-lv7q9
+       trunk: true
+       userDataSecret:
+         name: master-user-data
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>availabilityZone: nova</code></dt>
+   <dd>Specifies the zone name for the root volume.</dd>
+   </dl>
+
+   :::note
+
+   If you edited or recreated machine resources after your initial cluster deployment, you might have to adapt these steps for your configuration.
+
+   In your RHOSP cluster, find the availability zone of the root volumes for your machines and use that as the value.
+
+   :::
+3. Run the following command to retrieve information about the control plane machine set resource:
+   ```terminal
+   $ oc describe controlplanemachineset.machine.openshift.io/cluster --namespace openshift-machine-api
+   ```
+4. Run the following command to edit the resource:
+   ```terminal
+   $ oc edit controlplanemachineset.machine.openshift.io/cluster --namespace openshift-machine-api
+   ```
+5. For that resource, set the value of the `spec.state` property to `Active` to activate control plane machine sets for your cluster.
+   The control plane is now ready to be managed by the Cluster Control Plane Machine Set Operator.
+
+### Configuring RHOSP clusters that have control plane machines with availability zones after an upgrade {#cpmso-openstack-with-az-config_cpmso-troubleshooting}
+
+For some clusters that run on Red Hat OpenStack Platform (RHOSP) that you upgrade, you must manually update machine resources before you can use control plane machine sets if the following configurations are true:
+
+- The upgraded cluster was created with OpenShift Container Platform 4.13 or earlier.
+- The cluster infrastructure is installer-provisioned.
+- Control plane machines were distributed across multiple compute availability zones.
+
+To understand why this procedure is necessary, see [Solution #7013893](https://access.redhat.com/solutions/7013893).
+
+**Procedure**
+
+1. For the `master-1` and `master-2` control plane machines, open the provider specs for editing. For example, to edit the first machine, enter the following command:
+   ```terminal
+   $ oc edit machine/<cluster_id>-master-1 -n openshift-machine-api
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;cluster_id&gt;</code></dt>
+   <dd>Specifies the ID of the upgraded cluster.</dd>
+   </dl>
+2. For the `master-1` and `master-2` control plane machines, edit the value of the `serverGroupName` property in their provider specs to match that of the machine `master-0`.
+   ```yaml title="An example RHOSP provider spec"
+   providerSpec:
+     value:
+       apiVersion: machine.openshift.io/v1alpha1
+       availabilityZone: az0
+         cloudName: openstack
+       cloudsSecret:
+         name: openstack-cloud-credentials
+         namespace: openshift-machine-api
+       flavor: m1.xlarge
+       image: rhcos-4.22
+       kind: OpenstackProviderSpec
+       metadata:
+         creationTimestamp: null
+       networks:
+       - filter: {}
+         subnets:
+         - filter:
+             name: refarch-lv7q9-nodes
+             tags: openshiftClusterID=refarch-lv7q9
+       securityGroups:
+       - filter: {}
+         name: refarch-lv7q9-master
+       serverGroupName: refarch-lv7q9-master-az0
+       serverMetadata:
+         Name: refarch-lv7q9-master
+         openshiftClusterID: refarch-lv7q9
+       tags:
+       - openshiftClusterID=refarch-lv7q9
+       trunk: true
+       userDataSecret:
+         name: master-user-data
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>serverGroupName</code></dt>
+   <dd>Specifies the server group name. This value must match for machines <code>master-0</code>, <code>master-1</code>, and <code>master-2</code>.</dd>
+   </dl>
+
+   :::note
+
+   If you edited or recreated machine resources after your initial cluster deployment, you might have to adapt these steps for your configuration.
+
+   In your RHOSP cluster, find the server group that your control plane instances are in and use that as the value.
+
+   :::
+3. Run the following command to retrieve information about the control plane machine set resource:
+   ```terminal
+   $ oc describe controlplanemachineset.machine.openshift.io/cluster --namespace openshift-machine-api
+   ```
+4. Run the following command to edit the resource:
+   ```terminal
+   $ oc edit controlplanemachineset.machine.openshift.io/cluster --namespace openshift-machine-api
+   ```
+5. For that resource, set the value of the `spec.state` property to `Active` to activate control plane machine sets for your cluster.
+   The control plane is now ready to be managed by the Cluster Control Plane Machine Set Operator.
+
+## Improving reliability for multiple subnet configurations on Nutanix {#cpmso-ts-nutanix-multiple-subnet_cpmso-troubleshooting}
+
+To improve reliability and avoid common networking problems with multiple subnet configurations on Nutanix, adhere to the configuration practices that minimize networking conflicts.
+
+The following networking configuration and management practices can help your multiple subnet configuration perform more reliably:
+
+- To avoid overlapping IP address assignments, use predefined static IP addresses in the `cloud-init` metadata.
+- Tag all VMs, disks, and networks with a unique cluster ID.
+- Avoid IP address conflicts by using dedicated subnets for each OpenShift Container Platform cluster:
+  Nutanix uses Nutanix Acropolis Hypervisor (AHV) and Nutanix Prism networking to assign IP addresses to virtual machines (VMs). If a single subnet provides IP addresses for more than one OpenShift Container Platform cluster, AHV or Prism might assign the same IP address to a VM or pod in more than one cluster.
+
+  To avoid this issue, use dedicated subnets for each OpenShift Container Platform cluster, even when you have more than one cluster on a single Prism Central instance. You can use the Prism UI or automation tools, such as Terraform or Ansible, to create separate IP address pools for each OpenShift Container Platform cluster.
+- Ensure that each OpenShift Container Platform cluster uses distinct DNS zones and virtual IP address ranges.
+- Avoid DHCP conflicts by maintaining DHCP allocations:
+  If you use Nutanix to manage DHCP allocation, objects in your cluster might have duplicate leases. Duplicate leases can cause DHCP conflicts when you apply changes to the control plane machine set custom resource (CR) specification.
+
+  To avoid this issue, regularly remove stale DHCP leases.
+- Use automation tools, such as Terraform or Ansible, to isolate the infrastructure for each OpenShift Container Platform cluster.

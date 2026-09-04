@@ -1,0 +1,333 @@
+---
+title: Installation configuration parameters for Azure Stack Hub
+sidebar_position: 5
+---
+
+# Installation configuration parameters for Azure Stack Hub {#installation-config-parameters-ash}
+
+<a id="installation-config-parameters-ash"></a>
+
+Before you deploy an OpenShift Container Platform cluster on Azure Stack Hub, you provide a customized `install-config.yaml` installation configuration file that describes the details for your environment.
+
+## Available installation configuration parameters for Azure Stack Hub {#installation-configuration-parameters_installation-config-parameters-ash}
+
+To customize your cluster installation, you can use configuration parameters in the `install-config.yaml` file.
+
+The following tables specify the required, optional, and Azure Stack Hub-specific installation configuration parameters that you can set as part of the installation process.
+
+:::warning
+
+After installation, you cannot change these parameters in the `install-config.yaml` file.
+
+:::
+
+### Required configuration parameters {#installation-configuration-parameters-required_installation-config-parameters-ash}
+
+Required installation configuration parameters are described in the following table:
+
+**Required parameters**
+
+<table>
+<thead>
+<tr>
+  <th>Parameter</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>apiVersion:</td>
+  <td>The API version for the <code>install-config.yaml</code> content. The current version is <code>v1</code>. The installation program might also support older API versions.<br><br><strong>Value:</strong> String</td>
+</tr>
+<tr>
+  <td>baseDomain:</td>
+  <td>The base domain of your cloud provider. The base domain is used to create routes to your OpenShift Container Platform cluster components. The full DNS name for your cluster is a combination of the <code>baseDomain</code> and <code>metadata.name</code> parameter values that uses the <code>&lt;metadata.name&gt;.&lt;baseDomain&gt;</code> format.<br><br><strong>Value:</strong> A fully-qualified domain or subdomain name, such as <code>example.com</code>.</td>
+</tr>
+<tr>
+  <td>metadata:</td>
+  <td>Kubernetes resource <code>ObjectMeta</code>, from which only the <code>name</code> parameter is consumed.<br><br><strong>Value:</strong> Object</td>
+</tr>
+<tr>
+  <td>metadata: name:</td>
+  <td>The name of the cluster. DNS records for the cluster are all subdomains of <code>{.metadata.name}.{.baseDomain}</code>.  <br><br>  <strong>Value:</strong> String of lowercase letters, hyphens (<code>-</code>), and periods (<code>.</code>), such as <code>dev</code>.   </td>
+</tr>
+<tr>
+  <td>platform:</td>
+  <td>The configuration for the specific platform upon which to perform the installation: <code>aws</code>, <code>baremetal</code>, <code>azure</code>, <code>gcp</code>, <code>ibmcloud</code>, <code>nutanix</code>, <code>openstack</code>, <code>powervs</code>, <code>vsphere</code>, or <code>{}</code>. For additional information about <code>platform.&lt;platform&gt;</code> parameters, consult the table for your specific platform that follows.<br><br><strong>Value:</strong> Object</td>
+</tr>
+<tr>
+  <td>pullSecret:</td>
+  <td>Get a <a href="https://console.redhat.com/openshift/install/pull-secret">pull secret from Red Hat OpenShift Cluster Manager</a> to authenticate downloading container images for OpenShift Container Platform components from services such as Quay.io.<br><br><strong>Value:</strong><pre><code>{&#10;   "auths":{&#10;      "cloud.openshift.com":{&#10;         "auth":"b3Blb=",&#10;         "email":"you@example.com"&#10;      },&#10;      "quay.io":{&#10;         "auth":"b3Blb=",&#10;         "email":"you@example.com"&#10;      }&#10;   }&#10;}</code></pre></td>
+</tr>
+</tbody>
+</table>
+
+### Network configuration parameters {#installation-configuration-parameters-network_installation-config-parameters-ash}
+
+You can customize your installation configuration based on the requirements of your existing network infrastructure. For example, you can expand the IP address block for the cluster network or configure different IP address blocks than the defaults.
+
+Only IPv4 addresses are supported.
+
+**Network parameters**
+
+<table>
+<thead>
+<tr>
+  <th>Parameter</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>networking:</td>
+  <td>The configuration for the cluster network.<br><br><strong>Value:</strong> Object<br><br><div class="alert alert--secondary"><strong>Note</strong><p>You cannot change parameters specified by the <code>networking</code> object after installation.</p></div></td>
+</tr>
+<tr>
+  <td>networking: networkType:</td>
+  <td>The Red Hat OpenShift Networking network plugin to install.<br><br><strong>Value:</strong>    <code>OVNKubernetes</code>. <code>OVNKubernetes</code> is a Container Network Interface (CNI) plugin for Linux networks and hybrid networks that contain both Linux and Windows servers. The default value is <code>OVNKubernetes</code>.   </td>
+</tr>
+<tr>
+  <td>networking: clusterNetwork:</td>
+  <td>The IP address blocks for pods.<br><br>The default value is <code>10.128.0.0/14</code> with a host prefix of <code>/23</code>.<br><br>If you specify multiple IP address blocks, the blocks must not overlap.<br><br><strong>Value:</strong> An array of objects. For example:<br><br><pre><code>networking:&#10;  clusterNetwork:&#10;  - cidr: 10.128.0.0/14&#10;    hostPrefix: 23&#10;networking:&#10;  clusterNetwork:&#10;  - cidr: 10.128.0.0/14&#10;    hostPrefix: 23&#10;  - cidr: fd01::/48&#10;    hostPrefix: 64</code></pre></td>
+</tr>
+<tr>
+  <td>networking: clusterNetwork: cidr:</td>
+  <td>Required if you use <code>networking.clusterNetwork</code>. An IP address block.<br><br>  An IPv4 network.  <br><br> </td>
+</tr>
+<tr>
+  <td>networking: clusterNetwork: hostPrefix:</td>
+  <td>The subnet prefix length to assign to each individual node. For example, if <code>hostPrefix</code> is set to <code>23</code> then each node is assigned a <code>/23</code> subnet out of the given <code>cidr</code>. A <code>hostPrefix</code> value of <code>23</code> provides 510 (2^(32 - 23) - 2) pod IP addresses.<br><br><strong>Value:</strong> A subnet prefix.<br><br>  The default value is <code>23</code>.  <br><br> </td>
+</tr>
+<tr>
+  <td>networking: serviceNetwork:</td>
+  <td>The IP address block for services. The default value is <code>172.30.0.0/16</code>.<br><br>  <br><br><strong>Value:</strong> An array with an IP address block in CIDR format. For example:<br><br><pre><code>networking:&#10;  serviceNetwork:&#10;   - 172.30.0.0/16&#10;networking:&#10;  serviceNetwork:&#10;   - 172.30.0.0/16&#10;   - fd02::/112</code></pre></td>
+</tr>
+<tr>
+  <td>networking: machineNetwork:</td>
+  <td>The IP address blocks for machines.<br><br>  If you specify multiple IP address blocks, the blocks must not overlap.  <br><br>  <br><br><strong>Value:</strong> An array of objects. For example:<br><br><pre><code>networking:&#10;  machineNetwork:&#10;  - cidr: 10.0.0.0/16</code></pre></td>
+</tr>
+<tr>
+  <td>networking: machineNetwork: cidr:</td>
+  <td>Required if you use <code>networking.machineNetwork</code>. An IP address block. The default value is <code>10.0.0.0/16</code> for all platforms other than libvirt and IBM Power(R) Virtual Server. For libvirt, the default value is <code>192.168.126.0/24</code>. For IBM Power(R) Virtual Server, the default value is <code>192.168.0.0/24</code>.<br><br>  <br><br><strong>Value:</strong> An IP network block in CIDR notation.<br><br>  For example, <code>10.0.0.0/16</code>.    <br><br><div class="alert alert--secondary"><strong>Note</strong><p>Set the <code>networking.machineNetwork</code> to match the CIDR that the preferred NIC resides in.<br><br>If you are installing a cluster on AWS with dual-stack networking, consider the following distinction:<br><br><ul><li>If the installation program creates the VPC, do not specify an IPv6 entry in <code>networking.machineNetwork</code>. The installation program will assign an IPv6 address to the VPC.</li><li>If you provide existing dual-stack subnets using the <code>platform.aws.vpc.subnets</code> parameter, you must specify IPv6 entries corresponding to either the VPC CIDR or the CIDR of the subnets.</li><li>In both cases, you must provide an IPv4 CIDR entry.</li></ul></p></div></td>
+</tr>
+<tr>
+  <td>networking: ovnKubernetesConfig: ipv4: internalJoinSubnet:</td>
+  <td>Configures the IPv4 join subnet that is used internally by <code>ovn-kubernetes</code>. This subnet must not overlap with any other subnet that OpenShift Container Platform is using, including the node network. The size of the subnet must be larger than the number of nodes. You cannot change the value after installation.<br><br><strong>Value:</strong> An IP network block in CIDR notation. The default value is <code>100.64.0.0/16</code>.</td>
+</tr>
+</tbody>
+</table>
+
+### Optional configuration parameters {#installation-configuration-parameters-optional_installation-config-parameters-ash}
+
+Optional installation configuration parameters are described in the following table:
+
+**Optional parameters**
+
+<table>
+<thead>
+<tr>
+  <th>Parameter</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>additionalTrustBundle:</td>
+  <td>A PEM-encoded X.509 certificate bundle that is added to the nodes' trusted certificate store. This trust bundle might also be used when a proxy has been configured.<br><br><strong>Value:</strong> String</td>
+</tr>
+<tr>
+  <td>capabilities:</td>
+  <td>Controls the installation of optional core cluster components. You can reduce the footprint of your OpenShift Container Platform cluster by disabling optional components. For more information, see the "Cluster capabilities" page in <em>Installing</em>.<br><br><strong>Value:</strong> String array</td>
+</tr>
+<tr>
+  <td>capabilities: baselineCapabilitySet:</td>
+  <td>Selects an initial set of optional capabilities to enable. Valid values are <code>None</code>, <code>v4.11</code>, <code>v4.12</code> and <code>vCurrent</code>. The default value is <code>vCurrent</code>.<br><br><strong>Value:</strong> String</td>
+</tr>
+<tr>
+  <td>capabilities: additionalEnabledCapabilities:</td>
+  <td>Extends the set of optional capabilities beyond what you specify in <code>baselineCapabilitySet</code>. You can specify multiple capabilities in this parameter.<br><br><strong>Value:</strong> String array</td>
+</tr>
+<tr>
+  <td>cpuPartitioningMode:</td>
+  <td>Enables workload partitioning, which isolates OpenShift Container Platform services, cluster management workloads, and infrastructure pods to run on a reserved set of CPUs. You can only enable workload partitioning during installation. You cannot disable it after installation. While this field enables workload partitioning, it does not configure workloads to use specific CPUs. For more information, see the <em>Workload partitioning</em> page in the <em>Scalability and Performance</em> section.<br><br><strong>Value:</strong> <code>None</code> or <code>AllNodes</code>. <code>None</code> is the default value.</td>
+</tr>
+<tr>
+  <td>compute:</td>
+  <td>The configuration for the machines that comprise the compute nodes.<br><br><strong>Value:</strong> Array of <code>MachinePool</code> objects.<br><br>  <br><br>   </td>
+</tr>
+<tr>
+  <td>compute: architecture:</td>
+  <td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. Valid values are <code>amd64</code> (the default).<br><br><strong>Value:</strong> String</td>
+</tr>
+<tr>
+  <td>compute: hyperthreading:</td>
+  <td>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on compute machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.<br><br><div class="alert alert--warning"><strong>Important</strong><p>If you disable simultaneous multithreading, ensure that your capacity planning accounts for the dramatically decreased machine performance.</p></div><br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code></td>
+</tr>
+<tr>
+  <td>compute: name:</td>
+  <td>Required if you use <code>compute</code>. The name of the machine pool.<br><br><strong>Value:</strong> <code>worker</code></td>
+</tr>
+<tr>
+  <td>compute: platform:</td>
+  <td>Required if you use <code>compute</code>. Use this parameter to specify the cloud provider to host the worker machines. This parameter value must match the <code>controlPlane.platform</code> parameter value.<br><br> </td>
+</tr>
+<tr>
+  <td>compute: replicas:</td>
+  <td>The number of compute machines, which are also known as worker machines, to provision.<br><br><strong>Value:</strong> A positive integer greater than or equal to <code>2</code>. The default value is <code>3</code>.</td>
+</tr>
+<tr>
+  <td>featureSet:</td>
+  <td>Enables the cluster for a feature set. A feature set is a collection of OpenShift Container Platform features that are not enabled by default. For more information about enabling a feature set during installation, see "Enabling features using feature gates".<br><br><strong>Value:</strong> String. The name of the feature set to enable, such as <code>TechPreviewNoUpgrade</code>.</td>
+</tr>
+<tr>
+  <td>controlPlane:</td>
+  <td>The configuration for the machines that form the control plane.<br><br><strong>Value:</strong> Array of <code>MachinePool</code> objects.</td>
+</tr>
+<tr>
+  <td>controlPlane: architecture:</td>
+  <td>Determines the instruction set architecture of the machines in the pool. Currently, clusters with varied architectures are not supported. All pools must specify the same architecture. Valid values are <code>amd64</code> (the default).<br><br><strong>Value:</strong> String</td>
+</tr>
+<tr>
+  <td>controlPlane: hyperthreading:</td>
+  <td>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on control plane machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.<br><br><div class="alert alert--warning"><strong>Important</strong><p>If you disable simultaneous multithreading, ensure that your capacity planning accounts for the dramatically decreased machine performance.</p></div><br><br><strong>Value:</strong> <code>Enabled</code> or <code>Disabled</code></td>
+</tr>
+<tr>
+  <td>controlPlane: name:</td>
+  <td>Required if you use <code>controlPlane</code>. The name of the machine pool.<br><br><strong>Value:</strong> <code>master</code></td>
+</tr>
+<tr>
+  <td>controlPlane: platform:</td>
+  <td>Required if you use <code>controlPlane</code>. Use this parameter to specify the cloud provider that hosts the control plane machines. This parameter value must match the <code>compute.platform</code> parameter value.<br><br> </td>
+</tr>
+<tr>
+  <td>controlPlane: replicas:</td>
+  <td>The number of control plane machines to provision.<br><br><strong>Value:</strong>  Supported values are <code>3</code>, or <code>1</code> when deploying single-node OpenShift.  </td>
+</tr>
+<tr>
+  <td>arbiter: name:</td>
+  <td>The OpenShift Container Platform cluster requires a name for arbiter nodes. For example, <code>arbiter</code>.</td>
+</tr>
+<tr>
+  <td>arbiter: replicas:</td>
+  <td>The <code>replicas</code> parameter sets the number of arbiter nodes for the OpenShift Container Platform cluster. You cannot set this field to a value that is greater than 1.</td>
+</tr>
+<tr>
+  <td>credentialsMode:</td>
+  <td>The Cloud Credential Operator (CCO) mode. If no mode is specified, the CCO dynamically tries to determine the capabilities of the provided credentials, with a preference for mint mode on the platforms where multiple modes are supported.<br><br><div class="alert alert--secondary"><strong>Note</strong><p>Not all CCO modes are supported for all cloud providers. For more information about CCO modes, see the "Managing cloud provider credentials" entry in the <em>Authentication and authorization</em> content.</p></div><br><br><strong>Value:</strong> <code>Mint</code>, <code>Passthrough</code>, <code>Manual</code> or an empty string (<code>""</code>).</td>
+</tr>
+<tr>
+  <td>fips:</td>
+  <td>Enable or disable FIPS mode. The default is <code>false</code> (disabled). If you enable FIPS mode, the Red&#160;Hat Enterprise Linux CoreOS (RHCOS) machines that OpenShift Container Platform runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that RHCOS provides instead.<br><br>
+<div class="alert alert--warning"><strong>Important</strong><p>To enable FIPS mode for your cluster, you must run the installation program from a Red&#160;Hat Enterprise Linux (RHEL) computer configured to operate in FIPS mode. For more information about configuring FIPS mode on RHEL, see <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/security_hardening/switching-rhel-to-fips-mode_security-hardening">Switching RHEL to FIPS mode</a>. When running Red&#160;Hat Enterprise Linux (RHEL) or Red&#160;Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the x86_64, ppc64le, and s390x architectures.</p></div><br><br><div class="alert alert--warning"><strong>Important</strong><p>If you are using Azure File storage, you cannot enable FIPS mode.</p></div><br><br><strong>Value:</strong> <code>false</code> or <code>true</code></td>
+</tr>
+<tr>
+  <td>endpoint: name: <endpoint_name> clusterUseOnly: <code>true</code> or <code>false</code></td>
+  <td>The <code>name</code> parameter contains the name of the Private Service Connect (PSC) endpoints.<br><br><div class="alert alert--warning"><strong>Important</strong><p>When <code>clusterUseOnly</code> is <code>false</code>, its default setting, you must run the installation program from a bastion host that is within the same VPC where you want to deploy the cluster.</p></div><br><br>When you want the installation program to use the public API endpoints and cluster Operators to use the API endpoint overrides, set <code>clusterUseOnly</code> to <code>true</code>. When you want both the installation program and the cluster Operators to use the API endpoint overrides, for example if you are running the installation program from a bastion host that is within the same VPC where you want to deploy the cluster, set <code>clusterUseOnly</code> to <code>false</code> . The parameter is optional and defaults to <code>false</code>.<br><br><strong>Value:</strong> String or boolean</td>
+</tr>
+<tr>
+  <td>imageContentSources:</td>
+  <td>Sources and repositories for the release-image content.<br><br><strong>Value:</strong> Array of objects. Includes a <code>source</code> and, optionally, <code>mirrors</code>, as described in the following rows of this table.</td>
+</tr>
+<tr>
+  <td>imageContentSources: source:</td>
+  <td>Required if you use <code>imageContentSources</code>. Specify the repository that users refer to, for example, in image pull specifications.<br><br><strong>Value:</strong> String</td>
+</tr>
+<tr>
+  <td>imageContentSources: mirrors:</td>
+  <td>Specify one or more repositories that might also contain the same images.<br><br><strong>Value:</strong> Array of strings</td>
+</tr>
+<tr>
+  <td>osImageStream:</td>
+  <td>Specifies the image stream that will be used for all machines in the cluster. <code>osImageStream</code> is a Technology Preview feature. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.<br><br><strong>Value:</strong> String. Valid values are <code>rhel-9</code> or <code>rhel-10</code>.</td>
+</tr>
+<tr>
+  <td>publish:</td>
+  <td>How to publish or expose the user-facing endpoints of your cluster, such as the Kubernetes API, OpenShift routes.<br><br><strong>Value:</strong>    <code>Internal</code> or <code>External</code>. The default value is <code>External</code>.<br><br>Setting this field to <code>Internal</code> is not supported on non-cloud platforms. </td>
+</tr>
+<tr>
+  <td>sshKey:</td>
+  <td>The SSH key to authenticate access to your cluster machines.<br><br><div class="alert alert--secondary"><strong>Note</strong><p>For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your <code>ssh-agent</code> process uses.</p></div><br><br><strong>Value:</strong> For example, <code>sshKey: ssh-ed25519 AAAA..</code>.</td>
+</tr>
+</tbody>
+</table>
+
+### Additional Azure Stack Hub configuration parameters {#installation-configuration-parameters-additional-azure-stack-hub_installation-config-parameters-ash}
+
+Additional Azure configuration parameters are described in the following table:
+
+**Additional Azure Stack Hub parameters**
+
+<table>
+<thead>
+<tr>
+  <th>Parameter</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>compute: platform: azure: osDisk: diskSizeGB:</td>
+  <td>The Azure disk size for the VM.<br><br><strong>Value:</strong> Integer that represents the size of the disk in GB. The default is <code>128</code>.</td>
+</tr>
+<tr>
+  <td>compute: platform: azure: osDisk: diskType:</td>
+  <td>Defines the type of disk.<br><br><strong>Value:</strong> <code>standard_LRS</code> or <code>premium_LRS</code>. The default is <code>premium_LRS</code>.</td>
+</tr>
+<tr>
+  <td>compute: platform: azure: type:</td>
+  <td>Defines the azure instance type for compute machines.<br><br><strong>Value:</strong> String</td>
+</tr>
+<tr>
+  <td>controlPlane: platform: azure: osDisk: diskSizeGB:</td>
+  <td>The Azure disk size for the VM.<br><br><strong>Value:</strong> Integer that represents the size of the disk in GB. The default is <code>1024</code>.</td>
+</tr>
+<tr>
+  <td>controlPlane: platform: azure: osDisk: diskType:</td>
+  <td>Defines the type of disk.<br><br><strong>Value:</strong> <code>premium_LRS</code>.</td>
+</tr>
+<tr>
+  <td>controlPlane: platform: azure: type:</td>
+  <td>Defines the azure instance type for control plane machines.<br><br><strong>Value:</strong> String</td>
+</tr>
+<tr>
+  <td>platform: azure: defaultMachinePlatform: osDisk: diskSizeGB:</td>
+  <td>The Azure disk size for the VM.<br><br><strong>Value:</strong> Integer that represents the size of the disk in GB. The default is <code>128</code>.</td>
+</tr>
+<tr>
+  <td>platform: azure: defaultMachinePlatform: osDisk: diskType:</td>
+  <td>Defines the type of disk.<br><br><strong>Value:</strong> <code>standard_LRS</code> or <code>premium_LRS</code>. The default is <code>premium_LRS</code>.</td>
+</tr>
+<tr>
+  <td>platform: azure: defaultMachinePlatform: type:</td>
+  <td>The Azure instance type for control plane and compute machines.<br><br><strong>Value:</strong> The Azure instance type.</td>
+</tr>
+<tr>
+  <td>platform: azure: armEndpoint:</td>
+  <td>The URL of the Azure Resource Manager endpoint that your Azure Stack Hub operator provides.<br><br><strong>Value:</strong> String</td>
+</tr>
+<tr>
+  <td>platform: azure: baseDomainResourceGroupName:</td>
+  <td>The name of the resource group that contains the DNS zone for your base domain.<br><br><strong>Value:</strong> String, for example <code>production_cluster</code>.</td>
+</tr>
+<tr>
+  <td>platform: azure: region:</td>
+  <td>The name of your Azure Stack Hub local region.<br><br><strong>Value:</strong> String</td>
+</tr>
+<tr>
+  <td>platform: azure: resourceGroupName:</td>
+  <td>The name of an already existing resource group to install your cluster to. This resource group must be empty and only used for this specific cluster; the cluster components assume ownership of all resources in the resource group. If you limit the service principal scope of the installation program to this resource group, you must ensure all other resources used by the installation program in your environment have the necessary permissions, such as the public DNS zone and virtual network. Destroying the cluster by using the installation program deletes this resource group.<br><br><strong>Value:</strong> String, for example <code>existing_resource_group</code>.</td>
+</tr>
+<tr>
+  <td>platform: azure: outboundType:</td>
+  <td>The outbound routing strategy used to connect your cluster to the internet. If you are using user-defined routing, you must have pre-existing networking available. The outbound routing must be configured before installing a cluster. The installation program does not configure user-defined routing.<br><br><strong>Value:</strong> <code>LoadBalancer</code> or <code>UserDefinedRouting</code>. The default is <code>LoadBalancer</code>.</td>
+</tr>
+<tr>
+  <td>platform: azure: cloudName:</td>
+  <td>The name of the Azure cloud environment that is used to configure the Azure SDK with the appropriate Azure API endpoints.<br><br><strong>Value:</strong> <code>AzureStackCloud</code></td>
+</tr>
+<tr>
+  <td>clusterOSImage:</td>
+  <td>The URL of a storage blob in the Azure Stack environment that contains an RHCOS VHD.<br><br><strong>Value:</strong> String, for example, \https://vhdsa.blob.example.example.com/vhd/rhcos-410.84.202112040202-0-azurestack.x86_64.vhd</td>
+</tr>
+</tbody>
+</table>

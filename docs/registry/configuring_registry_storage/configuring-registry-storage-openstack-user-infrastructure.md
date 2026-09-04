@@ -1,0 +1,126 @@
+---
+title: Configuring the registry for OpenStack user-provisioned infrastructure
+sidebar_position: 3
+---
+
+# Configuring the registry for OpenStack user-provisioned infrastructure {#configuring-registry-storage-openstack-user-infrastructure}
+
+<a id="configuring-registry-storage-openstack-user-infrastructure"></a>
+
+You can configure the registry of a cluster that runs on your own Red Hat OpenStack Platform (RHOSP) infrastructure.
+
+## Configuring Image Registry Operator redirects {#registry-configuring-registry-storage-swift-trust_configuring-registry-storage-openstack-user-infrastructure}
+
+By disabling redirects, you can configure the Image Registry Operator to control whether clients such as OpenShift Container Platform cluster builds or external systems like developer machines are redirected to pull images directly from Red Hat OpenStack Platform (RHOSP) Swift storage. This configuration is optional and depends on whether the clients trust the storage’s SSL/TLS certificates.
+
+:::note
+
+In situations where clients to not trust the storage certificate, setting the `disableRedirect` option can be set to `true` proxies traffic through the image registry. Consequently, however, the image registry might require more resources, especially network bandwidth, to handle the increased load.
+
+Alternatively, if clients trust the storage certificate, the registry can allow redirects. This reduces resource demand on the registry itself.
+
+Some users might prefer to configure their clients to trust their self-signed certificate authorities (CAs) instead of disabling redirects. If you are using a self-signed CA, you must decide between trusting the custom CAs or disabling redirects.
+
+:::
+
+**Procedure**
+
+- To ensures that the image registry proxies traffic instead of relying on Swift storage, change the value of the `spec.disableRedirect` field in the `config.imageregistry` object to `true` by running the following command:
+  ```terminal
+  $ oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"disableRedirect":true}}'
+  ```
+
+## Configuring a secret for the Image Registry Operator {#registry-operator-config-resources-secret-openstack_configuring-registry-storage-openstack-user-infrastructure}
+
+In addition to the `configs.imageregistry.operator.openshift.io` and ConfigMap resources, configuration is provided to the Operator by a separate secret resource located within the `openshift-image-registry` namespace.
+
+The `image-registry-private-configuration-user` secret provides credentials needed for storage access and management. It overrides the default credentials used by the Operator, if default credentials were found.
+
+For Swift on Red Hat OpenStack Platform (RHOSP) storage, the secret is expected to contain the following two keys:
+
+- `REGISTRY_STORAGE_SWIFT_USERNAME`
+- `REGISTRY_STORAGE_SWIFT_PASSWORD`
+
+**Procedure**
+
+- Create an OpenShift Container Platform secret that contains the required keys.
+  ```terminal
+  $ oc create secret generic image-registry-private-configuration-user --from-literal=REGISTRY_STORAGE_SWIFT_USERNAME=<username> --from-literal=REGISTRY_STORAGE_SWIFT_PASSWORD=<password> -n openshift-image-registry
+  ```
+
+## Registry storage for RHOSP with user-provisioned infrastructure {#registry-configuring-storage-openstack-user-infra_configuring-registry-storage-openstack-user-infrastructure}
+
+If the Registry Operator cannot create a Swift bucket, you must set up the storage medium manually and configure the settings in the registry custom resource (CR).
+
+**Prerequisites**
+
+- A cluster on Red Hat OpenStack Platform (RHOSP) with user-provisioned infrastructure.
+- To configure registry storage for RHOSP, you need to provide Registry Operator cloud credentials.
+- For Swift on RHOSP storage, the secret is expected to contain the following two keys:
+  - `REGISTRY_STORAGE_SWIFT_USERNAME`
+  - `REGISTRY_STORAGE_SWIFT_PASSWORD`
+
+**Procedure**
+
+- Fill in the storage configuration in `configs.imageregistry.operator.openshift.io/cluster`:
+  ```terminal
+  $ oc edit configs.imageregistry.operator.openshift.io/cluster
+  ```
+
+  ```yaml title="Example configuration"
+  apiVersion: imageregistry.operator.openshift.io/v1
+  kind: Config
+  metadata:
+    name: cluster
+  spec:
+    storage:
+      swift:
+        container: <container_id>
+  ```
+
+## Image Registry Operator configuration parameters for RHOSP Swift {#registry-operator-configuration-resource-overview-openstack-swift_configuring-registry-storage-openstack-user-infrastructure}
+
+The following parameters are available for you to configure your Red Hat OpenStack Platform (RHOSP) Swift registry storage.
+
+<table>
+<thead>
+<tr>
+  <th>Parameter</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>authURL</code></td>
+  <td>Defines the URL for obtaining the authentication token. This value is optional.</td>
+</tr>
+<tr>
+  <td><code>authVersion</code></td>
+  <td>Specifies the Auth version of RHOSP, for example, <code>authVersion: "3"</code>. This value is optional.</td>
+</tr>
+<tr>
+  <td><code>container</code></td>
+  <td>Defines the name of a Swift container for storing registry data. This value is optional.</td>
+</tr>
+<tr>
+  <td><code>domain</code></td>
+  <td>Specifies the RHOSP domain name for the Identity v3 API. This value is optional.</td>
+</tr>
+<tr>
+  <td><code>domainID</code></td>
+  <td>Specifies the RHOSP domain ID for the Identity v3 API. This value is optional.</td>
+</tr>
+<tr>
+  <td><code>tenant</code></td>
+  <td>Defines the RHOSP tenant name to be used by the registry. This value is optional.</td>
+</tr>
+<tr>
+  <td><code>tenantID</code></td>
+  <td>Defines the RHOSP tenant ID to be used by the registry. This value is optional.</td>
+</tr>
+<tr>
+  <td><code>regionName</code></td>
+  <td>Defines the RHOSP region in which the container exists. This value is optional.</td>
+</tr>
+</tbody>
+</table>

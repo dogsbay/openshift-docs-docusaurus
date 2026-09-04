@@ -1,0 +1,247 @@
+---
+title: User access to extension resources
+sidebar_position: 4
+---
+
+# User access to extension resources {#user-access-resources}
+
+<a id="user-access-resources"></a>
+
+After you install a cluster extension managed by Operator Lifecycle Manager (OLM) v1, the extension might provide `CustomResourceDefinition` (CRD) objects that expose new cluster APIs. While cluster administrators automatically have full access to these resources, regular users usually require additional permissions.
+
+OLM v1 does not automatically configure or manage role-based access control (RBAC) for regular users to interact with the APIs provided by installed extensions. Cluster administrators must define the required RBAC policy to create, view, or edit these custom resources (CRs) for such users.
+
+:::note
+
+The RBAC permissions described for user access to extension resources are different from the permissions that must be added to a service account to enable OLM v1-based initial installation of a cluster extension itself. For more on RBAC requirements while installing an extension, see "Cluster extension permissions" in "Managing extensions".
+
+:::
+
+**Additional resources**
+
+- ["Managing extensions" → "Cluster extension permissions"](/docs/extensions/ce/managing-ce#olmv1-cluster-extension-permissions_managing-ce)
+
+## Common default cluster roles for users {#olmv1-default-cluster-roles-users_user-access-resources}
+
+An installed cluster extension can include default cluster roles that grant regular users role-based access control (RBAC) to the extension’s API resources.
+
+Cluster extensions commonly include the following default cluster role policies:
+
+`view` cluster role
+: Grants read-only access to custom resource (CR) objects for specified API resources across the cluster. This role provides resource visibility without permission to modify resources, which is ideal for monitoring and viewing.
+
+`edit` cluster role
+: Grants permissions to create, update, and delete CR objects across the cluster. This role is intended for users who manage resources but do not manage RBAC or cluster permissions.
+
+`admin` cluster role
+: Grants full administrative permissions, including create, update, and delete actions, over all CR objects for specified API resources across the cluster.
+
+**Additional resources**
+
+- [User-facing roles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
+
+## Finding API groups and resources exposed by a cluster extension {#olmv1-finding-ce-resources_user-access-resources}
+
+To create appropriate RBAC policies for granting user access to cluster extension resources, you must know which API groups and resources are exposed by the installed extension. As an administrator, you can inspect custom resource definitions (CRDs) installed on the cluster by using OpenShift CLI (`oc`).
+
+**Prerequisites**
+
+- A cluster extension has been installed on your cluster.
+
+**Procedure**
+
+- To list installed CRDs while specifying a label selector targeting a specific cluster extension by name to find only CRDs owned by that extension, run the following command:
+  ```terminal
+  $ oc get crds -l 'olm.operatorframework.io/owner-kind=ClusterExtension,olm.operatorframework.io/owner-name=<cluster_extension_name>'
+  ```
+- Alternatively, you can search through all installed CRDs and individually inspect them by CRD name:
+  1. List all available custom resource definitions (CRDs) currently installed on the cluster by running the following command:
+     ```terminal
+     $ oc get crds
+     ```
+
+     Find the CRD you are looking for in the output.
+  2. Inspect the individual CRD further to find its API groups by running the following command:
+     ```terminal
+     $ oc get crd <crd_name> -o yaml
+     ```
+
+## Granting user access to extension resources by using custom role bindings {#olmv1-granting-user-access-binding_user-access-resources}
+
+As a cluster administrator, you can manually create and configure role-based access control (RBAC) policies to grant user access to extension resources by using custom role bindings.
+
+**Prerequisites**
+
+- A cluster extension has been installed on your cluster.
+- You have a list of API groups and resource names, as described in "Finding API groups and resources exposed by a cluster extension".
+
+**Procedure**
+
+1. If the installed cluster extension does not provide default cluster roles, manually create one or more roles:
+   1. Consider the use cases for the set of roles described in "Common default cluster roles for users".
+      For example, create one or more of the following `ClusterRole` object definitions, replacing `<cluster_extension_api_group>` and `<cluster_extension_custom_resource>` with the actual API group and resource names provided by the installed cluster extension:
+
+      ```yaml title="Example view-custom-resource.yaml file"
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRole
+      metadata:
+        name: view-custom-resource
+      rules:
+      - apiGroups:
+        - <cluster_extension_api_group>
+        resources:
+        - <cluster_extension_custom_resources>
+        verbs:
+        - get
+        - list
+        - watch
+      ```
+
+      ```yaml title="Example edit-custom-resource.yaml file"
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRole
+      metadata:
+        name: edit-custom-resource
+      rules:
+      - apiGroups:
+        - <cluster_extension_api_group>
+        resources:
+        - <cluster_extension_custom_resources>
+        verbs:
+        - get
+        - list
+        - watch
+        - create
+        - update
+        - patch
+        - delete
+      ```
+
+      ```yaml title="Example admin-custom-resource.yaml file"
+      apiVersion: rbac.authorization.k8s.io/v1
+      kind: ClusterRole
+      metadata:
+        name: admin-custom-resource
+      rules:
+      - apiGroups:
+        - <cluster_extension_api_group>
+        resources:
+        - <cluster_extension_custom_resources>
+        verbs:
+        - '*'
+      ```
+
+      Setting a wildcard (`*`) in  the `rules.verbs` field allows all actions on the specified resources.
+   2. Create the cluster roles by running the following command for any YAML files you created:
+      ```terminal
+      $ oc create -f <filename>.yaml
+      ```
+2. Associate a cluster role to specific users or groups to grant them the necessary permissions for the resource by binding the cluster roles to individual user or group names:
+   1. Create an object definition for either a *cluster role binding* to grant access across all namespaces or a *role binding* to grant access within a specific namespace:
+      - The following example cluster role bindings grant read-only `view` access to the custom resource across all namespaces:
+        ```yaml title="Example ClusterRoleBinding object for a user"
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRoleBinding
+        metadata:
+          name: view-custom-resource-binding
+        subjects:
+        - kind: User
+          name: <user_name>
+        roleRef:
+          kind: ClusterRole
+          name: view-custom-resource
+          apiGroup: rbac.authorization.k8s.io
+        ```
+
+        ```yaml title="Example ClusterRoleBinding object for a user"
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRoleBinding
+        metadata:
+          name: view-custom-resource-binding
+        subjects:
+        - kind: Group
+          name: <group_name>
+        roleRef:
+          kind: ClusterRole
+          name: view-custom-resource
+          apiGroup: rbac.authorization.k8s.io
+        ```
+      - The following role binding restricts `edit` permissions to a specific namespace:
+        ```yaml title="Example RoleBinding object for a user"
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: RoleBinding
+        metadata:
+          name: edit-custom-resource-edit-binding
+          namespace: <namespace>
+        subjects:
+        - kind: User
+          name: <username>
+        roleRef:
+          kind: Role
+          name: custom-resource-edit
+          apiGroup: rbac.authorization.k8s.io
+        ```
+   2. Save your object definition to a YAML file.
+   3. Create the object by running the following command:
+      ```terminal
+      $ oc create -f <filename>.yaml
+      ```
+
+## Granting user access to extension resources by using aggregated cluster roles {#olmv1-granting-user-access-aggregated_user-access-resources}
+
+As a cluster administrator, you can configure role-based access control (RBAC) policies to grant user access to extension resources by using aggregated cluster roles.
+
+:::note
+
+To automatically extend existing default cluster roles, you can add *aggregation labels* by adding one or more of the following labels to a `ClusterRole` object:
+
+```yaml
+# ..
+metadata:
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-admin: "true"
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"
+    rbac.authorization.k8s.io/aggregate-to-view: "true"
+# ..
+```
+
+This allows users who already have `view`, `edit`, or `admin` roles to interact with the  custom resource specified by the `ClusterRole` object without requiring additional role or cluster role bindings to specific users or groups.
+
+:::
+
+**Prerequisites**
+
+- A cluster extension has been installed on your cluster.
+- You have a list of API groups and resource names, as described in "Finding API groups and resources exposed by a cluster extension".
+
+**Procedure**
+
+1. Create an object definition for a cluster role that specifies the API groups and resources provided by the cluster extension and add an aggregation label to extend one or more existing default cluster roles:
+   ```yaml title="Example ClusterRole object with an aggregation label"
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRole
+   metadata:
+     name: view-custom-resource-aggregated
+     labels:
+       rbac.authorization.k8s.io/aggregate-to-view: "true"
+   rules:
+     - apiGroups:
+         - <cluster_extension_api_group>
+       resources:
+         - <cluster_extension_custom_resource>
+       verbs:
+         - get
+         - list
+         - watch
+   ```
+
+   You can create similar `ClusterRole` objects for `edit` and `admin` with appropriate verbs, such as `create`, `update`, and `delete`. By using aggregation labels, the permissions for the custom resources are added to the default roles.
+2. Save your object definition to a YAML file.
+3. Create the object by running the following command:
+   ```terminal
+   $ oc create -f <filename>.yaml
+   ```
+
+**Additional resources**
+
+- [Aggregated ClusterRoles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#aggregated-clusterroles)

@@ -1,0 +1,98 @@
+---
+title: Metadata APIs
+sidebar_position: 1
+---
+
+# Metadata APIs
+
+<a id="metadata-apis"></a>
+
+## APIRequestCount [apiserver.openshift.io/v1] {#_apirequestcount_apiserveropenshiftiov1}
+
+Description
+: APIRequestCount tracks requests made to an API. The instance name must be of the form `resource.version.group`, matching the resource. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).
+
+Type
+: ```
+  `object`
+  ```
+
+## Binding [v1] {#_binding_v1}
+
+Description
+: Binding ties one object to another; for example, a pod is bound to a node by a scheduler.
+
+Type
+: ```
+  `object`
+  ```
+
+## ComponentStatus [v1] {#_componentstatus_v1}
+
+Description
+: ComponentStatus (and ComponentStatusList) holds the cluster validation info. Deprecated: This API is deprecated in v1.19+
+
+Type
+: ```
+  `object`
+  ```
+
+## ConfigMap [v1] {#_configmap_v1}
+
+Description
+: ConfigMap holds configuration data for pods to consume.
+
+Type
+: ```
+  `object`
+  ```
+
+## ControllerRevision [apps/v1] {#_controllerrevision_appsv1}
+
+Description
+: ControllerRevision implements an immutable snapshot of state data. Clients are responsible for serializing and deserializing the objects that contain their internal state. Once a ControllerRevision has been successfully created, it can not be updated. The API Server will fail validation of all requests that attempt to mutate the Data field. ControllerRevisions may, however, be deleted. Note that, due to its use by both the DaemonSet and StatefulSet controllers for update and rollback, this object is beta. However, it may be subject to name and representation changes in future releases, and clients should not depend on its stability. It is primarily for internal use by controllers.
+
+Type
+: ```
+  `object`
+  ```
+
+## Event [events.k8s.io/v1] {#_event_eventsk8siov1}
+
+Description
+: Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system. Events have a limited retention time and triggers and messages may evolve with time.  Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason.  Events should be treated as informative, best-effort, supplemental data.
+
+Type
+: ```
+  `object`
+  ```
+
+## Event [v1] {#_event_v1}
+
+Description
+: Event is a report of an event somewhere in the cluster.  Events have a limited retention time and triggers and messages may evolve with time.  Event consumers should not rely on the timing of an event with a given Reason reflecting a consistent underlying trigger, or the continued existence of events with that Reason.  Events should be treated as informative, best-effort, supplemental data.
+
+Type
+: ```
+  `object`
+  ```
+
+## Lease [coordination.k8s.io/v1] {#_lease_coordinationk8siov1}
+
+Description
+: Lease defines a lease concept.
+
+Type
+: ```
+  `object`
+  ```
+
+## Namespace [v1] {#_namespace_v1}
+
+Description
+: Namespace provides a scope for Names. Use of multiple namespaces is optional.
+
+Type
+: ```
+  `object`
+  ```

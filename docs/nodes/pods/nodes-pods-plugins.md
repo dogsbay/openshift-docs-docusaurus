@@ -1,0 +1,165 @@
+---
+title: Using device plugins to access external resources with pods
+sidebar_position: 12
+---
+
+# Using device plugins to access external resources with pods {#nodes-pods-device}
+
+<a id="nodes-pods-device"></a>
+
+Device plugins allow you to use a particular device type (GPU, InfiniBand, or other similar computing resources that require vendor-specific initialization and setup) in your OpenShift Container Platform pod without needing to write custom code.
+
+## Understanding device plugins {#nodes-pods-plugins-about_nodes-pods-device}
+
+A device plugin is a gRPC service running on nodes that manages specific hardware resources through an extension mechanism, enabling containers to consume these devices.
+
+The device plugin provides a consistent and portable solution to consume hardware devices across clusters. The device plugin provides support for these devices through an extension mechanism, which makes these devices available to Containers, provides health checks of these devices, and securely shares them.
+
+:::warning
+
+OpenShift Container Platform supports the device plugin API, but the device plugin Containers are supported by individual vendors.
+
+:::
+
+A device plugin is a gRPC service running on the nodes (external to the `kubelet`) that is responsible for managing specific hardware resources. Any device plugin must support following remote procedure calls (RPCs):
+
+```golang
+service DevicePlugin {
+      // GetDevicePluginOptions returns options to be communicated with Device
+      // Manager
+      rpc GetDevicePluginOptions(Empty) returns (DevicePluginOptions) {}
+
+      // ListAndWatch returns a stream of List of Devices
+      // Whenever a Device state change or a Device disappears, ListAndWatch
+      // returns the new list
+      rpc ListAndWatch(Empty) returns (stream ListAndWatchResponse) {}
+
+      // Allocate is called during container creation so that the Device
+      // Plug-in can run device specific operations and instruct Kubelet
+      // of the steps to make the Device available in the container
+      rpc Allocate(AllocateRequest) returns (AllocateResponse) {}
+
+      // PreStartcontainer is called, if indicated by Device Plug-in during
+      // registration phase, before each container start. Device plug-in
+      // can run device specific operations such as resetting the device
+      // before making devices available to the container
+      rpc PreStartcontainer(PreStartcontainerRequest) returns (PreStartcontainerResponse) {}
+}
+```
+
+### Example device plugins {#example-device-plugins_nodes-pods-device}
+
+- Nvidia GPU device plugin for COS-based operating system
+- Nvidia official GPU device plugin
+- Solarflare device plugin
+- KubeVirt device plugins: vfio and kvm
+- Kubernetes device plugin for IBM(R) Crypto Express (CEX) cards
+
+:::note
+
+For easy device plugin reference implementation, there is a stub device plugin in the Device Manager code: ***vendor/k8s.io/kubernetes/pkg/kubelet/cm/deviceplugin/device_plugin_stub.go***.
+
+:::
+
+### Methods for deploying a device plugin {#methods-for-deploying-a-device-plugin_nodes-pods-device}
+
+- Daemon sets are the recommended approach for device plugin deployments.
+- Upon start, the device plugin will try to create a UNIX domain socket at ***/var/lib/kubelet/device-plugin/*** on the node to serve RPCs from Device Manager.
+- Since device plugins must manage hardware resources, access to the host file system, as well as socket creation, they must be run in a privileged security context.
+- More specific details regarding deployment steps can be found with each device plugin implementation.
+
+**Additional resources**
+
+- [Nvidia GPU device plugin for COS-based operating system](https://github.com/GoogleCloudPlatform/Container-engine-accelerators/tree/master/cmd/nvidia_gpu)
+- [Nvidia official GPU device plugin](https://github.com/NVIDIA/k8s-device-plugin)
+- [Solarflare device plugin](https://github.com/vikaschoudhary16/sfc-device-plugin)
+- [KubeVirt device plugins: vfio and kvm](https://github.com/kubevirt/kubernetes-device-plugins)
+- [Kubernetes device plugin for IBM(R) Crypto Express (CEX) cards](https://github.com/ibm-s390-cloud/k8s-cex-dev-plugin)
+
+## Understanding the Device Manager {#nodes-pods-plugins-device-mgr_nodes-pods-device}
+
+Device Manager advertises specialized node hardware resources through device plugins, enabling pods to consume hardware devices without requiring upstream code changes.
+
+Device Manager provides a mechanism for advertising specialized node hardware resources with the help of plugins known as device plugins.
+
+You can advertise specialized hardware without requiring any upstream code changes.
+
+:::warning
+
+OpenShift Container Platform supports the device plugin API, but the device plugin Containers are supported by individual vendors.
+
+:::
+
+Device Manager advertises devices as **Extended Resources**. User pods can consume devices, advertised by Device Manager, using the same **Limit/Request** mechanism, which is used for requesting any other **Extended Resource**.
+
+Upon start, the device plugin registers itself with Device Manager invoking `Register` on the ***/var/lib/kubelet/device-plugins/kubelet.sock*** and starts a gRPC service at ***/var/lib/kubelet/device-plugins/<plugin>.sock*** for serving Device Manager requests.
+
+Device Manager, while processing a new registration request, invokes `ListAndWatch` remote procedure call (RPC) at the device plugin service. In response, Device Manager gets a list of **Device** objects from the plugin over a gRPC stream. Device Manager will keep watching on the stream for new updates from the plugin. On the plugin side, the plugin will also keep the stream open and whenever there is a change in the state of any of the devices, a new device list is sent to the Device Manager over the same streaming connection.
+
+While handling a new pod admission request, Kubelet passes requested `Extended Resources` to the Device Manager for device allocation. Device Manager checks in its database to verify if a corresponding plugin exists or not. If the plugin exists and there are free allocatable devices as well as per local cache, `Allocate` RPC is invoked at that particular device plugin.
+
+Additionally, device plugins can also perform several other device-specific operations, such as driver installation, device initialization, and device resets. These functionalities vary from implementation to implementation.
+
+## Enabling Device Manager {#nodes-pods-plugins-install_nodes-pods-device}
+
+Enable Device Manager to allow device plugins to advertise specialized node hardware resources and make them available to pods without requiring code changes.
+
+Enable Device Manager to implement a device plugin to advertise specialized hardware without any upstream code changes.
+
+Device Manager provides a mechanism for advertising specialized node hardware resources with the help of plugins known as device plugins.
+
+**Procedure**
+
+1. Obtain the label associated with the static `MachineConfigPool` CRD for the type of node you want to configure by entering the following command. Perform one of the following steps:
+   1. View the machine config:
+      ```terminal
+      # oc describe machineconfig <name>
+      ```
+
+      For example:
+
+      ```terminal
+      # oc describe machineconfig 00-worker
+      ```
+
+      ```terminal title="Example output"
+      Name:         00-worker
+      Namespace:
+      Labels:       machineconfiguration.openshift.io/role=worker
+      ```
+
+      `machineconfiguration.openshift.io` is the label required for the Device Manager.
+2. Create a custom resource (CR) for your configuration change.
+   ```yaml title="Sample configuration for a Device Manager CR"
+   apiVersion: machineconfiguration.openshift.io/v1
+   kind: KubeletConfig
+   metadata:
+     name: devicemgr
+   spec:
+     machineConfigPoolSelector:
+       matchLabels:
+          machineconfiguration.openshift.io: devicemgr
+     kubeletConfig:
+       feature-gates:
+         - DevicePlugins=true
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>metadata.name</code></dt>
+   <dd>Specifies a name to assign to the CR.</dd>
+   <dt><code>spec.machineConfigPoolSelector.matchLabels</code></dt>
+   <dd>Specifies the label from the Machine Config Pool.</dd>
+   <dt><code>spec.kubeletConfig.feature-gates</code></dt>
+   <dd>Specifies the <code>DevicePlugins</code> feature gate. Set to <code>true</code>.</dd>
+   </dl>
+3. Create the Device Manager:
+   ```terminal
+   $ oc create -f devicemgr.yaml
+   ```
+
+   ```terminal title="Example output"
+   kubeletconfig.machineconfiguration.openshift.io/devicemgr created
+   ```
+4. Ensure that Device Manager was actually enabled by confirming that ***/var/lib/kubelet/device-plugins/kubelet.sock*** is created on the node. This is the UNIX domain socket on which the Device Manager gRPC server listens for new plugin registrations. This sock file is created when the Kubelet is started only if Device Manager is enabled.

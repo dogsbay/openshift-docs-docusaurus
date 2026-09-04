@@ -1,0 +1,709 @@
+---
+title: Configuring Microsoft Azure features for control plane machines
+sidebar_position: 4
+---
+
+# Configuring Microsoft Azure features for control plane machines {#cpmso-supported-features-azure}
+
+<a id="cpmso-supported-features-azure"></a>
+
+You can enable or change the configuration of features for your control plane machines by editing values in the control plane machine set specification.
+
+When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy. For more information, see "Updating the control plane configuration".
+
+## Restricting the API server to private for an Microsoft Azure cluster {#private-clusters-setting-api-private-azure_cpmso-supported-features-azure}
+
+If the security posture of your organization does not allow clusters to use an open API endpoint, you can restrict the API server to use only internal load balancers. To implement this API server restriction, use the Microsoft Azure console to delete the external load balancer component.
+
+**Prerequisites**
+
+- You have installed an OpenShift Container Platform cluster on Azure.
+- You have access to the Azure console as a user with administrator privileges.
+
+**Procedure**
+
+1. Log in to the Azure console as a user with administrator privileges.
+2. Delete the following resources:
+   - The `api-v4` rule for the public load balancer.
+   - The `frontendIPConfiguration` parameter that is associated with the `api-v4` rule for the public load balancer.
+   - The public IP address that is specified in the `frontendIPConfiguration` parameter.
+3. Configure the Ingress Controller endpoint publishing scope to `Internal`. For more information, see "Configuring the Ingress Controller endpoint publishing scope to Internal".
+4. Delete the `api.<cluster_name>` DNS entry in the public zone.
+   where `<cluster_name>` is the name of the cluster.
+
+**Additional resources**
+
+- [Configuring the Ingress Controller endpoint publishing scope to Internal](/docs/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/nw-configuring-ingress-controller-endpoint-publishing-strategy#nw-ingresscontroller-change-internal_nw-configuring-ingress-controller-endpoint-publishing-strategy)
+
+## Using the Azure Marketplace offering {#installation-azure-marketplace-subscribe_cpmso-supported-features-azure}
+
+You can create a machine set running on Azure that deploys machines that use the Azure Marketplace offering. To use this offering, you must first obtain the Azure Marketplace image. When obtaining your image, consider the following:
+
+- While the images are the same, the Azure Marketplace publisher is different depending on your region. If you are located in North America, specify `redhat` as the publisher. If you are located in EMEA, specify `redhat-limited` as the publisher.
+- The offer includes a `rh-ocp-worker` SKU and a `rh-ocp-worker-gen1` SKU. The `rh-ocp-worker` SKU represents a Hyper-V generation version 2 VM image. The default instance types used in OpenShift Container Platform are version 2 compatible. If you plan to use an instance type that is only version 1 compatible, use the image associated with the `rh-ocp-worker-gen1` SKU. The `rh-ocp-worker-gen1` SKU represents a Hyper-V version 1 VM image.
+
+:::warning
+
+Installing images with the Azure marketplace is not supported on clusters with 64-bit ARM instances.
+
+You should only modify the RHCOS image for compute machines to use an Azure Marketplace image. Control plane machines and infrastructure nodes do not require an OpenShift Container Platform subscription and use the public RHCOS default image by default, which does not incur subscription costs on your Azure bill. Therefore, you should not modify the cluster default boot image or the control plane boot images. Applying the Azure Marketplace image to them will incur additional licensing costs that cannot be recovered.
+
+:::
+
+**Prerequisites**
+
+- You have installed the Azure CLI client `(az)`.
+- Your Azure account is entitled for the offer and you have logged into this account with the Azure CLI client.
+
+**Procedure**
+
+1. Display all of the available OpenShift Container Platform images by running one of the following commands:
+   - North America:
+     ```terminal
+     $  az vm image list --all --offer rh-ocp-worker --publisher redhat -o table
+     ```
+
+     ```terminal title="Example output"
+     Offer          Publisher       Sku                 Urn                                                             Version
+     -------------  --------------  ------------------  --------------------------------------------------------------  -----------------
+     rh-ocp-worker  RedHat          rh-ocp-worker       RedHat:rh-ocp-worker:rh-ocp-worker:4.17.2024100419              4.17.2024100419
+     rh-ocp-worker  RedHat          rh-ocp-worker-gen1  RedHat:rh-ocp-worker:rh-ocp-worker-gen1:4.17.2024100419         4.17.2024100419
+     ```
+   - EMEA:
+     ```terminal
+     $  az vm image list --all --offer rh-ocp-worker --publisher redhat-limited -o table
+     ```
+
+     ```terminal title="Example output"
+     Offer          Publisher       Sku                 Urn                                                                     Version
+     -------------  --------------  ------------------  --------------------------------------------------------------          -----------------
+     rh-ocp-worker  redhat-limited  rh-ocp-worker       redhat-limited:rh-ocp-worker:rh-ocp-worker:4.17.2024100419              4.17.2024100419
+     rh-ocp-worker  redhat-limited  rh-ocp-worker-gen1  redhat-limited:rh-ocp-worker:rh-ocp-worker-gen1:4.17.2024100419         4.17.2024100419
+     ```
+
+   :::note
+
+   Use the latest image that is available for compute and control plane nodes. If required, your VMs are automatically upgraded as part of the installation process.
+
+   :::
+2. Inspect the image for your offer by running one of the following commands:
+   - North America:
+     ```terminal
+     $ az vm image show --urn redhat:rh-ocp-worker:rh-ocp-worker:<version>
+     ```
+   - EMEA:
+     ```terminal
+     $ az vm image show --urn redhat-limited:rh-ocp-worker:rh-ocp-worker:<version>
+     ```
+3. Review the terms of the offer by running one of the following commands:
+   - North America:
+     ```terminal
+     $ az vm image terms show --urn redhat:rh-ocp-worker:rh-ocp-worker:<version>
+     ```
+   - EMEA:
+     ```terminal
+     $ az vm image terms show --urn redhat-limited:rh-ocp-worker:rh-ocp-worker:<version>
+     ```
+4. Accept the terms of the offering by running one of the following commands:
+   - North America:
+     ```terminal
+     $ az vm image terms accept --urn redhat:rh-ocp-worker:rh-ocp-worker:<version>
+     ```
+   - EMEA:
+     ```terminal
+     $ az vm image terms accept --urn redhat-limited:rh-ocp-worker:rh-ocp-worker:<version>
+     ```
+5. Record the image details of your offer, specifically the values for `publisher`, `offer`, `sku`, and `version`.
+6. Add the following parameters to the `providerSpec` section of your machine set YAML file using the image details for your offer:
+   ```yaml title="Sample providerSpec image values for Azure Marketplace machines"
+   providerSpec:
+     value:
+       image:
+         offer: rh-ocp-worker
+         publisher: redhat
+         resourceID: ""
+         sku: rh-ocp-worker
+         type: MarketplaceWithPlan
+         version: 413.92.2023101700
+   ```
+
+## Enabling Microsoft Azure boot diagnostics {#machineset-azure-boot-diagnostics_cpmso-supported-features-azure}
+
+You can enable boot diagnostics on Microsoft Azure machines that your machine set creates. Use this to store console logs that you can use to troubleshoot why a node fails to boot.
+
+**Prerequisites**
+
+- Have an existing Azure cluster.
+
+**Procedure**
+
+- Add the `diagnostics` configuration that is applicable to your storage type to the `providerSpec` field in your machine set YAML file:
+  - For an Azure Managed storage account:
+    ```yaml
+    providerSpec:
+      value:
+        diagnostics:
+          boot:
+            storageAccountType: <azure_managed>
+    ```
+
+    where:
+
+    <dl>
+    <dt><code>&lt;azure_managed&gt;</code></dt>
+    <dd>Specifies an Azure Managed storage account.</dd>
+    </dl>
+  - For an Azure Unmanaged storage account:
+    ```yaml
+    providerSpec:
+      value:
+        diagnostics:
+          boot:
+            storageAccountType: <customer_managed>
+            customerManaged:
+              storageAccountURI: <https://<storage_account>.blob.core.windows.net>
+    ```
+
+    where:
+
+    <dl>
+    <dt><code>&lt;customer_managed&gt;</code></dt>
+    <dd>Specifies an Azure Unmanaged storage account.</dd>
+    <dt><code>https://&lt;storage_account&gt;.blob.core.windows.net</code></dt>
+    <dd>Specifies the storage account URL. Replace <code>&lt;storage_account&gt;</code> with the name of your storage account.</dd>
+    </dl>
+
+    :::note
+
+    Only the Azure Blob Storage data service is supported.
+
+    :::
+
+**Verification**
+
+- On the Azure portal, review the **Boot diagnostics** page for a machine deployed by the machine set, and verify that you can see the serial logs for the machine.
+
+## Machine sets that deploy machines with ultra disks as data disks {#machineset-azure-ultra-disk_cpmso-supported-features-azure}
+
+You can create a machine set running on Microsoft Azure that deploys machines with ultra disks. Ultra disks are high-performance storage that are intended for use with the most demanding data workloads.
+
+**Additional resources**
+
+- [Microsoft Azure ultra disks documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disks)
+
+### Creating machines with ultra disks by using machine sets {#machineset-creating-azure-ultra-disk_cpmso-supported-features-azure}
+
+You can deploy machines with ultra disks on Microsoft Azure by editing your machine set YAML file.
+
+**Prerequisites**
+
+- Have an existing Microsoft Azure cluster.
+
+**Procedure**
+
+1. Create a custom secret in the `openshift-machine-api` namespace by using the `{machine_role}` data secret by running the following command:
+   ```terminal
+   $ oc -n openshift-machine-api \
+   get secret <role>-user-data \
+   --template='{{index .data.userData | base64decode}}' | jq > userData.txt
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;role&gt;</code></dt>
+   <dd>Replace with <code>{machine_role}</code>.</dd>
+   <dt><code>userData.txt</code></dt>
+   <dd>Specifies <code>userData.txt</code> as the name of the new custom secret.</dd>
+   </dl>
+2. In a text editor, open the `userData.txt` file and locate the final `}` character in the file.
+   1. On the immediately preceding line, add a `,`.
+   2. Create a new line after the `,` and add the following configuration details:
+      ```json
+      "storage": {
+        "disks": [
+          {
+            "device": "/dev/disk/azure/scsi1/lun0",
+            "partitions": [
+              {
+                "label": "lun0p1",
+                "sizeMiB": 1024,
+                "startMiB": 0
+              }
+            ]
+          }
+        ],
+        "filesystems": [
+          {
+            "device": "/dev/disk/by-partlabel/lun0p1",
+            "format": "xfs",
+            "path": "/var/lib/lun0p1"
+          }
+        ]
+      },
+      "systemd": {
+        "units": [
+          {
+            "contents": "[Unit]\nBefore=local-fs.target\n[Mount]\nWhere=/var/lib/lun0p1\nWhat=/dev/disk/by-partlabel/lun0p1\nOptions=defaults,pquota\n[Install]\nWantedBy=local-fs.target\n",
+            "enabled": true,
+            "name": "var-lib-lun0p1.mount"
+          }
+        ]
+      }
+      ```
+
+      where:
+
+      <dl>
+      <dt><code>"disks"</code></dt>
+      <dd>Specifies the configuration details for the disk that you want to attach to a node as an ultra disk.</dd>
+      <dt><code>"device"</code></dt>
+      <dd>Specifies the <code>lun</code> value that is defined in the <code>dataDisks</code> stanza of the machine set you are using. For example, if the machine set contains <code>lun: 0</code>, specify <code>lun0</code>. You can initialize multiple data disks by specifying multiple <code>"disks"</code> entries in this configuration file. If you specify multiple <code>"disks"</code> entries, ensure that the <code>lun</code> value for each matches the value in the machine set.</dd>
+      <dt><code>"partitions"</code></dt>
+      <dd>Specifies the configuration details for a new partition on the disk.</dd>
+      <dt><code>"label"</code></dt>
+      <dd>Specifies a label for the partition. You might find it helpful to use hierarchical names, such as <code>lun0p1</code> for the first partition of <code>lun0</code>.</dd>
+      <dt><code>"sizeMiB"</code></dt>
+      <dd>Specifies the total size in MiB of the partition.</dd>
+      <dt><code>"filesystems"</code></dt>
+      <dd>Specifies the filesystem to use when formatting a partition. Use the partition label to specify the partition.</dd>
+      <dt><code>"units"</code></dt>
+      <dd>Specifies a <code>systemd</code> unit to mount the partition at boot. Use the partition label to specify the partition. You can create multiple partitions by specifying multiple <code>"partitions"</code> entries in this configuration file. If you specify multiple <code>"partitions"</code> entries, you must specify a <code>systemd</code> unit for each.</dd>
+      <dt><code>"contents"</code></dt>
+      <dd>Specifies the value of <code>storage.filesystems.path</code> for <code>Where</code>. Specifies the value of <code>storage.filesystems.device</code> for <code>What</code>.</dd>
+      </dl>
+3. Extract the disabling template value to a file called `disableTemplating.txt` by running the following command:
+   ```terminal
+   $ oc -n openshift-machine-api get secret <role>-user-data \
+   --template='{{index .data.disableTemplating | base64decode}}' | jq > disableTemplating.txt
+   ```
+
+   Replace `<role>` with `{machine_role}`.
+4. Combine the `userData.txt` file and `disableTemplating.txt` file to create a data secret file by running the following command:
+   ```terminal
+   $ oc -n openshift-machine-api create secret generic <role>-user-data-x5 \
+   --from-file=userData=userData.txt \
+   --from-file=disableTemplating=disableTemplating.txt
+   ```
+
+   For `<role>-user-data-x5`, specify the name of the secret. Replace `<role>` with `{machine_role}`.
+5. Edit your control plane machine set CR by running the following command:
+   ```terminal
+   $ oc --namespace openshift-machine-api edit controlplanemachineset.machine.openshift.io cluster
+   ```
+6. Add the following lines in the positions indicated:
+   ```yaml
+   apiVersion: machine.openshift.io/v1beta1
+   kind: ControlPlaneMachineSet
+   spec:
+     template:
+       spec:
+         metadata:
+           labels:
+             disk: ultrassd
+         providerSpec:
+           value:
+             ultraSSDCapability: Enabled
+             dataDisks:
+             - nameSuffix: ultrassd
+               lun: 0
+               diskSizeGB: 4
+               deletionPolicy: Delete
+               cachingType: None
+               managedDisk:
+                 storageAccountType: UltraSSD_LRS
+             userDataSecret:
+               name: <role>-user-data-x5
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>spec.template.spec.metadata.labels.disk</code></dt>
+   <dd>Specifies a label to use to select a node that is created by this machine set. The example uses <code>disk.ultrassd</code> for this value.</dd>
+   <dt><code>spec.template.spec.providerSpec.value.ultraSSDCapability</code></dt>
+   <dd>Enables the use of ultra disks. For <code>dataDisks</code>, include the entire stanza.</dd>
+   <dt><code>spec.template.spec.providerSpec.value.userDataSecret.name</code></dt>
+   <dd>Specifies the user data secret created earlier. Replace <code>&lt;role&gt;</code> with <code>{machine_role}</code>.</dd>
+   </dl>
+7. Save your changes.
+   - For clusters that use the default `RollingUpdate` update strategy, the Operator automatically propagates the changes to your control plane configuration.
+   - For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually.
+
+**Verification**
+
+1. Validate that the machines are created by running the following command:
+   ```terminal
+   $ oc get machines
+   ```
+
+   The machines should be in the `Running` state.
+2. For a machine that is running and has a node attached, validate the partition by running the following command:
+   ```terminal
+   $ oc debug node/<node_name> -- chroot /host lsblk
+   ```
+
+   In this command, `oc debug node/<node_name>` starts a debugging shell on the node `<node_name>` and passes a command with `--`. The passed command `chroot /host` provides access to the underlying host OS binaries, and `lsblk` shows the block devices that are attached to the host OS machine.
+
+**Next steps**
+
+- To use an ultra disk on the control plane, reconfigure your workload to use the control plane’s ultra disk mount point.
+
+### Troubleshooting resources for machine sets that enable ultra disks {#machineset-troubleshooting-azure-ultra-disk_cpmso-supported-features-azure}
+
+You can recover from issues that you might encounter when you enable ultra disks for machine sets. Review fields, such as disk settings, and ensure that the parameters are correctly configured.
+
+#### Incorrect ultra disk configuration {#ts-mapi-attach-misconfigure_cpmso-supported-features-azure}
+
+If an incorrect configuration of the `ultraSSDCapability` parameter is specified in the machine set, the machine provisioning fails.
+
+For example, if the `ultraSSDCapability` parameter is set to `Disabled`, but an ultra disk is specified in the `dataDisks` parameter, the following error message appears:
+
+```terminal
+StorageAccountType UltraSSD_LRS can be used only when additionalCapabilities.ultraSSDEnabled is set.
+```
+
+- To resolve this issue, verify that your machine set configuration is correct.
+
+#### Unsupported disk parameters {#ts-mapi-attach-unsupported_cpmso-supported-features-azure}
+
+If a region, availability zone, or instance size that is not compatible with ultra disks is specified in the machine set, the machine provisioning fails. Check the logs for the following error message:
+
+```terminal
+failed to create vm <machine_name>: failure sending request for machine <machine_name>: cannot create vm: compute.VirtualMachinesClient#CreateOrUpdate: Failure sending request: StatusCode=400 -- Original Error: Code="BadRequest" Message="Storage Account type 'UltraSSD_LRS' is not supported <more_information_about_why>."
+```
+
+- To resolve this issue, verify that you are using this feature in a supported environment and that your machine set configuration is correct.
+
+#### Unable to delete disks {#ts-mapi-delete_cpmso-supported-features-azure}
+
+If the deletion of ultra disks as data disks is not working as expected, the machines are deleted and the data disks are orphaned. You must delete the orphaned disks manually if desired.
+
+## Enabling customer-managed encryption keys for a machine set {#machineset-enabling-customer-managed-encryption-azure_cpmso-supported-features-azure}
+
+To enhance data security, enable customer-managed encryption on Microsoft Azure by adding the disk encryption set ID to your machine set.
+
+You can supply an encryption key to Azure to encrypt data on managed disks at rest. You can enable server-side encryption with customer-managed keys by using the Machine API.
+
+An Azure Key Vault, a disk encryption set, and an encryption key are required to use a customer-managed key. The disk encryption set must be in a resource group where the Cloud Credential Operator (CCO) has granted permissions. If not, an additional reader role is required to be granted on the disk encryption set.
+
+**Prerequisites**
+
+- [You created an Azure Key Vault instance (Azure documentation)](https://docs.microsoft.com/en-us/azure/aks/azure-disk-customer-managed-keys#create-an-azure-key-vault-instance).
+- [You created an instance of a disk encryption set (Azure documentation)](https://docs.microsoft.com/en-us/azure/aks/azure-disk-customer-managed-keys#create-an-instance-of-a-diskencryptionset).
+- [You granted the disk encryption set access to key vault (Azure documentation)](https://docs.microsoft.com/en-us/azure/aks/azure-disk-customer-managed-keys#grant-the-diskencryptionset-access-to-key-vault).
+
+**Procedure**
+
+- Configure the disk encryption set under the `providerSpec` field in your machine set YAML file. For example:
+  ```yaml
+  providerSpec:
+    value:
+      osDisk:
+        diskSizeGB: 128
+        managedDisk:
+          diskEncryptionSet:
+            id: /subscriptions/<subscription_id>/resourceGroups/<resource_group_name>/providers/Microsoft.Compute/diskEncryptionSets/<disk_encryption_set_name>
+          storageAccountType: Premium_LRS
+  ```
+
+**Additional resources**
+
+- [Customer-managed keys (Azure documentation)](https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption#customer-managed-keys)
+
+## Configuring trusted launch for Azure virtual machines by using machine sets {#machineset-azure-trusted-launch_cpmso-supported-features-azure}
+
+By editing the machine set YAML file, you can configure the trusted launch for Microsoft Azure virtual machines (VMs) options that a machine set uses for machines that it deploys.
+
+For example, you can configure these machines to use UEFI security features such as Secure Boot or a dedicated virtual Trusted Platform Module (vTPM) instance.
+
+:::note
+
+Some feature combinations result in an invalid configuration.
+
+:::
+
+**UEFI feature combination compatibility**
+
+| Secure Boot<sup>[1]</sup> | vTPM<sup>[2]</sup> | Valid configuration |
+| --- | --- | --- |
+| Enabled | Enabled | Yes |
+| Enabled | Disabled | Yes |
+| Enabled | Omitted | Yes |
+| Disabled | Enabled | Yes |
+| Omitted | Enabled | Yes |
+| Disabled | Disabled | No |
+| Omitted | Disabled | No |
+| Omitted | Omitted | No |
+
+1. Using the `secureBoot` field.
+2. Using the `virtualizedTrustedPlatformModule` field.
+
+For more information about related features and functionality, see the Microsoft Azure documentation about [Trusted launch for Azure virtual machines](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch).
+
+**Procedure**
+
+1. In a text editor, open the YAML file for an existing machine set or create a new one.
+2. Edit the following section under the `providerSpec` field to provide a valid configuration:
+   ```yaml title="Sample valid configuration with UEFI Secure Boot and vTPM enabled"
+
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       machines_v1beta1_machine_openshift_io:
+         spec:
+           providerSpec:
+             value:
+               securityProfile:
+                 settings:
+                   securityType: TrustedLaunch
+                   trustedLaunch:
+                     uefiSettings:
+                       secureBoot: Enabled
+                       virtualizedTrustedPlatformModule: Enabled
+   # ...
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.securityType</code></dt>
+   <dd>Enables the use of trusted launch for Azure virtual machines. This value is required for all valid configurations.</dd>
+   <dt><code>spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings</code></dt>
+   <dd>Specifies which UEFI security features to use. This section is required for all valid configurations.</dd>
+   <dt><code>spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings.secureBoot</code></dt>
+   <dd>Enables UEFI Secure Boot.</dd>
+   <dt><code>spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.securityProfile.settings.trustedLaunch.uefiSettings.virtualizedTrustedPlatformModule</code></dt>
+   <dd>Enables the use of a vTPM.</dd>
+   </dl>
+
+**Verification**
+
+- On the Microsoft Azure portal, review the details for a machine deployed by the machine set and verify that the trusted launch options match the values that you configured.
+
+## Configuring Azure confidential virtual machines by using machine sets {#machineset-azure-confidential-vms_cpmso-supported-features-azure}
+
+You can enable Microsoft Azure confidential virtual machines (VMs) to use memory encryption to improve data confidentiality.
+
+:::note
+
+Confidential VMs are currently not supported on 64-bit ARM architectures.
+
+:::
+
+By editing the machine set YAML file, you can configure the confidential VM options that a machine set uses for machines that it deploys. For example, you can configure these machines to use UEFI security features such as Secure Boot or a dedicated virtual Trusted Platform Module (vTPM) instance.
+
+:::warning
+
+Not all instance types support confidential VMs. Do not change the instance type for a control plane machine set that is configured to use confidential VMs to a type that is incompatible. Using an incompatible instance type can cause your cluster to become unstable.
+
+:::
+
+For more information about related features and functionality, see the Microsoft Azure documentation about [Confidential virtual machines](https://learn.microsoft.com/en-us/azure/confidential-computing/confidential-vm-overview).
+
+**Procedure**
+
+1. In a text editor, open the YAML file for an existing machine set or create a new one.
+2. Edit the following section under the `providerSpec` field:
+   **Sample configuration**
+
+   ```yaml
+
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             osDisk:
+               # ...
+               managedDisk:
+                 securityProfile:
+                   securityEncryptionType: VMGuestStateOnly
+               # ...
+             securityProfile:
+               settings:
+                   securityType: ConfidentialVM
+                   confidentialVM:
+                     uefiSettings:
+                       secureBoot: Disabled
+                       virtualizedTrustedPlatformModule: Enabled
+             vmSize: Standard_DC16ads_v5
+   # ...
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>spec.template.spec.providerSpec.value.osDisk.managedDisk.securityProfile</code></dt>
+   <dd>Specifies security profile settings for the managed disk when using a confidential VM.</dd>
+   <dt><code>spec.template.spec.providerSpec.value.osDisk.managedDisk.securityProfile.securityEncryptionType</code></dt>
+   <dd>Enables encryption of the Microsoft Azure VM Guest State (VMGS) blob. This setting requires the use of vTPM.</dd>
+   <dt><code>spec.template.spec.providerSpec.value.securityProfile</code></dt>
+   <dd>Specifies security profile settings for the confidential VM.</dd>
+   <dt><code>spec.template.spec.providerSpec.value.securityProfile.settings.securityType</code></dt>
+   <dd>Enables the use of confidential VMs. This value is required for all valid configurations.</dd>
+   <dt><code>spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings</code></dt>
+   <dd>Specifies which UEFI security features to use. This section is required for all valid configurations.</dd>
+   <dt><code>spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings.secureBoot</code></dt>
+   <dd>Disables UEFI Secure Boot.</dd>
+   <dt><code>spec.template.spec.providerSpec.value.securityProfile.settings.confidentialVM.uefiSettings.virtualizedTrustedPlatformModule</code></dt>
+   <dd>Enables the use of a vTPM.</dd>
+   <dt><code>spec.template.spec.providerSpec.value.vmSize</code></dt>
+   <dd>Specifies an instance type that supports confidential VMs.</dd>
+   </dl>
+
+**Verification**
+
+- On the Microsoft Azure portal, review the details for a machine deployed by the machine set and verify that the confidential VM options match the values that you configured.
+
+## Configuring Capacity Reservations by using machine sets {#machineset-capacity-reservation_cpmso-supported-features-azure}
+
+You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using on-demand Capacity Reservation with Capacity Reservation groups on Microsoft Azure clusters.
+
+You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define.
+
+These parameters specify the VM size, region, and number of instances that you want to reserve. If your Azure subscription quota can accommodate the capacity request, the deployment succeeds.
+
+For more information, including limitations and suggested use cases for this Microsoft Azure offering, see [On-demand Capacity Reservation](https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview) in the Azure documentation.
+
+:::note
+
+You cannot change an existing Capacity Reservation configuration for a machine set. To use a different Capacity Reservation group, you must replace the machine set and the machines that the previous machine set deployed.
+
+:::
+
+**Prerequisites**
+
+- You have access to the cluster with `cluster-admin` privileges.
+- You installed the OpenShift CLI (`oc`).
+- You have created a Capacity Reservation group. For more information, see [Create a Capacity Reservation](https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-create) in the Microsoft Azure documentation.
+
+**Procedure**
+
+tag:controlplane[][] . Edit your control plane machine set custom resource (CR) by running the following command:
+
+```terminal
+$ oc edit controlplanemachineset.machine.openshift.io cluster --namespace openshift-machine-api
+```
+
+end:controlplane[][]
+
+tag:compute[][] . In a text editor, open an existing machine set custom resource (CR) or create a new one. end:compute[][]
+
+1. Update the CR to implement your configuration changes:
+   ```yaml title="Sample configuration"
+   tag::compute[]
+   apiVersion: machine.openshift.io/v1beta1
+   kind: MachineSet
+   # ...
+   spec:
+     template:
+       spec:
+         providerSpec:
+           value:
+             capacityReservationGroupID: <capacity_reservation_group>
+   end::compute[]
+   tag::controlplane[]
+   apiVersion: machine.openshift.io/v1
+   kind: ControlPlaneMachineSet
+   # ...
+   spec:
+     template:
+       machines_v1beta1_machine_openshift_io:
+         spec:
+           providerSpec:
+             value:
+               capacityReservationGroupID: <capacity_reservation_group>
+   end::controlplane[]
+   # ...
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;capacity_reservation_group&gt;</code></dt>
+   <dd>Specifies the ID of the Capacity Reservation group that you want the machine set to deploy machines on.</dd>
+   </dl>
+2. Save your changes and exit the object specification. tag:controlplane[][]
+   When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy.
+
+   - For clusters that use the default `RollingUpdate` update strategy, the Operator automatically propagates the changes to your control plane configuration.
+   - For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually. end:controlplane[][]
+
+**Verification**
+
+- To verify machine deployment, list the machines that the machine set created by running the following command:
+  ```terminal
+  tag::compute[]
+  $ oc get machines.machine.openshift.io \
+    -n openshift-machine-api \
+    -l machine.openshift.io/cluster-api-machineset=<machine_set_name>
+  end::compute[]
+  tag::controlplane[]
+  $ oc get machine \
+    -n openshift-machine-api \
+    -l machine.openshift.io/cluster-api-machine-role=master
+  end::controlplane[]
+  ```
+
+  tag:compute[][]
+
+  where `<machine_set_name>` is the name of the compute machine set. end:compute[][]
+
+  In the output, verify that the characteristics of the listed machines match the parameters of your Capacity Reservation.
+
+## Accelerated Networking for Microsoft Azure VMs {#machineset-azure-accelerated-networking_cpmso-supported-features-azure}
+
+You can enable Accelerated Networking, which uses single root I/O virtualization (SR-IOV) to provide Microsoft Azure VMs with a more direct path to the switch, after installation. This enhances network performance.
+
+### Limitations {#machineset-azure-accelerated-networking-limits_cpmso-supported-features-azure}
+
+Consider the following limitations when deciding whether to use Accelerated Networking:
+
+- Accelerated Networking is only supported on clusters where the Machine API is operational.
+-
+
+```
+Accelerated Networking requires an Azure VM size that includes at least four vCPUs. To satisfy this requirement, you can change the value of `vmSize` in your machine set. For information about Azure VM sizes, see [Microsoft Azure documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/sizes).
+```
+
+### Enabling Accelerated Networking on an existing Microsoft Azure cluster {#machineset-azure-enabling-accelerated-networking-existing_cpmso-supported-features-azure}
+
+You can enable Accelerated Networking on Microsoft Azure by adding `acceleratedNetworking` to your machine set YAML file. Accelerated Networking uses SR-IOV to help improve network performance for new nodes.
+
+**Prerequisites**
+
+- Have an existing Azure cluster where the Machine API is operational.
+
+**Procedure**
+
+- Add the following to the `providerSpec` field:
+  ```yaml
+  providerSpec:
+    value:
+      acceleratedNetworking: true
+      vmSize: <azure-vm-size>
+  ```
+
+  where:
+
+  <dl>
+  <dt><code>providerSpec.value.acceleratedNetworking</code></dt>
+  <dd>Enables Accelerated Networking.</dd>
+  <dt><code>providerSpec.value.vmSize</code></dt>
+  <dd>Specifies an Azure VM size that includes at least four vCPUs. For information about VM sizes, see the Microsoft Azure documentation <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/sizes">Sizes for virtual machines in Azure</a>.</dd>
+  </dl>
+
+**Verification**
+
+- On the Microsoft Azure portal, review the **Networking** settings page for a machine provisioned by the machine set, and verify that the `Accelerated networking` field is set to `Enabled`.
+
+**Additional resources**
+
+- [Updating the control plane configuration](/docs/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
+- [Control plane configuration options for Microsoft Azure](/docs/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-azure#cpmso-config-options-azure)

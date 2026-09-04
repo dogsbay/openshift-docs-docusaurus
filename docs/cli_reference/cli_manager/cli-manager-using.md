@@ -1,0 +1,140 @@
+---
+title: Using the CLI Manager Operator
+sidebar_position: 4
+---
+
+# Using the CLI Manager Operator {#cli-manager-using}
+
+<a id="cli-manager-using"></a>
+
+To install, update, and uninstall CLI plugins in OpenShift Container Platform, you can set up and configure the CLI Manager Operator.
+
+:::warning
+
+Using the CLI Manager Operator to install and manage plugins for the OpenShift CLI is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+
+For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+
+:::
+
+## Installing CLI plugins with the CLI Manager Operator {#cli-manager-adding-plugins_cli-manager-using}
+
+You can install CLI plugins with the CLI Manager Operator to extend OpenShift CLI functionality in both connected and disconnected environments.
+
+**Prerequisites**
+
+- You have installed Krew by following the [installation procedure](https://krew.sigs.k8s.io/docs/user-guide/setup/install/) in the Krew documentation.
+- The CLI Manager Operator is installed.
+- The CLI Manager Operator custom index has been added to Krew.
+- You are using OpenShift Container Platform 4.17 or later.
+
+**Procedure**
+
+1. To list all available plugins, run the following command:
+   ```terminal
+   $ oc krew search
+   ```
+2. To get information about a plugin, run the following command:
+   ```terminal
+   $ oc krew info <plugin_name>
+   ```
+3. To install a plugin, run the following command:
+   ```terminal
+   $ oc krew install <plugin_name>
+   ```
+4. To list all plugins that were installed by Krew, run the following command:
+   ```terminal
+   $ oc krew list
+   ```
+
+## Upgrading a plugin with the CLI Manager Operator {#cli-manager-upgrading-plugin-yamls_cli-manager-using}
+
+You can upgrade a CLI plugin to a newer version with the CLI Manager Operator by directly editing the plugin’s resource YAML file.
+
+**Prerequisites**
+
+- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.
+- The CLI Manager Operator is installed.
+- The plugin you are upgrading is installed.
+
+**Procedure**
+
+1. Using the CLI, enter the following command:
+   ```terminal
+   oc edit plugin/<plugin_name>
+   ```
+2. Edit the YAML file to include the new specifications for your plugin.
+   ```yaml title="Example YAML file to upgrade a plugin"
+   apiVersion: config.openshift.io/v1alpha1
+   kind: Plugin
+   metadata:
+     name: <plugin_name> (1)
+   spec:
+     description: <description_of_plugin>
+     homepage: <plugin_homepage>
+     platforms:
+     - bin: (2)
+       files:
+       - from: <plugin_file_path>
+         to: .
+       image: <plugin_image>
+       imagePullSecret: (3)
+       platform: <platform> (4)
+     shortDescription: <short_description_of_plugin>
+     version: <version> (5)
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>&lt;plugin_name&gt;</code></dt>
+   <dd>Specifies the name of the plugin you plan to use in commands.</dd>
+   <dt><code>bin</code></dt>
+   <dd>Specifies the path to the plugin executable.</dd>
+   <dt><code>imagePullSecret</code></dt>
+   <dd>Optional field if the registry is not public to add a pull secret to access your plugin image.</dd>
+   <dt><code>&lt;platform&gt;</code></dt>
+   <dd>Add the architecture for your system; for example, <code>linux/amd64</code>, <code>darwin/arm64</code>, <code>windows/amd64</code>, or another architecture.</dd>
+   <dt><code>&lt;version&gt;</code></dt>
+   <dd>The version must be in v0.0.0 format.</dd>
+   </dl>
+3. Save the file.
+
+## Updating CLI plugins with the CLI Manager Operator {#cli-manager-updating-plugin_cli-manager-using}
+
+You can update a plugin that was installed for the OpenShift CLI (`oc`) with the CLI Manager Operator and Krew to keep your plugins current with the latest features.
+
+**Prerequisites**
+
+- You have installed Krew by following the [installation procedure](https://krew.sigs.k8s.io/docs/user-guide/setup/install/) in the Krew documentation.
+- The CLI Manager Operator is installed.
+- The custom index has been added to Krew by the cluster administrator.
+- The plugin updates have been added to the CLI Manager Operator by the cluster administrator.
+- The plugin you are updating is already installed.
+
+**Procedure**
+
+- To update a single plugin, run the following command:
+  ```terminal
+  $ oc krew upgrade <plugin_name>
+  ```
+- To update all plugins that were installed by Krew, run the following command:
+  ```terminal
+  $ oc krew upgrade
+  ```
+
+## Uninstalling a CLI plugin with the CLI Manager Operator {#cli-manager-remove-plugin_cli-manager-using}
+
+You can uninstall a plugin that was installed for the OpenShift CLI (`oc`) with the CLI Manager Operator.
+
+**Prerequisites**
+
+- You have installed Krew by following the [installation procedure](https://krew.sigs.k8s.io/docs/user-guide/setup/install/) in the Krew documentation.
+- You have installed a plugin for the OpenShift CLI with the CLI Manager Operator.
+
+**Procedure**
+
+- To uninstall a plugin, run the following command:
+  ```terminal
+  $ oc krew uninstall <plugin_name>
+  ```

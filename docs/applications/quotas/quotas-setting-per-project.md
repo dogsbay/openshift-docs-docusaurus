@@ -1,0 +1,747 @@
+---
+title: Resource quotas per project
+sidebar_position: 1
+---
+
+# Resource quotas per project {#quotas-setting-per-project}
+
+<a id="quotas-setting-per-project"></a>
+
+A resource quota, defined by a `ResourceQuota` object, limits aggregate resource consumption per project. It limits the quantity of objects that you can create in a project by type, and the total amount of compute resources and storage consumed by the resources in that project.
+
+This guide describes how resource quotas work, how cluster administrators can set and manage resource quotas on a per project basis, and how developers and cluster administrators can view them.
+
+## Resources managed by quotas {#quotas-resources-managed_quotas-setting-per-project}
+
+Review the specific compute resources, storage resources, and object counts that you can manage with a project quota.
+
+:::note
+
+A pod is in a terminal state if `status.phase in (Failed, Succeeded)` is true.
+
+:::
+
+**Compute resources managed by quota**
+
+<table>
+<thead>
+<tr>
+  <th>Resource Name</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>cpu</code></td>
+  <td>The sum of CPU requests across all pods in a non-terminal state cannot exceed this value. <code>cpu</code> and <code>requests.cpu</code> are the same value and can be used interchangeably.</td>
+</tr>
+<tr>
+  <td><code>memory</code></td>
+  <td>The sum of memory requests across all pods in a non-terminal state cannot exceed this value. <code>memory</code> and <code>requests.memory</code> are the same value and can be used interchangeably.</td>
+</tr>
+<tr>
+  <td><code>requests.cpu</code></td>
+  <td>The sum of CPU requests across all pods in a non-terminal state cannot exceed this value. <code>cpu</code> and <code>requests.cpu</code> are the same value and can be used interchangeably.</td>
+</tr>
+<tr>
+  <td><code>requests.memory</code></td>
+  <td>The sum of memory requests across all pods in a non-terminal state cannot exceed this value. <code>memory</code> and <code>requests.memory</code> are the same value and can be used interchangeably.</td>
+</tr>
+<tr>
+  <td><code>limits.cpu</code></td>
+  <td>The sum of CPU limits across all pods in a non-terminal state cannot exceed this value.</td>
+</tr>
+<tr>
+  <td><code>limits.memory</code></td>
+  <td>The sum of memory limits across all pods in a non-terminal state cannot exceed this value.</td>
+</tr>
+</tbody>
+</table>
+
+**Storage resources managed by quota**
+
+<table>
+<thead>
+<tr>
+  <th>Resource Name</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>requests.storage</code></td>
+  <td>The sum of storage requests across all persistent volume claims in any state cannot exceed this value.</td>
+</tr>
+<tr>
+  <td><code>persistentvolumeclaims</code></td>
+  <td>The total number of persistent volume claims that can exist in the project.</td>
+</tr>
+<tr>
+  <td><code>&lt;storage-class-name&gt;.storageclass.storage.k8s.io/requests.storage</code></td>
+  <td>The sum of storage requests across all persistent volume claims in any state that have a matching storage class, cannot exceed this value.</td>
+</tr>
+<tr>
+  <td><code>&lt;storage-class-name&gt;.storageclass.storage.k8s.io/persistentvolumeclaims</code></td>
+  <td>The total number of persistent volume claims with a matching storage class that can exist in the project.</td>
+</tr>
+<tr>
+  <td><code>ephemeral-storage</code></td>
+  <td>The sum of local ephemeral storage requests across all pods in a non-terminal state cannot exceed this value. <code>ephemeral-storage</code> and <code>requests.ephemeral-storage</code> are the same value and can be used interchangeably.</td>
+</tr>
+<tr>
+  <td><code>requests.ephemeral-storage</code></td>
+  <td>The sum of ephemeral storage requests across all pods in a non-terminal state cannot exceed this value. <code>ephemeral-storage</code> and <code>requests.ephemeral-storage</code> are the same value and can be used interchangeably.</td>
+</tr>
+<tr>
+  <td><code>limits.ephemeral-storage</code></td>
+  <td>The sum of ephemeral storage limits across all pods in a non-terminal state cannot exceed this value.</td>
+</tr>
+</tbody>
+</table>
+
+<a name="quotas-object-counts-managed_quotas-setting-per-project"></a>
+
+**Object counts managed by quota**
+
+<table>
+<thead>
+<tr>
+  <th>Resource Name</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>pods</code></td>
+  <td>The total number of pods in a non-terminal state that can exist in the project.</td>
+</tr>
+<tr>
+  <td><code>replicationcontrollers</code></td>
+  <td>The total number of ReplicationControllers that can exist in the project.</td>
+</tr>
+<tr>
+  <td><code>resourcequotas</code></td>
+  <td>The total number of resource quotas that can exist in the project.</td>
+</tr>
+<tr>
+  <td><code>services</code></td>
+  <td>The total number of services that can exist in the project.</td>
+</tr>
+<tr>
+  <td><code>services.loadbalancers</code></td>
+  <td>The total number of services of type <code>LoadBalancer</code> that can exist in the project.</td>
+</tr>
+<tr>
+  <td><code>services.nodeports</code></td>
+  <td>The total number of services of type <code>NodePort</code> that can exist in the project.</td>
+</tr>
+<tr>
+  <td><code>secrets</code></td>
+  <td>The total number of secrets that can exist in the project.</td>
+</tr>
+<tr>
+  <td><code>configmaps</code></td>
+  <td>The total number of <code>ConfigMap</code> objects that can exist in the project.</td>
+</tr>
+<tr>
+  <td><code>persistentvolumeclaims</code></td>
+  <td>The total number of persistent volume claims that can exist in the project.</td>
+</tr>
+<tr>
+  <td><code>openshift.io/imagestreams</code></td>
+  <td>The total number of imagestreams that can exist in the project.</td>
+</tr>
+</tbody>
+</table>
+
+## Quota scopes {#quotas-scopes_quotas-setting-per-project}
+
+Measure resource usage with a quota, and add scopes to restrict the allowed set of target resources to prevent validation errors.
+
+Each quota can have an associated set of *scopes*. A quota only measures usage for a resource if it matches the intersection of enumerated scopes.
+
+| Scope | Description |
+| --- | --- |
+| `BestEffort` | Match pods that have best effort quality of service for either `cpu` or `memory`. |
+| `NotBestEffort` | Match pods that do not have best effort quality of service for `cpu` and `memory`. |
+
+A `BestEffort` scope restricts a quota to limiting the following resources:
+
+- `pods`
+
+A `NotBestEffort` scope restricts a quota to tracking the following resources:
+
+- `pods`
+- `memory`
+- `requests.memory`
+- `limits.memory`
+- `cpu`
+- `requests.cpu`
+- `limits.cpu`
+
+## Quota enforcement {#quota-enforcement_quotas-setting-per-project}
+
+Track project resource usage, such as compute and storage, and automatically deny modifications that exceed defined limits to prevent quota violations.
+
+After a resource quota for a project is first created, the project restricts the ability to create any new resources that may violate a quota constraint until it has calculated updated usage statistics.
+
+After a quota is created and usage statistics are updated, the project accepts the creation of new content. When you create or modify resources, your quota usage is incremented immediately upon the request to create or modify the resource.
+
+When you delete a resource, your quota use is decremented during the next full recalculation of quota statistics for the project. A configurable amount of time determines how long it takes to reduce quota usage statistics to their current observed system value.
+
+If project modifications exceed a quota usage limit, the server denies the action, and an appropriate error message is returned to the user explaining the quota constraint violated, and what their currently observed usage statistics are in the system.
+
+## Requests versus limits {#quotas-requests-vs-limits_quotas-setting-per-project}
+
+To manage cluster capacity, use a project quota to restrict container compute resources. When you configure CPU and memory quotas, incoming containers can explicitly request or limit resources to ensure stable performance.
+
+If the quota has a value specified for `requests.cpu` or `requests.memory`, then it requires that every incoming container make an explicit request for those resources. If the quota has a value specified for `limits.cpu` or `limits.memory`, then it requires that every incoming container specify an explicit limit for those resources.
+
+## Sample resource quota definitions {#quotas-sample-resource-quota-definitions_quotas-setting-per-project}
+
+View sample YAML definitions for resource quotas, including specifications for object counts, compute resources, QoS scopes, and storage classes, to configure custom quota manifests for your project.
+
+```yaml title="core-object-counts.yaml"
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: core-object-counts
+spec:
+  hard:
+    configmaps: "10"
+    persistentvolumeclaims: "4"
+    replicationcontrollers: "20"
+    secrets: "10"
+    services: "10"
+    services.loadbalancers: "2"
+```
+
+where:
+
+`spec.hard.configmaps`
+: The total number of `ConfigMap` objects that can exist in the project.
+
+`spec.hard.persistentvolumeclaims`
+: The total number of persistent volume claims (PVCs) that can exist in the project.
+
+`spec.hard.replicationcontrollers`
+: The total number of replication controllers that can exist in the project.
+
+`spec.hard.secrets`
+: The total number of secrets that can exist in the project.
+
+`spec.hard.services`
+: The total number of services that can exist in the project.
+
+`spec.hard.services.loadbalancers`
+: The total number of services of type `LoadBalancer` that can exist in the project.
+
+```yaml title="openshift-object-counts.yaml"
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: openshift-object-counts
+spec:
+  hard:
+    openshift.io/imagestreams: "10"
+```
+
+where:
+
+`spec.hard.openshift.io/imagestreams`
+: The total number of image streams that can exist in the project.
+
+```yaml title="compute-resources.yaml"
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-resources
+spec:
+  hard:
+    pods: "4"
+    requests.cpu: "1"
+    requests.memory: 1Gi
+    limits.cpu: "2"
+    limits.memory: 2Gi
+```
+
+where:
+
+`spec.hard.pods`
+: The total number of pods in a non-terminal state that can exist in the project.
+
+`spec.hard.requests.cpu`
+: Across all pods in a non-terminal state, the sum of CPU requests cannot exceed 1 core.
+
+`spec.hard.requests.memory`
+: Across all pods in a non-terminal state, the sum of memory requests cannot exceed 1Gi.
+
+`spec.hard.limits.cpu`
+: Across all pods in a non-terminal state, the sum of CPU limits cannot exceed 2 cores.
+
+`spec.hard.limits.memory`
+: Across all pods in a non-terminal state, the sum of memory limits cannot exceed 2Gi.
+
+```yaml title="besteffort.yaml"
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: besteffort
+spec:
+  hard:
+    pods: "1"
+  scopes:
+  - BestEffort
+```
+
+where:
+
+`spec.hard.pods`
+: The total number of pods in a non-terminal state with `BestEffort` quality of service that can exist in the project.
+
+`spec.scopes`
+: Restricts the quota to only matching pods that have `BestEffort` quality of service for either memory or CPU.
+
+```yaml title="compute-resources-long-running.yaml"
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-resources-long-running
+spec:
+  hard:
+    pods: "4"
+    limits.cpu: "4"
+    limits.memory: "2Gi"
+  scopes:
+  - NotTerminating
+```
+
+where:
+
+`spec.hard.pods`
+: The total number of pods in a non-terminal state.
+
+`spec.hard.limits.cpu`
+: Across all pods in a non-terminal state, the sum of CPU limits cannot exceed this value.
+
+`spec.hard.limits.memory`
+: Across all pods in a non-terminal state, the sum of memory limits cannot exceed this value.
+
+`spec.scopes`
+: Restricts the quota to only matching pods where `spec.activeDeadlineSeconds` is set to `nil`. Build pods fall under `NotTerminating` unless the `RestartNever` policy is applied.
+
+```yaml title="compute-resources-time-bound.yaml"
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-resources-time-bound
+spec:
+  hard:
+    pods: "2"
+    limits.cpu: "1"
+    limits.memory: "1Gi"
+  scopes:
+  - Terminating
+```
+
+where:
+
+`spec.hard.pods`
+: The total number of pods in a terminating state.
+
+`spec.hard.limits.cpu`
+: Across all pods in a terminating state, the sum of CPU limits cannot exceed this value.
+
+`spec.hard.limits.memory`
+: Across all pods in a terminating state, the sum of memory limits cannot exceed this value.
+
+`spec.scopes`
+: Restricts the quota to only matching pods where `spec.activeDeadlineSeconds >=0`. For example, this quota charges for build or deployer pods, but not long running pods like a web server or database.
+
+```yaml title="storage-consumption.yaml"
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: storage-consumption
+spec:
+  hard:
+    persistentvolumeclaims: "10"
+    requests.storage: "50Gi"
+    gold.storageclass.storage.k8s.io/requests.storage: "10Gi"
+    silver.storageclass.storage.k8s.io/requests.storage: "20Gi"
+    silver.storageclass.storage.k8s.io/persistentvolumeclaims: "5"
+    bronze.storageclass.storage.k8s.io/requests.storage: "0"
+    bronze.storageclass.storage.k8s.io/persistentvolumeclaims: "0"
+    requests.ephemeral-storage: 2Gi
+    limits.ephemeral-storage: 4Gi
+```
+
+where:
+
+`spec.hard.persistentvolumeclaims`
+: The total number of persistent volume claims in a project.
+
+`spec.hard.requests.storage`
+: Across all persistent volume claims in a project, the sum of storage requested cannot exceed this value.
+
+`spec.hard.gold.storageclass.storage.k8s.io/requests.storage`
+: Across all persistent volume claims in a project, the sum of storage requested in the gold storage class cannot exceed this value.
+
+`spec.hard.silver.storageclass.storage.k8s.io/requests.storage`
+: Across all persistent volume claims in a project, the sum of storage requested in the silver storage class cannot exceed this value.
+
+`spec.hard.silver.storageclass.storage.k8s.io/persistentvolumeclaims`
+: Across all persistent volume claims in a project, the total number of claims in the silver storage class cannot exceed this value.
+
+`spec.hard.bronze.storageclass.storage.k8s.io/requests.storage`
+: Across all persistent volume claims in a project, the sum of storage requested in the bronze storage class cannot exceed this value. When this is set to `0`, it means bronze storage class cannot request storage.
+
+`spec.hard.bronze.storageclass.storage.k8s.io/persistentvolumeclaims`
+: Across all persistent volume claims in a project, the sum of storage requested in the bronze storage class cannot exceed this value. When this is set to `0`, it means bronze storage class cannot create claims.
+
+`spec.hard.requests.ephemeral-storage`
+: Across all pods in a non-terminal state, the sum of ephemeral storage requests cannot exceed 2Gi.
+
+`spec.hard.limits.ephemeral-storage`
+: Across all pods in a non-terminal state, the sum of ephemeral storage limits cannot exceed 4Gi.
+
+## Creating a quota {#quotas-creating-a-quota_quotas-setting-per-project}
+
+Create a defined quota in the project to limit resource consumption and object counts, preventing cluster resource exhaustion.
+
+**Procedure**
+
+1. Define the quota in a file.
+2. Use the file to create the quota and apply it to a project:
+   ```terminal
+   $ oc create -f <file> [-n <project_name>]
+   ```
+
+   For example:
+
+   ```terminal
+   $ oc create -f core-object-counts.yaml -n demoproject
+   ```
+
+### Creating object count quotas {#quota-creating-object-count-quotas_quotas-setting-per-project}
+
+Restrict resource consumption and standard object creation in a project by creating an object count quota for standard namespaced resource types.
+
+You can create an object count quota for all standard namespaced resource types on OpenShift Container Platform, such as `BuildConfig` and `DeploymentConfig` objects.
+
+When using a resource quota, an object is charged against the quota upon creation. These types of quotas are useful to protect against exhaustion of resources. The quota can only be created if there are enough spare resources within the project.
+
+**Procedure**
+
+1. To configure an object count quota for a resource, run the following command:
+   ```terminal
+   $ oc create quota <name> \
+       --hard=count/<resource>.<group>=<quota>,count/<resource>.<group>=<quota>
+   ```
+
+   where:
+
+   **`<resource>`**
+
+   Specifies the name of the resource
+
+   **`<group>`**
+
+   Specifies the API group, if applicable. Use the `oc api-resources` command for a list of resources and their associated API groups.
+
+   For example:
+
+   ```terminal
+   $ oc create quota test \
+       --hard=count/deployments.apps=2,count/replicasets.apps=4,count/pods=3,count/secrets=4
+   ```
+
+   The following is an example output:
+
+   ```terminal
+   resourcequota "test" created
+   ```
+
+   This example limits the listed resources to the hard limit in each project in the cluster.
+2. Verify that the quota was created:
+   ```terminal
+   $ oc describe quota test
+   ```
+
+   ```terminal title="Example output"
+   Name:                         test
+   Namespace:                    quota
+   Resource                      Used  Hard
+   --------                      ----  ----
+   count/deployments.apps        0     2
+   count/pods                    0     3
+   count/replicasets.apps        0     4
+   count/secrets                 0     4
+   ```
+
+### Setting resource quota for extended resources {#setting-resource-quota-for-extended-resources_quotas-setting-per-project}
+
+Configure extended resources, such as GPUs, in a resource quota file and apply it to a project to enforce strict capacity limits and prevent pods from exceeding available capacity.
+
+Overcommitment of resources is not allowed for extended resources, so you must specify `requests` and `limits` for the same extended resource in a quota. Currently, only quota items with the prefix `requests.` is allowed for extended resources. The following is an example scenario of how to set resource quota for the GPU resource `nvidia.com/gpu`.
+
+**Procedure**
+
+1. Determine how many GPUs are available on a node in your cluster. For example:
+   ```terminal
+   # oc describe node ip-172-31-27-209.us-west-2.compute.internal | egrep 'Capacity|Allocatable|gpu'
+   ```
+
+   ```terminal title="Example output"
+                       openshift.com/gpu-accelerator=true
+   Capacity:
+    nvidia.com/gpu:  2
+   Allocatable:
+    nvidia.com/gpu:  2
+     nvidia.com/gpu  0           0
+   ```
+
+   In this example, 2 GPUs are available.
+2. Create a `ResourceQuota` object to set a quota in the namespace `nvidia`. In this example, the quota is `1`:
+   ```terminal title="Example output"
+   apiVersion: v1
+   kind: ResourceQuota
+   metadata:
+     name: gpu-quota
+     namespace: nvidia
+   spec:
+     hard:
+       requests.nvidia.com/gpu: 1
+   ```
+3. Create the quota:
+   ```terminal
+   # oc create -f gpu-quota.yaml
+   ```
+
+   ```terminal title="Example output"
+   resourcequota/gpu-quota created
+   ```
+4. Verify that the namespace has the correct quota set:
+   ```terminal
+   # oc describe quota gpu-quota -n nvidia
+   ```
+
+   ```terminal title="Example output"
+   Name:                    gpu-quota
+   Namespace:               nvidia
+   Resource                 Used  Hard
+   --------                 ----  ----
+   requests.nvidia.com/gpu  0     1
+   ```
+5. Define a pod that asks for a single GPU. The following example definition file is called `gpu-pod.yaml`:
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     generateName: gpu-pod-
+     namespace: nvidia
+   spec:
+     restartPolicy: OnFailure
+     containers:
+     - name: rhel7-gpu-pod
+       image: rhel7
+       env:
+         - name: NVIDIA_VISIBLE_DEVICES
+           value: all
+         - name: NVIDIA_DRIVER_CAPABILITIES
+           value: "compute,utility"
+         - name: NVIDIA_REQUIRE_CUDA
+           value: "cuda>=5.0"
+       command: ["sleep"]
+       args: ["infinity"]
+       resources:
+         limits:
+           nvidia.com/gpu: 1
+   ```
+6. Create the pod:
+   ```terminal
+   # oc create -f gpu-pod.yaml
+   ```
+7. Verify that the pod is running:
+   ```terminal
+   # oc get pods
+   ```
+
+   ```terminal title="Example output"
+   NAME              READY     STATUS      RESTARTS   AGE
+   gpu-pod-s46h7     1/1       Running     0          1m
+   ```
+8. Verify that the quota `Used` counter is correct:
+   ```terminal
+   # oc describe quota gpu-quota -n nvidia
+   ```
+
+   ```terminal title="Example output"
+   Name:                    gpu-quota
+   Namespace:               nvidia
+   Resource                 Used  Hard
+   --------                 ----  ----
+   requests.nvidia.com/gpu  1     1
+   ```
+9. Attempt to create a second GPU pod in the `nvidia` namespace. This is technically available on the node because it has 2 GPUs:
+   ```terminal
+   # oc create -f gpu-pod.yaml
+   ```
+
+   ```terminal title="Example output"
+   Error from server (Forbidden): error when creating "gpu-pod.yaml": pods "gpu-pod-f7z2w" is forbidden: exceeded quota: gpu-quota, requested: requests.nvidia.com/gpu=1, used: requests.nvidia.com/gpu=1, limited: requests.nvidia.com/gpu=1
+   ```
+
+   This **Forbidden** error message is expected because you have a quota of 1 GPU and this pod tried to allocate a second GPU, which exceeds its quota.
+
+## Viewing a quota {#quota-viewing-quotas_quotas-setting-per-project}
+
+View the usage statistics for the hard limits defined in a project quota to monitor resource consumption and plan cluster capacity.
+
+You can view quota usage statistics on the project’s **Quota** page in the web console or by using the CLI.
+
+**Procedure**
+
+1. Get the list of quotas defined in the project. For example, for a project called `demoproject`:
+   ```terminal
+   $ oc get quota -n demoproject
+   ```
+
+   ```terminal title="Example output"
+   NAME                           AGE    REQUEST                                                                                                      LIMIT
+   besteffort                     4s     pods: 1/2
+   compute-resources-time-bound   10m    pods: 0/2                                                                                                    limits.cpu: 0/1, limits.memory: 0/1Gi
+   core-object-counts             109s   configmaps: 2/10, persistentvolumeclaims: 1/4, replicationcontrollers: 1/20, secrets: 9/10, services: 2/10
+   ```
+2. Describe the quota you are interested in, for example the `core-object-counts` quota:
+   ```terminal
+   $ oc describe quota core-object-counts -n demoproject
+   ```
+
+   ```terminal title="Example output"
+   Name:			core-object-counts
+   Namespace:		demoproject
+   Resource		Used	Hard
+   --------		----	----
+   configmaps		3	10
+   persistentvolumeclaims	0	4
+   replicationcontrollers	3	20
+   secrets			9	10
+   services		2	10
+   ```
+
+## Configuring explicit resource quotas {#configuring-explicit-resource-quotas_quotas-setting-per-project}
+
+Configure explicit resource quotas in a project request template to apply specific resource quotas in new projects.
+
+**Prerequisites**
+
+- Access to the cluster as a user with the cluster-admin role.
+- Install the OpenShift CLI (`oc`).
+
+**Procedure**
+
+1. Add a resource quota definition to a project request template:
+   - If a project request template does not exist in a cluster:
+     1. Create a bootstrap project template and output it to a file called `template.yaml`:
+        ```terminal
+        $ oc adm create-bootstrap-project-template -o yaml > template.yaml
+        ```
+     2. Add a resource quota definition to `template.yaml`. The following example defines a resource quota named 'storage-consumption'. The definition must be added before the `parameters:` section in the template:
+        ```yaml
+        - apiVersion: v1
+          kind: ResourceQuota
+          metadata:
+            name: storage-consumption
+            namespace: ${PROJECT_NAME}
+          spec:
+            hard:
+              persistentvolumeclaims: "10"
+              requests.storage: "50Gi"
+              gold.storageclass.storage.k8s.io/requests.storage: "10Gi"
+              silver.storageclass.storage.k8s.io/requests.storage: "20Gi"
+              silver.storageclass.storage.k8s.io/persistentvolumeclaims: "5"
+              bronze.storageclass.storage.k8s.io/requests.storage: "0"
+              bronze.storageclass.storage.k8s.io/persistentvolumeclaims: "0"
+        ```
+
+        where:
+
+        <dl>
+        <dt><code>spec.hard.persistentvolumeclaims</code></dt>
+        <dd>The total number of persistent volume claims in a project.</dd>
+        <dt><code>spec.hard.requests.storage</code></dt>
+        <dd>Across all persistent volume claims in a project, the sum of storage requested cannot exceed this value.</dd>
+        <dt><code>spec.hard.gold.storageclass.storage.k8s.io/requests.storage</code></dt>
+        <dd>Across all persistent volume claims in a project, the sum of storage requested in the gold storage class cannot exceed this value.</dd>
+        <dt><code>spec.hard.silver.storageclass.storage.k8s.io/requests.storage</code></dt>
+        <dd>Across all persistent volume claims in a project, the sum of storage requested in the silver storage class cannot exceed this value.</dd>
+        <dt><code>spec.hard.silver.storageclass.storage.k8s.io/persistentvolumeclaims</code></dt>
+        <dd>Across all persistent volume claims in a project, the total number of claims in the silver storage class cannot exceed this value.</dd>
+        <dt><code>spec.hard.bronze.storageclass.storage.k8s.io/requests.storage</code></dt>
+        <dd>Across all persistent volume claims in a project, the sum of storage requested in the bronze storage class cannot exceed this value. When this value is set to <code>0</code>, the bronze storage class cannot request storage.</dd>
+        <dt><code>spec.hard.bronze.storageclass.storage.k8s.io/persistentvolumeclaims</code></dt>
+        <dd>Across all persistent volume claims in a project, the sum of storage requested in the bronze storage class cannot exceed this value. When this value is set to <code>0</code>, the bronze storage class cannot create claims.</dd>
+        </dl>
+     3. Create a project request template from the modified `template.yaml` file in the `openshift-config` namespace:
+        ```terminal
+        $ oc create -f template.yaml -n openshift-config
+        ```
+
+        :::note
+
+        To include the configuration as a `kubectl.kubernetes.io/last-applied-configuration` annotation, add the `--save-config` option to the `oc create` command.
+
+        :::
+
+        By default, the template is called `project-request`.
+   - If a project request template already exists within a cluster:
+     :::note
+
+     If you declaratively or imperatively manage objects within your cluster by using configuration files, edit the existing project request template through those files instead.
+
+     :::
+
+     1. List templates in the `openshift-config` namespace:
+        ```terminal
+        $ oc get templates -n openshift-config
+        ```
+     2. Edit an existing project request template:
+        ```terminal
+        $ oc edit template <project_request_template> -n openshift-config
+        ```
+     3. Add a resource quota definition, such as the preceding `storage-consumption` example, into the existing template. The definition must be added before the `parameters:` section in the template.
+2. If you created a project request template, reference it in the cluster’s project configuration resource:
+   1. Access the project configuration resource for editing:
+      - By using the web console:
+        1. Navigate to the **Administration** → **Cluster Settings** page.
+        2. Click **Configuration** to view all configuration resources.
+        3. Find the entry for **Project** and click **Edit YAML**.
+      - By using the CLI:
+        1. Edit the `project.config.openshift.io/cluster` resource:
+           ```terminal
+           $ oc edit project.config.openshift.io/cluster
+           ```
+   2. Update the `spec` section of the project configuration resource to include the `projectRequestTemplate` and `name` parameters. The following example references the default project request template name `project-request`:
+      ```yaml
+      apiVersion: config.openshift.io/v1
+      kind: Project
+      metadata:
+      #  ...
+      spec:
+        projectRequestTemplate:
+          name: project-request
+      ```
+3. Verify that the resource quota is applied when projects are created:
+   1. Create a project:
+      ```terminal
+      $ oc new-project <project_name>
+      ```
+   2. List the project’s resource quotas:
+      ```terminal
+      $ oc get resourcequotas
+      ```
+   3. Describe the resource quota in detail:
+      ```terminal
+      $ oc describe resourcequotas <resource_quota_name>
+      ```
