@@ -43,7 +43,7 @@ To complete a restricted network installation, you must create a registry that m
 
 :::warning
 
-Because of the complexity of the configuration for user-provisioned installations, consider completing a standard user-provisioned infrastructure installation before you attempt a restricted network installation using user-provisioned infrastructure. Completing this test installation might make it easier to isolate and troubleshoot any issues that might arise during your installation in a restricted network.
+Because of the complexity of the configuration for user-provisioned installations, consider completing a standard user-provisioned infrastructure installation before you try a restricted network installation using user-provisioned infrastructure. Completing this test installation might make it easier to isolate and troubleshoot any issues that might arise during your installation in a restricted network.
 
 :::
 
@@ -1217,7 +1217,7 @@ You must use a local key, not one that you configured with platform-specific app
    $ ssh-add <path>/<file_name>
    ```
 
-   Specifies the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`
+   Specify the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`.
 
    ```terminal title="Example output"
    Identity added: /home/<you>/<path>/<file_name> (<computer_name>)
@@ -3702,7 +3702,7 @@ The OpenShift Container Platform bootstrap process begins after the cluster node
    INFO It is now safe to remove the bootstrap resources
    ```
 
-   The command succeeds when the Kubernetes API server signals that it has been bootstrapped on the control plane machines.
+   The bootstrapping completion wait time varies per platform. The command succeeds when the Kubernetes API server signals that it has been bootstrapped on the control plane machines.
 2. After the bootstrap process is complete, remove the bootstrap machine from the load balancer.
    :::warning
 

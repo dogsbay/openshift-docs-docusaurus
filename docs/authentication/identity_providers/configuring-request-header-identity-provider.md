@@ -7,7 +7,7 @@ sidebar_position: 5
 
 <a id="configuring-request-header-identity-provider"></a>
 
-Configure the `request-header` identity provider to identify users from request header values, such as `X-Remote-User`. It is typically used in combination with an authenticating proxy, which sets the request header value.
+Configure the `request-header` identity provider to identify users from request header values, such as `X-Remote-User`. Use this provider when an authenticating proxy validates users and sets those headers for OpenShift Container Platform.
 
 ## Identity providers in OpenShift Container Platform {#identity-provider-overview_configuring-request-header-identity-provider}
 
@@ -21,23 +21,25 @@ OpenShift Container Platform usernames containing `/`, `:`, and `%` are not supp
 
 ## About request header authentication {#identity-provider-about-request-header_configuring-request-header-identity-provider}
 
-A request header identity provider identifies users from request header values, such as `X-Remote-User`. It is typically used in combination with an authenticating proxy, which sets the request header value. The request header identity provider cannot be combined with other identity providers that use direct password logins, such as htpasswd, Keystone, LDAP or basic authentication.
+Request header authentication identifies users from header values such as `X-Remote-User`. An authenticating proxy with mutual TLS (mTLS) validates users and sets the identity header for OpenShift Container Platform.
+
+The request header identity provider is typically used in combination with an authenticating proxy, which sets the request header value. This identity provider cannot be combined with other identity providers that use direct password logins, such as htpasswd, Keystone, LDAP or basic authentication.
 
 :::note
 
-You can also use the request header identity provider for advanced configurations such as the community-supported [SAML authentication](https://github.com/openshift/request-header-saml-service-provider). Note that this solution is not supported by Red Hat.
+You can also use the request header identity provider for advanced configurations such as the community-supported SAML application. This solution is not supported by Red Hat.
 
 :::
 
-For users to authenticate using this identity provider, they must access `https://_<namespace_route>_/oauth/authorize` (and subpaths) via an authenticating proxy. To accomplish this, configure the OAuth server to redirect unauthenticated requests for OAuth tokens to the proxy endpoint that proxies to `https://_<namespace_route>_/oauth/authorize`.
+For users to authenticate using this identity provider, they must access `https://_<namespace_route>_/oauth/authorize` and subpaths of that endpoint through an authenticating proxy. To accomplish this, configure the OAuth server to redirect unauthenticated requests for OAuth tokens to the proxy endpoint that proxies to `https://_<namespace_route>_/oauth/authorize`.
 
 To redirect unauthenticated requests from clients expecting browser-based login flows:
 
-- Set the `provider.loginURL` parameter to the authenticating proxy URL that will authenticate interactive clients and then proxy the request to `https://_<namespace_route>_/oauth/authorize`.
+- Set the `provider.loginURL` parameter to the authenticating proxy URL that authenticates interactive clients and then proxies the request to `https://_<namespace_route>_/oauth/authorize`.
 
 To redirect unauthenticated requests from clients expecting `WWW-Authenticate` challenges:
 
-- Set the `provider.challengeURL` parameter to the authenticating proxy URL that will authenticate clients expecting `WWW-Authenticate` challenges and then proxy the request to `https://_<namespace_route>_/oauth/authorize`.
+- Set the `provider.challengeURL` parameter to the authenticating proxy URL that authenticates clients expecting `WWW-Authenticate` challenges and then proxy the request to `https://_<namespace_route>_/oauth/authorize`.
 
 The `provider.challengeURL` and `provider.loginURL` parameters can include the following tokens in the query portion of the URL:
 
@@ -48,29 +50,29 @@ The `provider.challengeURL` and `provider.loginURL` parameters can include the f
 
   :::warning
 
-  As of OpenShift Container Platform 4.1, your proxy must support mutual TLS.
+  As of OpenShift Container Platform 4.1, your proxy must support mTLS.
 
   :::
 
-### SSPI connection support on Microsoft Windows {#sspi-windows_configuring-request-header-identity-provider}
+### Security Support Provider Interface connection support on Microsoft Windows {#sspi-windows_configuring-request-header-identity-provider}
 
 :::warning
 
-Using SSPI connection support on Microsoft Windows is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+Using Security Support Provider Interface connection support on Microsoft Windows is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
 
 For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
 :::
 
-The OpenShift CLI (`oc`) supports the Security Support Provider Interface (SSPI) to allow for SSO flows on Microsft Windows. If you use the request header identity provider with a GSSAPI-enabled proxy to connect an Active Directory server to OpenShift Container Platform, users can automatically authenticate to OpenShift Container Platform by using the `oc`  command line interface from a domain-joined Microsoft Windows computer.
+The Security Support Provider Interface (SSPI) enables the OpenShift CLI (`oc`) to support SSO flows on Microsoft Windows. If you use the request header identity provider with a GSSAPI-enabled proxy to connect an Active Directory server to OpenShift Container Platform, users can automatically authenticate to OpenShift Container Platform by using the `oc` command line interface from a domain-joined Microsoft Windows computer.
 
-## Creating a 'ConfigMap' {#identity-provider-creating-configmap_configuring-request-header-identity-provider}
+## Creating a ConfigMap {#identity-provider-creating-configmap_configuring-request-header-identity-provider}
 
-Create a `ConfigMap` object in the `openshift-config` namespace to store the certificate authority bundle that identity providers use to validate secure connections to the remote authentication service.
+Create a `ConfigMap` object in the `openshift-config` namespace that contains the certificate authority bundle for the identity provider. OpenShift Container Platform uses this bundle to validate Transport Layer Security (TLS) connections to the identity provider.
 
 **Procedure**
 
-1. Define an OpenShift Container Platform `ConfigMap` object containing the certificate authority by running the following command:
+1. Define an OpenShift Container Platform `ConfigMap` object containing the CA by running the following command:
    ```terminal
    $ oc create configmap ca-config-map --from-file=ca.crt=/path/to/ca -n openshift-config
    ```
@@ -86,68 +88,90 @@ Create a `ConfigMap` object in the `openshift-config` namespace to store the cer
        <CA_certificate_PEM>
    ```
 
-   The certificate authority must be stored in the `ca.crt` key of the `ConfigMap` object.
+   The CA must be stored in the `ca.crt` key of the `ConfigMap` object.
 
-## Sample request header CR {#identity-provider-request-header-CR_configuring-request-header-identity-provider}
+## Sample request header custom resource {#identity-provider-request-header-CR_configuring-request-header-identity-provider}
 
-The following custom resource (CR) shows the parameters and acceptable values for a request header identity provider.
+Review the sample request header `OAuth` custom resource (CR) to understand provider parameters and acceptable values before you configure the identity provider in your cluster.
 
-```yaml title="Request header CR"
+```yaml
 apiVersion: config.openshift.io/v1
 kind: OAuth
 metadata:
   name: cluster
 spec:
   identityProviders:
-  - name: requestheaderidp (1)
-    mappingMethod: claim (2)
+  - name: requestheaderidp
+    mappingMethod: claim
     type: RequestHeader
     requestHeader:
-      challengeURL: "https://www.example.com/challenging-proxy/oauth/authorize?${query}" (3)
-      loginURL: "https://www.example.com/login-proxy/oauth/authorize?${query}" (4)
-      ca: (5)
+      challengeURL: "https://www.example.com/challenging-proxy/oauth/authorize?${query}"
+      loginURL: "https://www.example.com/login-proxy/oauth/authorize?${query}"
+      ca:
         name: ca-config-map
-      clientCommonNames: (6)
+      clientCommonNames:
       - my-auth-proxy
-      headers: (7)
+      headers:
       - X-Remote-User
       - SSO-User
-      emailHeaders: (8)
+      emailHeaders:
       - X-Remote-User-Email
-      nameHeaders: (9)
+      nameHeaders:
       - X-Remote-User-Display-Name
-      preferredUsernameHeaders: (10)
+      preferredUsernameHeaders:
       - X-Remote-User-Login
 ```
 
-1. This provider name is prefixed to the user name in the request header to form an identity name.
-2. Controls how mappings are established between this provider’s identities and `User` objects.
-3. Optional: URL to redirect unauthenticated `/oauth/authorize` requests to, that will authenticate browser-based clients and then proxy their request to `https://_<namespace_route>_/oauth/authorize`. The URL that proxies to `https://_<namespace_route>_/oauth/authorize` must end with `/authorize` (with no trailing slash), and also proxy subpaths, in order for OAuth approval flows to work properly. `${url}` is replaced with the current URL, escaped to be safe in a query parameter. `${query}` is replaced with the current query string. If this attribute is not defined, then `loginURL` must be used.
-4. Optional: URL to redirect unauthenticated `/oauth/authorize` requests to, that will authenticate clients which expect `WWW-Authenticate` challenges, and then proxy them to `https://_<namespace_route>_/oauth/authorize`. `${url}` is replaced with the current URL, escaped to be safe in a query parameter. `${query}` is replaced with the current query string. If this attribute is not defined, then `challengeURL` must be used.
-5. Reference to an OpenShift Container Platform `ConfigMap` object containing a PEM-encoded certificate bundle. Used as a trust anchor to validate the TLS certificates presented by the remote server.
-   :::warning
+where:
 
-   As of OpenShift Container Platform 4.1, the `ca` field is required for this identity provider. This means that your proxy must support mutual TLS.
+`spec.identityProviders.name`
+: Specifies that the provider name is prefixed to the username in the request header to form an identity name.
 
-   :::
-6. Optional: list of common names (`cn`). If set, a valid client certificate with a Common Name (`cn`) in the specified list must be presented before the request headers are checked for user names. If empty, any Common Name is allowed. Can only be used in combination with `ca`.
-7. Header names to check, in order, for the user identity. The first header containing a value is used as the identity. Required, case-insensitive.
-8. Header names to check, in order, for an email address. The first header containing a value is used as the email address. Optional, case-insensitive.
-9. Header names to check, in order, for a display name. The first header containing a value is used as the display name. Optional, case-insensitive.
-10. Header names to check, in order, for a preferred user name, if different than the immutable identity determined from the headers specified in `headers`. The first header containing a value is used as the preferred user name when provisioning. Optional, case-insensitive.
+`spec.identityProviders.mappingMethod`
+: Specifies how mappings are established between the identities of this provider and `User` objects.
+
+`spec.identityProviders.requestHeader.challengeURL`
+: Specifies the URL for redirecting unauthenticated `/oauth/authorize` requests to an authenticating proxy that authenticates browser-based clients and then proxies the request to `https://_<namespace_route>_/oauth/authorize`. The URL that proxies to `https://_<namespace_route>_/oauth/authorize` must end with `/authorize` with no trailing slash and must also proxy subpaths for OAuth approval flows to work properly. `${url}` is replaced with the current URL, escaped to be safe in a query parameter. `${query}` is replaced with the current query string. If this attribute is not defined, `loginURL` must be used. This value is optional.
+
+`spec.identityProviders.requestHeader.loginURL`
+: Specifies the URL for redirecting unauthenticated `/oauth/authorize` requests to an authenticating proxy that authenticates clients expecting `WWW-Authenticate` challenges and then proxies them to `https://_<namespace_route>_/oauth/authorize`. `${url}` is replaced with the current URL, escaped to be safe in a query parameter. `${query}` is replaced with the current query string. If this attribute is not defined, `challengeURL` must be used. This value is optional.
+
+`spec.identityProviders.requestHeader.ca`
+: Specifies a reference to an OpenShift Container Platform `ConfigMap` object containing a Privacy-Enhanced Mail (PEM)-encoded certificate bundle used as a trust anchor to validate the Transport Layer Security (TLS) certificates presented by the remote server.
+
+  :::warning
+
+  As of OpenShift Container Platform 4.1, the `ca` field is required for this identity provider. This means that your proxy must support mutual TLS.
+
+  :::
+
+`spec.identityProviders.requestHeader.clientCommonNames`
+: Specifies a list of common names (`cn`). If set, a valid client certificate with a Common Name (`cn`) in the specified list must be presented before the request headers are checked for usernames. If empty, any Common Name is allowed. Can only be used in combination with `ca`. This value is optional.
+
+`spec.identityProviders.requestHeader.headers`
+: Specifies header names to check, in order, for the user identity. The first header containing a value is used as the identity. This field is required, and header matching is case-insensitive.
+
+`spec.identityProviders.requestHeader.emailHeaders`
+: Specifies header names to check, in order, for an email address. The first header containing a value is used as the email address. Header matching is case-insensitive. This value is optional.
+
+`spec.identityProviders.requestHeader.nameHeaders`
+: Specifies header names to check, in order, for a display name. The first header containing a value is used as the display name. Header matching is case-insensitive. This value is optional.
+
+`spec.identityProviders.requestHeader.preferredUsernameHeaders`
+: Specifies header names to check, in order, for a preferred username, if different from the immutable identity determined from the headers specified in `headers`. The first header containing a value is used as the preferred username when provisioning. Header matching is case-insensitive. This value is optional.
 
 **Additional resources**
 
-- See [Identity provider parameters](/docs/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider) for information on parameters, such as `mappingMethod`, that are common to all identity providers.
+- [Identity provider parameters](/docs/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
 ## Adding an identity provider to your cluster {#add-identity-provider_configuring-request-header-identity-provider}
 
-Apply the identity provider custom resource (CR) to your cluster so users can authenticate with the configured identity provider.
+Apply the identity provider custom resource (CR) to your cluster after you define it. With this configuration, you can authenticate with the configured identity provider.
 
 **Prerequisites**
 
-- You installed an OpenShift Container Platform cluster.
-- You defined the CR for your identity provider.
+- You have access to a OpenShift Container Platform cluster.
+- You have created the CR for your identity providers.
 - You are logged in as an administrator.
 
 **Procedure**
@@ -162,7 +186,7 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
    If a CR does not exist, `oc apply` creates a new CR and might trigger the following warning: `Warning: oc apply should be used on resources created by either oc create --save-config or oc apply`. In this case you can safely ignore this warning.
 
    :::
-2. Log in to the cluster as a user from your identity provider, entering the password when prompted. Run the following command:
+2. Log in to the cluster as a user from your identity provider, entering the password when prompted.
    ```terminal
    $ oc login -u <username>
    ```
@@ -171,20 +195,24 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
    $ oc whoami
    ```
 
-## Example Apache authentication configuration using request header {#example-apache-auth-config-using-request-header}
+## Example Apache authentication configuration using request header {#example-apache-auth-config-using-request-header_configuring-request-header-identity-provider}
 
-This example configures an Apache authentication proxy for the OpenShift Container Platform using the request header identity provider.
+Review this example to configure an Apache authentication proxy with the request header identity provider. Use this example to set up a proxy and connect it to OpenShift Container Platform.
 
-### Custom proxy configuration {#identity-provider-apache-custom-proxy-configuration_configuring-request-header-identity-provider}
+The example configures an Apache authentication proxy for OpenShift Container Platform by using the request header identity provider.
 
-Using the `mod_auth_gssapi` module is a popular way to configure the Apache authentication proxy using the request header identity provider; however, it is not required. Other proxies can easily be used if the following requirements are met:
+## Custom proxy configuration {#identity-provider-proxy-custom-configuration_configuring-request-header-identity-provider}
 
-- Block the `X-Remote-User` header from client requests to prevent spoofing.
-- Enforce client certificate authentication in the `RequestHeaderIdentityProvider` configuration.
-- Require the `X-Csrf-Token` header be set for all authentication requests using the challenge flow.
-- Make sure only the `/oauth/authorize` endpoint and its subpaths are proxied; redirects must be rewritten to allow the backend server to send the client to the correct location.
-- The URL that proxies to `https://<namespace_route>/oauth/authorize` must end with `/authorize` with no trailing slash. For example, `https://proxy.example.com/login-proxy/authorize?...` must proxy to `https://<namespace_route>/oauth/authorize?...`.
-- Subpaths of the URL that proxies to `https://<namespace_route>/oauth/authorize` must proxy to subpaths of `https://<namespace_route>/oauth/authorize`. For example, `https://proxy.example.com/login-proxy/authorize/approve?...` must proxy to `https://<namespace_route>/oauth/authorize/approve?...`.
+Review the requirements for a custom authentication proxy used with the request header identity provider. Meeting these requirements prevents header spoofing and ensures OAuth authorization flows work correctly.
+
+Using the `mod_auth_gssapi` module is a popular way, but not required, to configure the Apache authentication proxy by using the request header identity provider. Other proxies can easily be used if the following requirements are met:
+
+- Blocks the `X-Remote-User` header from client requests to prevent spoofing.
+- Enforces client certificate authentication in the `RequestHeaderIdentityProvider` configuration.
+- Requires the `X-Csrf-Token` header be set for all authentication requests by using the challenge flow.
+- Ensures only the `/oauth/authorize` endpoint and subpaths of that endpoint are proxied. Redirects must be rewritten to allow the backend server to send the client to the correct location.
+- Requires the proxy URL for `https://<namespace_route>/oauth/authorize` to end with `/authorize` with no trailing slash.
+- Ensures subpaths of the proxy authorize URL forward to matching subpaths under `https://<namespace_route>/oauth/authorize`.
 
 :::note
 
@@ -192,57 +220,55 @@ The `https://<namespace_route>` address is the route to the OAuth server and can
 
 :::
 
-### Configuring Apache authentication using request header {#identity-provider-configuring-apache-request-header_configuring-request-header-identity-provider}
+## Configuring Apache authentication using the request header {#identity-provider-configuring-apache-request-header_configuring-request-header-identity-provider}
 
-This example uses the `mod_auth_gssapi` module to configure an Apache authentication proxy using the request header identity provider.
+Configure an Apache authentication proxy with the `mod_auth_gssapi` module for the request header identity provider. Use this example to set up a proxy that validates users and forwards trusted identity headers to OpenShift Container Platform.
+
+This proxy uses a client certificate to connect to the OAuth server, which is configured to trust the `X-Remote-User` header.
 
 **Prerequisites**
 
-- Obtain the `mod_auth_gssapi` module from the [Optional channel](https://access.redhat.com/solutions/392003). You must have the following packages installed on your local machine:
+- Obtain the `mod_auth_gssapi` module from the optional channel. For more information, see "Optional channel".
+- The following packages are installed on your local machine:
   - `httpd`
   - `mod_ssl`
   - `mod_session`
   - `apr-util-openssl`
   - `mod_auth_gssapi`
-- Generate a CA for validating requests that submit the trusted header. Define an OpenShift Container Platform `ConfigMap` object containing the CA. This is done by running:
-  ```terminal
-  $ oc create configmap ca-config-map --from-file=ca.crt=/path/to/ca -n openshift-config (1)
-  ```
-
-  1. The CA must be stored in the `ca.crt` key of the `ConfigMap` object.
-
-  :::tip
-
-  You can alternatively apply the following YAML to create the config map:
-
-  ```yaml
-  apiVersion: v1
-  kind: ConfigMap
-  metadata:
-    name: ca-config-map
-    namespace: openshift-config
-  data:
-    ca.crt: |
-      <CA_certificate_PEM>
-  ```
-
-  :::
-- Generate a client certificate for the proxy. You can generate this certificate by using any x509 certificate tooling. The client certificate must be signed by the CA you generated for validating requests that submit the trusted header.
-- Create the custom resource (CR) for your identity providers.
 
 **Procedure**
 
-This proxy uses a client certificate to connect to the OAuth server, which is configured to trust the `X-Remote-User` header.
+1. Generate a CA for validating requests that submit the trusted header.
+2. Create an OpenShift Container Platform `ConfigMap` object containing the CA by running the following command:
+   ```terminal
+   $ oc create configmap ca-config-map --from-file=ca.crt=/path/to/ca -n openshift-config
+   ```
+3. Optional: Apply the following YAML to create the config map. For example:
+   ```yaml
+   apiVersion: v1
+   kind: ConfigMap
+   metadata:
+     name: ca-config-map
+     namespace: openshift-config
+   data:
+     ca.crt: |
+       <CA_certificate_PEM>
+   ```
 
-1. Create the certificate for the Apache configuration. The certificate that you specify as the `SSLProxyMachineCertificateFile` parameter value is the proxy’s client certificate that is used to authenticate the proxy to the server. It must use `TLS Web Client Authentication` as the extended key type.
-2. Create the Apache configuration. Use the following template to provide your required settings and values:
+   The certificate authority must be stored in the `ca.crt` key of the `ConfigMap` object.
+4. Generate a client certificate for the proxy.
+   You can generate this certificate by using any x509 certificate tooling. The client certificate must be signed by the CA you generated for validating requests that submit the trusted header.
+5. Create the custom resource (CR) for your identity providers.
+6. Create the certificate for the Apache configuration.
+   The certificate that you specify as the `SSLProxyMachineCertificateFile` parameter value is the client certificate for the proxy that authenticates the proxy to the server. It must use `TLS Web Client Authentication` as the extended key type.
+7. Create the Apache configuration. Use the following template to provide your required settings and values:
    :::warning
 
-   Carefully review the template and customize its contents to fit your environment.
+   Carefully review the template and customize the template contents to fit your environment.
 
    :::
 
-   ```
+   ```terminal
    LoadModule request_module modules/mod_request.so
    LoadModule auth_gssapi_module modules/mod_auth_gssapi.so
    # Some Apache configurations might require these modules.
@@ -329,7 +355,7 @@ This proxy uses a client certificate to connect to the OAuth server, which is co
    The `https://<namespace_route>` address is the route to the OAuth server and can be obtained by running `oc get route -n openshift-authentication`.
 
    :::
-3. Update the `identityProviders` stanza in the custom resource (CR):
+8. Update the `identityProviders` section of the custom resource (CR):
    ```yaml
    identityProviders:
      - name: requestheaderidp
@@ -339,61 +365,66 @@ This proxy uses a client certificate to connect to the OAuth server, which is co
          loginURL: "https://<namespace_route>/login-proxy/oauth/authorize?${query}"
          ca:
            name: ca-config-map
-           clientCommonNames:
-           - my-auth-proxy
-           headers:
-           - X-Remote-User
+         clientCommonNames:
+         - my-auth-proxy
+         headers:
+         - X-Remote-User
    ```
-4. Verify the configuration.
-   1. Confirm that you can bypass the proxy by requesting a token by supplying the correct client certificate and header:
-      ```terminal
-      # curl -L -k -H "X-Remote-User: joe" \
-         --cert /etc/pki/tls/certs/authproxy.pem \
-         https://<namespace_route>/oauth/token/request
-      ```
-   2. Confirm that requests that do not supply the client certificate fail by requesting a token without the certificate:
-      ```terminal
-      # curl -L -k -H "X-Remote-User: joe" \
-         https://<namespace_route>/oauth/token/request
-      ```
-   3. Confirm that the `challengeURL` redirect is active:
-      ```terminal
-      # curl -k -v -H 'X-Csrf-Token: 1' \
-         https://<namespace_route>/oauth/authorize?client_id=openshift-challenging-client&response_type=token
-      ```
 
-      Copy the `challengeURL` redirect to use in the next step.
-   4. Run this command to show a `401` response with a `WWW-Authenticate` basic challenge, a negotiate challenge, or both challenges:
-      ```terminal
-      # curl -k -v -H 'X-Csrf-Token: 1' \
-         <challengeURL_redirect + query>
-      ```
-   5. Test logging in to the OpenShift CLI (`oc`) with and without using a Kerberos ticket:
-      1. If you generated a Kerberos ticket by using `kinit`, destroy it:
-         ```terminal
-         # kdestroy -c cache_name (1)
-         ```
+**Verification**
 
-         1. Make sure to provide the name of your Kerberos cache.
-      2. Log in to the `oc` tool by using your Kerberos credentials:
-         ```terminal
-         # oc login -u <username>
-         ```
+1. Confirm that you can bypass the proxy when you supply the correct client certificate and header by running the following command:
+   ```terminal
+   $ curl -L -k -H "X-Remote-User: joe" \
+      --cert /etc/pki/tls/certs/authproxy.pem \
+      https://<namespace_route>/oauth/token/request
+   ```
+2. Confirm that requests that do not supply the client certificate fail by running the following command:
+   ```terminal
+   $ curl -L -k -H "X-Remote-User: joe" \
+      https://<namespace_route>/oauth/token/request
+   ```
+3. Confirm that the `challengeURL` redirect is active by running the following command:
+   ```terminal
+   $ curl -k -v -H 'X-Csrf-Token: 1' \
+      https://<namespace_route>/oauth/authorize?client_id=openshift-challenging-client&response_type=token
+   ```
 
-         Enter your Kerberos password at the prompt.
-      3. Log out of the `oc` tool:
-         ```terminal
-         # oc logout
-         ```
-      4. Use your Kerberos credentials to get a ticket:
-         ```terminal
-         # kinit
-         ```
+   Copy the `challengeURL` redirect to use in the next step.
+4. Show a `401` response with a `WWW-Authenticate` basic challenge, a negotiate challenge, or both challenges by running the following command:
+   ```terminal
+   $ curl -k -v -H 'X-Csrf-Token: 1' \
+      <challengeURL_redirect + query>
+   ```
+5. If you generated a Kerberos ticket by using `kinit`, destroy it by running the following command:
+   ```terminal
+   $ kdestroy -c <cache_name>
+   ```
 
-         Enter your Kerberos user name and password at the prompt.
-      5. Confirm that you can log in to the `oc` tool:
-         ```terminal
-         # oc login
-         ```
+   Replace `<cache_name>` with the name of your Kerberos cache.
+6. Log in to the OpenShift CLI (`oc`) with your Kerberos credentials by running the following command:
+   ```terminal
+   $ oc login -u <username>
+   ```
 
-         If your configuration is correct, you are logged in without entering separate credentials.
+   Enter your Kerberos username and password at the prompt.
+7. Log out of the `oc` tool by running the following command:
+   ```terminal
+   $ oc logout
+   ```
+8. Use your Kerberos credentials to get a ticket by running the following command:
+   ```terminal
+   $ kinit
+   ```
+
+   Enter your Kerberos username and password at the prompt.
+9. Confirm that you can log in to the `oc` tool by running the following command:
+   ```terminal
+   $ oc login
+   ```
+
+   If your configuration is correct, you are logged in without entering separate credentials.
+
+**Additional resources**
+
+- [Optional channel](https://access.redhat.com/solutions/392003)

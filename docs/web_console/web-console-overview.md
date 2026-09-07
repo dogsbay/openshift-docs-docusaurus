@@ -17,6 +17,8 @@ All users can interact with all OpenShift Container Platform web console feature
 
 You can still enable the **Developer** perspective. On the **Getting Started** pane in the web console, you can take a tour of the console, find information on setting up your cluster, view a quick start for enabling the **Developer** perspective, and follow links to explore new features and capabilities.
 
+See also, "Enabling the **Developer** perspective in the web console".
+
 :::
 
 You can create quick start tutorials for OpenShift Container Platform that provide guided steps within the web console with user tasks. They are helpful for getting oriented with an application, Operator, or other product offering.
@@ -64,6 +66,8 @@ You can use the **Topology** view to display applications, components, and workl
 
 ## Enabling the *Developer* perspective in the web console {#enabling-developer-perspective_web-console_web-console-overview}
 
+Enable the **Developer** perspective in the web console to give your developers tools to manage applications, visualize topology, and monitor projects as they develop and build them.
+
 Starting with OpenShift Container Platform 4.19, the perspectives in the web console have unified. There is no longer a **Developer** perspective by default; however, cluster administrators can enable the **Developer** perspective for developers to use.
 
 You can enable the **Developer** perspective with the following steps:
@@ -74,21 +78,26 @@ You can enable the **Developer** perspective with the following steps:
 
 **Procedure**
 
-1. Navigate to the **Cluster Settings** page by clicking  **Administration** → **Cluster Settings**.
-2. Select the **Configuration** tab on the **Cluster Settings** page.
-3. Type `console` in the search to locate the Console Operator resource and select `operator.openshift.io`.
+1. Navigate to the **Cluster Settings** page by clicking **Administration → Cluster Settings**.
+2. Select the **Configuration** tab.
+3. Type `console` in the search field to locate the Console Operator resource and select `operator.openshift.io`.
 4. On the **Cluster Details** page, click the **Actions** menu and select **Customize**.
 5. In the **General** tab, locate the **Perspectives** section. You can enable or disable the **Developer** perspective as needed. Changes are automatically applied.
-6. Optional: You can enable the **Developer** perspective with the CLI by running the following command:
+6. Optional: You can enable the **Developer** perspective by using the CLI with the following command:
    ```terminal
    $ oc patch console.operator.openshift.io/cluster --type='merge' -p '{"spec":{"customization":{"perspectives":[{"id":"dev","visibility":{"state":"Enabled"}}]}}}'
    ```
 
    :::note
 
-   It will take some time for the change to reflect in the web console as the console pod restarts.
+   The change reflects in the web console after the console pod restarts successfully.
 
    :::
+
+**Verification**
+
+1. Locate the perspective switcher in the web console.
+2. Verify that **Developer** is displayed as an available perspective option.
 
 **Additional resources**
 

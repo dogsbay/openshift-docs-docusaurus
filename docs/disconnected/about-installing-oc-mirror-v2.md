@@ -1233,7 +1233,7 @@ The following table lists the available parameters for the `ImageSetConfiguratio
 </tr>
 <tr>
   <td><code>kubeVirtContainer</code></td>
-  <td>When set to <code>true</code>, includes images from the HyperShift KubeVirt CoreOS container.</td>
+  <td>When set to <code>true</code>, includes images from the hosted control planes KubeVirt CoreOS container.</td>
   <td>Boolean Example <code>ImageSetConfiguration</code> file:<pre><code>apiVersion: mirror.openshift.io/v2alpha1&#10;kind: ImageSetConfiguration&#10;mirror:&#10;  platform:&#10;    channels:&#10;    - name: stable-4.16&#10;      minVersion: 4.16.0&#10;      maxVersion: 4.16.0&#10;    kubeVirtContainer: true</code></pre></td>
 </tr>
 <tr>

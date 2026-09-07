@@ -27,7 +27,7 @@ The following prerequisites must be met:
 
 ## Deploying the cluster {#installation-launching-installer_installing-aws-default}
 
-To deploy your OpenShift Container Platform cluster, you can initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions infrastructure and completes cluster setup.
+To deploy your OpenShift Container Platform cluster, you initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions the required infrastructure and completes the cluster setup.
 
 :::warning
 
@@ -50,37 +50,40 @@ $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
 
-- For `<installation_directory>`, specify the directory name to store the files that the installation program creates.
-- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
-  When specifying the directory:
+where:
 
-  - Verify that the directory has the `execute` permission. This permission is required to run Terraform binaries under the installation directory.
-  - Use an empty directory. Some installation assets, such as bootstrap X.509 certificates, have short expiration intervals, therefore you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
-    1. Provide values at the prompts:
-       1. Optional: Select an SSH key to use to access your cluster machines.
-          :::note
+- `<installation_directory>`: Specifies the directory name to store the files that the installation program creates.
+- `--log-level`: Specifies the log level. To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
-          For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
+When specifying the directory:
 
-          :::
-       2. Select **aws** as the platform to target.
-       3. If you do not have an Amazon Web Services (AWS) profile stored on your computer, enter the AWS access key ID and secret access key for the user that you configured to run the installation program.
-          :::note
+- Verify that the directory has the `execute` permission. This permission is required to run Terraform binaries under the installation directory.
+- Use an empty directory. Some installation assets, such as bootstrap X.509 certificates, have short expiration intervals, therefore you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
 
-          The AWS access key ID and secret access key are stored in `~/.aws/credentials` in the home directory of the current user on the installation host. You are prompted for the credentials by the installation program if the credentials for the exported profile are not present in the file. Any credentials that you provide to the installation program are stored in the file.
+1. Provide values at the prompts:
+   1. Optional: Select an SSH key to use to access your cluster machines.
+      :::note
 
-          :::
-       4. Select the AWS region to deploy the cluster to.
-       5. Select the base domain for the Route 53 service that you configured for your cluster.
-       6. Enter a descriptive name for your cluster.
-       7. Paste the [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret).
+      For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
 
-  1. Optional: Remove or disable the `AdministratorAccess` policy from the IAM account that you used to install the cluster.
-     :::note
+      :::
+   2. Select **aws** as the platform to target.
+   3. If you do not have an Amazon Web Services (AWS) profile stored on your computer, enter the AWS access key ID and secret access key for the user that you configured to run the installation program.
+      :::note
 
-     The elevated permissions provided by the `AdministratorAccess` policy are required only during installation.
+      The AWS access key ID and secret access key are stored in `~/.aws/credentials` in the home directory of the current user on the installation host. You are prompted for the credentials by the installation program if the credentials for the exported profile are not present in the file. Any credentials that you provide to the installation program are stored in the file.
 
-     :::
+      :::
+   4. Select the AWS region to deploy the cluster to.
+   5. Select the base domain for the Route 53 service that you configured for your cluster.
+   6. Enter a descriptive name for your cluster.
+   7. Paste the [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret).
+2. Optional: Remove or disable the `AdministratorAccess` policy from the IAM account that you used to install the cluster.
+   :::note
+
+   The elevated permissions provided by the `AdministratorAccess` policy are required only during installation.
+
+   :::
 
 **Verification**
 
@@ -94,7 +97,9 @@ When the cluster deployment completes successfully:
 
   :::
 
-  ```terminal title="Example output"
+  The following example shows the expected output:
+
+  ```terminal
   ...
   INFO Install complete!
   INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/home/myuser/install_dir/auth/kubeconfig'

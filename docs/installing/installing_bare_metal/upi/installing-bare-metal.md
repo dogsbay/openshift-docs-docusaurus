@@ -1397,7 +1397,7 @@ You must use a local key, not one that you configured with platform-specific app
    $ ssh-add <path>/<file_name>
    ```
 
-   Specifies the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`
+   Specify the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`.
 
    ```terminal title="Example output"
    Identity added: /home/<you>/<path>/<file_name> (<computer_name>)
@@ -1413,9 +1413,7 @@ You must use a local key, not one that you configured with platform-specific app
 
 ## Obtaining the installation program {#installation-obtaining-installer_installing-bare-metal}
 
-Before you install OpenShift Container Platform, download the installation file on
-
-the host you are using for installation.
+Before you install OpenShift Container Platform, download the installation file on the host you are using for installation, so that installation assets exist for deployment in your environment.
 
 **Prerequisites**
 
@@ -1472,7 +1470,7 @@ Download and install the new version of `oc`.
    $ tar xvf <file>
    ```
 6. Place the `oc` binary in a directory that is on your `PATH`.
-   To check your `PATH`, execute the following command:
+   To check your `PATH`, run the following command:
 
    ```terminal
    $ echo $PATH
@@ -1504,7 +1502,7 @@ Download and install the new version of `oc`.
 3. Click **Download Now** next to the **OpenShift v4.22 Windows Client** entry and save the file.
 4. Extract the archive with a ZIP program.
 5. Move the `oc` binary to a directory that is on your `PATH` variable.
-   To check your `PATH` variable, open the command prompt and execute the following command:
+   To check your `PATH` variable, open the Command Prompt and run the following command:
 
    ```terminal
    C:\> path
@@ -1540,9 +1538,9 @@ Download and install the new version of `oc`.
    For macOS arm64, choose the **OpenShift v4.22 macOS arm64 Client** entry.
 
    :::
-5. Unpack and unzip the archive.
+5. Extract the archive.
 6. Move the `oc` binary to a directory on your `PATH` variable.
-   To check your `PATH` variable, open a terminal and execute the following command:
+   To check your `PATH` variable, open a terminal and run the following command:
 
    ```terminal
    $ echo $PATH
@@ -4004,7 +4002,7 @@ The OpenShift Container Platform bootstrap process begins after the cluster node
    INFO It is now safe to remove the bootstrap resources
    ```
 
-   The command succeeds when the Kubernetes API server signals that it has been bootstrapped on the control plane machines.
+   The bootstrapping completion wait time varies per platform. The command succeeds when the Kubernetes API server signals that it has been bootstrapped on the control plane machines.
 2. After the bootstrap process is complete, remove the bootstrap machine from the load balancer.
    :::warning
 

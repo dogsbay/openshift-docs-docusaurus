@@ -821,7 +821,7 @@ Production environments can deny direct access to the internet and instead have 
 
 ## Deploying the cluster {#installation-launching-installer_installing-azure-government-region}
 
-To deploy your OpenShift Container Platform cluster, you can initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions infrastructure and completes cluster setup.
+To deploy your OpenShift Container Platform cluster, you initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions the required infrastructure and completes the cluster setup.
 
 :::warning
 
@@ -855,26 +855,18 @@ $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
 
-- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
-- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
-  If the installation program cannot locate the `osServicePrincipal.json` configuration file from a previous installation, you are prompted for Azure subscription and authentication values.
+where:
 
-  1. Enter the following Azure parameter values for your subscription:
-- **azure subscription id**: Enter the subscription ID to use for the cluster.
-- **azure tenant id**: Enter the tenant ID.
-  1. Depending on the Azure identity you are using to deploy the cluster, do one of the following when prompted for the **azure service principal client id**:
-- If you are using a service principal, enter its application ID.
-- If you are using a system-assigned managed identity, leave this value blank.
-- If you are using a user-assigned managed identity, specify its client ID.
-  1. Depending on the Azure identity you are using to deploy the cluster, do one of the following when prompted for the **azure service principal client secret**:
-- If you are using a service principal, enter its password.
-- If you are using a system-assigned managed identity, leave this value blank.
-- If you are using a user-assigned managed identity,leave this value blank.
-  :::note
+- `<installation_directory>`: Specifies the location of your customized `./install-config.yaml` file.
+- `--log-level`: Specifies the log level. To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
-  If previously not detected, the installation program creates an `osServicePrincipal.json` configuration file and stores this file in the `~/.azure/` directory on your computer. This ensures that the installation program can load the profile when it is creating an OpenShift Container Platform cluster on the target platform.
+If the installation program cannot locate the `osServicePrincipal.json` configuration file from a previous installation, you are prompted for Azure subscription and authentication values. . Enter the following Azure parameter values for your subscription: *** *azure subscription id**: Enter the subscription ID to use for the cluster. *** *azure tenant id**: Enter the tenant ID. . Depending on the Azure identity you are using to deploy the cluster, do one of the following when prompted for the **azure service principal client id**: ** If you are using a service principal, enter its application ID. ** If you are using a system-assigned managed identity, leave this value blank. ** If you are using a user-assigned managed identity, specify its client ID. . Depending on the Azure identity you are using to deploy the cluster, do one of the following when prompted for the **azure service principal client secret**: ** If you are using a service principal, enter its password. ** If you are using a system-assigned managed identity, leave this value blank. ** If you are using a user-assigned managed identity,leave this value blank.
 
-  :::
+:::note
+
+If previously not detected, the installation program creates an `osServicePrincipal.json` configuration file and stores this file in the `~/.azure/` directory on your computer. This ensures that the installation program can load the profile when it is creating an OpenShift Container Platform cluster on the target platform.
+
+:::
 
 **Verification**
 
@@ -888,7 +880,9 @@ When the cluster deployment completes successfully:
 
   :::
 
-  ```terminal title="Example output"
+  The following example shows the expected output:
+
+  ```terminal
   ...
   INFO Install complete!
   INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/home/myuser/install_dir/auth/kubeconfig'

@@ -121,13 +121,13 @@ Create a secret that contains the LDAP bind password in the `openshift-config` n
     bindPassword: <base64_encoded_bind_password>
   ```
 
-## Creating a 'ConfigMap' {#identity-provider-creating-configmap_configuring-ldap-identity-provider}
+## Creating a ConfigMap {#identity-provider-creating-configmap_configuring-ldap-identity-provider}
 
-Create a `ConfigMap` object in the `openshift-config` namespace to store the certificate authority bundle that identity providers use to validate secure connections to the remote authentication service.
+Create a `ConfigMap` object in the `openshift-config` namespace that contains the certificate authority bundle for the identity provider. OpenShift Container Platform uses this bundle to validate Transport Layer Security (TLS) connections to the identity provider.
 
 **Procedure**
 
-1. Define an OpenShift Container Platform `ConfigMap` object containing the certificate authority by running the following command:
+1. Define an OpenShift Container Platform `ConfigMap` object containing the CA by running the following command:
    ```terminal
    $ oc create configmap ca-config-map --from-file=ca.crt=/path/to/ca -n openshift-config
    ```
@@ -143,7 +143,7 @@ Create a `ConfigMap` object in the `openshift-config` namespace to store the cer
        <CA_certificate_PEM>
    ```
 
-   The certificate authority must be stored in the `ca.crt` key of the `ConfigMap` object.
+   The CA must be stored in the `ca.crt` key of the `ConfigMap` object.
 
 ## Sample LDAP custom resource {#identity-provider-ldap-CR_configuring-ldap-identity-provider}
 
@@ -225,12 +225,12 @@ To allowlist users for an LDAP integration, use the `lookup` mapping method. Bef
 
 ## Adding an identity provider to your cluster {#add-identity-provider_configuring-ldap-identity-provider}
 
-Apply the identity provider custom resource (CR) to your cluster so users can authenticate with the configured identity provider.
+Apply the identity provider custom resource (CR) to your cluster after you define it. With this configuration, you can authenticate with the configured identity provider.
 
 **Prerequisites**
 
-- You installed an OpenShift Container Platform cluster.
-- You defined the CR for your identity provider.
+- You have access to a OpenShift Container Platform cluster.
+- You have created the CR for your identity providers.
 - You are logged in as an administrator.
 
 **Procedure**
@@ -245,7 +245,7 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
    If a CR does not exist, `oc apply` creates a new CR and might trigger the following warning: `Warning: oc apply should be used on resources created by either oc create --save-config or oc apply`. In this case you can safely ignore this warning.
 
    :::
-2. Log in to the cluster as a user from your identity provider, entering the password when prompted. Run the following command:
+2. Log in to the cluster as a user from your identity provider, entering the password when prompted.
    ```terminal
    $ oc login -u <username>
    ```

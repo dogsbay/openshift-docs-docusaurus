@@ -640,7 +640,7 @@ You must use a local key, not one that you configured with platform-specific app
    $ ssh-add <path>/<file_name>
    ```
 
-   Specifies the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`
+   Specify the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`.
 
    ```terminal title="Example output"
    Identity added: /home/<you>/<path>/<file_name> (<computer_name>)
@@ -727,7 +727,7 @@ You can install OpenShift Container Platform on Red Hat OpenStack Platform (RHO
 
 ## Deploying the cluster {#installation-launching-installer_installing-openstack-installer-restricted}
 
-To deploy your OpenShift Container Platform cluster, you can initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions infrastructure and completes cluster setup.
+To deploy your OpenShift Container Platform cluster, you initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions the required infrastructure and completes the cluster setup.
 
 :::warning
 
@@ -749,8 +749,10 @@ $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
 
-- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
-- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
+where:
+
+- `<installation_directory>`: Specifies the location of your customized `./install-config.yaml` file.
+- `--log-level`: Specifies the log level. To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
 **Verification**
 
@@ -764,7 +766,9 @@ When the cluster deployment completes successfully:
 
   :::
 
-  ```terminal title="Example output"
+  The following example shows the expected output:
+
+  ```terminal
   ...
   INFO Install complete!
   INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/home/myuser/install_dir/auth/kubeconfig'

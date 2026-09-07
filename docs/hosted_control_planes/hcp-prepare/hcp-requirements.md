@@ -107,7 +107,7 @@ In the following table, the management cluster version is the OpenShift Containe
 
 ### Multi-architecture support {#hcp-matrix-multiarch_hcp-requirements}
 
-The following tables indicate the supported architectures for hosted control planes, organized by platform. If an architecture is not listed, it is not yet fully supported.
+The following table indicates the supported architectures for hosted control planes, organized by platform. If an architecture is not listed, it is not yet fully supported.
 
 **Multi-architecture support for hosted control planes**
 

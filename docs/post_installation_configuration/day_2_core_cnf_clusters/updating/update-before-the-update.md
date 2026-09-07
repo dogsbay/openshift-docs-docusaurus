@@ -48,7 +48,7 @@ You must backup the etcd database before you proceed with the update.
 
 ### Backing up etcd data {#backing-up-etcd-data_update-before-the-update}
 
-Follow these steps to back up etcd data by creating an etcd snapshot and backing up the resources for the static pods. This backup can be saved and used at a later time if you need to restore etcd.
+You can back up etcd data by creating an etcd snapshot and saving the static pod resources on a control plane host. This backup preserves the cluster state and provides the resources required to restore etcd at a later time.
 
 :::warning
 
@@ -61,7 +61,7 @@ For a Two-Node with Fencing (TNF) setup, follow the steps to back up etcd data o
 **Prerequisites**
 
 - You have access to the cluster as a user with the `cluster-admin` role.
-- You have checked whether the cluster-wide proxy is enabled.
+- You have verified whether the cluster-wide proxy is enabled.
   :::tip
 
   You can check whether the proxy is enabled by reviewing the output of `oc get proxy cluster -o yaml`. The proxy is enabled if the `httpProxy`, `httpsProxy`, and `noProxy` fields have values set.
@@ -90,7 +90,7 @@ For a Two-Node with Fencing (TNF) setup, follow the steps to back up etcd data o
    ```terminal
    $ export NO_PROXY=<example.com>
    ```
-4. Run the `cluster-backup.sh` script in the debug shell and pass in the location to save the backup to.
+4. Run the `cluster-backup.sh` script with the path to the directory where you want to save the backup:
    :::tip
 
    The `cluster-backup.sh` script is maintained as a component of the etcd Cluster Operator and is a wrapper around the `etcdctl snapshot save` command.
@@ -122,7 +122,7 @@ For a Two-Node with Fencing (TNF) setup, follow the steps to back up etcd data o
 
    In this example, two files are created in the `/home/core/assets/backup/` directory on the control plane host:
 
-   - `snapshot_<datetimestamp>.db`: This file is the etcd snapshot. The `cluster-backup.sh` script confirms its validity.
+   - `snapshot_<datetimestamp>.db`: This file is the etcd snapshot. The `cluster-backup.sh` script confirms the validity of the snapshot.
    - `static_kuberesources_<datetimestamp>.tar.gz`: This file contains the resources for the static pods. If etcd encryption is enabled, it also contains the encryption keys for the etcd snapshot.
      :::note
 
@@ -134,7 +134,7 @@ For a Two-Node with Fencing (TNF) setup, follow the steps to back up etcd data o
 
 ### Creating a single automated etcd backup {#creating-single-etcd-backup_update-before-the-update}
 
-Follow these steps to create a single etcd backup by creating and applying a custom resource (CR).
+You can create a single automated etcd backup by applying an `EtcdBackup` custom resource (CR). Backup data is stored on either dynamically-provisioned or local storage.
 
 **Prerequisites**
 
@@ -143,173 +143,173 @@ Follow these steps to create a single etcd backup by creating and applying a cus
 
 **Procedure**
 
-- If dynamically-provisioned storage is available, complete the following steps to create a single automated etcd backup:
-  1. Create a persistent volume claim (PVC) named `etcd-backup-pvc.yaml` with contents such as the following example:
-     ```yaml
-     kind: PersistentVolumeClaim
-     apiVersion: v1
-     metadata:
-       name: etcd-backup-pvc
-       namespace: openshift-etcd
-     spec:
-       accessModes:
-         - ReadWriteOnce
-       resources:
-         requests:
-           storage: <storage_amount>
-       volumeMode: Filesystem
-     ```
+1. If dynamically-provisioned storage is available, complete the following steps to create a single automated etcd backup:
+   1. Create a persistent volume claim (PVC) named `etcd-backup-pvc.yaml` with contents such as the following example:
+      ```yaml
+      kind: PersistentVolumeClaim
+      apiVersion: v1
+      metadata:
+        name: etcd-backup-pvc
+        namespace: openshift-etcd
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: <storage_amount>
+        volumeMode: Filesystem
+      ```
 
-     where:
+      where:
 
-     <dl>
-     <dt><code>&lt;storage_amount&gt;</code></dt>
-     <dd>Specifies the amount of storage available to the PVC. Adjust this value for your requirements, such as <code>200Gi</code>.</dd>
-     </dl>
-  2. Apply the PVC by running the following command:
-     ```terminal
-     $ oc apply -f etcd-backup-pvc.yaml
-     ```
-  3. Verify the creation of the PVC by running the following command:
-     ```terminal
-     $ oc get pvc
-     ```
+      <dl>
+      <dt><code>&lt;storage_amount&gt;</code></dt>
+      <dd>Specifies the amount of storage available to the PVC. Adjust this value for your requirements, such as <code>200Gi</code>.</dd>
+      </dl>
+   2. Apply the PVC by running the following command:
+      ```terminal
+      $ oc apply -f etcd-backup-pvc.yaml
+      ```
+   3. Verify that the PVC was created by running the following command:
+      ```terminal
+      $ oc get pvc
+      ```
 
-     ```terminal title="Example output"
-     NAME              STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-     etcd-backup-pvc   Bound                                                       51s
-     ```
+      ```terminal title="Example output"
+      NAME              STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+      etcd-backup-pvc   Bound                                                       51s
+      ```
 
-     :::note
+      :::note
 
-     Dynamic PVCs stay in the `Pending` state until they are mounted.
+      Dynamic PVCs stay in the `Pending` state until they are mounted.
 
-     :::
-  4. Create a CR file named `etcd-single-backup.yaml` with contents such as the following example:
-     ```yaml
-     apiVersion: operator.openshift.io/v1alpha1
-     kind: EtcdBackup
-     metadata:
-       name: etcd-single-backup
-       namespace: openshift-etcd
-     spec:
-       pvcName: <pvc_name>
-     ```
+      :::
+   4. Create a CR file named `etcd-single-backup.yaml` with contents such as the following example:
+      ```yaml
+      apiVersion: operator.openshift.io/v1alpha1
+      kind: EtcdBackup
+      metadata:
+        name: etcd-single-backup
+        namespace: openshift-etcd
+      spec:
+        pvcName: <pvc_name>
+      ```
 
-     where:
+      where:
 
-     <dl>
-     <dt><code>&lt;pvc_name&gt;</code></dt>
-     <dd>Specifies the name of the PVC to save the backup to. Adjust this value according to your environment, such as <code>etcd-backup-pvc</code>.</dd>
-     </dl>
-  5. Apply the CR to start a single backup:
-     ```terminal
-     $ oc apply -f etcd-single-backup.yaml
-     ```
-- If dynamically-provisioned storage is not available, complete the following steps to create a single automated etcd backup:
-  1. Create a `StorageClass` CR file named `etcd-backup-local-storage.yaml` with the following contents:
-     ```yaml
-     apiVersion: storage.k8s.io/v1
-     kind: StorageClass
-     metadata:
-       name: etcd-backup-local-storage
-     provisioner: kubernetes.io/no-provisioner
-     volumeBindingMode: Immediate
-     ```
-  2. Apply the `StorageClass` CR by running the following command:
-     ```terminal
-     $ oc apply -f etcd-backup-local-storage.yaml
-     ```
-  3. Create a PV named `etcd-backup-pv-fs.yaml` with contents such as the following example:
-     ```yaml
-     apiVersion: v1
-     kind: PersistentVolume
-     metadata:
-       name: etcd-backup-pv-fs
-     spec:
-       capacity:
-         storage: <storage_amount>
-       volumeMode: Filesystem
-       accessModes:
-       - ReadWriteOnce
-       persistentVolumeReclaimPolicy: Retain
-       storageClassName: etcd-backup-local-storage
-       local:
-         path: /mnt
-       nodeAffinity:
-         required:
-           nodeSelectorTerms:
-           - matchExpressions:
-           - key: kubernetes.io/hostname
-              operator: In
-              values:
-              - <node_name>
-     ```
+      <dl>
+      <dt><code>&lt;pvc_name&gt;</code></dt>
+      <dd>Specifies the name of the PVC to save the backup to. Adjust this value according to your environment, such as <code>etcd-backup-pvc</code>.</dd>
+      </dl>
+   5. Apply the CR to start a single backup by running the following command:
+      ```terminal
+      $ oc apply -f etcd-single-backup.yaml
+      ```
+2. If dynamically-provisioned storage is not available, complete the following steps to create a single automated etcd backup:
+   1. Create a `StorageClass` CR file named `etcd-backup-local-storage.yaml` with the following contents:
+      ```yaml
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: etcd-backup-local-storage
+      provisioner: kubernetes.io/no-provisioner
+      volumeBindingMode: Immediate
+      ```
+   2. Apply the `StorageClass` CR by running the following command:
+      ```terminal
+      $ oc apply -f etcd-backup-local-storage.yaml
+      ```
+   3. Create a PV named `etcd-backup-pv-fs.yaml` with contents such as the following example:
+      ```yaml
+      apiVersion: v1
+      kind: PersistentVolume
+      metadata:
+        name: etcd-backup-pv-fs
+      spec:
+        capacity:
+          storage: <storage_amount>
+        volumeMode: Filesystem
+        accessModes:
+        - ReadWriteOnce
+        persistentVolumeReclaimPolicy: Retain
+        storageClassName: etcd-backup-local-storage
+        local:
+          path: /mnt
+        nodeAffinity:
+          required:
+            nodeSelectorTerms:
+            - matchExpressions:
+            - key: kubernetes.io/hostname
+               operator: In
+               values:
+               - <node_name>
+      ```
 
-     where:
+      where:
 
-     <dl>
-     <dt><code>&lt;storage_amount&gt;</code></dt>
-     <dd>Specifies the amount of storage available to the PV. Adjust this value for your requirements, such as <code>100Gi</code>.</dd>
-     <dt><code>&lt;node_name&gt;</code></dt>
-     <dd>Specifies the node to attach this PV to. Replace with the actual node name, such as <code>master-0</code>.</dd>
-     </dl>
-  4. Verify the creation of the PV by running the following command:
-     ```terminal
-     $ oc get pv
-     ```
+      <dl>
+      <dt><code>&lt;storage_amount&gt;</code></dt>
+      <dd>Specifies the amount of storage available to the PV. Adjust this value for your requirements, such as <code>100Gi</code>.</dd>
+      <dt><code>&lt;node_name&gt;</code></dt>
+      <dd>Specifies the control plane node to attach this PV to. Replace with the actual node name.</dd>
+      </dl>
+   4. Verify that the PV was created by running the following command:
+      ```terminal
+      $ oc get pv
+      ```
 
-     ```terminal title="Example output"
-     NAME                    CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS                REASON   AGE
-     etcd-backup-pv-fs       100Gi      RWO            Retain           Available           etcd-backup-local-storage            10s
-     ```
-  5. Create a PVC named `etcd-backup-pvc.yaml` with contents such as the following example:
-     ```yaml
-     kind: PersistentVolumeClaim
-     apiVersion: v1
-     metadata:
-       name: etcd-backup-pvc
-       namespace: openshift-etcd
-     spec:
-       accessModes:
-       - ReadWriteOnce
-       volumeMode: Filesystem
-       resources:
-         requests:
-           storage: <storage_amount>
-     ```
+      ```terminal title="Example output"
+      NAME                    CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS                REASON   AGE
+      etcd-backup-pv-fs       100Gi      RWO            Retain           Available           etcd-backup-local-storage            10s
+      ```
+   5. Create a PVC named `etcd-backup-pvc.yaml` with contents such as the following example:
+      ```yaml
+      kind: PersistentVolumeClaim
+      apiVersion: v1
+      metadata:
+        name: etcd-backup-pvc
+        namespace: openshift-etcd
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        volumeMode: Filesystem
+        resources:
+          requests:
+            storage: <storage_amount>
+      ```
 
-     where:
+      where:
 
-     <dl>
-     <dt><code>&lt;storage_amount&gt;</code></dt>
-     <dd>Specifies the amount of storage available to the PVC. Adjust this value for your requirements, such as <code>10Gi</code>.</dd>
-     </dl>
-  6. Apply the PVC by running the following command:
-     ```terminal
-     $ oc apply -f etcd-backup-pvc.yaml
-     ```
-  7. Create a CR file named `etcd-single-backup.yaml` with contents such as the following example:
-     ```yaml
-     apiVersion: operator.openshift.io/v1alpha1
-     kind: EtcdBackup
-     metadata:
-       name: etcd-single-backup
-       namespace: openshift-etcd
-     spec:
-       pvcName: <pvc_name>
-     ```
+      <dl>
+      <dt><code>&lt;storage_amount&gt;</code></dt>
+      <dd>Specifies the amount of storage available to the PVC. Adjust this value for your requirements, such as <code>10Gi</code>.</dd>
+      </dl>
+   6. Apply the PVC by running the following command:
+      ```terminal
+      $ oc apply -f etcd-backup-pvc.yaml
+      ```
+   7. Create a CR file named `etcd-single-backup.yaml` with contents such as the following example:
+      ```yaml
+      apiVersion: operator.openshift.io/v1alpha1
+      kind: EtcdBackup
+      metadata:
+        name: etcd-single-backup
+        namespace: openshift-etcd
+      spec:
+        pvcName: <pvc_name>
+      ```
 
-     where:
+      where:
 
-     <dl>
-     <dt><code>&lt;pvc_name&gt;</code></dt>
-     <dd>Specifies the name of the persistent volume claim (PVC) to save the backup to. Adjust this value according to your environment, such as <code>etcd-backup-pvc</code>.</dd>
-     </dl>
-  8. Apply the CR to start a single backup:
-     ```terminal
-     $ oc apply -f etcd-single-backup.yaml
-     ```
+      <dl>
+      <dt><code>&lt;pvc_name&gt;</code></dt>
+      <dd>Specifies the name of the PVC to save the backup to. Adjust this value according to your environment, such as <code>etcd-backup-pvc</code>.</dd>
+      </dl>
+   8. Apply the CR to start a single backup by running the following command:
+      ```terminal
+      $ oc apply -f etcd-single-backup.yaml
+      ```
 
 **Additional resources**
 

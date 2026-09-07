@@ -52,7 +52,7 @@ To complete a restricted network installation, you must create a registry that m
 
 :::warning
 
-Because of the complexity of the configuration for user-provisioned installations, consider completing a standard user-provisioned infrastructure installation before you attempt a restricted network installation using user-provisioned infrastructure. Completing this test installation might make it easier to isolate and troubleshoot any issues that might arise during your installation in a restricted network.
+Because of the complexity of the configuration for user-provisioned installations, consider completing a standard user-provisioned infrastructure installation before you try a restricted network installation using user-provisioned infrastructure. Completing this test installation might make it easier to isolate and troubleshoot any issues that might arise during your installation in a restricted network.
 
 :::
 
@@ -1047,9 +1047,7 @@ You should only modify the RHCOS image for compute machines to use an Azure Mark
 
 ### Obtaining the installation program {#installation-obtaining-installer_installing-restricted-networks-azure-user-provisioned}
 
-Before you install OpenShift Container Platform, download the installation file on
-
-the host you are using for installation.
+Before you install OpenShift Container Platform, download the installation file on the host you are using for installation, so that installation assets exist for deployment in your environment.
 
 **Prerequisites**
 
@@ -1153,7 +1151,7 @@ You must use a local key, not one that you configured with platform-specific app
    $ ssh-add <path>/<file_name>
    ```
 
-   Specifies the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`
+   Specify the path and file name for your SSH private key, such as `~/.ssh/id_ed25519`.
 
    ```terminal title="Example output"
    Identity added: /home/<you>/<path>/<file_name> (<computer_name>)
@@ -1169,7 +1167,7 @@ To install OpenShift Container Platform on Microsoft Azure by using user-provisi
 
 You generate and customize the `install-config.yaml` file, Kubernetes manifests, and Ignition config files. You also have the option to first set up a separate `var` partition during the preparation phases of installation.
 
-### Optional: Creating a separate `/var` partition {#installation-disk-partitioning-upi-templates_installing-restricted-networks-azure-user-provisioned}
+### Creating a separate `/var` partition {#installation-disk-partitioning-upi-templates_installing-restricted-networks-azure-user-provisioned}
 
 To isolate growing storage for containers, etcd, or logs, you can optionally create a separate `/var` partition on worker nodes before you generate Ignition configs.
 
@@ -3433,7 +3431,7 @@ Download and install the new version of `oc`.
    $ tar xvf <file>
    ```
 6. Place the `oc` binary in a directory that is on your `PATH`.
-   To check your `PATH`, execute the following command:
+   To check your `PATH`, run the following command:
 
    ```terminal
    $ echo $PATH
@@ -3465,7 +3463,7 @@ Download and install the new version of `oc`.
 3. Click **Download Now** next to the **OpenShift v4.22 Windows Client** entry and save the file.
 4. Extract the archive with a ZIP program.
 5. Move the `oc` binary to a directory that is on your `PATH` variable.
-   To check your `PATH` variable, open the command prompt and execute the following command:
+   To check your `PATH` variable, open the Command Prompt and run the following command:
 
    ```terminal
    C:\> path
@@ -3501,9 +3499,9 @@ Download and install the new version of `oc`.
    For macOS arm64, choose the **OpenShift v4.22 macOS arm64 Client** entry.
 
    :::
-5. Unpack and unzip the archive.
+5. Extract the archive.
 6. Move the `oc` binary to a directory on your `PATH` variable.
-   To check your `PATH` variable, open a terminal and execute the following command:
+   To check your `PATH` variable, open a terminal and run the following command:
 
    ```terminal
    $ echo $PATH

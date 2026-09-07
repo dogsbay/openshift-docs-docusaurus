@@ -683,7 +683,7 @@ For scenarios requiring multiple network interface controller (NIC), you can con
 
 ## Network configuration phases {#nw-network-config_installing-vsphere-installer-provisioned-customizations}
 
-There are two phases prior to OpenShift Container Platform installation where you can customize the network configuration. Customize settings in the `install-config.yaml` file and in the Cluster Network Operator manifest across two configuration phases.
+You can customize your OpenShift Container Platform network plugin configuration, such as cluster network CIDR and service network ranges, during two phases before installation to integrate with your existing network environment.
 
 Phase 1
 : You can customize the following network-related fields in the `install-config.yaml` file before you create the manifest files:
@@ -715,7 +715,9 @@ During phase 2, you cannot override the values that you specified in phase 1 in 
 
 ## Specifying advanced network configuration {#modifying-nwoperator-config-startup_installing-vsphere-installer-provisioned-customizations}
 
-To integrate your OpenShift Container Platform cluster with your existing network environment, you can specify advanced network configuration in a manifest before you install the cluster. Advanced network configuration can be configured only during cluster installation.
+You can use advanced network configuration for your OpenShift Container Platform network plugin to integrate your cluster into your existing network environment.
+
+You can specify advanced network configuration only before you install the cluster.
 
 :::warning
 
@@ -734,7 +736,7 @@ Customizing your network configuration by modifying the OpenShift Container Plat
    $ ./openshift-install create manifests --dir <installation_directory>
    ```
 
-   The `<installation_directory>` specifies the name of the directory that contains the `install-config.yaml` file for your cluster.
+   where `<installation_directory>` specifies the name of the directory that contains the `install-config.yaml` file for your cluster.
 2. Create a stub manifest file for the advanced network configuration that is named `cluster-network-03-config.yml` in the `<installation_directory>/manifests/` directory:
    ```yaml
    apiVersion: operator.openshift.io/v1
@@ -743,8 +745,8 @@ Customizing your network configuration by modifying the OpenShift Container Plat
      name: cluster
    spec:
    ```
-3. Specify the advanced network configuration for your cluster in the `cluster-network-03-config.yml` file, such as in the following example:
-   ```yaml title="Enable IPsec for the OVN-Kubernetes network provider"
+3. Specify the advanced network configuration for your cluster in the `cluster-network-03-config.yml` file, such as in the following example: The following example enables IPsec for the OVN-Kubernetes network provider:
+   ```yaml
    apiVersion: operator.openshift.io/v1
    kind: Network
    metadata:
@@ -1050,7 +1052,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>destination</code></td>
   <td>string</td>
-  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A Unix Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
+  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A UNIX Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
 </tr>
 <tr>
   <td><code>syslogFacility</code></td>
@@ -1112,7 +1114,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<div class="alert alert--warning"><strong>Important</strong><p>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</p></div></td>
+  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses and the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<div class="alert alert--warning"><strong>Important</strong><p>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</p></div></td>
 </tr>
 </tbody>
 </table>
@@ -1133,7 +1135,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<div class="alert alert--warning"><strong>Important</strong><p>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</p></div></td>
+  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses and the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<div class="alert alert--warning"><strong>Important</strong><p>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</p></div></td>
 </tr>
 </tbody>
 </table>
@@ -1159,7 +1161,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tbody>
 </table>
 
-```yaml title="Example OVN-Kubernetes configuration with IPSec enabled"
+```yaml title="Example OVN-Kubernetes configuration with IPsec enabled"
 defaultNetwork:
   type: OVNKubernetes
   ovnKubernetesConfig:
@@ -1583,7 +1585,7 @@ Interval: 10
 
 ## Deploying the cluster {#installation-launching-installer_installing-vsphere-installer-provisioned-customizations}
 
-To deploy your OpenShift Container Platform cluster, you can initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions infrastructure and completes cluster setup.
+To deploy your OpenShift Container Platform cluster, you initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions the required infrastructure and completes the cluster setup.
 
 :::warning
 
@@ -1611,8 +1613,10 @@ $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
 
-- For `<installation_directory>`, specify the location of your customized `./install-config.yaml` file.
-- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
+where:
+
+- `<installation_directory>`: Specifies the location of your customized `./install-config.yaml` file.
+- `--log-level`: Specifies the log level. To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
 **Verification**
 
@@ -1626,7 +1630,9 @@ When the cluster deployment completes successfully:
 
   :::
 
-  ```terminal title="Example output"
+  The following example shows the expected output:
+
+  ```terminal
   ...
   INFO Install complete!
   INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/home/myuser/install_dir/auth/kubeconfig'

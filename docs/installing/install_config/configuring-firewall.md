@@ -106,6 +106,11 @@ If your environment has a dedicated load balancer in front of your OpenShift Con
   <td>Used to install and manage clusters in an AWS environment.</td>
 </tr>
 <tr>
+  <td><code>ec2.us-east-1.amazonaws.com</code></td>
+  <td>443</td>
+  <td>Used to get the list of available regions when interactively generating the <code>install-config.yaml</code> file.</td>
+</tr>
+<tr>
   <td><code>events.amazonaws.com</code></td>
   <td>443</td>
   <td>Used to install and manage clusters in an AWS environment.</td>
@@ -174,9 +179,9 @@ If your environment has a dedicated load balancer in front of your OpenShift Con
   <td><code>*.cloudfront.net</code></td>
   <td>443</td>
   <td>Used to provide access to CloudFront. If you use the AWS Security Token Service (STS) and the private S3 bucket, you must provide access to CloudFront.</td>
+  <td rowspan="2">GCP</td>
 </tr>
 <tr>
-  <td rowspan="2">GCP</td>
   <td><code>*.googleapis.com</code></td>
   <td>443</td>
   <td>Required to access Google Cloud services and resources. Review <a href="https://cloud.google.com/endpoints/">Cloud Endpoints</a> in the Google Cloud documentation to find the endpoints to allow for your APIs.</td>
@@ -185,9 +190,9 @@ If your environment has a dedicated load balancer in front of your OpenShift Con
   <td><code>accounts.google.com</code></td>
   <td>443</td>
   <td>Required to access your Google Cloud account.</td>
+  <td rowspan="3">Microsoft Azure</td>
 </tr>
 <tr>
-  <td rowspan="3">Microsoft Azure</td>
   <td><code>management.azure.com</code></td>
   <td>443</td>
   <td>Required to access Microsoft Azure services and resources. Review the <a href="https://docs.microsoft.com/en-us/rest/api/azure/">Microsoft Azure REST API reference</a> in the Microsoft Azure documentation to find the endpoints to allow for your APIs.</td>
@@ -196,11 +201,6 @@ If your environment has a dedicated load balancer in front of your OpenShift Con
   <td><code>*.blob.core.windows.net</code></td>
   <td>443</td>
   <td>Required to download Ignition files.</td>
-</tr>
-<tr>
-  <td><code>login.microsoftonline.com</code></td>
-  <td>443</td>
-  <td>Required to access Microsoft Azure services and resources. Review the <a href="https://docs.microsoft.com/en-us/rest/api/azure/">Azure REST API reference</a> in the Microsoft Azure documentation to find the endpoints to allow for your APIs.</td>
 </tr>
 </tbody>
 </table>

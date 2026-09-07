@@ -7,11 +7,11 @@ sidebar_position: 2
 
 <a id="dynamic-plugins-get-started_{context}"></a>
 
-To get started using the dynamic plugin, you must set up your environment to write a new OpenShift Container Platform dynamic plugin. For an example of how to write a new plugin, see [Adding a tab to the pods page](/docs/web_console/dynamic-plugin/dynamic-plugin-example#adding-tab-to-pods-page_dynamic-plugin-example).
+To get started using the dynamic plugin, you must set up your environment to write a new OpenShift Container Platform dynamic plugin.
 
 ## Dynamic plugin development {#dynamic-plugin-development_dynamic-plugins-get-started}
 
-You can run the plugin using a local development environment. The OpenShift Container Platform web console runs in a container connected to the cluster you have logged into.
+You can run the plugin by using a local development environment. The OpenShift Container Platform web console runs in a container connected to the cluster you have logged into.
 
 **Prerequisites**
 
@@ -71,3 +71,7 @@ You can run the plugin using a local development environment. The OpenShift Cont
 **Verification**
 
 - Visit [localhost:9000](http://localhost:9000/example) to view the running plugin. Inspect the value of `window.SERVER_FLAGS.consolePlugins` to see the list of plugins which load at runtime.
+
+**Additional resources**
+
+- [Adding a tab to the pods page](/docs/web_console/dynamic-plugin/dynamic-plugin-example#adding-tab-to-pods-page_dynamic-plugin-example)

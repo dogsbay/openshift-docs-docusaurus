@@ -1,147 +1,175 @@
 ---
-title: Monitoring project and application metrics using the Developer perspective
+title: Monitoring project and application metrics by using the Developer perspective
 sidebar_position: 10
 ---
 
-# Monitoring project and application metrics using the Developer perspective {#odc-monitoring-project-and-application-metrics-using-developer-perspective}
+# Monitoring project and application metrics by using the Developer perspective {#odc-monitoring-project-and-application-metrics-using-developer-perspective_{context}}
 
-<a id="odc-monitoring-project-and-application-metrics-using-developer-perspective"></a>
+<a id="odc-monitoring-project-and-application-metrics-using-developer-perspective_{context}"></a>
 
-The **Observe** view in the **Developer** perspective provides options to monitor your project or application metrics, such as CPU, memory, and bandwidth usage, and network related information.
+The **Observe** view in the **Developer** perspective enables you to monitor project and application metrics to track performance, troubleshoot issues, and respond to alerts. For example, CPU, memory, and bandwidth usage, and network related information.
 
 ## Prerequisites {#prerequisites_odc-monitoring-project-and-application-metrics-using-developer-perspective}
 
-- You have [created and deployed applications on OpenShift Container Platform](/docs/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective).
-- You have [logged in to the web console](/docs/web_console/web-console#web-console) and have switched to [the **Developer** perspective](/docs/web_console/web-console-overview#about-developer-perspective_web-console-overview).
+- You have created and deployed applications on OpenShift Container Platform.
+- You have logged in to the web console.
+- The **Developer** perspective is enabled and you have switched to it.
 
-## Monitoring your project metrics {#odc-monitoring-your-project-metrics_odc-monitoring-project-and-application-metrics-using-developer-perspective}
+:::warning
 
-After you create applications in your project and deploy them, you can use the **Developer** perspective in the web console to see the metrics for your project.
+Starting with OpenShift Container Platform 4.19, the perspectives in the web console have unified. The **Developer** perspective is no longer enabled by default.
+
+All users can interact with all OpenShift Container Platform web console features. However, if you are not the cluster owner, you might need to request permission to access certain features from the cluster owner.
+
+You can still enable the **Developer** perspective. On the **Getting Started** pane in the web console, you can take a tour of the console, find information on setting up your cluster, view a quick start for enabling the **Developer** perspective, and follow links to explore new features and capabilities.
+
+See also, "Enabling the **Developer** perspective in the web console".
+
+:::
+
+## Enabling the *Developer* perspective in the web console {#enabling-developer-perspective_web-console_odc-monitoring-project-and-application-metrics-using-developer-perspective}
+
+Enable the **Developer** perspective in the web console to give your developers tools to manage applications, visualize topology, and monitor projects as they develop and build them.
+
+Starting with OpenShift Container Platform 4.19, the perspectives in the web console have unified. There is no longer a **Developer** perspective by default; however, cluster administrators can enable the **Developer** perspective for developers to use.
+
+You can enable the **Developer** perspective with the following steps:
+
+**Prerequisites**
+
+- You have access to the web console as a user with `cluster-admin` privileges.
 
 **Procedure**
 
-1. Go to **Observe** to see the **Dashboard**, **Metrics**, **Alerts**, and **Events** for your project.
-2. Optional: Use the **Dashboard** tab to see graphs depicting the following application metrics:
-   - CPU usage
-   - Memory usage
-   - Bandwidth consumption
-   - Network-related information such as the rate of transmitted and received packets and the rate of dropped packets.
-
-   In the **Dashboard** tab, you can access the Kubernetes compute resources dashboards.
+1. Navigate to the **Cluster Settings** page by clicking **Administration → Cluster Settings**.
+2. Select the **Configuration** tab.
+3. Type `console` in the search field to locate the Console Operator resource and select `operator.openshift.io`.
+4. On the **Cluster Details** page, click the **Actions** menu and select **Customize**.
+5. In the **General** tab, locate the **Perspectives** section. You can enable or disable the **Developer** perspective as needed. Changes are automatically applied.
+6. Optional: You can enable the **Developer** perspective by using the CLI with the following command:
+   ```terminal
+   $ oc patch console.operator.openshift.io/cluster --type='merge' -p '{"spec":{"customization":{"perspectives":[{"id":"dev","visibility":{"state":"Enabled"}}]}}}'
+   ```
 
    :::note
 
-   In the **Dashboard** list, the **Kubernetes / Compute Resources / Namespace (Pods)** dashboard is selected by default.
+   The change reflects in the web console after the console pod restarts successfully.
 
    :::
 
-   Use the following options to see further details:
+**Verification**
 
-   - Select a dashboard from the **Dashboard** list to see the filtered metrics. All dashboards produce additional sub-menus when selected, except **Kubernetes / Compute Resources / Namespace (Pods)**.
-   - Select an option from the **Time Range** list to determine the time frame for the data being captured.
-   - Set a custom time range by selecting **Custom time range** from the **Time Range** list. You can input or select the **From** and **To** dates and times. Click **Save** to save the custom time range.
-   - Select an option from the **Refresh Interval** list to determine the time period after which the data is refreshed.
-   - Hover your cursor over the graphs to see specific details for your pod.
-   - Click **Inspect** located in the upper-right corner of every graph to see any particular graph details. The graph details appear in the **Metrics** tab.
-3. Optional: Use the **Metrics** tab to query for the required project metric.
-   **Figure 1. Monitoring metrics**
+1. Locate the perspective switcher in the web console.
+2. Verify that **Developer** is displayed as an available perspective option.
 
-   ![odc_project_metrics](/images/odc_project_metrics.png)
+## Monitoring capabilities from the Developer perspective {#monitoring-capabilities-in-the-developer-perspective_odc-monitoring-project-and-application-metrics-using-developer-perspective}
 
-   1. In the **Select Query** list, select an option to filter the required details for your project. The filtered metrics for all the application pods in your project are displayed in the graph. The pods in your project are also listed below.
-   2. From the list of pods, clear the colored square boxes to remove the metrics for specific pods to further filter your query result.
-   3. Click **Show PromQL** to see the Prometheus query. You can further modify this query with the help of prompts to customize the query and filter the metrics you want to see for that namespace.
-   4. Use the drop-down list to set a time range for the data being displayed. You can click **Reset Zoom** to reset it to the default time range.
-   5. Optional: In the **Select Query** list, select **Custom Query** to create a custom Prometheus query and filter relevant metrics.
-4. Optional: Use the **Alerts** tab to do the following tasks:
-   - See the rules that trigger alerts for the applications in your project.
-   - Identify the alerts firing in the project.
-   - Silence such alerts if required.
+The **Observe** view in the **Developer** perspective shows monitoring tools filtered by your project access permissions to track performance, troubleshoot issues, and respond to alerts. You can monitor CPU, memory, bandwidth, and network metrics.
 
-   **Figure 2. Monitoring alerts**
+:::warning
 
-   ![odc_project_alerts](/images/odc_project_alerts.png)
+Starting with OpenShift Container Platform 4.19, the perspectives in the web console have unified. The **Developer** perspective is no longer enabled by default.
 
-   Use the following options to see further details:
+All users can interact with all OpenShift Container Platform web console features. However, if you are not the cluster owner, you might need to request permission to access certain features from the cluster owner.
 
-   - Use the **Filter** list to filter the alerts by their **Alert State** and **Severity**.
-   - Click on an alert to go to the details page for that alert. In the **Alerts Details** page, you can click **View Metrics** to see the metrics for the alert.
-   - Use the **Notifications** toggle adjoining an alert rule to silence all the alerts for that rule, and then select the duration for which the alerts will be silenced from the **Silence for** list. You must have the permissions to edit alerts to see the **Notifications** toggle.
-   - Use the Options menu ![](/images/kebab.png "Options menu") adjoining an alert rule to see the details of the alerting rule.
-5. Optional: Use the **Events** tab to see the events for your project.
-   **Figure 3. Monitoring events**
+You can still enable the **Developer** perspective. On the **Getting Started** pane in the web console, you can take a tour of the console, find information on setting up your cluster, view a quick start for enabling the **Developer** perspective, and follow links to explore new features and capabilities.
 
-   ![odc_project_events](/images/odc_project_events.png)
+See also, "Enabling the **Developer** perspective in the web console".
 
-   You can filter the displayed events using the following options:
+:::
 
-   - In the **Resources** list, select a resource to see events for that resource.
-   - In the **All Types** list, select a type of event to see events relevant to that type.
-   - Search for specific events using the **Filter events by names or messages** field.
+The **Observe** view in the **Developer** perspective uses the same monitoring components as the **Administrator** perspective, but displays only the projects you have permissions for. You can monitor your applications without seeing cluster-wide metrics you cannot access.
+
+:::note
+
+A project represents a Kubernetes namespace with additional annotations. When you select a project in the **Developer** perspective, you view the topology and metrics for that namespace.
+
+:::
+
+After selecting a project in the **Observe** view, the following tabs become available:
+
+- **Events**: Cluster events filtered by the selected project
+- **Alerting rules**: Configured alerting rules and their current state
+- **Alerts**: Firing alerts for the selected project
+- **Dashboards**: Pre-built visual dashboards showing resource consumption graphs including CPU usage, memory usage, bandwidth consumption, and network-related information
+- **Metrics**: Prometheus query interface for analyzing specific metrics
+- **Silences**: Create and manage alert silences to temporarily suppress alert notifications
+
+The monitoring interface is the same as the **Administrator** perspective, with the key difference being project filtering based on your access permissions.
+
+:::note
+
+In the **Administrator** perspective, the monitoring tabs are immediately available with a project dropdown for filtering. In the **Developer** perspective, you must select a project before the tabs are displayed. This scoping enables your developers to observe their applications by using the same monitoring tools as cluster administrators, focused only on their assigned projects.
+
+:::
+
+## Viewing project dashboards {#view-project-dashboards_odc-monitoring-project-and-application-metrics-using-developer-perspective}
+
+View pre-built dashboards showing CPU usage, memory usage, bandwidth consumption, and network information across your project (namespace) topology to help you monitor application performance.
+
+**Procedure**
+
+1. In the **Developer** perspective navigation menu, select **Observe**.
+2. Select a project from the **Project** list. After you select a project, the monitoring tabs are displayed.
+3. Click the **Dashboards** tab.
+   The **Dashboards** tab displays pre-built Kubernetes compute resources dashboards showing metrics such as CPU usage, memory usage, bandwidth consumption, and network-related information. The dashboard layout includes metric cards at the top showing current utilization percentages, and expandable graph sections below showing detailed resource usage trends over time.
 
 ## Monitoring your application metrics {#odc-monitoring-your-application-metrics_odc-monitoring-project-and-application-metrics-using-developer-perspective}
 
-After you create applications in your project and deploy them, you can use the **Topology** view in the **Developer** perspective to see the alerts and metrics for your application. Critical and warning alerts for your application are indicated on the workload node in the **Topology** view.
+Inspect alerts, metric charts, and health check status for individual application workloads to troubleshoot performance issues and monitor health directly from the topology view.
 
 **Procedure**
 
-To see the alerts for your workload:
+1. In the **Developer** perspective, navigate to the **Topology** view.
+2. Click the workload node to open the side panel.
+3. Select the **Observe** tab to view workload-specific metrics:
+   - Review active critical and warning alerts associated with the workload.
+   - View CPU, memory, and bandwidth usage charts.
+   - Click **View monitoring dashboard** to open the full metrics dashboard for the workload.
+     :::note
 
-1. In the **Topology** view, click the workload to see the workload details in the right panel.
-2. Click the **Observe** tab to see the critical and warning alerts for the application; graphs for metrics, such as CPU, memory, and bandwidth usage; and all the events for the application.
-   :::note
+     Only critical and warning alerts in the **Firing** state are displayed in the **Topology** view. Alerts in the **Silenced**, **Pending** and **Not Firing** states are not displayed.
 
-   Only critical and warning alerts in the **Firing** state are displayed in the **Topology** view. Alerts in the **Silenced**, **Pending** and **Not Firing** states are not displayed.
+     :::
 
-   :::
+## Image vulnerability metrics and severity levels {#odc-image-vulnerabilities-breakdown_odc-monitoring-project-and-application-metrics-using-developer-perspective}
 
-   **Figure 4. Monitoring application metrics**
+Review container image security scan results on the project dashboard to identify and prioritize vulnerabilities for remediation.
 
-   ![odc_app_metrics](/images/odc_app_metrics.png)
+In the **Developer** perspective, the project dashboard shows the **Image Vulnerabilities** link in the **Status** section. Using this link, you can view the **Image Vulnerabilities breakdown** window, which displays metrics such as the total count of vulnerable container images and fixable container images, organized by severity. The icon color indicates severity:
 
-   1. Click the alert listed in the right panel to see the alert details in the **Alert Details** page.
-   2. Click any of the charts to go to the **Metrics** tab to see the detailed metrics for the application.
-   3. Click **View monitoring dashboard** to see the monitoring dashboard for that application.
-
-## Image vulnerabilities breakdown {#odc-image-vulnerabilities-breakdown_odc-monitoring-project-and-application-metrics-using-developer-perspective}
-
-In the **Developer** perspective, the project dashboard shows the **Image Vulnerabilities** link in the **Status** section. Using this link, you can view the **Image Vulnerabilities breakdown** window, which includes details regarding vulnerable container images and fixable container images. The icon color indicates severity:
-
-- Red: High priority. Fix immediately.
-- Orange: Medium priority. Can be fixed after high-priority vulnerabilities.
-- Yellow: Low priority. Can be fixed after high and medium-priority vulnerabilities.
+- Red: High severity. Fix immediately.
+- Orange: Medium severity. Can be fixed after high-severity vulnerabilities.
+- Yellow: Low severity. Can be fixed after high and medium-severity vulnerabilities.
 
 Based on the severity level, you can prioritize vulnerabilities and fix them in an organized manner.
 
-**Figure 5. Viewing image vulnerabilities**
-
-![odc_image_vulnerabilities](/images/odc_image_vulnerabilities.png)
-
 ## Monitoring your application and image vulnerabilities metrics {#odc-monitoring-your-application-image-vulnerabilities-metrics_odc-monitoring-project-and-application-metrics-using-developer-perspective}
+
+Analyze application dependency vulnerabilities across your cluster to identify and remediate security issues in container images.
 
 After you create applications in your project and deploy them, use the **Developer** perspective in the web console to see the metrics for your application dependency vulnerabilities across your cluster. The metrics help you to analyze the following image vulnerabilities in detail:
 
 - Total count of vulnerable images in a selected project
 - Severity-based counts of all vulnerable images in a selected project
-- Drilldown into severity to obtain the details, such as count of vulnerabilities, count of fixable vulnerabilities, and number of affected pods for each vulnerable image
+- Drill down into severity to obtain the details, such as count of vulnerabilities, count of fixable vulnerabilities, and number of affected pods for each vulnerable image
 
 **Prerequisites**
 
-- You have installed the Red Hat Quay Container Security operator from the Operator Hub.
+- You have installed the Red Hat Quay Container Security Operator.
   :::note
 
-  The Red Hat Quay Container Security operator detects vulnerabilities by scanning the images that are in the quay registry.
+  The Red Hat Quay Container Security Operator detects vulnerabilities by scanning the images that are in the Red Hat Quay registry.
 
   :::
 
 **Procedure**
 
-1. For a general overview of the image vulnerabilities, on the navigation panel of the **Developer** perspective, click **Project** to see the project dashboard.
-2. Click **Image Vulnerabilities** in the **Status** section. The window that opens displays details such as **Vulnerable Container Images** and **Fixable Container Images**.
-3. For a detailed vulnerabilities overview, click the **Vulnerabilities** tab on the project dashboard.
+1. In the **Developer** perspective, click **Project** to open the project dashboard.
+2. For a detailed vulnerabilities overview, click the **Vulnerabilities** tab.
    1. To get more detail about an image, click its name.
    2. View the default graph with all types of vulnerabilities in the **Details** tab.
-   3. Optional: Click the toggle button to view a specific type of vulnerability. For example, click **App dependency** to see vulnerabilities specific to application dependency.
+   3. Optional: Click the toggle button to view a specific type of vulnerability. For example, click **App dependency** to see vulnerabilities specific to application dependency.
    4. Optional: You can filter the list of vulnerabilities based on their **Severity** and **Type** or sort them by **Severity**, **Package**, **Type**, **Source**, **Current Version**, and **Fixed in Version**.
    5. Click a **Vulnerability** to get its associated details:
       - **Base image** vulnerabilities display information from a Red Hat Security Advisory (RHSA).
@@ -149,4 +177,8 @@ After you create applications in your project and deploy them, use the **Develop
 
 **Additional resources**
 
-- [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)
+- [Monitoring stack for Red Hat OpenShift](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/4.22)
+- [About OpenShift Container Platform monitoring](/docs/observability/monitoring/about-ocp-monitoring#about-ocp-monitoring)
+- [Creating applications by using the Developer perspective](/docs/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective)
+- [Accessing the web console](/docs/web_console/web-console#web-console)
+- [About the Developer perspective](/docs/web_console/web-console-overview#about-developer-perspective_web-console-overview)

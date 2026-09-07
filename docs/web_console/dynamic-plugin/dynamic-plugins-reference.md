@@ -98,7 +98,7 @@ This extension allows plugins to contribute a provider for a catalog item type. 
 | `type` | `string` | no | Type ID for the catalog item type. |
 | `title` | `string` | no | Title for the catalog item provider |
 | `provider` | `CodeRef<ExtensionHook<CatalogItem<any>[], CatalogExtensionHookOptions>>` | no | Fetch items and normalize it for the catalog. Value is a react effect hook. |
-| `priority` | `number` | yes | Priority for this provider. Defaults to `0`. Higher priority providers may override catalog items provided by other providers. |
+| `priority` | `number` | yes | Priority for this provider. Defaults to `0`. Higher priority providers can override catalog items provided by other providers. |
 
 ### `console.catalog/item-type` {#_consolecatalogitem-type}
 
@@ -116,7 +116,7 @@ This extension allows plugins to contribute a new type of catalog item. For exam
 
 ### `console.catalog/item-type-metadata` {#_consolecatalogitem-type-metadata}
 
-This extension allows plugins to contribute extra metadata like custom filters or groupings for any catalog item type. For example, a plugin can attach a custom filter for HelmCharts that can filter based on chart provider.
+This extension allows plugins to contribute extra metadata such as custom filters or groupings for any catalog item type. For example, a plugin can attach a custom filter for HelmCharts that can filter based on chart provider.
 
 |  |  |  |  |
 | --- | --- | --- | --- |
@@ -214,8 +214,8 @@ Adds an activity to the Activity Card of Overview Dashboard where the triggering
 | Name | Value Type | Optional | Description |
 | `k8sResource` | `CodeRef<FirehoseResource & { isList: true; }>` | no | The utilization item to be replaced. |
 | `component` | `CodeRef<React.ComponentType<K8sActivityProps<T>>>` | no | The action component. |
-| `isActivity` | `CodeRef<(resource: T) => boolean>` | yes | Function which determines if the given resource represents the action. If not defined, every resource represents activity. |
-| `getTimestamp` | `CodeRef<(resource: T) => Date>` | yes | Time stamp for the given action, which will be used for ordering. |
+| `isActivity` | `CodeRef<(resource: T) => boolean>` | yes | Function that determines whether the given resource represents the action. If not defined, every resource represents activity. |
+| `getTimestamp` | `CodeRef<(resource: T) => Date>` | yes | Timestamp for the given action, which will be used for ordering. |
 
 ### `console.dashboards/overview/health/operator` {#_consoledashboardsoverviewhealthoperator}
 
@@ -224,8 +224,8 @@ Adds a health subsystem to the status card of the **Overview** dashboard, where 
 |  |  |  |  |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `title` | `string` | no | Title of Operators section in the pop-up menu. |
-| `resources` | `CodeRef<FirehoseResource[]>` | no | Kubernetes resources which will be fetched and passed to `healthHandler`. |
+| `title` | `string` | no | Title of Operators section in the menu. |
+| `resources` | `CodeRef<FirehoseResource[]>` | no | Kubernetes resources that will be fetched and passed to `healthHandler`. |
 | `getOperatorsWithStatuses` | `CodeRef<GetOperatorsWithStatuses<T>>` | yes | Resolves status for the Operators. |
 | `operatorRowLoader` | `CodeRef<React.ComponentType<OperatorRowProps<T>>>` | yes | Loader for pop-up row component. |
 | `viewAllLink` | `string` | yes | Links to all resources page. If not provided, then a list page of the first resource from resources prop is used. |
@@ -239,9 +239,9 @@ Adds a health subsystem to the status card of Overview dashboard where the sourc
 | Name | Value Type | Optional | Description |
 | `title` | `string` | no | The display name of the subsystem. |
 | `queries` | `string[]` | no | The Prometheus queries. |
-| `healthHandler` | `CodeRef<PrometheusHealthHandler>` | no | Resolve the subsystem’s health. |
-| `additionalResource` | `CodeRef<FirehoseResource>` | yes | Additional resource which will be fetched and passed to `healthHandler`. |
-| `popupComponent` | `CodeRef<React.ComponentType<PrometheusHealthPopupProps>>` | yes | Loader for pop-up menu content. If defined, a health item is represented as a link, which opens a pop-up menu with the given content. |
+| `healthHandler` | `CodeRef<PrometheusHealthHandler>` | no | Resolves the subsystem’s health. |
+| `additionalResource` | `CodeRef<FirehoseResource>` | yes | Additional resource that will be fetched and passed to `healthHandler`. |
+| `popupComponent` | `CodeRef<React.ComponentType<PrometheusHealthPopupProps>>` | yes | Loader for menu content. If defined, a health item is represented as a link, which opens a menu with the given content. |
 | `popupTitle` | `string` | yes | The title of the popover. |
 | `disallowedControlPlaneTopology` | `string[]` | yes | Control plane topology for which the subsystem should be hidden. |
 
@@ -254,8 +254,8 @@ Adds a health subsystem to the status card of Overview dashboard where the sourc
 | Name | Value Type | Optional | Description |
 | `title` | `string` | no | The display name of the subsystem. |
 | `resources` | `CodeRef<WatchK8sResources<T>>` | no | Kubernetes resources that will be fetched and passed to `healthHandler`. |
-| `healthHandler` | `CodeRef<ResourceHealthHandler<T>>` | no | Resolve the subsystem’s health. |
-| `popupComponent` | `CodeRef<WatchK8sResults<T>>` | yes | Loader for pop-up menu content. If defined, a health item is represented as a link, which opens a pop-up menu with the given content. |
+| `healthHandler` | `CodeRef<ResourceHealthHandler<T>>` | no | Resolves the subsystem’s health. |
+| `popupComponent` | `CodeRef<WatchK8sResults<T>>` | yes | Loader for menu content. If defined, a health item is represented as a link, which opens a menu with the given content. |
 | `popupTitle` | `string` | yes | The title of the popover. |
 
 ### `console.dashboards/overview/health/url` {#_consoledashboardsoverviewhealthurl}
@@ -267,9 +267,9 @@ Adds a health subsystem to the status card of Overview dashboard where the sourc
 | Name | Value Type | Optional | Description |
 | `title` | `string` | no | The display name of the subsystem. |
 | `url` | `string` | no | The URL to fetch data from. It will be prefixed with base Kubernetes URL. |
-| `healthHandler` | `CodeRef<URLHealthHandler<T, K8sResourceCommon \| K8sResourceCommon[]>>` | no | Resolve the subsystem’s health. |
-| `additionalResource` | `CodeRef<FirehoseResource>` | yes | Additional resource which will be fetched and passed to `healthHandler`. |
-| `popupComponent` | `CodeRef<React.ComponentType<{ healthResult?: T; healthResultError?: any; k8sResult?: FirehoseResult<R>; }>>` | yes | Loader for popup content. If defined, a health item will be represented as a link which opens popup with given content. |
+| `healthHandler` | `CodeRef<URLHealthHandler<T, K8sResourceCommon \| K8sResourceCommon[]>>` | no | Resolves the subsystem’s health. |
+| `additionalResource` | `CodeRef<FirehoseResource>` | yes | Additional resource that will be fetched and passed to `healthHandler`. |
+| `popupComponent` | `CodeRef<React.ComponentType<{ healthResult?: T; healthResultError?: any; k8sResult?: FirehoseResult<R>; }>>` | yes | Loader for pop-up content. If defined, a health item will be represented as a link which opens a pop-up with given content. |
 | `popupTitle` | `string` | yes | The title of the popover. |
 
 ### `console.dashboards/overview/inventory/item` {#_consoledashboardsoverviewinventoryitem}
@@ -394,7 +394,7 @@ Customize the display of models by overriding values retrieved and generated thr
 |  |  |  |  |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `model` | `ExtensionK8sGroupModel` | no | The model to customize. May specify only a group, or optional version and kind. |
+| `model` | `ExtensionK8sGroupModel` | no | The model to customize. Can specify only a group, or optional version and kind. |
 | `badge` | `ModelBadge` | yes | Whether to consider this model reference as Technology Preview or Developer Preview. |
 | `color` | `string` | yes | The color to associate to this model. |
 | `label` | `string` | yes | Override the label. Requires `kind` be provided. |
@@ -664,7 +664,7 @@ Adds a new details item to the default resource summary on the details page.
   <td><code>path</code></td>
   <td><code>string</code></td>
   <td>yes</td>
-  <td>An optional, fully-qualified path to a resource property to used as the details item value. Only primitive type values, linked in Additional resources, can be rendered directly. Use the component property to handle other data types.</td>
+  <td>An optional, fully-qualified path to a resource property to used as the details item value. You can directly render only primitive type values, linked in Additional resources. Use the component property to handle other data types.</td>
 </tr>
 <tr>
   <td><code>component</code></td>
@@ -675,7 +675,7 @@ Adds a new details item to the default resource summary on the details page.
 <tr>
   <td><code>number</code></td>
   <td>yes</td>
-  <td>An optional sort weight, relative to all other details items in the same column. Represented by any valid JavaScript Number, linked in Additional resources. Items in each column are sorted independently, lowest to highest. Items without sort weights are sorted after items with sort weights.</td>
+  <td>An optional sort weight, relative to all other details items in the same column. You can represent it by using any valid JavaScript Number, linked in Additional resources. Items in each column are sorted independently, lowest to highest. Items without sort weights are sorted after items with sort weights.</td>
 </tr>
 </tbody>
 </table>
@@ -725,7 +725,7 @@ This extension can be used to add a tab on the resource details page.
 
 ### `console.telemetry/listener` {#_consoletelemetrylistener}
 
-This component can be used to register a listener function receiving telemetry events. These events include user identification, page navigation, and other application specific events. The listener may use this data for reporting and analytics purposes.
+This component can be used to register a listener function receiving telemetry events. These events include user identification, page navigation, and other application specific events. The listener can use this data for reporting and analytics purposes.
 
 |  |  |  |  |
 | --- | --- | --- | --- |
@@ -868,8 +868,8 @@ Topology relationship provider connector extension
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
 | `provides` | `CodeRef<RelationshipProviderProvides>` | no | Use to determine if a connection can be created between the source and target node |
-| `tooltip` | `string` | no | Tooltip to show when connector operation is hovering over the drop target, for example, "Create a Visual Connector" |
-| `create` | `CodeRef<RelationshipProviderCreate>` | no | Callback to execute when connector is drop over target node to create a connection |
+| `tooltip` | `string` | no | A tooltip to show when connector operation is hovering over the drop target, for example, "Create a Visual Connector" |
+| `create` | `CodeRef<RelationshipProviderCreate>` | no | A callback that creates a connection when a connector is dropped onto the target node |
 | `priority` | `number` | no | Priority for relationship, higher will be preferred in case of multiple |
 
 ### `console.user-preference/group` {#_consoleuser-preferencegroup}
@@ -891,7 +891,7 @@ This extension can be used to add an item to the user preferences group on the c
 |  |  |  |  |
 | --- | --- | --- | --- |
 | Name | Value Type | Optional | Description |
-| `id` | `string` | no | ID used to identify the user preference item and referenced in insertAfter and insertBefore to define the item order |
+| `id` | `string` | no | ID used to identify the user preference item and referenced in insertAfter and insertBefore to define the item order. |
 | `label` | `string` | no | The label of the user preference |
 | `description` | `string` | no | The description of the user preference |
 | `field` | `UserPreferenceField` | no | The input field options used to render the values to set the user preference |
@@ -901,7 +901,7 @@ This extension can be used to add an item to the user preferences group on the c
 
 ### `console.yaml-template` {#_consoleyaml-template}
 
-YAML templates for editing resources via the yaml editor.
+YAML templates for editing resources via the YAML editor.
 
 |  |  |  |  |
 | --- | --- | --- | --- |
@@ -1051,7 +1051,7 @@ Component for displaying a triangle exclamation icon.
 
 ### `BlueInfoCircleIcon` {#_blueinfocircleicon}
 
-Component for displaying a blue info circle icon.
+Component for displaying the `BlueInfoCircleIcon` info icon.
 
 **Example**
 
@@ -1180,7 +1180,7 @@ const [navItemExtensions, navItemsResolved] = useResolvedExtensions<NavItem>(isN
 |  |  |
 | --- | --- |
 | Parameter Name | Description |
-| `typeGuards` | A list of callbacks that each accept a dynamic plugin extension as an argument and return a boolean flag indicating whether or not the extension meets desired type constraints |
+| `typeGuards` | A list of callbacks that each accept a dynamic plugin extension as an argument and return a boolean flag indicating whether or not the extension meets required type constraints |
 
 ### `HorizontalNav` {#_horizontalnav}
 
@@ -1381,7 +1381,7 @@ const exampleList: React.FC<MyProps> = () => {
 | --- | --- |
 | Parameter Name | Description |
 | `items` | key:ReactNode pairs of items to display in dropdown component |
-| `onClick` | callback function for click on dropdown items |
+| `onClick` | callback function for clicking dropdown items |
 | `createAccessReview` | (optional) object with namespace and kind used to determine access |
 | `children` | (optional) children for the dropdown toggle |
 
@@ -1506,11 +1506,11 @@ const Component: React.FC = () => {
 |  |  |
 | --- | --- |
 | Parameter Name | Description |
-| `initResources` | Resources must be watched as key-value pair, wherein key is unique to resource and value is options needed to watch for the respective resource. |
+| `initResources` | Resources must be watched as key-value pair, wherein key is unique to resource and value is options needed to watch for that resource. |
 
 ### `consoleFetch` {#_consolefetch}
 
-A custom wrapper around `fetch` that adds console specific headers and allows for retries and timeouts.It also validates the response status code and throws appropriate error or logs out the user if required. It returns a promise that resolves to the response.
+A custom wrapper around `fetch` that adds console specific headers and allows for retries and timeouts. It also validates the response status code and throws appropriate error or logs out the user if required. It returns a promise that resolves to the response.
 
 |  |  |
 | --- | --- |
@@ -1546,7 +1546,7 @@ A custom wrapper around `fetch` that adds console specific headers and allows fo
 
 ### `getConsoleRequestHeaders` {#_getconsolerequestheaders}
 
-A function that creates impersonation and multicluster related headers for API requests using current redux state. It returns an object containing the appropriate impersonation and cluster request headers, based on redux state.
+A function that creates impersonation and multicluster related headers for API requests by using current redux state. It returns an object containing the appropriate impersonation and cluster request headers, based on redux state.
 
 |  |  |
 | --- | --- |
@@ -1555,7 +1555,7 @@ A function that creates impersonation and multicluster related headers for API r
 
 ### `k8sGetResource` {#_k8sgetresource}
 
-It fetches a resource from the cluster, based on the provided options. If the name is provided it returns one resource else it returns all the resources matching the model. It returns a promise that resolves to the response as JSON object with a resource if the name is provided else it returns all the resources matching the model. In case of failure, the promise gets rejected with HTTP error response.
+It fetches a resource from the cluster, based on the provided options. If the name is provided it returns one resource, otherwise it returns all the resources matching the model. It returns a promise that resolves to the response as JSON object with a resource if the name is provided, otherwise it returns all the resources matching the model. In case of failure, the promise gets rejected with HTTP error response.
 
 |  |  |
 | --- | --- |
@@ -1566,7 +1566,7 @@ It fetches a resource from the cluster, based on the provided options. If the na
 | `options.ns` | The namespace to look into, should not be specified for cluster-scoped resources. |
 | `options.path` | Appends as subpath if provided |
 | `options.queryParams` | The query parameters to be included in the URL. |
-| `options.requestInit` | The fetch init object to use. This can have request headers, method, redirect, etc. |
+| `options.requestInit` | The fetch init object to use. This can have request headers, method, redirect, and so on. |
 
 ### `k8sCreateResource` {#_k8screateresource}
 
@@ -1624,7 +1624,7 @@ It deletes resources from the cluster, based on the provided model, resource. Th
 | `options.resource` | The resource to be deleted. |
 | `options.path` | Appends as subpath if provided |
 | `options.queryParams` | The query parameters to be included in the URL. |
-| `options.requestInit` | The fetch init object to use. This can have request headers, method, redirect, etc. See [Interface RequestInit](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.requestinit.html) for more. |
+| `options.requestInit` | The fetch init object to use. This can have request headers, method, redirect, and so on. See [Interface RequestInit](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.requestinit.html) for more. |
 | `options.json` | Can control garbage collection of resources explicitly if provided or else it defaults to the model’s "propagationPolicy". |
 
 ### `k8sListResource` {#_k8slistresource}
@@ -1637,7 +1637,7 @@ Lists the resources as an array in the cluster, based on provided options. It re
 | `options` | Which are passed as key-value pairs in the map |
 | `options.model` | k8s model |
 | `options.queryParams` | The query parameters to be included in the URL and can pass label selector’s as well with key "labelSelector". |
-| `options.requestInit` | The fetch init object to use. This can have request headers, method, redirect, etc. See [Interface RequestInit](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.requestinit.html) for more. |
+| `options.requestInit` | The fetch init object to use. This can have request headers, method, redirect, and so on. See [Interface RequestInit](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.requestinit.html) for more. |
 
 ### `k8sListResourceItems` {#_k8slistresourceitems}
 
@@ -1672,7 +1672,7 @@ Provides a group, version, and kind for a k8s model. This returns the group, ver
 
 ### `StatusPopupSection` {#_statuspopupsection}
 
-Component that shows the status in a popup window. Helpful component for building `console.dashboards/overview/health/resource` extensions.
+Component that shows the status in a pop-up. Helpful component for building `console.dashboards/overview/health/resource` extensions.
 
 **Example**
 
@@ -1693,13 +1693,13 @@ Component that shows the status in a popup window. Helpful component for buildin
 |  |  |
 | --- | --- |
 | Parameter Name | Description |
-| `firstColumn` | values for first column of popup |
-| `secondColumn` | (optional) values for second column of popup |
-| `children` | (optional) children for the popup |
+| `firstColumn` | values for first column of pop-up |
+| `secondColumn` | (optional) values for second column of pop-up |
+| `children` | (optional) children for the pop-up |
 
 ### `StatusPopupItem` {#_statuspopupitem}
 
-Status element used in status popup; used in `StatusPopupSection`.
+Status element used in status pop-up; used in `StatusPopupSection`.
 
 **Example**
 
@@ -1882,9 +1882,9 @@ A basic lazy loaded Code editor with hover help and completion.
 |  |  |
 | --- | --- |
 | Parameter Name | Description |
-| `value` | String representing the yaml code to render. |
+| `value` | String representing the YAML code to render. |
 | `language` | String representing the language of the editor. |
-| `options` | Monaco editor options. For more details, please, visit [Interface IStandAloneEditorConstructionOptions](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html). |
+| `options` | Monaco editor options. For more details, see [Interface IStandAloneEditorConstructionOptions](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneEditorConstructionOptions.html). |
 | `minHeight` | Minimum editor height in valid CSS height values. |
 | `showShortcuts` | Boolean to show shortcuts on top of the editor. |
 | `toolbarLinks` | Array of ReactNode rendered on the toolbar links section on top of the editor. |
@@ -1894,7 +1894,7 @@ A basic lazy loaded Code editor with hover help and completion.
 
 ### `ResourceYAMLEditor` {#_resourceyamleditor}
 
-A lazy loaded YAML editor for Kubernetes resources with hover help and completion. The component use the YAMLEditor and add on top of it more functionality like resource update handling, alerts, save, cancel and reload buttons, accessibility and more. Unless `onSave` callback is provided, the resource update is automatically handled. It should be wrapped in a `React.Suspense` component.
+A lazy loaded YAML editor for Kubernetes resources with hover help and completion. The component use the YAMLEditor and add on top of it more functionality such as resource update handling, alerts, save, cancel and reload buttons, accessibility and more. Unless `onSave` callback is provided, the resource update is automatically handled. It should be wrapped in a `React.Suspense` component.
 
 ```text title="Example"
 <React.Suspense fallback={<LoadingBox />}>
@@ -2040,7 +2040,7 @@ A component that renders a horizontal toolbar with a namespace dropdown menu in 
 
 ### `ErrorBoundaryFallbackPage` {#_errorboundaryfallbackpage}
 
-Creates full page ErrorBoundaryFallbackPage component to display the "Oh no! Something went wrong." message along with the stack trace and other helpful debugging information. This is to be used inconjunction with an component.
+Creates full page ErrorBoundaryFallbackPage component to display the "Oh no! Something went wrong." message along with the stack trace and other helpful debugging information. This is to be used in conjunction with an component.
 
 ```tsx title="Example"
 //in ErrorBoundary component
@@ -2362,7 +2362,7 @@ Deprecated: Use `CodeEditor` instead. A basic lazy loaded YAML editor with hover
 |  |  |
 | --- | --- |
 | Parameter Name | Description |
-| `value` | String representing the yaml code to render. |
+| `value` | String representing the YAML code to render. |
 | `options` | Monaco editor options. |
 | `minHeight` | Minimum editor height in valid CSS height values. |
 | `showShortcuts` | Boolean to show shortcuts on top of the editor. |

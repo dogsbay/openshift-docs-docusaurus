@@ -11,7 +11,7 @@ You can install an OpenShift Container Platform cluster on Microsoft Azure by us
 
 ## Deploying the cluster {#installation-launching-installer_installing-azure-default}
 
-To deploy your OpenShift Container Platform cluster, you can initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions infrastructure and completes cluster setup.
+To deploy your OpenShift Container Platform cluster, you initialize installation by running the `openshift-install create cluster` command from the directory that contains the installation program. The installation program provisions the required infrastructure and completes the cluster setup.
 
 :::warning
 
@@ -37,41 +37,44 @@ $ ./openshift-install create cluster --dir <installation_directory> \
     --log-level=info
 ```
 
-- For `<installation_directory>`, specify the directory name to store the files that the installation program creates.
-- To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
-  When specifying the directory:
+where:
 
-  - Verify that the directory has the `execute` permission. This permission is required to run Terraform binaries under the installation directory.
-  - Use an empty directory. Some installation assets, such as bootstrap X.509 certificates, have short expiration intervals, therefore you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
-    1. Provide values at the prompts:
-       1. Optional: Select an SSH key to use to access your cluster machines.
-          :::note
+- `<installation_directory>`: Specifies the directory name to store the files that the installation program creates.
+- `--log-level`: Specifies the log level. To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
-          For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
+When specifying the directory:
 
-          :::
-       2. Select **azure** as the platform to target.
-          If the installation program cannot locate the `osServicePrincipal.json` configuration file from a previous installation, you are prompted for Azure subscription and authentication values.
-       3. Specify the following Azure parameter values for your subscription and service principal:
-          - **azure subscription id**: Enter the subscription ID to use for the cluster.
-          - **azure tenant id**: Enter the tenant ID.
-          - **azure service principal client id**: Enter its application ID.
-          - **azure service principal client secret**: Enter its password.
-       4. Select the region to deploy the cluster to.
-       5. Select the base domain to deploy the cluster to. The base domain corresponds to the Azure DNS Zone that you created for your cluster.
-       6. Enter a descriptive name for your cluster.
-          :::warning
+- Verify that the directory has the `execute` permission. This permission is required to run Terraform binaries under the installation directory.
+- Use an empty directory. Some installation assets, such as bootstrap X.509 certificates, have short expiration intervals, therefore you must not reuse an installation directory. If you want to reuse individual files from another cluster installation, you can copy them into your directory. However, the file names for the installation assets might change between releases. Use caution when copying installation files from an earlier OpenShift Container Platform version.
 
-          All Azure resources that are available through public endpoints are subject to resource name restrictions, and you cannot create resources that use certain terms. For a list of terms that Azure restricts, see [Resolve errors for reserved resource names](https://learn.microsoft.com/en-us/azure/azure-resource-manager/troubleshooting/error-reserved-resource-name) in the Azure documentation.
+1. Provide values at the prompts:
+   1. Optional: Select an SSH key to use to access your cluster machines.
+      :::note
 
-          :::
-       7. Paste the [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret).
+      For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your `ssh-agent` process uses.
 
-    :::note
+      :::
+   2. Select **azure** as the platform to target.
+      If the installation program cannot locate the `osServicePrincipal.json` configuration file from a previous installation, you are prompted for Azure subscription and authentication values.
+   3. Specify the following Azure parameter values for your subscription and service principal:
+      - **azure subscription id**: Enter the subscription ID to use for the cluster.
+      - **azure tenant id**: Enter the tenant ID.
+      - **azure service principal client id**: Enter its application ID.
+      - **azure service principal client secret**: Enter its password.
+   4. Select the region to deploy the cluster to.
+   5. Select the base domain to deploy the cluster to. The base domain corresponds to the Azure DNS Zone that you created for your cluster.
+   6. Enter a descriptive name for your cluster.
+      :::warning
 
-    If previously not detected, the installation program creates an `osServicePrincipal.json` configuration file and stores this file in the `~/.azure/` directory on your computer. This ensures that the installation program can load the profile when it is creating an OpenShift Container Platform cluster on the target platform.
+      All Azure resources that are available through public endpoints are subject to resource name restrictions, and you cannot create resources that use certain terms. For a list of terms that Azure restricts, see [Resolve errors for reserved resource names](https://learn.microsoft.com/en-us/azure/azure-resource-manager/troubleshooting/error-reserved-resource-name) in the Azure documentation.
 
-    :::
+      :::
+   7. Paste the [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret).
+      :::note
+
+      If previously not detected, the installation program creates an `osServicePrincipal.json` configuration file and stores this file in the `~/.azure/` directory on your computer. This ensures that the installation program can load the profile when it is creating an OpenShift Container Platform cluster on the target platform.
+
+      :::
 
 **Verification**
 
@@ -85,7 +88,9 @@ When the cluster deployment completes successfully:
 
   :::
 
-  ```terminal title="Example output"
+  The following example shows the expected output:
+
+  ```terminal
   ...
   INFO Install complete!
   INFO To access the cluster as the system:admin user when using 'oc', run 'export KUBECONFIG=/home/myuser/install_dir/auth/kubeconfig'

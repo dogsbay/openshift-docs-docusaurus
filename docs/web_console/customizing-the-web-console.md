@@ -443,9 +443,7 @@ You can dynamically add YAML examples to any Kubernetes resources at any time.
 
 ## Customizing user perspectives {#odc-customizing-user-perspectives_customizing-web-console}
 
-As a cluster administrator, you can show or hide OpenShift Container Platform web console perspectives, such as **Administrator** and **Developer**, for all users or for a specific user role. This lets you limit each user’s view to only the perspectives and cluster resources that are relevant to their role.
-
-By default, the web console provides the **Administrator** and **Developer** perspectives, though more might be available depending on installed console plugins. For example, you can hide the **Administrator** perspective from unprivileged users so that they cannot manage cluster resources, users, and projects, or show the **Developer** perspective to users with the developer role so that they can create, deploy, and monitor applications.
+As a cluster administrator, you can show or hide web console perspectives for all users or for a specific user role, ensuring users see only the perspectives relevant to their role and tasks. For example, you can hide the **Administrator** perspective from users without administrative access.
 
 You can also customize the perspective visibility for users based on role-based access control (RBAC). For example, if you customize a perspective for monitoring purposes, which requires specific permissions, you can define that the perspective is visible only to users with required permissions.
 
@@ -463,7 +461,7 @@ By default, all perspectives are enabled. When you customize the user perspectiv
 
 ### Customizing a perspective using YAML view {#odc-customizing-a-perspective-using-YAML-view_customizing-web-console}
 
-You can customize the visibility of a perspective in the web console by using the YAML view.
+You can customize a perspective by editing the console resource YAML content.
 
 **Prerequisites**
 
@@ -534,7 +532,7 @@ You can customize the visibility of a perspective in the web console by using th
 
 ### Customizing a perspective using form view {#odc-customizing-a-perspective-using-form-view_customizing-web-console}
 
-You can customize the visibility of a perspective in the web console by using the form view.
+You can customize a perspective by using the form view of the console resource.
 
 **Prerequisites**
 
@@ -619,40 +617,9 @@ You can customize a developer catalog by editing the YAML content in the YAML vi
 
    :::
 
-### Customizing a developer catalog or its sub-catalogs using the form view {#odc_customizing-a-developer-catalog-or-its-sub-catalogs-using-the-form-view_customizing-web-console}
-
-You can customize a developer catalog by using the form view in the Web Console.
-
-**Prerequisites**
-
-- An OpenShift web console session with cluster administrator privileges.
-- The Developer perspective is enabled.
-
-**Procedure**
-
-1. In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
-2. Select the **Configuration** tab and click the **Console (operator.openshift.io)** resource.
-3. Click **Actions** → **Customize**.
-4. Enable or disable items in the **Pre-pinned navigation items**, **Add page**, and **Developer Catalog** sections.
-   **Verification**
-
-   After you have customized the developer catalog, your changes are automatically saved in the system and take effect in the browser after a refresh. ![Developer catalog customization options in the form view](/images/odc_customizing_developer_catalog.png)
-
-   :::note
-
-   As an administrator, you can define the navigation items that appear by default for all users. You can also reorder the navigation items.
-
-   :::
-
-   :::tip
-
-   You can use a similar procedure to customize Web UI items such as Quick starts, Cluster roles, and Actions.
-
-   :::
-
 #### Example YAML file changes {#con_example-yaml-file-changes_customizing-web-console}
 
-You can dynamically add the following snippets in the YAML editor for customizing a developer catalog.
+You can customize a developer catalog by dynamically editing YAML content in the YAML editor.
 
 Use the following snippet to display all the sub-catalogs by setting the *state* type to **Enabled**.
 
@@ -706,3 +673,34 @@ spec:
           - HelmChart
           - ...
 ```
+
+### Customizing a developer catalog or its sub-catalogs using the form view {#odc_customizing-a-developer-catalog-or-its-sub-catalogs-using-the-form-view_customizing-web-console}
+
+You can customize a developer catalog by using the form view in the Web Console.
+
+**Prerequisites**
+
+- An OpenShift web console session with cluster administrator privileges.
+- The Developer perspective is enabled.
+
+**Procedure**
+
+1. In the **Administrator** perspective, navigate to **Administration** → **Cluster Settings**.
+2. Select the **Configuration** tab and click the **Console (operator.openshift.io)** resource.
+3. Click **Actions** → **Customize**.
+4. Enable or disable items in the **Pre-pinned navigation items**, **Add page**, and **Developer Catalog** sections.
+   **Verification**
+
+   After you have customized the developer catalog, your changes are automatically saved in the system and take effect in the browser after a refresh. ![Developer catalog customization options in the form view](/images/odc_customizing_developer_catalog.png)
+
+   :::note
+
+   As an administrator, you can define the navigation items that appear by default for all users. You can also reorder the navigation items.
+
+   :::
+
+   :::tip
+
+   You can use a similar procedure to customize Web UI items such as Quick starts, Cluster roles, and Actions.
+
+   :::

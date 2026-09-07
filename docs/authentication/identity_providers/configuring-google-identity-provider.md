@@ -33,7 +33,7 @@ Using Google as an identity provider requires users to get a token using `<names
 
 ## Creating the secret {#identity-provider-creating-secret_configuring-google-identity-provider}
 
-Create a `Secret` object in the `openshift-config` namespace to store the client secret and related credentials for the identity provider configuration.
+Create a `Secret` object in the `openshift-config` namespace to store the client secret for your identity provider. The identity provider custom resource (CR) references this secret during configuration.
 
 **Procedure**
 
@@ -101,12 +101,12 @@ where:
 
 ## Adding an identity provider to your cluster {#add-identity-provider_configuring-google-identity-provider}
 
-Apply the identity provider custom resource (CR) to your cluster so users can authenticate with the configured identity provider.
+Apply the identity provider custom resource (CR) to your cluster after you define it. With this configuration, you can authenticate with the configured identity provider.
 
 **Prerequisites**
 
-- You installed an OpenShift Container Platform cluster.
-- You defined the CR for your identity provider.
+- You have access to a OpenShift Container Platform cluster.
+- You have created the CR for your identity providers.
 - You are logged in as an administrator.
 
 **Procedure**
@@ -125,17 +125,14 @@ Apply the identity provider custom resource (CR) to your cluster so users can au
    As long as the `kubeadmin` user has been removed, the `oc login` command provides instructions on how to access a web page where you can retrieve the token.
 
    You can also access this page from the web console by navigating to **(?) Help** → **Command Line Tools** → **Copy Login Command**.
-3. Log in to the cluster, passing in the token to authenticate, by running the following command:
+3. Log in to the cluster by running the following command, passing in the token to authenticate:
    ```terminal
    $ oc login --token=<token>
    ```
 
-   :::note
+This identity provider does not support logging in with a username and password.
 
-   This identity provider does not support logging in with a username and password.
-
-   :::
-4. Confirm that the user logged in successfully and that the username displays by running the following command:
+1. Confirm that the user logged in successfully and that the username displays by running the following command:
    ```terminal
    $ oc whoami
    ```

@@ -7,7 +7,7 @@ sidebar_position: 5
 
 <a id="dynamic-plugin-example_{context}"></a>
 
-Before working through the example, verify that the plugin is working by following the steps in [Dynamic plugin development](/docs/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugin-development_dynamic-plugins-get-started)
+Before working through the example, verify that the plugin is working by following the steps in the Dynamic plugin development documentation.
 
 ## Adding a tab to the pods page {#adding-tab-to-pods-page_dynamic-plugin-example}
 
@@ -107,3 +107,7 @@ The OpenShift Container Platform web console runs in a container connected to th
 **Verification**
 
 - Visit a **Pod** page to view the added tab.
+
+**Additional resources**
+
+- [Dynamic plugin development](/docs/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugin-development_dynamic-plugins-get-started)

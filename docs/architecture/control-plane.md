@@ -97,24 +97,26 @@ Cluster workers
 Cluster control planes
 : In a Kubernetes cluster, the *master* nodes run services that are required to control the Kubernetes cluster. In OpenShift Container Platform, the control plane consists of control plane machines that have a `master` machine role. They contain more than just the Kubernetes services for managing the OpenShift Container Platform cluster.
 
-  For most OpenShift Container Platform clusters, control plane machines are defined by a series of standalone machine API resources. For supported cloud provider and OpenShift Container Platform version combinations, control planes can be managed with control plane machine sets. Extra controls apply to control plane machines to prevent you from deleting all of the control plane machines and making the cluster inoperable.
+  For most OpenShift Container Platform clusters, control plane machines are defined by a series of standalone machine API resources. For supported cloud provider and OpenShift Container Platform version combinations, control planes can be managed with control plane machine sets. Extra controls apply to control plane machines to prevent you from deleting all of the control plane machines and making the cluster inoperable. Exactly three control plane nodes must be used for all production deployments.
 
-  :::note
+:::note
 
-  Exactly three control plane nodes must be used for all production deployments. However, on bare metal platforms, clusters can be scaled up to five control plane nodes.
+On a bare-metal platform, you can scale a cluster to three, four, or five control plane nodes. For best results, use odd size control plane nodes, such as three or five, on a cluster. A four-node control plane has the same etcd one failure tolerance as three nodes. Only a five-node control plane can tolerate two simultaneous failures.
 
-  :::
+Adding a fourth control plane node means etcd needs three healthy members instead of two. Until the fourth node is healthy, losing one of the original nodes breaks quorum and takes the cluster down.
 
-  Services that fall under the Kubernetes category on the control plane include the Kubernetes API server, etcd, the Kubernetes controller manager, and the Kubernetes scheduler.
+:::
 
-  **Kubernetes services that run on the control plane**
+Services that fall under the Kubernetes category on the control plane include the Kubernetes API server, etcd, the Kubernetes controller manager, and the Kubernetes scheduler.
 
-  | Component | Description |
-  | --- | --- |
-  | Kubernetes API server | The Kubernetes API server validates and configures the data for pods, services, and replication controllers. It also provides a focal point for the shared state of the cluster. |
-  | etcd | etcd stores the persistent control plane state while other components watch etcd for changes to bring themselves into the specified state. |
-  | Kubernetes controller manager | The Kubernetes controller manager watches etcd for changes to objects such as replication, namespace, and service account controller objects, and then uses the API to enforce the specified state. Several such processes create a cluster with one active leader at a time. |
-  | Kubernetes scheduler | The Kubernetes scheduler watches for newly created pods without an assigned node and selects the best node to host the pod. |
+.Kubernetes services that run on the control plane
+
+| Component | Description |
+| --- | --- |
+| Kubernetes API server | The Kubernetes API server validates and configures the data for pods, services, and replication controllers. It also provides a focal point for the shared state of the cluster. |
+| etcd | etcd stores the persistent control plane state while other components watch etcd for changes to bring themselves into the specified state. |
+| Kubernetes controller manager | The Kubernetes controller manager watches etcd for changes to objects such as replication, namespace, and service account controller objects, and then uses the API to enforce the specified state. Several such processes create a cluster with one active leader at a time. |
+| Kubernetes scheduler | The Kubernetes scheduler watches for newly created pods without an assigned node and selects the best node to host the pod. |
 
 There are also OpenShift services that run on the control plane, which include the OpenShift API server, OpenShift controller manager, OpenShift OAuth API server, and OpenShift OAuth server.
 

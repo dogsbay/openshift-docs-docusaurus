@@ -915,7 +915,7 @@ Unspecified values result in the default value of `Filesystem`.
 
 :::
 
-## Reduce pod timeouts by using fsGroup {#storage-persistent-storage-fsGroup_understanding-persistent-storage}
+## Reduce pod timeouts by using fsGroup {#storage-persistent-storage-fsgroup_understanding-persistent-storage}
 
 To reduce pod timeouts when using a storage volume with many files, configure the `fsGroup` field. By specifying this field, you can manage how file ownership and permissions are applied, preventing delays caused by the default recursive permission changes on large volumes.
 

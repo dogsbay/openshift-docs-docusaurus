@@ -413,7 +413,7 @@ The default `install-config.yaml` file configuration from the previous release o
 
 ## Network configuration phases {#nw-network-config_installing-vsphere-network-customizations}
 
-There are two phases prior to OpenShift Container Platform installation where you can customize the network configuration. Customize settings in the `install-config.yaml` file and in the Cluster Network Operator manifest across two configuration phases.
+You can customize your OpenShift Container Platform network plugin configuration, such as cluster network CIDR and service network ranges, during two phases before installation to integrate with your existing network environment.
 
 Phase 1
 : You can customize the following network-related fields in the `install-config.yaml` file before you create the manifest files:
@@ -445,7 +445,9 @@ During phase 2, you cannot override the values that you specified in phase 1 in 
 
 ## Specifying advanced network configuration {#modifying-nwoperator-config-startup_installing-vsphere-network-customizations}
 
-To integrate your OpenShift Container Platform cluster with your existing network environment, you can specify advanced network configuration in a manifest before you install the cluster. Advanced network configuration can be configured only during cluster installation.
+You can use advanced network configuration for your OpenShift Container Platform network plugin to integrate your cluster into your existing network environment.
+
+You can specify advanced network configuration only before you install the cluster.
 
 :::warning
 
@@ -464,7 +466,7 @@ Customizing your network configuration by modifying the OpenShift Container Plat
    $ ./openshift-install create manifests --dir <installation_directory>
    ```
 
-   The `<installation_directory>` specifies the name of the directory that contains the `install-config.yaml` file for your cluster.
+   where `<installation_directory>` specifies the name of the directory that contains the `install-config.yaml` file for your cluster.
 2. Create a stub manifest file for the advanced network configuration that is named `cluster-network-03-config.yml` in the `<installation_directory>/manifests/` directory:
    ```yaml
    apiVersion: operator.openshift.io/v1
@@ -473,8 +475,8 @@ Customizing your network configuration by modifying the OpenShift Container Plat
      name: cluster
    spec:
    ```
-3. Specify the advanced network configuration for your cluster in the `cluster-network-03-config.yml` file, such as in the following example:
-   ```yaml title="Enable IPsec for the OVN-Kubernetes network provider"
+3. Specify the advanced network configuration for your cluster in the `cluster-network-03-config.yml` file, such as in the following example: The following example enables IPsec for the OVN-Kubernetes network provider:
+   ```yaml
    apiVersion: operator.openshift.io/v1
    kind: Network
    metadata:
@@ -789,7 +791,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>destination</code></td>
   <td>string</td>
-  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A Unix Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
+  <td>One of the following additional audit log targets:<br><br><dl><dt><code>libc</code></dt><dd>The libc <code>syslog()</code> function of the journald process on the host.</dd><dt><code>udp:&lt;host&gt;:&lt;port&gt;</code></dt><dd>A syslog server. Replace <code>&lt;host&gt;:&lt;port&gt;</code> with the host and port of the syslog server.</dd><dt><code>unix:&lt;file&gt;</code></dt><dd>A UNIX Domain Socket file specified by <code>&lt;file&gt;</code>.</dd><dt><code>null</code></dt><dd>Do not send the audit logs to any additional target.</dd></dl></td>
 </tr>
 <tr>
   <td><code>syslogFacility</code></td>
@@ -851,7 +853,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<div class="alert alert--warning"><strong>Important</strong><p>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</p></div></td>
+  <td>The masquerade IPv4 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses and the shared gateway bridge interface. The default value is <code>169.254.169.0/29</code>.<div class="alert alert--warning"><strong>Important</strong><p>For OpenShift Container Platform 4.17 and later versions, clusters use <code>169.254.0.0/17</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</p></div></td>
 </tr>
 </tbody>
 </table>
@@ -872,7 +874,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 <tr>
   <td><code>internalMasqueradeSubnet</code></td>
   <td><code>string</code></td>
-  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses as well as the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<div class="alert alert--warning"><strong>Important</strong><p>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</p></div></td>
+  <td>The masquerade IPv6 addresses that are used internally to enable host to service traffic. The host is configured with these IP addresses and the shared gateway bridge interface. The default value is <code>fd69::/125</code>.<div class="alert alert--warning"><strong>Important</strong><p>For OpenShift Container Platform 4.17 and later versions, clusters use <code>fd69::/112</code> as the default masquerade subnet. For upgraded clusters, there is no change to the default masquerade subnet.</p></div></td>
 </tr>
 </tbody>
 </table>
@@ -898,7 +900,7 @@ The following table describes the configuration fields for the OVN-Kubernetes ne
 </tbody>
 </table>
 
-```yaml title="Example OVN-Kubernetes configuration with IPSec enabled"
+```yaml title="Example OVN-Kubernetes configuration with IPsec enabled"
 defaultNetwork:
   type: OVNKubernetes
   ovnKubernetesConfig:
@@ -955,11 +957,11 @@ Because you must manually start the cluster machines, you must generate the Igni
 
 To identify your cluster resources in VMware vSphere, extract the unique infrastructure name from the Ignition config files.
 
-If you plan to use the cluster identifier as the name of your virtual machine folder, you must extract it.
+The Ignition config files contain a unique cluster identifier that you can use to uniquely identify your cluster in VMware vSphere. If you plan to use the cluster identifier as the name of your virtual machine folder, you must extract it.
 
 :::warning
 
-Do not run the `openshift-install create manifests` command again after creating any Google Cloud resources. Running the command again generates a new cluster identifier, which will cause errors in existing resources. If you need to regenerate the manifests because you modified the `install-config.yaml` file, delete any Google Cloud resources you created and recreate them with the new cluster identifier.
+Do not run the `openshift-install create manifests` command again after creating any Google Cloud resources. Running the command again generates a new cluster identifier, which will cause errors in existing resources. If you need to regenerate the manifests because you modified the `install-config.yaml` file, delete any Google Cloud resources you created and re-create them with the new cluster identifier.
 
 :::
 
@@ -1324,7 +1326,7 @@ The OpenShift Container Platform bootstrap process begins after the cluster node
    INFO It is now safe to remove the bootstrap resources
    ```
 
-   The command succeeds when the Kubernetes API server signals that it has been bootstrapped on the control plane machines.
+   The bootstrapping completion wait time varies per platform. The command succeeds when the Kubernetes API server signals that it has been bootstrapped on the control plane machines.
 2. After the bootstrap process is complete, remove the bootstrap machine from the load balancer.
    :::warning
 
