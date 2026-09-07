@@ -39,6 +39,7 @@ const config = {
     ],
   ],
   themes: ['@docusaurus/theme-mermaid'],
+  themeConfig: { footer: { style: 'light', copyright: "<a href=\"https://dogsbay.ai\">Powered by DogsBay</a>" } },
   markdown: { format: 'detect', hooks: { onBrokenMarkdownImages: 'warn', onBrokenMarkdownLinks: 'warn' }, mermaid: true, remarkRehypeOptions: { handlers: { ...defListHastHandlers } } },
   stylesheets: [
     {
