@@ -6,7 +6,7 @@ name: Build Docusaurus site
 # dogsbay/openshift-docs-markdown already produces from upstream AsciiDoc
 # (one content branch per OpenShift version) and runs the last leg only:
 #
-#   Dogsbay MD  --(dogsbay site build --export docusaurus)-->  docs/ + sidebars.js + config
+#   Dogsbay MD  --(dogsbay site build --to docusaurus)-->  docs/ + sidebars.js + config
 #              --(docusaurus build)-->  build/  --> GitHub Pages
 #
 # The export runs through `site build` rather than `convert` on purpose: it
@@ -48,7 +48,9 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  # `beta` dist-tag. `--export docusaurus` exists from 0.2.0-beta.109.
+  # `beta` dist-tag. Needs >= 0.2.0-beta.112 for `--to`/`--out` (the older
+  # `--no-astro --export --export-out` spelling is a deprecated alias there);
+  # >= beta.111 for a root redirect that lands on a page.
   DOGSBAY_VERSION: beta
   SOURCE_REPO: dogsbay/openshift-docs-markdown
   BRANCH: ${{ github.event.inputs.branch || 'enterprise-4.22' }}
@@ -135,8 +137,7 @@ jobs:
           set -euo pipefail
           OWNER="${GITHUB_REPOSITORY_OWNER}"
           REPO="${GITHUB_REPOSITORY#*/}"
-          dogsbay site build source --no-astro \
-            --export docusaurus --export-out "$RUNNER_TEMP/out" \
+          dogsbay site build source --to docusaurus --out "$RUNNER_TEMP/out" \
             --site-url "https://${OWNER}.github.io/${REPO}"
 
       - name: Refuse an implausibly small export
@@ -309,7 +310,7 @@ jobs:
           |---|---|
           | Source | [dogsbay/openshift-docs-markdown@\`$SHORT\`](https://github.com/$SOURCE_REPO/commit/$SHA) (branch \`$BRANCH\`) |
           | Pages | $PAGES |
-          | Exported by | dogsbay $CLI (\`site build --export docusaurus\`) |
+          | Exported by | dogsbay $CLI (\`site build --to docusaurus\`) |
 
           \`npm install && npx docusaurus build\` here reproduces the published
           site. Regenerate from the [\`main\`](../../tree/main) branch:

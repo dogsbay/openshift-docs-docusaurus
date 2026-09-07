@@ -20,9 +20,10 @@ published as
 - an MkDocs site — [openshift-docs-mkdocs](https://github.com/dogsbay/openshift-docs-mkdocs)
 - **this Docusaurus site**
 
-and because all three run through `dogsbay site build` — attributes,
-conditionals and includes resolved, `routablesFrom: nav` applied — they are
-built from an identical page set and can be compared page for page.
+and because all three are `dogsbay site build --to <format>` — one pipeline
+pass (attributes, conditionals and includes resolved, `routablesFrom: nav`
+applied), then a serializer — they are built from an identical page set and
+can be compared page for page.
 
 ## How it runs
 
@@ -34,8 +35,7 @@ input and:
 2. runs the export:
 
    ```
-   dogsbay site build source --no-astro \
-     --export docusaurus --export-out out \
+   dogsbay site build source --to docusaurus --out out \
      --site-url https://dogsbay.github.io/openshift-docs-docusaurus
    ```
 
