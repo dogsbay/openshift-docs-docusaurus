@@ -66,10 +66,10 @@ jobs:
     timeout-minutes: 75
     steps:
       - name: Checkout this repo (main — workflow only)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       # Only enterprise-* branches exist upstream, and the same name becomes
       # a branch HERE — this stops a typo creating a stray orphan branch, and
@@ -89,7 +89,7 @@ jobs:
       # those blobs are never even downloaded. Symlinks inside markdown/ are
       # materialised as on the Astro build; includes resolve through them.
       - name: Checkout the Dogsbay MD source branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.SOURCE_REPO }}
           ref: ${{ env.BRANCH }}
@@ -112,7 +112,7 @@ jobs:
           echo "markdown/: $(find markdown -name '*.md' | wc -l) file(s)"
 
       - name: Set up Node 22
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
 
@@ -232,9 +232,10 @@ jobs:
               echo '```'; echo "</details>"
             } >> "$GITHUB_STEP_SUMMARY"
           fi
-          # A no-op for an Actions deploy (the artefact is served as-is, Jekyll
-          # never runs); protects a branch-based deploy of this output.
-          touch build/.nojekyll
+          # No .nojekyll: upload-pages-artifact v4+ drops dotfiles from the
+          # artefact anyway, and an Actions deploy never runs Jekyll — the
+          # artefact is served as-is (verified: `_astro/` assets on the Astro
+          # sibling serve without it).
 
       - name: Show the build errors
         if: failure() && steps.built.conclusion == 'failure'
@@ -245,7 +246,7 @@ jobs:
       # record (the Astro sibling made the opposite call for the opposite
       # reason).
       - name: Upload Pages artefact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ${{ runner.temp }}/out/build
           retention-days: 1
@@ -360,7 +361,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
       # The artefact is only needed between the two jobs; left alone it
       # counts against Actions storage on every run.
