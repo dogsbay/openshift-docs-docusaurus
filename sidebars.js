@@ -1148,6 +1148,20 @@ module.exports = {
               "items": [
                 "networking/networking_operators/dpu-operator/dpu-operator"
               ]
+            },
+            {
+              "type": "category",
+              "label": "NVIDIA DPF Operator",
+              "items": [
+                "networking/networking_operators/dpf_operator/dpf-release-notes",
+                "networking/networking_operators/dpf_operator/about-dpf-operator",
+                "networking/networking_operators/dpf_operator/dpf-environment-setup",
+                "networking/networking_operators/dpf_operator/dpf-operator-installation",
+                "networking/networking_operators/dpf_operator/dpf-hosted-cluster-provisioning",
+                "networking/networking_operators/dpf_operator/dpf-worker-nodes-provisioning",
+                "networking/networking_operators/dpf_operator/dpf-validation-telemetry",
+                "networking/networking_operators/dpf_operator/dpf-troubleshooting"
+              ]
             }
           ]
         },

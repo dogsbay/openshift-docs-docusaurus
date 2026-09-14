@@ -99,7 +99,7 @@ For a cluster that has user-provisioned infrastructure, you must deploy all of t
 
 :::warning
 
-To keep high availability of your cluster, use separate physical hosts for these cluster machines.
+To maintain high availability of your cluster, use separate physical hosts for these cluster machines.
 
 :::
 
@@ -267,7 +267,7 @@ The Kubernetes API server must be able to resolve the node names of the cluster 
 
 #### Setting the cluster node hostnames through DHCP {#installation-host-names-dhcp-user-infra_installing-restricted-networks-ibm-power}
 
-On Red Hat Enterprise Linux CoreOS (RHCOS) machines, the hostname is set through NetworkManager. By default, the machines obtain their hostname through DHCP. If the hostname is not provided by DHCP, set statically through kernel arguments, or another method, it is obtained through a reverse DNS lookup. Reverse DNS lookup occurs after the network has been initialized on a node and can take time to resolve. Other system services can start prior to this and detect the hostname as `localhost` or similar. You can avoid this by using DHCP to provide the hostname for each cluster node.
+On Red Hat Enterprise Linux CoreOS (RHCOS) machines, the hostname is set through NetworkManager. By default, the machines obtain their hostname through DHCP. If the hostname is not provided by DHCP, set statically through kernel arguments, or another method, it is obtained through a reverse DNS lookup. Reverse DNS lookup occurs after the network has been initialized on a node and can take time to resolve. Other system services can start before this and detect the hostname as `localhost` or similar. You can avoid this by using DHCP to provide the hostname for each cluster node.
 
 Additionally, setting the hostnames through DHCP can bypass any manual DNS record name configuration errors in environments that have a DNS split-horizon implementation.
 
@@ -2407,7 +2407,7 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
 
    :::note
 
-   You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.
+   You might need to wait a few minutes after approval of the server CSRs for the machines to reach the `Ready` status.
 
    :::
 

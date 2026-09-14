@@ -26,7 +26,7 @@ The following advisories are available for the cert-manager Operator for Red Hat
 - [RHBA-2026:34336](https://access.redhat.com/errata/RHBA-2026:34336)
 - [RHBA-2026:34714](https://access.redhat.com/errata/RHBA-2026:34714)
 
-Version `v1.20.0` of the cert-manager Operator for Red Hat OpenShift is based on the upstream cert-manager version `v1.20.3`. For more information, see the [cert-manager project release notes for v1.20.3](https://cert-manager.io/docs/releases/release-notes/release-notes-1.20/#v1203).
+Version `1.20.0` of the cert-manager Operator for Red Hat OpenShift is based on the upstream cert-manager version `v1.20.3`. For more information, see the [cert-manager project release notes for v1.20.3](https://cert-manager.io/docs/releases/release-notes/release-notes-1.20/#v1203).
 
 ### New features and enhancements {#cert-manager-operator-1-20-0-features-enhancements_cert-manager-operator-release-notes}
 
@@ -103,6 +103,42 @@ Cluster TLS security profile applied to cert-manager operands
 
 - Before this update, the cert-manager Operator for Red Hat OpenShift installation failed on clusters with the Console capability disabled because the `ConsoleYAMLSample` resources were missing the required capability annotation. With this release, the Operator installs successfully on Console-less clusters. ([OCPBUGS-85579](https://redhat.atlassian.net/browse/OCPBUGS-85579))
 
+## cert-manager Operator for Red Hat OpenShift 1.19.2 {#cert-manager-operator-release-notes-1-19-2_cert-manager-operator-release-notes}
+
+Review the release notes for the cert-manager Operator for Red Hat OpenShift 1.19.2 to learn what is new and updated with this release.
+
+Issued: 3 September 2026
+
+The following advisories are available for the cert-manager Operator for Red Hat OpenShift for OpenShift Container Platform 1.19.2:
+
+- [RHSA-2026:63135](https://access.redhat.com/errata/RHSA-2026:63135)
+- [RHSA-2026:63138](https://access.redhat.com/errata/RHSA-2026:63138)
+- [RHSA-2026:63140](https://access.redhat.com/errata/RHSA-2026:63140)
+
+Version `1.19.2` of the cert-manager Operator for Red Hat OpenShift is based on the upstream cert-manager version `v1.19.6`. For more information, see the [cert-manager project release notes for v1.19.6](https://cert-manager.io/docs/releases/release-notes/release-notes-1.19#v1196).
+
+### CVEs {#cert-manager-operator-1-19-2-cves_cert-manager-operator-release-notes}
+
+- [CVE-2026-11822](https://access.redhat.com/security/cve/CVE-2026-11822)
+- [CVE-2026-11824](https://access.redhat.com/security/cve/CVE-2026-11824)
+- [CVE-2026-15588](https://access.redhat.com/security/cve/CVE-2026-15588)
+- [CVE-2026-1965](https://access.redhat.com/security/cve/CVE-2026-1965)
+- [CVE-2026-29181](https://access.redhat.com/security/cve/CVE-2026-29181)
+- [CVE-2026-3783](https://access.redhat.com/security/cve/CVE-2026-3783)
+- [CVE-2026-39883](https://access.redhat.com/security/cve/CVE-2026-39883)
+- [CVE-2026-46600](https://access.redhat.com/security/cve/CVE-2026-46600)
+- [CVE-2026-54371](https://access.redhat.com/security/cve/CVE-2026-54371)
+- [CVE-2026-56852](https://access.redhat.com/security/cve/CVE-2026-56852)
+- [CVE-2026-58010](https://access.redhat.com/security/cve/CVE-2026-58010)
+- [CVE-2026-58011](https://access.redhat.com/security/cve/CVE-2026-58011)
+- [CVE-2026-58012](https://access.redhat.com/security/cve/CVE-2026-58012)
+- [CVE-2026-58013](https://access.redhat.com/security/cve/CVE-2026-58013)
+- [CVE-2026-58014](https://access.redhat.com/security/cve/CVE-2026-58014)
+- [CVE-2026-58015](https://access.redhat.com/security/cve/CVE-2026-58015)
+- [CVE-2026-58055](https://access.redhat.com/security/cve/CVE-2026-58055)
+- [CVE-2026-8286](https://access.redhat.com/security/cve/CVE-2026-8286)
+- [CVE-2026-9547](https://access.redhat.com/security/cve/CVE-2026-9547)
+
 ## cert-manager Operator for Red Hat OpenShift 1.19.1 {#cert-manager-operator-release-notes-1-19-1_cert-manager-operator-release-notes}
 
 Review the release notes for the cert-manager Operator for Red Hat OpenShift 1.19.1 to learn what is new and updated with this release.
@@ -116,7 +152,7 @@ The following advisories are available for the cert-manager Operator for Red Hat
 - [RHSA-2026:54531](https://access.redhat.com/errata/RHSA-2026:54531)
 - [RHBA-2026:54551](https://access.redhat.com/errata/RHBA-2026:54551)
 
-Version `v1.19.6` of the cert-manager Operator for Red Hat OpenShift is based on the upstream cert-manager version `v1.19.6`. For more information, see the [cert-manager project release notes for v1.19.6](https://cert-manager.io/docs/releases/release-notes/release-notes-1.19#v1196).
+Version `1.19.1` of the cert-manager Operator for Red Hat OpenShift is based on the upstream cert-manager version `v1.19.6`. For more information, see the [cert-manager project release notes for v1.19.6](https://cert-manager.io/docs/releases/release-notes/release-notes-1.19#v1196).
 
 ### Fixed issues {#cert-manager-operator-1-19-1-fixed-issues_cert-manager-operator-release-notes}
 
@@ -152,7 +188,7 @@ The following advisories are available for the cert-manager Operator for Red Hat
 - [RHBA-2026:9025](https://access.redhat.com/errata/RHBA-2026:9025)
 - [RHBA-2026:8956](https://access.redhat.com/errata/RHBA-2026:8956)
 
-Version `v1.19.4` of the cert-manager Operator for Red Hat OpenShift is based on the upstream cert-manager version `v1.19.4`. For more information, see the [cert-manager project release notes for v1.19.4](https://cert-manager.io/docs/releases/release-notes/release-notes-1.19#v1194).
+Version `1.19.0` of the cert-manager Operator for Red Hat OpenShift is based on the upstream cert-manager version `v1.19.4`. For more information, see the [cert-manager project release notes for v1.19.4](https://cert-manager.io/docs/releases/release-notes/release-notes-1.19#v1194).
 
 ### New features and enhancements {#cert-manager-operator-1-19-0-features-enhancements_cert-manager-operator-release-notes}
 

@@ -449,7 +449,7 @@ The following table lists the access modes:
 
 Volumes can be found in one of the following phases:
 
-.Volume phases
+**Volume phases**
 
 | Phase | Description |
 | --- | --- |

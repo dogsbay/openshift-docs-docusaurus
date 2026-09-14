@@ -19,15 +19,22 @@ The steps for performing a user-provisioned infrastructure installation are prov
 
 ## Prerequisites {#_prerequisites}
 
-- You reviewed details about the [OpenShift Container Platform installation and update](/docs/architecture/architecture-installation#architecture-installation) processes.
-- You read the documentation on [selecting a cluster installation method and preparing it for users](/docs/installing/overview/installing-preparing#installing-preparing).
-- If you use a firewall and plan to use the Telemetry service, you [configured the firewall to allow the sites](/docs/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall) that your cluster requires access to.
-- If the cloud identity and access management (IAM) APIs are not accessible in your environment, or if you do not want to store an administrator-level credential secret in the `kube-system` namespace, you can [manually create and maintain long-term credentials](/docs/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations).
+- You reviewed details about the OpenShift Container Platform installation and update processes. For more information, see "Installation and update".
+- You read the documentation on selecting a cluster installation method and preparing it for users. For more information, see "Selecting a cluster installation method and preparing it for users".
+- If you use a firewall and plan to use the Telemetry service, you configured the firewall to allow the sites that your cluster requires access to. For more information, see "Configuring your firewall for OpenShift Container Platform".
+- If the cloud identity and access management (IAM) APIs are not accessible in your environment, or if you do not want to store an administrator-level credential secret in the `kube-system` namespace, you can manually create and maintain long-term credentials. For more information, see "Manually creating long-term credentials".
   :::note
 
   Be sure to also review this site list if you are configuring a proxy.
 
   :::
+
+**Additional resources**
+
+- [Installation and update](/docs/architecture/architecture-installation#architecture-installation)
+- [Selecting a cluster installation method and preparing it for users](/docs/installing/overview/installing-preparing#installing-preparing)
+- [Configuring your firewall for OpenShift Container Platform](/docs/installing/install_config/configuring-firewall#configuring-firewall-module_configuring-firewall)
+- [Manually creating long-term credentials](/docs/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations)
 
 ## Certificate signing requests management {#csr-management_installing-gcp-user-infra}
 
@@ -51,9 +58,9 @@ If your cluster cannot have direct internet access, you can perform a restricted
 
 :::
 
-## Configuring your Google Cloud project {#installation-gcp-user-infra-config-project}
+## Configuring your Google Cloud project {#installation-gcp-user-infra-config-project_installing-gcp-user-infra}
 
-Before you can install OpenShift Container Platform, you must configure a Google Cloud project to host it.
+Before you can install OpenShift Container Platform, you must configure a Google Cloud project to host it. Proper project configuration provides the API services, service account, and permissions that the installation requires.
 
 ### Creating a Google Cloud project {#installation-gcp-project_installing-gcp-user-infra}
 
@@ -732,7 +739,7 @@ To determine which machine type instances are available by region and zone, see 
 
 ### Installing and configuring CLI tools for Google Cloud {#installation-gcp-install-cli_installing-gcp-user-infra}
 
-To install OpenShift Container Platform on Google Cloud using user-provisioned infrastructure, you must install and configure the CLI tools for Google Cloud.
+Before you deploy OpenShift Container Platform on Google Cloud with user-provisioned infrastructure, you must set up the required CLI tools to create and manage your cloud resources.
 
 **Prerequisites**
 
@@ -751,9 +758,7 @@ To install OpenShift Container Platform on Google Cloud using user-provisioned i
 
 ## Requirements for a cluster with user-provisioned infrastructure {#installation-requirements-user-infra_installing-gcp-user-infra}
 
-For a cluster that contains user-provisioned infrastructure, you must deploy all of the required machines.
-
-This section describes the requirements for deploying OpenShift Container Platform on user-provisioned infrastructure.
+For a cluster that contains user-provisioned infrastructure, you must deploy all of the required machines. Reviewing these requirements before deployment helps you provision machines that meet the minimum resource needs of the cluster.
 
 ### Required machines for cluster installation {#installation-machine-requirements_installing-gcp-user-infra}
 
@@ -777,7 +782,7 @@ For a cluster that has user-provisioned infrastructure, you must deploy all of t
 
 :::warning
 
-To keep high availability of your cluster, use separate physical hosts for these cluster machines.
+To maintain high availability of your cluster, use separate physical hosts for these cluster machines.
 
 :::
 
@@ -1343,11 +1348,9 @@ The installation program converts the installation configuration into Kubernetes
 
 **Additional resources**
 
-- [Optional: Adding the ingress DNS records](/docs/installing/installing_gcp/installing-gcp-user-infra#installation-gcp-user-infra-adding-ingress_installing-gcp-user-infra)
+- [Adding the ingress DNS records](/docs/installing/installing_gcp/installing-gcp-user-infra#installation-gcp-user-infra-adding-ingress_installing-gcp-user-infra)
 
-## Exporting common variables {#installation-gcp-user-infra-exporting-common-variables}
-
-### Extracting the infrastructure name {#installation-extracting-infraid_installing-gcp-user-infra}
+## Extracting the infrastructure name {#installation-extracting-infraid_installing-gcp-user-infra}
 
 To identify your cluster resources in Google Cloud, extract the unique infrastructure name from the Ignition config files.
 
@@ -1378,9 +1381,9 @@ Do not run the `openshift-install create manifests` command again after creating
 
   The output of this command is your cluster name and a random string.
 
-### Exporting common variables for Infrastructure Manager templates {#installation-user-infra-exporting-common-variables_installing-gcp-user-infra}
+## Exporting common variables for Infrastructure Manager templates {#installation-user-infra-exporting-common-variables_installing-gcp-user-infra}
 
-You must export a common set of variables that are used with the provided Infrastructure Manager templates used to assist in installing a cluster with user-provisioned infrastructure on Google Cloud.
+You must export a common set of variables that the Infrastructure Manager templates reference to provision the resources for a cluster that uses user-provisioned infrastructure on Google Cloud.
 
 :::note
 
@@ -1683,7 +1686,7 @@ You must configure networking for all the Red Hat Enterprise Linux CoreOS (RHCO
 
 ### Setting the cluster node hostnames through DHCP {#installation-host-names-dhcp-user-infra_installing-gcp-user-infra}
 
-On Red Hat Enterprise Linux CoreOS (RHCOS) machines, the hostname is set through NetworkManager. By default, the machines obtain their hostname through DHCP. If the hostname is not provided by DHCP, set statically through kernel arguments, or another method, it is obtained through a reverse DNS lookup. Reverse DNS lookup occurs after the network has been initialized on a node and can take time to resolve. Other system services can start prior to this and detect the hostname as `localhost` or similar. You can avoid this by using DHCP to provide the hostname for each cluster node.
+On Red Hat Enterprise Linux CoreOS (RHCOS) machines, the hostname is set through NetworkManager. By default, the machines obtain their hostname through DHCP. If the hostname is not provided by DHCP, set statically through kernel arguments, or another method, it is obtained through a reverse DNS lookup. Reverse DNS lookup occurs after the network has been initialized on a node and can take time to resolve. Other system services can start before this and detect the hostname as `localhost` or similar. You can avoid this by using DHCP to provide the hostname for each cluster node.
 
 Additionally, setting the hostnames through DHCP can bypass any manual DNS record name configuration errors in environments that have a DNS split-horizon implementation.
 
@@ -2590,7 +2593,7 @@ You must create IAM policy bindings in Google Cloud for your OpenShift Container
 
 ## Creating the RHCOS cluster image for the Google Cloud infrastructure {#installation-gcp-user-infra-rhcos_installing-gcp-user-infra}
 
-You must use a valid Red Hat Enterprise Linux CoreOS (RHCOS) image for Google Cloud for your OpenShift Container Platform nodes.
+To deploy OpenShift Container Platform nodes on Google Cloud, you must create a valid Red Hat Enterprise Linux CoreOS (RHCOS) image in your Google Cloud project because RHCOS images are not pre-published on Google Cloud.
 
 **Prerequisites**
 
@@ -3342,7 +3345,7 @@ resource "google_compute_instance" "worker_1" {
 
 ## Removing bootstrap resources in Google Cloud {#installation-gcp-user-infra-wait-for-bootstrap_installing-gcp-user-infra}
 
-After you create all of the required infrastructure in Google Cloud, wait for the bootstrap process to complete on the machines that you provisioned by using the Ignition config files. The installation program created the Ignition config files.
+After the bootstrap process completes on your Google Cloud infrastructure, you can remove the bootstrap resources to reclaim the capacity that they consume, because the cluster no longer requires them.
 
 **Prerequisites**
 
@@ -3354,13 +3357,20 @@ After you create all of the required infrastructure in Google Cloud, wait for th
 
 1. Change to the directory that includes the installation program and run the following command:
    ```terminal
-   $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory> \ (1)
-       --log-level info (2)
+   $ ./openshift-install wait-for bootstrap-complete --dir <installation_directory> \
+       --log-level info
    ```
 
-   1. For `<installation_directory>`, specify the path to the directory where you stored the installation files.
-   2. To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
-      If the command exits without a `FATAL` warning, your production control plane has initialized.
+   where:
+
+   <dl>
+   <dt><code>&lt;installation_directory&gt;</code></dt>
+   <dd>Specifies the path to the directory where you stored the installation files.</dd>
+   <dt><code>--log-level</code></dt>
+   <dd>Specifies the log level. To view different installation details, specify <code>warn</code>, <code>debug</code>, or <code>error</code> instead of <code>info</code>.</dd>
+   </dl>
+
+   If the command exits without a `FATAL` warning, your production control plane has initialized.
 2. To remove the bootstrap instance group from the backend services' backends, run the following commands:
    ```terminal
    $ gcloud compute backend-services remove-backend ${INFRA_ID}-api-internal --region=${REGION} --instance-group=${INFRA_ID}-bootstrap-ig --instance-group-zone=${ZONE_0}
@@ -3657,13 +3667,15 @@ To allow newly added machines to join your OpenShift Container Platform cluster,
 
    :::note
 
-   You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.
+   You might need to wait a few minutes after approval of the server CSRs for the machines to reach the `Ready` status.
 
    :::
 
-## Optional: Adding the ingress DNS records {#installation-gcp-user-infra-adding-ingress_installing-gcp-user-infra}
+## Adding the ingress DNS records {#installation-gcp-user-infra-adding-ingress_installing-gcp-user-infra}
 
-If you removed the DNS zone configuration when creating Kubernetes manifests and generating Ignition configs, you must manually create DNS records that point at the ingress load balancer. You can create either a wildcard `*.apps.{baseDomain}.` or specific records. You can use A, CNAME, and other records per your requirements.
+If you removed the DNS zone configuration when creating Kubernetes manifests and generating Ignition configs, you must manually create DNS records that point at the ingress load balancer so that external clients can reach the applications that run on your cluster.
+
+You can create either a wildcard `*.apps.{baseDomain}.` or specific records. You can use A, CNAME, and other records per your requirements.
 
 **Prerequisites**
 
@@ -3735,7 +3747,7 @@ If you removed the DNS zone configuration when creating Kubernetes manifests and
 
 ## Completing a Google Cloud installation on user-provisioned infrastructure {#installation-gcp-user-infra-installation_installing-gcp-user-infra}
 
-After you start the OpenShift Container Platform installation on Google Cloud user-provisioned infrastructure, you can monitor the cluster events until the cluster is ready.
+After you start the OpenShift Container Platform installation on Google Cloud user-provisioned infrastructure, you can monitor the cluster events to confirm that the installation completes successfully and the cluster is ready for use.
 
 **Prerequisites**
 
@@ -3745,14 +3757,14 @@ After you start the OpenShift Container Platform installation on Google Cloud us
 
 1. Complete the cluster installation:
    ```terminal
-   $ ./openshift-install --dir <installation_directory> wait-for install-complete (1)
+   $ ./openshift-install --dir <installation_directory> wait-for install-complete
    ```
+
+   where `<installation_directory>` specifies the path to the directory that you stored the installation files in.
 
    ```terminal title="Example output"
    INFO Waiting up to 30m0s for the cluster to initialize...
    ```
-
-   1. For `<installation_directory>`, specify the path to the directory that you stored the installation files in.
 
    :::warning
 
@@ -3841,10 +3853,7 @@ After you confirm that your [OpenShift Cluster Manager](https://console.redhat.c
 
 **Additional resources**
 
-- See [About remote health monitoring](/docs/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring) for more information about the Telemetry service
-
-**Next steps**
-
-- [Customize your cluster](/docs/post_installation_configuration/cluster-tasks#available_cluster_customizations)
-- If necessary, you can [Remote health reporting](/docs/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
+- [About remote health monitoring](/docs/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)
+- [Customizing your cluster](/docs/post_installation_configuration/cluster-tasks#available_cluster_customizations)
+- [Remote health reporting](/docs/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)
 - [Configuring Global Access for an Ingress Controller on Google Cloud](/docs/networking/networking_operators/ingress-operator#nw-ingress-controller-configuration-gcp-global-access_configuring-ingress)

@@ -11,7 +11,7 @@ OpenShift Container Platform supports multiple types of storage, both for on-pre
 
 ## Glossary of common terms for OpenShift Container Platform storage {#openshift-storage-common-terms_storage-overview}
 
-This glossary defines common terms that are used in the storage content.
+Review this glossary that defines common terms that are used in the storage content.
 
 Access modes
 : Volume access modes describe volume capabilities. You can use access modes to match persistent volume claim (PVC) and persistent volume (PV). The following are the examples of access modes:
@@ -60,7 +60,7 @@ Local volumes
 Nested mount points
 : A nested mount point is a mount point that attempts to use a mount point created by a previous volume.
 
-  ```terminal title="Example pod definition with nested mount points"
+  ```yaml title="Example pod definition with nested mount points"
   kind: Pod
   apiVersion: v1
   metadata:
@@ -77,7 +77,7 @@ Nested mount points
         volumeMounts:
         - mountPath: /mnt/web
           name: web
-        - mountPath: /mnt/web/redis (1)
+        - mountPath: /mnt/web/redis
           name: redis
     volumes:
       - name: redis
@@ -88,9 +88,13 @@ Nested mount points
           claimName: "web"
   ```
 
-  1. Nested mount point
+  The `spec.containers.volumeMounts.mountPath` value of `/mnt/web/redis` is a nested mount point.
+
+  :::warning
 
   Do *not* use nested mount points because OpenShift Container Platform does not guarantee the order in which mount points are created. Such usage is prone to race conditions and undefined behavior.
+
+  :::
 
 NFS
 : A Network File System (NFS) that allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally. This enables system administrators to consolidate resources onto centralized servers on the network.
@@ -134,22 +138,35 @@ Storage class
 VMware vSphere’s Virtual Machine Disk (VMDK) volumes
 : Virtual Machine Disk (VMDK) is a file format that describes containers for virtual hard disk drives that is used in virtual machines.
 
-## Storage types
+## Storage types {#storage-types_storage-overview}
 
 OpenShift Container Platform storage is broadly classified into two categories, namely ephemeral storage and persistent storage.
 
-### Ephemeral storage
+### Ephemeral storage {#ephemeral-storage_storage-overview}
 
-Pods and containers are ephemeral or transient in nature and designed for stateless applications. Ephemeral storage allows administrators and developers to better manage the local storage for some of their operations. For more information about ephemeral storage overview, types, and management, see [Understanding ephemeral storage](/docs/storage/understanding-ephemeral-storage#understanding-ephemeral-storage).
+Pods and containers are ephemeral or transient in nature and designed for stateless applications. Ephemeral storage allows administrators and developers to better manage the local storage for some of their operations.
 
-### Persistent storage
+### Persistent storage {#persistent-storage_storage-overview}
 
-Stateful applications deployed in containers require persistent storage. OpenShift Container Platform uses a pre-provisioned storage framework called persistent volumes (PV) to allow cluster administrators to provision persistent storage. The data inside these volumes can exist beyond the lifecycle of an individual pod. Developers can use persistent volume claims (PVCs) to request storage requirements. For more information about persistent storage overview, configuration, and lifecycle, see [Understanding persistent storage](/docs/storage/understanding-persistent-storage#understanding-persistent-storage).
+Stateful applications deployed in containers require persistent storage. OpenShift Container Platform uses a pre-provisioned storage framework called persistent volumes (PV) to allow cluster administrators to provision persistent storage. The data inside these volumes can exist beyond the lifecycle of an individual pod. Developers can use persistent volume claims (PVCs) to request storage requirements.
 
-## Container Storage Interface (CSI) {#container-storage-interface}
+**Additional resources**
 
-CSI is an API specification for the management of container storage across different container orchestration (CO) systems. You can manage the storage volumes within the container native environments, without having specific knowledge of the underlying storage infrastructure. With the CSI, storage works uniformly across different container orchestration systems, regardless of the storage vendors you are using. For more information about CSI, see [Using Container Storage Interface (CSI)](/docs/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi).
+- [Understanding ephemeral storage](/docs/storage/understanding-ephemeral-storage#understanding-ephemeral-storage)
+- [Understanding persistent storage](/docs/storage/understanding-persistent-storage#understanding-persistent-storage)
 
-## Dynamic Provisioning {#dynamic-provisioning-overview}
+## Dynamic Provisioning {#dynamic-provisioning-overview_storage-overview}
 
-Dynamic Provisioning allows you to create storage volumes on-demand, eliminating the need for cluster administrators to pre-provision storage. For more information about dynamic provisioning, see [Dynamic provisioning](/docs/storage/dynamic-provisioning#dynamic-provisioning).
+With Dynamic Provisioning, you can create storage volumes on-demand, eliminating the need for cluster administrators to pre-provision storage.
+
+**Additional resources**
+
+- [Dynamic provisioning](/docs/storage/dynamic-provisioning#dynamic-provisioning)
+
+## Container Storage Interface (CSI) {#container-storage-interface_storage-overview}
+
+CSI is an API specification for managing container storage across different orchestration systems. With CSI, you can manage storage volumes without requiring specific knowledge of the underlying infrastructure, providing uniform storage functionality regardless of your storage vendors.
+
+**Additional resources**
+
+- [Using Container Storage Interface (CSI)](/docs/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)

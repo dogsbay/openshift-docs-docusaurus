@@ -33,7 +33,7 @@ For a cluster that has user-provisioned infrastructure, you must deploy all of t
 
 :::warning
 
-To keep high availability of your cluster, use separate physical hosts for these cluster machines.
+To maintain high availability of your cluster, use separate physical hosts for these cluster machines.
 
 :::
 
