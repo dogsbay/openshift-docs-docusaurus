@@ -1193,7 +1193,7 @@ Applying a specific node selector to all infrastructure components causes OpenSh
 - [Creating machine sets for different clouds](/docs/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets-clouds)
 - [Schedule infrastructure workloads using node selectors](/docs/post_installation_configuration/cluster-tasks#moving-resources-to-infrastructure-machinesets_post-install-cluster-tasks)
 
-### Creating a compute machine set {#machineset-creating_post-install-cluster-tasks}
+### Create a compute machine set {#machineset-creating_post-install-cluster-tasks}
 
 To dynamically manage machine compute resources, you can create your own compute machine sets in addition to the compute machine sets created by the installation program. Use the OpenShift Container Platform CLI to automate node provisioning.
 
@@ -1305,7 +1305,7 @@ To dynamically manage machine compute resources, you can create your own compute
 
   When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
-### Creating an infrastructure node {#creating-an-infra-node_post-install-cluster-tasks}
+### Create an infrastructure node {#creating-an-infra-node_post-install-cluster-tasks}
 
 To reduce subscription costs, you can use labels to configure compute nodes as infrastructure nodes, where you can move infrastructure resources.
 
@@ -1357,7 +1357,7 @@ You can optionally create a default cluster-wide node selector. The default node
 
 - [Project node selectors](/docs/nodes/scheduling/nodes-scheduler-node-selectors#project-node-selectors_nodes-scheduler-node-selectors)
 
-### Creating a machine config pool for infrastructure machines {#creating-infra-machines_post-install-cluster-tasks}
+### Create a machine config pool for infrastructure machines {#creating-infra-machines_post-install-cluster-tasks}
 
 You can create a machine configuration pool for infrastructure machines to apply dedicated configuration to infra machines. You might want to apply dedicated configuration to infra machines because they run distinct workloads from other nodes in the cluster.
 
@@ -1487,7 +1487,7 @@ After creating an infrastructure machine set, the `worker` and `infra` roles are
 
 However, when an infra node is assigned the worker role, there is a chance that user workloads can get assigned inadvertently to the infra node. To avoid this, you can apply a taint to the infra node and tolerations for the pods that you want to control.
 
-### Binding infrastructure node workloads using taints and tolerations {#binding-infra-node-workloads-using-taints-tolerations_post-install-cluster-tasks}
+### Bind infrastructure node workloads using taints and tolerations {#binding-infra-node-workloads-using-taints-tolerations_post-install-cluster-tasks}
 
 To avoid user workloads being inadvertently assigned to an infra node, you can apply a taint to the infra node and tolerations for the pods you want to control. After creating an infrastructure machine set, the `worker` and `infra` roles are applied to new infra nodes.
 
@@ -1607,7 +1607,7 @@ Move default infrastructure resources to the infrastructure machine sets that yo
 
 Some of the infrastructure resources are deployed in your cluster by default. You can move them to the infrastructure machine sets that you created.
 
-### Moving the router {#infrastructure-moving-router_post-install-cluster-tasks}
+### Move the router {#infrastructure-moving-router_post-install-cluster-tasks}
 
 Deploying the router pod on an infrastructure node can reduce your OpenShift Container Platform subscription size. Move the router pod by editing the `IngressController` object in the `openshift-ingress-operator` namespace. By default, the pod is deployed to a worker node.
 
@@ -1705,7 +1705,7 @@ Deploying the router pod on an infrastructure node can reduce your OpenShift Con
 
      Because the role list includes `infra`, the pod is running on the correct node.
 
-### Moving the default registry {#infrastructure-moving-registry_post-install-cluster-tasks}
+### Move the default registry {#infrastructure-moving-registry_post-install-cluster-tasks}
 
 Deploying the registry pod on an infrastructure node can reduce your OpenShift Container Platform subscription size. Move the registry pod by editing the `configs.imageregistry.operator.openshift.io/cluster` config object.
 
@@ -1758,7 +1758,7 @@ Deploying the registry pod on an infrastructure node can reduce your OpenShift C
      <dd>Specifies the name of the node that you modified. Review the command output and confirm that <code>node-role.kubernetes.io/infra</code> is in the <code>LABELS</code> list.</dd>
      </dl>
 
-### Moving the monitoring solution {#infrastructure-moving-monitoring_post-install-cluster-tasks}
+### Move the monitoring solution {#infrastructure-moving-monitoring_post-install-cluster-tasks}
 
 Redeploy the monitoring stack to infrastructure nodes to reduce your subscription requirements. Create and apply a custom config map to move the monitoring stack to infrastructure nodes. The monitoring stack includes Prometheus, Thanos Querier, and Alertmanager, and is managed by the Cluster Monitoring Operator (CMO).
 
@@ -2072,7 +2072,7 @@ The minimum and maximum CPUs, memory, and GPU values are determined by calculati
 
 :::
 
-### Deploying a cluster autoscaler {#ClusterAutoscaler-deploying_post-install-cluster-tasks}
+### Deploy a cluster autoscaler {#ClusterAutoscaler-deploying_post-install-cluster-tasks}
 
 To deploy a cluster autoscaler, you create an instance of the `ClusterAutoscaler` resource.
 
@@ -2967,7 +2967,7 @@ The following are some example scenarios that produce an out-of-date status:
 
 Understand and configure pod disruption budgets to control voluntary disruptions during cluster operations.
 
-### Understanding how to use pod disruption budgets to specify the number of pods that must be up {#nodes-pods-pod-disruption-about_post-install-cluster-tasks}
+### Understand how to use pod disruption budgets to specify the number of pods that must be up {#nodes-pods-pod-disruption-about_post-install-cluster-tasks}
 
 To ensure pod availability during voluntary disruptions such as node maintenance or cluster updates, you can use pod disruption budgets to define safety constraints for your applications.
 
@@ -3026,7 +3026,7 @@ Depending on your pod priority and preemption settings, lower-priority pods migh
 
 :::
 
-### Specifying the number of pods that must be up with pod disruption budgets {#nodes-pods-pod-disruption-configuring_post-install-cluster-tasks}
+### Specify the number of pods that must be up with pod disruption budgets {#nodes-pods-pod-disruption-configuring_post-install-cluster-tasks}
 
 You can use a `PodDisruptionBudget` object to specify the minimum number or percentage of replicas that must be up at a time. This ensures pod availability during voluntary disruptions such as node maintenance or cluster updates.
 
@@ -3087,7 +3087,7 @@ The following procedure shows how to configure a pod disruption budget.
    $ oc create -f </path/to/file> -n <project_name>
    ```
 
-### Specifying the eviction policy for unhealthy pods {#pod-disruption-eviction-policy_post-install-cluster-tasks}
+### Specify the eviction policy for unhealthy pods {#pod-disruption-eviction-policy_post-install-cluster-tasks}
 
 When you use pod disruption budgets (PDBs) to specify how many pods must be available simultaneously, you can also define the criteria for how unhealthy pods are considered for eviction. The eviction policy determines which pods the cluster can evict.
 

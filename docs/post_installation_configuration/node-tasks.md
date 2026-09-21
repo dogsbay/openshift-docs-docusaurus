@@ -22,7 +22,7 @@ Before you add more compute machines to a cluster that you installed on bare met
 - You installed a cluster on bare metal.
 - You have installation media and Red Hat Enterprise Linux CoreOS (RHCOS) images that you used to create your cluster. If you do not have these files, you must obtain them by following the instructions in the installation procedure.
 
-### Creating RHCOS machines by using an ISO image {#machine-user-infra-machines-iso_post-install-node-tasks}
+### Create RHCOS machines by using an ISO image {#machine-user-infra-machines-iso_post-install-node-tasks}
 
 To scale your OpenShift Container Platform bare metal cluster, you can create more Red Hat Enterprise Linux CoreOS (RHCOS) compute machines by using an ISO image.
 
@@ -90,7 +90,7 @@ To scale your OpenShift Container Platform bare metal cluster, you can create mo
 
 - [Installing a cluster on bare metal](/docs/installing/installing_bare_metal/upi/installing-bare-metal#installing-bare-metal)
 
-### Creating RHCOS machines by PXE or iPXE booting {#machine-user-infra-machines-pxe_post-install-node-tasks}
+### Create RHCOS machines by PXE or iPXE booting {#machine-user-infra-machines-pxe_post-install-node-tasks}
 
 To scale your OpenShift Container Platform bare metal cluster, you can create more Red Hat Enterprise Linux CoreOS (RHCOS) compute machines by using PXE or iPXE booting.
 
@@ -201,7 +201,7 @@ To scale your OpenShift Container Platform bare metal cluster, you can create mo
 - [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux? (Red Hat Knowledgebase article)](https://access.redhat.com/articles/7212)
 - [`IMAGE_GZIP` option in iPXE (iPXE documentation)](https://ipxe.org/buildcfg/image_gzip)
 
-### Approving the certificate signing requests for your machines {#installation-approve-csrs_post-install-node-tasks}
+### Approve the certificate signing requests for your machines {#installation-approve-csrs_post-install-node-tasks}
 
 To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
 
@@ -894,7 +894,7 @@ The `maxPods` parameter sets the number of pods that the node can run to a fixed
     maxPods: 250
 ```
 
-### Creating a KubeletConfig CR to edit kubelet parameters {#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_post-install-node-tasks}
+### Create a KubeletConfig CR to edit kubelet parameters {#create-a-kubeletconfig-crd-to-edit-kubelet-parameters_post-install-node-tasks}
 
 You can use a `KubeletConfig` custom resource (CR) to edit a kubelet parameters without modifing the kubelet configuration directly.
 
@@ -1630,7 +1630,7 @@ The TuneD boot-loader plugin only supports Red Hat Enterprise Linux CoreOS (RHC
   100Mi
   ```
 
-## Understanding device plugins {#nodes-pods-plugins-about_post-install-node-tasks}
+## Understand device plugins {#nodes-pods-plugins-about_post-install-node-tasks}
 
 A device plugin is a gRPC service running on nodes that manages specific hardware resources through an extension mechanism, enabling containers to consume these devices.
 
@@ -1697,7 +1697,7 @@ For easy device plugin reference implementation, there is a stub device plugin i
 - [KubeVirt device plugins: vfio and kvm](https://github.com/kubevirt/kubernetes-device-plugins)
 - [Kubernetes device plugin for IBM(R) Crypto Express (CEX) cards](https://github.com/ibm-s390-cloud/k8s-cex-dev-plugin)
 
-### Understanding the Device Manager {#nodes-pods-plugins-device-mgr_post-install-node-tasks}
+### Understand the Device Manager {#nodes-pods-plugins-device-mgr_post-install-node-tasks}
 
 Device Manager advertises specialized node hardware resources through device plugins, enabling pods to consume hardware devices without requiring upstream code changes.
 
@@ -1721,7 +1721,7 @@ While handling a new pod admission request, Kubelet passes requested `Extended R
 
 Additionally, device plugins can also perform several other device-specific operations, such as driver installation, device initialization, and device resets. These functionalities vary from implementation to implementation.
 
-### Enabling Device Manager {#nodes-pods-plugins-install_post-install-node-tasks}
+### Enable Device Manager {#nodes-pods-plugins-install_post-install-node-tasks}
 
 Enable Device Manager to allow device plugins to advertise specialized node hardware resources and make them available to pods without requiring code changes.
 
@@ -3580,7 +3580,7 @@ The TuneD bootloader plugin only supports Red Hat Enterprise Linux CoreOS (RHCO
 - [Available TuneD Plugins](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/customizing-tuned-profiles_monitoring-and-managing-system-status-and-performance#available-tuned-plug-ins_customizing-tuned-profiles)
 - [Getting Started with TuneD](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/getting-started-with-tuned_monitoring-and-managing-system-status-and-performance)
 
-## Configuring the maximum number of pods per node {#nodes-nodes-managing-max-pods-proc_post-install-node-tasks}
+## Configure the maximum number of pods per node {#nodes-nodes-managing-max-pods-proc_post-install-node-tasks}
 
 You can use the `podsPerCore` and `maxPods` parameters in a kubelet configuration to control the maximum number of pods that can be scheduled to a node. If you use both options, the lower of the two limits the number of pods on a node. Setting an appropriate maximum can help ensure your nodes run efficiently.
 

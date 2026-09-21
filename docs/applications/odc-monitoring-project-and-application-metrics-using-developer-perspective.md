@@ -27,7 +27,7 @@ See also, "Enabling the **Developer** perspective in the web console".
 
 :::
 
-## Enabling the *Developer* perspective in the web console {#enabling-developer-perspective_web-console_odc-monitoring-project-and-application-metrics-using-developer-perspective}
+## Enable the *Developer* perspective in the web console {#enabling-developer-perspective_web-console_odc-monitoring-project-and-application-metrics-using-developer-perspective}
 
 Enable the **Developer** perspective in the web console to give your developers tools to manage applications, visualize topology, and monitor projects as they develop and build them.
 
@@ -114,7 +114,7 @@ View pre-built dashboards showing CPU usage, memory usage, bandwidth consumption
 3. Click the **Dashboards** tab.
    The **Dashboards** tab displays pre-built Kubernetes compute resources dashboards showing metrics such as CPU usage, memory usage, bandwidth consumption, and network-related information. The dashboard layout includes metric cards at the top showing current utilization percentages, and expandable graph sections below showing detailed resource usage trends over time.
 
-## Monitoring your application metrics {#odc-monitoring-your-application-metrics_odc-monitoring-project-and-application-metrics-using-developer-perspective}
+## Monitor your application metrics {#odc-monitoring-your-application-metrics_odc-monitoring-project-and-application-metrics-using-developer-perspective}
 
 Inspect alerts, metric charts, and health check status for individual application workloads to troubleshoot performance issues and monitor health directly from the topology view.
 

@@ -23,7 +23,7 @@ The `oc adm prune renderedmachineconfigs` command deletes only rendered machine 
 
 :::
 
-## Viewing rendered machine configs {#machineconfig-garbage-collect-viewing_machine-configs-garbage-collection}
+## View rendered machine configs {#machineconfig-garbage-collect-viewing_machine-configs-garbage-collection}
 
 You can view a list of rendered machine configs by using the `oc adm prune renderedmachineconfigs` command with the `list` subcommand to determine which objects you can remove.
 
@@ -73,7 +73,7 @@ For example, the command in the following procedure would list all rendered mach
   Skip dry-run deleting rendered MachineConfig rendered-worker-708c652868f7597eaa1e2622edc366ef as it's currently in use
   ```
 
-## Removing unused rendered machine configs {#machineconfig-garbage-collect-removing_machine-configs-garbage-collection}
+## Remove unused rendered machine configs {#machineconfig-garbage-collect-removing_machine-configs-garbage-collection}
 
 You can remove unused rendered machine configs by using the `oc adm prune renderedmachineconfigs` command with the `--confirm` command, reducing disk space and performance issues.
 

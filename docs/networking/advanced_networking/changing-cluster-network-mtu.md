@@ -164,12 +164,22 @@ To maintain network stability during an MTU change, you must prepare the configu
 
     where:
 
-    <dl>
-    <dt><code>&lt;interface&gt;</code></dt>
-    <dd>Specifies the primary network interface name.</dd>
-    <dt><code>&lt;mtu&gt;</code></dt>
-    <dd>Specifies the new hardware MTU value.</dd>
-    </dl>
+    **`<interface>`**
+
+    Specifies the primary network interface name or the bond if using bonding.
+
+    :::warning
+
+    Observe the following constraints when specifying the interface:
+
+    - Do not specify subordinate interfaces of a bond, such as `eth0` or `eth1`. Subordinate interfaces automatically inherit the MTU value set on the parent bond.
+    - The MTU of the VLAN interface cannot exceed the MTU of its parent physical or bonded interface. A parent interface with a larger MTU, such as `9000` for jumbo frames, can host VLANs with smaller MTUs, such as `1500`. However, raising the MTU of a VLAN interface beyond the MTU parent interface current limit requires updating the parent interface first.
+
+    :::
+
+    **`<mtu>`**
+
+    Specifies the new hardware MTU value.
 
     If you used Kubernetes NMState to configure the `br-ex` bridge, use the Kubernetes NMState Operator to update the MTU for the `br-ex` bridge. Changing the MTU for this bridge in a `.nmconnection` file could lead to persistence issues as the Machine Config Operator (MCO) might overwrite the file.
 

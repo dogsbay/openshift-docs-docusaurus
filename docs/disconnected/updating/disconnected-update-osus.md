@@ -80,7 +80,7 @@ If your release images are contained in a registry whose HTTPS X.509 certificate
 
 - [Configuring additional trust stores for image registry access](/docs/registry/configuring-registry-operator#images-configuration-cas_configuring-registry-operator)
 
-## Updating the global cluster pull secret {#images-update-global-pull-secret_updating-disconnected-cluster-osus}
+## Update the global cluster pull secret {#images-update-global-pull-secret_updating-disconnected-cluster-osus}
 
 To add new registries or update authentication for your OpenShift Container Platform cluster, you can update the global pull secret by appending new credentials to the *additional-pull-secret*. To do this, you can use the `oc set data secret/additional-pull-secret -n kube-system` command. Hypershift manages the new credential propagation among the HostedCluster nodes.
 

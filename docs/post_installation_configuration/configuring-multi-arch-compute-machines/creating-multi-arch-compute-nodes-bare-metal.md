@@ -31,7 +31,7 @@ Before adding a secondary architecture node to your cluster, you must install th
 
 :::
 
-## Creating RHCOS machines by using an ISO image {#machine-user-infra-machines-iso_creating-multi-arch-compute-nodes-bare-metal}
+## Create RHCOS machines by using an ISO image {#machine-user-infra-machines-iso_creating-multi-arch-compute-nodes-bare-metal}
 
 To scale your OpenShift Container Platform bare metal cluster, you can create more Red Hat Enterprise Linux CoreOS (RHCOS) compute machines by using an ISO image.
 
@@ -95,7 +95,7 @@ To scale your OpenShift Container Platform bare metal cluster, you can create mo
    :::
 9. Continue to create more compute machines for your cluster.
 
-## Creating RHCOS machines by PXE or iPXE booting {#machine-user-infra-machines-pxe_creating-multi-arch-compute-nodes-bare-metal}
+## Create RHCOS machines by PXE or iPXE booting {#machine-user-infra-machines-pxe_creating-multi-arch-compute-nodes-bare-metal}
 
 To scale your OpenShift Container Platform bare metal cluster, you can create more Red Hat Enterprise Linux CoreOS (RHCOS) compute machines by using PXE or iPXE booting.
 
@@ -206,7 +206,7 @@ To scale your OpenShift Container Platform bare metal cluster, you can create mo
 - [How does one set up a serial terminal and/or console in Red Hat Enterprise Linux? (Red Hat Knowledgebase article)](https://access.redhat.com/articles/7212)
 - [`IMAGE_GZIP` option in iPXE (iPXE documentation)](https://ipxe.org/buildcfg/image_gzip)
 
-## Approving the certificate signing requests for your machines {#installation-approve-csrs_creating-multi-arch-compute-nodes-bare-metal}
+## Approve the certificate signing requests for your machines {#installation-approve-csrs_creating-multi-arch-compute-nodes-bare-metal}
 
 To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
 

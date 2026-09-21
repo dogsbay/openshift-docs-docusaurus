@@ -50,7 +50,7 @@ When creating your plugin, follow these guidelines for using PatternFly:
 - Avoid using other CSS libraries such as Bootstrap or Tailwind. They might conflict with PatternFly and not match the rest of the console. Plugins should only include styles that are specific to their user interfaces to be evaluated on top of base PatternFly styles. Do not import styles directly from `@patternfly/react-styles/**/*.css` or `@patternfly/patternfly`. Instead, use components and CSS variables provided by the console SDK.
 - The console application is responsible for loading base styles for all supported PatternFly versions.
 
-### Translating messages with react-i18next {#dynamic-plugin-api_overview-dynamic-plugin}
+### Translate messages with react-i18next {#dynamic-plugin-localization_overview-dynamic-plugin}
 
 The `console-plugin-template` plugin template demonstrates how you can translate messages with react-i18next.
 

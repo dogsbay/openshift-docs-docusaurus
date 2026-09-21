@@ -9,7 +9,7 @@ sidebar_position: 6
 
 To apply cluster-wide network policy in OpenShift Container Platform, you can follow recommended practices for `AdminNetworkPolicy` and `BaselineAdminNetworkPolicy` design, including priorities, actions, and selectors that avoid system namespaces.
 
-## Designing AdminNetworkPolicy {#anp-best-practices_ovn-k-anp-recommended-practices}
+## Design AdminNetworkPolicy {#anp-best-practices_ovn-k-anp-recommended-practices}
 
 You can use this reference when you design `AdminNetworkPolicy` and `BaselineAdminNetworkPolicy` resources in OpenShift Container Platform. It describes priority ranges, actions, selector rules, BANP patterns, and how these policies differ from `NetworkPolicy`.
 

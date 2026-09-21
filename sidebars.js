@@ -3587,8 +3587,7 @@ module.exports = {
             "virt/storage/virt-preparing-cdi-scratch-space",
             "virt/storage/virt-using-preallocation-for-datavolumes",
             "virt/storage/virt-managing-data-volume-annotations",
-            "virt/storage/virt-storage-with-csi-paradigm",
-            "virt/storage/install-configure-fusion-access-san"
+            "virt/storage/virt-storage-with-csi-paradigm"
           ]
         },
         {

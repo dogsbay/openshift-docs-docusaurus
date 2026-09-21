@@ -2572,7 +2572,7 @@ The `kubeconfig` file is specific to a cluster and OpenShift Container Platform 
 - "Customize your cluster"
 - "Remote health reporting"
 
-## Approving the certificate signing requests for your machines {#installation-approve-csrs_installing-azure-stack-hub-user-infra}
+## Approve the certificate signing requests for your machines {#installation-approve-csrs_installing-azure-stack-hub-user-infra}
 
 To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
 

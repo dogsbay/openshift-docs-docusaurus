@@ -9,7 +9,7 @@ sidebar_position: 5
 
 Before working through the example, verify that the plugin is working by following the steps in the Dynamic plugin development documentation.
 
-## Adding a tab to the pods page {#adding-tab-to-pods-page_dynamic-plugin-example}
+## Add a tab to the pods page {#adding-tab-to-pods-page_dynamic-plugin-example}
 
 There are different customizations you can make to the OpenShift Container Platform web console. The following procedure adds a tab to the **Pod details** page as an example extension to your plugin.
 

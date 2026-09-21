@@ -350,7 +350,7 @@ Use `virtctl vmexport` commands to create, download, or delete a volume exported
 </tbody>
 </table>
 
-## Hot plug and hot unplug  commands {#hot-plug-and-hot-unplug-commands_virt-using-the-cli-tools}
+## Hot plug and hot unplug commands {#hot-plug-and-hot-unplug-commands_virt-using-the-cli-tools}
 
 You can use the following `virtctl` commands to add or remove resources from running virtual machines (VMs) and VM instances (VMIs).
 
@@ -365,8 +365,8 @@ You can use the following `virtctl` commands to add or remove resources from run
 </thead>
 <tbody>
 <tr>
-  <td><code>virtctl addvolume &lt;vm_name&gt; --volume-name=&lt;datavolume_or_PVC&gt; [--persist] [--serial=&lt;label&gt;]</code></td>
-  <td>Hot plug a data volume or persistent volume claim (PVC).<br><br>Optional:<br><br><ul><li><code>--persist</code> mounts the virtual disk permanently on a VM. <strong>This flag does not apply to VMIs.</strong></li><li><code>--serial=&lt;label&gt;</code> adds a label to the VM. If you do not specify a label, the default label is the data volume or PVC name.</li></ul></td>
+  <td><code>virtctl addvolume &lt;vm_name&gt; --volume-name=&lt;datavolume_or_PVC&gt; [--bus=&lt;bus_type&gt;] [--persist] [--serial=&lt;label&gt;]</code></td>
+  <td>Hot plug a data volume or persistent volume claim (PVC).<br><br>Optional:<br><br><ul><li><code>--bus=&lt;bus_type&gt;</code> specifies the bus type of the added disk. Supported values are <code>virtio</code> and <code>scsi</code>. The default bus type is <code>virtio</code>.</li><li><code>--persist</code> mounts the virtual disk permanently on a VM. <strong>This flag does not apply to VMIs.</strong></li><li><code>--serial=&lt;label&gt;</code> adds a label to the VM. If you do not specify a label, the default label is the data volume or PVC name.</li></ul></td>
 </tr>
 <tr>
   <td><code>virtctl removevolume &lt;vm_name&gt; --volume-name=&lt;virtual_disk&gt;</code></td>

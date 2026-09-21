@@ -15,7 +15,7 @@ You can edit the configuration and the source code of the application you create
 - You have [created and deployed an application on OpenShift Container Platform using the **Developer** perspective](/docs/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective).
 - You have [logged in to the web console](/docs/web_console/web-console#web-console) and have switched to [the **Developer** perspective](/docs/web_console/web-console-overview#about-developer-perspective_web-console-overview).
 
-## Editing the source code of an application using the Developer perspective {#odc-editing-source-code-using-developer-perspective_odc-editing-applications}
+## Edit the source code of an application using the Developer perspective {#odc-editing-source-code-using-developer-perspective_odc-editing-applications}
 
 You can use the **Topology** view in the **Developer** perspective to edit the source code of your application.
 
@@ -30,7 +30,7 @@ You can use the **Topology** view in the **Developer** perspective to edit the s
 
   If the **Eclipse Che** Operator is installed in your cluster, a Che workspace (![odc_che_workspace](/images/odc_che_workspace.png "Che Workspace")) is created and you are directed to the workspace to edit your source code. If it is not installed, you will be directed to the Git repository (![odc_git_repository](/images/odc_git_repository.png "Git Repository")) your source code is hosted in.
 
-## Editing the application configuration using the Developer perspective {#odc-editing-application-configuration-using-developer-perspective_odc-editing-applications}
+## Edit the application configuration using the Developer perspective {#odc-editing-application-configuration-using-developer-perspective_odc-editing-applications}
 
 You can use the **Topology** view in the **Developer** perspective to edit the configuration of your application.
 

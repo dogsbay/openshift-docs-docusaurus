@@ -390,7 +390,7 @@ Image pruning by age and tag
    - Builds, build configurations, jobs, or cronjobs.
      With this method, the primary trigger is the project’s size, but the safety check to ensure that the image is not actively in use is still performed.
 
-### Running image prune operations {#pruning-images-running-operation_pruning-objects}
+### Run image prune operations {#pruning-images-running-operation_pruning-objects}
 
 Securely remove unused container images from your registry to reclaim the cluster disk space and prevent registry storage exhaustion.
 
@@ -415,7 +415,7 @@ Securely remove unused container images from your registry to reclaim the cluste
    $ oc adm prune images <image_prune_option_one> <image_prune_option_two> --confirm
    ```
 
-### Using secure or insecure connections {#pruning-images-secure-insecure_pruning-objects}
+### Use secure or insecure connections {#pruning-images-secure-insecure_pruning-objects}
 
 Configure secure or insecure flags when pruning images to communicate with image registries. Setting custom CA certificates or bypassing HTTPS verification prevents connection failures during pruning.
 

@@ -488,7 +488,7 @@ For long-term changes to the Open vSwitch (OVS) log level, you can change the lo
 **Additional resources**
 
 - [Understanding the Machine Config Operator](/docs/machine_configuration#machine-config-operator_machine-config-overview)
-- [Checking machine config pool status](/docs/machine_configuration#checking-mco-status_machine-config-overview)
+- [Check machine config pool status](/docs/machine_configuration#checking-mco-status_machine-config-overview)
 
 ### Displaying Open vSwitch logs {#displaying-ovs-logs_troubleshooting-network-issues}
 

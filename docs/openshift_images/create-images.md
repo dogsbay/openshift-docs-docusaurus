@@ -9,7 +9,7 @@ sidebar_position: 4
 
 You can create your own container images based on pre-built base images. This process includes following best practices for writing images, defining metadata, testing images, and using a custom builder workflow with Source-to-Image (S2I). After you create an image, you can push it to the OpenShift image registry.
 
-## Learning container best practices {#images-create-guidelines_create-images}
+## Learn container best practices {#images-create-guidelines_create-images}
 
 When creating container images to run on OpenShift Container Platform there are a number of best practices to consider as an image author to ensure a good experience for consumers of those images. Because images are intended to be immutable and used as-is, the following guidelines help ensure that your images are highly consumable and easy to use on OpenShift Container Platform.
 
@@ -217,7 +217,7 @@ Document example liveness and readiness probes that can be used with your image.
 
 Consider providing an example template with your image. A template gives users an easy way to quickly get your image deployed with a working configuration. Your template must include the liveness and readiness probes you documented with the image, for completeness.
 
-## Including metadata in images {#images-create-metadata_create-images}
+## Include metadata in images {#images-create-metadata_create-images}
 
 Define comprehensive image metadata during creation to ensure OpenShift Container Platform correctly configures image runtime settings and tracks image lineage and compliance. This helps to provide a better experience for developers using your image.
 
@@ -268,13 +268,13 @@ See the [Docker custom metadata](https://docs.docker.com/engine/userguide/labels
 </tbody>
 </table>
 
-## Creating images from source code with source-to-image {#images-create-s2i_create-images}
+## Create images from source code with source-to-image {#images-create-s2i_create-images}
 
 Source-to-image (S2I) is a framework that makes it easy to write images that take application source code as an input and produce a new image that runs the assembled application as output.
 
 The main advantage of using S2I for building reproducible container images is the ease of use for developers. As a builder image author, you must understand two basic concepts in order for your images to provide the best S2I performance, the build process and S2I scripts.
 
-### Understanding the source-to-image build process {#images-create-s2i-build_create-images}
+### Understand the source-to-image build process {#images-create-s2i-build_create-images}
 
 Leverage the Source-to-image (S2I) process in OpenShift Container Platform to seamlessly transform application source code into ready-to-run, reproducible container images.
 

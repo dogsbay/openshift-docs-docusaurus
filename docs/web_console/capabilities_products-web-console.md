@@ -9,7 +9,7 @@ sidebar_position: 11
 
 You can further customize the OpenShift Container Platform web console by adding additional capabilities to your existing workflows and integrations through products.
 
-## Enhancing the OpenShift Container Platform web console with Operators {#optional-capabilities-operators_capabilities-web-console}
+## Enhance the OpenShift Container Platform web console with Operators {#optional-capabilities-operators_capabilities-web-console}
 
 Cluster administrators can install Operators from the software catalog to extend the OpenShift Container Platform web console beyond layered products. For example, the Web Terminal Operator adds a browser-based terminal with common CLI tools for interacting with the cluster.
 
@@ -31,7 +31,7 @@ Red Hat {serverlessproductname} enables developers to create and deploy serverle
 
 The Red Hat Developer Hub is a platform you can use to experience a streamlined development environment. Red Hat Developer Hub is driven by a centralized software catalog, providing efficiency to your microservices and infrastructure. It enables your product team to deliver quality code without any compromises. A quick start is available for you to learn more about how to install the developer hub.
 
-### Installing the Red Hat Developer Hub using the OpenShift Container Platform web console {#rhdh-install-web-console_capabilities-web-console}
+### Install the Red Hat Developer Hub using the OpenShift Container Platform web console {#rhdh-install-web-console_capabilities-web-console}
 
 The web console provides a quick start with instructions on how to install the Red Hat Developer Hub Operator.
 

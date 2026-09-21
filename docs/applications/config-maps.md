@@ -11,7 +11,7 @@ By using a config map, you can decouple configuration artifacts from image conte
 
 The following sections define config maps, explain how to create and use them, and describe use cases for consuming `ConfigMap` objects in pods.
 
-## Understanding config maps {#nodes-pods-configmap-overview_config-maps}
+## Understand config maps {#nodes-pods-configmap-overview_config-maps}
 
 You can review the following sections to learn how to use config maps to make configuration values available to your pods separately from application code.
 
@@ -81,7 +81,7 @@ This includes any pods created by using the CLI, or indirectly from a replicatio
 
 - [Creating and using config maps](/docs/nodes/pods/nodes-pods-configmaps)
 
-### Populating environment variables in containers by using config maps {#nodes-pods-configmaps-use-case-consuming-in-env-vars_config-maps}
+### Populate environment variables in containers by using config maps {#nodes-pods-configmaps-use-case-consuming-in-env-vars_config-maps}
 
 You can use config maps to populate individual environment variables in containers or to populate environment variables in containers from all keys that form valid environment variable names.
 
@@ -201,7 +201,7 @@ where:
 
   :::
 
-### Setting command-line arguments for container commands with config maps {#nodes-pods-configmaps-use-case-setting-command-line-arguments_config-maps}
+### Set command-line arguments for container commands with config maps {#nodes-pods-configmaps-use-case-setting-command-line-arguments_config-maps}
 
 You can use config maps to set the value of the commands or arguments in a container by using the Kubernetes substitution syntax `$(VAR_NAME)`.
 
@@ -266,7 +266,7 @@ data:
   very charm
   ```
 
-### Injecting content into a volume by using config maps {#nodes-pods-configmaps-use-case-consuming-in-volumes_config-maps}
+### Inject content into a volume by using config maps {#nodes-pods-configmaps-use-case-consuming-in-volumes_config-maps}
 
 You can use config maps to inject content into a volume.
 

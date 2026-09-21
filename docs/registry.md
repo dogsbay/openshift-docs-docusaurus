@@ -158,7 +158,7 @@ However, the `managementState` of the Image Registry Operator alters the behavio
   <dd>The standard condition objects with the following types: *   <code>Available</code>: Indicates if the pruning job has been created. Reasons can be <code>Ready</code> or <code>Error</code>. *   <code>Scheduled</code>: Indicates if the next pruning job has been scheduled. Reasons can be <code>Scheduled</code>, <code>Suspended</code>, or <code>Error</code>. *   <code>Failed</code>: Indicates if the most recent pruning job failed.</dd>
   </dl>
 
-## Creating containers by using images from third-party registries {#registry-third-party-registries_registry-overview}
+## Create containers by using images from third-party registries {#registry-third-party-registries_registry-overview}
 
 Some container image registries require access authorization. Podman is an open source tool for managing containers and container images and interacting with image registries. You can use Podman to authenticate your credentials, pull the registry image, and store local images in a local file system. The procedure provides a generic example of authenticating the registry with Podman.
 

@@ -1144,7 +1144,7 @@ To install OpenShift Container Platform on user-provisioned infrastructure on VM
 
   :::
 
-## Adding more compute machines to a cluster in vSphere {#machine-vsphere-machines_installing-vsphere-network-customizations}
+## Add more compute machines to a cluster in vSphere {#machine-vsphere-machines_installing-vsphere-network-customizations}
 
 To scale a user-provisioned OpenShift Container Platform cluster on VMware vSphere, you can add more compute machines by cloning the vSphere template into a virtual machine (VM).
 
@@ -1372,7 +1372,7 @@ The `kubeconfig` file is specific to a cluster and OpenShift Container Platform 
 - "Customize your cluster"
 - "Remote health reporting"
 
-## Approving the certificate signing requests for your machines {#installation-approve-csrs_installing-vsphere-network-customizations}
+## Approve the certificate signing requests for your machines {#installation-approve-csrs_installing-vsphere-network-customizations}
 
 To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
 
@@ -1560,7 +1560,7 @@ Configure a persistent volume, which is required for production clusters. Where 
 
 You can also allow the image registry to use block storage types by using the `Recreate` rollout strategy during upgrades.
 
-#### Configuring block registry storage for VMware vSphere {#installation-registry-storage-block-recreate-rollout_installing-vsphere-network-customizations}
+#### Configure block registry storage for VMware vSphere {#installation-registry-storage-block-recreate-rollout_installing-vsphere-network-customizations}
 
 To allow the image registry to use block storage types such as vSphere Virtual Machine Disk (VMDK) during upgrades as a cluster administrator, you can use the `Recreate` rollout strategy.
 

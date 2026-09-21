@@ -13,9 +13,7 @@ This procedure supports clusters installed using installer-provisioned infrastru
 
 :::warning
 
-Bare-metal nodes on vSphere clusters is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
-
-For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+Bare-metal nodes on VMware vSphere clusters is generally available for OpenShift Container Platform 4.22.13 and later. However, this feature is Technology Preview for 4.21 through 4.22.12.
 
 :::
 
@@ -25,7 +23,9 @@ Bare-metal compute machines added to a vSphere cluster are unmanaged by the Mach
 
 :::
 
-## Prerequisites {#_prerequisites}
+## Prerequisites for adding bare-metal compute machines to a vSphere cluster {#bare-metal-vsphere-prerequisites_adding-bare-metal-compute-vsphere-user-infra}
+
+Before you add bare-metal compute machines to your VMware vSphere cluster, you must meet the following infrastructure and network requirements.
 
 - You have an existing OpenShift Container Platform cluster installed on vSphere.
 - You have bare-metal hardware with network connectivity to the existing cluster’s machine network.
@@ -50,9 +50,7 @@ To add bare-metal compute machines to your VMware vSphere cluster, you must manu
 
 :::warning
 
-Bare-metal nodes on vSphere clusters is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
-
-For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+Bare-metal nodes on VMware vSphere clusters is generally available for OpenShift Container Platform 4.22.13 and later. However, this feature is Technology Preview for 4.21 through 4.22.12.
 
 :::
 
@@ -104,7 +102,7 @@ For more information about the support scope of Red Hat Technology Preview featu
   $ oc get nodes
   ```
 
-## Approving the certificate signing requests for your machines {#installation-approve-csrs_adding-bare-metal-compute-vsphere-user-infra}
+## Approve the certificate signing requests for your machines {#installation-approve-csrs_adding-bare-metal-compute-vsphere-user-infra}
 
 To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
 

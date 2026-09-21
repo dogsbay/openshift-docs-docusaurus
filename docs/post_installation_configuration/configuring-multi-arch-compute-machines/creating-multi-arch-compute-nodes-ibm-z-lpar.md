@@ -132,7 +132,7 @@ You can create more Red Hat Enterprise Linux CoreOS (RHCOS) compute machines ru
 7. As an example for FTP, transfer the initramfs, kernel, parameter files, and RHCOS images to the LPAR. For details about how to transfer the files with FTP and boot, see [Booting the installation on IBM Z(R) to install RHEL in an LPAR](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/interactively_installing_rhel_over_the_network/index#installing-in-an-lpar_booting-the-installation-media).
 8. Boot the machine.
 
-## Approving the certificate signing requests for your machines {#installation-approve-csrs_creating-multi-arch-compute-nodes-ibm-z-lpar}
+## Approve the certificate signing requests for your machines {#installation-approve-csrs_creating-multi-arch-compute-nodes-ibm-z-lpar}
 
 To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
 

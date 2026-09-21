@@ -342,7 +342,7 @@ By default, this configuration is stored in the `worker-user-data` secret in the
 - [Understanding the Machine Config Operator](/docs/machine_configuration#machine-config-operator_machine-config-overview)
 - [Installing RHCOS and starting the OpenShift Container Platform bootstrap process](/docs/installing/installing_vsphere/upi/installing-vsphere#installation-vsphere-machines_installing-vsphere)
 
-## Creating a compute machine set {#machineset-creating_creating-machineset-vsphere}
+## Create a compute machine set {#machineset-creating_creating-machineset-vsphere}
 
 To dynamically manage machine compute resources, you can create your own compute machine sets in addition to the compute machine sets created by the installation program. Use the OpenShift Container Platform CLI to automate node provisioning.
 
@@ -513,7 +513,7 @@ Clusters that are installed with user-provisioned infrastructure have a differen
 
   When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
-## Labeling GPU machine sets for the cluster autoscaler {#machineset-label-gpu-autoscaler_creating-machineset-vsphere}
+## Label GPU machine sets for the cluster autoscaler {#machineset-label-gpu-autoscaler_creating-machineset-vsphere}
 
 Label your machine sets to indicate which machines the cluster autoscaler can use for GPU-enabled nodes. Applying the accelerator label helps ensure that the autoscaler deploys the correct resources for your GPU workloads.
 

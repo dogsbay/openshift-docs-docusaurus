@@ -508,7 +508,7 @@ You can create only one `MachineOSConfig` CR for each machine config pool.
 
       The `Deployments` stanza includes the digested image pull spec for the new custom layered image.
 
-### Modifying an on-cluster custom layered image {#coreos-layering-configuring-on-modifying_mco-coreos-layering}
+### Modify an on-cluster custom layered image {#coreos-layering-configuring-on-modifying_mco-coreos-layering}
 
 You can modify an on-cluster custom layered image, as needed, to install additional packages, remove existing packages, change the pull or push repositories, update secrets, or other similar changes.
 
@@ -634,7 +634,7 @@ After the changes have been rolled out, you can unpause the machine config pool.
       rngd 6.16
       ```
 
-### Rebuilding an on-cluster custom layered image {#coreos-layering-configuring-on-rebuild_mco-coreos-layering}
+### Rebuild an on-cluster custom layered image {#coreos-layering-configuring-on-rebuild_mco-coreos-layering}
 
 You can rebuild an on-cluster custom layered image by either modifying your `MachineOSConfig` object or adding an annotation to the `MachineOSConfig` object. Both of these actions trigger an automatic rebuild of the object.
 
@@ -1168,7 +1168,7 @@ After the installation, if you modify a machine config pool or update the OpenSh
   <dd>Specifies the digested image pull spec for the new custom layered image.</dd>
   </dl>
 
-## Updating with a RHCOS custom layered image {#coreos-layering-updating_mco-coreos-layering}
+## Update with a RHCOS custom layered image {#coreos-layering-updating_mco-coreos-layering}
 
 When you configure image mode for OpenShift, OpenShift Container Platform no longer automatically updates the node pool that uses the custom layered image. You become responsible to manually update your nodes as appropriate.
 
@@ -1185,12 +1185,12 @@ To update a node that uses a custom layered image, follow these general steps:
 - [Using the on-cluster image mode to apply a custom layered image](/docs/machine_configuration/mco-coreos-layering#coreos-layering-configuring-on-proc_mco-coreos-layering)
 - [Removing an on-cluster custom layered image](/docs/machine_configuration/mco-coreos-layering#coreos-layering-configuring-on-remove_mco-coreos-layering)
 - [Pausing the machine config pools](/docs/updating/updating_a_cluster/update-using-custom-machine-config-pools#update-using-custom-machine-config-pools-pause_update-using-custom-machine-config-pools)
-- [Rebuilding an on-cluster custom layered image](/docs/machine_configuration/mco-coreos-layering#coreos-layering-configuring-on-rebuild_mco-coreos-layering)
+- [Rebuild an on-cluster custom layered image](/docs/machine_configuration/mco-coreos-layering#coreos-layering-configuring-on-rebuild_mco-coreos-layering)
 - [Reverting an on-cluster custom layered image](/docs/machine_configuration/mco-coreos-layering#coreos-layering-configuring-on-revert_mco-coreos-layering)
 - [Modifying a custom layered image](/docs/machine_configuration/mco-coreos-layering#coreos-layering-configuring-on-modifying_mco-coreos-layering)
 - [About checking machine config node status](/docs/machine_configuration#checking-mco-node-status_machine-config-overview)
 - [Updating the global cluster pull secret](/docs/openshift_images/managing_images/using-image-pull-secrets#images-update-global-pull-secret_using-image-pull-secrets)
 - [Enabling features using feature gates](/docs/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
-- [Updating with a RHCOS custom layered image](/docs/machine_configuration/mco-coreos-layering#coreos-layering-updating_mco-coreos-layering)
+- [Update with a RHCOS custom layered image](/docs/machine_configuration/mco-coreos-layering#coreos-layering-updating_mco-coreos-layering)
 - [What is a Hotfix package? (Red Hat Knowledgebase article)](https://access.redhat.com/solutions/2996001)
 - [Download Red Hat Enterprise Linux Packages](https://access.redhat.com/downloads/content/479/ver=/rhel---9/9.1/x86_64/packages)

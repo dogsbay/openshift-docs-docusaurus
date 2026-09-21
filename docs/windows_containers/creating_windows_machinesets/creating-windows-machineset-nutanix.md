@@ -126,7 +126,7 @@ where:
   - `value.vcpuSockets`. Specifies the number of vCPU sockets.
   - `value.vcpusPerSocket`. Specifies the number of vCPUs per socket.
 
-## Creating a compute machine set {#machineset-creating_creating-windows-machineset-nutanix}
+## Create a compute machine set {#machineset-creating_creating-windows-machineset-nutanix}
 
 To dynamically manage machine compute resources, you can create your own compute machine sets in addition to the compute machine sets created by the installation program. Use the OpenShift Container Platform CLI to automate node provisioning.
 

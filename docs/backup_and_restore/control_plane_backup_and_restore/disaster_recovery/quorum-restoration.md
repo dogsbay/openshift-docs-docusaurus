@@ -36,30 +36,18 @@ Quorum restoration should not be used to decrease the number of nodes outside of
 **Procedure**
 
 1. Select a control plane host to use as the recovery host. You run the restore operation on this host.
-   1. List the running etcd pods by running the following command:
-      ```terminal
-      $ oc get pods -n openshift-etcd -l app=etcd --field-selector="status.phase==Running"
-      ```
-   2. Choose a pod and run the following command to obtain its IP address:
-      ```terminal
-      $ oc exec -n openshift-etcd <etcd-pod> -c etcdctl -- etcdctl endpoint status -w table
-      ```
-
-      Note the IP address of a member that is not a learner and has the highest Raft index.
-   3. List nodes by running the following command:
-      ```terminal
-      $ oc get nodes -o jsonpath='{range .items[*]}[{.metadata.name},{.status.addresses[?(@.type=="InternalIP")].address}]{end}'
-      ```
-
-      Note the node name that corresponds to the IP address of the chosen etcd member.
 2. Using SSH, connect to the chosen recovery node and run the following command to restore etcd quorum:
    ```terminal
    $ sudo -E /usr/local/bin/quorum-restore.sh
    ```
 
    After a few minutes, the nodes that went down are automatically synchronized with the node that the recovery script was run on. Any remaining online nodes automatically rejoin the new etcd cluster created by the `quorum-restore.sh` script. This process takes a few minutes.
-3. Exit the SSH session.
-4. Return to a three-node configuration if any nodes are offline. Repeat the following steps for each node that is offline to delete and re-create them. After the machines are re-created, a new revision is forced and etcd automatically scales up.
+3. Verify that the local etcd container is running on the host by using the container runtime CLI:
+   ```terminal
+   $ sudo crictl ps --name '^etcd$'
+   ```
+4. Exit the SSH session.
+5. Return to a three-node configuration if any nodes are offline. Repeat the following steps for each node that is offline to delete and re-create them. After the machines are re-created, a new revision is forced and etcd automatically scales up.
    :::warning
 
    For installer-provisioned infrastructure and user-provisioned infrastructure, do not delete and re-create the machine for the recovery host.
@@ -106,7 +94,7 @@ Quorum restoration should not be used to decrease the number of nodes outside of
           Specify the name of the control plane machine for the offline node.
 
           A new machine is automatically provisioned after deleting the machine of the offline node.
-5. Verify that a new machine has been created by running the following command:
+6. Verify that a new machine has been created by running the following command:
    ```terminal
    $ oc get machines -n openshift-machine-api -o wide
    ```
@@ -124,8 +112,8 @@ Quorum restoration should not be used to decrease the number of nodes outside of
    In the example output, `clustername-8qw5l-master-3` is being created and is ready after the phase changes from `Provisioning` to `Running`.
 
    It might take a few minutes for the new machine to be created. The etcd cluster Operator automatically synchronizes when the machine or node returns to a healthy state.
-6. For each node that is offline, repeat the previous steps to delete and re-create the node.
-7. Wait until the control plane recovers by running the following command:
+7. For each node that is offline, repeat the previous steps to delete and re-create the node.
+8. Wait until the control plane recovers by running the following command:
    ```terminal
    $ oc adm wait-for-stable-cluster
    ```

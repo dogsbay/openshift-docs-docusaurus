@@ -283,7 +283,7 @@ You can correct configuration drift and return the node to the `Ready` state by 
 
   :::
 
-## Checking machine config pool status {#checking-mco-status_machine-config-overview}
+## Check machine config pool status {#checking-mco-status_machine-config-overview}
 
 You can see the status of the Machine Config Operator (MCO), its sub-components, and the resources it manages, by using the `oc` commands.
 
@@ -763,7 +763,7 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 :::
 
-### Checking node status during updates {#checking-mco-node-status-configuring_machine-config-overview}
+### Check node status during updates {#checking-mco-node-status-configuring_machine-config-overview}
 
 During the update of a machine config pool (MCP), you can monitor the progress of all of the nodes in your cluster by using the `oc get machineconfignodes` and `oc describe machineconfignodes` commands. These commands provide information that can be helpful if issues arise during the update and you need to troubleshoot a node.
 
@@ -898,7 +898,7 @@ For more information on the meaning of these fields, see "About checking machine
   # ...
   ```
 
-## Viewing and interacting with certificates {#checking-mco-status-certs_machine-config-overview}
+## View and interact with certificates {#checking-mco-status-certs_machine-config-overview}
 
 You can secure connections between Red Hat Enterprise Linux CoreOS (RHCOS) nodes and the Machine Config Server by viewing, interacting with, and extracting detailed information from Machine Config Operator and image registry certificates.
 

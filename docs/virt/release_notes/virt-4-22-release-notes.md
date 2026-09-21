@@ -137,6 +137,11 @@ The `HotplugVolume` feature gate is deprecated
 
 [CNV-73301](https://issues.redhat.com/browse/CNV-73301)
 
+The Fusion Access for SAN Operator is deprecated
+: The Fusion Access for SAN Operator is deprecated and will be removed in a future release. For new deployments, configure IBM Fusion Access for SAN in Fusion Data Foundation as an external system.
+
+  For more information, see [Deploying IBM Fusion Access for SAN](https://www.ibm.com/docs/en/fusion-software/2.13.x?topic=san-deploying-fusion-access).
+
 ## Removed features {#virt-4-22-removed_virt-4-22-release-notes}
 
 Removed features are no longer supported in OpenShift Virtualization.

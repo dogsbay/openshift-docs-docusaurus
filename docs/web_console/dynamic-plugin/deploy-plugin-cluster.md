@@ -181,7 +181,7 @@ where:
 `spec.proxy.endpoint`
 : Endpoint of the proxy.
 
-## Enabling a dynamic plugin with the CLI {#enabling-a-dynamic-plugin-by-using-the-cli_deploy-plugin-cluster}
+## Enable a dynamic plugin with the CLI {#enabling-a-dynamic-plugin-by-using-the-cli_deploy-plugin-cluster}
 
 You can enable a dynamic plugin to extend the core web console with more features, such as additional pages, perspectives, or dashboard items. Use the OpenShift CLI (`oc`) after a scripted installation, such as an Operator or Helm-based install. Add the `ConsolePlugin` name to `spec.plugins` in the console Operator configuration (`console.operator.openshift.io/cluster`) so the web console loads it.
 
@@ -268,7 +268,7 @@ You can enable a dynamic plugin to extend the core web console with more feature
 - [Securing service traffic using service serving certificate secrets](/docs/security/certificates/service-serving-certificate#service-serving-certificate)
 - [Dynamic plugin API](/docs/web_console/dynamic-plugin/dynamic-plugins-reference#dynamic-plugin-api_dynamic-plugins-reference)
 
-## Disabling your plugin in the browser {#disabling-your-plugin-browser_deploy-plugin-cluster}
+## Disable your plugin in the browser {#disabling-your-plugin-browser_deploy-plugin-cluster}
 
 Console users can use the `disable-plugins` query parameter to disable specific or all dynamic plugins that would normally get loaded at runtime.
 

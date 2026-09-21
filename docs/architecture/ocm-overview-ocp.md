@@ -20,7 +20,7 @@ You can use OpenShift Cluster Manager to do the following actions:
 - Monitor clusters
 - Schedule upgrades
 
-## Accessing Red Hat OpenShift Cluster Manager {#accessing-ocm_ocm-overview-ocp}
+## Access Red Hat OpenShift Cluster Manager {#accessing-ocm_ocm-overview-ocp}
 
 You can access OpenShift Cluster Manager with your configured OpenShift account.
 

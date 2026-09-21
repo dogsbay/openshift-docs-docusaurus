@@ -9,7 +9,7 @@ sidebar_position: 10
 
 If you are creating quick start tutorials for the OpenShift Container Platform web console, follow these guidelines to keep a consistent user experience across all quick starts.
 
-## Understanding quick starts {#understanding-quick-starts_creating-quick-start-tutorials}
+## Understand quick starts {#understanding-quick-starts_creating-quick-start-tutorials}
 
 A quick start is a guided tutorial with user tasks. In the web console, you can access quick starts under the **Help** menu. They are especially useful for getting oriented with an application, Operator, or other product offering.
 
@@ -63,7 +63,7 @@ The main content area of a quick start includes the following sections:
 - **Modals and in-app messaging**
 - **Check your work module**
 
-## Contributing quick starts {#contributing-quick-starts_creating-quick-start-tutorials}
+## Contribute quick starts {#contributing-quick-starts_creating-quick-start-tutorials}
 
 OpenShift Container Platform introduces the quick start custom resource, which is defined by a `ConsoleQuickStart` object. Operators and administrators can use this resource to contribute quick starts to the cluster.
 
@@ -84,7 +84,7 @@ OpenShift Container Platform introduces the quick start custom resource, which i
 3. Update the YAML file using the guidance outlined in this documentation.
 4. Save your edits.
 
-### Viewing the quick start API documentation {#viewing-quick-start-api-documentation_creating-quick-start-tutorials}
+### View the quick start API documentation {#viewing-quick-start-api-documentation_creating-quick-start-tutorials}
 
 You can view the API documentation for the `ConsoleQuickStart` resource by using the `oc explain` command.
 
@@ -97,7 +97,7 @@ You can view the API documentation for the `ConsoleQuickStart` resource by using
 
   Run `oc explain -h` for more information about `oc explain` usage.
 
-### Mapping the elements in the quick start to the quick start CR {#understanding-quick-start-elements_creating-quick-start-tutorials}
+### Map the elements in the quick start to the quick start CR {#understanding-quick-start-elements_creating-quick-start-tutorials}
 
 These mappings show where each part of the quick start custom resource (CR) is displayed in the quick start within the web console.
 
@@ -227,7 +227,7 @@ In the web console, after you click a quick start card, a side panel slides in t
 
 ![quick start introduction element in the web console](/images/quick-start-introduction.png)
 
-### Adding a custom icon to a quick start {#adding-custom-icon-to-quick-start_creating-quick-start-tutorials}
+### Add a custom icon to a quick start {#adding-custom-icon-to-quick-start_creating-quick-start-tutorials}
 
 A default icon is provided for all quick starts. You can provide your own custom icon.
 
@@ -241,7 +241,7 @@ A default icon is provided for all quick starts. You can provide your own custom
       data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHJvbGU9ImltZyIgdmlld.
    ```
 
-### Limiting access to a quick start {#limiting-access-to-quick-starts_creating-quick-start-tutorials}
+### Limit access to a quick start {#limiting-access-to-quick-starts_creating-quick-start-tutorials}
 
 Not all quick starts should be available for everyone. The `accessReviewResources` section of the YAML file provides the ability to limit access to the quick start.
 
@@ -266,7 +266,7 @@ accessReviewResources:
     verb: list
 ```
 
-### Linking to other quick starts {#linking-to-other-quick-starts_creating-quick-start-tutorials}
+### Link to other quick starts {#linking-to-other-quick-starts_creating-quick-start-tutorials}
 
 You can link a quick start to another quick start by setting the `nextQuickStart` field.
 

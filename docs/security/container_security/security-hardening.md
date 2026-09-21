@@ -70,7 +70,7 @@ All of the features noted here are described in the OpenShift Container Platform
 - [Creating the Kubernetes manifest and Ignition config files](/docs/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-infra-generate-k8s-manifest-ignition_installing-bare-metal)
 - [Installing RHCOS by using an ISO image](/docs/installing/installing_bare_metal/upi/installing-bare-metal#installation-user-infra-machines-iso_installing-bare-metal)
 - [Customizing nodes](/docs/installing/install_config/installing-customizing#installing-customizing)
-- [Adding kernel arguments to nodes](/docs/nodes/nodes/nodes-nodes-managing#nodes-nodes-kernel-arguments_nodes-nodes-managing)
+- [Add kernel arguments to nodes](/docs/nodes/nodes/nodes-nodes-managing#nodes-nodes-kernel-arguments_nodes-nodes-managing)
 - [Optional configuration parameters](/docs/installing/installing_aws/installation-config-parameters-aws#installation-configuration-parameters-optional_installation-config-parameters-aws)
 - [Support for FIPS cryptography](/docs/installing/overview/installing-fips#installing-fips)
 - [RHEL core crypto components](https://access.redhat.com/articles/3359851)

@@ -455,7 +455,7 @@ Critical state
 **Additional resources**
 
 - [KubeVirt components metrics](https://github.com/kubevirt/monitoring/blob/main/docs/metrics.md)
-- [Adding kernel arguments to nodes](/docs/machine_configuration/machine-configs-configure#nodes-nodes-kernel-arguments_machine-configs-configure)
+- [Add kernel arguments to nodes](/docs/machine_configuration/machine-configs-configure#nodes-nodes-kernel-arguments_machine-configs-configure)
 - [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)
 - [Querying Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/)
 - [Prometheus query examples](https://prometheus.io/docs/prometheus/latest/querying/examples/)

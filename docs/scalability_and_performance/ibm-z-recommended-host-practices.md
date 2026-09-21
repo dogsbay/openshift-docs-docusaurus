@@ -17,7 +17,7 @@ Unless stated otherwise, the host practices apply to both z/VM and Red Hat Ente
 
 :::
 
-## Managing CPU overcommitment {#ibm-z-managing-cpu-overcommitment_ibm-z-recommended-host-practices}
+## Manage CPU overcommitment {#ibm-z-managing-cpu-overcommitment_ibm-z-recommended-host-practices}
 
 To optimize infrastructure sizing in a highly virtualized IBM Z environment, manage CPU overcommitment. By adopting this strategy, you can allocate more resources to virtual machines than are physically available at the hypervisor level. This capability requires that you plan carefully for specific workload dependencies.
 
@@ -42,7 +42,7 @@ To prevent the operating system from automatically managing memory segments, dis
 
 Transparent Huge Pages (THP) tries to automate most aspects of creating, managing, and using huge pages. Since THP automatically manages the huge pages, THP does not always handle optimally for all types of workloads. THP can lead to performance regressions, since many applications handle huge pages on their own.
 
-## Boosting networking performance with RFS {#ibm-z-boost-networking-performance-with-rfs_ibm-z-recommended-host-practices}
+## Boost networking performance with RFS {#ibm-z-boost-networking-performance-with-rfs_ibm-z-recommended-host-practices}
 
 To boost networking performance, activate Receive Flow Steering (RFS) by using the Machine Config Operator (MCO). This configuration improves packet processing efficiency.
 
@@ -253,7 +253,7 @@ Ensure that the driver element of the disk device includes the `cache="none"` an
 </disk>
 ```
 
-### Excluding the memory balloon device {#exclude-the-memory-balloon-device_ibm-z-recommended-host-practices}
+### Exclude the memory balloon device {#exclude-the-memory-balloon-device_ibm-z-recommended-host-practices}
 
 Unless you need a dynamic memory size, do not define a memory balloon device and ensure that libvirt does not create one for you. Include the `memballoon` parameter as a child of the devices element in your domain configuration file.
 
@@ -264,7 +264,7 @@ Unless you need a dynamic memory size, do not define a memory balloon device and
   <memballoon model="none"/>
   ```
 
-### Tuning the CPU migration algorithm of the host scheduler {#tune-the-cpu-migration-algorithm-of-the-host-scheduler_ibm-z-recommended-host-practices}
+### Tune the CPU migration algorithm of the host scheduler {#tune-the-cpu-migration-algorithm-of-the-host-scheduler_ibm-z-recommended-host-practices}
 
 You can tune the CPU migration algorithm of the host scheduler to meet the demands of your production system.
 
@@ -289,7 +289,7 @@ If the CPU idle time is higher than expected when there are runnable processes, 
   kernel.sched_migration_cost_ns=60000
   ```
 
-### Disabling the cpuset cgroup controller {#disabling-the-cpuset-cgroup-controller_ibm-z-recommended-host-practices}
+### Disable the cpuset cgroup controller {#disabling-the-cpuset-cgroup-controller_ibm-z-recommended-host-practices}
 
 You can disable the cpuset cgroup controller. Disabling the controller requires a restart of the libvirtd daemon.
 
@@ -317,7 +317,7 @@ This setting applies only to KVM hosts with cgroups version 1. To enable CPU hot
    3. Restart the virtual machines.
       This setting persists across host reboots.
 
-### Tuning the polling period for idle virtual CPUs {#tune-the-polling-period-for-idle-virtual-cpus_ibm-z-recommended-host-practices}
+### Tune the polling period for idle virtual CPUs {#tune-the-polling-period-for-idle-virtual-cpus_ibm-z-recommended-host-practices}
 
 When a virtual CPU becomes idle, KVM polls for wakeup conditions for the virtual CPU before allocating the host resource. You can specify the time interval, during which polling takes place in sysfs at `/sys/module/kvm/parameters/halt_poll_ns`.
 

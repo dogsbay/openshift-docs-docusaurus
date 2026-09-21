@@ -40,7 +40,7 @@ Approval Strategy
 
 - [Understanding the software catalog](/docs/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
 
-## Installing from the software catalog by using the web console {#olm-installing-from-software-catalog-using-web-console_olm-adding-operators-to-a-cluster}
+## Install from the software catalog by using the web console {#olm-installing-from-software-catalog-using-web-console_olm-adding-operators-to-a-cluster}
 
 To install and subscribe to an Operator from the software catalog, you can use the OpenShift Container Platform web console. The console guides you through selecting an install mode, namespace, and approval strategy.
 
@@ -113,7 +113,7 @@ To install and subscribe to an Operator from the software catalog, you can use t
 
 - [Manually approving a pending Operator update](/docs/operators/admin/olm-upgrading-operators#olm-approving-pending-upgrade_olm-upgrading-operators)
 
-## Installing from the software catalog by using the CLI {#olm-installing-operator-from-software-catalog-using-cli_olm-adding-operators-to-a-cluster}
+## Install from the software catalog by using the CLI {#olm-installing-operator-from-software-catalog-using-cli_olm-adding-operators-to-a-cluster}
 
 To install an Operator from the software catalog without using the web console, you can create or update a `Subscription` object by using the `oc` command in OpenShift Container Platform.
 
@@ -487,7 +487,7 @@ In the following procedure, the *tenant* is a user or group of users that share 
 
 - [Operators in multitenant clusters](/docs/operators/understanding/olm-multitenancy#olm-multitenancy)
 
-## Installing global Operators in custom namespaces {#olm-installing-global-namespaces_olm-adding-operators-to-a-cluster}
+## Install global Operators in custom namespaces {#olm-installing-global-namespaces_olm-adding-operators-to-a-cluster}
 
 To avoid installing global Operators in the default `openshift-operators` namespace, you can create a custom global namespace in OpenShift Container Platform and install Operators there instead.
 

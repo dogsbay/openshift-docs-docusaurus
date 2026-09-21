@@ -9,7 +9,7 @@ sidebar_position: 5
 
 When you expose your applications through a gateway, you must configure an `HTTPRoute` custom resource (CR) to accurately direct incoming HTTP requests from your network listener to the appropriate backend services. A Gateway API `HTTPRoute` CR specifies the exact routing behavior for these requests by evaluating a set of rules.
 
-The core configuration element of an `HTTPRoute` CR is a rule. You can configure up to 16 rules for a single route. Within each rule, you can establish the following routing behaviors:
+Traffic delivery can be configured for an `HTTPRoute` using rules. You can configure up to 16 rules for a single route. Within each rule, you can establish the following routing behaviors:
 
 - `Matches`: Define the conditions an HTTP request must meet based on paths, headers, query parameters, or methods.
 - `Filters`: Apply processing directions to the request, such as header modifications, mirrors, or redirects.
@@ -67,13 +67,12 @@ To direct incoming network traffic from a gateway to your backend applications, 
   sample-route   ["app1.example.com","app2.example.com"]   45s
   ```
 
-## Configure HTTP request matching conditions {#configuring-http-request-matching-conditions_routing-http-requests-to-services}
+## Configure path-based routing {#configuring-http-request-matching-conditions_routing-http-requests-to-services}
 
 To ensure traffic is routed to the correct application when multiple services share a gateway, you can define request matching conditions within your `HTTPRoute` custom resource (CR). You can match HTTP requests based on paths, headers, query parameters, or methods.
 
 **Prerequisites**
 
-- You have access to the cluster as a user with the `cluster-admin` role.
 - You have installed the OpenShift CLI (`oc`).
 
 **Procedure**
@@ -122,12 +121,6 @@ You can configure the following match types:
 
 `method`
 : A value in upper case that should match on the HTTP request method. Must be one of: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, or PATCH.
-
-:::note
-
-According to Gateway API conventions, the `RegularExpression` match type is classified as an implementation-specific feature (`Support: Implementation-specific`). While Red Hat OpenShift Service Mesh fully supports regular expression matching, this feature might not be available or behave identically across other Gateway API implementations.
-
-:::
 
 #### Example: path match {#_example_path_match}
 
@@ -183,7 +176,6 @@ To modify how HTTP requests are processed before they reach your backend service
 
 **Prerequisites**
 
-- You have access to the cluster as a user with the `cluster-admin` role.
 - You have installed the OpenShift CLI (`oc`).
 
 **Procedure**
@@ -292,7 +284,6 @@ To route traffic to your backends, you must define service destinations and traf
 
 **Prerequisites**
 
-- You have access to the cluster as a user with the `cluster-admin` role.
 - You have installed the OpenShift CLI (`oc`).
 
 **Procedure**
@@ -368,7 +359,6 @@ To prevent hanging connections and ensure your application remains responsive, y
 
 **Prerequisites**
 
-- You have access to the cluster as a user with the `cluster-admin` role.
 - You have installed the OpenShift CLI (`oc`).
 
 **Procedure**
@@ -467,7 +457,7 @@ spec:
       port: 8080
 ```
 
-## OpenShift Container Platform routes and HTTPRoutes Comparison {#comparing-openshift-routes-and-httproutes_routing-http-requests-to-services}
+## OpenShift Container Platform routes and HTTPRoutes comparison {#comparing-openshift-routes-and-httproutes_routing-http-requests-to-services}
 
 When you migrate from standard networking to the Gateway API, you can compare OpenShift Container Platform routes with `HTTPRoute` custom resources (CRs) to understand which features are supported and how your configuration must change. While both resources handle ingress traffic, they have distinct feature sets and implementation differences.
 

@@ -116,7 +116,7 @@ The `commonConfigs` specifies the common configurations available for all operan
 <tr>
   <td><code>proxy</code></td>
   <td><em>proxyConfig</em></td>
-  <td><code>proxy</code> sets the proxy configurations which are made avaiable in operand containers managed by the Operator as environment variables.</td>
+  <td><code>proxy</code> sets the proxy configurations which are made available in operand containers managed by the Operator as environment variables.</td>
   <td></td>
   <td></td>
 </tr>

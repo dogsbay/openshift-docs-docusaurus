@@ -283,7 +283,7 @@ Validating admission plugin
 `webhooks.failurePolicy`
 : Specifies how the policy should proceed if the webhook server is unavailable. Replace `<policy>` with either `Ignore` (to unconditionally accept the request in case of a failure) or `Fail` (to deny the failed request). Using `Ignore` can result in unpredictable behavior for all clients.
 
-## Configuring dynamic admission {#configuring-dynamic-admission_admission-plug-ins}
+## Configure dynamic admission {#configuring-dynamic-admission_admission-plug-ins}
 
 You can complete high-level steps to configure dynamic admission. These steps extend the admission chain by configuring a webhook admission plugin to call out to a webhook server.
 

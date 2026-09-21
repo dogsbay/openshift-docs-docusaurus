@@ -73,7 +73,7 @@ If the security posture of your organization does not allow clusters to use an o
 
 - [Configuring the Ingress Controller endpoint publishing scope to Internal](/docs/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/nw-configuring-ingress-controller-endpoint-publishing-strategy#nw-ingresscontroller-change-internal_nw-configuring-ingress-controller-endpoint-publishing-strategy)
 
-## Changing the Amazon Web Services instance type by using a control plane machine set {#cpms-changing-aws-instance-type_cpmso-supported-features-aws}
+## Change the Amazon Web Services instance type by using a control plane machine set {#cpms-changing-aws-instance-type_cpmso-supported-features-aws}
 
 If you need more resources for your control plane machines, you can change the Amazon Web Services (AWS) instance type that they use. To change the instance type, you update the instance type value in the control plane machine set custom resource (CR).
 

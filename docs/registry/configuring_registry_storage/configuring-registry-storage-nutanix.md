@@ -34,7 +34,7 @@ Configure a persistent volume, which is required for production clusters. Where 
 
 You can also allow the image registry to use block storage types by using the `Recreate` rollout strategy during upgrades.
 
-### Configuring registry storage for Nutanix {#configuring-registry-storage-nutanix_configuring-registry-storage-nutanix}
+### Configure registry storage for Nutanix {#configuring-registry-storage-nutanix_configuring-registry-storage-nutanix}
 
 As a cluster administrator, following installation you must configure your registry to use storage.
 
@@ -94,7 +94,7 @@ As a cluster administrator, following installation you must configure your regis
    image-registry   4.13                                  True        False         False      6h50m
    ```
 
-### Configuring storage for the image registry in non-production clusters {#installation-registry-storage-non-production_configuring-registry-storage-nutanix}
+### Configure storage for the image registry in non-production clusters {#installation-registry-storage-non-production_configuring-registry-storage-nutanix}
 
 You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.
 
@@ -119,7 +119,7 @@ You must configure storage for the Image Registry Operator. For non-production c
 
   Wait a few minutes and run the command again.
 
-### Configuring block registry storage for Nutanix volumes {#installation-registry-storage-block-recreate-rollout-nutanix_configuring-registry-storage-nutanix}
+### Configure block registry storage for Nutanix volumes {#installation-registry-storage-block-recreate-rollout-nutanix_configuring-registry-storage-nutanix}
 
 To allow the image registry to use block storage types such as Nutanix volumes during upgrades as a cluster administrator, you can use the `Recreate` rollout strategy.
 

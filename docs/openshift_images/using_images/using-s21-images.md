@@ -9,7 +9,7 @@ sidebar_position: 2
 
 To create containerized applications in OpenShift Container Platform without manually configuring runtime environments, you can use Source-to-Image (S2I) images. S2I images are runtime base images for languages such as Node.js, Python, and Java that you can insert your code into. You can use Red Hat Software Collections images as a foundation for applications that rely on specific runtime environments, and access S2I images through the Cluster Samples Operator.
 
-## Accessing S2I builder images in the OpenShift Container Platform Developer Console {#accessing-s2i-builder-images-in-developer-console_using-s21-images}
+## Access S2I builder images in the OpenShift Container Platform Developer Console {#accessing-s2i-builder-images-in-developer-console_using-s21-images}
 
 You can access S2I builder images through the Developer Console in the web console. You need these images to build containerized applications from your source code.
 

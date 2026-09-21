@@ -34,7 +34,7 @@ Configure a persistent volume, which is required for production clusters. Where 
 
 You can also allow the image registry to use block storage types by using the `Recreate` rollout strategy during upgrades.
 
-### Configuring registry storage for VMware vSphere {#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere}
+### Configure registry storage for VMware vSphere {#registry-configuring-storage-vsphere_configuring-registry-storage-vsphere}
 
 As a cluster administrator, following installation you must configure your registry to use storage.
 
@@ -102,7 +102,7 @@ Other NFS implementations on the marketplace might not have these issues. Contac
    image-registry   4.7       True        False         False      6h50m
    ```
 
-### Configuring storage for the image registry in non-production clusters {#installation-registry-storage-non-production_configuring-registry-storage-vsphere}
+### Configure storage for the image registry in non-production clusters {#installation-registry-storage-non-production_configuring-registry-storage-vsphere}
 
 You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.
 
@@ -127,7 +127,7 @@ You must configure storage for the Image Registry Operator. For non-production c
 
   Wait a few minutes and run the command again.
 
-### Configuring block registry storage for VMware vSphere {#installation-registry-storage-block-recreate-rollout_configuring-registry-storage-vsphere}
+### Configure block registry storage for VMware vSphere {#installation-registry-storage-block-recreate-rollout_configuring-registry-storage-vsphere}
 
 To allow the image registry to use block storage types such as vSphere Virtual Machine Disk (VMDK) during upgrades as a cluster administrator, you can use the `Recreate` rollout strategy.
 

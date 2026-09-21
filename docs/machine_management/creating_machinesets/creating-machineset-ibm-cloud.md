@@ -117,7 +117,7 @@ where:
 
 - [Manually updating the boot image](/docs/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
-## Creating a compute machine set {#machineset-creating_creating-machineset-ibm-cloud}
+## Create a compute machine set {#machineset-creating_creating-machineset-ibm-cloud}
 
 To dynamically manage machine compute resources, you can create your own compute machine sets in addition to the compute machine sets created by the installation program. Use the OpenShift Container Platform CLI to automate node provisioning.
 
@@ -229,7 +229,7 @@ To dynamically manage machine compute resources, you can create your own compute
 
   When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
-## Labeling GPU machine sets for the cluster autoscaler {#machineset-label-gpu-autoscaler_creating-machineset-ibm-cloud}
+## Label GPU machine sets for the cluster autoscaler {#machineset-label-gpu-autoscaler_creating-machineset-ibm-cloud}
 
 Label your machine sets to indicate which machines the cluster autoscaler can use for GPU-enabled nodes. Applying the accelerator label helps ensure that the autoscaler deploys the correct resources for your GPU workloads.
 

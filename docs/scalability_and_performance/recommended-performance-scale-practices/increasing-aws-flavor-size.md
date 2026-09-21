@@ -21,7 +21,7 @@ If you are uncertain about the state of the `ControlPlaneMachineSet` CR in your 
 
 - [Verify the CR status](/docs/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started)
 
-## Changing the Amazon Web Services instance type by using a control plane machine set {#cpms-changing-aws-instance-type_increasing-aws-flavor-size}
+## Change the Amazon Web Services instance type by using a control plane machine set {#cpms-changing-aws-instance-type_increasing-aws-flavor-size}
 
 If you need more resources for your control plane machines, you can change the Amazon Web Services (AWS) instance type that they use. To change the instance type, you update the instance type value in the control plane machine set custom resource (CR).
 
@@ -61,7 +61,7 @@ If you need more resources for your control plane machines, you can change the A
 
 - [Managing control plane machines with control plane machine sets](/docs/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)
 
-## Changing the Amazon Web Services instance type by using the AWS console {#aws-console-changing-aws-instance-type_increasing-aws-flavor-size}
+## Change the Amazon Web Services instance type by using the AWS console {#aws-console-changing-aws-instance-type_increasing-aws-flavor-size}
 
 You can change the Amazon Web Services (AWS) instance type that your control plane machines use by updating the instance type in the AWS console.
 

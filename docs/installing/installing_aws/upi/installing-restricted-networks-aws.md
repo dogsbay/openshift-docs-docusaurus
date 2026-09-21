@@ -3790,7 +3790,7 @@ After creating all required infrastructure in AWS, you can start the bootstrap s
 - [Monitoring installation progress](/docs/support/troubleshooting/troubleshooting-installations#monitoring-installation-progress_troubleshooting-installations)
 - [Gathering bootstrap node diagnostic data](/docs/support/troubleshooting/troubleshooting-installations#gathering-bootstrap-diagnostic-data_troubleshooting-installations)
 
-## Approving the certificate signing requests for your machines {#installation-approve-csrs_installing-restricted-networks-aws}
+## Approve the certificate signing requests for your machines {#installation-approve-csrs_installing-restricted-networks-aws}
 
 To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
 
@@ -4027,7 +4027,7 @@ To secure your registry images in Amazon Web Services (AWS), [block public acces
          region: <region_name>
    ```
 
-#### Configuring storage for the image registry in non-production clusters {#installation-registry-storage-non-production_installing-restricted-networks-aws}
+#### Configure storage for the image registry in non-production clusters {#installation-registry-storage-non-production_installing-restricted-networks-aws}
 
 You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.
 

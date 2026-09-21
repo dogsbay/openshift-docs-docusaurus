@@ -118,7 +118,7 @@ where:
   - `value.userDataSecret.name`. Specifies the name of the secret in the user data YAML file that is in the `openshift-machine-api` namespace. Use the value that installation program populates in the default compute machine set.
   - `value.zone`. Specifies the zone within the chosen region, such as `us-central1-a`.
 
-## Creating a compute machine set {#machineset-creating_creating-windows-machineset-gcp}
+## Create a compute machine set {#machineset-creating_creating-windows-machineset-gcp}
 
 To dynamically manage machine compute resources, you can create your own compute machine sets in addition to the compute machine sets created by the installation program. Use the OpenShift Container Platform CLI to automate node provisioning.
 

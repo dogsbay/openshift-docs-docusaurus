@@ -1067,7 +1067,7 @@ where
 
 - [Manually updating the boot image](/docs/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)
 
-## Creating a compute machine set {#machineset-creating_creating-infrastructure-machinesets}
+## Create a compute machine set {#machineset-creating_creating-infrastructure-machinesets}
 
 To dynamically manage machine compute resources, you can create your own compute machine sets in addition to the compute machine sets created by the installation program. Use the OpenShift Container Platform CLI to automate node provisioning.
 
@@ -1179,7 +1179,7 @@ To dynamically manage machine compute resources, you can create your own compute
 
   When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.
 
-## Creating an infrastructure node {#creating-an-infra-node_creating-infrastructure-machinesets}
+## Create an infrastructure node {#creating-an-infra-node_creating-infrastructure-machinesets}
 
 To reduce subscription costs, you can use labels to configure compute nodes as infrastructure nodes, where you can move infrastructure resources.
 
@@ -1232,7 +1232,7 @@ You can optionally create a default cluster-wide node selector. The default node
 - [OpenShift Container Platform infrastructure components](/docs/machine_management/creating-infrastructure-machinesets#infrastructure-components_creating-infrastructure-machinesets)
 - [Moving resources to infrastructure machine sets](/docs/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets_creating-infrastructure-machinesets)
 
-## Creating a machine config pool for infrastructure machines {#creating-infra-machines_creating-infrastructure-machinesets}
+## Create a machine config pool for infrastructure machines {#creating-infra-machines_creating-infrastructure-machinesets}
 
 You can create a machine configuration pool for infrastructure machines to apply dedicated configuration to infra machines. You might want to apply dedicated configuration to infra machines because they run distinct workloads from other nodes in the cluster.
 
@@ -1354,7 +1354,7 @@ Creating a custom machine configuration pool overrides default worker pool confi
 
 - [Node configuration management with machine config pools](/docs/architecture/control-plane#architecture-machine-config-pools_control-plane)
 
-## Binding infrastructure node workloads using taints and tolerations {#binding-infra-node-workloads-using-taints-tolerations_creating-infrastructure-machinesets}
+## Bind infrastructure node workloads using taints and tolerations {#binding-infra-node-workloads-using-taints-tolerations_creating-infrastructure-machinesets}
 
 To avoid user workloads being inadvertently assigned to an infra node, you can apply a taint to the infra node and tolerations for the pods you want to control. After creating an infrastructure machine set, the `worker` and `infra` roles are applied to new infra nodes.
 
@@ -1471,7 +1471,7 @@ It is recommended that you preserve the dual `infra,worker` label that is create
 - [Moving resources to infrastructure machine sets](/docs/machine_management/creating-infrastructure-machinesets#moving-resources-to-infrastructure-machinesets_creating-infrastructure-machinesets)
 - [Understanding taints and tolerations](/docs/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)
 
-## Moving resources to infrastructure machine sets {#moving-resources-to-infrastructure-machinesets_creating-infrastructure-machinesets}
+## Move resources to infrastructure machine sets {#moving-resources-to-infrastructure-machinesets_creating-infrastructure-machinesets}
 
 Some of the infrastructure resources are deployed in your cluster by default. You can move them to the infrastructure machine sets that you created by adding the infrastructure node selector.
 
@@ -1501,7 +1501,7 @@ Applying a specific node selector to all infrastructure components causes OpenSh
    ```
 2. If you added a taint to the infrastructure node, also add a matching toleration.
 
-### Moving the router {#infrastructure-moving-router_creating-infrastructure-machinesets}
+### Move the router {#infrastructure-moving-router_creating-infrastructure-machinesets}
 
 Deploying the router pod on an infrastructure node can reduce your OpenShift Container Platform subscription size. Move the router pod by editing the `IngressController` object in the `openshift-ingress-operator` namespace. By default, the pod is deployed to a worker node.
 
@@ -1599,7 +1599,7 @@ Deploying the router pod on an infrastructure node can reduce your OpenShift Con
 
      Because the role list includes `infra`, the pod is running on the correct node.
 
-### Moving the default registry {#infrastructure-moving-registry_creating-infrastructure-machinesets}
+### Move the default registry {#infrastructure-moving-registry_creating-infrastructure-machinesets}
 
 Deploying the registry pod on an infrastructure node can reduce your OpenShift Container Platform subscription size. Move the registry pod by editing the `configs.imageregistry.operator.openshift.io/cluster` config object.
 
@@ -1652,7 +1652,7 @@ Deploying the registry pod on an infrastructure node can reduce your OpenShift C
      <dd>Specifies the name of the node that you modified. Review the command output and confirm that <code>node-role.kubernetes.io/infra</code> is in the <code>LABELS</code> list.</dd>
      </dl>
 
-### Moving the monitoring solution {#infrastructure-moving-monitoring_creating-infrastructure-machinesets}
+### Move the monitoring solution {#infrastructure-moving-monitoring_creating-infrastructure-machinesets}
 
 Redeploy the monitoring stack to infrastructure nodes to reduce your subscription requirements. Create and apply a custom config map to move the monitoring stack to infrastructure nodes. The monitoring stack includes Prometheus, Thanos Querier, and Alertmanager, and is managed by the Cluster Monitoring Operator (CMO).
 

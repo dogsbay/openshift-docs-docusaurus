@@ -112,7 +112,7 @@ Configure ephemeral storage requests and limits in the pod spec to control how t
 - First, the scheduler ensures that the sum of the resource requests of the scheduled containers is less than the capacity of the node. In this case, the pod can be assigned to a node only if the node’s available ephemeral storage (allocatable resource) is more than 4GiB.
 - Second, at the container level, because the first container sets a resource limit, kubelet eviction manager measures the disk usage of this container and evicts the pod if the storage usage of the container exceeds its limit (4GiB). The kubelet eviction manager also marks the pod for eviction if the total usage exceeds the overall pod storage limit (8GiB).
 
-## Monitoring ephemeral storage {#storage-ephemeral-storage-monitoring_understanding-ephemeral-storage}
+## Monitor ephemeral storage {#storage-ephemeral-storage-monitoring_understanding-ephemeral-storage}
 
 Monitor ephemeral storage usage with the `/bin/df` utility to track disk space consumption on `/var/lib/kubelet` and `/var/lib/containers`. Regular monitoring helps you identify storage-hungry workloads and adjust resource limits before kubelet evicts pods due to storage exhaustion.
 

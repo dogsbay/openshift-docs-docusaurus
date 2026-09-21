@@ -118,7 +118,7 @@ At the end of this process, the machine is ready to join the cluster and does no
 - [cloud-init documentation](https://cloud-init.io/)
 - [Kickstart installations](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/installation_guide/index#chap-kickstart-installations)
 
-## Viewing Ignition configuration files {#ignition-config-viewing_architecture-rhcos}
+## View Ignition configuration files {#ignition-config-viewing_architecture-rhcos}
 
 You can view Ignition configuration files to inspect how cluster nodes are initialized, verify early-stage manifests and credentials, and troubleshoot bootstrapping issues.
 
@@ -193,7 +193,7 @@ Here are a few things you can learn from the `bootstrap.ign` file:
    "source": "https://api.myign.develcluster.example.com:22623/config/worker",
    ```
 
-## Changing Ignition configs after installation {#digging-into-machine-config_architecture-rhcos}
+## Change Ignition configs after installation {#digging-into-machine-config_architecture-rhcos}
 
 Inspect machine config pools and individual machine configs to audit node configurations, verify rendered system settings, and identify managed files across your OpenShift Container Platform cluster.
 

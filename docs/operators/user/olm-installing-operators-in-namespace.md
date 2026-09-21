@@ -38,7 +38,7 @@ Approval Strategy
 - [Allowing non-cluster administrators to install Operators](/docs/operators/admin/olm-creating-policy#olm-creating-policy)
 - [Understanding the software catalog](/docs/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)
 
-## Installing from the software catalog by using the web console {#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace}
+## Install from the software catalog by using the web console {#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace}
 
 To install and subscribe to an Operator from the software catalog, you can use the OpenShift Container Platform web console. The console guides you through selecting an install mode, namespace, and approval strategy.
 
@@ -109,7 +109,7 @@ To install and subscribe to an Operator from the software catalog, you can use t
 
   :::
 
-## Installing from the software catalog by using the CLI {#olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace}
+## Install from the software catalog by using the CLI {#olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace}
 
 To install an Operator from the software catalog without using the web console, you can create or update a `Subscription` object by using the `oc` command in OpenShift Container Platform.
 

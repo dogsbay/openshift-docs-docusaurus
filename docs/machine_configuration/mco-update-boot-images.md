@@ -105,10 +105,10 @@ If any of the machine sets for which you want to enable boot image management us
 
 **Additional resources**
 
-- [Disabling boot image management](/docs/machine_configuration/mco-update-boot-images#mco-update-boot-images-disable_machine-configs-configure)
-- [Enabling boot image management](/docs/machine_configuration/mco-update-boot-images#mco-update-boot-images-configuring_machine-configs-configure)
+- [Disable boot image management](/docs/machine_configuration/mco-update-boot-images#mco-update-boot-images-disable_machine-configs-configure)
+- [Enable boot image management](/docs/machine_configuration/mco-update-boot-images#mco-update-boot-images-configuring_machine-configs-configure)
 
-## Enabling boot image management {#mco-update-boot-images-configuring_machine-configs-configure}
+## Enable boot image management {#mco-update-boot-images-configuring_machine-configs-configure}
 
 For supported platforms, the Machine Config Operator (MCO) can manage and update the boot image on each node to ensure the Red Hat Enterprise Linux CoreOS (RHCOS) version of the boot image matches the Red Hat Enterprise Linux CoreOS (RHCOS) version appropriate for your cluster.
 
@@ -303,7 +303,7 @@ When boot image management is enabled, the MCO automatically enables boot image 
 
 - [Obtaining the installation program](/docs/installing/installing_aws/ipi/ipi-aws-preparing-to-install#installation-obtaining-installer_ipi-aws-preparing-to-install)
 
-## Disabling boot image management {#mco-update-boot-images-disable_machine-configs-configure}
+## Disable boot image management {#mco-update-boot-images-disable_machine-configs-configure}
 
 You can disable the boot image management feature so that the Machine Config Operator (MCO) no longer manages or updates the boot image in the affected machine sets. For example, you could disable this feature for the worker nodes in order to use a custom boot image that you do not want changed.
 

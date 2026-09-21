@@ -243,7 +243,7 @@ spec:
       ref: quay.io/example/lower-priority-catalog:latest
 ```
 
-## Troubleshooting catalog selection errors {#olmv1-troubleshooting-catalog-selection-errors_catalog-content-resolution}
+## Troubleshoot catalog selection errors {#olmv1-troubleshooting-catalog-selection-errors_catalog-content-resolution}
 
 If bundle resolution fails because of ambiguity or because no catalog is selected, an error message is printed in the `status.conditions` field of the cluster extension.
 

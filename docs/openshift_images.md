@@ -42,7 +42,7 @@ For example, the OpenShift Container Platform Jenkins images are in the followin
 docker.io/openshift/jenkins-2-centos7
 ```
 
-## Understanding image tags in image streams {#images-tag_overview-of-images}
+## Understand image tags in image streams {#images-tag_overview-of-images}
 
 Image tags in OpenShift Container Platform help you organize, identify, and reference specific versions of container images in image streams. Tags are human-readable labels that act as pointers to particular image layers and digests.
 
@@ -84,7 +84,7 @@ Though you do not directly interact with container runtimes when using OpenShift
 
 Tools such as Podman can be used to replace Docker command-line tools for running and managing containers directly. By using the `podman` CLI, you can experiment with containers separately from OpenShift Container Platform.
 
-## Using image streams {#images-imagestream-use_overview-of-images}
+## Use image streams {#images-imagestream-use_overview-of-images}
 
 Image streams provide an abstraction for referencing container images from within OpenShift Container Platform. You can use image streams to manage image versions and automate builds and deployments in your cluster.
 

@@ -11,7 +11,7 @@ To maintain optimal pod performance and availability, administrators can configu
 
 By keeping your cluster efficient, you can provide a better environment for your developers using such tools as what a pod does when it exits, ensuring that the required number of pods is always running, when to restart pods designed to run only once, limit the bandwidth available to pods, and how to keep pods running during disruptions.
 
-## Configuring how pods behave after restart {#nodes-pods-configuring-restart_nodes-pods-configuring}
+## Configure how pods behave after restart {#nodes-pods-configuring-restart_nodes-pods-configuring}
 
 You can configure a pod restart policy to determine how OpenShift Container Platform responds when containers in that pod exit. Having a proper restart policy helps you keep your cluster running efficiently.
 
@@ -45,7 +45,7 @@ If the underlying cloud provider endpoints are not reliable, do not install a cl
 
 For details on how OpenShift Container Platform uses restart policy with failed Containers, see the "Example States" in the Kubernetes documentation.
 
-## Limiting the bandwidth available to pods {#nodes-pods-configuring-bandwidth_nodes-pods-configuring}
+## Limit the bandwidth available to pods {#nodes-pods-configuring-bandwidth_nodes-pods-configuring}
 
 You can apply quality-of-service traffic shaping to a pod and effectively limit its available bandwidth.
 
@@ -82,7 +82,7 @@ The following procedure limits the bandwidth on a pod.
    $ oc create -f <file_or_dir_path>
    ```
 
-## Understanding how to use pod disruption budgets to specify the number of pods that must be up {#nodes-pods-pod-disruption-about_nodes-pods-configuring}
+## Understand how to use pod disruption budgets to specify the number of pods that must be up {#nodes-pods-pod-disruption-about_nodes-pods-configuring}
 
 To ensure pod availability during voluntary disruptions such as node maintenance or cluster updates, you can use pod disruption budgets to define safety constraints for your applications.
 
@@ -141,7 +141,7 @@ Depending on your pod priority and preemption settings, lower-priority pods migh
 
 :::
 
-### Specifying the number of pods that must be up with pod disruption budgets {#nodes-pods-pod-disruption-configuring_nodes-pods-configuring}
+### Specify the number of pods that must be up with pod disruption budgets {#nodes-pods-pod-disruption-configuring_nodes-pods-configuring}
 
 You can use a `PodDisruptionBudget` object to specify the minimum number or percentage of replicas that must be up at a time. This ensures pod availability during voluntary disruptions such as node maintenance or cluster updates.
 
@@ -202,7 +202,7 @@ The following procedure shows how to configure a pod disruption budget.
    $ oc create -f </path/to/file> -n <project_name>
    ```
 
-### Specifying the eviction policy for unhealthy pods {#pod-disruption-eviction-policy_nodes-pods-configuring}
+### Specify the eviction policy for unhealthy pods {#pod-disruption-eviction-policy_nodes-pods-configuring}
 
 When you use pod disruption budgets (PDBs) to specify how many pods must be available simultaneously, you can also define the criteria for how unhealthy pods are considered for eviction. The eviction policy determines which pods the cluster can evict.
 
@@ -254,7 +254,7 @@ AlwaysAllow
 - [Enabling features using feature gates](/docs/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)
 - [Unhealthy Pod Eviction Policy (Kubernetes documentation)](https://kubernetes.io/docs/tasks/run-application/configure-pdb/#unhealthy-pod-eviction-policy)
 
-## Preventing pod removal using critical pods {#nodes-pods-configuring-critical_nodes-pods-configuring}
+## Prevent pod removal using critical pods {#nodes-pods-configuring-critical_nodes-pods-configuring}
 
 You can mark pods on a worker node as *critical* to prevent OpenShift Container Platform from evicting those pods. Pods marked as critical are not allowed to be evicted.
 
@@ -286,7 +286,7 @@ The following procedure shows how to mark a pod as critical.
    $ oc create -f <file-name>.yaml
    ```
 
-## Reducing pod timeouts when using persistent volumes with high file counts {#nodes-pods-configuring-reducing_nodes-pods-configuring}
+## Reduce pod timeouts when using persistent volumes with high file counts {#nodes-pods-configuring-reducing_nodes-pods-configuring}
 
 You can prevent pod startup timeouts in clusters with high file counts, by configuring how the cluster manages volume ownership and permissions. Using security context constraints or runtime classes, you can ensure that large storage volumes mount efficiently without the delays associated with recursive permission changes.
 

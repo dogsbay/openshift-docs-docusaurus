@@ -74,7 +74,7 @@ To support a low-latency, high-availability network, especially during the leade
 
 - [Setting tuning parameters for etcd](/docs/etcd/etcd-performance#etcd-tuning-parameters_etcd-performance)
 
-## Validating the hardware for etcd {#etcd-verify-hardware_etcd-practices}
+## Validate the hardware for etcd {#etcd-verify-hardware_etcd-practices}
 
 Validate control plane disk performance with `fio` before or after you create the OpenShift Container Platform cluster so that you can confirm that storage meets etcd latency requirements.
 

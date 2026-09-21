@@ -15,7 +15,7 @@ For OpenShift Container Platform 4.22, documented procedures for OLM v1 are CLI-
 
 :::
 
-## Finding Operators to install from a catalog {#olmv1-finding-operators-to-install_managing-ce}
+## Find Operators to install from a catalog {#olmv1-finding-operators-to-install_managing-ce}
 
 After you add a catalog to your cluster, you can query the catalog to find Operators and extensions to install.
 
@@ -1352,7 +1352,7 @@ After you have created a service account and cluster role, you must bind the clu
    $ oc apply -f pipelines-cluster-role-binding.yaml
    ```
 
-## Installing a cluster extension in all namespaces {#olmv1-installing-an-operator_managing-ce}
+## Install a cluster extension in all namespaces {#olmv1-installing-an-operator_managing-ce}
 
 You can install an extension from a catalog by creating a custom resource (CR) and applying it to the cluster. Operator Lifecycle Manager (OLM) v1 supports installing cluster extensions, including OLM (Classic) Operators in the `registry+v1` bundle format, that are scoped to the cluster.
 
@@ -1528,7 +1528,7 @@ For OpenShift Container Platform 4.22, documented procedures for OLM v1 are CLI-
    <dd>Displays whether the resolved bundle is deprecated. The value of <code>False</code> in the <code>status</code> field indicates that the <code>reason: Deprecated</code> condition is not deprecated. The value of <code>True</code> in the <code>status</code> field indicates that the <code>reason: Deprecated</code> condition is deprecated. <code>installedBundle.name</code>:: Displays the name of the bundle installed. <code>installedBundle.version</code>:: Displays the version of the bundle installed.</dd>
    </dl>
 
-## Configuring a watch namespace for a cluster extension (Technology Preview) {#olmv1-deploying-a-ce-in-a-specific-namespace_managing-ce}
+## Configure a watch namespace for a cluster extension (Technology Preview) {#olmv1-deploying-a-ce-in-a-specific-namespace_managing-ce}
 
 You can configure the watch namespace for extensions that support namespace-scoped resource watching.
 

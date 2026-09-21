@@ -2288,7 +2288,7 @@ The `kubeconfig` file is specific to a cluster and OpenShift Container Platform 
 - "Customize your cluster"
 - "Remote health reporting"
 
-## Approving the certificate signing requests for your machines {#installation-approve-csrs_installing-restricted-networks-ibm-power}
+## Approve the certificate signing requests for your machines {#installation-approve-csrs_installing-restricted-networks-ibm-power}
 
 To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
 
@@ -2499,7 +2499,7 @@ To start the image registry, you must change the Image Registry Operator configu
   $ oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"managementState":"Managed"}}'
   ```
 
-#### Configuring registry storage for IBM Power {#_configuring_registry_storage_for_ibm_power_title}
+#### Configure registry storage for IBM Power {#_configure_registry_storage_for_ibm_power_title}
 
 As a cluster administrator, following installation you must configure your registry to use storage.
 
@@ -2576,7 +2576,7 @@ As a cluster administrator, following installation you must configure your regis
      managementState: Managed
      ```
 
-#### Configuring storage for the image registry in non-production clusters {#installation-registry-storage-non-production_installing-restricted-networks-ibm-power}
+#### Configure storage for the image registry in non-production clusters {#installation-registry-storage-non-production_installing-restricted-networks-ibm-power}
 
 You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.
 

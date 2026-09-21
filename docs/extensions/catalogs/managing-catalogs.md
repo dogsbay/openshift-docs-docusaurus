@@ -104,7 +104,7 @@ $ oc apply -f <catalog_name>.yaml
 
 Replace `<catalog_name>.yaml` with the catalog CR, such as `my-catalog.yaml`.
 
-## Adding a catalog to a cluster {#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs}
+## Add a catalog to a cluster {#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs}
 
 To add a catalog to a cluster for Operator Lifecycle Manager (OLM) v1 usage, create a `ClusterCatalog` custom resource (CR) and apply it to the cluster.
 
@@ -215,7 +215,7 @@ To add a catalog to a cluster for Operator Lifecycle Manager (OLM) v1 usage, cre
 
      In the output, the `Status` section describes the status of the catalog. In the `Status` section, the `Reason` field displays the reason the catalog is in the current state. In the `Resolved Source` section, the `Ref` field displays the image reference of the catalog.
 
-## Deleting a catalog {#olmv1-deleting-catalog_managing-catalogs}
+## Delete a catalog {#olmv1-deleting-catalog_managing-catalogs}
 
 You can delete a catalog by deleting its custom resource (CR).
 
@@ -241,7 +241,7 @@ You can delete a catalog by deleting its custom resource (CR).
   $ oc get clustercatalog
   ```
 
-## Disabling a default catalog {#olmv1-disabling-a-default-catalog_managing-catalogs}
+## Disable a default catalog {#olmv1-disabling-a-default-catalog_managing-catalogs}
 
 You can disable the Red Hat-provided catalogs that are included with OpenShift Container Platform by default.
 

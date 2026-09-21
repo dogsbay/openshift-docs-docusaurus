@@ -55,7 +55,7 @@ To create serverless applications, in addition to the preceding prerequisites, e
 - You have installed the OpenShift Serverless Operator.
 - You have created a `KnativeServing` resource in the `knative-serving` namespace.
 
-## Creating sample applications {#odc-creating-sample-applications_odc-creating-applications-using-developer-perspective}
+## Create sample applications {#odc-creating-sample-applications_odc-creating-applications-using-developer-perspective}
 
 You can use the sample applications in the **+Add** flow of the **Developer** perspective to create, build, and deploy applications quickly.
 
@@ -88,7 +88,7 @@ The **Quick Starts** page shows you how to create, import, and run applications 
 3. Click **Start** to begin the quick start.
 4. Perform the steps that are displayed.
 
-## Importing a codebase from Git to create an application {#odc-importing-codebase-from-git-to-create-application_odc-creating-applications-using-developer-perspective}
+## Import a codebase from Git to create an application {#odc-importing-codebase-from-git-to-create-application_odc-creating-applications-using-developer-perspective}
 
 You can use the **Developer** perspective to create, build, and deploy an application on OpenShift Container Platform using an existing codebase in GitHub.
 
@@ -213,7 +213,7 @@ The following procedure walks you through the **From Git** option in the **Devel
     Click the **Labels** link to add custom labels to your application.
 12. Click **Create** to create the application and a success notification is displayed. You can see the build status of the application in the **Topology** view.
 
-## Creating applications by deploying container image {#odc-deploying-container-image_odc-creating-applications-using-developer-perspective}
+## Create applications by deploying container image {#odc-deploying-container-image_odc-creating-applications-using-developer-perspective}
 
 You can use an external image registry or an image stream tag from an internal registry to deploy an application on your cluster.
 
@@ -280,7 +280,7 @@ You can use the devfiles in the **+Add** flow of the **Developer** perspective t
 3. Click the devfile you want to use to create an application. The devfile tile displays the details of the devfile, including the name, description, provider, and the documentation of the devfile.
 4. Click **Create** to create an application and view the application in the **Topology** view.
 
-## Using the Developer Catalog to add services or components to your application {#odc-using-the-developer-catalog-to-add-services-or-components_odc-creating-applications-using-developer-perspective}
+## Use the Developer Catalog to add services or components to your application {#odc-using-the-developer-catalog-to-add-services-or-components_odc-creating-applications-using-developer-perspective}
 
 You use the Developer Catalog to deploy applications and services based on Operator backed services such as Databases, Builder Images, and Helm Charts. The Developer Catalog contains a collection of application components, services, event sources, or source-to-image builders that you can add to your project. Cluster administrators can customize the content made available in the catalog.
 

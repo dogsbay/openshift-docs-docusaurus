@@ -9,7 +9,7 @@ sidebar_position: 6
 
 To create and update container images and track version changes in OpenShift Container Platform, you can use image streams and tags. Add, update, remove, and import image stream tags to manage your container images.
 
-## Using image streams {#images-imagestream-use_image-streams-managing}
+## Use image streams {#images-imagestream-use_image-streams-managing}
 
 Image streams provide an abstraction for referencing container images from within OpenShift Container Platform. You can use image streams to manage image versions and automate builds and deployments in your cluster.
 
@@ -451,7 +451,7 @@ To accurately manage and track specific versions of your container images, add t
         5 minutes ago
   ```
 
-### Adding tags for an external image {#images-imagestream-external-image-tags_image-streams-managing}
+### Add tags for an external image {#images-imagestream-external-image-tags_image-streams-managing}
 
 To enable OpenShift Container Platform resources to track and consume container images sourced from external registries, add tags to the corresponding image streams. This action integrates external image content securely into your cluster’s local image management system.
 
@@ -518,7 +518,7 @@ To maintain control over your image history and simplify management within OpenS
 
 **Additional resources**
 
-- [Removing deprecated image stream tags from the Cluster Samples Operator](/docs/openshift_images/configuring-samples-operator#images-samples-operator-deprecated-image-stream_configuring-samples-operator)
+- [Remove deprecated image stream tags from the Cluster Samples Operator](/docs/openshift_images/configuring-samples-operator#images-samples-operator-deprecated-image-stream_configuring-samples-operator)
 
 ### Configuring periodic importing of image stream tags {#images-imagestream-import_image-streams-managing}
 
@@ -547,13 +547,13 @@ To maintain up-to-date image definitions from an external container image regist
    $ oc tag <repositiory/image> <image-name:tag>
    ```
 
-## Importing and working with images and image streams {#images-imagestream-import-images-image-streams_image-streams-managing}
+## Import and work with images and image streams {#images-imagestream-import-images-image-streams_image-streams-managing}
 
 To bring container images into your OpenShift Container Platform cluster and manage their references, you can import images from external registries and organize them by using image streams. By using this process, you can maintain a centralized registry of container images for your applications.
 
 The following sections describe how to import, and work with, image streams.
 
-### Importing images and image streams from private registries {#images-imagestream-import-images-private-registry_image-streams-managing}
+### Import images and image streams from private registries {#images-imagestream-import-images-private-registry_image-streams-managing}
 
 To securely manage content from external sources, configure your image streams to import tag and image metadata from private registries requiring authentication. This procedure is essential if you change the registry that the Cluster Samples Operator uses for pulling content to something other than the default [registry.redhat.io](https://registry.redhat.io).
 

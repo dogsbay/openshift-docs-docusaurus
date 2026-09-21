@@ -297,7 +297,7 @@ where:
   - `value.workspace.resourcePool`. Specifies the vSphere resource pool for your Windows VMs. This parameter is optional.
   - `value.workspace.server`. Specifies the vCenter server IP or fully qualified domain name. This parameter is optional.
 
-## Creating a compute machine set {#machineset-creating_creating-windows-machineset-vsphere}
+## Create a compute machine set {#machineset-creating_creating-windows-machineset-vsphere}
 
 To dynamically manage machine compute resources, you can create your own compute machine sets in addition to the compute machine sets created by the installation program. Use the OpenShift Container Platform CLI to automate node provisioning.
 

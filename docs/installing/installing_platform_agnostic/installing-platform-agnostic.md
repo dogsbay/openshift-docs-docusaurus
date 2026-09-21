@@ -2351,7 +2351,7 @@ The `kubeconfig` file is specific to a cluster and OpenShift Container Platform 
 - "Customize your cluster"
 - "Remote health reporting"
 
-## Approving the certificate signing requests for your machines {#installation-approve-csrs_installing-platform-agnostic}
+## Approve the certificate signing requests for your machines {#installation-approve-csrs_installing-platform-agnostic}
 
 To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.
 
@@ -2557,7 +2557,7 @@ Configure a persistent volume, which is required for production clusters. Where 
 
 You can also allow the image registry to use block storage types by using the `Recreate` rollout strategy during upgrades.
 
-#### Configuring registry storage for bare metal and other manual installations {#registry-configuring-storage-baremetal_installing-platform-agnostic}
+#### Configure registry storage for bare metal and other manual installations {#registry-configuring-storage-baremetal_installing-platform-agnostic}
 
 As a cluster administrator, following installation you must configure your registry to use storage.
 
@@ -2634,7 +2634,7 @@ As a cluster administrator, following installation you must configure your regis
      managementState: Managed
      ```
 
-#### Configuring storage for the image registry in non-production clusters {#installation-registry-storage-non-production_installing-platform-agnostic}
+#### Configure storage for the image registry in non-production clusters {#installation-registry-storage-non-production_installing-platform-agnostic}
 
 You must configure storage for the Image Registry Operator. For non-production clusters, you can set the image registry to an empty directory, but you lose all images if you restart the registry.
 
@@ -2659,7 +2659,7 @@ You must configure storage for the Image Registry Operator. For non-production c
 
   Wait a few minutes and run the command again.
 
-#### Configuring block registry storage for bare metal {#installation-registry-storage-block-recreate-rollout-bare-metal_installing-platform-agnostic}
+#### Configure block registry storage for bare metal {#installation-registry-storage-block-recreate-rollout-bare-metal_installing-platform-agnostic}
 
 To allow the image registry to use block storage types during upgrades as a cluster administrator, you can use the `Recreate` rollout strategy.
 

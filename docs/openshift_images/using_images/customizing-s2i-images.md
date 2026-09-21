@@ -9,7 +9,7 @@ sidebar_position: 3
 
 To modify the default assemble and run script behavior in OpenShift Container Platform, you can customize source-to-image (S2I) builder images. You can adapt S2I builders to meet your specific application requirements when the default scripts are not suitable.
 
-## Invoking scripts embedded in an image {#images-using-customizing-s2i-images-scripts-embedded_customizing-s2i-images}
+## Invoke scripts embedded in an image {#images-using-customizing-s2i-images-scripts-embedded_customizing-s2i-images}
 
 To extend builder image behavior while preserving supported script logic and upgrade compatibility in OpenShift Container Platform, you can start embedded S2I image scripts by creating wrapper scripts. These wrapper scripts run custom logic and then call the default scripts from the image.
 

@@ -9,7 +9,7 @@ sidebar_position: 10
 
 You can review the following sections to learn how to create and use config maps. By using a config map, you can decouple environment-specific configuration from your container images, so that your applications are easily portable.
 
-## Understanding config maps {#nodes-pods-configmap-overview_configmaps}
+## Understand config maps {#nodes-pods-configmap-overview_configmaps}
 
 You can review the following sections to learn how to use config maps to make configuration values available to your pods separately from application code.
 
@@ -92,7 +92,7 @@ To provide configuration data to your pods, you can create a config map by using
   3. Enter the contents of your config map.
   4. Select **Create**.
 
-## Creating a config map by using the CLI {#nodes-pods-configmap-create_configmaps}
+## Create a config map by using the CLI {#nodes-pods-configmap-create_configmaps}
 
 To provide configuration data to your pods, you can use the OpenShift CLI (`oc`) to create a config map from directories, specific files, or literal values.
 
@@ -365,7 +365,7 @@ You can create a config map by passing literal values in the `key=value` syntax,
     uid: dadce046-d673-11e5-8cd0-68f728db1985
   ```
 
-### Populating environment variables in containers by using config maps {#nodes-pods-configmaps-use-case-consuming-in-env-vars_configmaps}
+### Populate environment variables in containers by using config maps {#nodes-pods-configmaps-use-case-consuming-in-env-vars_configmaps}
 
 You can use config maps to populate individual environment variables in containers or to populate environment variables in containers from all keys that form valid environment variable names.
 
@@ -485,7 +485,7 @@ where:
 
   :::
 
-### Setting command-line arguments for container commands with config maps {#nodes-pods-configmaps-use-case-setting-command-line-arguments_configmaps}
+### Set command-line arguments for container commands with config maps {#nodes-pods-configmaps-use-case-setting-command-line-arguments_configmaps}
 
 You can use config maps to set the value of the commands or arguments in a container by using the Kubernetes substitution syntax `$(VAR_NAME)`.
 
@@ -550,7 +550,7 @@ data:
   very charm
   ```
 
-### Injecting content into a volume by using config maps {#nodes-pods-configmaps-use-case-consuming-in-volumes_configmaps}
+### Inject content into a volume by using config maps {#nodes-pods-configmaps-use-case-consuming-in-volumes_configmaps}
 
 You can use config maps to inject content into a volume.
 
