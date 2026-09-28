@@ -11,7 +11,7 @@ You can enable or change the configuration of features for your control plane ma
 
 When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy. For more information, see "Updating the control plane configuration".
 
-## Restricting the API server to private for an Amazon Web Services cluster {#private-clusters-setting-api-private-aws_cpmso-supported-features-aws}
+## Restrict the API server to private for an Amazon Web Services cluster {#private-clusters-setting-api-private-aws_cpmso-supported-features-aws}
 
 If the security posture of your organization does not allow clusters to use an open API endpoint, you can restrict the API server to use only internal load balancers. To implement this API server restriction, use the Amazon Web Services (AWS) console and OpenShift CLI (`oc`) to delete the external load balancer components.
 
@@ -308,7 +308,7 @@ Public tenancy is the default tenancy. Instances with public tenancy run on shar
    - For clusters that use the default `RollingUpdate` update strategy, the Operator automatically propagates the changes to your control plane configuration.
    - For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually.
 
-## Configuring Capacity Reservations by using machine sets {#machineset-capacity-reservation_cpmso-supported-features-aws}
+## Configure Capacity Reservations by using machine sets {#machineset-capacity-reservation_cpmso-supported-features-aws}
 
 You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using Capacity Reservations on Amazon Web Services clusters, including On-Demand Capacity Reservations and Capacity Blocks for ML.
 

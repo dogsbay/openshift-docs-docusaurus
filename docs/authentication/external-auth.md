@@ -73,7 +73,7 @@ Red Hat does not test all factors associated with third-party identity provider
 
 - [Red Hat third-party support policy](https://access.redhat.com/third-party-software-support)
 
-## Configuring an external OIDC identity provider for direct authentication {#external-auth-configuring_external-auth}
+## Configure an external OIDC identity provider for direct authentication {#external-auth-configuring_external-auth}
 
 Configure OpenShift Container Platform to use an external OIDC identity provider for direct authentication, enabling users to log in with existing corporate credentials while bypassing the built-in OAuth server for streamlined single sign-on.
 
@@ -472,7 +472,7 @@ spec:
     name: my-oidc-provider-name
 ```
 
-## Disabling direct authentication {#external-auth-disabling_external-auth}
+## Disable direct authentication {#external-auth-disabling_external-auth}
 
 Disable direct authentication to revert your cluster back to using the built-in OpenShift Container Platform OAuth server for authentication when external OIDC integration is no longer needed.
 

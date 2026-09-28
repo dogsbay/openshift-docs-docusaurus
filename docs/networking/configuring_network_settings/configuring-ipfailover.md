@@ -127,7 +127,7 @@ The IP failover environment variables reference lists all variables you can use 
 </tbody>
 </table>
 
-## Configuring IP failover in your cluster {#nw-ipfailover-configuration_configuring-ipfailover}
+## Configure IP failover in your cluster {#nw-ipfailover-configuration_configuring-ipfailover}
 
 To configure IP failover in your OpenShift Container Platform cluster and provide high availability for Virtual IP addresses, you can create a deployment that runs Keepalived on selected nodes to monitor services and fail over VIPs when nodes become unavailable.
 
@@ -329,7 +329,7 @@ For production use, set a `selector` that selects at least two nodes, and set `r
    <dd>Specifies the name of the pull secret to use for the IP failover deployment. Create the pull secret before creating the deployment, otherwise you will get an error when creating the deployment.</dd>
    </dl>
 
-## Configuring check and notify scripts {#nw-ipfailover-configuring-check-notify-scripts_configuring-ipfailover}
+## Configure check and notify scripts {#nw-ipfailover-configuring-check-notify-scripts_configuring-ipfailover}
 
 To customize health monitoring for IP failover and receive notifications when VIP state changes in OpenShift Container Platform, you can configure check and notify scripts by using `ConfigMap` objects.
 
@@ -429,7 +429,7 @@ Notify script
       </dl>
    3. Save the changes and exit the editor. This restarts the `ipfailover-keepalived` configuration.
 
-## Configuring VRRP preemption {#nw-ipfailover-configuring-vrrp-preemption_configuring-ipfailover}
+## Configure VRRP preemption {#nw-ipfailover-configuring-vrrp-preemption_configuring-ipfailover}
 
 To control VIP preemption behavior when nodes recover in OpenShift Container Platform, you can configure the `OPENSHIFT_HA_PREEMPTION` variable to set a delay before higher priority VIPs take over or disable preemption entirely.
 
@@ -459,7 +459,7 @@ In the following example, the `OPENSHIFT_HA_PREEMPTION` value is set to `preempt
   #...
   ```
 
-## Deploying multiple IP failover instances {#nw-ipfailover-vrrp-ip-offset_configuring-ipfailover}
+## Deploy multiple IP failover instances {#nw-ipfailover-vrrp-ip-offset_configuring-ipfailover}
 
 When deploying multiple IP failover instances in OpenShift Container Platform, each Keepalived daemon assigns unique VRRP IDs to virtual IP addresses. Configure the `OPENSHIFT_HA_VRRP_ID_OFFSET` variable to prevent VRRP ID range overlaps between different IP failover configurations.
 
@@ -471,7 +471,7 @@ The IP failover pod assigns `vrrp-id` values sequentially to the VIPs defined in
 
 When you deploy multiple IP failover configurations, ensure that the configured offset leaves sufficient space for additional VIPs and prevents `vrrp-id` ranges from overlapping across configurations.
 
-## Configuring IP failover for more than 254 addresses {#nw-ipfailover-configuring-more-than-254_configuring-ipfailover}
+## Configure IP failover for more than 254 addresses {#nw-ipfailover-configuring-more-than-254_configuring-ipfailover}
 
 To configure IP failover for more than 254 Virtual IP addresses in OpenShift Container Platform, you can use the `OPENSHIFT_HA_VIP_GROUPS` variable to group multiple addresses together. By using the `OPENSHIFT_HA_VIP_GROUPS` variable, you can change the number of VIPs per VRRP instance and define the number of VIP groups available for each VRRP instance when configuring IP failover.
 
@@ -526,7 +526,7 @@ Because IP failover can support up to a maximum of 255 VIPs for the entire clust
 - [Configuration for ExternalIP](/docs/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuration-externalip_configuring-externalip)
 - [Kubernetes documentation on ExternalIP](https://kubernetes.io/docs/concepts/services-networking/service/#external-ips)
 
-## Removing IP failover {#nw-ipfailover-remove_configuring-ipfailover}
+## Remove IP failover {#nw-ipfailover-remove_configuring-ipfailover}
 
 To remove IP failover from your OpenShift Container Platform cluster and clean up iptables rules and virtual IP addresses, you can delete the deployment and service account, then run a cleanup job on each configured node.
 

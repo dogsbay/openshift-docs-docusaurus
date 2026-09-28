@@ -81,7 +81,7 @@ spec:
   network: "2"
 ```
 
-## Deploying an egress service {#nw-egress-service-ovn_configuring-egress-traffic-loadbalancer-services}
+## Deploy an egress service {#nw-egress-service-ovn_configuring-egress-traffic-loadbalancer-services}
 
 You can deploy an egress service to manage egress traffic for pods behind a `LoadBalancer` service.
 

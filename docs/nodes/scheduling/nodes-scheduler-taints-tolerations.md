@@ -283,7 +283,7 @@ spec:
 #...
 ```
 
-## Adding taints and tolerations {#nodes-scheduler-taints-tolerations-adding_nodes-scheduler-taints-tolerations}
+## Add taints and tolerations {#nodes-scheduler-taints-tolerations-adding_nodes-scheduler-taints-tolerations}
 
 You can add tolerations to pods and taints to nodes to allow the node to control which pods should or should not be scheduled on that node.
 
@@ -376,7 +376,7 @@ For existing pods and nodes, you should add the toleration to the pod first, the
 
    The tolerations on the pod match the taint on the node. A pod with either toleration can be scheduled onto `node1`.
 
-### Adding taints and tolerations using a compute machine set {#nodes-scheduler-taints-tolerations-adding-machineset_nodes-scheduler-taints-tolerations}
+### Add taints and tolerations using a compute machine set {#nodes-scheduler-taints-tolerations-adding-machineset_nodes-scheduler-taints-tolerations}
 
 You can add taints to groups of nodes by using a compute machine set. All nodes associated with the `MachineSet` object are updated with the taint.
 
@@ -486,7 +486,7 @@ Tolerations respond to taints added by a compute machine set in the same manner 
 
       Wait for the machines to start. The taint is added to the nodes associated with the `MachineSet` object.
 
-### Binding a user to a node using taints and tolerations {#nodes-scheduler-taints-tolerations-bindings_nodes-scheduler-taints-tolerations}
+### Bind a user to a node using taints and tolerations {#nodes-scheduler-taints-tolerations-bindings_nodes-scheduler-taints-tolerations}
 
 You can use taints and tolerations to dedicate a set of nodes for exclusive use by a particular set of users.
 
@@ -526,7 +526,7 @@ Use the following procedure to configure a node so that users can use only that 
    :::
 2. Add a toleration to the pods by writing a custom admission controller.
 
-### Creating a project with a node selector and toleration {#nodes-scheduler-taints-tolerations-projects_nodes-scheduler-taints-tolerations}
+### Create a project with a node selector and toleration {#nodes-scheduler-taints-tolerations-projects_nodes-scheduler-taints-tolerations}
 
 You can create a project that uses a node selector and toleration, which are set as annotations, to control the placement of pods onto specific nodes. Any subsequent resources created in the project are then scheduled on nodes that have a taint matching the toleration.
 
@@ -568,7 +568,7 @@ You can create a project that uses a node selector and toleration, which are set
 
    Any subsequent resources created in the `<project_name>` namespace should now be scheduled on the specified nodes.
 
-### Controlling nodes with special hardware using taints and tolerations {#nodes-scheduler-taints-tolerations-special_nodes-scheduler-taints-tolerations}
+### Control nodes with special hardware using taints and tolerations {#nodes-scheduler-taints-tolerations-special_nodes-scheduler-taints-tolerations}
 
 In a cluster that has specialized hardware, you can use taints and tolerations to either keep pods that do not need the specialized hardware off of those nodes or require pods that need specialized hardware to use specific nodes.
 
@@ -627,7 +627,7 @@ Use the following procedure to ensure nodes with specialized hardware are reserv
 
    :::
 
-## Removing taints and tolerations {#nodes-scheduler-taints-tolerations-removing_nodes-scheduler-taints-tolerations}
+## Remove taints and tolerations {#nodes-scheduler-taints-tolerations-removing_nodes-scheduler-taints-tolerations}
 
 You can remove taints from nodes and tolerations from pods as needed if you no longer want the scheduling behavior.
 

@@ -9,7 +9,7 @@ sidebar_position: 4
 
 The External Secrets Operator for Red Hat OpenShift for OpenShift Container Platform includes pre-defined `NetworkPolicies` for security that rejects all egress traffic and allows traffic towards services that are required for the operand functionality. You must configure additional custom policies to allow the `external-secrets` controller to egress traffic towards external providers. These configurable policies are set through the `ExternalSecretsConfig` custom resource to establish the egress allow policy.
 
-## Adding a custom network policy to allow egress to all external providers {#external-secrets-operator-egress-allow-all-traffic_external-secrets-operator-uninstall}
+## Add a custom network policy to allow egress to all external providers {#external-secrets-operator-egress-allow-all-traffic_external-secrets-operator-uninstall}
 
 You must configure custom policies through the `ExternalSecretsConfig` custom resource to allow all egress to all external providers.
 
@@ -38,7 +38,7 @@ You must configure custom policies through the `ExternalSecretsConfig` custom re
            egress: # Allow all egress traffic
    ```
 
-## Adding a custom network policy to allow egress to a specific provider {#external-secrets-operator-egress-specific-provider_external-secrets-operator-uninstall}
+## Add a custom network policy to allow egress to a specific provider {#external-secrets-operator-egress-specific-provider_external-secrets-operator-uninstall}
 
 You must configure custom policies through the `ExternalSecretsConfig` custom resource to allow all egress to a specific provider.
 

@@ -30,7 +30,7 @@ where:
   $ oc get route oauth-openshift -n openshift-authentication -o json | jq .spec.host
   ```
 
-## Registering an additional OAuth client {#oauth-register-additional-client_configuring-oauth-clients}
+## Register an additional OAuth client {#oauth-register-additional-client_configuring-oauth-clients}
 
 Register additional OAuth clients to manage authentication for applications that need to interact with your OpenShift Container Platform cluster.
 
@@ -63,7 +63,7 @@ Register additional OAuth clients to manage authentication for applications that
   <dd>Specifies the action to take when this client requests tokens and has not yet been granted access by the user. Use <code>auto</code> to automatically approve the grant and retry the request, or <code>prompt</code> to prompt the user to approve or deny the grant.</dd>
   </dl>
 
-## Configuring token inactivity timeout for an OAuth client {#oauth-token-inactivity-timeout_configuring-oauth-clients}
+## Configure token inactivity timeout for an OAuth client {#oauth-token-inactivity-timeout_configuring-oauth-clients}
 
 Configure OAuth clients to expire tokens after a set period of inactivity, improving security by automatically invalidating idle sessions.
 

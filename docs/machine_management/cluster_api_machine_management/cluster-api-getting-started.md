@@ -37,7 +37,7 @@ For clusters that do not support migrating Machine API resources to Cluster API 
 - One or more machine templates that correspond to compute machine sets.
 - One or more compute machine sets that manage three compute machines.
 
-### Creating a Cluster API machine template {#capi-creating-machine-template_cluster-api-getting-started}
+### Create a Cluster API machine template {#capi-creating-machine-template_cluster-api-getting-started}
 
 You can create a provider-specific machine template resource by creating a YAML manifest file and applying it with the OpenShift CLI (`oc`).
 
@@ -115,7 +115,7 @@ You can create a provider-specific machine template resource by creating a YAML 
 - [Sample YAML for a Cluster API machine template resource on VMware vSphere](/docs/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-vsphere#capi-yaml-machine-template-vsphere_cluster-api-config-options-vsphere)
 - [Sample YAML for a Cluster API machine template resource on bare metal](/docs/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-bare-metal#capi-yaml-machine-template-bare-metal_cluster-api-config-options-bare-metal)
 
-### Creating a Cluster API compute machine set {#capi-creating-machine-set_cluster-api-getting-started}
+### Create a Cluster API compute machine set {#capi-creating-machine-set_cluster-api-getting-started}
 
 You can create compute machine sets that use the Cluster API to dynamically manage the machine compute resources for specific workloads of your choice.
 

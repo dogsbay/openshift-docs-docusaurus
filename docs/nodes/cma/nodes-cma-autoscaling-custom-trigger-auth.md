@@ -191,7 +191,7 @@ spec:
 - [Understanding and creating service accounts](/docs/authentication/understanding-and-creating-service-accounts#understanding-service-accounts)
 - [Providing sensitive data to pods](/docs/nodes/pods/nodes-pods-secrets#nodes-pods-secrets).
 
-## Using trigger authentications {#nodes-cma-autoscaling-custom-trigger-auth-using_nodes-cma-autoscaling-custom-trigger-auth}
+## Use trigger authentications {#nodes-cma-autoscaling-custom-trigger-auth-using_nodes-cma-autoscaling-custom-trigger-auth}
 
 You use trigger authentications and cluster trigger authentications by using a custom resource to create the authentication,  then add a reference to a scaled object or scaled job.
 

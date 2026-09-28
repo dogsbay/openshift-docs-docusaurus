@@ -26,26 +26,33 @@ Consider the following guidance:
 - Edit an existing `KubeletConfig` CR to modify existing settings or add new settings, instead of creating a CR for each change. It is recommended that you create a CR only to modify a different machine config pool, or for changes that are intended to be temporary, so that you can revert the changes.
 - Create one `KubeletConfig` CR for each machine config pool with all the config changes you want for that pool.
 - As needed, create multiple `KubeletConfig` CRs with a limit of 10 per cluster. For the first `KubeletConfig` CR, the Machine Config Operator (MCO) creates a machine config appended with `kubelet`. With each subsequent CR, the controller creates another `kubelet` machine config with a numeric suffix. For example, if you have a `kubelet` machine config with a `-2` suffix, the next `kubelet` machine config is appended with `-3`.
+  :::warning
 
-:::note
+  The Machine Config Operator does not merge multiple `KubeletConfig` CRs that target the same machine config pool. Each CR generates a separate machine config that writes the kubelet configuration. The most recently created `KubeletConfig` CR takes precedence and overrides the kubelet settings from earlier CRs for that pool.
 
-If you are applying a kubelet or container runtime config to a custom machine config pool, the custom role in the `machineConfigSelector` must match the name of the custom machine config pool.
+  To apply multiple kubelet settings to the same pool, include all of the settings in a single `KubeletConfig` CR.
 
-For example, because the following custom machine config pool is named `infra`, the custom role must also be `infra`:
+  :::
 
-```yaml
-apiVersion: machineconfiguration.openshift.io/v1
-kind: MachineConfigPool
-metadata:
-  name: infra
-spec:
-  machineConfigSelector:
-    matchExpressions:
-      - {key: machineconfiguration.openshift.io/role, operator: In, values: [worker,infra]}
-# ...
-```
+  :::note
 
-:::
+  If you are applying a kubelet or container runtime config to a custom machine config pool, the custom role in the `machineConfigSelector` must match the name of the custom machine config pool.
+
+  For example, because the following custom machine config pool is named `infra`, the custom role must also be `infra`:
+
+  ```yaml
+  apiVersion: machineconfiguration.openshift.io/v1
+  kind: MachineConfigPool
+  metadata:
+    name: infra
+  spec:
+    machineConfigSelector:
+      matchExpressions:
+        - {key: machineconfiguration.openshift.io/role, operator: In, values: [worker,infra]}
+  # ...
+  ```
+
+  :::
 
 If you want to delete the machine configs, delete them in reverse order to avoid exceeding the limit. For example, you delete the `kubelet-3` machine config before deleting the `kubelet-2` machine config.
 

@@ -99,7 +99,7 @@ You can assign IP addresses from an `IPAddressPool` to services and namespaces b
 </tbody>
 </table>
 
-## Configuring an address pool {#nw-metallb-configure-address-pool_configure-metallb-address-pools}
+## Configure an address pool {#nw-metallb-configure-address-pool_configure-metallb-address-pools}
 
 To precisely manage external access to application workloads, configure MetalLB address pools for your cluster. By defining these pools, you can control the specific IP address ranges assigned to load balancer services for consistent network routing.
 

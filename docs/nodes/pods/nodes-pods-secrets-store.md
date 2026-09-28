@@ -59,7 +59,7 @@ If you enabled synchronization of mounted content as Kubernetes secrets, the Kub
 
 Applications consuming the secret data must watch for updates to the secrets.
 
-## Installing the Secrets Store CSI driver {#persistent-storage-csi-secrets-store-driver-install_nodes-pods-secrets-store}
+## Install the Secrets Store CSI driver {#persistent-storage-csi-secrets-store-driver-install_nodes-pods-secrets-store}
 
 To enable OpenShift Container Platform to mount secrets from external secret management systems, install the Secrets Store CSI Driver Operator and create a `ClusterCSIDriver` instance.
 
@@ -96,7 +96,7 @@ To enable OpenShift Container Platform to mount secrets from external secret man
       ```
    3. Click **Create**.
 
-## Mounting secrets from an external secrets store to a CSI volume {#mounting-secrets-external-secrets-store_nodes-pods-secrets-store}
+## Mount secrets from an external secrets store to a CSI volume {#mounting-secrets-external-secrets-store_nodes-pods-secrets-store}
 
 After installing the Secrets Store CSI Driver Operator, you can mount secrets from your external secret store. Using an external secret store protects information that you do not want developers to have and can be more secure than secret objects.
 
@@ -108,7 +108,7 @@ The Secrets Store CSI Driver Operator has been tested with the following secrets
 - Google Secret Manager
 - HashiCorp Vault
 
-### Mounting secrets from AWS Secrets Manager {#secrets-store-aws_nodes-pods-secrets-store}
+### Mount secrets from AWS Secrets Manager {#secrets-store-aws_nodes-pods-secrets-store}
 
 You can use the Secrets Store CSI Driver Operator to mount secrets from AWS Secrets Manager external secrets store to a Container Storage Interface (CSI) volume in OpenShift Container Platform. Using an external secret store protects information that you do not want developers to have and can be more secure than `secret` objects.
 
@@ -397,7 +397,7 @@ You can use the Secrets Store CSI Driver Operator to mount secrets from AWS Secr
      <secret_value>
      ```
 
-### Mounting secrets from AWS Systems Manager Parameter Store {#secrets-store-aws_nodes-pods-secrets-store-parameter-store}
+### Mount secrets from AWS Systems Manager Parameter Store {#secrets-store-aws_nodes-pods-secrets-store-parameter-store}
 
 You can use the Secrets Store CSI Driver Operator to mount secrets from AWS Systems Manager Parameter Store external secrets store to a Container Storage Interface (CSI) volume in OpenShift Container Platform. Using an external secret store protects information that you do not want developers to have and can be more secure than `secret` objects.
 
@@ -685,7 +685,7 @@ You can use the Secrets Store CSI Driver Operator to mount secrets from AWS Syst
      <secret_value>
      ```
 
-### Mounting secrets from Azure Key Vault {#secrets-store-azure_nodes-pods-secrets-store}
+### Mount secrets from Azure Key Vault {#secrets-store-azure_nodes-pods-secrets-store}
 
 You can use the Secrets Store CSI Driver Operator to mount secrets from Microsoft Azure Key Vault to a Container Storage Interface (CSI) volume in OpenShift Container Platform. Using an external secret store protects information that you do not want developers to have and can be more secure than `secret` objects.
 
@@ -960,7 +960,7 @@ You can use the Secrets Store CSI Driver Operator to mount secrets from Microsof
      my-secret-value
      ```
 
-### Mounting secrets from Google Secret Manager {#secrets-store-google_nodes-pods-secrets-store}
+### Mount secrets from Google Secret Manager {#secrets-store-google_nodes-pods-secrets-store}
 
 You can use the Secrets Store CSI Driver Operator to mount secrets from Google Secret Manager to a Container Storage Interface (CSI) volume in OpenShift Container Platform. Using an external secret store protects information that you do not want developers to have and can be more secure than `secret` objects.
 
@@ -1231,7 +1231,7 @@ You can use the Secrets Store CSI Driver Operator to mount secrets from Google S
      <secret_value>
      ```
 
-### Mounting secrets from HashiCorp Vault {#secrets-store-vault_nodes-pods-secrets-store}
+### Mount secrets from HashiCorp Vault {#secrets-store-vault_nodes-pods-secrets-store}
 
 You can use the Secrets Store CSI Driver Operator to mount secrets from HashiCorp Vault to a Container Storage Interface (CSI) volume in OpenShift Container Platform. Using an external secret store protects information that you do not want developers to have and can be more secure than `secret` objects.
 
@@ -1564,7 +1564,7 @@ Other cloud providers might work, but have not been tested yet. Additional cloud
      my-secret-value
      ```
 
-## Enabling synchronization of mounted content as Kubernetes secrets {#secrets-store-sync-secrets_nodes-pods-secrets-store}
+## Enable synchronization of mounted content as Kubernetes secrets {#secrets-store-sync-secrets_nodes-pods-secrets-store}
 
 You can enable a synchronization process that creates `secret` objects from the content on a mounted volume. Using secrets protects information that you do not want developers to have.
 
@@ -1644,7 +1644,7 @@ The synchronized Kubernetes secret is deleted when all pods that mounted the con
    </dl>
 3. Save the file to apply the changes.
 
-## Viewing the status of secrets in the pod volume mount {#secrets-store-viewing-secret-versions_nodes-pods-secrets-store}
+## View the status of secrets in the pod volume mount {#secrets-store-viewing-secret-versions_nodes-pods-secrets-store}
 
 You can view detailed information of the secrets, including the versions, in the pod volume mount. You can use this information to help you confirm that secrets from your external store are active within the pod environment.
 
@@ -1681,7 +1681,7 @@ The Secrets Store CSI Driver Operator creates a `SecretProviderClassPodStatus` r
     targetPath: /var/lib/kubelet/pods/f0d49c1e-c87a-4beb-888f-37798456a3e7/volumes/kubernetes.io~csi/secrets-store-inline/mount
   ```
 
-## Uninstalling the Secrets Store CSI Driver Operator {#persistent-storage-csi-secrets-store-driver-uninstall_nodes-pods-secrets-store}
+## Uninstall the Secrets Store CSI Driver Operator {#persistent-storage-csi-secrets-store-driver-uninstall_nodes-pods-secrets-store}
 
 To remove the Secrets Store CSI Driver Operator and free cluster resources, uninstall the Operator after stopping applications and removing the CSI driver.
 

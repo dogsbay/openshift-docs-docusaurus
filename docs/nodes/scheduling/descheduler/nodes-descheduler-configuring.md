@@ -9,7 +9,7 @@ sidebar_position: 3
 
 You can run the descheduler in OpenShift Container Platform by installing the Kube Descheduler Operator and setting the required profiles and other customizations.
 
-## Installing the descheduler {#nodes-descheduler-installing_nodes-descheduler-configuring}
+## Install the descheduler {#nodes-descheduler-installing_nodes-descheduler-configuring}
 
 The descheduler is not available by default. To enable the descheduler, you must install the Kube Descheduler Operator from the software catalog and enable one or more descheduler profiles.
 
@@ -73,7 +73,7 @@ If you have enabled hosted control planes in your cluster, set a custom priority
    4. Click **Create**.
       You can also configure the profiles and settings for the descheduler later using the OpenShift CLI (`oc`). If you did not adjust the profiles when creating the descheduler instance from the web console, the `AffinityAndTaints` profile is enabled by default.
 
-## Configuring descheduler profiles {#nodes-descheduler-configuring-profiles_nodes-descheduler-configuring}
+## Configure descheduler profiles {#nodes-descheduler-configuring-profiles_nodes-descheduler-configuring}
 
 To manage cluster pod eviction behavior, select which descheduler profiles to enable.
 
@@ -134,7 +134,7 @@ To manage cluster pod eviction behavior, select which descheduler profiles to en
    </dl>
 3. Save the file to apply the changes.
 
-## Configuring the descheduler interval {#nodes-descheduler-configuring-interval_nodes-descheduler-configuring}
+## Configure the descheduler interval {#nodes-descheduler-configuring-interval_nodes-descheduler-configuring}
 
 You can configure the amount of time between descheduler runs. The default is 3600 seconds (one hour).
 

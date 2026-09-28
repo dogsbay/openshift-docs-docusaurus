@@ -19,7 +19,7 @@ When using dual-stack networking where IPv6 is required, you cannot use IPv4-map
 
 - [OVN-Kubernetes purpose](/docs/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#nw-ovn-kubernetes-purpose_about-ovn-kubernetes)
 
-## Converting to a dual-stack cluster network {#nw-dual-stack-convert_converting-to-dual-stack}
+## Convert to a dual-stack cluster network {#nw-dual-stack-convert_converting-to-dual-stack}
 
 To convert your cluster network from IPv4 single-stack to dual-stack in OpenShift Container Platform, you can patch the cluster network and, on installer-provisioned infrastructure, the infrastructure custom resources. You must re-create existing pods after conversion to receive IPv6 addresses.
 
@@ -191,7 +191,7 @@ where:
       # ...
       ```
 
-## Converting to a single-stack cluster network {#nw-dual-stack-convert-back-single-stack_converting-to-dual-stack}
+## Convert to a single-stack cluster network {#nw-dual-stack-convert-back-single-stack_converting-to-dual-stack}
 
 To revert dual-stack networking in OpenShift Container Platform, you can edit the cluster network configuration and remove the IPv4 or IPv6 blocks you added during dual-stack conversion. You can convert back only to the same single-stack family you had before dual-stack (IPv4 or IPv6).
 

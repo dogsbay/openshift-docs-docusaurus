@@ -278,7 +278,7 @@ Grant the Network Observability Operator permission to access the `LokiStack` se
 
    :::
 
-## Configuring the FlowCollector resource with Kafka {#network-observability-flowcollector-kafka-config_network_observability}
+## Configure the FlowCollector resource with Kafka {#network-observability-flowcollector-kafka-config_network_observability}
 
 Configure the `FlowCollector` resource to use Kafka for high-throughput and low-latency data feeds.
 
@@ -403,7 +403,7 @@ After configuration, network flows data can be sent to an available output. For 
 
 - [Network flows format reference](/docs/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
 
-## Updating the FlowCollector resource {#network-observability-config-FLP-sampling_network_observability}
+## Update the FlowCollector resource {#network-observability-config-FLP-sampling_network_observability}
 
 As an alternative to using the web console, use the `oc patch` command with the `flowcollector` custom resource to quickly update specific specifications, such as eBPF sampling
 
@@ -479,7 +479,7 @@ where:
 
 - [Filtering eBPF flow data using multiple rules](/docs/observability/network_observability/observing-network-traffic#network-observability-filtering-ebpf-rule_nw-observe-network-traffic)
 
-## Configuring quick filters {#network-observability-config-quick-filters_network_observability}
+## Configure quick filters {#network-observability-config-quick-filters_network_observability}
 
 Use the list of available source, destination, and universal filter keys to modify quick filters within the `FlowCollector` resource.
 

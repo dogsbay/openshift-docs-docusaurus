@@ -23,7 +23,7 @@ Also, pods might only have scheduling support on particular sets of nodes based 
 
 You can run the OpenShift Cluster Capacity Tool as a stand-alone utility from the command line, or as a job in a pod inside an OpenShift Container Platform cluster. Running the tool as job inside of a pod enables you to run it multiple times without intervention.
 
-## Running the OpenShift Cluster Capacity Tool on the command line {#nodes-cluster-resource-levels-command_nodes-cluster-resource-levels}
+## Run the OpenShift Cluster Capacity Tool on the command line {#nodes-cluster-resource-levels-command_nodes-cluster-resource-levels}
 
 You can run the OpenShift Cluster Capacity Tool from the command line to estimate the number of pods that can be scheduled onto your cluster.
 
@@ -119,7 +119,7 @@ You create a sample pod spec file, which the tool uses for estimating resource u
 
    In the above example, the number of estimated pods that can be scheduled onto the cluster is 88.
 
-## Running the OpenShift Cluster Capacity Tool as a job inside a pod {#nodes-cluster-resource-levels-job_nodes-cluster-resource-levels}
+## Run the OpenShift Cluster Capacity Tool as a job inside a pod {#nodes-cluster-resource-levels-job_nodes-cluster-resource-levels}
 
 You can run the OpenShift Cluster Capacity Tool as a job inside of a pod by using a `ConfigMap` object. This allows you to run the tool multiple times without needing user intervention.
 

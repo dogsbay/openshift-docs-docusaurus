@@ -13,7 +13,9 @@ Before you perform any tasks in the following documentation, ensure that you [in
 
 ## About hardware offloading {#about-hardware-offloading_configuring-hardware-offloading}
 
-Open vSwitch hardware offloading is a method of processing network tasks by diverting them away from the CPU and offloading them to a dedicated processor on a network interface controller. As a result, clusters can benefit from faster data transfer speeds, reduced CPU workloads, and lower computing costs.
+Open vSwitch hardware offloading is a method of processing network tasks by diverting them away from the CPU and offloading them to a dedicated processor on a network interface controller.
+
+As a result, clusters can benefit from faster data transfer speeds, reduced CPU workloads, and lower computing costs.
 
 The key element for this feature is a modern class of network interface controllers known as SmartNICs. A SmartNIC is a network interface controller that is able to handle computationally-heavy network processing tasks. In the same way that a dedicated graphics card can improve graphics performance, a SmartNIC can improve network performance. In each case, a dedicated processor improves performance for a specific type of processing task.
 
@@ -57,7 +59,7 @@ Before you configure hardware offloading, ensure that the following conditions a
 - [About the OVN-Kubernetes network plugin](/docs/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 - [OVN-Kubernetes network plugin configuration](/docs/networking/networking_operators/cluster-network-operator#gatewayConfig-object_cluster-network-operator)
 
-## Setting the SR-IOV Network Operator into systemd mode {#nw-sriov-hwol-configuring-systemd-mode_configuring-hardware-offloading}
+## Set the SR-IOV Network Operator into systemd mode {#nw-sriov-hwol-configuring-systemd-mode_configuring-hardware-offloading}
 
 To support hardware offloading, you must first set the SR-IOV Network Operator into `systemd` mode.
 
@@ -90,7 +92,7 @@ To support hardware offloading, you must first set the SR-IOV Network Operator i
       $ oc apply -f sriovOperatorConfig.yaml
       ```
 
-## Configuring a machine config pool for hardware offloading {#configuring-machine-config-pool_configuring-hardware-offloading}
+## Configure a machine config pool for hardware offloading {#configuring-machine-config-pool_configuring-hardware-offloading}
 
 To enable hardware offloading, you now create a dedicated machine config pool and configure it to work with the SR-IOV Network Operator.
 
@@ -167,7 +169,7 @@ To enable hardware offloading, you now create a dedicated machine config pool an
 
       :::
 
-## Configuring the SR-IOV network node policy {#configure-sriov-node-policy_configuring-hardware-offloading}
+## Configure the SR-IOV network node policy {#configure-sriov-node-policy_configuring-hardware-offloading}
 
 You can create an SR-IOV network device configuration for a node by creating an SR-IOV network node policy. To enable hardware offloading, you must define the `.spec.eSwitchMode` field with the value `"switchdev"`.
 
@@ -244,7 +246,7 @@ spec:
   resourceName: ${name}
 ```
 
-## Improving network traffic performance using a virtual function {#improving-network-traffic-performance-using-vf_configuring-hardware-offloading}
+## Improve network traffic performance using a virtual function {#improving-network-traffic-performance-using-vf_configuring-hardware-offloading}
 
 Follow this procedure to assign a virtual function to the OVN-Kubernetes management port and increase its network traffic performance.
 
@@ -349,7 +351,7 @@ This procedure results in the creation of two pools: the first has a virtual fun
 
 - [SR-IOV network node configuration object](/docs/networking/hardware_networks/configuring-sriov-device#nw-sriov-networknodepolicy-object_configuring-sriov-device)
 
-## Creating a network attachment definition {#create-network-attachment-definition_configuring-hardware-offloading}
+## Create a network attachment definition {#create-network-attachment-definition_configuring-hardware-offloading}
 
 After you define the machine config pool and the SR-IOV network node policy, you can create a network attachment definition for the network interface controller (NIC) you specified.
 
@@ -390,7 +392,7 @@ After you define the machine config pool and the SR-IOV network node policy, you
 
   The output shows the namespace, name, and age of the new definition.
 
-## Adding the network attachment definition to your pods {#adding-network-attachment-definition-to-pods_configuring-hardware-offloading}
+## Add the network attachment definition to your pods {#adding-network-attachment-definition-to-pods_configuring-hardware-offloading}
 
 After you create the machine config pool, the `SriovNetworkPoolConfig` and `SriovNetworkNodePolicy` custom resources, and the network attachment definition, you can apply these configurations to your pods by adding the network attachment definition to your pod specifications.
 

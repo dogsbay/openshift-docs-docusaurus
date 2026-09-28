@@ -193,7 +193,7 @@ Ensure that the following conditions are met before you begin:
 - If your nodes are physical machines, ensure that the cluster network and the connected network switches support jumbo frames.
 - If your nodes are virtual machines (VMs), ensure that the hypervisor and the connected network switches support jumbo frames.
 
-#### Checking the current cluster MTU value {#nw-cluster-mtu-checking_aws-compute-edge-zone-tasks}
+#### Check the current cluster MTU value {#nw-cluster-mtu-checking_aws-compute-edge-zone-tasks}
 
 To ensure network stability and performance in a hybrid environment where part of your cluster is in the cloud and part is an on-premise environment, you can obtain the current maximum transmission unit (MTU) for the cluster network.
 
@@ -217,7 +217,7 @@ To ensure network stability and performance in a hybrid environment where part o
   ...
   ```
 
-#### Beginning the MTU migration {#nw-cluster-mtu-migration_aws-compute-edge-zone-tasks}
+#### Begin the MTU migration {#nw-cluster-mtu-migration_aws-compute-edge-zone-tasks}
 
 Start the maximum transmission unit (MTU) migration by specifying the migration configuration for the cluster network and machine interfaces. The Machine Config Operator performs a rolling reboot of the nodes to prepare the cluster for the MTU change.
 
@@ -257,7 +257,7 @@ Start the maximum transmission unit (MTU) migration by specifying the migration 
 
    :::
 
-#### Verifying the machine configuration {#nw-cluster-mtu-verifying-configuration_aws-compute-edge-zone-tasks}
+#### Verify the machine configuration {#nw-cluster-mtu-verifying-configuration_aws-compute-edge-zone-tasks}
 
 Verify the machine configuration on your hosts to confirm that the maximum transmission unit (MTU) migration applied successfully. Checking the configuration state and system settings help ensures that the nodes use the correct migration script.
 
@@ -297,7 +297,7 @@ Verify the machine configuration on your hosts to confirm that the maximum trans
      ExecStart=/usr/local/bin/mtu-migration.sh
      ```
 
-#### Finalizing the MTU migration {#nw-cluster-mtu-finalizing-migration_aws-compute-edge-zone-tasks}
+#### Finalize the MTU migration {#nw-cluster-mtu-finalizing-migration_aws-compute-edge-zone-tasks}
 
 Finalize the MTU migration to apply the new maximum transmission unit (MTU) settings to the OVN-Kubernetes network plugin. This updates the cluster configuration and triggers a rolling reboot of the nodes to complete the process.
 

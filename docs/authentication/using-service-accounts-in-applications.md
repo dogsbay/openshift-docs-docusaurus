@@ -95,7 +95,7 @@ However, if you do not enable the `ImageRegistry` capability or if you disable t
 
 When the integrated OpenShift image registry is disabled on a cluster that previously had it enabled, the previously generated image pull secrets are deleted automatically.
 
-## Creating service accounts {#service-accounts-managing_using-service-accounts}
+## Create service accounts {#service-accounts-managing_using-service-accounts}
 
 You can create a service account in a project and grant it permissions by binding it to a role.
 

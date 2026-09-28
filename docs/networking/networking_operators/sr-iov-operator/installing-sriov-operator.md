@@ -11,7 +11,7 @@ To manage SR-IOV network devices and network attachments on your cluster, instal
 
 As a cluster administrator, you can install the Single Root I/O Virtualization (SR-IOV) Network Operator by using the OpenShift Container Platform CLI or the web console.
 
-## Using the CLI to install the SR-IOV Network Operator {#install-operator-cli_installing-sriov-operator}
+## Use the CLI to install the SR-IOV Network Operator {#install-operator-cli_installing-sriov-operator}
 
 You can use the CLI to install the SR-IOV Network Operator. By using the CLI, you can deploy the Operator directly from your terminal to manage SR-IOV network devices and attachments without navigating the web console.
 
@@ -86,7 +86,7 @@ You can use the CLI to install the SR-IOV Network Operator. By using the CLI, yo
     -o custom-columns=Name:.metadata.name,Phase:.status.phase
   ```
 
-## Using the web console to install the SR-IOV Network Operator {#nw-sriov-installing-operator-web-console_installing-sriov-operator}
+## Use the web console to install the SR-IOV Network Operator {#nw-sriov-installing-operator-web-console_installing-sriov-operator}
 
 You can use the web console to install the SR-IOV Network Operator. By using the web console, you can deploy the Operator and manage SR-IOV network devices and attachments directly from a graphical interface without having to use the CLI.
 

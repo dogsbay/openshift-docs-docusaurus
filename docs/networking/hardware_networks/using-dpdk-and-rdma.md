@@ -72,7 +72,7 @@ spec:
       medium: HugePages
 ```
 
-## Using a virtual function in DPDK mode with an Intel NIC {#example-vf-use-in-dpdk-mode-intel_using-dpdk-and-rdma}
+## Use a virtual function in DPDK mode with an Intel NIC {#example-vf-use-in-dpdk-mode-intel_using-dpdk-and-rdma}
 
 You can use a virtual function (VF) in Data Plane Development Kit (DPDK) mode with an Intel NIC by creating a `SriovNetworkNodePolicy` object and then deploying a pod.
 
@@ -219,7 +219,7 @@ You can use a virtual function (VF) in Data Plane Development Kit (DPDK) mode wi
    $ oc create -f intel-dpdk-pod.yaml
    ```
 
-## Using a virtual function in DPDK mode with a Mellanox NIC {#example-vf-use-in-dpdk-mode-mellanox_using-dpdk-and-rdma}
+## Use a virtual function in DPDK mode with a Mellanox NIC {#example-vf-use-in-dpdk-mode-mellanox_using-dpdk-and-rdma}
 
 You can create a network node policy and create a Data Plane Development Kit (DPDK) pod by using a virtual function in DPDK mode with a Mellanox NIC.
 
@@ -371,9 +371,9 @@ You can create a network node policy and create a Data Plane Development Kit (DP
    $ oc create -f mlx-dpdk-pod.yaml
    ```
 
-## Using the TAP CNI to run a rootless DPDK workload with kernel access {#nw-running-dpdk-rootless-tap_using-dpdk-and-rdma}
+## Use the TAP CNI to run a rootless DPDK workload with kernel access {#nw-running-dpdk-rootless-tap_using-dpdk-and-rdma}
 
-DPDK applications can use `virtio-user` as an exception path to inject certain types of packets, such as log messages, into the kernel for processing. For more information about this feature, see [Virtio_user as Exception Path](https://doc.dpdk.org/guides/howto/virtio_user_as_exception_path.html).
+DPDK applications can use `virtio-user` as an exception path to inject certain types of packets, such as log messages, into the kernel for processing.
 
 In OpenShift Container Platform version 4.14 and later, you can use non-privileged pods to run DPDK applications alongside the tap CNI plugin. To enable this functionality, you need to mount the `vhost-net` device by setting the `needVhostNet` parameter to `true` within the `SriovNetworkNodePolicy` object.
 
@@ -608,6 +608,7 @@ In OpenShift Container Platform version 4.14 and later, you can use non-privileg
 
 **Additional resources**
 
+- [Virtio_user as Exception Path (DPDK documentation)](https://doc.dpdk.org/guides/howto/virtio_user_as_exception_path.html)
 - [Creating a performance profile](/docs/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-create-performance-profiles_cnf-tuning-low-latency-nodes-with-perf-profile)
 - [Configuring an SR-IOV network device](/docs/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)
 
@@ -637,7 +638,7 @@ The following diagram shows the components of a DPDK test environment:
 - `testpmd`: An example application included with DPDK. The `testpmd` application can be used to test the DPDK in a packet-forwarding mode. The `testpmd` application is also an example of how to build a fully-fledged application using the DPDK Software Development Kit (SDK).
 - **worker 0** and **worker 1**: OpenShift Container Platform nodes.
 
-## Using SR-IOV and the Node Tuning Operator to achieve a DPDK line rate {#nw-example-dpdk-line-rate_using-dpdk-and-rdma}
+## Use SR-IOV and the Node Tuning Operator to achieve a DPDK line rate {#nw-example-dpdk-line-rate_using-dpdk-and-rdma}
 
 You can use the Node Tuning Operator to configure isolated CPUs, hugepages, and a topology scheduler. You can then use the Node Tuning Operator with Single Root I/O Virtualization (SR-IOV) to achieve a specific Data Plane Development Kit (DPDK) line rate.
 
@@ -950,7 +951,7 @@ dpdk-testpmd -l ${CPU} -a ${PCIDEVICE_OPENSHIFT_IO_DPDK_NIC_1} -a ${PCIDEVICE_OP
 
 This example uses two different `sriovNetwork` CRs. The environment variable contains the Virtual Function (VF) PCI address that was allocated for the pod. If you use the same network in the pod definition, you must split the `pciAddress`. It is important to configure the correct MAC addresses of the traffic generator. This example uses custom MAC addresses.
 
-## Using a virtual function in RDMA mode with a Mellanox NIC {#example-vf-use-in-rdma-mode-mellanox_using-dpdk-and-rdma}
+## Use a virtual function in RDMA mode with a Mellanox NIC {#example-vf-use-in-rdma-mode-mellanox_using-dpdk-and-rdma}
 
 :::warning
 

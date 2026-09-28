@@ -19,7 +19,7 @@ Review the following limitations before installing and using the AWS Load Balanc
 - The AWS Load Balancer Operator adds command-line flags such as `--disable-ingress-class-annotation` and `--disable-ingress-group-name-annotation` to the AWS Load Balancer Controller. Therefore, the AWS Load Balancer Operator does not allow using the `kubernetes.io/ingress.class` and `alb.ingress.kubernetes.io/group.name` annotations in the `Ingress` resource.
 - The AWS Load Balancer Operator requires that the service type is `NodePort` and not `LoadBalancer` or `ClusterIP`.
 
-## Deploying the AWS Load Balancer Operator {#nw-aws-load-balancer-operator_aws-load-balancer-operator}
+## Deploy the AWS Load Balancer Operator {#nw-aws-load-balancer-operator_aws-load-balancer-operator}
 
 The AWS Load Balancer Operator can tag the public subnets if the `kubernetes.io/role/elb` tag is missing. Also, the AWS Load Balancer Operator detects information from the underlying AWS cloud.
 
@@ -50,7 +50,7 @@ The AWS Load Balancer Operator supports the Kubernetes service resource of type 
    aws-load-balancer-operator-controller-manager  1/1       1            1           23h
    ```
 
-## Using the AWS Load Balancer Operator in an AWS VPC cluster extended into an Outpost {#nw-aws-load-balancer-with-outposts_aws-load-balancer-operator}
+## Use the AWS Load Balancer Operator in an AWS VPC cluster extended into an Outpost {#nw-aws-load-balancer-with-outposts_aws-load-balancer-operator}
 
 You can configure the AWS Load Balancer Operator to provision an AWS Application Load Balancer in an AWS VPC cluster extended into an Outpost. AWS Outposts does not support AWS Network Load Balancers. As a result, the AWS Load Balancer Operator cannot provision Network Load Balancers in an Outpost.
 

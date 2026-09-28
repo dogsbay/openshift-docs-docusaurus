@@ -45,7 +45,7 @@ These advanced authentication fields are available as a Technology Preview featu
 
 :::
 
-## Configuring a custom OIDC discovery URL {#structured-auth-config-discovery-url_structured-auth-config-fields}
+## Configure a custom OIDC discovery URL {#structured-auth-config-discovery-url_structured-auth-config-fields}
 
 Configure a custom OIDC discovery URL when your identity provider does not follow the standard discovery endpoint format.
 
@@ -119,7 +119,7 @@ Configure a custom OIDC discovery URL when your identity provider does not follo
 
   The output should display your custom discovery URL.
 
-## Configuring CEL expressions for username and groups claim mapping {#structured-auth-config-cel-claim-mapping_structured-auth-config-fields}
+## Configure CEL expressions for username and groups claim mapping {#structured-auth-config-cel-claim-mapping_structured-auth-config-fields}
 
 You can use Common Expression Language (CEL) expressions to construct usernames and groups from JWT token claims. This provides flexible claim mapping, including fallback logic when specific claims are not present.
 
@@ -258,7 +258,7 @@ Combine group sources
 
   Combines `groups` and `roles` claims.
 
-## Configuring claim validation rules {#structured-auth-config-claim-validation_structured-auth-config-fields}
+## Configure claim validation rules {#structured-auth-config-claim-validation_structured-auth-config-fields}
 
 Use Common Expression Language (CEL) expressions to define custom validation rules for JWT token claims and enforce advanced security policies such as maximum token lifetimes.
 
@@ -416,7 +416,7 @@ If you incorrectly configure validation rules and lock users out of the cluster
   $ oc get clusteroperator authentication
   ```
 
-## Configuring user validation rules {#structured-auth-config-user-validation_structured-auth-config-fields}
+## Configure user validation rules {#structured-auth-config-user-validation_structured-auth-config-fields}
 
 You can define validation rules to enforce security policies on the user object created from an authenticated token. This helps prevent privilege escalation by blocking reserved usernames and group prefixes.
 

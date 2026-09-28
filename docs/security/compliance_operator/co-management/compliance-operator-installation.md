@@ -33,7 +33,7 @@ If the `restricted` Security Context Constraints (SCC) have been modified to con
 
 :::
 
-## Installing the Compliance Operator through the web console {#installing-compliance-operator-web-console_compliance-operator-installation}
+## Install the Compliance Operator through the web console {#installing-compliance-operator-web-console_compliance-operator-installation}
 
 You can install the Compliance Operator through the OpenShift Container Platform web console by using the OperatorHub interface.
 
@@ -61,7 +61,7 @@ If the Operator is not installed successfully:
 1. Navigate to the **Ecosystem** → **Installed Operators** page and inspect the `Status` column for any errors or failures.
 2. Navigate to the **Workloads** → **Pods** page and check the logs in any pods in the `openshift-compliance` project that are reporting issues.
 
-## Installing the Compliance Operator using the CLI {#installing-compliance-operator-cli_compliance-operator-installation}
+## Install the Compliance Operator using the CLI {#installing-compliance-operator-cli_compliance-operator-installation}
 
 You can install the Compliance Operator by using the OpenShift CLI by creating the required namespace, Operator group, and subscription objects.
 
@@ -144,7 +144,7 @@ You can install the Compliance Operator by using the OpenShift CLI by creating t
    $ oc get deploy -n openshift-compliance
    ```
 
-## Installing the Compliance Operator on ROSA hosted control planes (HCP) {#installing-compliance-operator-rosa_compliance-operator-installation}
+## Install the Compliance Operator on ROSA hosted control planes (HCP) {#installing-compliance-operator-rosa_compliance-operator-installation}
 
 You can install the Compliance Operator on Red Hat OpenShift Service on AWS by using the OpenShift CLI by creating the required namespace, Operator group, and subscription objects.
 
@@ -230,7 +230,7 @@ Red Hat OpenShift Service on AWS Hosted control planes clusters have restricted
    $ oc get deploy -n openshift-compliance
    ```
 
-## Installing the Compliance Operator on hosted control planes {#installing-compliance-operator-hcp_compliance-operator-installation}
+## Install the Compliance Operator on hosted control planes {#installing-compliance-operator-hcp_compliance-operator-installation}
 
 Install the Compliance Operator on hosted control planes by creating a `Subscription` file in the software catalog so you can run compliance scans in a hosted control plane environment.
 

@@ -1,6 +1,6 @@
 ---
 title: Creating a license-compliant AWS EC2 Windows VM
-sidebar_position: 7
+sidebar_position: 4
 ---
 
 # Creating a license-compliant AWS EC2 Windows VM {#virt-creating-vms-aws-li-windows}

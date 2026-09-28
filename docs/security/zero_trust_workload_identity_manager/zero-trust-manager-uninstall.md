@@ -9,7 +9,7 @@ sidebar_position: 15
 
 To remove the Zero Trust Workload Identity Manager from OpenShift Container Platform, uninstall the Operator and delete its related resources. This process removes the component from your cluster.
 
-## Uninstalling the Zero Trust Workload Identity Manager {#zero-trust-manager-uninstall-console_zero-trust-manager-uninstall}
+## Uninstall the Zero Trust Workload Identity Manager {#zero-trust-manager-uninstall-console_zero-trust-manager-uninstall}
 
 To remove the Zero Trust Workload Identity Manager from your cluster, uninstall the Operator using the web console. This helps you clean up resources and delete the service from your environment.
 
@@ -38,7 +38,7 @@ To remove the Zero Trust Workload Identity Manager from your cluster, uninstall 
   No resources found in openshift-zero-trust-workload-identity namespace.
   ```
 
-## Uninstalling Zero Trust Workload Identity Manager resources by using the CLI {#zero-trust-manager-uninstall-resources_zero-trust-manager-uninstall}
+## Uninstall Zero Trust Workload Identity Manager resources by using the CLI {#zero-trust-manager-uninstall-resources_zero-trust-manager-uninstall}
 
 Remove Zero Trust Workload Identity Manager resources from your cluster using the CLI. This deletes the remaining operands and definitions to help ensure a clean environment after you uninstall the product.
 

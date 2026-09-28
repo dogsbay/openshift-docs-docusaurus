@@ -9,7 +9,7 @@ sidebar_position: 6
 
 To enable the operator to manage components on your cloud provider, authenticate the cert-manager Operator for Red Hat OpenShift by configuring cloud credentials. You can grant the Operator access to external services required for certificate issuance, such as DNS providers.
 
-## Authenticating on AWS {#cert-manager-configure-cloud-credentials-aws-non-sts_cert-manager-authenticate}
+## Authenticate on AWS {#cert-manager-configure-cloud-credentials-aws-non-sts_cert-manager-authenticate}
 
 To securely access AWS resources from your applications, authenticate your workloads on AWS by using the cert-manager Operator for Red Hat OpenShift.
 
@@ -93,7 +93,7 @@ To securely access AWS resources from your applications, authenticate your workl
          secretName: aws-creds
    ```
 
-## Authenticating with AWS Security Token Service {#cert-manager-configure-cloud-credentials-aws-sts_cert-manager-authenticate}
+## Authenticate with AWS Security Token Service {#cert-manager-configure-cloud-credentials-aws-sts_cert-manager-authenticate}
 
 To securely access AWS resources from your applications without managing long-lived keys, authenticate your workloads by using the AWS Security Token Service (STS).
 
@@ -192,7 +192,7 @@ To securely access AWS resources from your applications without managing long-li
 
 - [Configuring the Cloud Credential Operator utility](/docs/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
 
-## Authenticating on Google Cloud {#cert-manager-configure-cloud-credentials-gcp-non-sts_cert-manager-authenticate}
+## Authenticate on Google Cloud {#cert-manager-configure-cloud-credentials-gcp-non-sts_cert-manager-authenticate}
 
 To securely access Google Cloud resources, authenticate your workloads on Google Cloud by using the cert-manager Operator for Red Hat OpenShift.
 
@@ -278,7 +278,7 @@ To securely access Google Cloud resources, authenticate your workloads on Google
          secretName: gcp-credentials
    ```
 
-## Authenticating with Google Cloud Workload Identity {#cert-manager-configure-cloud-credentials-gcp-sts_cert-manager-authenticate}
+## Authenticate with Google Cloud Workload Identity {#cert-manager-configure-cloud-credentials-gcp-sts_cert-manager-authenticate}
 
 To securely access Google Cloud resources from your applications without managing long-lived keys, authenticate your workloads by using Google Cloud Workload Identity.
 

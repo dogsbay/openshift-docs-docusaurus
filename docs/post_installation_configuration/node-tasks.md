@@ -769,7 +769,7 @@ You can only apply a machine health check to machines that are managed by comput
    $ oc apply -f healthcheck.yml
    ```
 
-### Scaling a compute machine set manually {#machineset-manually-scaling_post-install-node-tasks}
+### Scale a compute machine set manually {#machineset-manually-scaling_post-install-node-tasks}
 
 To add or remove an instance of a machine in a compute machine set, you can manually scale the compute machine set.
 
@@ -909,26 +909,33 @@ Consider the following guidance:
 - Edit an existing `KubeletConfig` CR to modify existing settings or add new settings, instead of creating a CR for each change. It is recommended that you create a CR only to modify a different machine config pool, or for changes that are intended to be temporary, so that you can revert the changes.
 - Create one `KubeletConfig` CR for each machine config pool with all the config changes you want for that pool.
 - As needed, create multiple `KubeletConfig` CRs with a limit of 10 per cluster. For the first `KubeletConfig` CR, the Machine Config Operator (MCO) creates a machine config appended with `kubelet`. With each subsequent CR, the controller creates another `kubelet` machine config with a numeric suffix. For example, if you have a `kubelet` machine config with a `-2` suffix, the next `kubelet` machine config is appended with `-3`.
+  :::warning
 
-:::note
+  The Machine Config Operator does not merge multiple `KubeletConfig` CRs that target the same machine config pool. Each CR generates a separate machine config that writes the kubelet configuration. The most recently created `KubeletConfig` CR takes precedence and overrides the kubelet settings from earlier CRs for that pool.
 
-If you are applying a kubelet or container runtime config to a custom machine config pool, the custom role in the `machineConfigSelector` must match the name of the custom machine config pool.
+  To apply multiple kubelet settings to the same pool, include all of the settings in a single `KubeletConfig` CR.
 
-For example, because the following custom machine config pool is named `infra`, the custom role must also be `infra`:
+  :::
 
-```yaml
-apiVersion: machineconfiguration.openshift.io/v1
-kind: MachineConfigPool
-metadata:
-  name: infra
-spec:
-  machineConfigSelector:
-    matchExpressions:
-      - {key: machineconfiguration.openshift.io/role, operator: In, values: [worker,infra]}
-# ...
-```
+  :::note
 
-:::
+  If you are applying a kubelet or container runtime config to a custom machine config pool, the custom role in the `machineConfigSelector` must match the name of the custom machine config pool.
+
+  For example, because the following custom machine config pool is named `infra`, the custom role must also be `infra`:
+
+  ```yaml
+  apiVersion: machineconfiguration.openshift.io/v1
+  kind: MachineConfigPool
+  metadata:
+    name: infra
+  spec:
+    machineConfigSelector:
+      matchExpressions:
+        - {key: machineconfiguration.openshift.io/role, operator: In, values: [worker,infra]}
+  # ...
+  ```
+
+  :::
 
 If you want to delete the machine configs, delete them in reverse order to avoid exceeding the limit. For example, you delete the `kubelet-3` machine config before deleting the `kubelet-2` machine config.
 
@@ -1232,7 +1239,7 @@ In OpenShift Container Platform 4.22, half of a CPU core (500 millicore) is now 
 
 :::
 
-### Setting up CPU Manager {#setting_up_cpu_manager_post-install-node-tasks}
+### Set up CPU Manager {#setting_up_cpu_manager_post-install-node-tasks}
 
 To configure CPU manager, create a `KubeletConfig` custom resource (CR) and apply it to the required set of nodes.
 
@@ -1542,7 +1549,7 @@ Some platforms support multiple huge page sizes. To allocate huge pages of a spe
 - `EmptyDir` volumes backed by huge pages must not consume more huge page memory than the pod request.
 - Applications that consume huge pages via `shmget()` with `SHM_HUGETLB` must run with a supplemental group that matches ***proc/sys/vm/hugetlb_shm_group***.
 
-### Configuring huge pages at boot time {#configuring-huge-pages_post-install-node-tasks}
+### Configure huge pages at boot time {#configuring-huge-pages_post-install-node-tasks}
 
 To ensure nodes in your OpenShift Container Platform cluster pre-allocate memory for specific workloads, reserve huge pages at boot time.
 
@@ -1903,7 +1910,7 @@ The following taints are built into OpenShift Container Platform:
 
   :::
 
-### Adding taints and tolerations {#nodes-scheduler-taints-tolerations-adding_post-install-node-tasks}
+### Add taints and tolerations {#nodes-scheduler-taints-tolerations-adding_post-install-node-tasks}
 
 You can add tolerations to pods and taints to nodes to allow the node to control which pods should or should not be scheduled on that node.
 
@@ -1996,7 +2003,7 @@ For existing pods and nodes, you should add the toleration to the pod first, the
 
    The tolerations on the pod match the taint on the node. A pod with either toleration can be scheduled onto `node1`.
 
-### Adding taints and tolerations using a compute machine set {#nodes-scheduler-taints-tolerations-adding-machineset_post-install-node-tasks}
+### Add taints and tolerations using a compute machine set {#nodes-scheduler-taints-tolerations-adding-machineset_post-install-node-tasks}
 
 You can add taints to groups of nodes by using a compute machine set. All nodes associated with the `MachineSet` object are updated with the taint.
 
@@ -2106,7 +2113,7 @@ Tolerations respond to taints added by a compute machine set in the same manner 
 
       Wait for the machines to start. The taint is added to the nodes associated with the `MachineSet` object.
 
-### Binding a user to a node using taints and tolerations {#nodes-scheduler-taints-tolerations-bindings_post-install-node-tasks}
+### Bind a user to a node using taints and tolerations {#nodes-scheduler-taints-tolerations-bindings_post-install-node-tasks}
 
 You can use taints and tolerations to dedicate a set of nodes for exclusive use by a particular set of users.
 
@@ -2146,7 +2153,7 @@ Use the following procedure to configure a node so that users can use only that 
    :::
 2. Add a toleration to the pods by writing a custom admission controller.
 
-### Controlling nodes with special hardware using taints and tolerations {#nodes-scheduler-taints-tolerations-special_post-install-node-tasks}
+### Control nodes with special hardware using taints and tolerations {#nodes-scheduler-taints-tolerations-special_post-install-node-tasks}
 
 In a cluster that has specialized hardware, you can use taints and tolerations to either keep pods that do not need the specialized hardware off of those nodes or require pods that need specialized hardware to use specific nodes.
 
@@ -2205,7 +2212,7 @@ Use the following procedure to ensure nodes with specialized hardware are reserv
 
    :::
 
-### Removing taints and tolerations {#nodes-scheduler-taints-tolerations-removing_post-install-node-tasks}
+### Remove taints and tolerations {#nodes-scheduler-taints-tolerations-removing_post-install-node-tasks}
 
 You can remove taints from nodes and tolerations from pods as needed if you no longer want the scheduling behavior.
 
@@ -2267,7 +2274,7 @@ Topology Manager supports four allocation policies, which you assign in the `Kub
 `single-numa-node` policy
 : For each container in a pod with the `single-numa-node` topology management policy, kubelet admits the pod if all the resources required by the pod can be allocated on the same NUMA node. If a single NUMA node affinity is not possible, the Topology Manager rejects the pod from the node. This results in a pod in a `Terminated` state with a pod admission failure.
 
-### Setting up Topology Manager {#setting_up_topology_manager_post-install-node-tasks}
+### Set up Topology Manager {#setting_up_topology_manager_post-install-node-tasks}
 
 To use Topology Manager, you must configure an allocation policy in the `KubeletConfig` custom resource (CR) named `cpumanager-enabled`. This file might exist if you have set up CPU Manager. If the file does not exist, you can create the file.
 
@@ -2473,7 +2480,7 @@ where:
 `spec.containers.resources.memory.cpu`
 : Specifies that the CPU request is now `250m` because the `cpuRequestToLimit` is set to `25` in the `ClusterResourceOverride` object. As such, 25% of the 1 CPU core is 250m.
 
-### Installing the Cluster Resource Override Operator using the web console {#nodes-cluster-resource-override-deploy-console_post-install-node-tasks}
+### Install the Cluster Resource Override Operator using the web console {#nodes-cluster-resource-override-deploy-console_post-install-node-tasks}
 
 You can use the OpenShift Container Platform web console to install the Cluster Resource Override Operator to help you control overcommit in your cluster.
 
@@ -2567,7 +2574,7 @@ By default, the installation process creates a Cluster Resource Override Operato
       <dd>Specifies the <code>ClusterResourceOverride</code> admission webhook.</dd>
       </dl>
 
-### Installing the Cluster Resource Override Operator using the CLI {#nodes-cluster-resource-override-deploy-cli_post-install-node-tasks}
+### Install the Cluster Resource Override Operator using the CLI {#nodes-cluster-resource-override-deploy-cli_post-install-node-tasks}
 
 You can use the OpenShift CLI to install the Cluster Resource Override Operator to help you control overcommit in your cluster.
 
@@ -2731,7 +2738,7 @@ By default, the installation process creates a Cluster Resource Override Operato
    <dd>Specifies the <code>ClusterResourceOverride</code> admission webhook.</dd>
    </dl>
 
-### Configuring cluster-level overcommit {#nodes-cluster-resource-configure_post-install-node-tasks}
+### Configure cluster-level overcommit {#nodes-cluster-resource-configure_post-install-node-tasks}
 
 You can use the OpenShift CLI to configure the Cluster Resource Override Operator to help control overcommit in your cluster.
 
@@ -2905,7 +2912,7 @@ You can also perform the following configurations for each node:
 - [Reserving resources for system processes](/docs/post_installation_configuration/node-tasks#nodes-cluster-overcommit-node-resources_post-install-node-tasks)
 - [Understanding how to reserve memory across quality of service tiers](/docs/post_installation_configuration/node-tasks#qos-about-reserve_post-install-node-tasks)
 
-### Disabling or enforcing CPU limits using CPU CFS quotas {#nodes-cluster-overcommit-node-enforcing_post-install-node-tasks}
+### Disable or enforce CPU limits using CPU CFS quotas {#nodes-cluster-overcommit-node-enforcing_post-install-node-tasks}
 
 You can disable the default enforcement of CPU limits for nodes in a machine config pool.
 
@@ -2970,7 +2977,7 @@ For more details, see "Allocating Resources for Nodes".
 
 - [Allocating resources for nodes](/docs/nodes/nodes/nodes-nodes-resources-configuring#nodes-nodes-resources-configuring-setting_nodes-nodes-resources-configuring)
 
-### Disabling overcommitment for a node {#nodes-cluster-overcommit-node-disable_post-install-node-tasks}
+### Disable overcommitment for a node {#nodes-cluster-overcommit-node-disable_post-install-node-tasks}
 
 When overcommitment is enabled on a node, you can disable overcommitment on that node. Disabling overcommit can help ensure predictability, stability, and high performance in your cluster.
 
@@ -2989,7 +2996,7 @@ For information on project-level resource limits, see the *Additional resources*
 
 Alternatively, you can disable overcommitment for specific projects.
 
-### Disabling overcommitment for a project {#nodes-cluster-overcommit-project-disable_post-install-node-tasks}
+### Disable overcommitment for a project {#nodes-cluster-overcommit-project-disable_post-install-node-tasks}
 
 If overcommitment is enabled on a project, you can disable overcommitment for that projects. This allows infrastructure components to be configured independently of overcommitment.
 
@@ -3098,7 +3105,7 @@ As new containers are run, new images appear. All images are marked with a time 
 
 Once the collection starts, the oldest images get deleted first until the stopping criterion is met.
 
-### Configuring garbage collection for containers and images {#nodes-nodes-garbage-collection-configuring_post-install-node-tasks}
+### Configure garbage collection for containers and images {#nodes-nodes-garbage-collection-configuring_post-install-node-tasks}
 
 As an administrator, you can configure how OpenShift Container Platform performs garbage collection by creating a `kubeletConfig` object for each machine config pool. Performing garbage collection helps ensure that your nodes are running efficiently.
 
@@ -3280,7 +3287,7 @@ In earlier versions of OpenShift Container Platform, the Performance Addon Opera
 
 :::
 
-### Accessing an example Node Tuning Operator specification {#accessing-an-example-node-tuning-operator-specification_post-install-node-tasks}
+### Access an example Node Tuning Operator specification {#accessing-an-example-node-tuning-operator-specification_post-install-node-tasks}
 
 Use this process to access an example Node Tuning Operator specification.
 

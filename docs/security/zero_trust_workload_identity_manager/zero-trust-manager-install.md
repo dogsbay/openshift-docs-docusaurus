@@ -17,7 +17,7 @@ The Operator installation is not supported in the `openshift-*` namespaces and t
 
 :::
 
-## Installing the Zero Trust Workload Identity Manager by using the web console {#zero-trust-manager-install-console_zero-trust-manager-install}
+## Install the Zero Trust Workload Identity Manager by using the web console {#zero-trust-manager-install-console_zero-trust-manager-install}
 
 Use the Software Catalog in the OpenShift Container Platform web console to install the Zero Trust Workload Identity Manager. This process streamlines deployment and helps ensure the Operator is installed in the correct namespace with the appropriate installation mode.
 
@@ -70,7 +70,7 @@ A minimum of 1Gi persistent volume is required to install the SPIRE Server.
    $ oc logs -f deployment/zero-trust-workload-identity-manager-controller-manager -n zero-trust-workload-identity-manager
    ```
 
-## Installing the Zero Trust Workload Identity Manager by using the CLI {#zero-trust-manager-install-cli_zero-trust-manager-install}
+## Install the Zero Trust Workload Identity Manager by using the CLI {#zero-trust-manager-install-cli_zero-trust-manager-install}
 
 Install the Zero Trust Workload Identity Manager by using the command-line interface (CLI) to create the required project, `OperatorGroup`, and `Subscription` objects. You can then deploy the Operator components necessary for managing workload identities on your OpenShift Container Platform cluster.
 

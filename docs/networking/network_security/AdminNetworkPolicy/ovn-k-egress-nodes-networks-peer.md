@@ -163,7 +163,7 @@ Collectively the `network-as-egress-peer` ANP and `default` BANP using `networks
 - All pods can talk to other pods, nodes, and services.
 - All pods cannot talk to the internet. Combining the last ANP `Pass` rule and the strong BANP `Deny` rule a guardrail policy is created that secures traffic in the cluster.
 
-### Using nodes peer and networks peer together {#combined-nodes-peer-networks-peer-anp}
+### Using nodes peer and networks peer together {#combined-nodes-peer-networks-peer-anp_ovn-k-egress-nodes-networks-peer}
 
 Cluster administrators can combine `nodes` and `networks` peer in your ANP and BANP policies.
 

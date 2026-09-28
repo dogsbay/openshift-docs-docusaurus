@@ -9,7 +9,7 @@ sidebar_position: 3
 
 To enable a pod to use additional network interfaces beyond the primary cluster network in OpenShift Container Platform, you can attach the pod to a secondary network. Secondary networks provide additional connectivity options for your workloads.
 
-## Adding a pod to a secondary network {#nw-multus-add-pod_attaching-pod}
+## Add a pod to a secondary network {#nw-multus-add-pod_attaching-pod}
 
 To enable a pod to use additional network interfaces in OpenShift Container Platform, you can attach the pod to a secondary network. The pod continues to send normal cluster-related network traffic over the default network.
 
@@ -115,7 +115,7 @@ The pod must be in the same namespace as the secondary network.
    <dd>Specifies a JSON array of objects. Each object describes the status of a secondary network attached to the pod. The annotation value is stored as a plain text value.</dd>
    </dl>
 
-### Specifying pod-specific addressing and routing options {#nw-multus-advanced-annotations_attaching-pod}
+### Specify pod-specific addressing and routing options {#nw-multus-advanced-annotations_attaching-pod}
 
 To set static IP addresses, MAC addresses, and default routes for a pod in OpenShift Container Platform, you can configure pod-specific addressing and routing options using JSON-formatted annotations. With these annotations, you can customize network behavior for individual pods on secondary networks.
 

@@ -796,7 +796,7 @@ failed to create vm <machine_name>: failure sending request for machine <machine
 
 If the deletion of ultra disks as data disks is not working as expected, the machines are deleted and the data disks are orphaned. You must delete the orphaned disks manually if desired.
 
-## Enabling customer-managed encryption keys for a machine set {#machineset-enabling-customer-managed-encryption-azure_creating-machineset-azure}
+## Enable customer-managed encryption keys for a machine set {#machineset-enabling-customer-managed-encryption-azure_creating-machineset-azure}
 
 To enhance data security, enable customer-managed encryption on Microsoft Azure by adding the disk encryption set ID to your machine set.
 
@@ -901,7 +901,7 @@ For more information about related features and functionality, see the Microsoft
 
 - On the Microsoft Azure portal, review the details for a machine deployed by the machine set and verify that the trusted launch options match the values that you configured.
 
-## Configuring Azure confidential virtual machines by using machine sets {#machineset-azure-confidential-vms_creating-machineset-azure}
+## Configure Azure confidential virtual machines by using machine sets {#machineset-azure-confidential-vms_creating-machineset-azure}
 
 You can enable Microsoft Azure confidential virtual machines (VMs) to use memory encryption to improve data confidentiality.
 
@@ -1032,7 +1032,7 @@ You can enable Accelerated Networking on Microsoft Azure by adding `acceleratedN
 
 - [Enabling Accelerated Networking during installation](/docs/installing/installing_azure/ipi/installing-azure-customizations#machineset-azure-enabling-accelerated-networking-new-install_installing-azure-customizations)
 
-## Configuring Capacity Reservations by using machine sets {#machineset-capacity-reservation_creating-machineset-azure}
+## Configure Capacity Reservations by using machine sets {#machineset-capacity-reservation_creating-machineset-azure}
 
 You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using on-demand Capacity Reservation with Capacity Reservation groups on Microsoft Azure clusters.
 
@@ -1128,7 +1128,7 @@ tag:compute[][] . In a text editor, open an existing machine set custom resource
 
   In the output, verify that the characteristics of the listed machines match the parameters of your Capacity Reservation.
 
-## Adding a GPU node to an existing OpenShift Container Platform cluster {#nvidia-gpu-aws-adding-a-gpu-node_creating-machineset-azure}
+## Add a GPU node to an existing OpenShift Container Platform cluster {#nvidia-gpu-aws-adding-a-gpu-node_creating-machineset-azure}
 
 To provide specialized hardware for compute-intensive workloads that require NVIDIA GPU acceleration, you can copy and modify a default compute machine set configuration to create a GPU-enabled machine set and machines for the Microsoft Azure cloud provider.
 
@@ -1459,7 +1459,7 @@ By default, Microsoft Azure subscriptions do not have a quota for the Microsoft 
 
    :::
 
-## Deploying the Node Feature Discovery Operator {#nvidia-gpu-aws-deploying-the-node-feature-discovery-operator_creating-machineset-azure}
+## Deploy the Node Feature Discovery Operator {#nvidia-gpu-aws-deploying-the-node-feature-discovery-operator_creating-machineset-azure}
 
 After the GPU-enabled node is created, you need to discover the GPU-enabled node so it can be scheduled. To do this, install the Node Feature Discovery (NFD) Operator.
 

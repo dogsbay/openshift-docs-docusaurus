@@ -46,7 +46,7 @@ You can create the IAM role by using the following options:
 
 Use the AWS CLI if your environment does not support the `ccoctl` command.
 
-### Creating an AWS IAM role by using the Cloud Credential Operator utility {#using-ccoctl-create-iam-role-alb-operator_albo-sts-cluster}
+### Create an AWS IAM role by using the Cloud Credential Operator utility {#using-ccoctl-create-iam-role-alb-operator_albo-sts-cluster}
 
 To enable the AWS Load Balancer Operator to interact with subnets and VPCs, create an AWS IAM role by using the Cloud Credential Operator utility (`ccoctl`).
 
@@ -88,7 +88,7 @@ To enable the AWS Load Balancer Operator to interact with subnets and VPCs, crea
 
    :::
 
-### Creating an AWS IAM role by using the AWS CLI {#using-aws-cli-create-iam-role-alb-operator_albo-sts-cluster}
+### Create an AWS IAM role by using the AWS CLI {#using-aws-cli-create-iam-role-alb-operator_albo-sts-cluster}
 
 To enable the AWS Load Balancer Operator to interact with subnets and VPCs, create an AWS IAM role by using the AWS CLI. This enables the Operator to access and manage the necessary network resources within the cluster.
 
@@ -157,7 +157,7 @@ To enable the AWS Load Balancer Operator to interact with subnets and VPCs, crea
    $ aws iam put-role-policy --role-name albo-operator --policy-name perms-policy-albo-operator --policy-document file://albo-operator-permission-policy.json
    ```
 
-## Configuring the ARN role for the AWS Load Balancer Operator {#specifying-role-arn-albo-sts_albo-sts-cluster}
+## Configure the ARN role for the AWS Load Balancer Operator {#specifying-role-arn-albo-sts_albo-sts-cluster}
 
 You can configure the Amazon Resource Name (ARN) role for the AWS Load Balancer Operator as an environment variable. You can configure the ARN role by using the CLI.
 
@@ -231,7 +231,7 @@ If your environment does not support the `ccoctl` `command.ws-short` CLI, use th
 
 - [the Cloud Credential Operator utility (`ccoctl`)](/docs/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)
 
-### Creating an AWS IAM role for the controller by using the Cloud Credential Operator utility {#using-ccoctl-create-iam-role-alb-controller_albo-sts-cluster}
+### Create an AWS IAM role for the controller by using the Cloud Credential Operator utility {#using-ccoctl-create-iam-role-alb-controller_albo-sts-cluster}
 
 To enable the AWS Load Balancer Controller to interact with subnets and VPCs, create an IAM role by using the Cloud Credential Operator utility (`ccoctl`). This utility ensures the controller has the specific permissions required to manage network resources within the cluster.
 
@@ -273,7 +273,7 @@ To enable the AWS Load Balancer Controller to interact with subnets and VPCs, cr
 
    :::
 
-### Creating an AWS IAM role for the controller by using the AWS CLI {#using-aws-cli-create-iam-role-alb-controller_albo-sts-cluster}
+### Create an AWS IAM role for the controller by using the AWS CLI {#using-aws-cli-create-iam-role-alb-controller_albo-sts-cluster}
 
 To enable the AWS Load Balancer Controller to interact with subnets and Virtual Private Clouds (VPCs), create an IAM role by using the AWS CLI. This ensures the controller has the specific permissions required to manage network resources within the cluster.
 

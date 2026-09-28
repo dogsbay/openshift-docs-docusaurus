@@ -9,13 +9,13 @@ sidebar_position: 1
 
 To allow external clients to connect securely to applications under the .apps subdomain in OpenShift Container Platform, you can replace the default wildcard ingress certificate with one issued by a trusted public CA.
 
-## Understanding the default ingress certificate {#understanding-default-ingress_replacing-default-ingress}
+## Understand the default ingress certificate {#understanding-default-ingress_replacing-default-ingress}
 
 You can replace the default ingress certificate with a certificate from a public CA so that external clients connect securely to your applications.
 
 The default ingress certificate in OpenShift Container Platform is a wildcard certificate that the Ingress Operator issues from an internal CA for the web console, CLI, and applications under the `.apps` subdomain.
 
-## Replacing the default ingress certificate {#replacing-default-ingress_replacing-default-ingress}
+## Replace the default ingress certificate {#replacing-default-ingress_replacing-default-ingress}
 
 To secure the web console, CLI, and all applications under the `.apps` subdomain in OpenShift Container Platform, you can replace the default ingress certificate by creating a TLS secret with your wildcard certificate and updating the Ingress Controller and cluster proxy configuration.
 

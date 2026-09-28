@@ -121,7 +121,7 @@ Note the following limitations:
 - Pods managed by a static `cpuManagerPolicy` or `memoryManagerPolicy` parameter cannot be resized with in-place pod resizing.
 - Pods utilizing swap memory must use the `RestartContainer` policy for memory requests with in-place pod resizing.
 
-## Configuring in-place pod resizing {#nodes-pods-adjust-resources-in-place-configuring_nodes-pods-adjust-resources-in-place}
+## Configure in-place pod resizing {#nodes-pods-adjust-resources-in-place-configuring_nodes-pods-adjust-resources-in-place}
 
 You can use in-place pod resizing to scale pod resources up or down without application disruption by adding a resize policy to a pod specification.
 

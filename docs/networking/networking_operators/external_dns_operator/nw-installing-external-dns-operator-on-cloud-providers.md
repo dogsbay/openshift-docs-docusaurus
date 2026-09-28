@@ -9,7 +9,7 @@ sidebar_position: 3
 
 To manage DNS records on your cloud infrastructure, install the External DNS Operator. This Operator supports deployment on major cloud providers, including Amazon Web Services (AWS), Microsoft Azure, and Google Cloud.
 
-## Installing the External DNS Operator with the Software Catalog {#nw-installing-external-dns-operator_installing-external-dns-on-cloud-providers}
+## Install the External DNS Operator with the Software Catalog {#nw-installing-external-dns-operator_installing-external-dns-on-cloud-providers}
 
 You can install the External DNS Operator by using the OpenShift Container Platform Software Catalog. You can then manage the Operator lifecycle directly from the web console.
 
@@ -33,7 +33,7 @@ You can install the External DNS Operator by using the OpenShift Container Platf
 
 - Verify that the External DNS Operator shows the **Status** as **Succeeded** on the **Installed Operators** dashboard.
 
-## Installing the External DNS Operator by using the CLI {#nw-installing-external-dns-operator-cli_installing-external-dns-on-cloud-providers}
+## Install the External DNS Operator by using the CLI {#nw-installing-external-dns-operator-cli_installing-external-dns-on-cloud-providers}
 
 You can use the OpenShift CLI (`oc`) to install the External DNS Operator. The Operator manages the installation process directly from your terminal without you having to use the web console.
 

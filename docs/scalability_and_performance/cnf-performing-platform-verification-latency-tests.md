@@ -90,7 +90,7 @@ Variables that are specific to a latency tool take precedence over unified varia
 
 :::
 
-## Running the latency tests {#cnf-performing-end-to-end-tests-running-the-tests_cnf-latency-tests}
+## Run the latency tests {#cnf-performing-end-to-end-tests-running-the-tests_cnf-latency-tests}
 
 Run the cluster latency tests to validate node tuning for your Cloud-native Network Functions (CNF) workload.
 
@@ -143,7 +143,7 @@ The procedure runs the three individual tests `hwlatdetect`, `cyclictest`, and `
 
    :::
 
-### Running hwlatdetect {#cnf-performing-end-to-end-tests-running-hwlatdetect_cnf-latency-tests}
+### Run hwlatdetect {#cnf-performing-end-to-end-tests-running-hwlatdetect_cnf-latency-tests}
 
 To measure hardware latency, run the `hwlatdetect` tool. This diagnostic utility is available in the `rt-kernel` package through your Red Hat Enterprise Linux (RHEL) 9.x subscription.
 
@@ -307,7 +307,7 @@ Not all latency spikes are hardware related. Ensure that you tune the host firmw
 
 - [Setting firmware parameters for system tuning](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_for_real_time/9/html-single/optimizing_rhel_9_for_real_time_for_low_latency_operation/index#setting-bios-parameters-for-system-tuning_optimizing-RHEL9-for-real-time-for-low-latency-operation)
 
-### Running cyclictest {#cnf-performing-end-to-end-tests-running-cyclictest_cnf-latency-tests}
+### Run cyclictest {#cnf-performing-end-to-end-tests-running-cyclictest_cnf-latency-tests}
 
 To measure real-time kernel scheduler latency on specified CPUs, run the `cyclictest` tool. Evaluating these metrics helps you identify execution delays and optimize your system for high-performance operations.
 
@@ -432,7 +432,7 @@ More histogram entries ...
 # Thread 15: 110059 155917
 ```
 
-### Running oslat {#cnf-performing-end-to-end-tests-running-oslat_cnf-latency-tests}
+### Run oslat {#cnf-performing-end-to-end-tests-running-oslat_cnf-latency-tests}
 
 To evaluate how your cluster handles CPU-heavy data processing, run the `oslat` test. This diagnostic tool simulates a CPU-intensive DPDK application to measure system interruptions and performance disruptions.
 
@@ -507,7 +507,7 @@ When executing `podman` commands as a non-root or non-privileged user, mounting 
 
   In this example, the measured latency is outside the maximum allowed value as indicated by the line "The current latency 304 is bigger than the expected one".
 
-## Generating a latency test failure report {#cnf-performing-end-to-end-tests-test-failure-report_cnf-latency-tests}
+## Generate a latency test failure report {#cnf-performing-end-to-end-tests-test-failure-report_cnf-latency-tests}
 
 To analyze test failures and troubleshoot performance issues, generate a JUnit latency test output and test failure report. Reviewing this diagnostic data helps you pinpoint exactly where your system is experiencing delays.
 
@@ -527,7 +527,7 @@ To analyze test failures and troubleshoot performance issues, generate a JUnit l
 
   - `<report_folder_path>`: Specifies the path to the folder where the report is generated.
 
-## Generating a JUnit latency test report {#cnf-performing-end-to-end-tests-junit-test-output_cnf-latency-tests}
+## Generate a JUnit latency test report {#cnf-performing-end-to-end-tests-junit-test-output_cnf-latency-tests}
 
 To analyze system performance and track execution delays, generate a JUnit latency test report. Reviewing this diagnostic output helps you identify configuration issues and performance bottlenecks within your cluster.
 
@@ -558,7 +558,7 @@ To analyze system performance and track execution delays, generate a JUnit laten
   <dd>The name of the XML report file.</dd>
   </dl>
 
-## Running latency tests on a single-node OpenShift cluster {#cnf-performing-end-to-end-tests-running-in-single-node-cluster_cnf-latency-tests}
+## Run latency tests on a single-node OpenShift cluster {#cnf-performing-end-to-end-tests-running-in-single-node-cluster_cnf-latency-tests}
 
 To validate node tuning and identify performance delays, run latency tests on your single-node OpenShift clusters. Evaluating these metrics ensures your environment is optimized for high-performance workloads.
 
@@ -733,7 +733,7 @@ You can optionally change the default upstream images that are mirrored for the 
    |  oc image mirror -f -
    ```
 
-## Troubleshooting errors with the cnf-tests container {#cnf-performing-end-to-end-tests-troubleshooting_cnf-latency-tests}
+## Troubleshoot errors with the cnf-tests container {#cnf-performing-end-to-end-tests-troubleshooting_cnf-latency-tests}
 
 To troubleshoot errors when running latency tests, verify that your cluster is accessible from within the `cnf-tests` container. Ensuring this connectivity resolves common test execution failures.
 

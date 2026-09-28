@@ -1,19 +1,13 @@
 ---
-title: Verify Gateway infrastructure status
+title: Verifying Gateway infrastructure status
 sidebar_position: 8
 ---
 
-# Verify Gateway infrastructure status {#verifying-gateway-infrastructure-status}
+# Verifying Gateway infrastructure status
 
 <a id="verifying-gateway-infrastructure-status"></a>
 
 To ensure your gateway infrastructure is properly configured and functioning, review the `status` conditions of your `GatewayClass` and `Gateway` custom resources (CRs). Checking these conditions confirms that the controller has successfully programmed your underlying data plane without routing conflicts.
-
-To verify that your gateway infrastructure is functioning correctly, complete the following tasks:
-
-- Understand `GatewayClass` status conditions to verify that the controller has claimed the class and that your installed API version is compatible.
-- Review `Gateway` CR and listener `status` conditions to pinpoint data plane failures, configuration errors, or negative polarity conflicts.
-- Query gateway infrastructure status using the CLI to quickly validate your deployment and retrieve assigned IP addresses.
 
 ## GatewayClass status conditions reference {#gatewayclass-status-conditions_verifying-gateway-infrastructure-status}
 
@@ -132,39 +126,39 @@ The `Conflicted` listener condition uses negative polarity. This means that a st
 ```yaml title="Example Gateway CR status output showing a DNS failure on one listener"
 # ...
 status:
-  # Gateway-level conditions (LoadBalancer and aggregate DNS status)
-  conditions:
-  - type: LoadBalancerReady
-    status: "True"
-    reason: LoadBalancerProvisioned
-    message: "The LoadBalancer service is provisioned"
-    observedGeneration: 1
-    lastTransitionTime: "2025-01-12T10:00:00Z"
-  - type: DNSReady
-    status: "False"
-    reason: SomeListenersNotReady
-    message: "One or more listeners have DNS provisioning issues"
-    observedGeneration: 1
-    lastTransitionTime: "2025-01-12T10:00:00Z"
+  # Gateway-level conditions (LoadBalancer and aggregate DNS status)
+  conditions:
+  - type: LoadBalancerReady
+    status: "True"
+    reason: LoadBalancerProvisioned
+    message: "The LoadBalancer service is provisioned"
+    observedGeneration: 1
+    lastTransitionTime: "2025-01-12T10:00:00Z"
+  - type: DNSReady
+    status: "False"
+    reason: SomeListenersNotReady
+    message: "One or more listeners have DNS provisioning issues"
+    observedGeneration: 1
+    lastTransitionTime: "2025-01-12T10:00:00Z"
 
-  # Listener-level conditions (DNS status per listener)
-  listeners:
-  - name: <stage_http>
-    conditions:
-    - type: DNSReady
-      status: "True"
-      reason: NoFailedZones
-      message: "The record is provisioned in all reported zones."
-      observedGeneration: 1
-      lastTransitionTime: "2025-01-12T10:00:00Z"
-  - name: <prod_https>
-    conditions:
-    - type: DNSReady
-      status: "False"
-      reason: FailedZones
-      message: "The record failed to provision in some zones: [<prod.example.com>]"
-      observedGeneration: 1
-      lastTransitionTime: "2025-01-12T10:00:00Z"
+  # Listener-level conditions (DNS status per listener)
+  listeners:
+  - name: <stage_http>
+    conditions:
+    - type: DNSReady
+      status: "True"
+      reason: NoFailedZones
+      message: "The record is provisioned in all reported zones."
+      observedGeneration: 1
+      lastTransitionTime: "2025-01-12T10:00:00Z"
+  - name: <prod_https>
+    conditions:
+    - type: DNSReady
+      status: "False"
+      reason: FailedZones
+      message: "The record failed to provision in some zones: [<prod.example.com>]"
+      observedGeneration: 1
+      lastTransitionTime: "2025-01-12T10:00:00Z"
 ```
 
 :::note
@@ -173,7 +167,7 @@ For Google Cloud installations, you can use a custom DNS solution. You must manu
 
 :::
 
-## Query Gateway infrastructure status using the CLI {#querying-gateway-status-cli_verifying-gateway-infrastructure-status}
+## Querying Gateway infrastructure status using the CLI {#querying-gateway-status-cli_verifying-gateway-infrastructure-status}
 
 To quickly check the health of your gateway infrastructure, query specific `status` fields using the OpenShift Container Platform CLI. You can validate your deployment, check route attachments, and retrieve IP addresses without parsing lengthy YAML manifests.
 

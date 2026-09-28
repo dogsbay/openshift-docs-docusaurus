@@ -9,7 +9,7 @@ sidebar_position: 15
 
 You can remove the cert-manager Operator for Red Hat OpenShift from OpenShift Container Platform by uninstalling the Operator and removing its related resources.
 
-## Uninstalling the cert-manager Operator for Red Hat OpenShift {#cert-manager-uninstall-console_cert-manager-operator-uninstall}
+## Uninstall the cert-manager Operator for Red Hat OpenShift {#cert-manager-uninstall-console_cert-manager-operator-uninstall}
 
 You can uninstall the cert-manager Operator for Red Hat OpenShift by using the web console.
 
@@ -27,7 +27,7 @@ You can uninstall the cert-manager Operator for Red Hat OpenShift by using the w
    2. Click the Options menu ![](/images/kebab.png "Options menu") next to the **cert-manager Operator for Red Hat OpenShift** entry and click **Uninstall Operator**.
    3. In the confirmation dialog, click **Uninstall**.
 
-## Removing cert-manager Operator for Red Hat OpenShift resources {#cert-manager-remove-resources-console_cert-manager-operator-uninstall}
+## Remove cert-manager Operator for Red Hat OpenShift resources {#cert-manager-remove-resources-console_cert-manager-operator-uninstall}
 
 After you uninstall the cert-manager Operator for Red Hat OpenShift, you can delete its associated resources from your cluster.
 

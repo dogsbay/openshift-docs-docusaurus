@@ -9,7 +9,7 @@ sidebar_position: 3
 
 As a cluster administrator, you can remove an egress firewall from a project to remove all restrictions on network traffic from the project that leaves the OpenShift Container Platform cluster.
 
-## Removing an EgressFirewall CR {#nw-egress-firewall-delete_removing-egress-firewall-ovn}
+## Remove an EgressFirewall CR {#nw-egress-firewall-delete_removing-egress-firewall-ovn}
 
 As a cluster administrator, you can remove an egress firewall from a project.
 

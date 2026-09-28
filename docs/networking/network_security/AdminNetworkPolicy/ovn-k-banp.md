@@ -80,7 +80,7 @@ where:
 `spec.egress.to.pods.namespaceSelector.matchLabels`
 : Specifies match labels to select pods within the namespaces selected by `namespaceSelector.matchLabels` as egress peers.
 
-### BaselineAdminNetworkPolicy Deny example {#BaselineAdminNetworkPolicy-default-deny-example}
+### BaselineAdminNetworkPolicy Deny example {#BaselineAdminNetworkPolicy-default-deny-example_ovn-k-banp}
 
 The following BANP singleton ensures that the administrator has set up a default deny policy for all ingress monitoring traffic coming into the tenants at `internal` security level. When combined with the "AdminNetworkPolicy Pass example", this deny policy acts as a guardrail policy for all ingress traffic that is passed by the ANP `pass-monitoring` policy.
 

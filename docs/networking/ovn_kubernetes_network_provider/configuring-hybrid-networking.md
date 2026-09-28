@@ -9,7 +9,7 @@ sidebar_position: 16
 
 In OpenShift Container Platform, you can configure OVN-Kubernetes hybrid networking so Linux and Windows nodes run Linux and Windows workloads in the same cluster.
 
-## Configuring hybrid networking with OVN-Kubernetes {#configuring-hybrid-ovnkubernetes_configuring-hybrid-networking}
+## Configure hybrid networking with OVN-Kubernetes {#configuring-hybrid-ovnkubernetes_configuring-hybrid-networking}
 
 To configure hybrid networking with OVN-Kubernetes, you can set `hybridOverlayConfig` during installation or patch the Cluster Network Operator (CNO) after installation.
 

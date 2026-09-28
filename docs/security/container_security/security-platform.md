@@ -19,7 +19,7 @@ Security-related features in OpenShift Container Platform that are based on Kube
 
 OpenShift Container Platform uses Operators to automate and simplify the management of Kubernetes-level security features.
 
-## Isolating containers with multitenancy {#security-platform-multi-tenancy_security-platform}
+## Isolate containers with multitenancy {#security-platform-multi-tenancy_security-platform}
 
 You can configure multitenancy to allow applications on an OpenShift Container Platform cluster that are owned by multiple users, and run across multiple hosts and namespaces, to remain isolated from each other and from outside attacks.
 
@@ -35,7 +35,7 @@ RBAC objects are assigned to projects to authorize selected users to have access
 
 Local RBAC roles and bindings attach a user or group to a particular project. Cluster RBAC can attach cluster-wide roles and bindings to all projects in a cluster. There are default cluster roles that can be assigned to provide `admin`, `basic-user`, `cluster-admin`, and `cluster-status` access.
 
-## Protecting control plane with admission plugins {#security-platform-admission_security-platform}
+## Protect control plane with admission plugins {#security-platform-admission_security-platform}
 
 Where RBAC controls access rules between users and groups and available projects, you can define access to the OpenShift Container Platform master API by using *admission plugins* .
 
@@ -100,7 +100,7 @@ OpenShift Container Platform provides a self-service web console to ensure that 
 - Project quota limits the damage that a rogue token could do
 - The etcd service is not exposed directly to the cluster
 
-## Managing certificates for the platform {#security-platform-certificates_security-platform}
+## Manage certificates for the platform {#security-platform-certificates_security-platform}
 
 OpenShift Container Platform has multiple components within its framework that use REST-based HTTPS communication leveraging encryption via TLS certificates. You can configure these certificates during installation.
 

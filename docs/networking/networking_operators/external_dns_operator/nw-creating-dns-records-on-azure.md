@@ -15,7 +15,7 @@ Using the External DNS Operator on a Microsoft Entra Workload ID-enabled cluster
 
 :::
 
-## Creating DNS records on an Azure DNS zone {#nw-control-dns-records-public-hosted-zone-azure_creating-dns-records-on-azure}
+## Create DNS records on an Azure DNS zone {#nw-control-dns-records-public-hosted-zone-azure_creating-dns-records-on-azure}
 
 To create DNS records on a public or private DNS zone for Azure, use the External DNS Operator. The Operator manages external name resolution for your cluster.
 

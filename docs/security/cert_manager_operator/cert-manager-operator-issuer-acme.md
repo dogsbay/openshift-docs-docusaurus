@@ -80,7 +80,7 @@ The cert-manager Operator for Red Hat OpenShift supports the following DNS-01 pr
 
   :::
 
-## Configuring an ACME issuer to solve HTTP-01 challenges {#cert-manager-acme-http01_cert-manager-operator-issuer-acme}
+## Configure an ACME issuer to solve HTTP-01 challenges {#cert-manager-acme-http01_cert-manager-operator-issuer-acme}
 
 You can use cert-manager Operator for Red Hat OpenShift to set up an ACME issuer to solve HTTP-01 challenges. This procedure uses *Let’s Encrypt* as the ACME CA server.
 
@@ -197,7 +197,7 @@ You can use cert-manager Operator for Red Hat OpenShift to set up an ACME issuer
       $ oc create -f ingress.yaml
       ```
 
-## Configuring an ACME issuer by using explicit credentials for AWS Route53 {#cert-manager-acme-dns01-explicit-aws_cert-manager-operator-issuer-acme}
+## Configure an ACME issuer by using explicit credentials for AWS Route53 {#cert-manager-acme-dns01-explicit-aws_cert-manager-operator-issuer-acme}
 
 You can use cert-manager Operator for Red Hat OpenShift to set up an Automated Certificate Management Environment (ACME) issuer to solve DNS-01 challenges by using explicit credentials on AWS. This procedure uses *Let’s Encrypt* as the ACME certificate authority (CA) server and shows how to solve DNS-01 challenges with Amazon Route 53.
 
@@ -308,7 +308,7 @@ You can use cert-manager Operator for Red Hat OpenShift to set up an Automated C
       $ oc create -f issuer.yaml
       ```
 
-## Configuring an ACME issuer by using ambient credentials on AWS {#cert-manager-acme-dns01-ambient-aws_cert-manager-operator-issuer-acme}
+## Configure an ACME issuer by using ambient credentials on AWS {#cert-manager-acme-dns01-ambient-aws_cert-manager-operator-issuer-acme}
 
 You can use cert-manager Operator for Red Hat OpenShift to set up an ACME issuer to solve DNS-01 challenges by using ambient credentials on AWS. This procedure uses *Let’s Encrypt* as the ACME CA server and shows how to solve DNS-01 challenges with Amazon Route 53.
 
@@ -402,7 +402,7 @@ You can use cert-manager Operator for Red Hat OpenShift to set up an ACME issuer
       $ oc create -f issuer.yaml
       ```
 
-## Configuring an ACME issuer by using explicit credentials for Google Cloud DNS {#cert-manager-acme-dns01-explicit-gcp_cert-manager-operator-issuer-acme}
+## Configure an ACME issuer by using explicit credentials for Google Cloud DNS {#cert-manager-acme-dns01-explicit-gcp_cert-manager-operator-issuer-acme}
 
 You can use the cert-manager Operator for Red Hat OpenShift to set up an ACME issuer to solve DNS-01 challenges by using explicit credentials on Google Cloud. This procedure uses *Let’s Encrypt* as the ACME CA server and shows how to solve DNS-01 challenges with Google Cloud DNS.
 
@@ -502,7 +502,7 @@ You can use the cert-manager Operator for Red Hat OpenShift to set up an ACME is
       $ oc create -f issuer.yaml
       ```
 
-## Configuring an ACME issuer by using ambient credentials on Google Cloud {#cert-manager-acme-dns01-ambient-gcp_cert-manager-operator-issuer-acme}
+## Configure an ACME issuer by using ambient credentials on Google Cloud {#cert-manager-acme-dns01-ambient-gcp_cert-manager-operator-issuer-acme}
 
 You can use the cert-manager Operator for Red Hat OpenShift to set up an ACME issuer to solve DNS-01 challenges by using ambient credentials on Google Cloud. This procedure uses *Let’s Encrypt* as the ACME CA server and shows how to solve DNS-01 challenges with Google Cloud DNS.
 
@@ -593,7 +593,7 @@ You can use the cert-manager Operator for Red Hat OpenShift to set up an ACME is
       $ oc create -f issuer.yaml
       ```
 
-## Configuring an ACME issuer by using explicit credentials for Microsoft Azure DNS {#cert-manager-acme-dns01-explicit-azure_cert-manager-operator-issuer-acme}
+## Configure an ACME issuer by using explicit credentials for Microsoft Azure DNS {#cert-manager-acme-dns01-explicit-azure_cert-manager-operator-issuer-acme}
 
 You can use cert-manager Operator for Red Hat OpenShift to set up an ACME issuer to solve DNS-01 challenges by using explicit credentials on Microsoft Azure. This procedure uses *Let’s Encrypt* as the ACME CA server and shows how to solve DNS-01 challenges with Azure DNS.
 

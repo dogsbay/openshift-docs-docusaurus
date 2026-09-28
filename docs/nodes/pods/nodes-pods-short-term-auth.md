@@ -37,7 +37,7 @@ To configure this authentication method, complete the following tasks:
 - Create an OpenShift Container Platform service account that can use this access.
 - Deploy customer workloads that authenticate with GCP Workload Identity.
 
-### Creating a federated Google Cloud service account {#pod-short-term-auth-gcp-cloud-sa_nodes-pods-short-term-auth}
+### Create a federated Google Cloud service account {#pod-short-term-auth-gcp-cloud-sa_nodes-pods-short-term-auth}
 
 You can use the Google Cloud console to create a workload identity pool and provider and allow an OpenShift Container Platform service account to impersonate a Google Cloud service account.
 
@@ -53,7 +53,7 @@ You can use the Google Cloud console to create a workload identity pool and prov
 2. Grant permission for external identities to impersonate a Google Cloud service account. With these permissions, an OpenShift Container Platform service account can work as a federated workload identity.
    For more information, see Google Cloud documentation about [allowing your external workload to access Google Cloud resources](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-clouds#service-account-impersonation).
 
-### Creating an OpenShift Container Platform service account for Google Cloud {#pod-short-term-auth-gcp-cluster-sa_nodes-pods-short-term-auth}
+### Create an OpenShift Container Platform service account for Google Cloud {#pod-short-term-auth-gcp-cluster-sa_nodes-pods-short-term-auth}
 
 You create an OpenShift Container Platform service account and annotate it to impersonate a Google Cloud service account.
 
@@ -144,7 +144,7 @@ You create an OpenShift Container Platform service account and annotate it to im
   <dd>Specifies the <code>direct</code> external credentials configuration injection mode.</dd>
   </dl>
 
-### Deploying customer workloads that authenticate with GCP Workload Identity {#pod-short-term-auth-gcp-deploy-pod_nodes-pods-short-term-auth}
+### Deploy customer workloads that authenticate with GCP Workload Identity {#pod-short-term-auth-gcp-deploy-pod_nodes-pods-short-term-auth}
 
 To use short-term authentication in your application, you must configure its related pods to use the OpenShift Container Platform service account. Use of the OpenShift Container Platform service account triggers the webhook to mutate the pods so they can impersonate the Google Cloud service account.
 

@@ -19,7 +19,7 @@ Setting up SPIRE federation involves the following high-level steps:
 4. Establish federation relationships: Create `ClusterFederatedTrustDomain` resources to define which clusters trust each other.
 5. Configure automatic synchronization: The SPIRE Controller Manager automatically keeps trust bundles synchronized after initial setup.
 
-## Understanding bundle endpoint profiles {#zero-trust-manager-configure-endpoints_zero-trust-manager-spire-federation}
+## Understand bundle endpoint profiles {#zero-trust-manager-configure-endpoints_zero-trust-manager-spire-federation}
 
 The bundle endpoint profile determines how your cluster exposes its trust bundle to other SPIRE deployments and how it authenticates remote clusters accessing the bundle. Choose the profile that best matches your security requirements and infrastructure.
 
@@ -179,7 +179,7 @@ Example 4: Mixed federation with multiple authentication profiles
   - The `profile` field cluster exposes its bundle using `https_spiffe` profile.
   - The `bundleEndpointProfile` field cluster exposes its bundle using `https_spiffe` profile.
 
-## Configuring SPIRE federation with the https_spiffe profile {#zero-trust-manager-federation-configuration_zero-trust-manager-spire-federation}
+## Configure SPIRE federation with the https_spiffe profile {#zero-trust-manager-federation-configuration_zero-trust-manager-spire-federation}
 
 The Zero Trust Workload Identity Manager includes SPIRE Federation support, allowing multiple independent SPIRE deployments to establish trust relationships. This procedure demonstrates how to configure federation using the `https_spiffe` profile, which uses SPIFFE-based TLS authentication between SPIRE servers.
 
@@ -368,7 +368,7 @@ The Zero Trust Workload Identity Manager includes SPIRE Federation support, allo
 
    Look for log messages indicating successful bundle synchronization with federated trust domains.
 
-## Using SPIRE federation with Automatic Certificate Management Environment protocol {#zero-trust-manager-automatic-management_zero-trust-manager-spire-federation}
+## Use SPIRE federation with Automatic Certificate Management Environment protocol {#zero-trust-manager-automatic-management_zero-trust-manager-spire-federation}
 
 Using SPIRE federation with Automatic Certificate Management Environment (ACME) protocol provides automatic certificate provisioning from Let’s Encrypt. ACME also enables automatic certificate renewal before expiration, eliminating manual certificate management overhead.
 
@@ -568,7 +568,7 @@ Using SPIRE federation with Automatic Certificate Management Environment (ACME) 
    ```
 6. Optional: Test cross-cluster workload authentication by deploying workloads with SPIFFE identities on different clusters and verifying they can authenticate to each other using the federated trust.
 
-## Using SPIRE federation with manual certificate management {#zero-trust-manager-manual-management_zero-trust-manager-spire-federation}
+## Use SPIRE federation with manual certificate management {#zero-trust-manager-manual-management_zero-trust-manager-spire-federation}
 
 You can use SPIRE federation with custom certificate management using cert-manager or other certificate providers. This approach provides flexibility for organizations that require control over certificate issuance, support for internal certificate authorities (CAs), or integration with existing certificate management infrastructure.
 

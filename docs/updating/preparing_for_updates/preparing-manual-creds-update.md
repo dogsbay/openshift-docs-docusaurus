@@ -73,7 +73,7 @@ Amazon Web Services (AWS), global Microsoft Azure, and Google Cloud
 - [Extracting and preparing credentials request resources](/docs/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update)
 - [About the Cloud Credential Operator](/docs/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
 
-### Determining the Cloud Credential Operator mode by using the web console {#cco-determine-mode-gui_preparing-manual-creds-update}
+### Determine the Cloud Credential Operator mode by using the web console {#cco-determine-mode-gui_preparing-manual-creds-update}
 
 You can determine what mode the Cloud Credential Operator (CCO) is configured to use by using the web console.
 
@@ -138,7 +138,7 @@ Only Amazon Web Services (AWS), global Microsoft Azure, and Google Cloud cluster
 
 - [Extracting and preparing credentials request resources](/docs/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update)
 
-### Determining the Cloud Credential Operator mode by using the CLI {#cco-determine-mode-cli_preparing-manual-creds-update}
+### Determine the Cloud Credential Operator mode by using the CLI {#cco-determine-mode-cli_preparing-manual-creds-update}
 
 You can determine what mode the Cloud Credential Operator (CCO) is configured to use by using the CLI.
 

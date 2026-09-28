@@ -400,7 +400,7 @@ When a pod matches the selector for multiple `EgressIP` objects, there is no gua
 
 Additionally, if an `EgressIP` object specifies multiple egress IP addresses, there is no guarantee which of the egress IP addresses might be used. For example, if a pod matches a selector for an `EgressIP` object with two egress IP addresses, `10.10.20.1` and `10.10.20.2`, either might be used for each TCP connection or UDP conversation.
 
-## Assigning an egress IP address to a namespace {#nw-egress-ips-assign_configuring-egress-ips-ovn}
+## Assign an egress IP address to a namespace {#nw-egress-ips-assign_configuring-egress-ips-ovn}
 
 You can assign one or more egress IP addresses to a namespace or to specific pods in a namespace.
 
@@ -479,7 +479,7 @@ You can assign one or more egress IP addresses to a namespace or to specific pod
   # ...
   ```
 
-## Understanding EgressIP failover control {#egressip_failover_concept_configuring-egress-ips-ovn}
+## Understand EgressIP failover control {#egressip_failover_concept_configuring-egress-ips-ovn}
 
 The `reachabilityTotalTimeoutSeconds` parameter controls how quickly the system detects a failing `egressIP` node and initiates a failover. This parameter directly determines the maximum time the platform waits before declaring a node unreachable.
 
@@ -491,7 +491,7 @@ When you configure `egressIP` with multiple egress nodes, the complete failover 
 
 To ensure traffic uses the correct external path, `egressIP` traffic on a node will always egress through the network interface on which the `egressIP` address has been assigned.
 
-### Configuring the EgressIP failover time limit {#egressip_configure_failover_task_configuring-egress-ips-ovn}
+### Configure the EgressIP failover time limit {#egressip_configure_failover_task_configuring-egress-ips-ovn}
 
 You can configure the `reachabilityTotalTimeoutSeconds` parameter to control how quickly the system detects a failing `egressIP` node and initiates a failover.
 
@@ -569,7 +569,7 @@ The following table summarizes the acceptable values and their implications:
 </tbody>
 </table>
 
-## Labeling a node to host egress IP addresses {#nw-egress-ips-node_configuring-egress-ips-ovn}
+## Label a node to host egress IP addresses {#nw-egress-ips-node_configuring-egress-ips-ovn}
 
 You can apply the `k8s.ovn.org/egress-assignable=""` label to a node in your cluster so that OpenShift Container Platform can assign one or more egress IP addresses to the node.
 
@@ -605,7 +605,7 @@ You can apply the `k8s.ovn.org/egress-assignable=""` label to a node in your clu
 
   :::
 
-## Configuring dual-stack networking for an EgressIP object {#nw-egress-ips-object-dual-stack_configuring-egress-ips-ovn}
+## Configure dual-stack networking for an EgressIP object {#nw-egress-ips-object-dual-stack_configuring-egress-ips-ovn}
 
 For a cluster configured for dual-stack networking, you can apply dual-stack networking to a single `EgressIP` object. The `EgressIP` object can then extend dual-stack networking capabilities to a pod.
 

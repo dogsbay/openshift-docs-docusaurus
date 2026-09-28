@@ -1333,8 +1333,8 @@ module.exports = {
                 "networking/ingress_load_balancing/configuring_gateway_api/controlling-incoming-traffic-gateway-listeners",
                 "networking/ingress_load_balancing/configuring_gateway_api/assigning-network-addresses-gateways",
                 "networking/ingress_load_balancing/configuring_gateway_api/routing-http-requests-to-services",
-                "networking/ingress_load_balancing/configuring_gateway_api/securing-httproutes",
                 "networking/ingress_load_balancing/configuring_gateway_api/routing-grpc-requests-to-services",
+                "networking/ingress_load_balancing/configuring_gateway_api/securing-httproutes",
                 "networking/ingress_load_balancing/configuring_gateway_api/verifying-gateway-infrastructure-status"
               ]
             },
@@ -3458,18 +3458,14 @@ module.exports = {
           "type": "category",
           "label": "Creating virtual machines",
           "items": [
+            "virt/creating_vm/virt-creating-vms-web",
             "virt/creating_vm/virt-creating-vms-from-cli",
-            "virt/creating_vm/virt-creating-vms-from-web-images",
-            "virt/creating_vm/virt-creating-vms-uploading-images",
-            "virt/creating_vm/virt-creating-vms-from-container-disks",
-            "virt/creating_vm/virt-creating-vms-by-cloning-pvcs",
             "virt/creating_vm/virt-configuring-ibm-secure-execution-vms-ibm-z",
             "virt/creating_vm/virt-creating-vms-aws-li-windows",
             "virt/creating_vm/virt-creating-vms-from-instance-types",
             "virt/creating_vm/virt-creating-vms-from-templates",
             "virt/creating_vm/virt-creating-vms-from-rh-images-overview",
-            "virt/creating_vm/virt-import-dv-vms",
-            "virt/creating_vm/virt-cloning-vms"
+            "virt/creating_vm/virt-import-dv-vms"
           ]
         },
         {

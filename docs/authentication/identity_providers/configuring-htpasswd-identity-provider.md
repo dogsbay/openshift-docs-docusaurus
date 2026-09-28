@@ -36,14 +36,14 @@ Do not use `htpasswd` authentication in OpenShift Container Platform for product
 
 :::
 
-## Creating the htpasswd file {#identity-provider-creating-htpasswd-file_configuring-htpasswd-identity-provider}
+## Create the htpasswd file {#identity-provider-creating-htpasswd-file_configuring-htpasswd-identity-provider}
 
 To configure the `htpasswd` identity provider, create an `htpasswd` file so usernames and hashed passwords are available for the cluster secret. The following procedures describe how to create the file on Linux and Windows Operating Systems.
 
 - Creating an `htpasswd` file using Linux
 - Creating an `htpasswd` file using Windows
 
-### Creating an htpasswd file using Linux {#identity-provider-creating-htpasswd-file-linux_configuring-htpasswd-identity-provider}
+### Create an htpasswd file using Linux {#identity-provider-creating-htpasswd-file-linux_configuring-htpasswd-identity-provider}
 
 Create a flat `htpasswd` file on Red Hat Enterprise Linux (RHEL) with the `htpasswd` utility to store usernames and hashed passwords for your cluster. The file enables the `htpasswd` identity provider to authenticate users in OpenShift Container Platform from locally stored credentials.
 
@@ -74,7 +74,7 @@ Create a flat `htpasswd` file on Red Hat Enterprise Linux (RHEL) with the `htpa
    $ htpasswd -B -b </path/to/users.htpasswd> <user_name> <password>
    ```
 
-### Creating an htpasswd file using Windows {#identity-provider-creating-htpasswd-file-windows_configuring-htpasswd-identity-provider}
+### Create an htpasswd file using Windows {#identity-provider-creating-htpasswd-file-windows_configuring-htpasswd-identity-provider}
 
 Create a flat `htpasswd` file on Windows with the `htpasswd.exe` utility to store usernames and hashed passwords for your cluster. The file enables the `htpasswd` identity provider to authenticate users in OpenShift Container Platform from locally stored credentials.
 
@@ -105,7 +105,7 @@ Create a flat `htpasswd` file on Windows with the `htpasswd.exe` utility to stor
    $ htpasswd.exe -b <\path\to\users.htpasswd> <username> <password>
    ```
 
-## Creating the htpasswd secret {#identity-provider-creating-htpasswd-secret_configuring-htpasswd-identity-provider}
+## Create the htpasswd secret {#identity-provider-creating-htpasswd-secret_configuring-htpasswd-identity-provider}
 
 Create an OpenShift Container Platform secret from your `htpasswd` file so the `htpasswd` identity provider can read user credentials for cluster login.
 
@@ -173,7 +173,7 @@ where:
 
 - [Identity provider parameters](/docs/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
-## Adding an identity provider to your cluster {#add-identity-provider_configuring-htpasswd-identity-provider}
+## Add an identity provider to your cluster {#add-identity-provider_configuring-htpasswd-identity-provider}
 
 Apply the identity provider custom resource (CR) to your cluster after you define it. With this configuration, you can authenticate with the configured identity provider.
 
@@ -204,7 +204,7 @@ Apply the identity provider custom resource (CR) to your cluster after you defin
    $ oc whoami
    ```
 
-## Updating users for an htpasswd identity provider {#identity-provider-htpasswd-update-users_configuring-htpasswd-identity-provider}
+## Update users for an htpasswd identity provider {#identity-provider-htpasswd-update-users_configuring-htpasswd-identity-provider}
 
 Update users in the `htpasswd` identity provider so login credentials in OpenShift Container Platform stay in sync when you add or remove accounts.
 
@@ -279,7 +279,7 @@ Update users in the `htpasswd` identity provider so login credentials in OpenShi
       identity.user.openshift.io "my_htpasswd_provider:<username>" deleted
       ```
 
-## Configuring identity providers using the web console {#identity-provider-configuring-using-the-web-console_configuring-htpasswd-identity-provider}
+## Configure identity providers using the web console {#identity-provider-configuring-using-the-web-console_configuring-htpasswd-identity-provider}
 
 You can configure identity providers on your OpenShift Container Platform cluster through the web console by updating the **OAuth** settings in the **Cluster Settings**.
 

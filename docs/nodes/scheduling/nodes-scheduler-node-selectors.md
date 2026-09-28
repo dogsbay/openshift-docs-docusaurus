@@ -210,7 +210,7 @@ Project node selectors
   #...
   ```
 
-## Using node selectors to control pod placement {#nodes-scheduler-node-selectors-pod_nodes-scheduler-node-selectors}
+## Use node selectors to control pod placement {#nodes-scheduler-node-selectors-pod_nodes-scheduler-node-selectors}
 
 You can use node selectors on pods and labels on nodes to control where the pod is scheduled. With node selectors, OpenShift Container Platform schedules the pods on nodes that contain matching labels.
 
@@ -414,7 +414,7 @@ metadata:
 
      :::
 
-## Creating default cluster-wide node selectors {#nodes-scheduler-node-selectors-cluster_nodes-scheduler-node-selectors}
+## Create default cluster-wide node selectors {#nodes-scheduler-node-selectors-cluster_nodes-scheduler-node-selectors}
 
 You can use default cluster-wide node selectors on pods together with labels on nodes to constrain all pods created in a cluster to specific nodes.
 
@@ -582,7 +582,7 @@ The following procedure adds a default cluster-wide node selector.
         ci-ln-l8nry52-f76d1-hl7m7-worker-b-tgq49   Ready    worker   17m   v1.35.4
         ```
 
-## Creating project-wide node selectors {#nodes-scheduler-node-selectors-project_nodes-scheduler-node-selectors}
+## Create project-wide node selectors {#nodes-scheduler-node-selectors-project_nodes-scheduler-node-selectors}
 
 You can use node selectors in a project together with labels on nodes to constrain all pods created in that project to the labeled nodes.
 

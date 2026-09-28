@@ -9,7 +9,7 @@ sidebar_position: 3
 
 Service serving certificates provide automatic TLS encryption for service-to-service communication. Configure certificates for services, ConfigMaps, APIServices, CRDs, and webhooks to secure internal cluster traffic.
 
-## Understanding service serving certificates {#understanding-service-serving_service-serving-certificate}
+## Understand service serving certificates {#understanding-service-serving_service-serving-certificate}
 
 Service serving certificates are TLS web server certificates that OpenShift Container Platform issues for middleware applications that require encryption. The `service-ca` controller stores the certificate and key in a secret and automatically replaces them near expiration.
 

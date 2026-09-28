@@ -77,7 +77,7 @@ A successful response can optionally provide additional data, such as:
   {"sub":"014fbff9a07c", "preferred_username":"bob", ...}
   ```
 
-## Creating the secret {#identity-provider-creating-secret-tls_configuring-basic-authentication-identity-provider}
+## Create the secret {#identity-provider-creating-secret-tls_configuring-basic-authentication-identity-provider}
 
 You can create a TLS `Secret` object in the `openshift-config` namespace by using the `oc` CLI or by applying a YAML file to store client certificates and keys that identity providers require for secure communication.
 
@@ -100,7 +100,7 @@ You can create a TLS `Secret` object in the `openshift-config` namespace by usin
      tls.key: <base64_encoded_key>
    ```
 
-## Creating a ConfigMap {#identity-provider-creating-configmap_configuring-basic-authentication-identity-provider}
+## Create a ConfigMap {#identity-provider-creating-configmap_configuring-basic-authentication-identity-provider}
 
 Create a `ConfigMap` object in the `openshift-config` namespace that contains the certificate authority bundle for the identity provider. OpenShift Container Platform uses this bundle to validate Transport Layer Security (TLS) connections to the identity provider.
 
@@ -172,7 +172,7 @@ where:
 
 - [Identity provider parameters](/docs/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
-## Adding an identity provider to your cluster {#add-identity-provider_configuring-basic-authentication-identity-provider}
+## Add an identity provider to your cluster {#add-identity-provider_configuring-basic-authentication-identity-provider}
 
 Apply the identity provider custom resource (CR) to your cluster after you define it. With this configuration, you can authenticate with the configured identity provider.
 
@@ -267,7 +267,7 @@ These are the requirements for the files you create on an Apache HTTPD web serve
 - The `login.cgi` CGI script file runs only when the user successfully logs in according to the `Require` and `Auth` Apache configuration directives.
 - The `fail.cgi` CGI script file runs when the user fails to log in and returns an `HTTP 401` HTTP status code.
 
-## Troubleshooting basic authentication {#identity-provider-basic-authentication-troubleshooting_configuring-basic-authentication-identity-provider}
+## Troubleshoot basic authentication {#identity-provider-basic-authentication-troubleshooting_configuring-basic-authentication-identity-provider}
 
 Troubleshoot basic authentication by testing backend connectivity and verifying JSON login responses when users cannot authenticate in OpenShift Container Platform.
 

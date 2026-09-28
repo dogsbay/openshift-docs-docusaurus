@@ -1,23 +1,21 @@
 ---
-title: Creating virtual machines from Red Hat images
-sidebar_position: 10
+title: Managing boot sources
+sidebar_position: 7
 ---
 
-# Creating virtual machines from Red Hat images {#virt-creating-vms-from-rh-images-overview}
+# Managing boot sources {#virt-creating-vms-from-rh-images-overview}
 
 <a id="virt-creating-vms-from-rh-images-overview"></a>
 
-RHEL golden images are published as container disks in a secure registry. The Containerized Data Importer (CDI) polls imports golden images into your cluster and stores them in the `openshift-virtualization-os-images` project as snapshots or persistent volume claims (PVCs).
+You can manage the RHEL boot sources that OpenShift Virtualization uses to create virtual machines (VMs), including where they are stored and how they are automatically updated.
+
+RHEL golden images are published as container disks in a secure registry. The Containerized Data Importer (CDI) polls and imports golden images into your cluster and stores them in the `openshift-virtualization-os-images` project as snapshots or persistent volume claims (PVCs).
 
 RHEL images are automatically updated. You can disable and re-enable automatic updates for these images. For more information, see "Additional resources".
 
 Cluster administrators can enable automatic subscription for RHEL virtual machines in the OpenShift Container Platform web console.
 
-You can create virtual machines (VMs) from operating system images provided by Red Hat by using one of the following methods:
-
-- Create a VM from a template by using the web console.
-- Create a VM from an instance type by using the web console.
-- Create a VM from a `VirtualMachine` manifest by using the command line.
+For information about creating VMs from these boot sources, see "Additional resources".
 
 :::warning
 
@@ -102,6 +100,6 @@ You can configure a custom namespace for boot source images in your cluster by s
 **Additional resources**
 
 - [Managing Red Hat boot source updates](/docs/virt/storage/virt-automatic-bootsource-updates#virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates)
-- [Creating a VM from a template by using the web console](/docs/virt/creating_vm/virt-creating-vms-from-templates#virt-creating-vms-from-templates)
-- [Creating a VM from an instance type by using the web console](/docs/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
+- [Creating a VM from a template by using the web console](/docs/virt/creating_vm/virt-creating-vms-web#virt-creating-vm-from-template-web_virt-creating-vms-web)
+- [Creating a VM with custom configuration by using the web console](/docs/virt/creating_vm/virt-creating-vms-web#virt-creating-vm-custom-configuration-web_virt-creating-vms-web)
 - [Creating a VM from a `VirtualMachine` manifest by using the command line](/docs/virt/creating_vm/virt-creating-vms-from-cli#virt-creating-vms-from-cli)

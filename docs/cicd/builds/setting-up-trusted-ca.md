@@ -16,7 +16,7 @@ The procedure requires a cluster administrator to create a `ConfigMap` and add a
   - Each CA must be associated with a domain. The domain format is `hostname[..port]`.
 - The `ConfigMap` name must be set in the `image.config.openshift.io/cluster` cluster scoped configuration resource’s `spec.additionalTrustedCA` field.
 
-## Adding certificate authorities to the cluster {#configmap-adding-ca_setting-up-trusted-ca}
+## Add certificate authorities to the cluster {#configmap-adding-ca_setting-up-trusted-ca}
 
 You can add certificate authorities (CA) to the cluster for use when pushing and pulling images with the following procedure.
 

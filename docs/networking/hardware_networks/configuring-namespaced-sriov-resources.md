@@ -19,7 +19,7 @@ This approach offers several key advantages that enhance the user experience:
 - Enhanced Security: By allowing users to manage resources within their own namespaces, the feature improves security and provides better separation between applications. This also helps avoid the unintentional incorrect configuration of other applications' NetworkAttachmentDefinition objects.
 - Simplified Permissions: Managing `SriovNetwork` resources directly in their own namespaces simplifies user permissions. This streamlines the workflow and reduces the operational burden for developers.
 
-### Configuring SriovNetwork in application namespaces {#nw-configuring-sriov-in-app-namespace_configuring-namespaced-sriov-resources}
+### Configure SriovNetwork in application namespaces {#nw-configuring-sriov-in-app-namespace_configuring-namespaced-sriov-resources}
 
 When an SriovNetwork custom resource (CR) is deployed in an application namespace, do not define or populate the `spec.networkNamespace` field. In this scenario, the NetworkAttachmentDefinition will be created in the same namespace as the SriovNetwork CR.
 

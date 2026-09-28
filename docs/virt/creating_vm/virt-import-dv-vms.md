@@ -1,6 +1,6 @@
 ---
 title: Import a virtual machine image using the DataVolume API
-sidebar_position: 11
+sidebar_position: 8
 ---
 
 # Import a virtual machine image using the `DataVolume` API {#virt-import-dv-vms}

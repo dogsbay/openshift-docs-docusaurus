@@ -179,16 +179,16 @@ You can add DPU-equipped worker nodes to the management cluster by creating `Bar
      apiVersion: metal3.io/v1alpha1
      kind: BareMetalHost
      metadata:
-       name: $WORKER_NAME
+       name: ${WORKER_NAME}
        namespace: openshift-machine-api
      spec:
        online: true
-       bootMACAddress: $BOOT_MAC
+       bootMACAddress: ${BOOT_MAC}
        rootDeviceHints:
-         deviceName: $ROOT_DEVICE
+         deviceName: ${ROOT_DEVICE}
        bmc:
-         address: redfish-virtualmedia+https://$BMC_IP
-         credentialsName: $WORKER_NAME-bmc-secret
+         address: redfish-virtualmedia+https://${BMC_IP}
+         credentialsName: ${WORKER_NAME}-bmc-secret
          disableCertificateVerification: true
        customDeploy:
          method: install_coreos
@@ -201,16 +201,16 @@ You can add DPU-equipped worker nodes to the management cluster by creating `Bar
      apiVersion: metal3.io/v1alpha1
      kind: BareMetalHost
      metadata:
-       name: $WORKER_NAME
+       name: ${WORKER_NAME}
        namespace: openshift-machine-api
      spec:
        online: true
-       bootMACAddress: $BOOT_MAC
+       bootMACAddress: ${BOOT_MAC}
        rootDeviceHints:
-         deviceName: $ROOT_DEVICE
+         deviceName: ${ROOT_DEVICE}
        bmc:
-         address: redfish-virtualmedia+https://$BMC_IP
-         credentialsName: $WORKER_NAME-bmc-secret
+         address: redfish-virtualmedia+https://${BMC_IP}
+         credentialsName: ${WORKER_NAME}-bmc-secret
          disableCertificateVerification: true
        customDeploy:
          method: install_coreos
@@ -343,7 +343,7 @@ After the worker nodes join the management cluster, the `DPUSet` controller auto
    <dt><code>Rebooting</code></dt>
    <dd>The host and DPU are resetting.</dd>
    <dt><code>DPU Cluster Config</code></dt>
-   <dd>The DPU Kubernetes node join procedure is in progress. Manual CSR approval is required during this stage.</dd>
+   <dd>The DPU Kubernetes node join procedure is in progress. DPU CSRs are automatically approved by the DPF HCP Provisioner Operator.</dd>
    <dt><code>Host Network Configuration</code></dt>
    <dd>Networking configuration adjustments are applied on the host.</dd>
    <dt><code>Ready</code></dt>
@@ -354,7 +354,7 @@ After the worker nodes join the management cluster, the `DPUSet` controller auto
 
    :::warning
 
-   When the provisioning stage reaches `DPU Cluster Config`, proceed to "Configure authorization for the hosted cluster" and "Approve DPU node CSRs" to complete the DPU node join process.
+   When the provisioning stage reaches `DPU Cluster Config`, proceed to "Configure authorization for the hosted cluster" to complete the DPU node join process.
 
    :::
 2. Monitor detailed provisioning progress:
@@ -393,7 +393,7 @@ DPF services running on DPU nodes require privileged access to host networking a
    ```
 2. Switch to the hosted cluster context:
    ```terminal
-   $ export KUBECONFIG=$HOSTED_CLUSTER_NAME.kubeconfig
+   $ export KUBECONFIG="$(pwd)/$HOSTED_CLUSTER_NAME.kubeconfig"
    ```
 3. Create a file named `dpu-cluster-scc.yaml` with the following content:
    ```yaml
@@ -418,62 +418,6 @@ DPF services running on DPU nodes require privileged access to host networking a
    $ oc apply -f dpu-cluster-scc.yaml
    ```
 
-## Approve hosted cluster CSRs for DPU provisioning {#nw-dpf-approving-dpu-csrs_dpf-worker-nodes-provisioning}
-
-You must approve the pending certificate signing requests (CSRs) for DPU nodes on the hosted cluster so that the DPU nodes can join the hosted cluster and complete provisioning.
-
-:::note
-
-When you use the DPF HCP Provisioner Operator, DPU CSR approval is handled automatically. Manual approval is provided as a fallback if automatic approval is not functioning.
-
-:::
-
-**Prerequisites**
-
-- You have access to the hosted cluster as a user with the `cluster-admin` role.
-- You have installed the `oc` CLI.
-- You have set the `KUBECONFIG` environment variable to the hosted cluster kubeconfig file.
-- DPU provisioning has reached the `DPU Cluster Config` stage.
-
-**Procedure**
-
-1. Watch for pending CSRs from the DPU nodes:
-   ```terminal
-   $ oc get csr -w
-   ```
-
-   The DPU node name typically follows the pattern `<host_worker_node_name>-<dpu_serial_number>`.
-2. Approve all pending CSRs:
-   ```terminal
-   $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{"\n"}}{{end}}{{end}}' | xargs oc adm certificate approve
-   ```
-
-   ```terminal title="Example output"
-   certificatesigningrequest.certificates.k8s.io/csr-6jx22 approved
-   certificatesigningrequest.certificates.k8s.io/csr-tb6nd approved
-   ```
-
-   Repeat this step until no pending CSRs remain.
-
-**Verification**
-
-- Verify that the DPU nodes joined the hosted cluster and are in a `Ready` state:
-  ```terminal
-  $ oc get nodes
-  ```
-
-  ```terminal title="Example output"
-  NAME                          STATUS   ROLES    AGE     VERSION
-  host-worker1-mt0000000001    Ready    worker   2m48s   v1.35.6
-  host-worker2-mt0000000002    Ready    worker   2m45s   v1.35.6
-  ```
-
-  :::note
-
-  After the DPU nodes join the hosted cluster, the DPU provisioning process continues to the remaining stages.
-
-  :::
-
 ## Verify full system readiness {#nw-dpf-verifying-system-readiness_dpf-worker-nodes-provisioning}
 
 After the DPU provisioning process completes, you can verify that all worker nodes, SR-IOV virtual functions, and DPU services are operational on the management cluster.
@@ -492,7 +436,7 @@ After the DPU provisioning process completes, you can verify that all worker nod
    ```
 2. Verify that all worker nodes are in a `Ready` state:
    ```terminal
-   $ oc get node
+   $ oc get nodes
    ```
 
    ```terminal title="Example output"

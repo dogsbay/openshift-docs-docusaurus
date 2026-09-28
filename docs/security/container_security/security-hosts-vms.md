@@ -9,7 +9,7 @@ sidebar_position: 2
 
 Containers and virtual machines provide ways of separating applications running on a host from the operating system itself. You should understand RHCOS, which is the operating system used by OpenShift Container Platform, to see how the host systems protect containers and hosts from each other.
 
-## Securing containers on Red Hat Enterprise Linux CoreOS (RHCOS) {#security-hosts-vms-rhcos_security-hosts-vms}
+## Secure containers on Red Hat Enterprise Linux CoreOS (RHCOS) {#security-hosts-vms-rhcos_security-hosts-vms}
 
 You should understand the security enhancements you can make to the containers in your OpenShift Container Platform clusters.
 
@@ -56,7 +56,7 @@ To further protect RHCOS systems in OpenShift Container Platform clusters, most 
 - [Red Hat OpenShift security guide](https://www.redhat.com/en/resources/openshift-security-guide-ebook)
 - [FIPS cryptography](/docs/installing/overview/installing-fips#installing-fips)
 
-## Comparing virtualization and containers {#security-hosts-vms-vs-containers_security-hosts-vms}
+## Compare virtualization and containers {#security-hosts-vms-vs-containers_security-hosts-vms}
 
 You should understand the differences between containers and VMs to learn the advantages and drawbacks that influence the use cases in which these technologies are typically applied.
 
@@ -72,7 +72,7 @@ Container separation on a single host, however, provides a more lightweight, fle
 
 - [Linux Containers Compared to KVM Virtualization](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html/overview_of_containers_in_red_hat_systems/introduction_to_linux_containers#linux_containers_compared_to_kvm_virtualization)
 
-## Securing OpenShift Container Platform {#security-hosts-vms-openshift_security-hosts-vms}
+## Secure OpenShift Container Platform {#security-hosts-vms-openshift_security-hosts-vms}
 
 To make your OpenShift Container Platform cluster more secure, you should understand the security enhancements you can make to your cluster.
 

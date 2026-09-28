@@ -1,9 +1,9 @@
 ---
-title: Understand Gateway API
+title: Understanding Gateway API
 sidebar_position: 1
 ---
 
-# Understand Gateway API {#understand-gateway-api_{context}}
+# Understanding Gateway API {#understand-gateway-api_{context}}
 
 <a id="understand-gateway-api_{context}"></a>
 

@@ -15,7 +15,7 @@ Usage of External DNS Operator on an STS-enabled cluster that runs in AWS Govern
 
 :::
 
-## Creating DNS records on a public hosted zone for AWS by using Red Hat External DNS Operator {#nw-control-dns-records-public-hosted-zone-aws_creating-dns-records-on-aws}
+## Create DNS records on a public hosted zone for AWS by using Red Hat External DNS Operator {#nw-control-dns-records-public-hosted-zone-aws_creating-dns-records-on-aws}
 
 You can create DNS records on a public hosted zone for AWS by using the Red Hat External DNS Operator. You can use the same instructions to create DNS records on a hosted zone for AWS GovCloud.
 
@@ -96,7 +96,7 @@ You can create DNS records on a public hosted zone for AWS by using the Red Hat 
    $ aws route53 list-resource-record-sets --hosted-zone-id Z02355203TNN1XXXX1J6O --query "ResourceRecordSets[?Type == 'CNAME']" | grep console
    ```
 
-## Creating DNS records in a different AWS account by using a shared VPC {#nw-control-dns-records-public-aws-with-VPC_creating-dns-records-on-aws}
+## Create DNS records in a different AWS account by using a shared VPC {#nw-control-dns-records-public-aws-with-VPC_creating-dns-records-on-aws}
 
 You can use the ExternalDNS Operator to create DNS records in a different AWS account using a shared Virtual Private Cloud (VPC).
 

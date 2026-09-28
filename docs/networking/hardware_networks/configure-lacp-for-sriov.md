@@ -19,7 +19,7 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 :::
 
-## Installing the PF Status Relay Operator using the CLI {#installing-pfsr-cli_sriov-lacp-sriov}
+## Install the PF Status Relay Operator using the CLI {#installing-pfsr-cli_sriov-lacp-sriov}
 
 Install the PF Status Relay Operator to enable OpenShift Container Platform to use Link Aggregation Control Protocol (LACP) as an active health check on physical functions.
 
@@ -101,7 +101,7 @@ Install the PF Status Relay Operator to enable OpenShift Container Platform to u
 
 - Verify that the PF Status Relay Operator shows the **Status** as **Succeeded** on the Installed Operators dashboard.
 
-## Configuring the PF Status Relay Operator for LACP state monitoring on SR-IOV networks {#configuring-lacp-sriov_sriov-lacp-sriov}
+## Configure the PF Status Relay Operator for LACP state monitoring on SR-IOV networks {#configuring-lacp-sriov_sriov-lacp-sriov}
 
 Use the PF Status Relay Operator to enable Link Aggregation Control Protocol (LACP) state monitoring for workloads by using pod-level bonding with SR-IOV networks. The Operator monitors the LACP state on physical functions (PF) and changes the link state for attached virtual functions (VF) when it detects an upstream failure. With this approach, you can detect failures on VFs attached to a PF to ensure a timely failover to a backup network path, ensuring high availability for your workloads.
 

@@ -9,7 +9,7 @@ sidebar_position: 6
 
 As a cluster administrator, you can change the IP address ranges that the OVN-Kubernetes network plugin uses for the join and transit subnets.
 
-## Configuring the OVN-Kubernetes join subnet {#nw-ovn-kubernetes-change-join-subnet_configure-ovn-kubernetes-subnets}
+## Configure the OVN-Kubernetes join subnet {#nw-ovn-kubernetes-change-join-subnet_configure-ovn-kubernetes-subnets}
 
 You can change the join subnet used by OVN-Kubernetes to avoid conflicting with any existing subnets already in use in your environment.
 
@@ -61,7 +61,7 @@ You can change the join subnet used by OVN-Kubernetes to avoid conflicting with 
   }
   ```
 
-## Configuring the OVN-Kubernetes masquerade subnet as a post-installation operation {#nw-ovn-k-day-2-masq-subnet_configure-ovn-kubernetes-subnets}
+## Configure the OVN-Kubernetes masquerade subnet as a post-installation operation {#nw-ovn-k-day-2-masq-subnet_configure-ovn-kubernetes-subnets}
 
 You can change the masquerade subnet used by OVN-Kubernetes as a post-installation operation to avoid conflicts with any existing subnets that are already in use in your environment.
 
@@ -95,7 +95,7 @@ You can change the masquerade subnet used by OVN-Kubernetes as a post-installati
 
     `ipv4_masquerade_subnet`:Specifies[] an IP address to be used as the IPv4 masquerade subnet. This range cannot overlap with any other subnets used by OpenShift Container Platform or on the host itself. In versions of OpenShift Container Platform earlier than 4.17, the default value for IPv4 was `169.254.169.0/29`, and clusters that were upgraded to version 4.17 maintain this value. For new clusters starting from version 4.17, the default value is `169.254.0.0/17`.
 
-## Configuring the OVN-Kubernetes transit subnet {#nw-ovn-kubernetes-change-transit-subnet_configure-ovn-kubernetes-subnets}
+## Configure the OVN-Kubernetes transit subnet {#nw-ovn-kubernetes-change-transit-subnet_configure-ovn-kubernetes-subnets}
 
 You can change the transit subnet used by OVN-Kubernetes to avoid conflicting with any existing subnets already in use in your environment.
 

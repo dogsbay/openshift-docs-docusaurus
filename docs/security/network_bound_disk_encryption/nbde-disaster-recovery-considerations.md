@@ -17,7 +17,7 @@ However, in the event of theft, a precautionary rotation of the Tang server’s 
 
 To recover from this situation, either reinstall or replace the node.
 
-## Planning for a loss of client network connectivity {#nbde-loss-of-client-connectivity_nbde-implementation}
+## Plan for a loss of client network connectivity {#nbde-loss-of-client-connectivity_nbde-implementation}
 
 The loss of network connectivity to an individual node will cause it to become unable to boot in an unattended fashion.
 
@@ -42,7 +42,7 @@ If the network disruption is unexpected and a node reboots, consider the followi
 - The node will remain offline until such time that either network connectivity is restored, or a pre-established passphrase is entered manually at the console. In exceptional circumstances, network administrators might be able to reconfigure network segments to reestablish access, but this is counter to the intent of NBDE, which is that lack of network access means lack of ability to boot.
 - The lack of network access at the node can reasonably be expected to impact that node’s ability to function as well as its ability to boot. Even if the node were to boot via manual intervention, the lack of network access would make it effectively useless.
 
-## Recovering network connectivity manually {#nbde-recovering-network-connectivity-manually_nbde-implementation}
+## Recover network connectivity manually {#nbde-recovering-network-connectivity-manually_nbde-implementation}
 
 A somewhat complex and manually intensive process is also available to the onsite technician for network recovery.
 
@@ -85,7 +85,7 @@ The temporary failure of all Tang servers associated with the same URL, that is,
 
 You can mitigate the physical loss of a Tang server by either reinstalling the server or restoring the server from backups. Ensure that the backup and restore processes of the key material is adequately protected from unauthorized access.
 
-## Rekeying compromised key material {#nbde-compromise-of-key-material_nbde-implementation}
+## Rekey compromised key material {#nbde-compromise-of-key-material_nbde-implementation}
 
 If key material is potentially exposed to unauthorized third parties, such as through the physical theft of a Tang server or associated data, immediately rotate the keys.
 

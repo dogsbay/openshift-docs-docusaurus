@@ -25,7 +25,7 @@ If you are installing a Custom Metrics Autoscaler Operator version lower than 2.
 
 :::
 
-## Installing the custom metrics autoscaler {#nodes-cma-autoscaling-custom-install_nodes-cma-autoscaling-custom-install}
+## Install the custom metrics autoscaler {#nodes-cma-autoscaling-custom-install_nodes-cma-autoscaling-custom-install}
 
 You can use the following procedure to install the Custom Metrics Autoscaler Operator.
 
@@ -76,7 +76,7 @@ You can use the following procedure to install the Custom Metrics Autoscaler Ope
    replicaset.apps/custom-metrics-autoscaler-operator-5fd8d9ffd8   1         1         1       18m
    ```
 
-## Editing the Keda Controller CR {#nodes-cma-autoscaling-keda-controller-edit_nodes-cma-autoscaling-custom-install}
+## Edit the Keda Controller CR {#nodes-cma-autoscaling-keda-controller-edit_nodes-cma-autoscaling-custom-install}
 
 You can use the following procedure to modify the `KedaController` custom resource (CR), which is automatically installed during the installation of the Custom Metrics Autoscaler Operator.
 

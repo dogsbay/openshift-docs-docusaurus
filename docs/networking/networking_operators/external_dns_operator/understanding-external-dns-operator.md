@@ -31,7 +31,7 @@ time="2022-09-02T08:53:57Z" level=error msg="Failure in zone test.example.io. [I
 time="2022-09-02T08:53:57Z" level=error msg="InvalidChangeBatch: [FATAL problem: DomainLabelTooLong (Domain label is too long) encountered with 'external-dns-a-hello-openshift-aaaaaaaaaa-bbbbbbbbbb-ccccccc']\n\tstatus code: 400, request id: e54dfd5a-06c6-47b0-bcb9-a4f7c3a4e0c6"
 ```
 
-## Deploying the External DNS Operator {#nw-external-dns-operator_external-dns-operator}
+## Deploy the External DNS Operator {#nw-external-dns-operator_external-dns-operator}
 
 The External DNS Operator implements the External DNS API from the `olm.openshift.io` API group. The External DNS Operator updates services, routes, and external DNS providers.
 
@@ -59,7 +59,7 @@ The External DNS Operator implements the External DNS API from the `olm.openshif
    external-dns-operator   1/1       1            1           23h
    ```
 
-## Viewing External DNS Operator logs {#nw-external-dns-operator-logs_external-dns-operator}
+## View External DNS Operator logs {#nw-external-dns-operator-logs_external-dns-operator}
 
 To troubleshoot DNS configuration issues, view the External DNS Operator logs. Use the `oc logs` command to retrieve diagnostic information directly from the Operator pod.
 

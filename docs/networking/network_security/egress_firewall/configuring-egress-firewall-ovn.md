@@ -277,7 +277,7 @@ spec:
       type: Allow
 ```
 
-## Creating an EgressFirewall custom resource (CR) {#nw-egress-firewall-policy-create_configuring-egress-firewall-ovn}
+## Create an EgressFirewall custom resource (CR) {#nw-egress-firewall-policy-create_configuring-egress-firewall-ovn}
 
 As a cluster administrator, you can create an egress firewall policy object for a project.
 

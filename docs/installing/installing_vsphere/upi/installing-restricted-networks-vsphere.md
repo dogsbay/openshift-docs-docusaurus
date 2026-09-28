@@ -512,7 +512,7 @@ The installation program converts the installation configuration into Kubernetes
    └── worker.ign
    ```
 
-## Configuring chrony time service {#installation-special-config-chrony_installing-restricted-networks-vsphere}
+## Configure chrony time service {#installation-special-config-chrony_installing-restricted-networks-vsphere}
 
 You must set the time server and related settings used by the chrony time service (`chronyd`) by modifying the contents of the `chrony.conf` file and passing those contents to your nodes as a machine config.
 

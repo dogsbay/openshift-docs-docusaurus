@@ -9,7 +9,7 @@ sidebar_position: 9
 
 To propagate proxy settings to your deployed Operators, configure the cluster-wide proxy. The Operator Lifecycle Manager (OLM) automatically updates these Operators with the new `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables.
 
-## Trusting the certificate authority of the cluster-wide proxy {#nw-configuring-cluster-wide-proxy_external-dns-operator-cluster-wide-proxy}
+## Trust the certificate authority of the cluster-wide proxy {#nw-configuring-cluster-wide-proxy_external-dns-operator-cluster-wide-proxy}
 
 You can configure the External DNS Operator to trust the certificate authority of the cluster-wide proxy.
 

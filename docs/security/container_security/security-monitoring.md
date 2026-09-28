@@ -9,7 +9,7 @@ sidebar_position: 13
 
 Monitoring and auditing an OpenShift Container Platform cluster is an important part of safeguarding the cluster and its users against inappropriate usage. There are two main sources of cluster-level information that are useful for this purpose: events and logging.
 
-## Watching cluster events {#security-monitoring-events_security-monitoring}
+## Watch cluster events {#security-monitoring-events_security-monitoring}
 
 Cluster administrators are encouraged to familiarize themselves with the `Event` resource type and review the list of system events to determine which events are of interest.
 

@@ -9,7 +9,7 @@ sidebar_position: 2
 
 To secure application traffic, you can configure routes to serve custom certificates to clients by using edge, passthrough, or re-encrypt TLS termination, aand manage externally provided certificates. Additionally, you can enforce strict security protocols by securing a route with HTTP strict transport security (HSTS).
 
-## Creating an edge route with a custom certificate {#nw-ingress-creating-an-edge-route-with-a-custom-certificate_securing-routes}
+## Create an edge route with a custom certificate {#nw-ingress-creating-an-edge-route-with-a-custom-certificate_securing-routes}
 
 To secure traffic by using a custom certificate, configure a route with edge TLS termination by running the `oc create route` command. This configuration terminates encryption at the Ingress Controller before forwarding traffic to the destination pod.
 
@@ -71,7 +71,7 @@ $ openssl rsa -in password_protected_tls.key -out tls.key
 
   See `oc create route edge --help` for more options.
 
-## Creating a re-encrypt route with a custom certificate {#nw-ingress-creating-a-reencrypt-route-with-a-custom-certificate_securing-routes}
+## Create a re-encrypt route with a custom certificate {#nw-ingress-creating-a-reencrypt-route-with-a-custom-certificate_securing-routes}
 
 To secure traffic by using a custom certificate, configure a route with re-encrypt TLS termination by running the `oc create route` command. This configuration enables the Ingress Controller to decrypt traffic, and then re-encrypt traffic before forwarding the traffic to the destination pod.
 
@@ -136,7 +136,7 @@ $ openssl rsa -in password_protected_tls.key -out tls.key
 
   See `oc create route reencrypt --help` for more options.
 
-## Creating a passthrough route {#nw-ingress-creating-a-passthrough-route_securing-routes}
+## Create a passthrough route {#nw-ingress-creating-a-passthrough-route_securing-routes}
 
 To send encrypted traffic directly to the destination without decryption at the router, configure a route with passthrough termination by running the `oc create route` command. This configuration requires no key or certificate on the route, as the destination pod handles TLS termination.
 
@@ -181,7 +181,7 @@ To send encrypted traffic directly to the destination without decryption at the 
   <dd>Specifies the type of edge termination policy. Optional parameter. The only valid values are <code>None</code>, <code>Redirect</code>, or empty for disabled. The destination pod is responsible for serving certificates for the traffic at the endpoint. This is currently the only method that can support requiring client certificates, also known as two-way authentication.</dd>
   </dl>
 
-## Creating a route with externally managed certificates {#nw-ingress-route-secret-load-external-cert_securing-routes}
+## Create a route with externally managed certificates {#nw-ingress-route-secret-load-external-cert_securing-routes}
 
 You can configure OpenShift Container Platform routes with third-party certificate management solutions by using the `.spec.tls.externalCertificate` field of the route API. You can reference externally managed TLS certificates via secrets, eliminating the need for manual certificate management.
 
@@ -389,7 +389,7 @@ To allow unencrypted connections or troubleshoot access issues, disable HTTP Str
   Name: routename HSTS: max-age=0
   ```
 
-### Enforcing HTTP Strict Transport Security per-domain {#nw-enforcing-hsts-per-domain_securing-routes}
+### Enforce HTTP Strict Transport Security per-domain {#nw-enforcing-hsts-per-domain_securing-routes}
 
 To enforce HTTP Strict Transport Security (HSTS) per-domain for secure routes, add a `requiredHSTSPolicies` record to the Ingress spec to capture the configuration of the HSTS policy.
 
@@ -432,18 +432,18 @@ HSTS cannot be applied to insecure, or non-TLS routes, even if HSTS is requested
      name: cluster
    spec:
      domain: 'hello-openshift-default.apps.username.devcluster.openshift.com'
-     requiredHSTSPolicies: (1)
-     - domainPatterns: (2)
+     requiredHSTSPolicies:
+     - domainPatterns:
        - '*hello-openshift-default.apps.username.devcluster.openshift.com'
        - '*hello-openshift-default2.apps.username.devcluster.openshift.com'
-       namespaceSelector: (3)
+       namespaceSelector:
          matchLabels:
            myPolicy: strict
-       maxAge: (4)
+       maxAge:
          smallestMaxAge: 1
          largestMaxAge: 31536000
-       preloadPolicy: RequirePreload (5)
-       includeSubDomainsPolicy: RequireIncludeSubDomains (6)
+       preloadPolicy: RequirePreload
+       includeSubDomainsPolicy: RequireIncludeSubDomains
      - domainPatterns:
        - 'abc.example.com'
        - '*xyz.example.com'
@@ -454,20 +454,42 @@ HSTS cannot be applied to insecure, or non-TLS routes, even if HSTS is requested
        includeSubDomainsPolicy: RequireNoIncludeSubDomains
    ```
 
-   1. Required. `requiredHSTSPolicies` are validated in order, and the first matching `domainPatterns` applies.
-   2. Required. You must specify at least one `domainPatterns` hostname. Any number of domains can be listed. You can include multiple sections of enforcing options for different `domainPatterns`.
-   3. Optional. If you include `namespaceSelector`, it must match the labels of the project where the routes reside, to enforce the set HSTS policy on the routes. Routes that only match the `namespaceSelector` and not the `domainPatterns` are not validated.
-   4. Required. `max-age` measures the length of time, in seconds, that the HSTS policy is in effect. This policy setting allows for a smallest and largest `max-age` to be enforced.
-      - The `largestMaxAge` value must be between `0` and `2147483647`. It can be left unspecified, which means no upper limit is enforced.
-      - The `smallestMaxAge` value must be between `0` and `2147483647`. Enter `0` to disable HSTS for troubleshooting, otherwise enter `1` if you never want HSTS to be disabled. It can be left unspecified, which means no lower limit is enforced.
-   5. Optional. Including `preload` in `haproxy.router.openshift.io/hsts_header` allows external services to include this site in their HSTS preload lists. Browsers can then use these lists to determine which sites they can communicate with over HTTPS, before they have interacted with the site. Without `preload` set, browsers need to interact at least once with the site to get the header. `preload` can be set with one of the following:
-      - `RequirePreload`: `preload` is required by the `RequiredHSTSPolicy`.
-      - `RequireNoPreload`: `preload` is forbidden by the `RequiredHSTSPolicy`.
-      - `NoOpinion`: `preload` does not matter to the `RequiredHSTSPolicy`.
-   6. Optional. `includeSubDomainsPolicy` can be set with one of the following:
-      - `RequireIncludeSubDomains`: `includeSubDomains` is required by the `RequiredHSTSPolicy`.
-      - `RequireNoIncludeSubDomains`: `includeSubDomains` is forbidden by the `RequiredHSTSPolicy`.
-      - `NoOpinion`: `includeSubDomains` does not matter to the `RequiredHSTSPolicy`.
+   where:
+
+   **`spec.requiredHSTSPolicies`**
+
+   Required. `spec.requiredHSTSPolicies` entries are validated in order, and the first matching `spec.requiredHSTSPolicies.domainPatterns` applies.
+
+   **`spec.requiredHSTSPolicies.domainPatterns`**
+
+   Required. You must specify at least one `spec.requiredHSTSPolicies.domainPatterns` hostname. Any number of domains can be listed. You can include multiple sections of enforcing options for different `spec.requiredHSTSPolicies.domainPatterns`.
+
+   **`spec.requiredHSTSPolicies.namespaceSelector`**
+
+   Optional. If you include `spec.requiredHSTSPolicies.namespaceSelector`, it must match the labels of the project where the routes reside, to enforce the set HSTS policy on the routes. Routes that only match the `spec.requiredHSTSPolicies.namespaceSelector` and not the `spec.requiredHSTSPolicies.domainPatterns` are not validated.
+
+   **`spec.requiredHSTSPolicies.maxAge`**
+
+   Required. `max-age` measures the length of time, in seconds, that the HSTS policy is in effect. This policy setting allows for a smallest and largest `max-age` to be enforced.
+
+   - The `spec.requiredHSTSPolicies.maxAge.largestMaxAge` value must be between `0` and `2147483647`. It can be left unspecified, which means no upper limit is enforced.
+   - The `spec.requiredHSTSPolicies.maxAge.smallestMaxAge` value must be between `0` and `2147483647`. Enter `0` to disable HSTS for troubleshooting, otherwise enter `1` if you never want HSTS to be disabled. It can be left unspecified, which means no lower limit is enforced.
+
+   **`spec.requiredHSTSPolicies.preloadPolicy`**
+
+   Optional. Including `preload` in `haproxy.router.openshift.io/hsts_header` allows external services to include this site in their HSTS preload lists. Browsers can then use these lists to determine which sites they can communicate with over HTTPS, before they have interacted with the site. Without `preload` set, browsers need to interact at least once with the site to get the header. `preload` can be set with one of the following:
+
+   - `RequirePreload`: `preload` is required by the `RequiredHSTSPolicy`.
+   - `RequireNoPreload`: `preload` is forbidden by the `RequiredHSTSPolicy`.
+   - `NoOpinion`: `preload` does not matter to the `RequiredHSTSPolicy`.
+
+   **`spec.requiredHSTSPolicies.includeSubDomainsPolicy`**
+
+   Optional. `spec.requiredHSTSPolicies.includeSubDomainsPolicy` can be set with one of the following:
+
+   - `RequireIncludeSubDomains`: `includeSubDomains` is required by the `RequiredHSTSPolicy`.
+   - `RequireNoIncludeSubDomains`: `includeSubDomains` is forbidden by the `RequiredHSTSPolicy`.
+   - `NoOpinion`: `includeSubDomains` does not matter to the `RequiredHSTSPolicy`.
 2. You can apply HSTS to all routes in the cluster or in a particular namespace by entering the `oc annotate command`.
    - To apply HSTS to all routes in the cluster, enter the `oc annotate command`. For example:
      ```terminal

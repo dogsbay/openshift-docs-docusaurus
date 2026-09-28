@@ -143,7 +143,7 @@ where:
 `spec.containers.resources.memory.cpu`
 : Specifies that the CPU request is now `250m` because the `cpuRequestToLimit` is set to `25` in the `ClusterResourceOverride` object. As such, 25% of the 1 CPU core is 250m.
 
-### Installing the Cluster Resource Override Operator using the web console {#nodes-cluster-resource-override-deploy-console_nodes-cluster-overcommit}
+### Install the Cluster Resource Override Operator using the web console {#nodes-cluster-resource-override-deploy-console_nodes-cluster-overcommit}
 
 You can use the OpenShift Container Platform web console to install the Cluster Resource Override Operator to help you control overcommit in your cluster.
 
@@ -237,7 +237,7 @@ By default, the installation process creates a Cluster Resource Override Operato
       <dd>Specifies the <code>ClusterResourceOverride</code> admission webhook.</dd>
       </dl>
 
-### Installing the Cluster Resource Override Operator using the CLI {#nodes-cluster-resource-override-deploy-cli_nodes-cluster-overcommit}
+### Install the Cluster Resource Override Operator using the CLI {#nodes-cluster-resource-override-deploy-cli_nodes-cluster-overcommit}
 
 You can use the OpenShift CLI to install the Cluster Resource Override Operator to help you control overcommit in your cluster.
 
@@ -401,7 +401,7 @@ By default, the installation process creates a Cluster Resource Override Operato
    <dd>Specifies the <code>ClusterResourceOverride</code> admission webhook.</dd>
    </dl>
 
-### Configuring cluster-level overcommit {#nodes-cluster-resource-configure_nodes-cluster-overcommit}
+### Configure cluster-level overcommit {#nodes-cluster-resource-configure_nodes-cluster-overcommit}
 
 You can use the OpenShift CLI to configure the Cluster Resource Override Operator to help control overcommit in your cluster.
 
@@ -461,7 +461,7 @@ By default, the installation process creates two Cluster Resource Override pods 
    <dd>Specifies that you want to use the Cluster Resource Override Operator with this project.</dd>
    </dl>
 
-### Moving the Cluster Resource Override Operator pods {#nodes-cluster-resource-override-move-infra_nodes-cluster-overcommit}
+### Move the Cluster Resource Override Operator pods {#nodes-cluster-resource-override-move-infra_nodes-cluster-overcommit}
 
 By default, the Cluster Resource Override Operator installation process creates an Operator pod and two Cluster Resource Override pods on nodes in the `clusterresourceoverride-operator` namespace. You can move these pods to other nodes, such as infrastructure nodes, as needed.
 
@@ -742,7 +742,7 @@ You can also perform the following configurations for each node:
 - Reserve resources for system processes
 - Reserve memory across quality of service tiers
 
-### Disabling or enforcing CPU limits using CPU CFS quotas {#nodes-cluster-overcommit-node-enforcing_nodes-cluster-overcommit}
+### Disable or enforce CPU limits using CPU CFS quotas {#nodes-cluster-overcommit-node-enforcing_nodes-cluster-overcommit}
 
 You can disable the default enforcement of CPU limits for nodes in a machine config pool.
 
@@ -803,7 +803,7 @@ It is recommended that you reserve resources for incompressible resources such a
 
 For more details, see "Allocating Resources for Nodes".
 
-### Disabling overcommitment for a node {#nodes-cluster-overcommit-node-disable_nodes-cluster-overcommit}
+### Disable overcommitment for a node {#nodes-cluster-overcommit-node-disable_nodes-cluster-overcommit}
 
 When overcommitment is enabled on a node, you can disable overcommitment on that node. Disabling overcommit can help ensure predictability, stability, and high performance in your cluster.
 
@@ -822,7 +822,7 @@ For information on project-level resource limits, see the *Additional resources*
 
 Alternatively, you can disable overcommitment for specific projects.
 
-### Disabling overcommitment for a project {#nodes-cluster-overcommit-project-disable_nodes-cluster-overcommit}
+### Disable overcommitment for a project {#nodes-cluster-overcommit-project-disable_nodes-cluster-overcommit}
 
 If overcommitment is enabled on a project, you can disable overcommitment for that projects. This allows infrastructure components to be configured independently of overcommitment.
 

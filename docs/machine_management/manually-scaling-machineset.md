@@ -33,7 +33,7 @@ $ oc get infrastructure cluster -o jsonpath='{.status.platform}'
 
 :::
 
-## Scaling a compute machine set manually {#machineset-manually-scaling_manually-scaling-machineset}
+## Scale a compute machine set manually {#machineset-manually-scaling_manually-scaling-machineset}
 
 To add or remove an instance of a machine in a compute machine set, you can manually scale the compute machine set.
 

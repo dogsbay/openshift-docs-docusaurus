@@ -43,7 +43,7 @@ On Google Cloud, a single load balancer is created to manage both internal and e
 
 On Microsoft Azure, both public and private load balancers are created. However, because of limitations in current implementation, you just retain both load balancers in a private cluster.
 
-## Configuring DNS records to be published in a private zone {#private-clusters-setting-dns-private_configuring-private-cluster}
+## Configure DNS records to be published in a private zone {#private-clusters-setting-dns-private_configuring-private-cluster}
 
 You can remove the public zone from the cluster DNS configuration so that new DNS records are published only to the private zone and remain available to internal clients.
 
@@ -127,7 +127,7 @@ Alternatively, even in a private cluster, you might keep the public zone for DNS
   status: {}
   ```
 
-## Setting the Ingress Controller to private {#private-clusters-setting-ingress-private_configuring-private-cluster}
+## Set the Ingress Controller to private {#private-clusters-setting-ingress-private_configuring-private-cluster}
 
 You can configure the default Ingress Controller to use an internal endpoint so that application routes are published only in the private DNS zone.
 
@@ -158,7 +158,7 @@ After you deploy a cluster, you can modify its Ingress Controller to use only a 
 
    The public DNS entry is removed, and the private zone entry is updated.
 
-## Restricting the API server to private for an Amazon Web Services cluster {#private-clusters-setting-api-private-aws_configuring-private-cluster}
+## Restrict the API server to private for an Amazon Web Services cluster {#private-clusters-setting-api-private-aws_configuring-private-cluster}
 
 If the security posture of your organization does not allow clusters to use an open API endpoint, you can restrict the API server to use only internal load balancers. To implement this API server restriction, use the Amazon Web Services (AWS) console and OpenShift CLI (`oc`) to delete the external load balancer components.
 
@@ -273,7 +273,7 @@ $ oc get infrastructure cluster -o jsonpath='{.status.platform}'
 
 - [Updating the control plane configuration](/docs/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
 
-## Restricting the API server to private for an Microsoft Azure cluster {#private-clusters-setting-api-private-azure_configuring-private-cluster}
+## Restrict the API server to private for an Microsoft Azure cluster {#private-clusters-setting-api-private-azure_configuring-private-cluster}
 
 If the security posture of your organization does not allow clusters to use an open API endpoint, you can restrict the API server to use only internal load balancers. To implement this API server restriction, use the Microsoft Azure console to delete the external load balancer component.
 
@@ -297,7 +297,7 @@ If the security posture of your organization does not allow clusters to use an o
 
 - [Configuring the Ingress Controller endpoint publishing scope to Internal](/docs/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/nw-configuring-ingress-controller-endpoint-publishing-strategy#nw-ingresscontroller-change-internal_nw-configuring-ingress-controller-endpoint-publishing-strategy)
 
-## Configuring a private storage endpoint on Azure {#registry-configuring-private-storage-endpoint-azure_configuring-private-cluster}
+## Configure a private storage endpoint on Azure {#registry-configuring-private-storage-endpoint-azure_configuring-private-cluster}
 
 You can configure the Image Registry Operator to use a private Azure storage endpoint so that registry storage is not exposed through a public-facing endpoint.
 
@@ -314,14 +314,14 @@ You can configure the Image Registry Operator to use private storage endpoints o
 - By configuring the Image Registry Operator to discover the VNet and subnet names
 - With user-provided Azure Virtual Network (VNet) and subnet names
 
-### Limitations for configuring a private storage endpoint on Azure  {#limitations-configuring-private-storage-endpoint-azure}
+### Limitations for configuring a private storage endpoint on Azure  {#limitations-configuring-private-storage-endpoint-azure_configuring-private-cluster}
 
 The following limitations apply when configuring a private storage endpoint on Azure:
 
 - When configuring the Image Registry Operator to use a private storage endpoint, public network access to the storage account is disabled. Consequently, pulling images from the registry outside of OpenShift Container Platform only works by setting `disableRedirect: true` in the registry Operator configuration. With redirect enabled, the registry redirects the client to pull images directly from the storage account, which will no longer work due to disabled public network access. For more information, see "Disabling redirect when using a private storage endpoint on Azure".
 - This operation cannot be undone by the Image Registry Operator.
 
-### Configuring a private storage endpoint on Azure by enabling the Image Registry Operator to discover VNet and subnet names {#configuring-private-storage-endpoint-azure-vnet-subnet-iro-discovery_configuring-private-cluster}
+### Configure a private storage endpoint on Azure by enabling the Image Registry Operator to discover VNet and subnet names {#configuring-private-storage-endpoint-azure-vnet-subnet-iro-discovery_configuring-private-cluster}
 
 You can configure a private Azure storage endpoint by enabling the Image Registry Operator to discover the VNet and subnet, allowing registry storage without public network access.
 
@@ -409,7 +409,7 @@ The following procedure shows you how to set up a private storage endpoint on Az
    22667f53682a2920948d19c7133ab1c9c3f745805c14125859d20cede07f11f9
    ```
 
-### Configuring a private storage endpoint on Azure with user-provided VNet and subnet names {#configuring-private-storage-endpoint-azure-user-provided-vnet-subnet_configuring-private-cluster}
+### Configure a private storage endpoint on Azure with user-provided VNet and subnet names {#configuring-private-storage-endpoint-azure-user-provided-vnet-subnet_configuring-private-cluster}
 
 You can configure a private Azure storage endpoint for the image registry by specifying user-provided VNet and subnet names, enabling registry storage without public network access.
 

@@ -149,4 +149,4 @@ You can clean up deprecated or unused resources associated with the Red Hat Ope
 - [Windows EFI installer pipeline (ArtifactHub)](https://artifacthub.io/packages/tekton-pipeline/redhat-pipelines/windows-efi-installer)
 - [Installing OpenShift Pipelines](https://docs.openshift.com/pipelines/latest/install_config/installing-pipelines.html)
 - [Creating CI/CD solutions for applications using Red Hat OpenShift Pipelines](https://docs.openshift.com/pipelines/latest/create/creating-applications-with-cicd-pipelines.html)
-- [Creating a Windows VM](/docs/virt/creating_vm/virt-creating-vms-uploading-images#virt-creating-windows-vm_virt-creating-vms-uploading-images)
+- [Creating a Windows VM](/docs/virt/creating_vm/virt-creating-vms-from-cli#virt-creating-windows-vm_virt-creating-vms-cli)

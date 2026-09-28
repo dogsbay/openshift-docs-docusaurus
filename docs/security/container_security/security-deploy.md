@@ -9,7 +9,7 @@ sidebar_position: 9
 
 You can use a variety of techniques to make sure that the containers you deploy hold the latest production-quality content and that they have not been tampered with, such as setting up build triggers and using signatures.
 
-## Controlling container deployments with triggers {#security-deploy-trigger_security-deploy}
+## Control container deployments with triggers {#security-deploy-trigger_security-deploy}
 
 If something happens during the build process, or if a vulnerability is discovered after an image has been deployed, you can use tool for automated, policy-based deployment to remediate. You can use triggers to rebuild and replace images, ensuring the immutable containers process, instead of patching running containers, which is not recommended.
 
@@ -25,7 +25,7 @@ $ oc set triggers deploy/deployment-example \
     --containers=web
 ```
 
-## Controlling what image sources can be deployed {#security-deploy-image-sources_security-deploy}
+## Control what image sources can be deployed {#security-deploy-image-sources_security-deploy}
 
 OpenShift Container Platform enables cluster administrators to apply security policy that is broad or narrow, reflecting deployment environment and security requirements.
 
@@ -77,7 +77,7 @@ The policy can be saved onto a node as `/etc/containers/policy.json`. Saving thi
 - Require images from your OpenShift Container Registry in the `production` namespace to be signed by the public key for `example.com`.
 - Reject all other registries not specified by the global `default` definition.
 
-## Using signature transports {#security-deploy-signature_security-deploy}
+## Use signature transports {#security-deploy-signature_security-deploy}
 
 You can use a signature transport as a way to store and retrieve the binary signature blob.
 
@@ -100,7 +100,7 @@ docker:
 
 In this example, the Red Hat Registry, `access.redhat.com`, is the signature server that provides signatures for the `docker` transport type. Its URI is defined in the `sigstore` parameter. You might name this file `/etc/containers/registries.d/redhat.com.yaml` and use the Machine Config Operator to automatically place the file on each node in your cluster. No service restart is required since policy and `registries.d` files are dynamically loaded by the container runtime.
 
-## Creating secrets and config maps {#security-deploy-secrets_security-deploy}
+## Create secrets and config maps {#security-deploy-secrets_security-deploy}
 
 You can use the `Secret` object type to provide a mechanism to hold sensitive information such as passwords, OpenShift Container Platform client configuration files, `dockercfg` files, and private source repository credentials. Secrets decouple sensitive content from pods.
 
@@ -117,7 +117,7 @@ For example, to add a secret to your deployment so that it can access a private 
 3. Navigate to **Resources** → **Secrets** and create a new secret. Set `Secret Type` to `Image Secret` and `Authentication Type` to `Image Registry Credentials` to enter credentials for accessing a private image repository.
 4. When creating a deployment (for example, from the **Add to Project** → **Deploy Image** page), set the `Pull Secret` to your new secret.
 
-## Automating continuous deployment {#security-deploy-continuous_security-deploy}
+## Automate continuous deployment {#security-deploy-continuous_security-deploy}
 
 You can integrate your own continuous deployment (CD) tooling with OpenShift Container Platform.
 

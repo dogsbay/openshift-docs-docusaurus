@@ -9,7 +9,7 @@ sidebar_position: 9
 
 To clean up unused network configurations or free up network resources in OpenShift Container Platform, you can remove an additional network attachment. Delete the `NetworkAttachmentDefinition` custom resource to remove the secondary network from your cluster.
 
-## Removing a secondary NetworkAttachmentDefinition custom resource {#nw-multus-delete-network_remove-additional-network}
+## Remove a secondary NetworkAttachmentDefinition custom resource {#nw-multus-delete-network_remove-additional-network}
 
 To clean up unused network configurations or free up network resources in OpenShift Container Platform, you can remove a secondary `NetworkAttachmentDefinition` CR. Edit the Cluster Network Operator CR and delete the `NetworkAttachmentDefinition` CR to remove the secondary network from your cluster.
 

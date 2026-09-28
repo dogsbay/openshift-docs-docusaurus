@@ -42,7 +42,7 @@ You can install the DPF HCP Provisioner Operator by using a Helm chart. The oper
 
 **Prerequisites**
 
-- The Multicluster Engine (MCE) Operator is installed and hosted control planes is enabled.
+- The Multicluster Engine (MCE) Operator is installed and hosted control plane is enabled.
 - The MetalLB Operator is installed and a `MetalLB` instance is created.
 - A storage class is available for etcd persistent volumes, such as LVM Storage or an equivalent.
 - The DPF Operator is installed and DPF CRDs are available.
@@ -140,7 +140,7 @@ The following environment variables are used throughout the hosted cluster provi
 | `SSH_KEY` | The file path to the SSH public key file on your workstation. Use ed25519 keys for better security. | `/root/.ssh/id_ed25519.pub` |
 | `HOSTED_CLUSTER_VIP` | The virtual IP address for the hosted cluster API server, allocated from the management cluster subnet. | `192.168.1.200` |
 
-You must set all environment variables in your terminal session before you proceed.
+You must set the following environment variables in your terminal session before you proceed.
 
 ```terminal
 $ export HOSTED_CLUSTER_NAME="dpf-hosted"
@@ -244,13 +244,6 @@ Do not set the `spec.kubeconfig` field. After you create the hosted cluster, the
    ```terminal
    $ envsubst < dpucluster.yaml | oc apply -f -
    ```
-
-**Verification**
-
-- Verify that the `DPUCluster` resource was created:
-  ```terminal
-  $ oc get dpucluster -n dpf-operator-system
-  ```
 
 ## Create the DPFHCPProvisioner custom resource {#nw-dpf-creating-dpfhcpprovisioner_dpf-hosted-cluster-provisioning}
 
@@ -384,42 +377,6 @@ After creating the `DPFHCPProvisioner` resource, you can monitor its status to v
 
 ## Verify DPU service reconciliation {#nw-dpf-verifying-dpu-services_dpf-hosted-cluster-provisioning}
 
-After the DPU hosted cluster and `DPUCluster` are ready, verify that the DPU services, IPAM pools, service interfaces, and service chains created for the `DPUDeployment` are reconciled.
+After the DPU hosted cluster and `DPUCluster` are ready, the DPF Operator creates the DPU services, IPAM pools, service interfaces, and service chains for the `DPUDeployment`.
 
-**Prerequisites**
-
-- You have created the DPF custom resources: `DPFOperatorConfig`, `NodeSRIOVDevicePluginConfig`, `DPUFlavor`, `BFB`, and `DPUDeployment`.
-- You have created the HBN, OVN-Kubernetes, and DTS DPU service resources.
-- The `DPUCluster` is ready.
-- You have access to the management cluster as a user with the `cluster-admin` role.
-- You have installed the `oc` CLI.
-
-:::note
-
-You might need to run the commands multiple times to ensure that the condition is met, because the DPU services can take time to converge.
-
-:::
-
-**Procedure**
-
-1. Verify that the `DPUService` resources are created and reconciled:
-   ```terminal
-   $ oc wait --for=condition=ApplicationsReconciled \
-     --namespace dpf-operator-system dpuservices \
-     -l svc.dpu.nvidia.com/owned-by-dpudeployment=dpf-operator-system_dpudeployment
-   ```
-2. Verify that the `DPUServiceIPAM` resources are reconciled:
-   ```terminal
-   $ oc wait --for=condition=DPUIPAMObjectReconciled \
-     --namespace dpf-operator-system dpuserviceipam --all
-   ```
-3. Verify that the `DPUServiceInterface` resources are reconciled:
-   ```terminal
-   $ oc wait --for=condition=ServiceInterfaceSetReconciled \
-     --namespace dpf-operator-system dpuserviceinterface --all
-   ```
-4. Verify that the `DPUServiceChain` resources are reconciled:
-   ```terminal
-   $ oc wait --for=condition=ServiceChainSetReconciled \
-     --namespace dpf-operator-system dpuservicechain --all
-   ```
+These resources are created but will not be fully reconciled until DPU worker nodes are provisioned and joined to the cluster. For full verification of DPU service status, see "Verify full system readiness" after completing worker node provisioning.

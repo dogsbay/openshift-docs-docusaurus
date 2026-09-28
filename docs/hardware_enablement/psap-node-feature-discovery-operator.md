@@ -15,7 +15,7 @@ You can use the Node Feature Discovery Operator (NFD) to detect hardware feature
 
 The NFD Operator can be found on the OperatorHub by searching for “Node Feature Discovery”.
 
-## Installing the Node Feature Discovery Operator {#installing-the-node-feature-discovery-operator_psap-node-feature-discovery-operator}
+## Install the Node Feature Discovery Operator {#installing-the-node-feature-discovery-operator_psap-node-feature-discovery-operator}
 
 As a cluster administrator, you can install the NFD Operator by using the OpenShift Container Platform CLI or the web console. The Node Feature Discovery (NFD) Operator orchestrates all resources needed to run the NFD daemon set.
 
@@ -122,7 +122,7 @@ Starting with version 4.12, the `operand.image` field in the `NodeFeatureDiscove
 
 :::
 
-### Creating a NodeFeatureDiscovery CR by using the CLI {#creating-nfd-cr-cli_psap-node-feature-discovery-operator}
+### Create a NodeFeatureDiscovery CR by using the CLI {#creating-nfd-cr-cli_psap-node-feature-discovery-operator}
 
 Create a `NodeFeatureDiscovery` CR instance by using the OpenShift CLI (`oc`) to deploy the NFD operand and enable hardware feature detection on your cluster nodes.
 
@@ -400,7 +400,7 @@ Create a `NodeFeatureDiscovery` CR instance in a disconnected environment by usi
    $ oc get pods -n <nfd_namespace>
    ```
 
-### Creating a NodeFeatureDiscovery CR by using the web console {#creating-nfd-cr-web-console_psap-node-feature-discovery-operator}
+### Create a NodeFeatureDiscovery CR by using the web console {#creating-nfd-cr-web-console_psap-node-feature-discovery-operator}
 
 Create a `NodeFeatureDiscovery` CR by using the OpenShift Container Platform web console to deploy the NFD operand and enable hardware feature detection on your cluster nodes.
 
@@ -733,7 +733,7 @@ Create a `NodeFeatureRule` object to apply custom labels to nodes based on detec
 
    :::
 
-## Using the NFD Topology Updater {#using-the-nfd-topology-updater_psap-node-feature-discovery-operator}
+## Use the NFD Topology Updater {#using-the-nfd-topology-updater_psap-node-feature-discovery-operator}
 
 Enable the NFD Topology Updater to detect allocated resources on worker nodes and report per-zone resource availability. This information helps the scheduler make topology-aware placement decisions for workloads that require specific NUMA node configurations.
 

@@ -497,7 +497,7 @@ For more information about the support scope of Red Hat Technology Preview featu
 - [virtualized Trusted Platform Modules (Microsoft Azure documentation)](https://learn.microsoft.com/en-us/windows/security/hardware-security/tpm/trusted-platform-module-overview)
 - [Virtual machine sizes (Microsoft Azure documentation)](https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch#virtual-machines-sizes)
 
-### Enabling confidential VMs {#installation-azure-confidential-vms_installing-azure-customizations}
+### Enable confidential VMs {#installation-azure-confidential-vms_installing-azure-customizations}
 
 To enable confidential VMs on Azure for your OpenShift Container Platform cluster, you can configure the `install-config.yaml` file before deployment. Apply the settings to control plane nodes, compute nodes, or all nodes as needed.
 
@@ -896,7 +896,9 @@ Customizing your network configuration by modifying the OpenShift Container Plat
 
 ## Cluster Network Operator configuration {#nw-operator-cr_installing-azure-customizations}
 
-To manage cluster networking, configure the Cluster Network Operator (CNO) `Network` custom resource (CR) named `cluster` so the cluster uses the correct IP ranges and network plugin settings for reliable pod and service connectivity. Some settings and fields are inherited at the time of install or by the `default.Network.type` plugin, OVN-Kubernetes.
+To manage cluster networking, configure the Cluster Network Operator (CNO) `Network` custom resource (CR) named `cluster` so the cluster uses the correct IP ranges and network plugin settings for reliable pod and service connectivity.
+
+Some settings and fields are inherited at the time of install or by the `default.Network.type` plugin, OVN-Kubernetes.
 
 The CNO configuration inherits the following fields during cluster installation from the `Network` API in the `Network.config.openshift.io` API group:
 
@@ -1242,7 +1244,7 @@ defaultNetwork:
       mode: Full
 ```
 
-## Configuring hybrid networking with OVN-Kubernetes {#configuring-hybrid-ovnkubernetes_installing-azure-customizations}
+## Configure hybrid networking with OVN-Kubernetes {#configuring-hybrid-ovnkubernetes_installing-azure-customizations}
 
 To configure hybrid networking with OVN-Kubernetes, you can set `hybridOverlayConfig` during installation or patch the Cluster Network Operator (CNO) after installation.
 

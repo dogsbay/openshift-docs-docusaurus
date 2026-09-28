@@ -9,7 +9,7 @@ sidebar_position: 7
 
 As an administrator, you can use `Secret` objects to provide sensitive information, such as passwords and user names, to applications without exposing that information in plain text that developers could see.
 
-## Understanding secrets {#nodes-pods-secrets-about_nodes-pods-secrets}
+## Understand secrets {#nodes-pods-secrets-about_nodes-pods-secrets}
 
 You can mount secrets into containers by using a volume plugin or the system can use secrets to perform actions on behalf of a pod.
 
@@ -105,7 +105,7 @@ However, if you do not enable the `ImageRegistry` capability or if you disable t
 
 When the integrated OpenShift image registry is disabled on a cluster that previously had it enabled, the previously generated image pull secrets are deleted automatically.
 
-## Understanding how to create secrets {#nodes-pods-secrets-creating_nodes-pods-secrets}
+## Understand how to create secrets {#nodes-pods-secrets-creating_nodes-pods-secrets}
 
 As an administrator you must create a secret before developers can create the pods that depend on that secret.
 
@@ -266,7 +266,7 @@ Individual secrets are limited to 1MB in size. This is to discourage the creatio
    <dd>Specifies the environment variable that consumes the secret key.</dd>
    </dl>
 
-### Creating an opaque secret {#nodes-pods-secrets-creating-opaque_nodes-pods-secrets}
+### Create an opaque secret {#nodes-pods-secrets-creating-opaque_nodes-pods-secrets}
 
 As an administrator, you can create an opaque secret, which allows you to store unstructured `key:value` pairs that can contain arbitrary values.
 
@@ -300,7 +300,7 @@ As an administrator, you can create an opaque secret, which allows you to store 
    1. Update the pod’s service account to reference the secret, as shown in the "Understanding how to create secrets" section.
    2. Create the pod, which consumes the secret as an environment variable or as a file (using a `secret` volume), as shown in the "Understanding how to create secrets" section.
 
-### Creating a legacy service account token secret {#nodes-pods-secrets-creating-sa_nodes-pods-secrets}
+### Create a legacy service account token secret {#nodes-pods-secrets-creating-sa_nodes-pods-secrets}
 
 As an administrator, you can create a legacy service account token secret, which allows you to distribute a service account token to applications that must authenticate to the API.
 
@@ -349,7 +349,7 @@ For more information, see "Configuring bound service account tokens using volume
    1. Update the pod’s service account to reference the secret, as shown in the "Understanding how to create secrets" section.
    2. Create the pod, which consumes the secret as an environment variable or as a file (using a `secret` volume), as shown in the "Understanding how to create secrets" section.
 
-### Creating a basic authentication secret {#nodes-pods-secrets-creating-basic_nodes-pods-secrets}
+### Create a basic authentication secret {#nodes-pods-secrets-creating-basic_nodes-pods-secrets}
 
 As an administrator, you can create a basic authentication secret, which you can use to store the credentials needed for basic authentication.
 
@@ -395,7 +395,7 @@ You can use the `stringData` parameter to use clear text content.
    1. Update the pod’s service account to reference the secret, as shown in the "Understanding how to create secrets" section.
    2. Create the pod, which consumes the secret as an environment variable or as a file (using a `secret` volume), as shown in the "Understanding how to create secrets" section.
 
-### Creating an SSH authentication secret {#nodes-pods-secrets-creating-ssh_nodes-pods-secrets}
+### Create an SSH authentication secret {#nodes-pods-secrets-creating-ssh_nodes-pods-secrets}
 
 As an administrator, you can create an SSH authentication secret, which you can use to store data used for SSH authentication.
 
@@ -431,7 +431,7 @@ When using this secret type, the `data` parameter of the `Secret` object must co
    1. Update the pod’s service account to reference the secret, as shown in the "Understanding how to create secrets" section.
    2. Create the pod, which consumes the secret as an environment variable or as a file (using a `secret` volume), as shown in the "Understanding how to create secrets" section.
 
-### Creating a Docker configuration secret {#nodes-pods-secrets-creating-docker_nodes-pods-secrets}
+### Create a Docker configuration secret {#nodes-pods-secrets-creating-docker_nodes-pods-secrets}
 
 As an administrator, you can create a Docker configuration secret, which allows you to store the credentials for accessing a container image registry.
 
@@ -488,7 +488,7 @@ As an administrator, you can create a Docker configuration secret, which allows 
    1. Update the pod’s service account to reference the secret, as shown in the "Understanding how to create secrets" section.
    2. Create the pod, which consumes the secret as an environment variable or as a file (using a `secret` volume), as shown in the "Understanding how to create secrets" section.
 
-### Creating a secret using the web console {#nodes-pods-secrets-creating-web-console-secrets_nodes-pods-secrets}
+### Create a secret using the web console {#nodes-pods-secrets-creating-web-console-secrets_nodes-pods-secrets}
 
 You can secure sensitive information, such as passwords or tokens, in a secret and add the information to a workload by using the web console. By using secrets, you can manage application credentials and configuration files without including them in your container images.
 
@@ -524,7 +524,7 @@ You can secure sensitive information, such as passwords or tokens, in a secret a
    1. From the drop-down menu, select the workload to add.
    2. Click **Save**.
 
-## Understanding how to update secrets {#nodes-pods-secrets-updating_nodes-pods-secrets}
+## Understand how to update secrets {#nodes-pods-secrets-updating_nodes-pods-secrets}
 
 To update the values in a secret, you must re-create the pods that use that secret. Because running pods do not automatically detect changes to secret data, restarting the pods ensures they consume the updated configuration.
 
@@ -538,7 +538,7 @@ Currently, it is not possible to check the resource version of a secret object t
 
 :::
 
-## Creating and using secrets {#nodes-application-secrets-creating-using-sa_nodes-pods-secrets}
+## Create and use secrets {#nodes-application-secrets-creating-using-sa_nodes-pods-secrets}
 
 As an administrator, you can create a service account token secret, which you can distribute to applications that must authenticate to the API.
 
@@ -612,7 +612,7 @@ Other pods can trust cluster-created certificates (which are only signed for int
 
 The signature algorithm for this feature is `x509.SHA256WithRSA`. To manually rotate, delete the generated secret. A new certificate is created.
 
-### Generating signed certificates for use with secrets {#nodes-pods-secrets-certificates-creating_nodes-pods-secrets}
+### Generate signed certificates for use with secrets {#nodes-pods-secrets-certificates-creating_nodes-pods-secrets}
 
 You can use a signed serving certificate/key pair with a pod by adding the `service.beta.openshift.io/serving-cert-secret-name` annotation to the service, then add the secret to the pod.
 
@@ -715,7 +715,7 @@ Use the following procedure to create a *service serving certificate secret*.
 
    :::
 
-## Troubleshooting secrets {#nodes-pods-secrets-troubleshooting_nodes-pods-secrets}
+## Troubleshoot secrets {#nodes-pods-secrets-troubleshooting_nodes-pods-secrets}
 
 Review the following information for troubleshooting tips for working with secrets.
 

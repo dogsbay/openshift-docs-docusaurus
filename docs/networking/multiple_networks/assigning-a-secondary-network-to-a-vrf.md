@@ -32,7 +32,7 @@ Using a VRF through the `ip vrf exec` command is not supported in OpenShift Cont
 
 - [About virtual routing and forwarding](/docs/networking/multiple_networks/about-virtual-routing-and-forwarding#cnf-about-virtual-routing-and-forwarding_about-virtual-routing-and-forwarding)
 
-## Creating a secondary network attachment with the CNI VRF plugin {#cnf-creating-an-additional-network-attachment-with-the-cni-vrf-plug-in_assigning-a-secondary-network-to-a-vrf}
+## Create a secondary network attachment with the CNI VRF plugin {#cnf-creating-an-additional-network-attachment-with-the-cni-vrf-plug-in_assigning-a-secondary-network-to-a-vrf}
 
 The Cluster Network Operator (CNO) manages secondary network definitions. When you specify a secondary network in the cluster-scoped `Network` custom resource (CR), the CNO automatically creates the `NetworkAttachmentDefinition` CR.
 

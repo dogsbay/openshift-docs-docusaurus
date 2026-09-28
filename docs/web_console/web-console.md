@@ -14,7 +14,7 @@ The OpenShift Container Platform web console is a user interface accessible from
 - You must use one of the following supported web browsers: Edge, Chrome, Safari, or Mozilla Firefox. Internet Explorer 11 and earlier is not supported.
 - Review the OpenShift Container Platform 4.x Tested Integrations page before you create the supporting infrastructure for your cluster.
 
-## Understanding and accessing the web console {#web-console-overview_web-console}
+## Understand and access the web console {#web-console-overview_web-console}
 
 The web console runs as a pod on the control plane node. The static assets required to run the web console are served by the pod.
 

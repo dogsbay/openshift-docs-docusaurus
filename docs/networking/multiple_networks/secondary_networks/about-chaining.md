@@ -22,7 +22,7 @@ Some scenarios where this might be useful include:
 - **Custom routing rules**: Ensures that specific traffic, for example SIP traffic, always uses a designated network interface, while other traffic follows the default network.
 - **Enhanced network performance**: Allows you to prioritize certain traffic types or manage congestion by directing them through dedicated network interfaces.
 
-## Configuring plugin chaining with the route-override CNI plugin {#configuring-plugin-chaining-with-multus-cni_enabling-multi-networking-for-advanced-use-cases-with-cni-plugin-chaining}
+## Configure plugin chaining with the route-override CNI plugin {#configuring-plugin-chaining-with-multus-cni_enabling-multi-networking-for-advanced-use-cases-with-cni-plugin-chaining}
 
 Plugin chaining allows you to configure multiple CNI plugins to be applied sequentially to the same network interface, where each plugin in the chain processes the interface in order.
 

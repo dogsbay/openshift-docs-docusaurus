@@ -15,7 +15,7 @@ If you are using the OpenShift image registry and are pulling from image streams
 
 :::
 
-## Allowing pods to reference images across projects {#images-allow-pods-to-reference-images-across-projects_using-image-pull-secrets}
+## Allow pods to reference images across projects {#images-allow-pods-to-reference-images-across-projects_using-image-pull-secrets}
 
 To allow pods in one OpenShift Container Platform project to reference images from another project, you can bind a service account to the `system:image-puller` role in the target project. Use the `oc policy add-role-to-user` or `oc policy add-role-to-group` command to grant cross-project image access.
 

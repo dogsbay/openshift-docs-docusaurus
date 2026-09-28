@@ -60,7 +60,7 @@ where:
 : Specifies the IP address of the network gateway.
 
 `spec.redirect.redirectRules`
-: Optional parameter. Specifies the combinination of egress destination IP address, egress router port, and protocol. Incoming connections to the egress router on the specified port and protocol are routed to the destination IP address.
+: Optional parameter. Specifies the combination of egress destination IP address, egress router port, and protocol. Incoming connections to the egress router on the specified port and protocol are routed to the destination IP address.
 
 `spec.redirect.redirectRules.targetPort`
 : Optional parameter. Specifies the network port on the destination IP address. If this field is not specified, traffic is routed to the same network port that it arrived on.
@@ -112,7 +112,7 @@ spec:
   }
 ```
 
-## Deploying an egress router in redirect mode {#nw-egress-router-redirect-mode-ovn_deploying-egress-router-ovn-redirection}
+## Deploy an egress router in redirect mode {#nw-egress-router-redirect-mode-ovn_deploying-egress-router-ovn-redirection}
 
 You can deploy an egress router to redirect traffic from its own reserved source IP address to one or more destination IP addresses.
 

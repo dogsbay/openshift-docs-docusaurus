@@ -31,7 +31,7 @@ When a project request is submitted, the API substitutes the following parameter
 
 Access to the API is granted to developers with the `self-provisioner` role and the `self-provisioners` cluster role binding. This role is available to all authenticated developers by default.
 
-## Modifying the template for new projects {#modifying-template-for-new-projects_configuring-project-creation}
+## Modify the template for new projects {#modifying-template-for-new-projects_configuring-project-creation}
 
 To modify the default project template to customize the resources and settings applied when users create new projects, you can create a custom project template.
 

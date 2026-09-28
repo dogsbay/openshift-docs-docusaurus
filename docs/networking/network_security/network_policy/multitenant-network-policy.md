@@ -17,7 +17,7 @@ Configuring network policies as described in this section provides network isola
 
 :::
 
-## Configuring multitenant isolation by using network policy {#nw-networkpolicy-multitenant-isolation_multitenant-network-policy}
+## Configure multitenant isolation by using network policy {#nw-networkpolicy-multitenant-isolation_multitenant-network-policy}
 
 You can configure network policies to isolate workloads in a project from pods and services in other namespaces. This isolation helps control network traffic between projects and improves multitenant security in your cluster.
 

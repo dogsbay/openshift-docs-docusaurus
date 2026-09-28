@@ -17,7 +17,7 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 :::
 
-## Orchestrating DPUs with the DPU Operator {#nw-about-dpu_dpu-operator}
+## Orchestrate DPUs with the DPU Operator {#nw-about-dpu_dpu-operator}
 
 You can use the Data Processing Unit (DPU) Operator to manage DPUs that offload networking, storage, and security workloads from host CPUs to improve cluster performance and efficiency.
 
@@ -33,7 +33,7 @@ The following table describes the currently supported DPU devices.
 
 | Vendor | Device | Firmware | Description |
 | --- | --- | --- | --- |
-| Intel | IPU E2100 | Version 2.0.0.11126 or later | A DPU designed to offload networking, storage, and security tasks from host CPUs in data centers, improving efficiency and performance. For instructions on deploying a full end-to-end solution, see the Red Hat Knowledgebase solution [Accelerating Confidential AI on OpenShift with the Intel E2100 IPU, DPU Operator, and F5 NGINX](https://access.redhat.com/articles/7120276). |
+| Intel | IPU E2100 | Version 2.0.0.11126 or later | A DPU designed to offload networking, storage, and security tasks from host CPUs in data centers, improving efficiency and performance. For instructions on deploying a full end-to-end solution, see "Accelerating Confidential AI on OpenShift with the Intel E2100 IPU, DPU Operator, and F5 NGINX" |
 | Senao | SX904 | 35.23.47.0008 or later | A SmartNIC designed to offload compute and network services from the host CPUs in data centers and edge computing environments, improving efficiency and isolation of workloads. |
 | Marvell | Marvell Octeon 10 CN106 | SDK12.25.01 or later | A DPU designed to offload workloads that require high speed data processing from host CPUs in data centers and edge computing environments, improving performance and energy efficiency |
 
@@ -43,7 +43,11 @@ The NVIDIA BlueField-3 is not supported.
 
 :::
 
-## Installing the DPU Operator {#overview-installing-dpu-operator_dpu-operator}
+**Additional resources**
+
+- [Accelerating Confidential AI on OpenShift with the Intel E2100 IPU, DPU Operator, and F5 NGINX (Red Hat Knowledgebase)](https://access.redhat.com/articles/7120276)
+
+## Install the DPU Operator {#overview-installing-dpu-operator_dpu-operator}
 
 You can install the Data Processing Unit (DPU) Operator on both host and DPU clusters to manage device lifecycle and network attachments by using the CLI or web console.
 
@@ -55,7 +59,7 @@ You need to install the DPU Operator on the host cluster and each of the DPU clu
 
 :::
 
-### Installing the DPU Operator by using the CLI {#nw-dpu-installing-operator-cli_dpu-operator}
+### Install the DPU Operator by using the CLI {#nw-dpu-installing-operator-cli_dpu-operator}
 
 You can install the DPU Operator by using the CLI. You can use the DPU Operator to simplify the installation process when setting up DPU device management on host clusters.
 
@@ -135,7 +139,7 @@ The CLI must be used to install the DPU Operator on the DPU cluster.
    dpu-operator-controller-manager-6b7bbb5db8-7lvkj   2/2     Running   0          2m9s
    ```
 
-### Installing the DPU Operator using the web console {#nw-dpu-installing-operator-ui_dpu-operator}
+### Install the DPU Operator using the web console {#nw-dpu-installing-operator-ui_dpu-operator}
 
 You can install the DPU Operator by using the web console. You can use the DPU Operator to simplify the installation process when setting up DPU device management on host clusters.
 
@@ -178,7 +182,7 @@ As a cluster administrator, you can install the DPU Operator by using the web co
 
   :::
 
-## Configuring the DPU Operator {#nw-dpu-configuring-operator_dpu-operator}
+## Configure the DPU Operator {#nw-dpu-configuring-operator_dpu-operator}
 
 You can configure the DPU Operator after installation to enable management of DPU devices and network attachments in both dual cluster and single cluster deployment modes.
 
@@ -229,7 +233,7 @@ To configure the DPU Operator follow these steps:
 
    :::
 
-## Running a workload on the host with DPU {#nw-running-workloads-dpu_dpu-operator}
+## Run a workload on the host with DPU {#nw-running-workloads-dpu_dpu-operator}
 
 You can deploy workloads on the host with DPU to offload specialized infrastructure tasks and improve performance while freeing up host CPU resources.
 
@@ -287,7 +291,7 @@ Follow these steps to deploy a workload on the host with DPU. This is the standa
    $ oc apply -f workload-host.yaml
    ```
 
-## Running a workload on the DPU {#nw-dpu-creating-a-sfc_dpu-operator}
+## Run a workload on the DPU {#nw-dpu-creating-a-sfc_dpu-operator}
 
 You can deploy network workloads directly on the DPU to improve performance, enhance security isolation, and reduce host CPU usage.
 
@@ -348,7 +352,7 @@ Follow this procedure to deploy a simple pod directly onto the DPU.
 
    Ensure the pod’s status is `Running`.
 
-## Monitoring the status of DPU {#nw-dpu-monitoring-status_dpu-operator}
+## Monitor the status of DPU {#nw-dpu-monitoring-status_dpu-operator}
 
 You can monitor the DPU infrastructure status to check the current state and health of your DPU devices across the cluster.
 
@@ -421,7 +425,7 @@ The `oc get dpu` command shows the current state of the DPU infrastructure. Foll
 
    :::
 
-## Uninstalling the DPU Operator {#nw-dpu-operator-uninstall_dpu-operator}
+## Uninstall the DPU Operator {#nw-dpu-operator-uninstall_dpu-operator}
 
 You can uninstall the DPU Operator from your cluster when you no longer need DPU device management, ensuring all workloads are deleted first.
 

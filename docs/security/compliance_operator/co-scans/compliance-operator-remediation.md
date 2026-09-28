@@ -96,7 +96,7 @@ The manual remediation steps are typically stored in the `description` attribute
 | ERROR | Compliance check ran, but could not complete properly. |
 | NOT-APPLICABLE | Compliance check did not run because it is not applicable or not selected. |
 
-## Reviewing a remediation {#compliance-review_compliance-remediation}
+## Review a remediation {#compliance-review_compliance-remediation}
 
 You can review a `ComplianceRemediation` object and the `ComplianceCheckResult` object to understand what a check verifies, its severity and security controls, and how the remediation fixes the issue. After the first scan, check for remediations with the state `MissingDependencies`.
 
@@ -151,7 +151,7 @@ To see exactly what the remediation does when applied, the `MachineConfig` objec
 
    :::
 
-## Applying remediation when using customized machine config pools {#compliance-operator-apply-remediation-for-customized-mcp}
+## Apply remediation when using customized machine config pools {#compliance-operator-apply-remediation-for-customized-mcp}
 
 When you create a custom `MachineConfigPool`, add a label to the `MachineConfigPool` so that `machineConfigPoolSelector` present in the `KubeletConfig` can match the label with `MachineConfigPool`.
 
@@ -214,7 +214,7 @@ Do not set `protectKernelDefaults: false` in the `KubeletConfig` file, because t
    $ oc get mcp -w
    ```
 
-## Evaluating KubeletConfig rules against default configuration values {#compliance-evaluate-kubeletconfig-rules_compliance-remediation}
+## Evaluate KubeletConfig rules against default configuration values {#compliance-evaluate-kubeletconfig-rules_compliance-remediation}
 
 The Compliance Operator uses the Node/Proxy API to evaluate `KubeletConfig` object rules against actual node configurations, preventing inaccurate results caused by incomplete configuration files and default values for missing options.
 
@@ -224,7 +224,7 @@ To prevent false negative results where the default configuration value passes a
 
 No additional configuration changes are required to use this feature with default `master` and `worker` node pools configurations.
 
-## Scanning custom node pools {#compliance-custom-node-pools_compliance-remediation}
+## Scan custom node pools {#compliance-custom-node-pools_compliance-remediation}
 
 The Compliance Operator does not maintain a copy of each node pool configuration.
 
@@ -279,7 +279,7 @@ The Compliance Operator aggregates consistent configuration options for all node
   $ oc get rules -o json | jq '.items[] | select(.checkType == "Platform") | select(.metadata.name | contains("ocp4-kubelet-")) | .metadata.name'
   ```
 
-## Remediating `KubeletConfig` sub pools {#compliance-kubeletconfig-sub-pool-remediation_compliance-remediation}
+## Remediate `KubeletConfig` sub pools {#compliance-kubeletconfig-sub-pool-remediation_compliance-remediation}
 
 You can apply `KubeletConfig` remediation labels to `MachineConfigPool` sub-pools.
 
@@ -290,7 +290,7 @@ You can apply `KubeletConfig` remediation labels to `MachineConfigPool` sub-pool
   $ oc label mcp <sub-pool-name> pools.operator.machineconfiguration.openshift.io/<sub-pool-name>=
   ```
 
-## Applying a remediation {#compliance-applying_compliance-remediation}
+## Apply a remediation {#compliance-applying_compliance-remediation}
 
 The boolean attribute `spec.apply` controls whether the remediation should be applied by the Compliance Operator. You can apply the remediation by setting the attribute to `true`.
 
@@ -319,7 +319,7 @@ The boolean attribute `spec.apply` controls whether the remediation should be ap
 
    :::
 
-## Remediating a platform check manually {#compliance-manual_compliance-remediation}
+## Remediate a platform check manually {#compliance-manual_compliance-remediation}
 
 You must manually remediate checks from Platform scans so you can fix findings that the Compliance Operator cannot apply automatically.
 
@@ -361,7 +361,7 @@ Manual remediations are necessary for the following reasons:
    annotate compliancescans/rhcos4-e8-worker compliance.openshift.io/rescan=
    ```
 
-## Updating remediations {#compliance-updating_compliance-remediation}
+## Update remediations {#compliance-updating_compliance-remediation}
 
 When you update compliance content to a newer version, the Compliance Operator marks previously applied remediations as **Outdated**. Review these remediations and apply the updated versions to ensure your nodes use the latest configuration.
 
@@ -407,7 +407,7 @@ The Compliance Operator does not automatically resolve dependency issues that ca
    ```
 4. Verify that the nodes apply the newer remediation version and reboot.
 
-## Unapplying a remediation {#compliance-unapplying_compliance-remediation}
+## Unapply a remediation {#compliance-unapplying_compliance-remediation}
 
 You can unapply a remediation that was previously applied to roll back a change when you need to revert it.
 
@@ -432,7 +432,7 @@ The Compliance Operator does not automatically resolve dependency issues that ca
 
    :::
 
-## Removing a KubeletConfig remediation {#compliance-removing-kubeletconfig_compliance-remediation}
+## Remove a KubeletConfig remediation {#compliance-removing-kubeletconfig_compliance-remediation}
 
 `KubeletConfig` remediations are included in node-level profiles. To remove a `KubeletConfig` remediation, you must manually remove it from the `KubeletConfig` objects.
 

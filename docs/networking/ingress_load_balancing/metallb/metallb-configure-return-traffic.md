@@ -51,7 +51,7 @@ The configuration process involves three stages:
 : - Configure an egress service to choose the network associated with the VRF instance for egress traffic.
   - Optional: Configure an egress service to use the IP address of the MetalLB load-balancer service as the source IP for egress traffic.
 
-## Configuring symmetric routing by using VRFs with MetalLB {#nw-metallb-configure-return-traffic-proc_metallb-configure-return-traffic}
+## Configure symmetric routing by using VRFs with MetalLB {#nw-metallb-configure-return-traffic-proc_metallb-configure-return-traffic}
 
 To ensure that applications behind a MetalLB service use the same network path for both ingress and egress, configure symmetric routing by using Virtual Routing and Forwarding (VRF).
 

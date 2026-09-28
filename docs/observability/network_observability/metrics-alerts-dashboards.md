@@ -9,7 +9,7 @@ sidebar_position: 13
 
 The Network Observability Operator uses the `flowlogs-pipeline` component to generate metrics from flow logs. Use these metrics to set custom alerts and view dashboards for network activity analysis.
 
-## Viewing network observability metrics dashboards {#network-observability-viewing-dashboards_metrics-dashboards-alerts}
+## View network observability metrics dashboards {#network-observability-viewing-dashboards_metrics-dashboards-alerts}
 
 View network observability metrics dashboards using the **Overview** tab in the OpenShift Container Platform console to monitor overall traffic flow and system health, with options to filter metrics by node, namespace, owner, pod, and service.
 
@@ -89,7 +89,7 @@ Network events metrics names
 
   - `namespace_network_policy_events_total`
 
-## Creating alerts {#network-observability-netobserv-dashboard-high-traffic-alert_metrics-dashboards-alerts}
+## Create alerts {#network-observability-netobserv-dashboard-high-traffic-alert_metrics-dashboards-alerts}
 
 Create custom `AlertingRule` resources based on `Netobserv` dashboard metrics to define conditions that trigger alerts in the OpenShift Container Platform console.
 
@@ -132,7 +132,7 @@ Define custom metrics from flowlog data using the `FlowMetric` API, leveraging l
 
 In every flowlogs data that is collected, there are several fields labeled per log, such as source name and destination name. These fields can be leveraged as Prometheus labels to enable the customization of cluster information on your dashboard.
 
-## Configuring custom metrics by using FlowMetric API {#network-observability-configuring-custom-metrics_metrics-dashboards-alerts}
+## Configure custom metrics by using FlowMetric API {#network-observability-configuring-custom-metrics_metrics-dashboards-alerts}
 
 Configure the `FlowMetric` API to create custom Prometheus metrics by mapping flow log fields as labels to meet specific monitoring needs.
 
@@ -233,7 +233,7 @@ where:
 `spec.buckets`
 : Specifies custom buckets for RTT precision. The optimal precision ranges between 5ms and 250ms.
 
-## Creating metrics from nested or array fields in the Traffic flows table {#network-observability-creating-metrics-network-events_metrics-dashboards-alerts}
+## Create metrics from nested or array fields in the Traffic flows table {#network-observability-creating-metrics-network-events_metrics-dashboards-alerts}
 
 Create a `FlowMetric` custom resource to generate metrics for nested or array fields in the **Traffic flows** table, such as **Network events** or **Interfaces**.
 
@@ -312,7 +312,7 @@ High cardinality can affect the memory usage of Prometheus. You can check if spe
 
 - [Network Flows format reference](/docs/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
 
-## Configuring custom charts using FlowMetric API {#network-observability-custom-charts-flowmetrics_metrics-dashboards-alerts}
+## Configure custom charts using FlowMetric API {#network-observability-custom-charts-flowmetrics_metrics-dashboards-alerts}
 
 Generate custom charts for OpenShift Container Platform web console dashboards by defining the charts section of the `FlowMetric` custom resource.
 
@@ -431,7 +431,7 @@ You can show averages of histograms by dividing the metric, `$METRIC_sum`, by th
 promQL: "(sum(rate($METRIC_sum{DstK8S_Namespace!=\"\"}[2m])) by (DstK8S_Namespace,DstK8S_OwnerName) / sum(rate($METRIC_count{DstK8S_Namespace!=\"\"}[2m])) by (DstK8S_Namespace,DstK8S_OwnerName))*1000"
 ```
 
-## Detecting SYN flooding using the FlowMetric API and TCP flags {#network-observability-tcp-flag-syn-flood_metrics-dashboards-alerts}
+## Detect SYN flooding using the FlowMetric API and TCP flags {#network-observability-tcp-flag-syn-flood_metrics-dashboards-alerts}
 
 Deploy a custom `AlertingRule` and `FlowMetric` configuration to monitor TCP flags, enabling real-time detection and alerting for SYN flooding attacks on the cluster.
 

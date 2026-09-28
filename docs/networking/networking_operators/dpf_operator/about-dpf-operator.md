@@ -126,7 +126,7 @@ The deployment flow consists of the following steps:
    :::
 4. **Hosted cluster creation:** The DPF HCP Provisioner Operator automates the creation of a hosted DPU cluster by using hosted control planes. The Operator references the `DPUDeployment` resource during ignition generation.
 5. **Worker node scale-out and DPU provisioning:** When worker nodes with DPUs are added to the cluster, the DPF Operator flashes the DPUs with a Red Hat Enterprise Linux CoreOS (RHCOS) image and configures them to join the hosted cluster as worker nodes.
-6. **Worker node integration:** Approve DPU worker node certificate signing requests (CSRs) and configure security context constraint (SCC) bindings on the hosted cluster.
+6. **Worker node integration:** Approve certificate signing requests (CSRs) for x86 worker nodes joining the management cluster, and configure security context constraint (SCC) bindings on the hosted cluster. DPU node CSRs are automatically approved by the DPF HCP Provisioner Operator.
 7. **Service deployment:** After the DPU hosted cluster is operational, data plane DPU services and chains are deployed by DPF.
 8. **Verification:** Validate end-to-end connectivity through the DPU data plane by running `ping` and `nc` traffic tests between workload pods and services.
 
@@ -151,7 +151,7 @@ Three nodes form the control plane of the management cluster.
 | --- | --- |
 | Form factor | Virtual machines or physical servers |
 | Memory | 60 GB RAM |
-| CPU | 16 vCPUs (Intel or AMD x86_64) |
+| CPU | 16 CPUs (Intel or AMD x86_64) |
 | Storage | 120 GB NVMe SSD storage, plus an additional 80 GB disk for LVM Storage |
 | Networking | 1x 1GbE network interface |
 | DPUs | DPUs must not be installed on control plane nodes |
@@ -165,7 +165,7 @@ Two physical x86 servers host the NVIDIA BlueField-3 DPUs and act as worker node
 | Component | Requirement |
 | --- | --- |
 | Memory | 256 GB RAM |
-| CPU | 16 cores (Intel or AMD x86_64) |
+| CPU | 16 CPUs (Intel or AMD x86_64) |
 | Storage | A minimum of 500 GB NVMe SSD storage for the base operating system |
 | DPU slot | PCIe Gen 5 x16 slot required. Each server can have multiple DPUs but only one NVIDIA BlueField-3 DPU can be provisioned. |
 | BIOS settings | SR-IOV must be enabled. In-Band Manageability Interface must be enabled. |
@@ -273,4 +273,3 @@ Install the following tools on the workstation from which you run the deployment
 - [DPF OVN-Kubernetes with Host-Based Networking User Guide](https://networking-docs.nvidia.com/dpf/26.4.1/ovn-kubernetes-with-host-based-networking)
 - [OpenShift mirror](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/)
 - [Helm installation guide](https://helm.sh/docs/intro/install/)
-- [NVIDIA DPF uninstall guide](https://networking-docs.nvidia.com/dpf/26.4.1/dpf-host-trusted)

@@ -9,7 +9,7 @@ sidebar_position: 6
 
 Before you can configure your Clevis clients to use encryption keys advertised by your Tang servers, you must identify the URLs of the servers.
 
-## Identifying URL of the NBDE Tang Server Operator using the web console {#identifying-url-nbde-tang-server-operator-using-web-console_identifying-url-nbde-tang-server-operator}
+## Identify URL of the NBDE Tang Server Operator using the web console {#identifying-url-nbde-tang-server-operator-using-web-console_identifying-url-nbde-tang-server-operator}
 
 You can identify the URLs of Tang servers deployed with the NBDE Tang Server Operator from the software catalog by using the OpenShift Container Platform web console. After you identify the URLs, you use the `clevis luks bind` command on your clients containing LUKS-encrypted volumes that you want to unlock automatically by using keys advertised by the Tang servers. See the [Configuring manual enrollment of LUKS-encrypted volumes](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/security_hardening/configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption_security-hardening#configuring-manual-enrollment-of-volumes-using-clevis_configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption) section in the RHEL 9 Security hardening document for detailed steps describing the configuration of clients with Clevis.
 
@@ -41,7 +41,7 @@ You can identify the URLs of Tang servers deployed with the NBDE Tang Server Ope
   }
   ```
 
-## Identifying URL of the NBDE Tang Server Operator using CLI {#identifying-url-nbde-tang-server-operator-using-cli_identifying-url-nbde-tang-server-operator}
+## Identify URL of the NBDE Tang Server Operator using CLI {#identifying-url-nbde-tang-server-operator-using-cli_identifying-url-nbde-tang-server-operator}
 
 You can identify the URLs of Tang servers deployed with the NBDE Tang Server Operator from the software catalog by using the CLI. After you identify the URLs, you use the `clevis luks bind` command on your clients containing LUKS-encrypted volumes that you want to unlock automatically by using keys advertised by the Tang servers. See the [Configuring manual enrollment of LUKS-encrypted volumes](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/security_hardening/configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption_security-hardening#configuring-manual-enrollment-of-volumes-using-clevis_configuring-automated-unlocking-of-encrypted-volumes-using-policy-based-decryption) section in the RHEL 9 Security hardening document for detailed steps describing the configuration of clients with Clevis.
 

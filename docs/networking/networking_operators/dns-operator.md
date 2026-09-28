@@ -78,7 +78,7 @@ Every new OpenShift Container Platform installation has a `dns.operator` named `
    $ oc get networks.config/cluster -o jsonpath='{$.status.serviceNetwork}'
    ```
 
-## Using DNS forwarding {#nw-dns-forward_dns-operator}
+## Use DNS forwarding {#nw-dns-forward_dns-operator}
 
 Configure DNS forwarding servers and upstream resolvers for the cluster.
 
@@ -173,7 +173,7 @@ During pod creation, Kubernetes uses the `/etc/resolv.conf` file that exists on 
 
 - [CoreDNS forward documentation](https://coredns.io/plugins/forward/)
 
-## Checking DNS Operator status {#nw-dns-operator-status_dns-operator}
+## Check DNS Operator status {#nw-dns-operator-status_dns-operator}
 
 You can inspect the status and view the details of the DNS Operator by using the `oc describe` command.
 
@@ -210,7 +210,7 @@ You can inspect the status and view the details of the DNS Operator by using the
       Type:                  Upgradeable
   ```
 
-## Viewing DNS Operator logs {#nw-dns-operator-logs_dns-operator}
+## View DNS Operator logs {#nw-dns-operator-logs_dns-operator}
 
 You can view DNS Operator logs to troubleshoot DNS issues, verify configuration changes, and monitor activity by using the by using the `oc logs` command.
 
@@ -320,7 +320,7 @@ The valid values for `operatorLogLevel` are `Normal`, `Debug`, and `Trace`. `Tra
    $ oc logs -n openshift-dns ds/dns-default
    ```
 
-## Tuning the CoreDNS cache {#nw-dns-cache-tuning_dns-operator}
+## Tune the CoreDNS cache {#nw-dns-cache-tuning_dns-operator}
 
 To reduce the load on upstream DNS resolvers, you can tune the CoreDNS cache by adjusting the duration of positive and negative caching. This process involves modifying the time-to-live (TTL) values within the DNS Operator object to control how long query responses are stored.
 
@@ -405,7 +405,7 @@ You cannot upgrade while the `managementState` is set to `Unmanaged`.
    $ oc get dns.operator.openshift.io default -ojsonpath='{.spec.managementState}'
    ```
 
-### Controlling DNS pod placement {#nw-controlling-dns-pod-placement_dns-operator}
+### Control DNS pod placement {#nw-controlling-dns-pod-placement_dns-operator}
 
 Control where CoreDNS and node-resolver pods run by using taints, tolerations, and selectors.
 
@@ -474,7 +474,7 @@ As a cluster administrator, you can use a custom node selector to configure the 
 
         - The `spec.nodePlacement.nodeSelector` field in the example ensures that the CoreDNS pods run only on control plane nodes.
 
-### Configuring DNS forwarding with TLS {#configuring-dns-forwarding-with-tls_dns-operator}
+### Configure DNS forwarding with TLS {#configuring-dns-forwarding-with-tls_dns-operator}
 
 Configure DNS forwarding with TLS to secure queries to upstream resolvers.
 

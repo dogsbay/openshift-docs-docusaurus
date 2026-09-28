@@ -15,8 +15,6 @@ File Integrity Operator is not supported on HCP clusters.
 
 :::
 
-**Additional resources**
-
 - [File Integrity Operator release notes](/docs/security/file_integrity_operator/file-integrity-operator-release-notes#file-integrity-operator-release-notes)
 - [File Integrity Operator support](/docs/security/file_integrity_operator/fio-support#fio-support)
 - [Installing the File Integrity Operator](/docs/security/file_integrity_operator/file-integrity-operator-installation#installing-file-integrity-operator)

@@ -61,7 +61,7 @@ Although the `MultiNetworkPolicy` API implements the `NetworkPolicy` API, ensure
   <dd>Specifies the name of a network attachment definition.</dd>
   </dl>
 
-## Enabling multi-network policy for the cluster {#nw-multi-network-policy-enable_configuring-multi-network-policy}
+## Enable multi-network policy for the cluster {#nw-multi-network-policy-enable_configuring-multi-network-policy}
 
 As a cluster administrator, you can enable multi-network policy support on your cluster.
 
@@ -87,7 +87,7 @@ As a cluster administrator, you can enable multi-network policy support on your 
    $ oc patch network.operator.openshift.io cluster --type=merge --patch-file=multinetwork-enable-patch.yaml
    ```
 
-## Supporting multi-network policies in IPv6 networks {#nw-multi-network-policy-ipv6-support_configuring-multi-network-policy}
+## Support multi-network policies in IPv6 networks {#nw-multi-network-policy-ipv6-support_configuring-multi-network-policy}
 
 The ICMPv6 Neighbor Discovery Protocol (NDP) is a set of messages and processes that enable devices to discover and maintain information about neighboring nodes. NDP is essential in IPv6 networks, facilitating the interaction between devices on the same link.
 
@@ -133,7 +133,7 @@ You cannot edit the predefined rules.
 
 The rules collectively enable essential ICMPv6 traffic for correct network functioning, including address resolution and router communication in an IPv6 environment. With these rules in place and a multi-network policy denying traffic, applications are not expected to experience connectivity issues.
 
-## Working with multi-network policy {#working-with-multi-network-policy_configuring-multi-network-policy}
+## Work with multi-network policy {#working-with-multi-network-policy_configuring-multi-network-policy}
 
 To manage network traffic isolation and security for pods on secondary networks, you can create, edit, view, and delete multi-network policies. Before you work with multi-network policies, you must enable multi-network policy support for your cluster.
 

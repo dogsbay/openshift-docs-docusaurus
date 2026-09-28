@@ -9,7 +9,7 @@ sidebar_position: 10
 
 To diagnose and resolve MetalLB configuration issues, refer to this list of commonly used commands. By using these commands, you can verify network connectivity and inspect service states to ensure efficient error recovery.
 
-## Setting the MetalLB logging levels {#nw-metallb-setting-metalb-logging-levels_metallb-troubleshoot-support}
+## Set the MetalLB logging levels {#nw-metallb-setting-metalb-logging-levels_metallb-troubleshoot-support}
 
 To manage log verbosity for the `FRRouting` (FRR) container, configure the `logLevel` specification. By adjusting this setting, you can reduce log volume from the default info level or increase detail for troubleshooting MetalLB configuration issues.
 
@@ -158,7 +158,7 @@ The following values define the severity of recorded events, so that you can use
 </tbody>
 </table>
 
-## Troubleshooting BGP issues {#nw-metallb-troubleshoot-bgp_metallb-troubleshoot-support}
+## Troubleshoot BGP issues {#nw-metallb-troubleshoot-bgp_metallb-troubleshoot-support}
 
 To diagnose and resolve BGP configuration issues, run commands directly within the FRR container. By accessing the container, you can verify routing states and identify connectivity errors.
 
@@ -376,7 +376,7 @@ To confirm that BGP is functioning correctly, verify that all of the following c
 - The `show bgp ipv4 unicast` output contains at least one route with the `*>` status code, which indicates that the route is valid and selected as the best path for advertisement.
 - If BFD is configured, the `show running-config` output includes `neighbor <ip_address> bfd` lines and a `bfd` profile section.
 
-## Troubleshooting BFD issues {#nw-metallb-troubleshoot-bfd_metallb-troubleshoot-support}
+## Troubleshoot BFD issues {#nw-metallb-troubleshoot-bfd_metallb-troubleshoot-support}
 
 To diagnose and resolve Bidirectional Forwarding Detection (BFD) issues, run commands directly within the `FRRouting` (FRR) container. By accessing the container, you can verify that BFD peers are correctly configured with established BGP sessions.
 

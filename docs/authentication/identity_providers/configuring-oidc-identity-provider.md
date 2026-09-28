@@ -84,7 +84,7 @@ The following OIDC providers are tested and supported with OpenShift Container P
 - Ping Identity
 - Red Hat Single Sign-On
 
-## Creating the secret {#identity-provider-creating-secret_configuring-oidc-identity-provider}
+## Create the secret {#identity-provider-creating-secret_configuring-oidc-identity-provider}
 
 Create a `Secret` object in the `openshift-config` namespace to store the client secret for your identity provider. The identity provider custom resource (CR) references this secret during configuration.
 
@@ -110,7 +110,7 @@ Create a `Secret` object in the `openshift-config` namespace to store the client
    $ oc create secret generic <secret_name> --from-file=<path_to_file> -n openshift-config
    ```
 
-## Creating a ConfigMap {#identity-provider-creating-configmap_configuring-oidc-identity-provider}
+## Create a ConfigMap {#identity-provider-creating-configmap_configuring-oidc-identity-provider}
 
 Create a `ConfigMap` object in the `openshift-config` namespace that contains the certificate authority bundle for the identity provider. OpenShift Container Platform uses this bundle to validate Transport Layer Security (TLS) connections to the identity provider.
 
@@ -258,7 +258,7 @@ where:
 
 - [Identity provider parameters](/docs/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
-## Adding an identity provider to your cluster {#add-identity-provider_configuring-oidc-identity-provider}
+## Add an identity provider to your cluster {#add-identity-provider_configuring-oidc-identity-provider}
 
 Apply the identity provider custom resource (CR) to your cluster after you define it. With this configuration, you can authenticate with the configured identity provider.
 
@@ -305,7 +305,7 @@ Apply the identity provider custom resource (CR) to your cluster after you defin
    $ oc whoami
    ```
 
-## Configuring identity providers using the web console {#identity-provider-configuring-using-the-web-console_configuring-oidc-identity-provider}
+## Configure identity providers using the web console {#identity-provider-configuring-using-the-web-console_configuring-oidc-identity-provider}
 
 You can configure identity providers on your OpenShift Container Platform cluster through the web console by updating the **OAuth** settings in the **Cluster Settings**.
 

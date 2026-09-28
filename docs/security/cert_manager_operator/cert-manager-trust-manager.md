@@ -25,7 +25,7 @@ The trust-manager operand provides the following benefits:
 - Creation of trust bundles as secret objects for applications that explicitly require secrets instead of ConfigMap objects.
 - Automatic integration with the default trusted CA bundle of the cluster, requiring no manual configuration.
 
-## Installing the trust-manager operand {#cert-manager-trust-manager-install_cert-manager-trust-manager}
+## Install the trust-manager operand {#cert-manager-trust-manager-install_cert-manager-trust-manager}
 
 You can install the trust-manager operand to enable the automated distribution of trust bundles across your cluster namespaces. The trust-manager operand is not installed by default.
 
@@ -141,7 +141,7 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 - Configuring trust bundle
 
-## Configuring trust bundle {#cert-manager-configure-trust-manager_cert-manager-trust-manager}
+## Configure trust bundle {#cert-manager-configure-trust-manager_cert-manager-trust-manager}
 
 After installing the trust-manager operand, you must use the Bundle custom resource (CR) to distribute certificate authority (CA) certificates across your cluster. A trust bundle combines certificate sources and maintains target `ConfigMap` and `Secret` objects across selected namespaces.
 
@@ -247,7 +247,7 @@ For more information about the support scope of Red Hat Technology Preview featu
   example-bundle   1      4m25s
   ```
 
-## Uninstalling the trust-manager operand {#cert-manager-trust-manager-uninstall_cert-manager-trust-manager}
+## Uninstall the trust-manager operand {#cert-manager-trust-manager-uninstall_cert-manager-trust-manager}
 
 You can uninstall the trust-manager operand by deleting the TrustManager custom resource (CR). Deleting the TrustManager CR stops the operator from reconciling trust-manager resources, but does not automatically remove the trust-manager deployment or its associated resources. You must manually delete these resources after deleting the CR if you need a complete cleanup.
 

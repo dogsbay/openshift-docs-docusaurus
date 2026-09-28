@@ -24,7 +24,7 @@ Topology Manager is useful for workloads that use hardware accelerators to suppo
 
 To use Topology Manager you must configure CPU Manager with the `static` policy.
 
-## Setting up CPU Manager {#setting_up_cpu_manager_using-cpu-manager-and-topology-manager}
+## Set up CPU Manager {#setting_up_cpu_manager_using-cpu-manager-and-topology-manager}
 
 To configure CPU manager, create a `KubeletConfig` custom resource (CR) and apply it to the required set of nodes.
 
@@ -288,7 +288,7 @@ Topology Manager supports four allocation policies, which you assign in the `Kub
 `single-numa-node` policy
 : For each container in a pod with the `single-numa-node` topology management policy, kubelet admits the pod if all the resources required by the pod can be allocated on the same NUMA node. If a single NUMA node affinity is not possible, the Topology Manager rejects the pod from the node. This results in a pod in a `Terminated` state with a pod admission failure.
 
-## Setting up Topology Manager {#setting_up_topology_manager_using-cpu-manager-and-topology-manager}
+## Set up Topology Manager {#setting_up_topology_manager_using-cpu-manager-and-topology-manager}
 
 To use Topology Manager, you must configure an allocation policy in the `KubeletConfig` custom resource (CR) named `cpumanager-enabled`. This file might exist if you have set up CPU Manager. If the file does not exist, you can create the file.
 

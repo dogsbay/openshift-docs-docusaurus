@@ -311,4 +311,4 @@ The following table outlines which policies are supported for different VM confi
 **Additional resources**
 
 - [Topology Manager policies](/docs/scalability_and_performance/using-cpu-manager#using-cpu-manager_topology-manager-policies)
-- [Creating virtual machines from instance types](/docs/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
+- [Instance types](/docs/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)

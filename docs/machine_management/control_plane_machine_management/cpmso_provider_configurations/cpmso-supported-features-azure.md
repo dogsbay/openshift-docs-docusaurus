@@ -11,7 +11,7 @@ You can enable or change the configuration of features for your control plane ma
 
 When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy. For more information, see "Updating the control plane configuration".
 
-## Restricting the API server to private for an Microsoft Azure cluster {#private-clusters-setting-api-private-azure_cpmso-supported-features-azure}
+## Restrict the API server to private for an Microsoft Azure cluster {#private-clusters-setting-api-private-azure_cpmso-supported-features-azure}
 
 If the security posture of your organization does not allow clusters to use an open API endpoint, you can restrict the API server to use only internal load balancers. To implement this API server restriction, use the Microsoft Azure console to delete the external load balancer component.
 
@@ -379,7 +379,7 @@ failed to create vm <machine_name>: failure sending request for machine <machine
 
 If the deletion of ultra disks as data disks is not working as expected, the machines are deleted and the data disks are orphaned. You must delete the orphaned disks manually if desired.
 
-## Enabling customer-managed encryption keys for a machine set {#machineset-enabling-customer-managed-encryption-azure_cpmso-supported-features-azure}
+## Enable customer-managed encryption keys for a machine set {#machineset-enabling-customer-managed-encryption-azure_cpmso-supported-features-azure}
 
 To enhance data security, enable customer-managed encryption on Microsoft Azure by adding the disk encryption set ID to your machine set.
 
@@ -483,7 +483,7 @@ For more information about related features and functionality, see the Microsoft
 
 - On the Microsoft Azure portal, review the details for a machine deployed by the machine set and verify that the trusted launch options match the values that you configured.
 
-## Configuring Azure confidential virtual machines by using machine sets {#machineset-azure-confidential-vms_cpmso-supported-features-azure}
+## Configure Azure confidential virtual machines by using machine sets {#machineset-azure-confidential-vms_cpmso-supported-features-azure}
 
 You can enable Microsoft Azure confidential virtual machines (VMs) to use memory encryption to improve data confidentiality.
 
@@ -561,7 +561,7 @@ For more information about related features and functionality, see the Microsoft
 
 - On the Microsoft Azure portal, review the details for a machine deployed by the machine set and verify that the confidential VM options match the values that you configured.
 
-## Configuring Capacity Reservations by using machine sets {#machineset-capacity-reservation_cpmso-supported-features-azure}
+## Configure Capacity Reservations by using machine sets {#machineset-capacity-reservation_cpmso-supported-features-azure}
 
 You can configure a machine set to deploy machines on any available resources that match the parameters of a capacity request that you define by using on-demand Capacity Reservation with Capacity Reservation groups on Microsoft Azure clusters.
 

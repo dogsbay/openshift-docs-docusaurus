@@ -233,7 +233,7 @@ Consider the following situations related to the volume file paths.
 - Collisions Between Keys without Configured Paths. The only run-time validation that can occur is when all the paths are known at pod creation, similar to the above scenario. Otherwise, when a conflict occurs the most recent specified resource overwrites anything preceding it (this is true for resources that are updated after pod creation as well).
 - Collisions when One Path is Explicit and the Other is Automatically Projected. If there is a collision due to a user-specified path matching data that is automatically projected, the latter resource overwrites anything preceding it as before.
 
-## Configuring a projected volume for a Pod {#nodes-containers-projected-volumes-creating_nodes-containers-projected-volumes}
+## Configure a projected volume for a Pod {#nodes-containers-projected-volumes-creating_nodes-containers-projected-volumes}
 
 You can create projected volumes to map multiple configuration sources, such as secrets and config maps, into a single directory. Projected volumes centralize sensitive information and environment metadata for your applications into a single directory.
 

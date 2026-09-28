@@ -9,17 +9,17 @@ sidebar_position: 10
 
 As an administrator, you can observe the network traffic in the OpenShift Container Platform web console for detailed troubleshooting and analysis. This feature helps you get insights from different graphical representations of traffic flow.
 
-## Observing the network traffic from the Overview view {#network-observability-network-traffic-overview-view_nw-observe-network-traffic}
+## Observe the network traffic from the Overview view {#network-observability-network-traffic-overview-view_nw-observe-network-traffic}
 
-The Network Traffic **Overview** view provides aggregated flow metrics and visual insights into application communications. Administrators can use the metrics to monitor data volume, troubleshoot connectivity, and detect unusual traffic patterns across the cluster.
+Use the Network Traffic **Overview** view to monitor aggregated flow metrics, troubleshoot cluster connectivity, and detect unusual traffic patterns.
 
 The **Overview** view shows aggregate network traffic in your OpenShift Container Platform cluster, allowing you to see which applications are communicating and the volume of data being transferred. It provides detailed insights by source, destination, and flow type, along with the top traffic flows and average byte rates.
 
 As an administrator, you can troubleshoot connectivity issues, detect unusual traffic patterns, and optimize application performance. It provides a quick overview of network behavior, making it easier to prioritize actions and ensure efficient resource usage.
 
-### Working with the Overview view {#network-observability-working-with-overview_nw-observe-network-traffic}
+### Work with the Overview view {#network-observability-working-with-overview_nw-observe-network-traffic}
 
-Navigate to the network traffic **Overview** view in the OpenShift Container Platform console to see graphical representations of flow rate statistics and configure the display scope using available options.
+Navigate to the network traffic **Overview** view in the OpenShift Container Platform console to visualize flow rate statistics and customize the display scope for monitoring cluster network activity.
 
 **Prerequisite**
 
@@ -31,7 +31,7 @@ Navigate to the network traffic **Overview** view in the OpenShift Container Pla
 2. In the **Network Traffic** page, click the **Overview** tab.
 3. Click the menu icon to configure the scope of each flow rate data.
 
-### Configuring advanced options for the Overview view {#network-observability-configuring-options-overview_nw-observe-network-traffic}
+### Configure advanced options for the Overview view {#network-observability-configuring-options-overview_nw-observe-network-traffic}
 
 Customize the network traffic **Overview** view by configuring advanced options, such as graph scope, label truncation, and panel management, to refine the display of flow rate statistics and traffic data.
 
@@ -92,7 +92,7 @@ Examples of OVS drops reasons are as follows:
 
 See the *Additional resources* of this section for more information about enabling and working with packet drop tracking.
 
-### Working with packet drops {#network-observability-packet-drops_nw-observe-network-traffic}
+### Work with packet drops {#network-observability-packet-drops_nw-observe-network-traffic}
 
 Enable packet drop tracking in the Network Observability Operator by configuring the `FlowCollector` resource to monitor and visualize network data loss in the web console.
 
@@ -172,7 +172,7 @@ This feature is supported for IPv4 and IPv6 UDP and TCP protocols.
 
 See the *Additional resources* in this section for more information about enabling and working with this view.
 
-### Working with DNS tracking {#network-observability-dns-tracking_nw-observe-network-traffic}
+### Work with DNS tracking {#network-observability-dns-tracking_nw-observe-network-traffic}
 
 Configure the `FlowCollector` custom resource to enable DNS tracking for monitoring network performance, security analysis, and DNS troubleshooting in the web console.
 
@@ -243,7 +243,7 @@ Other RTT panels can be added in **Manage panels**:
 
 See the *Additional resources* in this section for more information about enabling and working with this view.
 
-### Working with RTT tracing {#network-observability-RTT_nw-observe-network-traffic}
+### Work with RTT tracing {#network-observability-RTT_nw-observe-network-traffic}
 
 Enable Round Trip Time (RTT) tracing by configuring the `FlowCollector` custom resource to monitor and analyze network latency across your cluster by using the web console.
 
@@ -385,7 +385,7 @@ Reference the required and optional parameters for configuring flow filter rules
 </tbody>
 </table>
 
-### Filtering eBPF flow data using multiple rules {#network-observability-filtering-ebpf-rule_nw-observe-network-traffic}
+### Filter eBPF flow data using multiple rules {#network-observability-filtering-ebpf-rule_nw-observe-network-traffic}
 
 Configure multiple filtering rules in the `FlowCollector` custom resource to refine network traffic data collection by accepting or rejecting specific eBPF flows based on IP addresses and packet conditions.
 
@@ -583,7 +583,7 @@ You can use the insights from tracking network events to help with the following
 
 See the *Additional resources* in this section for more information about enabling and working with this view.
 
-### Viewing network events {#network-observability-viewing-network-events_nw-observe-network-traffic}
+### View network events {#network-observability-viewing-network-events_nw-observe-network-traffic}
 
 Configure the `FlowCollector` custom resource to enable network event tracking for auditing how security policies, firewalls, and isolation rules affect traffic flows in the web console.
 
@@ -599,7 +599,7 @@ You can edit the `FlowCollector` to view information about network traffic event
 
 - `NetworkPolicy`
 - `AdminNetworkPolicy`
-- `BaselineNetworkPolicy`
+- `BaselineAdminNetworkPolicy`
 - `EgressFirewall`
 - `UserDefinedNetwork` isolation
 - Multicast ACLs
@@ -607,7 +607,7 @@ You can edit the `FlowCollector` to view information about network traffic event
 **Prerequisites**
 
 - You must have `OVNObservability` enabled by setting the `TechPreviewNoUpgrade` feature set in the `FeatureGate` custom resource (CR) named `cluster`. For more information, see "Enabling feature sets using the CLI" and "Checking OVN-Kubernetes network traffic with OVS sampling using the CLI".
-- You have created at least one of the following network APIs: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or `EgressFirewall`.
+- You have created at least one of the following network APIs: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineAdminNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or `EgressFirewall`.
 
 **Procedure**
 
@@ -642,7 +642,7 @@ You can edit the `FlowCollector` to view information about network traffic event
 **Verification**
 
 1. Navigate to the **Network Traffic** view and select the **Traffic flows** table.
-2. You should see the new column, **Network Events**, where you can view information about impacts of one of the following network APIs you have enabled: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or egress firewalls.
+2. You should see the new column, **Network Events**, where you can view information about impacts of one of the following network APIs you have enabled: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineAdminNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or egress firewalls.
    An example of the kind of events you could see in this column is as follows:
 
    ```text title="Example of Network Events output"
@@ -654,9 +654,9 @@ You can edit the `FlowCollector` to view information about network traffic event
 - [Enabling feature sets using the CLI](/docs/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-cli_nodes-cluster-enabling-features)
 - [Checking OVN-Kubernetes network traffic with OVS sampling using the CLI](/docs/networking/ovn_kubernetes_network_provider/ovn-kubernetes-troubleshooting-sources#nw-ovn-kubernetes-observability_ovn-kubernetes-sources-of-troubleshooting-information)
 
-## Observing the network traffic from the Traffic flows view {#network-observability-trafficflow_nw-observe-network-traffic}
+## Observe the network traffic from the Traffic flows view {#network-observability-trafficflow_nw-observe-network-traffic}
 
-Use the **Traffic flows** view to monitor real-time and historical network communication between cluster components. By analyzing granular flow data collected via eBPF, you can audit network traffic, validate network policies, and export data for external reporting and analysis.
+Use the **Traffic flows** view to monitor cluster network communication, audit eBPF flow data, validate network policies, and export metrics for external analysis.
 
 The **Traffic flows** view in the Network Observability Operator provides a granular, tabular representation of network activity across a OpenShift Container Platform cluster. By leveraging eBPF technology to collect flow data, this view allows administrators to monitor real-time and historical communication between pods, services, and nodes. This visibility is essential for auditing network traffic, validating network policies, and identifying unexpected communication patterns within the cluster infrastructure.
 
@@ -664,9 +664,9 @@ In the **Traffic flows** interface, you can analyze specific connection details 
 
 To support external analysis and reporting, the **Traffic flows** view includes data export capabilities. You can export the entire dataset or select specific fields to generate a targeted report of network activity. This functionality ensures that network flow data is accessible for long-term auditing or for use in third-party monitoring tools, providing a flexible way to document and analyze the network health of your OpenShift Container Platform environment.
 
-### Working with the Traffic flows view {#network-observability-working-with-trafficflow_nw-observe-network-traffic}
+### Work with the Traffic flows view {#network-observability-working-with-trafficflow_nw-observe-network-traffic}
 
-View and analyze detailed network flow information by using the **Traffic flows** table.
+View and analyze detailed network flow information in the **Traffic flows** table to troubleshoot connectivity issues and monitor traffic patterns between cluster components.
 
 As an administrator, you can navigate to **Traffic flows** table to see network flow information.
 
@@ -697,7 +697,7 @@ The following elements are available in the **Traffic flows** view:
 **Manage columns**
 : Specifies a dialog to select and reorder the columns displayed in the **Traffic flows** table.
 
-### Exporting traffic flow data {#network-observability-exporting-traffic-flow-data_nw-observe-network-traffic}
+### Export traffic flow data {#network-observability-exporting-traffic-flow-data_nw-observe-network-traffic}
 
 Export network flow data from the **Traffic flows** view to a CSV file for external analysis or reporting.
 
@@ -748,7 +748,7 @@ When IPsec is enabled:
 
 - [Configuring IPsec encryption](/docs/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)
 
-### Working with conversation tracking {#network-observability-working-with-conversations_nw-observe-network-traffic}
+### Work with conversation tracking {#network-observability-working-with-conversations_nw-observe-network-traffic}
 
 Configure the `FlowCollector` custom resource to enable conversation tracking for grouping and analyzing related network flows in the web console.
 
@@ -840,13 +840,13 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 - [Installing the eBPF Manager Operator](/docs/networking/networking_operators/ebpf_manager/ebpf-manager-operator-install)
 
-### Using the histogram {#network-observability-histogram-trafficflow_nw-observe-network-traffic}
+### Use the histogram {#network-observability-histogram-trafficflow_nw-observe-network-traffic}
 
 The histogram provides a visualization of network flow logs that you can use to analyze traffic volume trends and filter flow data by specific time intervals.
 
 You can click **Show histogram** to display a toolbar view for visualizing the history of flows as a bar chart. The histogram shows the number of logs over time. You can select a part of the histogram to filter the network flow data in the table that follows the toolbar.
 
-### Working with availability zones {#network-observability-zones_nw-observe-network-traffic}
+### Work with availability zones {#network-observability-zones_nw-observe-network-traffic}
 
 Configure the `FlowCollector` custom resource to collect availability zone data, enabling the visualization and analysis of network traffic across different cluster zones in the web console.
 
@@ -936,9 +936,9 @@ You can use network observability and eBPF to enrich network flows from a Kubern
       - **Xlat Dst Kubernetes Object**
    3. You can manage the display of additional **xlat** columns in **Manage columns**.
 
-## Observing the network traffic from the Topology view {#network-observability-topology_nw-observe-network-traffic}
+## Observe the network traffic from the Topology view {#network-observability-topology_nw-observe-network-traffic}
 
-The **Topology** view in the **Network Traffic** page provides a graphical representation of network flows and traffic volume across your OpenShift Container Platform cluster. As an administrator, you can use this view to monitor application traffic data and visualize the relationships between various network components.
+Use the **Topology** view in the **Network Traffic** page to visualize network flows, track traffic volume, and monitor relationships across cluster components.
 
 The visualization represents network entities as nodes and traffic flows as edges. By selecting individual components within the graph, you can access a side panel containing specific metrics and health details for that resource. This interactive approach allows for rapid identification of traffic patterns and connectivity issues within the cluster.
 
@@ -946,7 +946,7 @@ To manage complex environments, the **Topology** view includes advanced configur
 
 For reporting or external analysis, the **Topology** view provides an export feature. You can download the current graphical representation as a PNG image or generate a direct link to the specific view configuration to share with other administrators. These tools ensure that network insights are both accessible and easily documented.
 
-### Working with the Topology view {#network-observability-working-with-topology_nw-observe-network-traffic}
+### Work with the Topology view {#network-observability-working-with-topology_nw-observe-network-traffic}
 
 Access the **Topology** view to visually inspect cluster network relationships and select individual components to view detailed traffic metrics and metadata.
 
@@ -962,9 +962,9 @@ As an administrator, you can navigate to the **Topology** view to see the detail
 2. In the **Network Traffic** page, click the **Topology** tab.
 3. Click each component in the **Topology** tab to view its details and metrics.
 
-### Configuring the advanced options for the Topology view {#network-observability-configuring-options-topology_nw-observe-network-traffic}
+### Configure the advanced options for the Topology view {#network-observability-configuring-options-topology_nw-observe-network-traffic}
 
-Review the available advanced options in the **Topology** view to customize display settings, configure component grouping and layouts, and export the network graph as an image.
+The **Topology** view provides advanced options that let you customize display settings, configure component grouping and layouts, and export the network graph as an image.
 
 You can customize and export the view by using **Show advanced options**. The advanced options view has the following features:
 
@@ -982,9 +982,9 @@ You can customize and export the view by using **Show advanced options**. The ad
 
 To export the view, click **Export topology view**. The view is downloaded in PNG format.
 
-## Filtering the network traffic {#network-observability-quickfilter_nw-observe-network-traffic}
+## Filter the network traffic {#network-observability-quickfilter_nw-observe-network-traffic}
 
-Review the available query options and filtering parameters in the **Network Traffic** view to optimize data searches, analyze specific log types, and manage directional traffic visibility.
+The **Network Traffic** view provides query options and filtering parameters that let you optimize data searches, analyze specific log types, and manage directional traffic visibility.
 
 By default, the **Network Traffic** page displays the traffic flow data in the cluster based on the default filters configured in the `FlowCollector` instance. You can use the filter options to observe the required data by changing the preset filter.
 

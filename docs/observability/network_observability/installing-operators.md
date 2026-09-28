@@ -39,7 +39,7 @@ If you only want to export flows to a Kafka consumer or IPFIX collector, or you 
 
 - [Export enriched network flow data](/docs/observability/network_observability/configuring-operator#network-observability-enriched-flows_network_observability)
 
-## Installing the Loki Operator {#network-observability-loki-installation_network_observability}
+## Install the Loki Operator {#network-observability-loki-installation_network_observability}
 
 Install the supported Loki Operator version from the software catalog to enable the secure `LokiStack` instance, which provides automatic in-cluster authentication and authorization for network observability.
 
@@ -68,7 +68,7 @@ To uninstall Loki, refer to the uninstallation process that corresponds with the
 
 :::
 
-### Creating a secret for Loki storage {#network-observability-loki-secret_network_observability}
+### Create a secret for Loki storage {#network-observability-loki-secret_network_observability}
 
 Create a secret with cloud storage credentials, such as for Amazon Web Services (AWS), to allow the Loki Operator to access the necessary object store for log persistence.
 
@@ -116,7 +116,7 @@ The Loki Operator supports a few log storage options, such as AWS S3, Google Clo
 
 - After you create the secret, you view the secret listed under **Workloads** → **Secrets** in the web console.
 
-### Creating a LokiStack custom resource {#network-observability-lokistack-create_network_observability}
+### Create a LokiStack custom resource {#network-observability-lokistack-create_network_observability}
 
 Deploy the `LokiStack` custom resource using the web console or OpenShift CLI (`oc`), ensuring you configure the correct namespace, deployment size, and secret name for Loki object storage.
 
@@ -316,7 +316,7 @@ Therefore, you can consider configuring the following options when creating the 
 - [Troubleshooting network observability controller manager pod runs out of memory](/docs/observability/network_observability/troubleshooting-network-observability#controller-manager-pod-runs-out-of-memory_network-observability-troubleshooting)
 - [Network observability architecture](/docs/observability/network_observability/understanding-network-observability-operator#network-observability-architecture_nw-network-observability-operator)
 
-## Migrating removed stored versions of the FlowCollector CRD {#network-observability-updating-migrating_network_observability}
+## Migrate removed stored versions of the FlowCollector CRD {#network-observability-updating-migrating_network_observability}
 
 Manually remove the deprecated `v1alpha1` version from the `FlowCollector` custom resource definition (CRD) `storedVersion` list to prevent upgrade errors and successfully migrate to Network Observability Operator 1.6.
 

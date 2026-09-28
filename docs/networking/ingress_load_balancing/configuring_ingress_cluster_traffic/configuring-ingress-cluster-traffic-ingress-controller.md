@@ -18,7 +18,7 @@ Before you begin any of the procedures that are listed in the Configuring ingres
   ```
 - You have an OpenShift Container Platform cluster with at least one master and at least one node and a system outside the cluster that has network access to the cluster. This procedure assumes that the external system is on the same subnet as the cluster. The additional networking required for external systems on a different subnet is out-of-scope for this topic.
 
-## Using Ingress Controllers and routes {#nw-using-ingress-and-routes_configuring-ingress-cluster-traffic-ingress-controller}
+## Use Ingress Controllers and routes {#nw-using-ingress-and-routes_configuring-ingress-cluster-traffic-ingress-controller}
 
 You can use the Ingress Controller to allow external access to an OpenShift Container Platform cluster. The Ingress Operator manages Ingress Controllers and wildcard DNS.
 
@@ -275,7 +275,7 @@ Separate DNS entries must resolve `\*.foo.com` to the node hosting Router A and 
 - `*.foo.com A IN 192.168.0.5`
 - `*.example.com A IN 192.168.1.9`
 
-### Configuring Ingress Controller sharding by using route labels {#nw-ingress-sharding-route-labels_configuring-ingress-cluster-traffic-ingress-controller}
+### Configure Ingress Controller sharding by using route labels {#nw-ingress-sharding-route-labels_configuring-ingress-cluster-traffic-ingress-controller}
 
 You can use route labels to configure Ingress Controller sharding so that the Ingress Controller serves any route in any namespace that is selected by the route selector.
 
@@ -317,7 +317,7 @@ Ingress Controller sharding is useful when balancing incoming traffic load among
    $ oc expose svc <service-name> --hostname <route-name>.apps-sharded.basedomain.example.net
    ```
 
-### Configuring Ingress Controller sharding by using namespace labels {#nw-ingress-sharding-namespace-labels_configuring-ingress-cluster-traffic-ingress-controller}
+### Configure Ingress Controller sharding by using namespace labels {#nw-ingress-sharding-namespace-labels_configuring-ingress-cluster-traffic-ingress-controller}
 
 You can use namespace labels to configure Ingress Controller sharding so that the Ingress Controller serves any route in any namespace that is selected by the namespace selector.
 

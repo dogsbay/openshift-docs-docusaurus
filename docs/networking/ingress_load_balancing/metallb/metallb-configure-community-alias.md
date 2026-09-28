@@ -74,7 +74,7 @@ The `community` CRD applies only to BGPAdvertisement.
 </tbody>
 </table>
 
-## Configuring MetalLB with a BGP advertisement and community alias {#nw-metallb-configure-BGP-advertisement-community-alias_configure-community-alias}
+## Configure MetalLB with a BGP advertisement and community alias {#nw-metallb-configure-BGP-advertisement-community-alias_configure-community-alias}
 
 To advertise an `IPAddressPool` by using the BGP protocol, configure MetalLB with a community alias. This configuration sets the alias to the numeric value of the `NO_ADVERTISE` community.
 

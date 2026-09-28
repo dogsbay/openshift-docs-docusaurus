@@ -20,7 +20,7 @@ You can use the `must-gather` tool to collect data about the Custom Metrics Auto
 - The Custom Metric Autoscaler Operator installation objects.
 - The Custom Metric Autoscaler Operator CRD objects.
 
-## Gathering debugging data {#nodes-cma-autoscaling-custom-debugging-gather_nodes-cma-autoscaling-custom-debugging}
+## Gather debugging data {#nodes-cma-autoscaling-custom-debugging-gather_nodes-cma-autoscaling-custom-debugging}
 
 The following command runs the `must-gather` tool for the Custom Metrics Autoscaler Operator:
 

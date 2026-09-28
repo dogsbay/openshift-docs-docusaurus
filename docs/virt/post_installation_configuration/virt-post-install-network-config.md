@@ -208,7 +208,7 @@ You can select a dedicated network for live migration by using the OpenShift Con
 3. Click **Live Migration**.
 4. Select the network from the **Live migration network** list.
 
-## Configuring SR-IOV network devices {#nw-sriov-configuring-device_virt-post-install-network-config}
+## Configure SR-IOV network devices {#nw-sriov-configuring-device_virt-post-install-network-config}
 
 The SR-IOV Network Operator adds the `SriovNetworkNodePolicy.sriovnetwork.openshift.io` custom resource definition (CRD) to OpenShift Container Platform. You can configure an SR-IOV network device by creating a `SriovNetworkNodePolicy` custom resource (CR).
 

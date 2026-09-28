@@ -99,7 +99,7 @@ Ensuring all JVM processes within a container are appropriately configured
 
 This does not guarantee that additional options are not required, but is intended to be a helpful starting point. Optimally tuning JVM workloads for running in a container is beyond the scope of this documentation, and may involve setting multiple additional JVM options.
 
-## Finding the memory request and limit from within a pod {#nodes-cluster-resource-configure-request-limit_nodes-cluster-resource-configure}
+## Find the memory request and limit from within a pod {#nodes-cluster-resource-configure-request-limit_nodes-cluster-resource-configure}
 
 You can configure your container to use the Downward API to dynamically discover its memory request and limit from within a pod. This allows your applications to better manage these resources without needing to use the API server.
 

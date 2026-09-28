@@ -436,7 +436,9 @@ Customizing your network configuration by modifying the OpenShift Container Plat
 
 ## Cluster Network Operator configuration {#nw-operator-cr_installing-azure-stack-hub-network-customizations}
 
-To manage cluster networking, configure the Cluster Network Operator (CNO) `Network` custom resource (CR) named `cluster` so the cluster uses the correct IP ranges and network plugin settings for reliable pod and service connectivity. Some settings and fields are inherited at the time of install or by the `default.Network.type` plugin, OVN-Kubernetes.
+To manage cluster networking, configure the Cluster Network Operator (CNO) `Network` custom resource (CR) named `cluster` so the cluster uses the correct IP ranges and network plugin settings for reliable pod and service connectivity.
+
+Some settings and fields are inherited at the time of install or by the `default.Network.type` plugin, OVN-Kubernetes.
 
 The CNO configuration inherits the following fields during cluster installation from the `Network` API in the `Network.config.openshift.io` API group:
 
@@ -782,7 +784,7 @@ defaultNetwork:
       mode: Full
 ```
 
-## Configuring hybrid networking with OVN-Kubernetes {#configuring-hybrid-ovnkubernetes_installing-azure-stack-hub-network-customizations}
+## Configure hybrid networking with OVN-Kubernetes {#configuring-hybrid-ovnkubernetes_installing-azure-stack-hub-network-customizations}
 
 To configure hybrid networking with OVN-Kubernetes, you can set `hybridOverlayConfig` during installation or patch the Cluster Network Operator (CNO) after installation.
 

@@ -218,7 +218,7 @@ spec:
         path: /etc/containers/registries.conf
 ```
 
-## Configuring node restart behaviors upon machine config changes {#machine-config-node-disruption-config_machine-configs-configure}
+## Configure node restart behaviors upon machine config changes {#machine-config-node-disruption-config_machine-configs-configure}
 
 You can create a node disruption policy to define the machine configuration changes that cause a disruption to your cluster, and which changes do not.
 

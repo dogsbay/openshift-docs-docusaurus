@@ -104,7 +104,7 @@ To view OVN-Kubernetes alerts from the command line in OpenShift Container Platf
    $ oc -n openshift-monitoring exec -c prometheus prometheus-k8s-0 -- curl -s 'http://localhost:9090/api/v1/rules' | jq '.data.groups[].rules[] | select(((.name|contains("ovn")) or (.name|contains("OVN")) or (.name|contains("Ovn")) or (.name|contains("North")) or (.name|contains("South"))) and .type=="alerting")'
    ```
 
-## Viewing the OVN-Kubernetes logs using the CLI {#nw-ovn-kubernetes-logs-cli_ovn-kubernetes-sources-of-troubleshooting-information}
+## View the OVN-Kubernetes logs using the CLI {#nw-ovn-kubernetes-logs-cli_ovn-kubernetes-sources-of-troubleshooting-information}
 
 To view OVN-Kubernetes pod logs in OpenShift Container Platform, you can use the OpenShift CLI (`oc`) to examine logs from containers in the `openshift-ovn-kubernetes` namespace.
 
@@ -158,7 +158,7 @@ To view OVN-Kubernetes pod logs in OpenShift Container Platform, you can use the
    $ oc logs -l app=ovnkube-node -n openshift-ovn-kubernetes --all-containers --tail 5
    ```
 
-## Viewing the OVN-Kubernetes logs using the web console {#nw-ovn-kubernetes-logs-console_ovn-kubernetes-sources-of-troubleshooting-information}
+## View the OVN-Kubernetes logs using the web console {#nw-ovn-kubernetes-logs-console_ovn-kubernetes-sources-of-troubleshooting-information}
 
 To view OVN-Kubernetes pod logs in the OpenShift Container Platform web console, you can open pod logs for each container in the `openshift-ovn-kubernetes` project.
 
@@ -366,7 +366,7 @@ OVN-Kubernetes network traffic can be viewed with OVS sampling via the CLI for t
 
 - `NetworkPolicy`
 - `AdminNetworkPolicy`
-- `BaselineNetworkPolicy`
+- `BaselineAdminNetworkPolicy`
 - `UserDefinedNetwork` isolation
 - `EgressFirewall`
 - Multicast ACLs.
@@ -383,7 +383,7 @@ Use the following procedure to view OVN-Kubernetes network traffic using the CLI
 
 - You are logged in to the cluster as a user with `cluster-admin` privileges.
 - You have created a source pod and a destination pod and ran traffic between them.
-- You have created at least one of the following network APIs: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or egress firewalls.
+- You have created at least one of the following network APIs: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineAdminNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or egress firewalls.
 
 **Procedure**
 

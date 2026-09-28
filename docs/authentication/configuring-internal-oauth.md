@@ -100,7 +100,7 @@ You can apply the following default methods:
 | `auto` | Auto-approve the grant and retry the request. |
 | `prompt` | Prompt the user to approve or deny the grant. |
 
-## Configuring the internal OAuth server’s token duration {#oauth-configuring-internal-oauth_configuring-internal-oauth}
+## Configure the internal OAuth server’s token duration {#oauth-configuring-internal-oauth_configuring-internal-oauth}
 
 Configure the internal OAuth server to extend or reduce access token validity beyond the default 24-hour lifetime.
 
@@ -154,7 +154,7 @@ If the default time is insufficient, then this can be modified using the followi
    ...
    ```
 
-## Configuring token inactivity timeout for the internal OAuth server {#oauth-token-inactivity-timeout_configuring-internal-oauth}
+## Configure token inactivity timeout for the internal OAuth server {#oauth-token-inactivity-timeout_configuring-internal-oauth}
 
 Configure the internal OAuth server to automatically expire tokens after a set period of inactivity, improving security by invalidating idle sessions.
 
@@ -235,7 +235,7 @@ If the token inactivity timeout is also configured in your OAuth client, that va
    error: You must be logged in to the server (Unauthorized)
    ```
 
-## Customizing the internal OAuth server URL {#customizing-the-oauth-server-url_configuring-internal-oauth}
+## Customize the internal OAuth server URL {#customizing-the-oauth-server-url_configuring-internal-oauth}
 
 Customize the internal OAuth server URL to use a custom hostname and TLS certificate by configuring the cluster Ingress component routes.
 
@@ -360,7 +360,7 @@ where:
 - [RFC 7636 Section 4.3 - Client Creates a Code Challenge](https://tools.ietf.org/html/rfc7636#section-4.3)
 - [IANA OAuth Parameters](http://www.iana.org/assignments/oauth-parameters)
 
-## Troubleshooting OAuth API events {#oauth-troubleshooting-api-events_configuring-internal-oauth}
+## Troubleshoot OAuth API events {#oauth-troubleshooting-api-events_configuring-internal-oauth}
 
 Use service account event messages to diagnose OAuth configuration issues when the API server returns `unexpected condition` errors that are otherwise difficult to debug.
 

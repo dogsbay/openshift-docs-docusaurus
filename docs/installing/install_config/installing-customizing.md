@@ -1048,7 +1048,7 @@ The following procedure configures an Intel® VROC-enabled RAID1.
 
       Include any additional `coreos-installer` arguments you need to install RHCOS.
 
-## Configuring chrony time service {#installation-special-config-chrony_installing-customizing}
+## Configure chrony time service {#installation-special-config-chrony_installing-customizing}
 
 You can set the time server and related settings used by the chrony time service (`chronyd`) by modifying the contents of the `chrony.conf` file and passing those contents to your nodes as a machine config.
 

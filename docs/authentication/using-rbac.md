@@ -188,7 +188,7 @@ The following default projects are considered highly privileged: `default`, `kub
 
 - [Guaranteed Scheduling For Critical Add-On Pods (Kubernetes documentation)](https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/#rescheduler-guaranteed-scheduling-of-critical-add-ons)
 
-## Viewing cluster roles and bindings {#viewing-cluster-roles_using-rbac}
+## View cluster roles and bindings {#viewing-cluster-roles_using-rbac}
 
 You can view cluster roles and bindings by using the `oc` CLI to determine the permissions associated with roles and identify the users, groups, and service accounts assigned to them.
 
@@ -470,7 +470,7 @@ Users with the `cluster-admin` default cluster role bound cluster-wide can perfo
    ...
    ```
 
-## Viewing local roles and bindings {#viewing-local-roles_using-rbac}
+## View local roles and bindings {#viewing-local-roles_using-rbac}
 
 You can view local role bindings by using the `oc` CLI to identify the users, groups, and service accounts that have roles within the current project or another project.
 
@@ -549,7 +549,7 @@ You can use the `oc` CLI to view local roles and bindings by using the `oc descr
      Group  system:serviceaccounts:joe-project
    ```
 
-## Adding roles to users {#adding-roles_using-rbac}
+## Add roles to users {#adding-roles_using-rbac}
 
 To grant a user access within a project, you can bind an appropriate role to the user and verify the resulting role binding.
 
@@ -673,7 +673,7 @@ You can bind any of the default cluster roles to local users or groups in your p
 
    The `alice` user has been added to the `admins` `RoleBinding`.
 
-## Creating a local role {#creating-local-role_using-rbac}
+## Create a local role {#creating-local-role_using-rbac}
 
 You can create a local role and bind it to a user to define custom permissions within a project.
 
@@ -701,7 +701,7 @@ You can create a local role and bind it to a user to define custom permissions w
    $ oc adm policy add-role-to-user podview user2 --role-namespace=blue -n blue
    ```
 
-## Creating a cluster role {#creating-cluster-role_using-rbac}
+## Create a cluster role {#creating-cluster-role_using-rbac}
 
 To define custom cluster-wide permissions, you can create a cluster role that specifies the verbs and resources users can access.
 
@@ -759,7 +759,7 @@ You can also manage cluster role bindings using the following operations. The `-
 | `$ oc adm policy add-cluster-role-to-group _<role>_ _<groupname>_` | Binds a given role to specified groups for all projects in the cluster. |
 | `$ oc adm policy remove-cluster-role-from-group _<role>_ _<groupname>_` | Removes a given role from specified groups for all projects in the cluster. |
 
-## Creating a cluster admin {#creating-cluster-admin_using-rbac}
+## Create a cluster admin {#creating-cluster-admin_using-rbac}
 
 To grant a user full administrative access to the cluster, you can bind the `cluster-admin` cluster role to that user.
 

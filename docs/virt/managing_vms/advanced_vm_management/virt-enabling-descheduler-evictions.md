@@ -76,7 +76,7 @@ Use the `KubeVirtRelieveAndMigrate` profile to enable the descheduler on a virtu
 
   You can use this profile with the `SoftTopologyAndDuplicates` profile to also rebalance pods based on soft topology constraints, which can be useful in hosted control plane environments.
 
-## Installing the descheduler {#nodes-descheduler-installing_virt-enabling-descheduler-evictions}
+## Install the descheduler {#nodes-descheduler-installing_virt-enabling-descheduler-evictions}
 
 The descheduler is not available by default. To enable the descheduler, you must install the Kube Descheduler Operator from the software catalog and enable one or more descheduler profiles.
 

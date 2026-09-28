@@ -1,9 +1,9 @@
 ---
-title: Route gRPC requests to services
-sidebar_position: 7
+title: Routing gRPC requests to services
+sidebar_position: 6
 ---
 
-# Route gRPC requests to services {#routing-grpc-requests-to-services}
+# Routing gRPC requests to services
 
 <a id="routing-grpc-requests-to-services"></a>
 
@@ -19,12 +19,12 @@ While standard `GRPCRoute` configurations share many similarities with `HTTPRout
 
 To successfully configure your gRPC routing behavior, complete the following tasks:
 
-- Configure gRPC request matching conditions
-- Apply processing filters to gRPC requests
-- Configure routing destinations and traffic weights for gRPC
+- Configuring gRPC request matching conditions
+- Applying processing filters to gRPC requests
+- Configuring routing destinations and traffic weights for gRPC
 - Understand `GRPCRoute` implementation details
 
-## Configure gRPC request matching conditions {#configuring-grpc-request-matching-conditions_routing-grpc-requests-to-services}
+## Configuring gRPC request matching conditions {#configuring-grpc-request-matching-conditions_routing-grpc-requests-to-services}
 
 When multiple gRPC services share a gateway, you can define request matching conditions based on gRPC methods and headers. This ensures that traffic is successfully routed to the correct backend application.
 
@@ -76,7 +76,7 @@ Each rule can specify a maximum of 64 matches. However, the total number of matc
    $ oc apply -f <filename>.yaml
    ```
 
-## Apply processing filters to gRPC requests {#applying-processing-filters-grpc-requests_routing-grpc-requests-to-services}
+## Applying processing filters to gRPC requests {#applying-processing-filters-grpc-requests_routing-grpc-requests-to-services}
 
 When a gRPC request hits your route, you can apply processing filters to modify the request or response before the traffic reaches your backend.
 
@@ -126,7 +126,7 @@ Because the data-plane behavior is provided by Red Hat OpenShift Service Mesh, 
    $ oc apply -f <filename>.yaml
    ```
 
-## Configure routing destinations and traffic weights for gRPC {#configuring-routing-destinations-traffic-weights-grpc_routing-grpc-requests-to-services}
+## Configuring routing destinations and traffic weights for gRPC {#configuring-routing-destinations-traffic-weights-grpc_routing-grpc-requests-to-services}
 
 When you route gRPC traffic, you must define backend service destinations and traffic weights to distribute requests across your APIs. `BackendRefs` designate the backend services where matching and filtered gRPC requests are delivered.
 

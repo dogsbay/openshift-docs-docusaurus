@@ -113,7 +113,7 @@ Kafka deployment model (optional)
 
 - [Network Observability without Loki](/docs/observability/network_observability/installing-operators#network-observability-without-loki_network_observability)
 
-## Viewing Network Observability Operator status and configuration {#nw-status-configuration-network-observability-operator_nw-network-observability-operator}
+## View Network Observability Operator status and configuration {#nw-status-configuration-network-observability-operator_nw-network-observability-operator}
 
 Inspect the current status, configuration details, and generated resources of the Network Observability Operator by using the `oc describe flowcollector/cluster` command.
 

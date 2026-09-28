@@ -162,7 +162,7 @@ Ensure that the following prohibitions are observed:
 - IPv6 configuration is not currently supported by the NMState Operator when configuring IPsec for external traffic.
 - Certificate common names (CN) in the provided certificate bundle must not begin with the `ovs_` prefix, because this naming can conflict with pod-to-pod IPsec CN names in the Network Security Services (NSS) database of each node.
 
-## Enabling IPsec encryption {#nw-ovn-ipsec-enable_configuring-ipsec-ovn}
+## Enable IPsec encryption {#nw-ovn-ipsec-enable_configuring-ipsec-ovn}
 
 To enable pod-to-pod and external IPsec encryption in OpenShift Container Platform, you can patch the cluster `Network` custom resource and set `ipsecConfig` mode to `Full` or `External`.
 
@@ -257,7 +257,7 @@ If you enabled IPsec in `Full` mode, as a cluster administrator you can configur
 
    Successful output from the command shows the status as `true`.
 
-## Configuring IPsec encryption for external traffic {#nw-ovn-ipsec-north-south-enable_configuring-ipsec-ovn}
+## Configure IPsec encryption for external traffic {#nw-ovn-ipsec-north-south-enable_configuring-ipsec-ovn}
 
 To configure IPsec encryption for traffic between OpenShift Container Platform and external hosts, you can create Butane machine configs with PKCS#12 certificates and apply them to cluster nodes.
 
@@ -484,7 +484,7 @@ After you apply the machine config, the Machine Config Operator (MCO) reboots af
 - [IPsec Encryption](https://nmstate.io/devel/yaml_api.html#ipsec-encryption)
 - [Installing Butane](/docs/installing/install_config/installing-customizing#installation-special-config-butane-install_installing-customizing)
 
-## Disabling IPsec encryption for an external IPsec endpoint {#nw-ovn-ipsec-north-south-disable_configuring-ipsec-ovn}
+## Disable IPsec encryption for an external IPsec endpoint {#nw-ovn-ipsec-north-south-disable_configuring-ipsec-ovn}
 
 To stop encrypting traffic to an external host in OpenShift Container Platform, you can remove the IPsec tunnel configuration from your cluster nodes.
 
@@ -527,7 +527,7 @@ To stop encrypting traffic to an external host in OpenShift Container Platform, 
    $ oc apply -f remove-ipsec-tunnel.yaml
    ```
 
-## Disabling IPsec encryption {#nw-ovn-ipsec-disable_configuring-ipsec-ovn}
+## Disable IPsec encryption {#nw-ovn-ipsec-disable_configuring-ipsec-ovn}
 
 To disable IPsec encryption in OpenShift Container Platform, you can patch the cluster `Network` custom resource and set `ipsecConfig` mode to `Disabled`.
 

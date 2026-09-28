@@ -74,7 +74,7 @@ You can configure the following types of identity providers:
 
 Once an identity provider has been defined, you can [use RBAC to define and apply permissions](/docs/authentication/using-rbac#authorization-overview_using-rbac).
 
-## Removing the kubeadmin user {#removing-kubeadmin_understanding-identity-provider}
+## Remove the kubeadmin user {#removing-kubeadmin_understanding-identity-provider}
 
 After you define an identity provider and create a new `cluster-admin` user, you can remove the `kubeadmin` to improve cluster security.
 

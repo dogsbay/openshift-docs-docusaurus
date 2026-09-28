@@ -31,7 +31,7 @@ For more information, see "Cluster Network Operator in OpenShift Container Platf
 
 As a cluster administrator, you can modify the new project template to automatically include `NetworkPolicy` objects when you create a new project.
 
-### Modifying the template for new projects {#modifying-template-for-new-projects_post-install-network-configuration}
+### Modify the template for new projects {#modifying-template-for-new-projects_post-install-network-configuration}
 
 To modify the default project template to customize the resources and settings applied when users create new projects, you can create a custom project template.
 
@@ -78,7 +78,7 @@ To create your own custom project template:
    ```
 7. After you save your changes, create a new project to verify that your changes were successfully applied.
 
-### Adding network policies to the new project template {#nw-networkpolicy-project-defaults_post-install-network-configuration}
+### Add network policies to the new project template {#nw-networkpolicy-project-defaults_post-install-network-configuration}
 
 You can add `NetworkPolicy` objects to the default project template so that new projects automatically include predefined network isolation rules. Applying network policies through templates helps enforce consistent network security controls across projects.
 

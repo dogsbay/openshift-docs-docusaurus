@@ -50,7 +50,7 @@ You can use the `baseProfileName` attribute to establish the minimum required `s
           - exit_group
   ```
 
-## Enabling memory optimization in the spod daemon {#spo-memory-optimization_spo-advanced}
+## Enable memory optimization in the spod daemon {#spo-memory-optimization_spo-advanced}
 
 The controller running inside of `spod` daemon process watches all pods available in the cluster when profile recording is enabled. This can lead to very high memory usage in large clusters, resulting in the `spod` daemon running out of memory or crashing.
 
@@ -79,7 +79,7 @@ SPO memory optimization is not enabled by default.
    # ...
    ```
 
-## Customizing daemon resource requirements {#spo-daemon-requirements_spo-advanced}
+## Customize daemon resource requirements {#spo-daemon-requirements_spo-advanced}
 
 The default resource requirements of the daemon container can be adjusted by using the field `daemonResourceRequirements` from the `spod` configuration.
 
@@ -93,7 +93,7 @@ The default resource requirements of the daemon container can be adjusted by usi
       "limits": {"memory": "512Mi", "cpu": "500m"}}}}'
   ```
 
-## Setting a custom priority class name for the spod daemon pod {#spo-custom-priority-class_spo-advanced}
+## Set a custom priority class name for the spod daemon pod {#spo-custom-priority-class_spo-advanced}
 
 The default priority class name of the `spod` daemon pod is set to `system-node-critical`. A custom priority class name can be configured in the `spod` configuration by setting a value in the `priorityClassName` field.
 
@@ -108,7 +108,7 @@ The default priority class name of the `spod` daemon pod is set to `system-node-
   securityprofilesoperatordaemon.openshift-security-profiles.x-k8s.io/spod patched
   ```
 
-## Using metrics {#spo-using-metrics_spo-advanced}
+## Use metrics {#spo-using-metrics_spo-advanced}
 
 The `openshift-security-profiles` namespace provides metrics endpoints, which are secured by the `kube-rbac-proxy` container. All metrics are exposed by the `metrics` service within the `openshift-security-profiles` namespace.
 
@@ -207,7 +207,7 @@ The log enricher must have permissions to read the host processes.
    2021/06/23 12:51:04 Seeked /var/log/audit/audit.log - &{Offset:0 Whence:2}
    ```
 
-### Using the log enricher to trace an application {#spo-log-enricher-app-trace_spo-advanced}
+### Use the log enricher to trace an application {#spo-log-enricher-app-trace_spo-advanced}
 
 You can use the Security Profiles Operator log enricher to trace an application.
 

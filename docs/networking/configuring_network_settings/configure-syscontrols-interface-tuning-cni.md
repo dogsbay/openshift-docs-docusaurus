@@ -11,7 +11,7 @@ To modify kernel parameters and interface attributes at runtime in OpenShift Con
 
 ![CNI plugin](/images/264_OpenShift_CNI_plugin_chain_0722.png)
 
-## Configuring system controls by using the tuning CNI {#nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni}
+## Configure system controls by using the tuning CNI {#nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni}
 
 To configure interface-level network sysctls in OpenShift Container Platform, you can use the tuning CNI meta plugin in a network attachment definition. Configure the `net.ipv4.conf.IFNAME.accept_redirects` sysctl to enable accepting and sending ICMP-redirected packets.
 
@@ -158,7 +158,7 @@ To configure interface-level network sysctls in OpenShift Container Platform, yo
    net.ipv4.conf.net1.accept_redirects = 1
    ```
 
-## Enabling all-multicast mode by using the tuning CNI {#nw-enabling-all-multi-cni_configure-syscontrols-interface-tuning-cni}
+## Enable all-multicast mode by using the tuning CNI {#nw-enabling-all-multi-cni_configure-syscontrols-interface-tuning-cni}
 
 To enable all-multicast mode on network interfaces in OpenShift Container Platform, you can use the tuning Container Network Interface (CNI) meta plugin in a network attachment definition. When enabled, the interface receives all multicast packets on the network.
 

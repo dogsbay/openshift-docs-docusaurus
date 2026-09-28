@@ -62,7 +62,7 @@ For more information about recovering from quorum loss, see "Restoring to an ear
 - [Expanding the cluster](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/expanding-the-cluster)
 - [Restoring to an earlier cluster state](/docs/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)
 
-## Managing etcd size by limiting the duration of Kubernetes events {#etcd-customize-ttl_etcd-performance}
+## Manage etcd size by limiting the duration of Kubernetes events {#etcd-customize-ttl_etcd-performance}
 
 To manage etcd size, you can set the maximum time that Kubernetes events are stored in the etcd database of the Kubernetes API server. By specifying the `eventTTLMinutes` property, you can control how long events are stored in the etcd database before they are purged.
 
@@ -181,7 +181,7 @@ When a high latency disk is used, a message states that the disk is not recommen
 
 When you use cluster deployments that span multiple data centers that are using disks for etcd that do not meet the recommended latency, it increases the chances of service-affecting failures and dramatically reduces the network latency that the control plane can sustain.
 
-## Monitoring consensus latency for etcd {#etcd-consensus-latency_etcd-performance}
+## Monitor consensus latency for etcd {#etcd-consensus-latency_etcd-performance}
 
 Use the `etcdctl` command-line interface (CLI) to check endpoint health and consensus latency on a running cluster. Regular monitoring helps you spot delays before they cause leader elections and Kubernetes API instability.
 
@@ -235,7 +235,7 @@ This procedure, which validates and monitors cluster health, can be run only on 
    +----------------------------+--------+-------------+-------+
    ```
 
-## Moving etcd to a different disk {#move-etcd-different-disk_etcd-performance}
+## Move etcd to a different disk {#move-etcd-different-disk_etcd-performance}
 
 Move etcd data from a shared disk to a dedicated disk to resolve or prevent performance problems. Isolating etcd storage reduces latency from competing I/O on the control plane.
 
@@ -594,7 +594,7 @@ Follow this procedure to defragment etcd data on each etcd member.
       sh-4.4# etcdctl alarm disarm
       ```
 
-## Setting tuning parameters for etcd {#etcd-tuning-parameters_etcd-performance}
+## Set tuning parameters for etcd {#etcd-tuning-parameters_etcd-performance}
 
 Configure the control plane hardware speed setting for etcd to match your environment’s latency.
 
@@ -720,7 +720,7 @@ Election timeout
 
 These values do not provide the whole story for the control plane or even etcd. An etcd cluster is sensitive to disk latencies. Because etcd must persist proposals to its log, disk activity from other processes might cause long fsync latencies. The consequence is that etcd might miss heartbeats, causing request timeouts and temporary leader loss. During a leader loss and reelection, the Kubernetes API cannot process any request that causes a service-affecting event and instability of the cluster.
 
-## Determining the size of the etcd database and understanding its effects {#etcd-database-size_etcd-performance}
+## Determine the size of the etcd database and understand its effects {#etcd-database-size_etcd-performance}
 
 etcd database size affects defragmentation duration, resync time after network partitions, and transaction rates. Plan capacity so maintenance and recovery do not degrade cluster stability.
 
@@ -768,7 +768,7 @@ You can determine the size of an etcd database by using the OpenShift Container 
      https://198.18.111.14:2379, 3.5.6, 1.1 GB
      ```
 
-## Increasing the database size for etcd {#etcd-increase-db_etcd-performance}
+## Increase the database size for etcd {#etcd-increase-db_etcd-performance}
 
 Increase the etcd disk quota when low space or excessive growth alerts appear. Expanding the quota before etcd runs out of space prevents write failures and cluster instability.
 
@@ -929,7 +929,7 @@ The Etcd "cluster" is invalid: spec.backendQuotaGiB: Invalid value: "integer": e
 
 To resolve this issue, specify an integer greater than `10`.
 
-## Measuring network jitter between control plane nodes {#etcd-network-latency-jitter_etcd-performance}
+## Measure network jitter between control plane nodes {#etcd-network-latency-jitter_etcd-performance}
 
 Measure network jitter between control plane nodes to validate latency for etcd heartbeats. High jitter causes missed heartbeats, leader loss, and Kubernetes API request failures.
 
@@ -1124,7 +1124,7 @@ The following metrics are also relevant to understanding etcd performance:
 
 - [How to query from the command line Prometheus statistics (Red Hat Knowledgebase)](https://access.redhat.com/solutions/5151831)
 
-## Determining Kubernetes API transaction rate for your environment {#etcd-determine-kube-api-transaction-rate_etcd-performance}
+## Determine Kubernetes API transaction rate for your environment {#etcd-determine-kube-api-transaction-rate_etcd-performance}
 
 Test sustained Kubernetes API transaction rates for stretched control plane deployments by using `kube-burner-ocp` density profiles. Validate limits before production workloads exceed etcd capacity.
 

@@ -21,7 +21,7 @@ The control plane includes the following components:
 - Machine Config Operator
 - Machine Config Server.
 
-## Understanding TLS security profiles {#tls-profiles-understanding_tls-security-profiles}
+## Understand TLS security profiles {#tls-profiles-understanding_tls-security-profiles}
 
 You can use a TLS (Transport Layer Security) security profile, as described in this section, to define which TLS ciphers are required by various OpenShift Container Platform components.
 
@@ -64,7 +64,7 @@ When using one of the predefined profile types, the effective profile configurat
 
 :::
 
-## Viewing TLS security profile details {#tls-profiles-view-details_tls-security-profiles}
+## View TLS security profile details {#tls-profiles-view-details_tls-security-profiles}
 
 To check the minimum TLS version and ciphers that a security profile applies in OpenShift Container Platform, you can inspect the profile configuration for the Ingress Controller, control plane, or kubelet. Use the `oc explain` command to display settings for a predefined or custom profile.
 
@@ -154,7 +154,7 @@ The effective configuration of minimum TLS version and list of ciphers for a pro
        ...
   ```
 
-## Configuring the TLS security profile for the Ingress Controller {#tls-profiles-ingress-configuring_tls-security-profiles}
+## Configure the TLS security profile for the Ingress Controller {#tls-profiles-ingress-configuring_tls-security-profiles}
 
 To configure a TLS security profile for an Ingress Controller, edit the `IngressController` custom resource (CR) to specify a predefined or custom TLS security profile.
 
@@ -244,7 +244,7 @@ The Ingress Operator also converts the TLS `1.0` of an `Old` or `Custom` profile
    ...
   ```
 
-## Configuring the TLS security profile for the control plane {#tls-profiles-kubernetes-configuring_tls-security-profiles}
+## Configure the TLS security profile for the control plane {#tls-profiles-kubernetes-configuring_tls-security-profiles}
 
 To configure a TLS security profile for the control plane, edit the `APIServer` custom resource (CR) to specify a predefined or custom TLS security profile.
 
@@ -384,7 +384,7 @@ You can see the configured TLS security profile in the `APIServer` custom resour
    # ...
    ```
 
-## Configuring the TLS security profile for the kubelet {#tls-profiles-kubelet-configuring_tls-security-profiles}
+## Configure the TLS security profile for the kubelet {#tls-profiles-kubelet-configuring_tls-security-profiles}
 
 To configure TLS ciphers and minimum versions for the kubelet HTTP server in OpenShift Container Platform, apply a predefined or custom TLS security profile through a `KubeletConfig` custom resource (CR). Without a custom profile, the kubelet defaults to the `Intermediate` profile.
 

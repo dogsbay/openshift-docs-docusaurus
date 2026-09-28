@@ -64,7 +64,7 @@ As a cluster administrator, you can configure this range to ensure that MAC addr
    spec:
      kubeMacPoolConfiguration:
        rangeStart: "AA:00:00:00:00:00"
-       rangeEnd: "FD:FF:FF:FF:FF:FF"
+       rangeEnd: "FE:A8:11:22:33:44"
    # ...
    ```
 
@@ -82,7 +82,7 @@ As a cluster administrator, you can configure this range to ensure that MAC addr
    ```terminal
    {
      "rangeStart": "AA:00:00:00:00:00",
-     "rangeEnd": "FD:FF:FF:FF:FF:FF"
+     "rangeEnd": "FE:A8:11:22:33:44"
    }
    ```
 2. Optional. Create a new VM and run the following command to check the MAC address of the VM’s network interface:

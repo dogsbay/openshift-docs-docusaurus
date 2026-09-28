@@ -9,7 +9,7 @@ sidebar_position: 5
 
 To troubleshoot `AdminNetworkPolicy` and `BaselineAdminNetworkPolicy` resources in OpenShift Container Platform, you can review status conditions with `oc describe` and inspect OVN northbound database objects with `ovn-nbctl` commands.
 
-## Checking creation of ANP {#anp-troubleshooting_ovn-k-anp}
+## Check creation of ANP {#anp-troubleshooting_ovn-k-anp}
 
 To check that your `AdminNetworkPolicy` (ANP) and `BaselineAdminNetworkPolicy` (BANP) are created correctly, check the status outputs of the following commands: `oc describe anp` or `oc describe banp`.
 
@@ -71,7 +71,7 @@ Status:
 
 See the following section for `nbctl` commands to help troubleshoot unsuccessful policies.
 
-## Using nbctl commands for ANP and BANP {#metrics-commands-anp_ovn-k-anp}
+## Use nbctl commands for ANP and BANP {#metrics-commands-anp_ovn-k-anp}
 
 To inspect `AdminNetworkPolicy` and `BaselineAdminNetworkPolicy` resources in the OVN northbound database (nbdb) in OpenShift Container Platform, you can run `ovn-nbctl` from the `nbdb` container on an OVN-Kubernetes node. Use the commands in this procedure to examine `ACL`, `Address_Set`, and `Port_Group` objects.
 

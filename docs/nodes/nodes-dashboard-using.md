@@ -29,7 +29,7 @@ Average durations
 Number of operations
 : Displays visualizations that that you can use to identify changes in the number of operations being run, which in turn helps you determine the load balance and efficiency of your system
 
-## Accessing the node metrics dashboard {#nodes-dashboard-using-accessing_nodes-dashboard-using}
+## Access the node metrics dashboard {#nodes-dashboard-using-accessing_nodes-dashboard-using}
 
 You can access the node metrics dashboard from the **Administrator** perspective of the OpenShift Container Platform web console.
 

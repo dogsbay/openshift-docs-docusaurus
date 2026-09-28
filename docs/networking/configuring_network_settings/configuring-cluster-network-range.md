@@ -23,7 +23,7 @@ You cannot expand the service network CIDR range after installing the cluster, e
 
 :::
 
-## Expanding the cluster network IP address range {#nw-cluster-network-range-edit_configuring-cluster-network-range}
+## Expand the cluster network IP address range {#nw-cluster-network-range-edit_configuring-cluster-network-range}
 
 To expand the cluster network IP address range in OpenShift Container Platform to support more nodes, you can modify the cluster network CIDR mask using the `oc patch` command.
 

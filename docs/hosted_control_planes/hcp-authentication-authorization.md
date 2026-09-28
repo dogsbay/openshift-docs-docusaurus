@@ -9,7 +9,7 @@ sidebar_position: 10
 
 The OpenShift Container Platform control plane includes a built-in OAuth server. You can obtain OAuth access tokens to authenticate to the OpenShift Container Platform API. After you create your hosted cluster, you can configure OAuth by specifying an identity provider.
 
-## Configuring the OAuth server for a hosted cluster by using the CLI {#hcp-configuring-oauth_hcp-authentication-authorization}
+## Configure the OAuth server for a hosted cluster by using the CLI {#hcp-configuring-oauth_hcp-authentication-authorization}
 
 You can configure the internal OAuth server for your hosted cluster by using the command-line interface (CLI).
 
@@ -83,7 +83,7 @@ When you configure identity providers, you must configure at least one `NodePool
    - `spec.configuration.oauth.identityProviders.mappingMethod` defines a mapping method that controls how mappings are established between identities of this provider and `User` objects.
 3. Save the file to apply the changes.
 
-## Configuring the OAuth server for a hosted cluster by using the web console {#hcp-configuring-oauth-console_hcp-authentication-authorization}
+## Configure the OAuth server for a hosted cluster by using the web console {#hcp-configuring-oauth-console_hcp-authentication-authorization}
 
 You can configure the internal OAuth server for your hosted cluster by using the OpenShift Container Platform web console.
 
@@ -168,7 +168,7 @@ The CCO supports a manual mode only for hosted clusters on AWS. By default, host
 
 :::
 
-### Enabling Operators to support CCO-based workflows with AWS STS {#osdk-cco-aws-sts-enabling_hcp-authentication-authorization}
+### Enable Operators to support CCO-based workflows with AWS STS {#osdk-cco-aws-sts-enabling_hcp-authentication-authorization}
 
 As an Operator author designing your project to run on Operator Lifecycle Manager (OLM), you can enable your Operator to authenticate against AWS on STS-enabled OpenShift Container Platform clusters by customizing your project to support the Cloud Credential Operator (CCO).
 
@@ -433,7 +433,7 @@ By default, pods related to the Operator deployment mount a `serviceAccountToken
       }
       ```
 
-### Verifying the CCO installation in a hosted cluster on AWS {#hcp-cco-verify-aws-sts_hcp-authentication-authorization}
+### Verify the CCO installation in a hosted cluster on AWS {#hcp-cco-verify-aws-sts_hcp-authentication-authorization}
 
 You can verify that the Cloud Credential Operator (CCO) is running correctly in your hosted control plane.
 

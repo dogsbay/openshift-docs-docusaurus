@@ -41,7 +41,7 @@ Not all CCO modes are supported for all cloud providers, as described in the fol
 
 1. This platform uses the `ccoctl` utility during installation to configure long-term credentials.
 
-## Determining the Cloud Credential Operator mode {#cco-determine-mode_about-cloud-credential-operator}
+## Determine the Cloud Credential Operator mode {#cco-determine-mode_about-cloud-credential-operator}
 
 For platforms that support using the CCO in multiple modes, you can determine what mode the CCO is configured to use by using the web console or the CLI.
 
@@ -49,7 +49,7 @@ For platforms that support using the CCO in multiple modes, you can determine wh
 
 ![Decision tree showing how to determine the configured CCO credentials mode for your cluster.](/images/334_OpenShift_cluster_updating_and_CCO_workflows_0923_4.11_A_AliCloud_patch.png)
 
-### Determining the Cloud Credential Operator mode by using the web console {#cco-determine-mode-gui_about-cloud-credential-operator}
+### Determine the Cloud Credential Operator mode by using the web console {#cco-determine-mode-gui_about-cloud-credential-operator}
 
 You can determine what mode the Cloud Credential Operator (CCO) is configured to use by using the web console.
 
@@ -127,7 +127,7 @@ Only Amazon Web Services (AWS), global Microsoft Azure, and Google Cloud cluster
       - A value that contains a URL that is associated with your cloud provider indicates that the CCO is using manual mode with short-term credentials for components. These clusters are configured using the `ccoctl` utility to create and manage cloud credentials from outside of the cluster.
       - An empty value (`''`) indicates that the cluster is using the CCO in manual mode but was not configured using the `ccoctl` utility.
 
-### Determining the Cloud Credential Operator mode by using the CLI {#cco-determine-mode-cli_about-cloud-credential-operator}
+### Determine the Cloud Credential Operator mode by using the CLI {#cco-determine-mode-cli_about-cloud-credential-operator}
 
 You can determine what mode the Cloud Credential Operator (CCO) is configured to use by using the CLI.
 

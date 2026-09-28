@@ -27,7 +27,7 @@ Map OpenShift Container Platform users to Keystone usernames or unique Keystone 
 
 Basing users on the Keystone ID is gives each user a unique identity. If you delete a Keystone user, then create a new user with the same username but a different Keystone ID, the new user does not have access to resources of the deleted user.
 
-## Creating the secret {#identity-provider-creating-secret-tls_configuring-keystone-identity-provider}
+## Create the secret {#identity-provider-creating-secret-tls_configuring-keystone-identity-provider}
 
 You can create a TLS `Secret` object in the `openshift-config` namespace by using the `oc` CLI or by applying a YAML file to store client certificates and keys that identity providers require for secure communication.
 
@@ -50,7 +50,7 @@ You can create a TLS `Secret` object in the `openshift-config` namespace by usin
      tls.key: <base64_encoded_key>
    ```
 
-## Creating a ConfigMap {#identity-provider-creating-configmap_configuring-keystone-identity-provider}
+## Create a ConfigMap {#identity-provider-creating-configmap_configuring-keystone-identity-provider}
 
 Create a `ConfigMap` object in the `openshift-config` namespace that contains the certificate authority bundle for the identity provider. OpenShift Container Platform uses this bundle to validate Transport Layer Security (TLS) connections to the identity provider.
 
@@ -126,7 +126,7 @@ where:
 
 - [Identity provider parameters](/docs/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)
 
-## Adding an identity provider to your cluster {#add-identity-provider_configuring-keystone-identity-provider}
+## Add an identity provider to your cluster {#add-identity-provider_configuring-keystone-identity-provider}
 
 Apply the identity provider custom resource (CR) to your cluster after you define it. With this configuration, you can authenticate with the configured identity provider.
 

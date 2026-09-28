@@ -151,7 +151,7 @@ By default, Kubernetes does not allow multiprotocol load balancer services. This
 - In both services, specify the same pod selector.
 - Specify the same sharing key and `spec.loadBalancerIP` value to colocate the TCP and UDP services on the same IP address.
 
-## Configuring a service with MetalLB {#nw-metallb-configure-svc_configure-services-metallb}
+## Configure a service with MetalLB {#nw-metallb-configure-svc_configure-services-metallb}
 
 To expose an application to external network traffic, configure a load-balancing service. MetalLB assigns an external IP address from a configured address pool, ensuring that your application is reachable from outside the cluster.
 

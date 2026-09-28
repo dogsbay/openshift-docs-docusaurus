@@ -9,7 +9,7 @@ sidebar_position: 4
 
 You can install the NBDE Tang Operator either by using the web console or through the `oc` command from CLI.
 
-## Installing the NBDE Tang Server Operator using the web console {#installing-nbde-tang-server-operator-using-web-console_installing-nbde-tang-server-operator}
+## Install the NBDE Tang Server Operator using the web console {#installing-nbde-tang-server-operator-using-web-console_installing-nbde-tang-server-operator}
 
 You can install the NBDE Tang Server Operator from the software catalog using the web console.
 
@@ -30,7 +30,7 @@ You can install the NBDE Tang Server Operator from the software catalog using th
 1. Navigate to the **Ecosystem** → **Installed Operators** page.
 2. Check that the NBDE Tang Server Operator is installed and its status is `Succeeded`. ![NBDE Tang Server Operator status](/images/nbde-tang-server-operator-05-succeeded.png)
 
-## Installing the NBDE Tang Server Operator using CLI {#installing-nbde-tang-server-operator-using-cli_installing-nbde-tang-server-operator}
+## Install the NBDE Tang Server Operator using CLI {#installing-nbde-tang-server-operator-using-cli_installing-nbde-tang-server-operator}
 
 You can install the NBDE Tang Server Operator from the software catalog using the CLI.
 

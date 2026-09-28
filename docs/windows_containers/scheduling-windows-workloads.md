@@ -200,7 +200,7 @@ Red Hat does not provide support for the third-party production drivers listed 
 
 :::
 
-## Scaling a compute machine set manually {#machineset-manually-scaling_scheduling-windows-workloads}
+## Scale a compute machine set manually {#machineset-manually-scaling_scheduling-windows-workloads}
 
 To add or remove an instance of a machine in a compute machine set, you can manually scale the compute machine set.
 

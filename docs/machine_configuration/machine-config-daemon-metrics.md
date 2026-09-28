@@ -9,7 +9,7 @@ sidebar_position: 13
 
 The Machine Config Daemon, part of the Machine Config Operator, runs on every node in the cluster to manage configuration changes and updates on each of the nodes.
 
-## Understanding Machine Config Daemon metrics {#machine-config-daemon-metrics-understanding_machine-config-operator}
+## Understand Machine Config Daemon metrics {#machine-config-daemon-metrics-understanding_machine-config-operator}
 
 You can access the metrics provided by the Machine Config Daemon by using the Prometheus Cluster Monitoring stack.
 

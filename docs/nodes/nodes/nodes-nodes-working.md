@@ -9,7 +9,7 @@ sidebar_position: 2
 
 As an administrator, you can perform several tasks to make your clusters more efficient.
 
-## Evacuating pods on nodes {#nodes-nodes-working-evacuating_nodes-nodes-working}
+## Evacuate pods on nodes {#nodes-nodes-working-evacuating_nodes-nodes-working}
 
 You can remove, or evacuate, pods from a given node or nodes. Evacuating pods allows you to migrate all or selected pods to other nodes.
 

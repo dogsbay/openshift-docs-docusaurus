@@ -9,7 +9,7 @@ sidebar_position: 1
 
 If you have unencrypted HTTP, you can create a basic route with a route object.
 
-## Creating an HTTP-based route {#nw-creating-a-route_creating-basic-routes}
+## Create an HTTP-based route {#nw-creating-a-route_creating-basic-routes}
 
 You can use the following procedure to create a simple HTTP-based route to a web application, using the `hello-openshift` application as an example.
 
@@ -392,7 +392,7 @@ The propagation behavior is controlled by the `route.openshift.io/reconcile-labe
 - Annotation disabled (removed or value set to non-"true"): The Operator disables label propagation. The labels that currently exist on the `Route` resource are kept as-is, but the Operator no longer syncs them with the `Ingress` resource.
 - Annotation re-enabled: The Operator resumes propagation. It will again replace all labels on the `Route` resource with the current labels from the `Ingress` resource.
 
-## Enabling label propagation from Ingress to Route resources {#networking-ingress-label-propagation-enabling_creating-basic-routes}
+## Enable label propagation from Ingress to Route resources {#networking-ingress-label-propagation-enabling_creating-basic-routes}
 
 You can enable the Ingress Operator to automatically propagate labels from an `Ingress` resource to the `Route` resource it manages. To enable this, you must add the `reconcile-labels` annotation to an `Ingress` resource.
 

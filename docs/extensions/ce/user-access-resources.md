@@ -40,7 +40,7 @@ Cluster extensions commonly include the following default cluster role policies:
 
 - [User-facing roles (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles)
 
-## Finding API groups and resources exposed by a cluster extension {#olmv1-finding-ce-resources_user-access-resources}
+## Find API groups and resources exposed by a cluster extension {#olmv1-finding-ce-resources_user-access-resources}
 
 To create appropriate RBAC policies for granting user access to cluster extension resources, you must know which API groups and resources are exposed by the installed extension. As an administrator, you can inspect custom resource definitions (CRDs) installed on the cluster by using OpenShift CLI (`oc`).
 
@@ -66,7 +66,7 @@ To create appropriate RBAC policies for granting user access to cluster extensio
      $ oc get crd <crd_name> -o yaml
      ```
 
-## Granting user access to extension resources by using custom role bindings {#olmv1-granting-user-access-binding_user-access-resources}
+## Grant user access to extension resources by using custom role bindings {#olmv1-granting-user-access-binding_user-access-resources}
 
 As a cluster administrator, you can manually create and configure role-based access control (RBAC) policies to grant user access to extension resources by using custom role bindings.
 
@@ -187,7 +187,7 @@ As a cluster administrator, you can manually create and configure role-based acc
       $ oc create -f <filename>.yaml
       ```
 
-## Granting user access to extension resources by using aggregated cluster roles {#olmv1-granting-user-access-aggregated_user-access-resources}
+## Grant user access to extension resources by using aggregated cluster roles {#olmv1-granting-user-access-aggregated_user-access-resources}
 
 As a cluster administrator, you can configure role-based access control (RBAC) policies to grant user access to extension resources by using aggregated cluster roles.
 

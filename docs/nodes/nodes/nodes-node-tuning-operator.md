@@ -33,7 +33,7 @@ In earlier versions of OpenShift Container Platform, the Performance Addon Opera
 
 :::
 
-## Accessing an example Node Tuning Operator specification {#accessing-an-example-node-tuning-operator-specification_nodes-node-tuning-operator}
+## Access an example Node Tuning Operator specification {#accessing-an-example-node-tuning-operator-specification_nodes-node-tuning-operator}
 
 Use this process to access an example Node Tuning Operator specification.
 

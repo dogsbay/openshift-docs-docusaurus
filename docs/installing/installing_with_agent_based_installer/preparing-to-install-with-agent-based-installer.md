@@ -191,12 +191,6 @@ For a two-node OpenShift Container Platform cluster with fencing (TNF), only the
 
   :::
 
-  :::note
-
-  For installations on IBM Z(R) (`s390x`) architecture, the minimum memory requirement is 24 GB RAM per host instead of 16 GB.
-
-  :::
-
 **Additional resources**
 
 - [Cluster capabilities](/docs/installing/overview/cluster-capabilities#cluster-capabilities)

@@ -1,6 +1,6 @@
 ---
 title: Configuring IBM Secure Execution virtual machines on IBM Z and IBM LinuxONE
-sidebar_position: 6
+sidebar_position: 3
 ---
 
 # Configuring IBM Secure Execution virtual machines on IBM Z and IBM LinuxONE {#virt-configuring-ibm-secure-execution-vms-ibm-z}

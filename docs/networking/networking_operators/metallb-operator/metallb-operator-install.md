@@ -11,7 +11,7 @@ As a cluster administrator, you can add the MetalLB Operator so that the Operato
 
 MetalLB and IP failover are incompatible. If you configured IP failover for your cluster, perform the steps to [remove IP failover](/docs/networking/configuring_network_settings/configuring-ipfailover#nw-ipfailover-remove_configuring-ipfailover) before you install the Operator.
 
-## Installing the MetalLB Operator from the software catalog by using the web console {#metallb-installing-using-web-console_metallb-operator-install}
+## Install the MetalLB Operator from the software catalog by using the web console {#metallb-installing-using-web-console_metallb-operator-install}
 
 As a cluster administrator, you can install the MetalLB Operator by using the OpenShift Container Platform web console.
 
@@ -38,7 +38,7 @@ As a cluster administrator, you can install the MetalLB Operator by using the Op
    1. Navigate to the **Ecosystem** → **Installed Operators** page and inspect the `Status` column for any errors or failures.
    2. Navigate to the **Workloads** → **Pods** page and check the logs in any pods in the `metallb-system` project that are reporting issues.
 
-## Installing from the software catalog using the CLI {#nw-metallb-installing-operator-cli_metallb-operator-install}
+## Install from the software catalog using the CLI {#nw-metallb-installing-operator-cli_metallb-operator-install}
 
 To install the MetalLB Operator from the software catalog in OpenShift Container Platform without using the web console, you can use the OpenShift CLI (`oc`).
 
@@ -141,7 +141,7 @@ The verification steps assume the MetalLB Operator is installed in the `metallb-
    install-wzg94   metallb-operator.4.22.0-nnnnnnnnnnnn   Automatic   true
    ```
 
-## Starting MetalLB on your cluster {#nw-metallb-operator-initial-config_metallb-operator-install}
+## Start MetalLB on your cluster {#nw-metallb-operator-initial-config_metallb-operator-install}
 
 To start MetalLB on your cluster after installing the MetalLB Operator in OpenShift Container Platform, you create a single MetalLB custom resource.
 

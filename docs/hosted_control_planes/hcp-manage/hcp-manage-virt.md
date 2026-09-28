@@ -327,7 +327,7 @@ Image caching reduces VM startup time by requiring only a single image import. I
 
 **Additional resources**
 
-- [Cloning a data volume using smart-cloning](/docs/virt/creating_vm/virt-creating-vms-by-cloning-pvcs#smart-cloning_virt-creating-vms-by-cloning-pvcs)
+- [Cloning a data volume using smart-cloning](/docs/virt/creating_vm/virt-creating-vms-from-cli#smart-cloning_virt-creating-vms-cli)
 
 ### KubeVirt CSI storage security and isolation {#hcp-virt-storage-security-isolation_hcp-manage-virt}
 

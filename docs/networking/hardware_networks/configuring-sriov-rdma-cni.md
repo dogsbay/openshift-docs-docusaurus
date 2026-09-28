@@ -9,7 +9,7 @@ sidebar_position: 6
 
 Remote Direct Memory Access (RDMA) allows direct memory access between two systems without involving the operating system of either system. You can configure an RDMA Container Network Interface (CNI) on Single Root I/O Virtualization (SR-IOV) to enable high-performance, low-latency communication between containers. When you combine RDMA with SR-IOV, you provide a mechanism to expose hardware counters of Mellanox Ethernet devices for use inside  Data Plane Development Kit (DPDK)    applications.
 
-## Configuring SR-IOV RDMA CNI {#nw-sriov-configuring-sriov-rdma-cni_configuring-sriov-rdma-cni}
+## Configure SR-IOV RDMA CNI {#nw-sriov-configuring-sriov-rdma-cni_configuring-sriov-rdma-cni}
 
 Configure an RDMA CNI on SR-IOV.
 

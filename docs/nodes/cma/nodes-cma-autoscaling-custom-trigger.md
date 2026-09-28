@@ -103,7 +103,7 @@ spec:
 3. Specifies the GPU utilization percentage threshold that triggers scaling. When the average GPU utilization exceeds 90%, the autoscaler scales up the deployment.
 4. Specifies a Prometheus query using NVIDIA DCGM metrics to monitor GPU utilization across all GPU devices. The `DCGM_FI_DEV_GPU_UTIL` metric provides GPU utilization percentages.
 
-### Configuring the custom metrics autoscaler to use OpenShift Container Platform monitoring {#nodes-cma-autoscaling-custom-prometheus-config_nodes-cma-autoscaling-custom-trigger}
+### Configure the custom metrics autoscaler to use OpenShift Container Platform monitoring {#nodes-cma-autoscaling-custom-prometheus-config_nodes-cma-autoscaling-custom-trigger}
 
 You can use the installed OpenShift Container Platform Prometheus monitoring as a source for the metrics used by the custom metrics autoscaler. However, there are some additional configurations you must perform.
 

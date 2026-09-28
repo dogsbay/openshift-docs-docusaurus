@@ -295,7 +295,7 @@ Persistent volume claim limits
 `spec.limit.max.storage`
 : Specifies the maximum amount of storage that can be requested in a persistent volume claim.
 
-## Creating a Limit Range {#nodes-cluster-limit-creating_nodes-cluster-limit-ranges}
+## Create a Limit Range {#nodes-cluster-limit-creating_nodes-cluster-limit-ranges}
 
 You can define `LimitRange` objects to set specific resource limits for a pod, container, image, image stream, or persistent volume claim (PVC) in a specific project. A limit range allows you to restrict resource consumption in that project.
 
@@ -381,7 +381,7 @@ You can define `LimitRange` objects to set specific resource limits for a pod, c
    <dd>Specifies the project where you want the limits to apply.</dd>
    </dl>
 
-## Viewing a limit {#nodes-cluster-limit-viewing_nodes-cluster-limit-ranges}
+## View a limit {#nodes-cluster-limit-viewing_nodes-cluster-limit-ranges}
 
 You can view the limits defined in a project by navigating in the web console to the project’s **Quota** page. This allows you to see details about each of the limit ranges in a project.
 
@@ -418,7 +418,7 @@ You can also use the CLI to view limit range details:
    PersistentVolumeClaim           storage                 -       50Gi    -               -               -
    ```
 
-## Deleting a Limit Range {#nodes-cluster-limit-ranges-deleting_nodes-cluster-limit-ranges}
+## Delete a Limit Range {#nodes-cluster-limit-ranges-deleting_nodes-cluster-limit-ranges}
 
 You can remove any active `LimitRange` object so that it no longer enforces the limits in a project.
 
