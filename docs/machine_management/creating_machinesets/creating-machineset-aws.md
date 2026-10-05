@@ -640,17 +640,12 @@ For more information, including limitations and suggested use cases for this Ama
 
 **Procedure**
 
-tag:controlplane[][] . Edit your control plane machine set custom resource (CR) by running the following command:
-
-```terminal
-$ oc edit controlplanemachineset.machine.openshift.io cluster --namespace openshift-machine-api
-```
-
-end:controlplane[][]
-
-tag:compute[][] . In a text editor, open an existing machine set custom resource (CR) or create a new one. end:compute[][]
-
-1. Update the CR to implement your configuration changes:
+1. Edit your control plane machine set custom resource (CR) by running the following command:
+   ```terminal
+   $ oc edit controlplanemachineset.machine.openshift.io cluster --namespace openshift-machine-api
+   ```
+2. In a text editor, open an existing machine set custom resource (CR) or create a new one.
+3. Update the CR to implement your configuration changes:
    ```yaml title="Sample configuration"
    tag::compute[]
    apiVersion: machine.openshift.io/v1beta1

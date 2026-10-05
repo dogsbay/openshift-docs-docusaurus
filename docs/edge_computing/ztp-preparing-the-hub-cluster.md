@@ -110,7 +110,7 @@ The following network specifications are representative of a typical real-world 
 
 - [Creating and managing single-node OpenShift clusters with RHACM](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.7/html/install/installing#single-node)
 
-## Installing GitOps ZTP in a disconnected environment {#installing-disconnected-rhacm_ztp-preparing-the-hub-cluster}
+## Install GitOps ZTP in a disconnected environment {#installing-disconnected-rhacm_ztp-preparing-the-hub-cluster}
 
 Use Red Hat Advanced Cluster Management (RHACM), Red Hat OpenShift GitOps, and Topology Aware Lifecycle Manager (TALM) on the hub cluster in the disconnected environment to manage the deployment of multiple managed clusters.
 
@@ -136,7 +136,7 @@ Use Red Hat Advanced Cluster Management (RHACM), Red Hat OpenShift GitOps, and
 - [Installing TALM](/docs/edge_computing/cnf-talm-for-cluster-upgrades#installing-topology-aware-lifecycle-manager-using-cli_cnf-topology-aware-lifecycle-manager)
 - [Mirroring an Operator catalog](/docs/disconnected/using-olm#olm-mirror-catalog_olm-restricted-networks)
 
-## Adding RHCOS ISO and RootFS images to the disconnected mirror host {#ztp-acm-adding-images-to-mirror-registry_ztp-preparing-the-hub-cluster}
+## Add RHCOS ISO and RootFS images to the disconnected mirror host {#ztp-acm-adding-images-to-mirror-registry_ztp-preparing-the-hub-cluster}
 
 Before you begin installing clusters in the disconnected environment with Red Hat Advanced Cluster Management (RHACM), you must first host Red Hat Enterprise Linux CoreOS (RHCOS) images for it to use. Use a disconnected mirror to host the RHCOS images.
 
@@ -205,7 +205,7 @@ The RHCOS images might not change with every release of OpenShift Container Plat
 - [Creating a mirror registry](/docs/disconnected/installing-mirroring-creating-registry#installing-mirroring-creating-registry)
 - [Mirroring images for a disconnected installation](/docs/disconnected/installing-mirroring-installation-images#installing-mirroring-installation-images)
 
-## Enabling the assisted service {#enabling-assisted-installer-service-on-bare-metal_ztp-preparing-the-hub-cluster}
+## Enable the assisted service {#enabling-assisted-installer-service-on-bare-metal_ztp-preparing-the-hub-cluster}
 
 Red Hat Advanced Cluster Management (RHACM) uses the assisted service to deploy OpenShift Container Platform clusters. The assisted service is deployed automatically when you enable the MultiClusterHub Operator on Red Hat Advanced Cluster Management (RHACM). After that, you need to configure the `Provisioning` resource to watch all namespaces and to update the `AgentServiceConfig` custom resource (CR) with references to the ISO and RootFS images that are hosted on the mirror registry HTTP server.
 
@@ -247,7 +247,7 @@ Red Hat Advanced Cluster Management (RHACM) uses the assisted service to deploy
    </dl>
 4. Save and quit the editor to apply the changes.
 
-## Configuring the hub cluster to use a disconnected mirror registry {#ztp-configuring-the-cluster-for-a-disconnected-environment_ztp-preparing-the-hub-cluster}
+## Configure the hub cluster to use a disconnected mirror registry {#ztp-configuring-the-cluster-for-a-disconnected-environment_ztp-preparing-the-hub-cluster}
 
 You can configure the hub cluster to use a disconnected mirror registry for a disconnected environment.
 
@@ -359,7 +359,7 @@ If you enable TLS for the HTTP server, you must confirm the root certificate is 
 
 - [Mirroring the OpenShift Container Platform repository](/docs/disconnected/installing-mirroring-installation-images#installation-mirror-repository_installing-mirroring-installation-images)
 
-## Configuring the hub cluster to use unauthenticated registries {#ztp-configuring-the-hub-cluster-to-use-unauthenticated-registries_ztp-preparing-the-hub-cluster}
+## Configure the hub cluster to use unauthenticated registries {#ztp-configuring-the-hub-cluster-to-use-unauthenticated-registries_ztp-preparing-the-hub-cluster}
 
 You can configure the hub cluster to use unauthenticated registries. Unauthenticated registries does not require authentication to access and download images.
 
@@ -421,7 +421,7 @@ Verify that you can access the newly added registry from the hub cluster by runn
    Login Succeeded!
    ```
 
-## Configuring the hub cluster with ArgoCD {#ztp-configuring-hub-cluster-with-argocd_ztp-preparing-the-hub-cluster}
+## Configure the hub cluster with ArgoCD {#ztp-configuring-hub-cluster-with-argocd_ztp-preparing-the-hub-cluster}
 
 You can configure the hub cluster with a set of ArgoCD applications that generate the required installation and policy custom resources (CRs) for each site with GitOps Zero Touch Provisioning (ZTP).
 
@@ -524,7 +524,7 @@ Red Hat Advanced Cluster Management (RHACM) uses `ClusterInstance` CRs to gener
 
       Setting the `background` deletion policy ensures that the `ManagedCluster` CR and all its associated resources are deleted.
 
-## Preparing the GitOps ZTP site configuration repository {#ztp-preparing-the-ztp-git-repository_ztp-preparing-the-hub-cluster}
+## Prepare the GitOps ZTP site configuration repository {#ztp-preparing-the-ztp-git-repository_ztp-preparing-the-hub-cluster}
 
 Before you can use the GitOps Zero Touch Provisioning (ZTP) pipeline, you need to prepare the Git repository to host the site configuration data.
 
@@ -627,7 +627,7 @@ For more information about `PolicyGenerator` resources, see the RHACM [Integrati
 - [Configuring managed cluster policies by using PolicyGenerator resources](/docs/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-configuring-managed-clusters-policygenerator)
 - [Comparing RHACM PolicyGenerator and PolicyGenTemplate resource patching](/docs/edge_computing/policygenerator_for_ztp/ztp-configuring-managed-clusters-policygenerator#ztp-comparing-pgt-and-rhacm-pg-patching-strategies_ztp-configuring-managed-clusters-policygenerator)
 
-## Preparing the GitOps ZTP site configuration repository for version independence {#ztp-preparing-the-ztp-git-repository-ver-ind_ztp-preparing-the-hub-cluster}
+## Prepare the GitOps ZTP site configuration repository for version independence {#ztp-preparing-the-ztp-git-repository-ver-ind_ztp-preparing-the-hub-cluster}
 
 You can use GitOps ZTP to manage source custom resources (CRs) for managed clusters that are running different versions of OpenShift Container Platform. This means that the version of OpenShift Container Platform running on the hub cluster can be independent of the version running on the managed clusters.
 
@@ -775,7 +775,7 @@ The following procedure assumes you are using `PolicyGenerator` resources instea
    <dd>Use comments to deactivate a version.</dd>
    </dl>
 
-## Configuring the hub cluster for backup and restore {#ztp-configuring-the-hub-cluster-for-backup-and-restore_ztp-preparing-the-hub-cluster}
+## Configure the hub cluster for backup and restore {#ztp-configuring-the-hub-cluster-for-backup-and-restore_ztp-preparing-the-hub-cluster}
 
 You can use GitOps ZTP to configure a set of policies to back up `BareMetalHost` resources. This allows you to recover data from a failed hub cluster and deploy a replacement cluster using Red Hat Advanced Cluster Management (RHACM).
 

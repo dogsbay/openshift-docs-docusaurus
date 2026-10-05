@@ -1,6 +1,6 @@
 ---
 title: Installing a three-node cluster on Google Cloud
-sidebar_position: 12
+sidebar_position: 13
 ---
 
 # Installing a three-node cluster on Google Cloud {#installing-gcp-three-node}

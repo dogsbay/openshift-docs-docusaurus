@@ -36,7 +36,7 @@ Every service account is also a member of two groups:
 
 ## Default service accounts {#service-accounts-default_using-service-accounts}
 
-Your OpenShift Container Platform cluster contains default service accounts for cluster management and generates more service accounts for each project.
+OpenShift Container Platform automatically creates default service accounts for cluster management and in each project for build, deployment, and pod operations.
 
 ### Default cluster service accounts {#default-cluster-service-accounts_using-service-accounts}
 

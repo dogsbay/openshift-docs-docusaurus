@@ -11,14 +11,20 @@ After deploying a user-provisioned infrastructure cluster, you can use the Bare 
 
 ## About scaling a user-provisioned cluster with the Bare Metal Operator {#about-scaling-a-user-provisioned-cluster-with-the-bare-metal-operator_scaling-a-user-provisioned-cluster-with-the-bare-metal-operator}
 
-You can scale user-provisioned infrastructure clusters by using the Bare Metal Operator (BMO) and other metal^3^ components. User-provisioned infrastructure installations do not feature the Machine API Operator. The Machine API Operator typically manages the lifecycle of bare-metal nodes in a cluster. However, it is possible to use the BMO and other metal^3^ components to scale nodes in user-provisioned clusters without requiring the Machine API Operator.
+You can scale user-provisioned infrastructure clusters by using the Bare Metal Operator (BMO) and other metal^3^ components.
+
+User-provisioned infrastructure installations do not feature the Machine API Operator. The Machine API Operator typically manages the lifecycle of bare-metal nodes in a cluster. However, it is possible to use the BMO and other metal^3^ components to scale nodes in user-provisioned clusters without requiring the Machine API Operator.
 
 ### Prerequisites for scaling a user-provisioned cluster {#upi-prequisites-for-scaling-a-upi-cluster_scaling-a-user-provisioned-cluster-with-the-bare-metal-operator}
+
+The following prerequisites must be met before scaling a user-provisioned cluster.
 
 - You installed a user-provisioned infrastructure cluster on bare metal.
 - You have baseboard management controller (BMC) access to the hosts.
 
 ### Limitations for scaling a user-provisioned cluster {#upi-limitations-for-scaling-a-upi-cluster_scaling-a-user-provisioned-cluster-with-the-bare-metal-operator}
+
+The following limitations apply to scaling a user-provisioned cluster.
 
 - You cannot use a provisioning network to scale user-provisioned infrastructure clusters by using the Bare Metal Operator (BMO).
   - Consequentially, you can only use bare-metal host drivers that support virtual media networking booting, for example `redfish-virtualmedia` and `idrac-virtualmedia`.
@@ -106,29 +112,29 @@ Provisioning bare-metal hosts to the cluster by using the BMO sets the `spec.ext
      apiVersion: v1
      kind: Secret
      metadata:
-       name: openshift-worker-<num>-network-config-secret (1)
+       name: openshift-worker-<num>-network-config-secret
        namespace: openshift-machine-api
      type: Opaque
      stringData:
-       nmstate: | (2)
-         interfaces: (3)
-         - name: <nic1_name> (4)
+       nmstate: |
+         interfaces:
+         - name: <nic1_name>
            type: ethernet
            state: up
            ipv4:
              address:
-             - ip: <ip_address> (5)
+             - ip: <ip_address>
                prefix-length: 24
              enabled: true
          dns-resolver:
            config:
              server:
-             - <dns_ip_address> (6)
+             - <dns_ip_address>
          routes:
            config:
            - destination: 0.0.0.0/0
-             next-hop-address: <next_hop_ip_address> (7)
-             next-hop-interface: <next_hop_nic1_name> (8)
+             next-hop-address: <next_hop_ip_address>
+             next-hop-interface: <next_hop_nic1_name>
      ---
      apiVersion: v1
      kind: Secret
@@ -137,7 +143,7 @@ Provisioning bare-metal hosts to the cluster by using the BMO sets the `spec.ext
        namespace: openshift-machine-api
      type: Opaque
      data:
-       username: <base64_of_uid> (9)
+       username: <base64_of_uid>
        password: <base64_of_pwd>
      ---
      apiVersion: metal3.io/v1alpha1
@@ -147,9 +153,9 @@ Provisioning bare-metal hosts to the cluster by using the BMO sets the `spec.ext
        namespace: openshift-machine-api
      spec:
        online: true
-       bootMACAddress: <nic1_mac_address> (10)
+       bootMACAddress: <nic1_mac_address>
        bmc:
-         address: <protocol>://<bmc_url> (11)
+         address: <protocol>://<bmc_url>
          credentialsName: openshift-worker-<num>-bmc-secret
          disableCertificateVerification: false
        customDeploy:
@@ -158,87 +164,131 @@ Provisioning bare-metal hosts to the cluster by using the BMO sets the `spec.ext
          name: worker-user-data-managed
          namespace: openshift-machine-api
        rootDeviceHints:
-         deviceName: <root_device_hint> (12)
+         deviceName: <root_device_hint>
        preprovisioningNetworkDataName: openshift-worker-<num>-network-config-secret
      ```
 
-     1. Replace all instances of `<num>` with a unique compute node number for the bare-metal nodes in the `name`, `credentialsName`, and `preprovisioningNetworkDataName` fields.
-     2. Add the NMState YAML syntax to configure the host interfaces. To configure the network interface for a newly created node, specify the name of the secret that has the network configuration. Follow the `nmstate` syntax to define the network configuration for your node. See "Preparing the bare-metal node" for details on configuring NMState syntax.
-     3. Optional: If you have configured the network interface with `nmstate`, and you want to disable an interface, set `state: up` with the IP addresses set to `enabled: false`.
-     4. Replace `<nic1_name>` with the name of the bare-metal node’s first network interface controller (NIC).
-     5. Replace `<ip_address>` with the IP address of the bare-metal node’s NIC.
-     6. Replace `<dns_ip_address>` with the IP address of the bare-metal node’s DNS resolver.
-     7. Replace `<next_hop_ip_address>` with the IP address of the bare-metal node’s external gateway.
-     8. Replace `<next_hop_nic1_name>` with the name of the bare-metal node’s external gateway.
-     9. Replace `<base64_of_uid>` and `<base64_of_pwd>` with the base64 string of the user name and password.
-     10. Replace `<nic1_mac_address>` with the MAC address of the bare-metal node’s first NIC. See the "BMC addressing" section for additional BMC configuration options.
-     11. Replace `<protocol>` with the BMC protocol, such as IPMI, Redfish, or others. Replace `<bmc_url>` with the URL of the bare-metal node’s baseboard management controller.
-     12. Optional: Replace `<root_device_hint>` with a device path when specifying a root device hint. See "Root device hints" for additional details.
-   - When configuring the network interface with a static configuration by using `nmstate`, set `state: up` with the IP addresses set to `enabled: false`:
-     ```yaml
-     ---
-     apiVersion: v1
-     kind: Secret
-     metadata:
-       name: openshift-worker-<num>-network-config-secret
-       namespace: openshift-machine-api
-      # ...
-     interfaces:
-       - name: <nic_name>
-         type: ethernet
-         state: up
-         ipv4:
-           enabled: false
-         ipv6:
-           enabled: false
+     where:
+
+     <dl>
+     <dt><code>metadata.name</code></dt>
+     <dd>Specifies the unique compute node number. Replace all instances of <code>&lt;num&gt;</code> with a unique compute node number for the bare-metal nodes in the <code>name</code>, <code>credentialsName</code>, and <code>preprovisioningNetworkDataName</code> fields.</dd>
+     </dl>
+
+`stringData.nmstate`
+: Specifies the NMState YAML syntax to configure the host interfaces. To configure the network interface for a newly created node, specify the name of the secret that has the network configuration. Follow the `nmstate` syntax to define the network configuration for your node. See "Preparing the bare-metal node" for details on configuring NMState syntax.
+
+`stringData.nmstate.interfaces`
+: Specifies the network interfaces. If you have configured the network interface with `nmstate`, and you want to disable an interface, set `state: up` with the IP addresses set to `enabled: false`. This field is optional.
+
+`stringData.nmstate.interfaces[].name`
+: Specifies the name of the bare-metal node’s first network interface controller (NIC). Replace `<nic1_name>` with the NIC name.
+
+`stringData.nmstate.interfaces[].ipv4.address[].ip`
+: Specifies the IP address of the bare-metal node’s NIC. Replace `<ip_address>` with the IP address.
+
+`stringData.nmstate.dns-resolver.config.server[]`
+: Specifies the IP address of the bare-metal node’s DNS resolver. Replace `<dns_ip_address>` with the DNS server IP address.
+
+`stringData.nmstate.routes.config[].next-hop-address`
+: Specifies the IP address of the bare-metal node’s external gateway. Replace `<next_hop_ip_address>` with the gateway IP address.
+
+`stringData.nmstate.routes.config[].next-hop-interface`
+: Specifies the name of the bare-metal node’s external gateway interface. Replace `<next_hop_nic1_name>` with the interface name.
+
+`data.username`
+: Specifies the base64-encoded credentials for the BMC Secret. Replace `<base64_of_uid>` and `<base64_of_pwd>` with the base64 string of the user name and password.
+
+`spec.bootMACAddress`
+: Specifies the MAC address of the bare-metal node’s first NIC. See the "BMC addressing" section for additional BMC configuration options.
+
+`spec.bmc.address`
+: Specifies the BMC address. Replace `<protocol>` with the BMC protocol, such as IPMI, Redfish, or others. Replace `<bmc_url>` with the URL of the bare-metal node’s baseboard management controller.
+
+`spec.rootDeviceHints.deviceName`
+: Specifies the root device hint path. Replace `<root_device_hint>` with a device path when specifying a root device hint. See "Root device hints" for additional details. This field is optional.
+
+  - When configuring the network interface with a static configuration by using `nmstate`, set `state: up` with the IP addresses set to `enabled: false`:
+    ```yaml
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: openshift-worker-<num>-network-config-secret
+      namespace: openshift-machine-api
      # ...
-     ```
-   - To deploy with a DHCP configuration, create the following `bmh.yaml` file:
-     ```yaml
-     ---
-     apiVersion: v1
-     kind: Secret
-     metadata:
-       name: openshift-worker-<num>-bmc-secret (1)
-       namespace: openshift-machine-api
-     type: Opaque
-     data:
-       username: <base64_of_uid> (2)
-       password: <base64_of_pwd>
-     ---
-     apiVersion: metal3.io/v1alpha1
-     kind: BareMetalHost
-     metadata:
-       name: openshift-worker-<num>
-       namespace: openshift-machine-api
-     spec:
-       online: true
-       bootMACAddress: <nic1_mac_address> (3)
-       bmc:
-         address: <protocol>://<bmc_url> (4)
-         credentialsName: openshift-worker-<num>-bmc
-         disableCertificateVerification: false
-       customDeploy:
-         method: install_coreos
-       userData:
-         name: worker-user-data-managed
-         namespace: openshift-machine-api
-       rootDeviceHints:
-         deviceName: <root_device_hint> (5)
-     ```
+    interfaces:
+      - name: <nic_name>
+        type: ethernet
+        state: up
+        ipv4:
+          enabled: false
+        ipv6:
+          enabled: false
+    # ...
+    ```
+  - To deploy with a DHCP configuration, create the following `bmh.yaml` file:
+    ```yaml
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: openshift-worker-<num>-bmc-secret
+      namespace: openshift-machine-api
+    type: Opaque
+    data:
+      username: <base64_of_uid>
+      password: <base64_of_pwd>
+    ---
+    apiVersion: metal3.io/v1alpha1
+    kind: BareMetalHost
+    metadata:
+      name: openshift-worker-<num>
+      namespace: openshift-machine-api
+    spec:
+      online: true
+      bootMACAddress: <nic1_mac_address>
+      bmc:
+        address: <protocol>://<bmc_url>
+        credentialsName: openshift-worker-<num>-bmc
+        disableCertificateVerification: false
+      customDeploy:
+        method: install_coreos
+      userData:
+        name: worker-user-data-managed
+        namespace: openshift-machine-api
+      rootDeviceHints:
+        deviceName: <root_device_hint>
+    ```
 
-     1. Replace `<num>` with a unique compute node number for the bare-metal nodes in the `name` and `credentialsName` fields.
-     2. Replace `<base64_of_uid>` and `<base64_of_pwd>` with the base64 string of the user name and password.
-     3. Replace `<nic1_mac_address>` with the MAC address of the bare-metal node’s first NIC. See the "BMC addressing" section for additional BMC configuration options.
-     4. Replace `<protocol>` with the BMC protocol, such as IPMI, Redfish, or others. Replace `<bmc_url>` with the URL of the bare-metal node’s baseboard management controller.
-     5. Optional: Replace `<root_device_hint>` with a device path when specifying a root device hint. See "Root device hints" for additional details.
+    where:
 
-     :::warning
+    <dl>
+    <dt><code>metadata.name</code></dt>
+    <dd>Specifies the BMC Secret name. Replace <code>&lt;num&gt;</code> with a unique compute node number for the bare-metal nodes in the <code>name</code> and <code>credentialsName</code> fields.</dd>
+    </dl>
 
-     If the MAC address of an existing bare-metal node matches the MAC address of the bare-metal host that you are attempting to provision, then the installation will fail. If the host enrollment, inspection, cleaning, or other steps fail, the Bare Metal Operator retries the installation continuously. See "Diagnosing a duplicate MAC address when provisioning a new host in the cluster" for additional details.
+`data.username`
+: Specifies the base64-encoded credentials. Replace `<base64_of_uid>` and `<base64_of_pwd>` with the base64 string of the user name and password.
 
-     :::
-2. Create the bare-metal node by running the following command:
+`spec.bootMACAddress`
+: Specifies the MAC address of the bare-metal node’s first NIC. See the "BMC addressing" section for additional BMC configuration options.
+
+`spec.bmc.address`
+: Specifies the BMC address. Replace `<protocol>` with the BMC protocol, such as IPMI, Redfish, or others. Replace `<bmc_url>` with the URL of the bare-metal node’s baseboard management controller.
+
+`spec.rootDeviceHints.deviceName`
+: Specifies the root device hint path. Replace `<root_device_hint>` with a device path when specifying a root device hint. See "Root device hints" for additional details. This field is optional.
+
+  ```
+    :::important
+
+    If the MAC address of an existing bare-metal node matches the MAC address of the bare-metal host that you are attempting to provision, then the installation will fail. If the host enrollment, inspection, cleaning, or other steps fail, the Bare Metal Operator retries the installation continuously. See "Diagnosing a duplicate MAC address when provisioning a new host in the cluster" for additional details.
+
+    :::
+  ```
+
+1. Create the bare-metal node by running the following command:
    ```terminal
    $ oc create -f bmh.yaml
    ```
@@ -248,7 +298,7 @@ Provisioning bare-metal hosts to the cluster by using the BMO sets the `spec.ext
    secret/openshift-worker-<num>-bmc-secret created
    baremetalhost.metal3.io/openshift-worker-<num> created
    ```
-3. Inspect the bare-metal node by running the following command:
+2. Inspect the bare-metal node by running the following command:
    ```terminal
    $ oc -n openshift-machine-api get bmh openshift-worker-<num>
    ```
@@ -264,7 +314,7 @@ Provisioning bare-metal hosts to the cluster by using the BMO sets the `spec.ext
    NAME                    STATE       CONSUMER   ONLINE   ERROR
    openshift-worker-<num>  provisioned true
    ```
-4. Approve all certificate signing requests (CSRs).
+3. Approve all certificate signing requests (CSRs).
    1. Get the list of pending CSRs by running the following command:
       ```terminal
       $ oc get csr
@@ -305,7 +355,9 @@ Provisioning bare-metal hosts to the cluster by using the BMO sets the `spec.ext
 
 ## Optional: Managing existing hosts in a user-provisioned cluster by using the BMO {#upi-managing-existing-hosts-in-a-upi-cluster_scaling-a-user-provisioned-cluster-with-the-bare-metal-operator}
 
-Optionally, you can use the Bare Metal Operator (BMO) to manage existing bare-metal controller hosts in a user-provisioned cluster by creating a `BareMetalHost` object for the existing host. It is not a requirement to manage existing user-provisioned hosts; however, you can enroll them as externally-provisioned hosts for inventory purposes.
+Optionally, you can use the Bare Metal Operator (BMO) to manage existing bare-metal controller hosts in a user-provisioned cluster by creating a `BareMetalHost` object for the existing host.
+
+It is not a requirement to manage existing user-provisioned hosts; however, you can enroll them as externally-provisioned hosts for inventory purposes.
 
 :::warning
 
@@ -342,21 +394,29 @@ To manage existing hosts by using the BMO, you must set the `spec.externallyProv
         namespace: openshift-machine-api
       spec:
         bmc:
-          address: <protocol>://<bmc_url> (1)
+          address: <protocol>://<bmc_url>
           credentialsName: "controller1-bmc"
         bootMACAddress: <nic1_mac_address>
         customDeploy:
           method: install_coreos
-        externallyProvisioned: true (2)
+        externallyProvisioned: true
         online: true
         userData:
           name: controller-user-data-managed
           namespace: openshift-machine-api
       ```
 
-      1. You can only use bare-metal host drivers that support virtual media networking booting, for example `redfish-virtualmedia` and `idrac-virtualmedia`.
-      2. You must set the value to true to prevent the BMO from re-provisioning the bare-metal controller host.
-2. Create the bare-metal host object by running the following command:
+      where:
+
+      <dl>
+      <dt><code>spec.bmc.address</code></dt>
+      <dd>Specifies the BMC address. Only bare-metal host drivers that support virtual media networking booting are supported, for example <code>redfish-virtualmedia</code> and <code>idrac-virtualmedia</code>.</dd>
+      </dl>
+
+`spec.externallyProvisioned`
+: Specifies whether the host is externally provisioned. You must set this value to `true` to prevent the BMO from re-provisioning the bare-metal controller host.
+
+1. Create the bare-metal host object by running the following command:
    ```terminal
    $ oc create -f controller.yaml
    ```

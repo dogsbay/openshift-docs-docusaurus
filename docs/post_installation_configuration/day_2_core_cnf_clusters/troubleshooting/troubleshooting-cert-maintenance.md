@@ -93,10 +93,11 @@ The etcd certificates are used for encrypted communication between etcd member p
   jsonpath="{.data.tls\.crt}" | base64 -d | openssl x509 -noout -enddate; done
   ```
 
-For more information about updating etcd certificates, see [Checking etcd certificate expiry in OpenShift 4](https://access.redhat.com/solutions/7000968). For more information about etcd certificates, see "etcd certificates" in *Security and compliance*.
+For more information about updating etcd certificates, see "Checking etcd certificate expiry in OpenShift 4". For more information about etcd certificates, see "etcd certificates" in *Security and compliance*.
 
 **Additional resources**
 
+- [Checking etcd certificate expiry in OpenShift 4](https://access.redhat.com/solutions/7000968)
 - [etcd certificates](/docs/security/certificate_types_descriptions/etcd-certificates#cert-types-etcd-certificates_cert-types-etcd-certificates)
 
 ### Node certificates {#troubleshooting-certs-auto-node_troubleshooting-cert-maintenance}

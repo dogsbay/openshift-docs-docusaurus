@@ -36,7 +36,9 @@ If you are planning work that might cause a loss of network connectivity, you ca
 
 ## Unexpected loss of network connectivity {#nbde-unexpected-loss-of-network-connectivity_nbde-implementation}
 
-If the network disruption is unexpected and a node reboots, consider the following scenarios:
+If the network disruption is unexpected and a node reboots, there are scenarios to consider.
+
+The scenarios are:
 
 - If any nodes are still online, ensure that they do not reboot until network connectivity is restored. This is not applicable for single-node clusters.
 - The node will remain offline until such time that either network connectivity is restored, or a pre-established passphrase is entered manually at the console. In exceptional circumstances, network administrators might be able to reconfigure network segments to reestablish access, but this is counter to the intent of NBDE, which is that lack of network access means lack of ability to boot.
@@ -68,7 +70,9 @@ If you are unable to recover network connectivity manually, consider the followi
 
 ## Loss of a network segment {#nbde-loss-of-a-network-segment_nbde-implementation}
 
-The loss of a network segment, making a Tang server temporarily unavailable, has the following consequences:
+The loss of a network segment makes a Tang server temporarily unavailable.
+
+This has the following consequences:
 
 - OpenShift Container Platform nodes continue to boot as normal, provided other servers are available.
 - New nodes cannot establish their encryption keys until the network segment is restored. In this case, ensure connectivity to remote geographic locations for the purposes of high availability and redundancy. This is because when you are installing a new node or rekeying an existing node, all of the Tang servers you are referencing in that operation must be available.
@@ -95,9 +99,8 @@ If key material is potentially exposed to unauthorized third parties, such as th
 2. Rekey all clients using the Tang server.
 3. Destroy the original key material.
 4. Scrutinize any incidents that result in unintended exposure of the master encryption key. If possible, take compromised nodes offline and re-encrypt their disks.
+   :::tip
 
-:::tip
+   Reformatting and reinstalling on the same physical hardware, although slow, is easy to automate and test.
 
-Reformatting and reinstalling on the same physical hardware, although slow, is easy to automate and test.
-
-:::
+   :::

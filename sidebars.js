@@ -217,6 +217,7 @@ module.exports = {
             "installing/installing_gcp/installing-gcp-vpc",
             "installing/installing_gcp/installing-gcp-shared-vpc",
             "installing/installing_gcp/installing-gcp-private",
+            "installing/installing_gcp/installing-gcp-dedicated",
             "installing/installing_gcp/installing-gcp-user-infra",
             "installing/installing_gcp/installing-gcp-user-infra-vpc",
             "installing/installing_gcp/installing-restricted-networks-gcp",

@@ -205,7 +205,7 @@ You use trigger authentications and cluster trigger authentications by using a c
   kind: Role
   metadata:
     name: keda-operator-token-creator
-    namespace: <namespace_name> (1)
+    namespace: <namespace_name>
   rules:
   - apiGroups:
     - ""
@@ -214,13 +214,13 @@ You use trigger authentications and cluster trigger authentications by using a c
     verbs:
     - create
     resourceNames:
-    - thanos (2)
+    - thanos
   ---
   apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
     name: keda-operator-token-creator-binding
-    namespace: <namespace_name> (3)
+    namespace: <namespace_name>
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: Role
@@ -231,9 +231,14 @@ You use trigger authentications and cluster trigger authentications by using a c
     namespace: openshift-keda
   ```
 
-  1. Specifies the namespace of the service account.
-  2. Specifies the name of the service account.
-  3. Specifies the namespace of the service account.
+  where:
+
+  <dl>
+  <dt><code>metadata.namespace</code></dt>
+  <dd>Specifies the namespace of the service account.</dd>
+  <dt><code>rules[].resourceNames[]</code></dt>
+  <dd>Specifies the name of the service account.</dd>
+  </dl>
 - If you are using a secret, the `Secret` object must exist.
 
 **Procedure**
@@ -245,16 +250,23 @@ You use trigger authentications and cluster trigger authentications by using a c
       apiVersion: keda.sh/v1alpha1
       metadata:
         name: prom-triggerauthentication
-        namespace: my-namespace (1)
+        namespace: my-namespace
         spec:
-        boundServiceAccountToken: (2)
+        boundServiceAccountToken:
           - parameter: token
-            serviceAccountName: thanos (3)
+            serviceAccountName: thanos
       ```
 
-      1. Specifies the namespace of the object you want to scale.
-      2. Specifies that this trigger authentication uses a bound service account token for authorization when connecting to the metrics endpoint.
-      3. Specifies the name of the service account to use.
+      where:
+
+      <dl>
+      <dt><code>metadata.namespace</code></dt>
+      <dd>Specifies the namespace of the object you want to scale.</dd>
+      <dt><code>spec.boundServiceAccountToken</code></dt>
+      <dd>Specifies that this trigger authentication uses a bound service account token for authorization when connecting to the metrics endpoint.</dd>
+      <dt><code>spec.boundServiceAccountToken[].serviceAccountName</code></dt>
+      <dd>Specifies the name of the service account to use.</dd>
+      </dl>
    2. Create the `TriggerAuthentication` object:
       ```terminal
       $ oc create -f <filename>.yaml
@@ -283,12 +295,18 @@ You use trigger authentications and cluster trigger authentications by using a c
             query: sum(rate(http_requests_total{job="test-app"}[1m]))
             authModes: "basic"
           authenticationRef:
-            name: prom-triggerauthentication (1)
-            kind: TriggerAuthentication (2)
+            name: prom-triggerauthentication
+            kind: TriggerAuthentication
       ```
 
-      1. Specify the name of your trigger authentication object.
-      2. Specify `TriggerAuthentication`. `TriggerAuthentication` is the default.
+      where:
+
+      <dl>
+      <dt><code>spec.triggers[].authenticationRef.name</code></dt>
+      <dd>Specifies the name of your trigger authentication object.</dd>
+      <dt><code>spec.triggers[].authenticationRef.kind</code></dt>
+      <dd>Specifies <code>TriggerAuthentication</code>. <code>TriggerAuthentication</code> is the default.</dd>
+      </dl>
 
       ```yaml title="Example scaled object with a cluster trigger authentication"
       apiVersion: keda.sh/v1alpha1
@@ -312,13 +330,19 @@ You use trigger authentications and cluster trigger authentications by using a c
             query: sum(rate(http_requests_total{job="test-app"}[1m]))
             authModes: "basic"
           authenticationRef:
-            name: prom-cluster-triggerauthentication (1)
-            kind: ClusterTriggerAuthentication (2)
+            name: prom-cluster-triggerauthentication
+            kind: ClusterTriggerAuthentication
       ```
 
-      1. Specify the name of your trigger authentication object.
-      2. Specify `ClusterTriggerAuthentication`.
-   2. Create the scaled object by running the following command:
-      ```terminal
-      $ oc apply -f <filename>
-      ```
+      where:
+
+`spec.triggers[].authenticationRef.name`
+: Specifies the name of your trigger authentication object.
+
+`spec.triggers[].authenticationRef.kind`
+: Specifies `ClusterTriggerAuthentication`.
+
+  1. Create the scaled object by running the following command:
+     ```terminal
+     $ oc apply -f <filename>
+     ```

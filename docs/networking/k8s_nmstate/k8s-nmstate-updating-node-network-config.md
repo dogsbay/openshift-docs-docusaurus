@@ -182,22 +182,21 @@ To find the desired policy, you can filter the list either based on enactment st
 
 ### Create a policy {#virt-create-node-network-config-console_k8s-nmstate-updating-node-network-config}
 
-You can create a policy by using either a form or YAML in the web console. When creating a policy using a form, you can see how the new policy changes the topology of the nodes in your cluster in real time.
+You can create a policy by using either a form or YAML in the web console. When creating a policy by using a form, you can see how the new policy changes the topology of the nodes in your cluster in real time.
 
 **Procedure**
 
-1. Navigate to **Networking** → **Node Network Configuration**.
+1. Go to **Networking** → **Node Network Configuration**.
 2. On the **Node Network Configuration** page, click **Create** and select the **From Form** option.
    :::note
 
-   To create a policy using YAML, click **Create** → **With YAML** option. However, the following steps apply only to the form method.
+   To create a policy by using YAML, click **Create** → **With YAML** option. However, the following steps apply only to the form method.
 
    :::
-3. Optional: Check the **Apply this NodeNetworkConfigurationPolicy only to specific subsets of nodes using the node selector** checkbox to specify the nodes where the policy must be applied.
+3. Optional: To apply this `NodeNetworkConfigurationPolicy` object only to specific subsets of nodes by using the node selector, select the corresponding checkbox.
 4. Enter the policy name in the **Policy name** field.
-5. Optional: Enter the description of the policy in the **Description** field.
-6. Click **Next** to move to the **Policy Interfaces** section.
-7. In the **Bridging** part of the **Policy Interfaces** section, a bridge interface named `br0` is added by default with preset values in editable fields. If required, edit the values by performing the following steps:
+5. Click **Next** to move to the **Policy Interfaces** section.
+6. In the **Bridging** part of the **Policy Interfaces** section, the form adds a bridge interface named `br0` by default with preset values in editable fields. If required, edit the values by performing the following steps:
    1. Enter the name of the interface in **Interface name** field.
    2. Select the required network state. The default selected state is **Up**.
    3. Select the type of interface. The available types are **Bridge**, **Bonding**, and **Ethernet**. The default selected value is **Bridge**.
@@ -208,19 +207,19 @@ You can create a policy by using either a form or YAML in the web console. When 
       :::
    4. Optional: In the IP configuration section, check **IPv4** checkbox to assign an IPv4 address to the interface, and configure the IP address assignment details:
       1. Click **IP address** to configure the interface with a static IP address, or **DHCP** to auto-assign an IP address.
-      2. If you have selected **IP address** option, enter the IPv4 address in **IPV4 address** field, and enter the prefix length in **Prefix length** field.
-         If you have selected **DHCP** option, uncheck the options that you want to disable. The available options are **Auto-DNS**, **Auto-routes**, and **Auto-gateway**. All the options are selected by default.
+      2. If you have selected **IP address** option, enter the IPv4 address in the **IPv4 address** field, and enter the prefix length in **Prefix length** field.
+         If you have selected **DHCP** option, clear the options that you want to disable. The available options are **Auto-DNS**, **Auto-routes**, and **Auto-gateway**. By default, the form selects all options.
    5. Optional: Enter the port number in **Port** field.
-   6. Optional: Check the checkbox **Enable STP** to enable STP.
+   6. Optional: Select the **Enable STP** checkbox to enable Spanning Tree Protocol (STP).
    7. Optional: To add an interface to the policy, click **Add another interface to the policy**.
    8. Optional: To remove an interface from the policy, click ![minus](/images/fa-minus-circle.svg) icon next to the interface.
       :::note
 
-      Alternatively, you can click **Edit YAML** on the top of the page to continue editing the form using YAML.
+      You can also click **Edit YAML** at the top of the page to continue editing the form by using YAML.
 
       :::
-8. Click **Next** to go to the **Review** section of the form.
-9. Verify the settings and click **Create** to create the policy.
+7. Click **Next** to go to the **Review** section of the form.
+8. Verify the settings and click **Create** to create the policy.
 
 ## Update the NodeNetworkConfigurationPolicy manifest file {#virt-updating-policy-k8s-nmstate_k8s-nmstate-updating-node-network-config}
 

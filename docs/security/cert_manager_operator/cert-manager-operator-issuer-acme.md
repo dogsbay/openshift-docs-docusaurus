@@ -29,7 +29,9 @@ By default, you can use the `ClusterIssuer` object with ambient credentials. To 
 
 ## About ACME issuers {#cert-manager-acme-about_cert-manager-operator-issuer-acme}
 
-The ACME issuer type for the cert-manager Operator for Red Hat OpenShift represents an Automated Certificate Management Environment (ACME) certificate authority (CA) server. ACME CA servers rely on a *challenge* to verify that a client owns the domain names that the certificate is being requested for. If the challenge is successful, the cert-manager Operator for Red Hat OpenShift can issue the certificate. If the challenge fails, the cert-manager Operator for Red Hat OpenShift does not issue the certificate.
+The ACME issuer type for the cert-manager Operator for Red Hat OpenShift represents an Automated Certificate Management Environment (ACME) certificate authority (CA) server. ACME CA servers rely on a *challenge* to verify that a client owns the domain names that the certificate is being requested for.
+
+If the challenge is successful, the cert-manager Operator for Red Hat OpenShift can issue the certificate. If the challenge fails, the cert-manager Operator for Red Hat OpenShift does not issue the certificate.
 
 :::note
 
@@ -71,14 +73,16 @@ The cert-manager Operator for Red Hat OpenShift supports the following DNS-01 pr
 
   :::
 - Google Cloud DNS
-- Webhook Red Hat tests and supports DNS providers using an external webhook with cert-manager on OpenShift Container Platform. The following DNS providers are tested and supported with OpenShift Container Platform:
-  - [cert-manager-webhook-ibmcis](https://github.com/jb-dk/cert-manager-webhook-ibmcis)
-
+- Webhook Red Hat tests and supports DNS providers using an external webhook with cert-manager on OpenShift Container Platform. See "cert-manager-webhook-ibmcis" for the list of DNS providers that are tested and supported with OpenShift Container Platform.
   :::note
 
   Using a DNS provider that is not listed might work with OpenShift Container Platform, but the provider was not tested by Red Hat and therefore is not supported by Red Hat.
 
   :::
+
+**Additional resources**
+
+- [cert-manager-webhook-ibmcis](https://github.com/jb-dk/cert-manager-webhook-ibmcis)
 
 ## Configure an ACME issuer to solve HTTP-01 challenges {#cert-manager-acme-http01_cert-manager-operator-issuer-acme}
 
@@ -199,7 +203,9 @@ You can use cert-manager Operator for Red Hat OpenShift to set up an ACME issuer
 
 ## Configure an ACME issuer by using explicit credentials for AWS Route53 {#cert-manager-acme-dns01-explicit-aws_cert-manager-operator-issuer-acme}
 
-You can use cert-manager Operator for Red Hat OpenShift to set up an Automated Certificate Management Environment (ACME) issuer to solve DNS-01 challenges by using explicit credentials on AWS. This procedure uses *Let’s Encrypt* as the ACME certificate authority (CA) server and shows how to solve DNS-01 challenges with Amazon Route 53.
+You can use cert-manager Operator for Red Hat OpenShift to set up an Automated Certificate Management Environment (ACME) issuer to solve DNS-01 challenges by using explicit credentials on AWS.
+
+This procedure uses *Let’s Encrypt* as the ACME certificate authority (CA) server and shows how to solve DNS-01 challenges with Amazon Route 53.
 
 **Prerequisites**
 

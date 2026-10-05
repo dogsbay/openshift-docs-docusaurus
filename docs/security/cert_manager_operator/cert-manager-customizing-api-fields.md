@@ -279,7 +279,9 @@ The following table describes the pod scheduling parameters for the cert-manager
 
 ## Customize cert-manager by overriding environment variables from the cert-manager Operator API {#cert-manager-override-environment-variables_cert-manager-customizing-api-fields}
 
-To refine your deployment for specific operational requirements, override supported environment variables for the cert-manager Operator for Red Hat OpenShift. You can customize these variables through the Operator API to apply configurations, such as proxy settings or system-level adjustments, that differ from the default values.
+To refine your deployment for specific operational requirements, override supported environment variables for the cert-manager Operator for Red Hat OpenShift.
+
+You can customize these variables through the Operator API to apply configurations, such as proxy settings or system-level adjustments, that differ from the default values.
 
 You can override the supported environment variables for the cert-manager Operator for Red Hat OpenShift by adding a `spec.controllerConfig` section in the `CertManager` resource.
 
@@ -464,7 +466,9 @@ You can override the supported arguments for the cert-manager Operator for Red H
 
 ## Delete a TLS secret automatically upon Certificate removal {#cert-manager-override-flag-controller_cert-manager-customizing-api-fields}
 
-You can enable the `--enable-certificate-owner-ref` flag for the cert-manager Operator for Red Hat OpenShift by adding a `spec.controllerConfig` section in the `CertManager` resource. The `--enable-certificate-owner-ref` flag sets the certificate resource as an owner of the secret where the TLS certificate is stored.
+You can enable the `--enable-certificate-owner-ref` flag for the cert-manager Operator for Red Hat OpenShift by adding a `spec.controllerConfig` section in the `CertManager` resource.
+
+The `--enable-certificate-owner-ref` flag sets the certificate resource as an owner of the secret where the TLS certificate is stored.
 
 :::warning
 
@@ -781,7 +785,9 @@ You can configure the pod scheduling from the cert-manager Operator for Red Hat 
 
 ## Configure cluster TLS security profile adherence for cert-manager components {#cert-manager-configure-tls-adherence_cert-manager-customizing-api-fields}
 
-You can configure the cert-manager Operator for Red Hat OpenShift to apply the cluster-wide TLS security profile by setting the TLS adherence policy on the cluster `APIServer` resource. When the adherence policy is set to `StrictAllComponents`, cert-manager components automatically apply the cluster TLS security profile settings.
+You can configure the cert-manager Operator for Red Hat OpenShift to apply the cluster-wide TLS security profile by setting the TLS adherence policy on the cluster `APIServer` resource.
+
+When the adherence policy is set to `StrictAllComponents`, cert-manager components automatically apply the cluster TLS security profile settings.
 
 :::warning
 

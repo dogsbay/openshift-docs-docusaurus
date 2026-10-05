@@ -75,17 +75,8 @@ quality.images.openshift.io/<qualityType>.<providerId>: {}
 
 | Component | Description | Acceptable values |
 | --- | --- | --- |
-| `qualityType` | Metadata type | `vulnerability`<br> `license`<br> `operations`<br> `policy` |
-| `providerId` | Provider ID string | `openscap`<br> `redhatcatalog`<br> `redhatinsights`<br> `blackduck`<br> `jfrog` |
-
-#### Example annotation keys {#security-example-annotation-keys_security-container-content}
-
-```
-quality.images.openshift.io/vulnerability.blackduck: {}
-quality.images.openshift.io/vulnerability.jfrog: {}
-quality.images.openshift.io/license.blackduck: {}
-quality.images.openshift.io/vulnerability.openscap: {}
-```
+| `qualityType` | Metadata type | `vulnerability`, `license`, `operations`, `policy` |
+| `providerId` | Provider ID string | `openscap`, `redhatcatalog`, `redhatinsights`, `blackduck`, `jfrog` |
 
 The value of the image quality annotation is structured data that must adhere to the following format:
 
@@ -111,6 +102,17 @@ The `summary` field must adhere to the following format:
 | `data` | Data for this component (for example, count of vulnerabilities found or score) | String |
 | `severityIndex` | Component index allowing for ordering and assigning graphical representation. The value is range `0..3` where `0` = low. | Integer |
 | `reference` | URL of information source or more details. Optional. | String |
+
+#### Example annotation keys {#security-example-annotation-keys_security-container-content}
+
+The following are example annotation keys:
+
+```
+quality.images.openshift.io/vulnerability.blackduck: {}
+quality.images.openshift.io/vulnerability.jfrog: {}
+quality.images.openshift.io/license.blackduck: {}
+quality.images.openshift.io/vulnerability.openscap: {}
+```
 
 #### Example annotation values {#security-example-annotation-values_security-container-content}
 
@@ -175,6 +177,8 @@ $ oc annotate image <image> \
 Use the `images.openshift.io/deny-execution` image policy to programmatically control if an image can be run.
 
 #### Example annotation {#security-controlling-pod-execution-example-annotation_security-container-content}
+
+The following is an example annotation:
 
 ```yaml
 annotations:

@@ -137,7 +137,7 @@ For more information about the support scope of Red Hat Technology Preview featu
   trust-manager-547bb59b4b-hd6mv    1/1     Running   0          24s
   ```
 
-**Next Step**
+**Next step**
 
 - Configuring trust bundle
 
@@ -249,7 +249,9 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 ## Uninstall the trust-manager operand {#cert-manager-trust-manager-uninstall_cert-manager-trust-manager}
 
-You can uninstall the trust-manager operand by deleting the TrustManager custom resource (CR). Deleting the TrustManager CR stops the operator from reconciling trust-manager resources, but does not automatically remove the trust-manager deployment or its associated resources. You must manually delete these resources after deleting the CR if you need a complete cleanup.
+You can uninstall the trust-manager operand by deleting the TrustManager custom resource (CR). Deleting the TrustManager CR stops the operator from reconciling trust-manager resources, but does not automatically remove the trust-manager deployment or its associated resources.
+
+You must manually delete these resources after deleting the CR if you need a complete cleanup.
 
 **Prerequisites**
 

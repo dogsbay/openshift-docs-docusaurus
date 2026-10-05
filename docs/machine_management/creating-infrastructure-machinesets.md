@@ -464,7 +464,9 @@ Machine sets running on Azure Stack Hub do not support non-guaranteed Spot VMs.
 
 ## Sample YAML for a compute machine set custom resource on IBM Cloud {#machineset-yaml-ibm-cloud_creating-infrastructure-machinesets}
 
-You can use the sample YAML file to automate the provisioning of compute or infrastructure nodes within a specific Virtual Private Cloud (VPC). The sample YAML defines a compute machine set that runs in a specified IBM Cloud(R) zone in a region and creates nodes that are labeled with `node-role.kubernetes.io/infra: ""`.
+You can use the sample YAML file to automate the provisioning of compute or infrastructure nodes within a specific Virtual Private Cloud (VPC).
+
+The sample YAML defines a compute machine set that runs in a specified IBM Cloud(R) zone in a region and creates nodes that are labeled with `node-role.kubernetes.io/infra: ""`.
 
 In the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<infra>` is the node label to add.
 
@@ -566,7 +568,9 @@ where:
 
 ## Sample YAML for a compute machine set custom resource on Google Cloud {#machineset-yaml-gcp_creating-infrastructure-machinesets}
 
-The sample YAML defines a compute machine set for Google Cloud, enabling the automated provisioning of nodes within a specific VPC. When you apply this configuration by using the OpenShift Container Platform CLI, you can ensure consistent scaling, scheduling, and infrastructure ID labeling for compute resources in your cluster.
+The sample YAML defines a compute machine set for Google Cloud, enabling the automated provisioning of nodes within a specific VPC.
+
+When you apply this configuration by using the OpenShift Container Platform CLI, you can ensure consistent scaling, scheduling, and infrastructure ID labeling for compute resources in your cluster.
 
 The sample YAML defines a compute machine set that runs in Google Cloud and creates nodes that are labeled with `node-role.kubernetes.io/infra: ""`, where `infra` is the node label to add.
 

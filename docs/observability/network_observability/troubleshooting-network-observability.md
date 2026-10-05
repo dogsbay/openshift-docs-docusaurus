@@ -138,10 +138,15 @@ Manually remove the part in the `interfaces` or `excludeInterfaces` that restric
      agent:
        type: EBPF
        ebpf:
-         interfaces: [ 'br-int', 'br-ex' ] (1)
+         interfaces: [ 'br-int', 'br-ex' ]
    ```
 
-   1. Specifies the network interfaces.
+   where:
+
+   <dl>
+   <dt><code>spec.agent.ebpf.interfaces</code></dt>
+   <dd>Specifies the network interfaces.</dd>
+   </dl>
 
 ## Network observability controller manager pod runs out of memory {#controller-manager-pod-runs-out-of-memory_network-observability-troubleshooting}
 
@@ -170,7 +175,7 @@ You can increase memory limits for the Network Observability Operator by editing
      config:
        resources:
          limits:
-           memory: 800Mi     (1)
+           memory: 800Mi
          requests:
            cpu: 100m
            memory: 100Mi
@@ -178,11 +183,17 @@ You can increase memory limits for the Network Observability Operator by editing
      name: netobserv-operator
      source: redhat-operators
      sourceNamespace: openshift-marketplace
-     startingCSV: <network_observability_operator_latest_version> (2)
+     startingCSV: <network_observability_operator_latest_version>
    ```
 
-   1. For example, you can increase the memory limit to `800Mi`.
-   2. This value should not be edited, but note that it changes depending on the most current release of the Operator.
+   where:
+
+   <dl>
+   <dt><code>spec.config.resources.limits.memory</code></dt>
+   <dd>Specifies the memory limit. For example, you can increase the memory limit to <code>800Mi</code>.</dd>
+   <dt><code>spec.startingCSV</code></dt>
+   <dd>Specifies the starting CSV. This value should not be edited, but note that it changes depending on the most current release of the Operator.</dd>
+   </dl>
 
 ## Run custom queries to Loki {#troubleshooting-query-loki-manually_network-observability-troubleshooting}
 
@@ -266,15 +277,21 @@ You can update the LokiStack CRD with the `perStreamRateLimit` and `perStreamRat
      limits:
        global:
          ingestion:
-           perStreamRateLimit: 6        (1)
-           perStreamRateLimitBurst: 30  (2)
+           perStreamRateLimit: 6
+           perStreamRateLimitBurst: 30
      tenants:
        mode: openshift-network
      managementState: Managed
    ```
 
-   1. The default value for `perStreamRateLimit` is `3`.
-   2. The default value for `perStreamRateLimitBurst` is `15`.
+   where:
+
+   <dl>
+   <dt><code>spec.limits.global.ingestion.perStreamRateLimit</code></dt>
+   <dd>Specifies the ingestion rate limit. The default value is <code>3</code>.</dd>
+   <dt><code>spec.limits.global.ingestion.perStreamRateLimitBurst</code></dt>
+   <dd>Specifies the ingestion rate limit burst. The default value is <code>15</code>.</dd>
+   </dl>
 4. Click **Save**.
 
 **Verification**
@@ -299,8 +316,13 @@ Consider using the FlowMetrics API to create your own metric
 Configure Loki to improve the query performance
 : If the problem persists, you can consider configuring Loki to improve the query performance. Some options depend on the installation mode you used for Loki, such as using the Operator and `LokiStack`, or `Monolithic` mode, or `Microservices` mode.
 
-  - In `LokiStack` or `Microservices` modes, try [increasing the number of querier replicas](https://loki-operator.dev/docs/api.md/#loki-grafana-com-v1-LokiComponentSpec).
-  - Increase the [query timeout](https://loki-operator.dev/docs/api.md/#loki-grafana-com-v1-QueryLimitSpec). You must also increase the Network Observability read timeout to Loki in the `FlowCollector` `spec.loki.readTimeout`.
+  - In `LokiStack` or `Microservices` modes, try increasing the number of querier replicas. For more information, see "LokiComponentSpec".
+  - Increase the query timeout. You must also increase the Network Observability read timeout to Loki in the `FlowCollector` `spec.loki.readTimeout`. For more information, see "QueryLimitSpec".
+
+**Additional resources**
+
+- [LokiComponentSpec](https://loki-operator.dev/docs/api.md/#loki-grafana-com-v1-LokiComponentSpec)
+- [QueryLimitSpec](https://loki-operator.dev/docs/api.md/#loki-grafana-com-v1-QueryLimitSpec)
 
 **Additional resources**
 

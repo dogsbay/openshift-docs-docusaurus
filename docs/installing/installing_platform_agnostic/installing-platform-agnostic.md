@@ -2271,7 +2271,9 @@ The following table shows the RHCOS live installer `coreos.inst` boot options fo
 
 ## Waiting for the bootstrap process to complete {#installation-installing-bare-metal_installing-platform-agnostic}
 
-The OpenShift Container Platform bootstrap process begins after the cluster nodes first boot into the persistent RHCOS environment that has been installed to disk. The configuration information provided through the Ignition config files is used to initialize the bootstrap process and install OpenShift Container Platform on the machines. You must wait for the bootstrap process to complete.
+After your cluster nodes first boot into the persistent RHCOS environment installed to disk, wait for the OpenShift Container Platform bootstrap process to complete.
+
+The configuration information provided through the Ignition config files is used to initialize the bootstrap process and install OpenShift Container Platform on the machines.
 
 **Prerequisites**
 

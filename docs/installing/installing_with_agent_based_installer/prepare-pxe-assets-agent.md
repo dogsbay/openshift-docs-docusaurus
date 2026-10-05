@@ -23,7 +23,7 @@ Before beginning to prepare PXE assets, you must complete prerequisite tasks.
 
 - [Installation and update](/docs/architecture/architecture-installation#architecture-installation)
 
-## Downloading the Agent-based Installer {#installing-ocp-agent-retrieve_prepare-pxe-assets-agent}
+## Download the Agent-based Installer {#installing-ocp-agent-retrieve_prepare-pxe-assets-agent}
 
 Begin the installation process by downloading the Agent-based Installer and the CLI needed for your installation.
 
@@ -37,7 +37,7 @@ Begin the installation process by downloading the Agent-based Installer and the 
 6. Download or copy the pull secret by clicking on **Download pull secret** or **Copy pull secret**.
 7. Click **Download command-line tools** and place the `openshift-install` binary in a directory that is on your `PATH`.
 
-## Creating the preferred configuration inputs {#installing-ocp-agent-inputs_prepare-pxe-assets-agent}
+## Create the preferred configuration inputs {#installing-ocp-agent-inputs_prepare-pxe-assets-agent}
 
 Create the preferred configuration inputs used to create the PXE files.
 

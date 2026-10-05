@@ -1056,17 +1056,12 @@ You cannot change an existing Capacity Reservation configuration for a machine s
 
 **Procedure**
 
-tag:controlplane[][] . Edit your control plane machine set custom resource (CR) by running the following command:
-
-```terminal
-$ oc edit controlplanemachineset.machine.openshift.io cluster --namespace openshift-machine-api
-```
-
-end:controlplane[][]
-
-tag:compute[][] . In a text editor, open an existing machine set custom resource (CR) or create a new one. end:compute[][]
-
-1. Update the CR to implement your configuration changes:
+1. Edit your control plane machine set custom resource (CR) by running the following command:
+   ```terminal
+   $ oc edit controlplanemachineset.machine.openshift.io cluster --namespace openshift-machine-api
+   ```
+2. In a text editor, open an existing machine set custom resource (CR) or create a new one.
+3. Update the CR to implement your configuration changes:
    ```yaml title="Sample configuration"
    tag::compute[]
    apiVersion: machine.openshift.io/v1beta1
@@ -1100,7 +1095,7 @@ tag:compute[][] . In a text editor, open an existing machine set custom resource
    <dt><code>&lt;capacity_reservation_group&gt;</code></dt>
    <dd>Specifies the ID of the Capacity Reservation group that you want the machine set to deploy machines on.</dd>
    </dl>
-2. Save your changes and exit the object specification. tag:controlplane[][]
+4. Save your changes and exit the object specification. tag:controlplane[][]
    When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy.
 
    - For clusters that use the default `RollingUpdate` update strategy, the Operator automatically propagates the changes to your control plane configuration.

@@ -17,25 +17,25 @@ When creating container images to run on OpenShift Container Platform there are 
 
 Follow fundamental guidelines for creating container images to ensure they are secure, efficient, and reproducible for deployment in OpenShift Container Platform.
 
-#### Reuse images {#_reuse_images}
+#### Reuse images {#reusing-images_create-images}
 
 Wherever possible, base your image on an appropriate upstream image using the `FROM` statement. This ensures your image can easily pick up security fixes from an upstream image when it is updated, rather than you having to update your dependencies directly.
 
 In addition, use tags in the `FROM` instruction, for example, `rhel:rhel7`, to make it clear to users exactly which version of an image your image is based on. Using a tag other than `latest` ensures your image is not subjected to breaking changes that might go into the `latest` version of an upstream image.
 
-#### Maintain compatibility within tags {#_maintain_compatibility_within_tags}
+#### Maintain compatibility within tags {#maintaining-compatibility-within-tags_create-images}
 
 When tagging your own images, try to maintain backwards compatibility within a tag. For example, if you provide an image named `image` and it currently includes version `1.0`, you might provide a tag of `image:v1`. When you update the image, as long as it continues to be compatible with the original image, you can continue to tag the new image `image:v1`, and downstream consumers of this tag are able to get updates without being broken.
 
 If you later release an incompatible update, then switch to a new tag, for example `image:v2`. This allows downstream consumers to move up to the new version at will, but not be inadvertently broken by the new incompatible image. Any downstream consumer using `image:latest` takes on the risk of any incompatible changes being introduced.
 
-#### Avoid multiple processes {#_avoid_multiple_processes}
+#### Avoid multiple processes {#avoiding-multiple-processes_create-images}
 
 Do not start multiple services, such as a database and `SSHD`, inside one container. This is not necessary because containers are lightweight and can be easily linked together for orchestrating multiple processes. OpenShift Container Platform allows you to easily colocate and co-manage related images by grouping them into a single pod.
 
 This colocation ensures the containers share a network namespace and storage for communication. Updates are also less disruptive as each image can be updated less frequently and independently. Signal handling flows are also clearer with a single process as you do not have to manage routing signals to spawned processes.
 
-#### Use `exec` in wrapper scripts {#_use_exec_in_wrapper_scripts}
+#### Use `exec` in wrapper scripts {#using-exec-in-wrapper-scripts_create-images}
 
 Many images use wrapper scripts to do some setup before starting a process for the software being run. If your image uses such a script, that script uses `exec` so that the script’s process is replaced by your software. If you do not use `exec`, then signals sent by your container runtime go to your wrapper script instead of your software’s process. This is not what you want.
 
@@ -43,7 +43,7 @@ If you have a wrapper script that starts a process for some server. You start yo
 
 Also note that your process runs as `PID 1` when running in a container. This means that if your main process terminates, the entire container is stopped, canceling any child processes you launched from your `PID 1` process.
 
-#### Clean temporary files {#_clean_temporary_files}
+#### Clean temporary files {#cleaning-temporary-files_create-images}
 
 Remove all temporary files you create during the build process. This also includes any files added with the `ADD` command.  For example, run the `yum clean` command after performing `yum install` operations.
 
@@ -66,7 +66,7 @@ The current container build process does not allow a command run in a later laye
 
 In addition, performing multiple commands in a single `RUN` statement reduces the number of layers in your image, which improves download and extraction time.
 
-#### Place instructions in the proper order {#_place_instructions_in_the_proper_order}
+#### Place instructions in the proper order {#placing-instructions-in-the-proper-order_create-images}
 
 The container builder reads the `Dockerfile` and runs the instructions from top to bottom. Every instruction that is successfully executed creates a layer which can be reused the next time this or another image is built. It is very important to place instructions that rarely change at the top of your `Dockerfile`. Doing so ensures the next builds of the same image are very fast because the cache is not invalidated by upper layer changes.
 
@@ -90,7 +90,7 @@ RUN yum -y install mypackage && yum clean all -y
 
 Then each time you changed `myfile` and reran `podman build` or `docker build`, the `ADD` operation would invalidate the `RUN` layer cache, so the `yum` operation must be rerun as well.
 
-#### Mark important ports {#_mark_important_ports}
+#### Mark important ports {#marking-important-ports_create-images}
 
 The EXPOSE instruction makes a port in the container available to the host system and other containers. While it is possible to specify that a port should be exposed with a `podman run` invocation, using the EXPOSE instruction in a `Dockerfile` makes it easier for both humans and software to use your image by explicitly declaring the ports your software needs to run:
 
@@ -98,29 +98,29 @@ The EXPOSE instruction makes a port in the container available to the host syste
 - Exposed ports are present in the metadata for your image returned by `podman inspect`.
 - Exposed ports are linked when you link one container to another.
 
-#### Set environment variables {#_set_environment_variables}
+#### Set environment variables {#setting-environment-variables_create-images}
 
 It is good practice to set environment variables with the `ENV` instruction. One example is to set the version of your project. This makes it easy for people to find the version without looking at the `Dockerfile`. Another example is advertising a path on the system that could be used by another process, such as `JAVA_HOME`.
 
-#### Avoid default passwords {#_avoid_default_passwords}
+#### Avoid default passwords {#avoiding-default-passwords_create-images}
 
 Avoid setting default passwords. Many people extend the image and forget to remove or change the default password. This can lead to security issues if a user in production is assigned a well-known password. Passwords are configurable using an environment variable instead.
 
 If you do choose to set a default password, ensure that an appropriate warning message is displayed when the container is started. The message should inform the user of the value of the default password and explain how to change it, such as what environment variable to set.
 
-#### Avoid sshd {#_avoid_sshd}
+#### Avoid sshd {#avoiding-sshd_create-images}
 
 It is best to avoid running `sshd` in your image. You can use the `podman exec` or `docker exec` command to access containers that are running on the local host. Alternatively, you can use the `oc exec` command or the `oc rsh` command to access containers that are running on the OpenShift Container Platform cluster. Installing and running `sshd` in your image opens up additional vectors for attack and requirements for security patching.
 
-#### Use volumes for persistent data {#_use_volumes_for_persistent_data}
+#### Use volumes for persistent data {#using-volumes-persistent-data_create-images}
 
-Images use a [volume](https://docs.docker.com/reference/builder/#volume) for persistent data. This way OpenShift Container Platform mounts the network storage to the node running the container, and if the container moves to a new node the storage is reattached to that node. By using the volume for all persistent storage needs, the content is preserved even if the container is restarted or moved. If your image writes data to arbitrary locations within the container, that content could not be preserved.
+Images use a *volume* for persistent data. This way OpenShift Container Platform mounts the network storage to the node running the container, and if the container moves to a new node the storage is reattached to that node. By using the volume for all persistent storage needs, the content is preserved even if the container is restarted or moved. If your image writes data to arbitrary locations within the container, that content could not be preserved.
 
 All data that needs to be preserved even after the container is destroyed must be written to a volume. Container engines support a `readonly` flag for containers, which can be used to strictly enforce good practices about not writing data to ephemeral storage in a container. Designing your image around that capability now makes it easier to take advantage of it later.
 
 Explicitly defining volumes in your `Dockerfile` makes it easy for consumers of the image to understand what volumes they must define when running your image.
 
-See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/volumes/) for more information on how volumes are used in OpenShift Container Platform.
+See the "Kubernetes documentation" for more information on how volumes are used in OpenShift Container Platform.
 
 :::note
 
@@ -128,13 +128,18 @@ Even with persistent volumes, each instance of your image has its own volume, an
 
 :::
 
+**Additional resources**
+
+- [volume](https://docs.docker.com/reference/builder/#volume)
+- [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/volumes)
+
 ### OpenShift Container Platform-specific guidelines {#images-create-guide-openshift_create-images}
 
 Use the integrated image-building capabilities of OpenShift Container Platform to create, manage, and deploy reproducible container images directly from source code or Dockerfiles.
 
 #### Enable images for source-to-image (S2I) {#enable-images-for-source-to-image_create-images}
 
-For images that are intended to run application code provided by a third party, such as a Ruby image designed to run Ruby code provided by a developer, you can enable your image to work with the [Source-to-Image (S2I)](https://github.com/openshift/source-to-image) build tool. S2I is a framework that makes it easy to write images that take application source code as an input and produce a new image that runs the assembled application as output.
+For images that are intended to run application code provided by a third party, such as a Ruby image designed to run Ruby code provided by a developer, you can enable your image to work with the Source-to-Image (S2I) build tool. S2I is a framework that makes it easy to write images that take application source code as an input and produce a new image that runs the assembled application as output.
 
 #### Support arbitrary user ids {#use-uid_create-images}
 
@@ -217,6 +222,10 @@ Document example liveness and readiness probes that can be used with your image.
 
 Consider providing an example template with your image. A template gives users an easy way to quickly get your image deployed with a working configuration. Your template must include the liveness and readiness probes you documented with the image, for completeness.
 
+**Additional resources**
+
+- [Source-to-Image (S2I)](https://github.com/openshift/source-to-image)
+
 ## Include metadata in images {#images-create-metadata_create-images}
 
 Define comprehensive image metadata during creation to ensure OpenShift Container Platform correctly configures image runtime settings and tracks image lineage and compliance. This helps to provide a better experience for developers using your image.
@@ -225,15 +234,15 @@ For example, you can add metadata to provide helpful descriptions of your image,
 
 This topic only defines the metadata needed by the current set of use cases. Additional metadata or use cases may be added in the future.
 
-### Defining image metadata {#_defining_image_metadata}
+### Defining image metadata
 
 You can use the `LABEL` instruction in a `Dockerfile` to define image metadata. Labels are similar to environment variables in that they are key value pairs attached to an image or a container. Labels are different from environment variable in that they are not visible to the running application and they can also be used for fast look-up of images and containers.
 
-[Docker documentation](https://docs.docker.com/engine/reference/builder/#label) for more information on the `LABEL` instruction.
+For more information on the `LABEL` instruction, see "LABEL - Docker documentation".
 
 The label names are typically namespaced. The namespace is set accordingly to reflect the project that is going to pick up the labels and use them. For OpenShift Container Platform the namespace is set to `io.openshift` and for Kubernetes the namespace is `io.k8s`.
 
-See the [Docker custom metadata](https://docs.docker.com/engine/userguide/labels-custom-metadata) documentation for details about the format.
+See the "Docker custom metadata" documentation for details about the format.
 
 **Supported Metadata**
 
@@ -267,6 +276,11 @@ See the [Docker custom metadata](https://docs.docker.com/engine/userguide/labels
 </tr>
 </tbody>
 </table>
+
+**Additional resources**
+
+- [LABEL - Docker documentation](https://docs.docker.com/engine/reference/builder/#label)
+- [Docker custom metadata](https://docs.docker.com/engine/userguide/labels-custom-metadata)
 
 ## Create images from source code with source-to-image {#images-create-s2i_create-images}
 

@@ -1,6 +1,6 @@
 ---
 title: Installing a cluster on user-provisioned infrastructure in Google Cloud by using Infrastructure Manager templates
-sidebar_position: 9
+sidebar_position: 10
 ---
 
 # Installing a cluster on user-provisioned infrastructure in Google Cloud by using Infrastructure Manager templates {#installing-gcp-user-infra}

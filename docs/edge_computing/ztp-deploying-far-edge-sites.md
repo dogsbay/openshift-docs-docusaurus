@@ -114,7 +114,7 @@ The target bare-metal host must meet the networking, firmware. For more informat
 
 :::
 
-## Creating the managed bare-metal host secrets {#ztp-creating-the-site-secrets_ztp-deploying-far-edge-sites}
+## Create the managed bare-metal host secrets {#ztp-creating-the-site-secrets_ztp-deploying-far-edge-sites}
 
 Add the required `Secret` custom resources (CRs) for the managed bare-metal host to the hub cluster. You need a secret for the GitOps Zero Touch Provisioning (ZTP) pipeline to access the Baseboard Management Controller (BMC) and a secret for the assisted installer service to pull cluster installation images from the registry.
 
@@ -161,7 +161,7 @@ The secrets are referenced from the `ClusterInstance` CR by name. The namespace 
       </dl>
 2. Add the relative path to `example-sno-secret.yaml` to the `kustomization.yaml` file that you use to install the cluster.
 
-## Configuring Discovery ISO kernel arguments for installations using GitOps ZTP {#setting-managed-bare-metal-host-kernel-arguments_ztp-deploying-far-edge-sites}
+## Configure Discovery ISO kernel arguments for installations using GitOps ZTP {#setting-managed-bare-metal-host-kernel-arguments_ztp-deploying-far-edge-sites}
 
 The GitOps Zero Touch Provisioning (ZTP) workflow uses the Discovery ISO as part of the OpenShift Container Platform installation process on managed bare-metal hosts. You can edit the `InfraEnv` resource to specify kernel arguments for the Discovery ISO. This is useful for cluster installations with specific environmental requirements.
 
@@ -276,7 +276,7 @@ To verify that the kernel arguments are applied, after the Discovery image verif
    $ cat /proc/cmdline
    ```
 
-## Deploying a managed cluster with ClusterInstance and GitOps ZTP {#ztp-deploying-a-site_ztp-deploying-far-edge-sites}
+## Deploy a managed cluster with ClusterInstance and GitOps ZTP {#ztp-deploying-a-site_ztp-deploying-far-edge-sites}
 
 Use the following procedure to create a `ClusterInstance` custom resource (CR) and related files and initiate the GitOps Zero Touch Provisioning (ZTP) cluster deployment.
 
@@ -330,8 +330,6 @@ Baseboard Management Controller (BMC) details
       - `example-standard.yaml`
    2. Change the cluster and host details in the example file to match the type of cluster you want. For example:
       ```yaml title="Example single-node OpenShift ClusterInstance CR"
-      # example-node1-bmh-secret & assisted-deployment-pull-secret need to be created under same namespace example-ai-sno
-      ---
       apiVersion: siteconfig.open-cluster-management.io/v1alpha1
       kind: ClusterInstance
       metadata:
@@ -1231,7 +1229,7 @@ You can configure host hardware profiles to be applied in a hierarchy. Node-leve
   True
   ```
 
-## Monitoring managed cluster installation progress {#ztp-monitoring-deployment-progress_ztp-deploying-far-edge-sites}
+## Monitor managed cluster installation progress {#ztp-monitoring-deployment-progress_ztp-deploying-far-edge-sites}
 
 The Argo CD pipeline syncs the `ClusterInstance` CR from the Git repository to the hub cluster. The SiteConfig Operator then processes the `ClusterInstance` CR and generates the required cluster configuration CRs. You can monitor the progress of the cluster installation from the RHACM dashboard or from the command line.
 
@@ -1256,7 +1254,7 @@ The Argo CD pipeline syncs the `ClusterInstance` CR from the Git repository to t
       $ curl -sk $(oc get agentclusterinstall -n $CLUSTER $CLUSTER -o jsonpath='{.status.debugInfo.eventsURL}')  | jq '.[-2,-1]'
       ```
 
-## Troubleshooting GitOps ZTP by validating the installation CRs {#ztp-troubleshooting-ztp-gitops-installation-crs_ztp-deploying-far-edge-sites}
+## Troubleshoot GitOps ZTP by validating the installation CRs {#ztp-troubleshooting-ztp-gitops-installation-crs_ztp-deploying-far-edge-sites}
 
 The ArgoCD pipeline uses the `ClusterInstance` and `PolicyGenerator` or `PolicyGentemplate` custom resources (CRs) to generate the cluster configuration CRs and Red Hat Advanced Cluster Management (RHACM) policies. Use the following steps to troubleshoot issues that might occur during this process.
 
@@ -1299,7 +1297,7 @@ SuperMicro X11 servers do not support virtual media installations when the image
    ```
 2. Continue the steps to deploy your single-node OpenShift cluster.
 
-## Removing a managed cluster site from the GitOps ZTP pipeline {#ztp-site-cleanup_ztp-deploying-far-edge-sites}
+## Remove a managed cluster site from the GitOps ZTP pipeline {#ztp-site-cleanup_ztp-deploying-far-edge-sites}
 
 You can remove a managed site and the associated installation and configuration policy CRs from the GitOps Zero Touch Provisioning (ZTP) pipeline.
 

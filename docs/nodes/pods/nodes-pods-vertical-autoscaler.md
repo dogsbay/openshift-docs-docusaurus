@@ -83,9 +83,9 @@ For the most recent list of major functionality that has been deprecated or remo
 
 ### About the in-place-or-recreate mode {#nodes-pods-vertical-autoscaler-in-place_nodes-pods-vertical-autoscaler}
 
-The Vertical Pod Autoscaler Operator (VPA) contains an optional `InPlaceOrRecreate` mode. This mode instructs the VPA to attempt to perform an *in-place pod resize* when updating CPU or memory resources, where the VPA first attempts to update the resources in a running pod without recreating the pod. If an in-place resize is not possible, the VPA falls back to the `Recreate` mode and restarts the pod in order to update the resources.
+The Vertical Pod Autoscaler Operator (VPA) contains an optional `InPlaceOrRecreate` mode. This mode instructs the VPA to attempt to perform an *in-place pod resize* when updating CPU or memory resources, where the VPA first attempts to update the resources in a running pod without recreating the pod.
 
-When in `InPlaceOrRecreate` mode, the VPA falls back to always recreating pods in the following scenarios:
+If an in-place resize is not possible, the VPA falls back to the `Recreate` mode and restarts the pod in order to update the resources. When in `InPlaceOrRecreate` mode, the VPA falls back to always recreating pods in the following scenarios:
 
 - The in-place update is considered *infeasible* for reasons including the following reasons:
   - The requested resources exceed the node’s total capacity.

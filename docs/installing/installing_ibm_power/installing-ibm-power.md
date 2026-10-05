@@ -2296,14 +2296,13 @@ During the initial cluster creation, you might want to add kernel arguments to a
 
      :::
 
-In case of MPIO failure, use the `bootlist` command to update the boot device list with alternate logical device names. The command displays a boot list and designates the possible boot devices for when the system is booted in normal mode.
-
-1. To display a boot list and specify the possible boot devices if the system is booted in normal mode, enter the following command:
+     In case of MPIO failure, use the `bootlist` command to update the boot device list with alternate logical device names. The command displays a boot list and designates the possible boot devices for when the system is booted in normal mode.
+4. To display a boot list and specify the possible boot devices if the system is booted in normal mode, enter the following command:
    ```terminal
    $ bootlist -m normal -o
    sda
    ```
-2. To update the boot list for normal mode and add alternate device names, enter the following command:
+5. To update the boot list for normal mode and add alternate device names, enter the following command:
    ```terminal
    $ bootlist -m normal -o /dev/sdc /dev/sdd /dev/sde
    sdc
@@ -2315,7 +2314,9 @@ In case of MPIO failure, use the `bootlist` command to update the boot device li
 
 ## Waiting for the bootstrap process to complete {#installation-installing-bare-metal_installing-ibm-power}
 
-The OpenShift Container Platform bootstrap process begins after the cluster nodes first boot into the persistent RHCOS environment that has been installed to disk. The configuration information provided through the Ignition config files is used to initialize the bootstrap process and install OpenShift Container Platform on the machines. You must wait for the bootstrap process to complete.
+After your cluster nodes first boot into the persistent RHCOS environment installed to disk, wait for the OpenShift Container Platform bootstrap process to complete.
+
+The configuration information provided through the Ignition config files is used to initialize the bootstrap process and install OpenShift Container Platform on the machines.
 
 **Prerequisites**
 

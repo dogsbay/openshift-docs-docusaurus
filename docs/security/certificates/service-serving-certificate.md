@@ -204,7 +204,9 @@ To allow the Kubernetes API server in OpenShift Container Platform to validate t
 
 ## Add the service CA bundle to a custom resource definition {#add-service-certificate-crd_service-serving-certificate}
 
-You can annotate a `CustomResourceDefinition` (CRD) object with `service.beta.openshift.io/inject-cabundle=true` to have its `spec.conversion.webhook.clientConfig.caBundle` field populated with the service Certificate Authority (CA) bundle. This allows the Kubernetes API server to validate the service CA certificate used to secure the targeted endpoint.
+You can annotate a `CustomResourceDefinition` (CRD) object with `service.beta.openshift.io/inject-cabundle=true` to have its `spec.conversion.webhook.clientConfig.caBundle` field populated with the service Certificate Authority (CA) bundle.
+
+This allows the Kubernetes API server to validate the service CA certificate used to secure the targeted endpoint.
 
 :::note
 

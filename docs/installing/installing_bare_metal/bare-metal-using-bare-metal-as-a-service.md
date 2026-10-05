@@ -18,7 +18,9 @@ As standalone systems, these hosts operate independently of the OpenShift Contai
 
 ## Prerequisites for using Red Hat Bare Metal as a Service for OpenShift {#bmaas-prerequisites_bare-metal-using-bmaas}
 
-Red Hat Bare Metal as a Service for OpenShift lets you apply cloud-native management practices to bare-metal infrastructure, enabling automated provisioning and lifecycle management for workloads that require physical hardware. To use Red Hat Bare Metal as a Service for OpenShift, complete the following prerequisites:
+Red Hat Bare Metal as a Service for OpenShift lets you apply cloud-native management practices to bare-metal infrastructure, enabling automated provisioning and lifecycle management for workloads that require physical hardware.
+
+To use Red Hat Bare Metal as a Service for OpenShift, complete the following prerequisites:
 
 BareMetalHost Configuration
 : All bare-metal hosts must use a Baseboard Management Controller (BMC) configured with the Redfish protocol and virtual media (`redfish-virtualmedia`) driver. Each bare-metal host requires a boot interface with a MAC address configured to receive an IP address lease.
@@ -50,7 +52,9 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 ## Using the Bare Metal Operator to manage resources across all namespaces {#bmaas-using-the-bmo-to-manage-resources-across-all-namespaces_bare-metal-using-bmaas}
 
-For the Bare Metal Operator (BMO) to manage `BareMetalHost` resources across all namespaces in your OpenShift Container Platform cluster, you must configure the Operator to watch all namespaces. This configuration is important to avoid mixing non-OpenShift Container Platform workloads with other components in the same namespace.
+For the Bare Metal Operator (BMO) to manage `BareMetalHost` resources across all namespaces in your OpenShift Container Platform cluster, you must configure the Operator to watch all namespaces.
+
+This configuration is important to avoid mixing non-OpenShift Container Platform workloads with other components in the same namespace.
 
 **Prerequisites**
 
@@ -352,7 +356,9 @@ Configure bare-metal host users and add them to a Kubernetes secret. Then, creat
 
 ## Configuring the networkData parameter in the BareMetalHost resource {#bmo-configuring-the-networkdata-parameter-in-the-bmo-cr_bare-metal-using-bmaas}
 
-The `networkData` field in the `BareMetalHost` custom resource (CR) allows you to control the network configuration of the bare-metal host at creation time. For most operating systems, this is achieved using a configuration file encapsulated in a Kubernetes secret. Then, the `cloud-init` service uses it to customize services.
+The `networkData` field in the `BareMetalHost` custom resource (CR) allows you to control the network configuration of the bare-metal host at creation time.
+
+For most operating systems, this is achieved using a configuration file encapsulated in a Kubernetes secret. Then, the `cloud-init` service uses it to customize services.
 
 **Procedure**
 
@@ -397,7 +403,9 @@ The `networkData` field in the `BareMetalHost` custom resource (CR) allows you t
 
 ## Deploying an image to the bare-metal host {#bmo-deploying-an-image-to-the-bare-metal-host_bare-metal-using-bmaas}
 
-To deploy the image to the host, update the `image` field in the `spec` section of the `BareMetalHost` resource. Once you update the `image` field, provisioning begins immediately. Deploying an image transforms bare hardware into a functional system ready to run your workloads, in an automated and repeatable way.
+To deploy the image to the host, update the `image` field in the `spec` section of the `BareMetalHost` resource. Once you update the `image` field, provisioning begins immediately.
+
+Deploying an image transforms bare hardware into a functional system ready to run your workloads, in an automated and repeatable way.
 
 **Procedure**
 

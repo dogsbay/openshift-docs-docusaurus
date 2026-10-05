@@ -205,12 +205,11 @@ IBM Cloud(R) does not support IPv6, so dual stack or IPv6 environments are not p
 
       Replace `<zone-name>` with the fully qualified zone name. You can use either the root domain or subdomain value as the zone name, depending on which you plan to configure. A root domain uses the form `openshiftcorp.com`. A subdomain uses the form `clusters.openshiftcorp.com`.
 3. Record the name of the DNS zone you have created. As part of the installation process, you must update the `install-config.yaml` file before deploying the cluster. Use the name of the DNS zone as the value for the `baseDomain` parameter.
+   :::note
 
-:::note
+   You do not have to manage permitted networks or configure an "A" DNS resource record. As required, the installation program configures these resources automatically.
 
-You do not have to manage permitted networks or configure an "A" DNS resource record. As required, the installation program configures these resources automatically.
-
-:::
+   :::
 
 **Additional resources**
 

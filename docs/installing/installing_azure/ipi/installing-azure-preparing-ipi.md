@@ -313,16 +313,15 @@ The OpenShift Container Platform installation program can use an existing Disk E
 
      All Operators should show `AVAILABLE=True`, `PROGRESSING=False`, and `DEGRADED=False`.
   8. Repeat the above steps on all the nodes that run `encryptionAtHost`.
+     :::note
 
-  :::note
+     If you want to enable encryption for your host during cluster installation, specify the following parameters in the `install-config.yaml` file:
 
-  If you want to enable encryption for your host during cluster installation, specify the following parameters in the `install-config.yaml` file:
+     - `compute.platform.azure.encryptionAtHost`
+     - `controlPlane.platform.azure.encryptionAtHost`
+     - `platform.azure.defaultMachinePlatform.encryptionAtHost`
 
-  - `compute.platform.azure.encryptionAtHost`
-  - `controlPlane.platform.azure.encryptionAtHost`
-  - `platform.azure.defaultMachinePlatform.encryptionAtHost`
-
-  :::
+     :::
 
 ## Preparing an Azure Disk Encryption Set {#preparing-disk-encryption-sets_installing-azure-preparing-ipi}
 

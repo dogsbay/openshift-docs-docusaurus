@@ -1,6 +1,6 @@
 ---
 title: Installing a cluster on Google Cloud in a disconnected environment with user-provisioned infrastructure
-sidebar_position: 11
+sidebar_position: 12
 ---
 
 # Installing a cluster on Google Cloud in a disconnected environment with user-provisioned infrastructure {#installing-restricted-networks-gcp}

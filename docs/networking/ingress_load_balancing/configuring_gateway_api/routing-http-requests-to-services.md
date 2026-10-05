@@ -111,18 +111,16 @@ Matches define conditions used for matching the rule against incoming HTTP reque
 You can configure the following match types:
 
 `path`
-: Consists of type and value. Path match type indicates how to match the value and may be either “Exact” or “PathPrefix” (default). The default path value, if omitted, is “/”. On Red Hat OpenShift Service Mesh, “RegularExpression” may also be used as a type.
+: Consists of type and value. Path match type indicates how to match the value and may be either "Exact" or "PathPrefix" (default). The default path value, if omitted, is "/". On Red Hat OpenShift Service Mesh, "RegularExpression" may also be used as a type.
 
 `headers`
-: Each consists of type, name, and value. Header match type indicates how to match the value and may be “Exact” (default) or on Red Hat OpenShift Service Mesh, “RegularExpression”. Name is the HTTP header name, which must be case-insensitive. Value is the value of the HTTP header to be matched.
+: Each consists of type, name, and value. Header match type indicates how to match the value and may be "Exact" (default) or on Red Hat OpenShift Service Mesh, "RegularExpression". Name is the HTTP header name, which must be case-insensitive. Value is the value of the HTTP header to be matched.
 
 `queryParameters`
-: Each consists of type, name, and value. QueryParameters match type indicates how to match the value and may be “Exact” (default) or on Red Hat OpenShift Service Mesh, “RegularExpression”. Name is the HTTP query parameter name and must match exactly. Value is the value of the HTTP query parameter to be matched.
+: Each consists of type, name, and value. QueryParameters match type indicates how to match the value and may be "Exact" (default) or on Red Hat OpenShift Service Mesh, "RegularExpression". Name is the HTTP query parameter name and must match exactly. Value is the value of the HTTP query parameter to be matched.
 
 `method`
 : A value in upper case that should match on the HTTP request method. Must be one of: GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, or PATCH.
-
-#### Example: path match {#_example_path_match}
 
 The following example demonstrates a complete `HTTPRoute` custom resource (CR) configured with path-based matching to route requests for `/<example_app>` to a backend service:
 
@@ -152,8 +150,6 @@ spec:
 - `type: Exact` ensures the route only matches the exact string `/<example_app>`.
 - `backendRefs` defines the service where matching traffic is sent.
 
-#### Example: headers match (AND condition) {#_example_headers_match_and_condition}
-
 The following snippet demonstrates how to combine multiple header matches so that a request must contain both `myheader: newheader` AND `color: orange` to successfully match:
 
 ```yaml
@@ -172,7 +168,9 @@ spec:
 
 ## Applying processing filters to HTTP requests {#applying-processing-filters-http-requests_routing-http-requests-to-services}
 
-To modify how HTTP requests are processed before they reach your backend services, you can pre-configure filters within the rules of your `HTTPRoute` custom resource (CR). Configuring these filters allows you to automatically redirect traffic, modify headers, or mirror requests to achieve your desired routing behavior.
+To modify how HTTP requests are processed before they reach your backend services, you can pre-configure filters within the rules of your `HTTPRoute` custom resource (CR).
+
+Configuring these filters allows you to automatically redirect traffic, modify headers, or mirror requests to achieve your desired routing behavior.
 
 **Prerequisites**
 
@@ -313,8 +311,6 @@ To route traffic to your backends, you must define service destinations and traf
 
 BackendRefs are the service destinations of requests that meet your matches rules, and are composed of group, kind, name, namespace, port, and weight. Name and port are the only required fields and refer to the service name and the service port number Weight is relevant when there is more than one backendRef, and specifies the proportion of requests forwarded to that specific backendRef. Without a backendRef, the rule doesn’t do any request forwarding and may return an error.
 
-#### Example: Single backend destination {#_example_single_backend_destination}
-
 This example shows a BackendRef where there is a single backend destination, a service named `<service_v1>`:
 
 ```yaml
@@ -336,8 +332,6 @@ spec:
 - `backendRefs` defines the destination services for the traffic.
 - `name` specifies the name of the Kubernetes service.
 - `port` specifies the port on which the service is listening.
-
-#### Example: Weighted backend delivery {#_example_weighted_backend_delivery}
 
 This example shows two backendRefs where there is weighted delivery of 15 and 25 for the backends. This means `<service_v1>` gets 15/40 (3/8ths) of the traffic, and `<service_v2>` gets 25/40 (5/8ths) of the traffic. Though not required, it is recommended to have the weights add up to 100 whenever possible for clarity.
 
@@ -413,8 +407,6 @@ When configuring timeouts, you must adhere to the following formatting rules and
 - The number can be up to five digits, such as `10000s`.
 - You can use multipart durations to express fractions, such as `1m30s`, but you cannot use decimal dots.
 
-#### Example: Request timeout {#_example_request_timeout}
-
 The following example demonstrates a complete `HTTPRoute` custom resource (CR) where the entire request must complete within 30 seconds:
 
 ```yaml
@@ -442,8 +434,6 @@ spec:
 - `request` specifies the timeout for the full request-response cycle.
 - `PathPrefix` ensures the timeout applies to all requests starting with `/<timeout_path>`.
 
-#### Example: Request and backendRequest timeouts {#_example_request_and_backendrequest_timeouts}
-
 The following snippet demonstrates a configuration where the request must succeed within 5 seconds, and the gateway-to-backend hop must complete within 1 second:
 
 ```yaml
@@ -459,7 +449,9 @@ spec:
 
 ## OpenShift Container Platform routes and HTTPRoutes comparison {#comparing-openshift-routes-and-httproutes_routing-http-requests-to-services}
 
-When you migrate from standard networking to the Gateway API, you can compare OpenShift Container Platform routes with `HTTPRoute` custom resources (CRs) to understand which features are supported and how your configuration must change. While both resources handle ingress traffic, they have distinct feature sets and implementation differences.
+When you migrate from standard networking to the Gateway API, you can compare OpenShift Container Platform routes with `HTTPRoute` custom resources (CRs) to understand which features are supported and how your configuration must change.
+
+While both resources handle ingress traffic, they have distinct feature sets and implementation differences.
 
 The following features are exclusive to `HTTPRoute` CRs:
 

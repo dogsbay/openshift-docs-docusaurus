@@ -22,17 +22,11 @@ You can use the `must-gather` tool to collect data about the Custom Metrics Auto
 
 ## Gather debugging data {#nodes-cma-autoscaling-custom-debugging-gather_nodes-cma-autoscaling-custom-debugging}
 
-The following command runs the `must-gather` tool for the Custom Metrics Autoscaler Operator:
-
-```terminal
-$ oc adm must-gather --image="$(oc get packagemanifests openshift-custom-metrics-autoscaler-operator \
--n openshift-marketplace \
--o jsonpath='{.status.channels[?(@.name=="stable")].currentCSVDesc.annotations.containerImage}')"
-```
+When troubleshooting issues with the Custom Metrics Autoscaler Operator, you can use the `must-gather` tool to collect diagnostic information. The tool gathers resource definitions, pod logs, and configuration details that help identify problems or can be shared with Red Hat Support for assistance.
 
 :::note
 
-The standard OpenShift Container Platform `must-gather` command, `oc adm must-gather`, does not collect Custom Metrics Autoscaler Operator data.
+The standard OpenShift Container Platform `must-gather` command, `oc adm must-gather`, does not collect Custom Metrics Autoscaler Operator data. You must use the custom command in this procedure.
 
 :::
 
@@ -75,9 +69,6 @@ The standard OpenShift Container Platform `must-gather` command, `oc adm must-ga
         ```
 
    **Example must-gather output for the Custom Metric Autoscaler**
-
-   <details>
-   <summary>Details</summary>
 
    ```terminal
    └── openshift-keda
@@ -158,12 +149,10 @@ The standard OpenShift Container Platform `must-gather` command, `oc adm must-ga
        └── route.openshift.io
            └── routes.yaml
    ```
-
-   </details>
 3. Create a compressed file from the `must-gather` directory that was created in your working directory. For example, on a computer that uses a Linux operating system, run the following command:
    ```terminal
-   $ tar cvaf must-gather.tar.gz must-gather.local.5421342344627712289/ (1)
+   $ tar cvaf must-gather.tar.gz must-gather.local.5421342344627712289/
    ```
 
-   1. Replace `must-gather-local.5421342344627712289/` with the actual directory name.
+   Replace `must-gather-local.5421342344627712289/` with the actual directory name.
 4. Attach the compressed file to your support case on the [Red Hat Customer Portal](https://access.redhat.com).

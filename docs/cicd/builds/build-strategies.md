@@ -180,7 +180,9 @@ The mount points of build volumes, from which the running build reads data, are 
 
 ## Source-to-image build {#builds-strategy-s2i-build_build-strategies-docker}
 
-Source-to-image (S2I) is a tool for building reproducible container images. It produces ready-to-run images by injecting application source into a container image and assembling a new image. The new image incorporates the base image, the builder, and built source and is ready to use with the `buildah run` command. S2I supports incremental builds, which re-use previously downloaded dependencies, previously built artifacts, and so on.
+Source-to-image (S2I) is a tool for building reproducible container images. It produces ready-to-run images by injecting application source into a container image and assembling a new image.
+
+The new image incorporates the base image, the builder, and built source and is ready to use with the `buildah run` command. S2I supports incremental builds, which re-use previously downloaded dependencies, previously built artifacts, and so on.
 
 ### Perform source-to-image incremental builds {#builds-strategy-s2i-incremental-builds_build-strategies-docker}
 
@@ -224,10 +226,10 @@ You can override the `assemble`, `run`, and `save-artifacts` source-to-image (S2
         from:
           kind: "ImageStreamTag"
           name: "builder-image:latest"
-        scripts: "http://somehost.com/scripts_directory" (1)
+        scripts: "http://somehost.com/scripts_directory"
     ```
 
-    1. The build process appends `run`, `assemble`, and `save-artifacts` to the path. If any or all scripts with these names exist, the build process uses these scripts in place of scripts with the same name that are provided in the image.
+    The build process appends `run`, `assemble`, and `save-artifacts` to the path. If any or all scripts with these names exist, the build process uses these scripts in place of scripts with the same name that are provided in the image.
 
     :::note
 

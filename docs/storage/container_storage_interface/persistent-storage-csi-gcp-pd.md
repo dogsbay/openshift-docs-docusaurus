@@ -54,7 +54,7 @@ To reduce permissions, grant the `iam.serviceAccountUser` role to the control pl
 
 :::note
 
-Reducing permissions only applies to GCP clusters using Workload Identity Federation (WIF).
+Reducing permissions only applies to Google Cloud clusters using Workload Identity Federation (WIF).
 
 :::
 
@@ -62,8 +62,8 @@ Reducing permissions only applies to GCP clusters using Workload Identity Federa
 
 1. Grant scoped `iam.serviceAccountUser` role for node service accounts by running the following Bash commands:
    ```terminal
-   gcloud iam service-accounts add-iam-policy-binding "${MASTER_NODE_SA}" --project="${GOOGLE_PROJECT_ID}" --member="serviceAccount:${SERVICE_ACCOUNT_EMAIL}" --role="roles/iam.serviceAccountUser" --condition=None
-   gcloud iam service-accounts add-iam-policy-binding "${WORKER_NODE_SA}" --project="${GOOGLE_PROJECT_ID}" --member="serviceAccount:${SERVICE_ACCOUNT_EMAIL}" --role="roles/iam.serviceAccountUser" --condition=None
+   $ gcloud iam service-accounts add-iam-policy-binding "${MASTER_NODE_SA}" --project="${GOOGLE_PROJECT_ID}" --member="serviceAccount:${SERVICE_ACCOUNT_EMAIL}" --role="roles/iam.serviceAccountUser" --condition=None
+   $ gcloud iam service-accounts add-iam-policy-binding "${WORKER_NODE_SA}" --project="${GOOGLE_PROJECT_ID}" --member="serviceAccount:${SERVICE_ACCOUNT_EMAIL}" --role="roles/iam.serviceAccountUser" --condition=None
    ```
 
    - `GOOGLE_PROJECT_ID`: The unique ID of your Google Cloud project.
@@ -72,7 +72,7 @@ Reducing permissions only applies to GCP clusters using Workload Identity Federa
    - `WORKER_NODE_SA`: The email address of the service account used by your cluster’s worker nodes.
 2. Remove project-level `iam.serviceAccountUser` role from the binding created by the installation program by running the following Bash commands:
    ```terminal
-   gcloud projects remove-iam-policy-binding "${GOOGLE_PROJECT_ID}" --member="serviceAccount:${SERVICE_ACCOUNT_EMAIL}" --role="roles/iam.serviceAccountUser" --condition=None
+   $ gcloud projects remove-iam-policy-binding "${GOOGLE_PROJECT_ID}" --member="serviceAccount:${SERVICE_ACCOUNT_EMAIL}" --role="roles/iam.serviceAccountUser" --condition=None
    ```
 
    - `SERVICE_ACCOUNT_EMAIL`: The email address of the account losing the permission. For example, `my-app-sa@my-project.iam.gserviceaccount.com`. To find the service account, on WIF clusters, there is a default service account on GCP for the CSI driver based on the cluster name, for example: `${CLUSTER_NAME}-openshift-gcp-pd-csi-*`.

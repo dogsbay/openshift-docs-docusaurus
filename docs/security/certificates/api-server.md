@@ -19,7 +19,9 @@ In hosted control plane clusters, you can add as many custom certificates to you
 
 ## Add an API server named certificate for the first time {#customize-certificates-api-add-named_api-server-certificates}
 
-The default API server certificate is issued by an internal OpenShift Container Platform cluster Certificate Authority (CA). You can add alternative certificates that the API server will return based on the fully qualified domain name (FQDN) requested by the client, for example when a reverse proxy or load balancer is used.
+The default API server certificate is issued by an internal OpenShift Container Platform cluster Certificate Authority (CA).
+
+You can add alternative certificates that the API server will return based on the fully qualified domain name (FQDN) requested by the client, for example when a reverse proxy or load balancer is used.
 
 :::note
 

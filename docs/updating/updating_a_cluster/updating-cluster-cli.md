@@ -64,7 +64,9 @@ You must satisfy the following prerequisites before updating a cluster using the
 
 ## Pausing a MachineHealthCheck resource {#machine-health-checks-pausing_updating-cluster-cli}
 
-During the update process, nodes in the cluster might become temporarily unavailable. For worker nodes, the `MachineHealthCheck` resources might identify such nodes as unhealthy and reboot them. To avoid rebooting worker nodes, you must pause all the `MachineHealthCheck` resources before updating the cluster.
+During the update process, nodes in the cluster might become temporarily unavailable.
+
+For worker nodes, the `MachineHealthCheck` resources might identify such nodes as unhealthy and reboot them. To avoid rebooting worker nodes, you must pause all the `MachineHealthCheck` resources before updating the cluster.
 
 :::note
 

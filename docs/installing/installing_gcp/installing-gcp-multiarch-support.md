@@ -1,6 +1,6 @@
 ---
 title: Installing a cluster with the support for configuring multi-architecture compute machines
-sidebar_position: 15
+sidebar_position: 16
 ---
 
 # Installing a cluster with the support for configuring multi-architecture compute machines {#installing-gcp-multiarch-support}

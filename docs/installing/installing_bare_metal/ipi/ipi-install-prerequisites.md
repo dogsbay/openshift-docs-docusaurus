@@ -251,7 +251,9 @@ Verify NC-SI support with vendor documentation, because compatibility depends on
 
 ## Network requirements {#network-requirements_ipi-install-prerequisites}
 
-Installer-provisioned installation of OpenShift Container Platform involves multiple network requirements. First, installer-provisioned installation involves an optional non-routable `provisioning` network for provisioning the operating system on each bare-metal node. Second, installer-provisioned installation involves a routable `baremetal` network.
+Installer-provisioned installation of OpenShift Container Platform involves multiple network requirements.
+
+First, installer-provisioned installation involves an optional non-routable `provisioning` network for provisioning the operating system on each bare-metal node. Second, installer-provisioned installation involves a routable `baremetal` network.
 
 **Figure 1. Installer-provisioned networking**
 
@@ -573,6 +575,8 @@ Gather the following information from all cluster nodes:
   - NIC (`baremetal`) MAC address
 
 ## Validation checklist for nodes {#validation-checklist-for-nodes_ipi-install-prerequisites}
+
+Use the following checklist to validate the nodes before installing OpenShift Container Platform on bare metal.
 
 - When using the `provisioning` network
   - [ ] NIC1 VLAN is configured for the `provisioning` network.

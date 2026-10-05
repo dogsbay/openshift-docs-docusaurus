@@ -63,7 +63,7 @@ spec:
     source: quay.io/openshift-release-dev/ocp-release
 ```
 
-### Configuring the Agent-based Installer to use mirrored images {#agent-install-configuring-for-disconnected-registry_understanding-disconnected-installation-mirroring}
+### Configure the Agent-based Installer to use mirrored images {#agent-install-configuring-for-disconnected-registry_understanding-disconnected-installation-mirroring}
 
 You must use the output of either the `oc adm release mirror` command or the oc-mirror plugin to configure the Agent-based Installer to use mirrored images.
 

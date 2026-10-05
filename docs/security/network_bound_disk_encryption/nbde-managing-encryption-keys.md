@@ -21,7 +21,9 @@ The following sections provide procedures for rekeying and deleting old keys.
 
 ## Back up keys for a Tang server {#nbde-backing-up-server-keys_nbde-implementation}
 
-The Tang server uses `/usr/libexec/tangd-keygen` to generate new keys and stores them in the `/var/db/tang` directory by default. To recover the Tang server in the event of a failure, back up this directory. The keys are sensitive and because they are able to perform the boot disk decryption of all hosts that have used them, the keys must be protected accordingly.
+To recover a Tang server after a failure, back up the `/var/db/tang` directory that stores its keys.
+
+The Tang server uses `/usr/libexec/tangd-keygen` to generate new keys and stores them in the `/var/db/tang` directory by default. The keys are sensitive and because they are able to perform the boot disk decryption of all hosts that have used them, the keys must be protected accordingly.
 
 **Procedure**
 
@@ -64,6 +66,8 @@ Rekeying a Tang server, and all associated NBDE-encrypted nodes, is a three-step
 ![Rekeying a Tang server](/images/179_OpenShift_NBDE_implementation_0821_4.png)
 
 ### Generate a new Tang server key {#nbde-generating-a-new-tang-server-key_nbde-implementation}
+
+Generate a new Tang server key to rotate the key material advertised by the server. Keep the old key available for decryption until all clients have completed rekeying.
 
 **Prerequisites**
 
@@ -284,7 +288,9 @@ If you use ACM policies to distribute the daemon sets to multiple clusters, you 
 
 ### Troubleshoot temporary rekeying errors for Tang servers {#nbde-troubleshooting-temporary-error-conditions_nbde-implementation}
 
-To determine if the error condition from rekeying the Tang servers is temporary, perform the following procedure. Temporary error conditions might include:
+To determine if the error condition from rekeying the Tang servers is temporary, perform the following procedure.
+
+Temporary error conditions might include:
 
 - Temporary network outages
 - Tang server maintenance
@@ -298,7 +304,9 @@ Generally, when these types of temporary error conditions occur, you can wait un
 
 ### Troubleshoot permanent rekeying errors for Tang servers {#nbde-troubleshooting-permanent-error-conditions_nbde-implementation}
 
-If, after rekeying the Tang servers, the `READY` count does not equal the `DESIRED` count after an extended period of time, it might indicate a permanent failure condition. In this case, the following conditions might apply:
+If, after rekeying the Tang servers, the `READY` count does not equal the `DESIRED` count after an extended period of time, it might indicate a permanent failure condition.
+
+In this case, the following conditions might apply:
 
 - A typographical error in the Tang server URL or thumbprint in the `NEW_TANG_PIN` definition.
 - The Tang server is decommissioned or the keys are permanently lost.
@@ -340,12 +348,11 @@ If, after rekeying the Tang servers, the `READY` count does not equal the `DESIR
       - Remove a Tang server that is no longer in service.
       - Add a new Tang server that is a replacement for a decommissioned server.
 3. Distribute the updated daemon set again.
+   :::note
 
-:::note
+   When replacing, removing, or adding a Tang server from a configuration, the rekeying operation will succeed as long as at least one original server is still functional, including the server currently being rekeyed. If none of the original Tang servers are functional or can be recovered, recovery of the system is impossible and you must redeploy the affected nodes.
 
-When replacing, removing, or adding a Tang server from a configuration, the rekeying operation will succeed as long as at least one original server is still functional, including the server currently being rekeyed. If none of the original Tang servers are functional or can be recovered, recovery of the system is impossible and you must redeploy the affected nodes.
-
-:::
+   :::
 
 **Verification**
 
@@ -378,6 +385,8 @@ Check the logs from each pod in the daemon set to determine whether the rekeying
    ```
 
 ## Delete old Tang server keys {#nbde-deleting-old-tang-server-keys_nbde-implementation}
+
+You can delete old Tang server keys after rotating them to prevent decryption with outdated key material.
 
 **Prerequisites**
 

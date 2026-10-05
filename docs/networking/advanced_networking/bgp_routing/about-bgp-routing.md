@@ -566,6 +566,7 @@ Supported gateway modes
 
 **Additional resources**
 
-- [FRRouting User Guide: BGP](https://docs.frrouting.org/en/latest/bgp.html)
+- [About user-defined networks](/docs/networking/multiple_networks/primary_networks/about-user-defined-networks#about-user-defined-networks)
+- [`FRRouting` User Guide: BGP](https://docs.frrouting.org/en/latest/bgp.html)
 - [Migrating FRR-K8s resources](/docs/networking/advanced_networking/bgp_routing/migrating-frr-k8s-resources#migrating-frr-k8s-resources)
 - [Improve east-west performance by routing pods on the underlay with BGP](/docs/networking/advanced_networking/bgp_routing/no-overlay-mode-bgp-routing#no-overlay-mode-bgp-routing)

@@ -1516,7 +1516,9 @@ As an optional task, you can configure VLANs on individual interfaces by using t
 
 ## Waiting for the bootstrap process to complete {#installation-installing-bare-metal_installing-restricted-networks-ibm-z-kvm}
 
-The OpenShift Container Platform bootstrap process begins after the cluster nodes first boot into the persistent RHCOS environment that has been installed to disk. The configuration information provided through the Ignition config files is used to initialize the bootstrap process and install OpenShift Container Platform on the machines. You must wait for the bootstrap process to complete.
+After your cluster nodes first boot into the persistent RHCOS environment installed to disk, wait for the OpenShift Container Platform bootstrap process to complete.
+
+The configuration information provided through the Ignition config files is used to initialize the bootstrap process and install OpenShift Container Platform on the machines.
 
 **Prerequisites**
 

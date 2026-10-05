@@ -1,6 +1,6 @@
 ---
 title: Uninstalling a cluster on Google Cloud
-sidebar_position: 14
+sidebar_position: 15
 ---
 
 # Uninstalling a cluster on Google Cloud {#uninstalling-cluster-gcp}

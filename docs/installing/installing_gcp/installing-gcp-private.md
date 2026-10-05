@@ -856,7 +856,9 @@ Download and install the new version of `oc`.
 
 ## Alternatives to storing administrator-level secrets in the kube-system project {#installing-gcp-manual-modes_installing-gcp-private}
 
-By default, OpenShift Container Platform stores administrator secrets in the `kube-system` project. If you configured the `credentialsMode` parameter in the `install-config.yaml` file to `Manual`, you must configure an alternative credential management strategy by using either long-term manual credentials or short-term credentials that are managed outside the cluster.
+By default, OpenShift Container Platform stores administrator secrets in the `kube-system` project.
+
+If you configured the `credentialsMode` parameter in the `install-config.yaml` file to `Manual`, you must configure an alternative credential management strategy by using either long-term manual credentials or short-term credentials that are managed outside the cluster.
 
 - To manage long-term cloud credentials manually, follow the procedure in "Manually creating long-term credentials".
 - To implement short-term credentials that are managed outside the cluster for individual components, follow the procedures in "Short-term credential configuration for a Google Cloud cluster".

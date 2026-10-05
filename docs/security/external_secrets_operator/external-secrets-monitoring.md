@@ -11,7 +11,9 @@ By default, the External Secrets Operator for Red Hat OpenShift exposes metrics 
 
 ## Enable user workload monitoring {#external-secrets-enable-user-workload-monitor_external-secrets-monitoring}
 
-By default, the OpenShift Container Platform monitoring stack does not scrape metrics from user-installed applications like the External Secrets Operator. Enabling user workload monitoring is necessary to collect critical operational data, such as synchronization status, API error rates, and controller performance. This helps you to configure custom alerts for secret sync failures and create dashboards to monitor the overall health of your secret management system. You can enable monitoring for user-defined projects by configuring user workload monitoring in the cluster. For more information, see "Setting up metrics collection for user-defined projects".
+By default, the OpenShift Container Platform monitoring stack does not scrape metrics from user-installed applications like the External Secrets Operator.
+
+Enabling user workload monitoring is necessary to collect critical operational data, such as synchronization status, API error rates, and controller performance. This helps you to configure custom alerts for secret sync failures and create dashboards to monitor the overall health of your secret management system. You can enable monitoring for user-defined projects by configuring user workload monitoring in the cluster. For more information, see "Setting up metrics collection for user-defined projects".
 
 **Prerequisites**
 
@@ -57,7 +59,9 @@ By default, the OpenShift Container Platform monitoring stack does not scrape me
 
 ## Configure metrics collection for External Secrets Operator for Red Hat OpenShift by using a ServiceMonitor {#external-secrets-enable-operator-metrics_external-secrets-monitoring}
 
-The External Secrets Operator for Red Hat OpenShift exposes metrics by default on port `8443` at the `/metrics` service endpoint. You can configure metrics collection for the Operator by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics. For more information, see "Configuring user workload monitoring".
+The External Secrets Operator for Red Hat OpenShift exposes metrics by default on port `8443` at the `/metrics` service endpoint.
+
+You can configure metrics collection for the Operator by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics. For more information, see "Configuring user workload monitoring".
 
 **Prerequisites**
 
@@ -240,7 +244,9 @@ As a cluster administrator, or as a user with view access to all namespaces, you
 
 ## Configure metrics collection for External Secrets Operator for Red Hat OpenShift operands by using a ServiceMonitor {#external-secrets-enable-metrics_external-secrets-monitoring}
 
-The External Secrets Operator for Red Hat OpenShift operands exposes metrics by default on port `8080` at the `/metrics` service endpoint for all three components (`external-secrets`, `external-secrets-cert-controll`, and `external-secrets-webhook`). You can configure metrics collection for the external-secrets operands by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics. For more information, see "Configuring user workload monitoring".
+The External Secrets Operator for Red Hat OpenShift operands exposes metrics by default on port `8080` at the `/metrics` service endpoint for all three components (`external-secrets`, `external-secrets-cert-controll`, and `external-secrets-webhook`).
+
+You can configure metrics collection for the external-secrets operands by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics. For more information, see "Configuring user workload monitoring".
 
 **Prerequisites**
 

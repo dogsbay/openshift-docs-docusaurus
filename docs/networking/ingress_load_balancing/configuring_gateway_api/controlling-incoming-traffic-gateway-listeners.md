@@ -11,7 +11,9 @@ To control network traffic flow, you can configure Gateway API listeners to defi
 
 ## Configuring listener routing and security settings {#configuring-listener-routing-security_controlling-incoming-traffic-gateway-listeners}
 
-To ensure that your applications receive only authenticated and authorized traffic, you must specify the allowed protocols and ports for your gateway. If you are routing secure traffic, you must also configure TLS settings. You can define these parameters by configuring the `spec.listeners` field in your `Gateway` custom resource (CR).
+To ensure that your applications receive only authenticated and authorized traffic, you must specify the allowed protocols and ports for your gateway.
+
+If you are routing secure traffic, you must also configure TLS settings. You can define these parameters by configuring the `spec.listeners` field in your `Gateway` custom resource (CR).
 
 :::warning
 
@@ -91,13 +93,13 @@ You can customize your gateway listener configuration using the following fields
 
 When you configure a `Gateway` custom resource (CR) with multiple listeners, you must establish clear rules for overlapping hostnames and ports to ensure your traffic does not get misrouted. To avoid ambiguity, the Gateway API uses specific conflict management rules.
 
-If your listener configurations violate these rules, the affected listener receives a `Conflicted` status condition and cannot route traffic correctly. 
+If your listener configurations violate these rules, the affected listener receives a `Conflicted` status condition and cannot route traffic correctly.
 
 To resolve or prevent routing conflicts, ensure that your listeners adhere to the following rules:
 
 - Distinct ports: A gateway can have distinct listeners that use the exact same hostname, provided their network ports are distinct.
 - Distinct hostnames: A gateway can have distinct listeners that use the exact same protocol and port, provided their hostnames are different.
-- Specificity precedence: If one listener uses a wildcard domain (for example, `+++*+++.<example_domain.tld>`) and another listener uses a more specific endpoint for that exact same domain (for example, `<www.example_domain.tld>`), the more specific entry takes precedence. 
+- Specificity precedence: If one listener uses a wildcard domain (for example, `+++*+++.<example_domain.tld>`) and another listener uses a more specific endpoint for that exact same domain (for example, `<www.example_domain.tld>`), the more specific entry takes precedence.
   This specificity rule also applies to multiple wildcard domains. For example, `+++*+++.<example_domain.tld>` takes precedence over `+++*+++.<tld>`. This ensures that traffic intended for a specific subdomain is accurately routed to its dedicated listener, even if a broader wildcard listener exists.
 
   :::note

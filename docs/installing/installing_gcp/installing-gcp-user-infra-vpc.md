@@ -1,6 +1,6 @@
 ---
 title: Installing a cluster into a shared VPC on Google Cloud using Infrastructure Manager templates
-sidebar_position: 10
+sidebar_position: 11
 ---
 
 # Installing a cluster into a shared VPC on Google Cloud using Infrastructure Manager templates {#installing-gcp-user-infra-vpc}

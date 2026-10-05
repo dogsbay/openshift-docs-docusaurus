@@ -125,19 +125,7 @@ tag:CAPI[][]
    $ oc get machinesets.cluster.x-k8s.io -n openshift-cluster-api
    ```
 
-   end:CAPI[][] tag:MAPI[][]
-
-   ```terminal
-   $ oc get machinesets.machine.openshift.io -n openshift-machine-api
-   ```
-
-   end:MAPI[][]
-
-   **Example output**
-
-   tag:CAPI[][]
-
-   ```text
+   ```text title="Example output"
    NAME                          CLUSTER             REPLICAS   READY   AVAILABLE   AGE   VERSION
    <compute_machine_set_name_1>  <cluster_name>      1          1       1           26m
    <compute_machine_set_name_2>  <cluster_name>      1          1       1           26m
@@ -145,7 +133,11 @@ tag:CAPI[][]
 
    end:CAPI[][] tag:MAPI[][]
 
-   ```text
+   ```terminal
+   $ oc get machinesets.machine.openshift.io -n openshift-machine-api
+   ```
+
+   ```text title="Example output"
    NAME                           DESIRED   CURRENT   READY   AVAILABLE   AGE
    <compute_machine_set_name_1>   1         1         1       1           55m
    <compute_machine_set_name_2>   1         1         1       1           55m
@@ -201,6 +193,12 @@ tag:CAPI[][]
      -l cluster.x-k8s.io/set-name=<machine_set_name>
    ```
 
+   ```text title="Example output for an AWS cluster"
+   NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE           AGE     VERSION
+   <machine_name_original_1>   <cluster_name>   <original_1_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h
+   <machine_name_original_2>   <cluster_name>   <original_2_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h
+   ```
+
    end:CAPI[][] tag:MAPI[][]
 
    ```terminal
@@ -209,21 +207,7 @@ tag:CAPI[][]
      -l machine.openshift.io/cluster-api-machineset=<machine_set_name>
    ```
 
-   end:MAPI[][]
-
-   **Example output for an AWS cluster**
-
-   tag:CAPI[][]
-
-   ```text
-   NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE           AGE     VERSION
-   <machine_name_original_1>   <cluster_name>   <original_1_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h
-   <machine_name_original_2>   <cluster_name>   <original_2_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h
-   ```
-
-   end:CAPI[][] tag:MAPI[][]
-
-   ```text
+   ```text title="Example output for an AWS cluster"
    NAME                        PHASE     TYPE         REGION      ZONE         AGE
    <machine_name_original_1>   Running   m6i.xlarge   us-west-1   us-west-1a   4h
    <machine_name_original_2>   Running   m6i.xlarge   us-west-1   us-west-1a   4h
@@ -277,21 +261,7 @@ tag:CAPI[][]
      -l cluster.x-k8s.io/set-name=<machine_set_name>
    ```
 
-   end:CAPI[][] tag:MAPI[][]
-
-   ```terminal
-   $ oc get machines.machine.openshift.io \
-     -n openshift-machine-api \
-     -l machine.openshift.io/cluster-api-machineset=<machine_set_name>
-   ```
-
-   end:MAPI[][]
-
-   **Example output for an AWS cluster**
-
-   tag:CAPI[][]
-
-   ```text
+   ```text title="Example output for an AWS cluster"
    NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE           AGE     VERSION
    <machine_name_original_1>   <cluster_name>   <original_1_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h
    <machine_name_original_2>   <cluster_name>   <original_2_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h
@@ -301,7 +271,13 @@ tag:CAPI[][]
 
    end:CAPI[][] tag:MAPI[][]
 
-   ```text
+   ```terminal
+   $ oc get machines.machine.openshift.io \
+     -n openshift-machine-api \
+     -l machine.openshift.io/cluster-api-machineset=<machine_set_name>
+   ```
+
+   ```text title="Example output for an AWS cluster"
    NAME                        PHASE          TYPE         REGION      ZONE         AGE
    <machine_name_original_1>   Running        m6i.xlarge   us-west-1   us-west-1a   4h
    <machine_name_original_2>   Running        m6i.xlarge   us-west-1   us-west-1a   4h
@@ -360,6 +336,20 @@ tag:CAPI[][]
     cluster.x-k8s.io/set-name=<machine_set_name>
   ```
 
+  ```text title="Example output while deletion is in progress for an AWS cluster"
+  NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE      AGE     VERSION
+  <machine_name_original_1>   <cluster_name>   <original_1_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
+  <machine_name_original_2>   <cluster_name>   <original_2_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
+  <machine_name_updated_1>    <cluster_name>   <updated_1_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
+  <machine_name_updated_2>    <cluster_name>   <updated_2_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
+  ```
+
+  ```text title="Example output when deletion is complete for an AWS cluster"
+  NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE      AGE     VERSION
+  <machine_name_updated_1>    <cluster_name>   <updated_1_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
+  <machine_name_updated_2>    <cluster_name>   <updated_2_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
+  ```
+
   end:CAPI[][] tag:MAPI[][]
 
   ```terminal
@@ -368,23 +358,7 @@ tag:CAPI[][]
     -l machine.openshift.io/cluster-api-machineset=<machine_set_name>
   ```
 
-  end:MAPI[][]
-
-  **Example output while deletion is in progress for an AWS cluster**
-
-  tag:CAPI[][]
-
-  ```text
-  NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE      AGE     VERSION
-  <machine_name_original_1>   <cluster_name>   <original_1_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
-  <machine_name_original_2>   <cluster_name>   <original_2_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
-  <machine_name_updated_1>    <cluster_name>   <updated_1_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
-  <machine_name_updated_2>    <cluster_name>   <updated_2_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
-  ```
-
-  end:CAPI[][] tag:MAPI[][]
-
-  ```text
+  ```text title="Example output while deletion is in progress for an AWS cluster"
   NAME                        PHASE           TYPE         REGION      ZONE         AGE
   <machine_name_original_1>   Deleting        m6i.xlarge   us-west-1   us-west-1a   4h
   <machine_name_original_2>   Deleting        m6i.xlarge   us-west-1   us-west-1a   4h
@@ -392,21 +366,7 @@ tag:CAPI[][]
   <machine_name_updated_2>    Running         m6i.xlarge   us-west-1   us-west-1a   5m41s
   ```
 
-  end:MAPI[][]
-
-  **Example output when deletion is complete for an AWS cluster**
-
-  tag:CAPI[][]
-
-  ```text
-  NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE      AGE     VERSION
-  <machine_name_updated_1>    <cluster_name>   <updated_1_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
-  <machine_name_updated_2>    <cluster_name>   <updated_2_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
-  ```
-
-  end:CAPI[][] tag:MAPI[][]
-
-  ```text
+  ```text title="Example output when deletion is complete for an AWS cluster"
   NAME                        PHASE           TYPE         REGION      ZONE         AGE
   <machine_name_updated_1>    Running         m6i.xlarge   us-west-1   us-west-1a   6m30s
   <machine_name_updated_2>    Running         m6i.xlarge   us-west-1   us-west-1a   6m30s

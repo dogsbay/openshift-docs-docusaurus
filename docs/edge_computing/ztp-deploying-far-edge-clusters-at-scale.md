@@ -9,7 +9,7 @@ sidebar_position: 1
 
 Edge computing presents complex challenges when managing many sites in geographically displaced locations. Use GitOps Zero Touch Provisioning (ZTP) to provision and manage sites at the far edge of the network.
 
-## Overcoming the challenges of the network far edge {#ztp-challenges-of-far-edge-deployments_ztp-deploying-far-edge-clusters-at-scale}
+## Overcome the challenges of the network far edge {#ztp-challenges-of-far-edge-deployments_ztp-deploying-far-edge-clusters-at-scale}
 
 Today, service providers want to deploy their infrastructure at the edge of the network. This presents significant challenges:
 
@@ -29,9 +29,11 @@ The following diagram shows how GitOps ZTP works within the far edge framework.
 
 ![GitOps ZTP at the network far edge](/images/217_OpenShift_Zero_Touch_Provisioning_updates_1022_1.png)
 
-## Using GitOps ZTP to provision clusters at the network far edge {#about-ztp_ztp-deploying-far-edge-clusters-at-scale}
+## Use GitOps ZTP to provision clusters at the network far edge {#about-ztp_ztp-deploying-far-edge-clusters-at-scale}
 
-Red Hat Advanced Cluster Management (RHACM) manages clusters in a hub-and-spoke architecture, where a single hub cluster manages many spoke clusters. Hub clusters running RHACM provision and deploy the managed clusters by using GitOps Zero Touch Provisioning (ZTP) and the assisted service that is deployed when you install RHACM.
+Red Hat Advanced Cluster Management (RHACM) manages clusters in a hub-and-spoke architecture, where a single hub cluster manages many spoke clusters.
+
+Hub clusters running RHACM provision and deploy the managed clusters by using GitOps Zero Touch Provisioning (ZTP) and the assisted service that is deployed when you install RHACM.
 
 The assisted service handles provisioning of OpenShift Container Platform on single node clusters, three-node clusters, or standard clusters running on bare metal.
 
@@ -45,7 +47,7 @@ Installing and deploying the clusters is a two-stage process, involving an initi
 
 ![Using GitOps and GitOps ZTP to install and deploy managed clusters](/images/474_OpenShift_OpenShift_RAN_RDS_arch_updates_1023.png)
 
-## Installing managed clusters with ClusterInstance resources and RHACM {#ztp-creating-ztp-crs-for-multiple-managed-clusters_ztp-deploying-far-edge-clusters-at-scale}
+## Install managed clusters with ClusterInstance resources and RHACM {#ztp-creating-ztp-crs-for-multiple-managed-clusters_ztp-deploying-far-edge-clusters-at-scale}
 
 GitOps Zero Touch Provisioning (ZTP) uses `ClusterInstance` custom resources (CRs) in a Git repository to manage the processes that install OpenShift Container Platform clusters. The `ClusterInstance` CR contains cluster-specific parameters required for installation. It has options for applying select configuration CRs during installation including user defined extra manifests.
 
@@ -57,7 +59,7 @@ Provisioning a single cluster
 Provisioning many clusters
 : Install managed clusters in batches of up to 500 by defining `ClusterInstance` and related CRs in a Git repository. ArgoCD uses the `ClusterInstance` CRs to deploy the clusters. The RHACM policy generator creates the manifests and applies them to the hub cluster. This starts the cluster provisioning process.
 
-## Configuring managed clusters with policies and PolicyGenerator resources {#ztp-configuring-cluster-policies_ztp-deploying-far-edge-clusters-at-scale}
+## Configure managed clusters with policies and PolicyGenerator resources {#ztp-configuring-cluster-policies_ztp-deploying-far-edge-clusters-at-scale}
 
 GitOps Zero Touch Provisioning (ZTP) uses Red Hat Advanced Cluster Management (RHACM) to configure clusters by using a policy-based governance approach to applying the configuration.
 

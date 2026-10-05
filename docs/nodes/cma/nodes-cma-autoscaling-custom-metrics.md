@@ -37,9 +37,9 @@ The Custom Metrics Autoscaler Operator exposes the following metrics, which you 
 | `keda_resource_totals` | The total number of Custom Metrics Autoscaler custom resources in each namespace for each custom resource type. |
 | `keda_trigger_totals` | The total number of triggers by trigger type. |
 
-**Custom Metrics Autoscaler Admission webhook metrics**
-
 The Custom Metrics Autoscaler Admission webhook also exposes the following Prometheus metrics.
+
+**Custom Metrics Autoscaler Admission webhook metrics**
 
 |  |  |
 | --- | --- |

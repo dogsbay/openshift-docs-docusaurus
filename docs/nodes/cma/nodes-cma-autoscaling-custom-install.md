@@ -93,23 +93,23 @@ You can use the following procedure to modify the `KedaController` custom resour
      name: keda
      namespace: openshift-keda
    spec:
-     watchNamespace: '' (1)
+     watchNamespace: ''
      operator:
-       logLevel: info (2)
-       logEncoder: console (3)
-       caConfigMaps: (4)
+       logLevel: info
+       logEncoder: console
+       caConfigMaps:
        - thanos-cert
        - kafka-cert
-       volumeMounts: (5)
+       volumeMounts:
        - mountPath: /<path_to_directory>
          name: <name>
-       volumes: (6)
+       volumes:
        - name: <volume_name>
          emptyDir:
            medium: Memory
      metricsServer:
-       logLevel: '0' (7)
-       auditConfig: (8)
+       logLevel: '0'
+       auditConfig:
          logFormat: "json"
          logOutputVolumeClaim: "persistentVolumeClaimName"
          policy:
@@ -124,12 +124,24 @@ You can use the following procedure to modify the `KedaController` custom resour
      serviceAccount: {}
    ```
 
-   1. Specifies a single namespace in which the Custom Metrics Autoscaler Operator scales applications. Leave it blank or leave it empty to scale applications in all namespaces. This field should have a namespace or be empty. The default value is empty.
-   2. Specifies the level of verbosity for the Custom Metrics Autoscaler Operator log messages. The allowed values are `debug`, `info`, `error`. The default is `info`.
-   3. Specifies the logging format for the Custom Metrics Autoscaler Operator log messages. The allowed values are `console` or `json`. The default is `console`.
-   4. Optional: Specifies one or more config maps with CA certificates, which the Custom Metrics Autoscaler Operator can use to connect securely to TLS-enabled metrics sources.
-   5. Optional: Add the container mount path.
-   6. Optional: Add a `volumes` block to list each projected volume source.
-   7. Specifies the logging level for the Custom Metrics Autoscaler Metrics Server. The allowed values are `0` for `info` and `4` for `debug`. The default is `0`.
-   8. Activates audit logging for the Custom Metrics Autoscaler Operator and specifies the audit policy to use, as described in the "Configuring audit logging" section.
+   where:
+
+   <dl>
+   <dt><code>spec.watchNamespace</code></dt>
+   <dd>Specifies a single namespace in which the Custom Metrics Autoscaler Operator scales applications. Leave it blank or leave it empty to scale applications in all namespaces. This field should have a namespace or be empty. The default value is empty.</dd>
+   <dt><code>spec.operator.logLevel</code></dt>
+   <dd>Specifies the level of verbosity for the Custom Metrics Autoscaler Operator log messages. The allowed values are <code>debug</code>, <code>info</code>, <code>error</code>. The default is <code>info</code>.</dd>
+   <dt><code>spec.operator.logEncoder</code></dt>
+   <dd>Specifies the logging format for the Custom Metrics Autoscaler Operator log messages. The allowed values are <code>console</code> or <code>json</code>. The default is <code>console</code>.</dd>
+   <dt><code>spec.operator.caConfigMaps</code></dt>
+   <dd>Specifies one or more config maps with CA certificates, which the Custom Metrics Autoscaler Operator can use to connect securely to TLS-enabled metrics sources. This field is optional.</dd>
+   <dt><code>spec.operator.volumeMounts</code></dt>
+   <dd>Specifies the container mount path. This field is optional.</dd>
+   <dt><code>spec.operator.volumes</code></dt>
+   <dd>Specifies a <code>volumes</code> block to list each projected volume source. This field is optional.</dd>
+   <dt><code>spec.metricsServer.logLevel</code></dt>
+   <dd>Specifies the logging level for the Custom Metrics Autoscaler Metrics Server. The allowed values are <code>0</code> for <code>info</code> and <code>4</code> for <code>debug</code>. The default is <code>0</code>.</dd>
+   <dt><code>spec.metricsServer.auditConfig</code></dt>
+   <dd>Specifies the audit logging configuration for the Custom Metrics Autoscaler Operator and the audit policy to use, as described in the "Configuring audit logging" section.</dd>
+   </dl>
 5. Click **Save** to save the changes.

@@ -484,11 +484,11 @@ Create floating IP (FIP) addresses for external access to the OpenShift Containe
    - `os_ingress_fip`
      If you use these values, you must also enter an external network as the value of the `os_external_network` variable in the `inventory.yaml` file.
 
-     :::tip
+   :::tip
 
-     You can make OpenShift Container Platform resources available outside of the cluster by assigning a floating IP address and updating your firewall configuration.
+   You can make OpenShift Container Platform resources available outside of the cluster by assigning a floating IP address and updating your firewall configuration.
 
-     :::
+   :::
 
 ### Completing installation without floating IP addresses {#installation-osp-accessing-api-no-floating_installing-openstack-user}
 
@@ -881,7 +881,9 @@ To proceed with an installation that uses your own infrastructure, set the numbe
 
 ### Cluster deployment on RHOSP provider networks {#installation-osp-provider-networks_installing-openstack-user}
 
-You can deploy your OpenShift Container Platform clusters on Red Hat OpenStack Platform (RHOSP) with a primary network interface on a provider network. Provider networks are commonly used to give projects direct access to a public network that can be used to reach the internet. You can also share provider networks among projects as part of the network creation process.
+You can deploy your OpenShift Container Platform clusters on Red Hat OpenStack Platform (RHOSP) with a primary network interface on a provider network.
+
+Provider networks are commonly used to give projects direct access to a public network that can be used to reach the internet. You can also share provider networks among projects as part of the network creation process.
 
 RHOSP provider networks map directly to an existing physical network in the data center. A RHOSP administrator must create them.
 

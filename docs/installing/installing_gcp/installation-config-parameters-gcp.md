@@ -1,6 +1,6 @@
 ---
 title: Installation configuration parameters for Google Cloud
-sidebar_position: 13
+sidebar_position: 14
 ---
 
 # Installation configuration parameters for Google Cloud {#installation-config-parameters-gcp}

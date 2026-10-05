@@ -43,7 +43,7 @@ By default, ports are allocated automatically and you can access the port alloca
 
 :::
 
-For more information, see the [Kubernetes Services documentation on `NodePort`](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport).
+For more information, see the "Kubernetes Services documentation on `NodePort`".
 
 `HostNetwork` endpoint publishing strategy*
 : The `HostNetwork` endpoint publishing strategy publishes the Ingress Controller on node ports where the Ingress Controller is deployed.
@@ -67,6 +67,10 @@ spec:
       httpsPort: 443
       statsPort: 1936
 ```
+
+### Additional resources
+
+- [Kubernetes Services documentation on `NodePort`](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport)
 
 ### Configure the Ingress Controller endpoint publishing scope to Internal {#nw-ingresscontroller-change-internal_nw-configuring-ingress-controller-endpoint-publishing-strategy}
 

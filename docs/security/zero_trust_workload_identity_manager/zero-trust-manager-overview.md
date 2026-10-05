@@ -20,7 +20,11 @@ The SPIFFE IDs are contained in the SPIFFE Verifiable Identity Document (SVID). 
 - X.509-SVIDs: X.509 certificates where the SPIFFE ID is embedded in the Subject Alternative Name (SAN) field.
 - JWT-SVIDs: JSON Web Tokens (JWTs) where the SPIFFE ID is included as the `sub` claim.
 
-For more information, see [SPIFFE Overview](https://spiffe.io/docs/latest/spiffe-about/overview/).
+For more information, see "SPIFFE Overview".
+
+**Additional resources**
+
+- [SPIFFE Overview](https://spiffe.io/docs/latest/spiffe-about/overview/)
 
 ## SPIRE Server {#zero-trust-manager-about-spire_zero-trust-manager-overview}
 
@@ -34,7 +38,11 @@ The SPIRE Server is the central management component of SPIRE that issues SPIFFE
 
 The SPIRE Agent performs workload attestation to ensure that workloads receive a verified identity when requesting authentication through the SPIFFE Workload API. The agent uses configured workload attestor plugins to verify these identities.
 
-SPIRE and the SPIRE Agent perform node attestation via node plugins. The plugins are used to verify the identity of the node on which the agent is running. For more information, see [About the SPIRE Agent](https://spiffe.io/docs/latest/spire-about/spire-concepts/#all-about-the-agent).
+SPIRE and the SPIRE Agent perform node attestation via node plugins. The plugins are used to verify the identity of the node on which the agent is running. For more information, see "About the SPIRE Agent".
+
+**Additional resources**
+
+- [About the SPIRE Agent](https://spiffe.io/docs/latest/spire-about/spire-concepts/#all-about-the-agent)
 
 ## Attestation {#zero-trust-manager-about-attestation_zero-trust-manager-overview}
 
@@ -45,4 +53,8 @@ The two main types of attestation in SPIFFE/SPIRE are:
 - Node attestation: verifies the identity of a machine or a node on a system, before a SPIRE Agent running on that node can be trusted to request identities for workloads.
 - Workload attestation: verifies the identity of an application or service running on an attested node before the SPIRE Agent on that node can provide it with a SPIFFE ID and SVID.
 
-For more information, see [Attestation](https://spiffe.io/docs/latest/spire-about/spire-concepts/#attestation).
+For more information, see "Attestation".
+
+**Additional resources**
+
+- [Attestation](https://spiffe.io/docs/latest/spire-about/spire-concepts/#attestation)

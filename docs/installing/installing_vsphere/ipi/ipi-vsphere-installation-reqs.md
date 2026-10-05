@@ -726,7 +726,9 @@ You must create DNS records for two static IP addresses in the appropriate DNS s
 
 ### Static IP addresses for vSphere nodes {#installation-vsphere-installer-infra-static-ip-nodes_ipi-vsphere-installation-reqs}
 
-You can provision bootstrap, control plane, and compute nodes to be configured with static IP addresses in environments where Dynamic Host Configuration Protocol (DHCP) does not exist. To configure this environment, you must provide values to the `platform.vsphere.hosts.role` parameter in the `install-config.yaml` file.
+You can provision bootstrap, control plane, and compute nodes to be configured with static IP addresses in environments where Dynamic Host Configuration Protocol (DHCP) does not exist.
+
+To configure this environment, you must provide values to the `platform.vsphere.hosts.role` parameter in the `install-config.yaml` file.
 
 By default, the installation program is configured to use the DHCP for the network, but this network has limited configurable capabilities.
 

@@ -39,11 +39,17 @@ You can modify the following subsystems by using sysctls:
 - virtual memory (common prefix: `_vm._`)
 - MDADM (common prefix: `_dev._`)
 
-Refer to the [Kernel.org documentation](https://www.kernel.org/doc/Documentation/sysctl/README) for more information on the subsystems you can manage. You can get a list of all parameters by running the following command:
+For more information on the subsystems you can manage, see "Kernel.org documentation".
+
+You can get a list of all parameters by running the following command:
 
 ```terminal
 $ sudo sysctl -a
 ```
+
+**Additional resources**
+
+- [Kernel.org documentation](https://www.kernel.org/doc/Documentation/sysctl/README)
 
 ## Namespaced and node-level sysctls
 
