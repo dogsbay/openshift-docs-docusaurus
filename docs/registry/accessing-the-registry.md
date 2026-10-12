@@ -139,7 +139,7 @@ You can view the logs for the registry by using the `oc logs` command.
 
 ## Access registry metrics {#registry-accessing-metrics_accessing-the-registry}
 
-The OpenShift Container Registry provides an endpoint for [Prometheus metrics](https://prometheus.io/docs/introduction/overview/). Prometheus is a stand-alone, open source systems monitoring and alerting toolkit. The metrics get exposed at the ***/extensions/v2/metrics*** path of the registry endpoint. You can access the metrics by running a metrics query that includes a cluster role.
+The OpenShift Container Registry provides an endpoint for Prometheus metrics at the ***/extensions/v2/metrics*** path. You can access these metrics by running a metrics query that includes a cluster role.
 
 **Procedure**
 

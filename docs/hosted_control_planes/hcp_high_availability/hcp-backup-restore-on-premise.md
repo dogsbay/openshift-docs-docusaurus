@@ -31,7 +31,7 @@ Fix failures by taking a snapshot of etcd on a hosted cluster.
 
   :::warning
 
-  After you back up the hosted cluster, you must back up workloads in the data cluster and then delete the original hosted cluster so that the restore process can begin.
+  After you back up the hosted cluster, Red Hat recommends to also back up any workloads running in the data plane cluster before proceeding with the restore process. While the etcd backup captures the control plane state, the backup does not include application data or persistent volumes in the data plane.
 
   :::
 
@@ -113,7 +113,7 @@ Fix failures by restoring a snapshot of etcd on a hosted cluster.
 
 :::warning
 
-After you back up the hosted cluster, you must back up workloads in the data cluster and then delete the original hosted cluster so that the restore process can begin.
+After you back up the hosted cluster, Red Hat recommends to also back up any workloads running in the data plane cluster before proceeding with the restore process. While the etcd backup captures the control plane state, the backup does not include application data or persistent volumes in the data plane.
 
 :::
 

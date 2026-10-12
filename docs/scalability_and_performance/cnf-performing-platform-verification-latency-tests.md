@@ -11,6 +11,12 @@ You can use the Cloud-native Network Functions (CNF) tests image to run latency 
 
 The `cnf-tests` container image is available at `registry.redhat.io/openshift4/cnf-tests-rhel9:v4.22`.
 
+:::note
+
+The `cnf-tests-rhel9` image is a multi-architecture image that supports both `x86_64` (amd64) and `aarch64` (arm64) nodes. The image pull path is the same for all architectures because the container runtime automatically resolves the correct architecture manifest.
+
+:::
+
 ## Prerequisites for running latency tests {#cnf-latency-tests-prerequisites_cnf-latency-tests}
 
 Your cluster must meet the following requirements before you can run the latency tests:
@@ -36,6 +42,12 @@ cyclictest
 
 oslat
 : Behaves similarly to a CPU-intensive DPDK application and measures all the interruptions and disruptions to the busy loop that simulates CPU heavy data processing.
+
+:::note
+
+The `cnf-tests` image supports both `x86_64` and `aarch64` architectures. On `aarch64` nodes, RAN distributed unit (DU) systems run the non-real-time (non-RT) 64k page-size kernel because the real-time (`PREEMPT_RT`) kernel is available only on `x86_64`. Because `cyclictest` targets the real-time kernel scheduler, latency measurements from `cyclictest` on `aarch64` nodes that run the non-RT kernel are non-deterministic. On these nodes, use `hwlatdetect` and `oslat` for platform verification, and adjust the latency threshold parameters, such as `MAXIMUM_LATENCY`, to account for the expected variance.
+
+:::
 
 The tests introduce the following environment variables:
 
@@ -310,6 +322,12 @@ Not all latency spikes are hardware related. Ensure that you tune the host firmw
 ### Run cyclictest {#cnf-performing-end-to-end-tests-running-cyclictest_cnf-latency-tests}
 
 To measure real-time kernel scheduler latency on specified CPUs, run the `cyclictest` tool. Evaluating these metrics helps you identify execution delays and optimize your system for high-performance operations.
+
+:::note
+
+The `cyclictest` tool targets the real-time (`PREEMPT_RT`) kernel, which is available only on `x86_64` nodes. On `aarch64` nodes that run the non-real-time (non-RT) 64k page-size kernel, `cyclictest` latency measurements are non-deterministic. On these nodes, use `hwlatdetect` and `oslat` for platform verification, and adjust the latency threshold parameters, such as `MAXIMUM_LATENCY` or `CYCLICTEST_MAXIMUM_LATENCY`, to account for the expected variance.
+
+:::
 
 :::note
 

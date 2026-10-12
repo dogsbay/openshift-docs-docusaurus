@@ -76,7 +76,7 @@ Red Hat prioritizes the servicing of requests for deviations based on partner en
 
 ## Engineering considerations for the RAN DU use model {#telco-ran-engineering-considerations-for-the-ran-du-use-model_telco-ran-du}
 
-The RAN DU use model configures an OpenShift Container Platform cluster running on commodity hardware for hosting RAN distributed unit (DU) workloads. Model and system level considerations are described below. Specific limits, requirements and engineering considerations for individual components are detailed in later sections.
+The RAN DU use model configures an OpenShift Container Platform cluster running on commodity hardware for hosting RAN distributed unit (DU) workloads.
 
 :::note
 
@@ -1080,15 +1080,13 @@ The Red Hat telco RAN DU 4.22 solution has been validated using the following Re
 | Component | Software version |
 | --- | --- |
 | OpenShift Container Platform | 4.22 |
-| Cluster Logging Operator | 6.5 |
+| Cluster Logging Operator | 6.6 |
 | Local Storage Operator | 4.22 |
 | OpenShift API for Data Protection (OADP) | 1.6 |
 | PTP Operator | 4.22 |
 | SR-IOV Operator | 4.22 |
 | SRIOV-FEC Operator | 2.12 |
 | Lifecycle Agent Operator | 4.22 |
-
-- Cluster Logging Operator will be updated to 6.6 when the aligned Cluster Logging Operator version is released.
 
 **Additional resources**
 

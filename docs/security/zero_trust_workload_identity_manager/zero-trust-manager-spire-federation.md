@@ -181,7 +181,7 @@ Example 4: Mixed federation with multiple authentication profiles
 
 ## Configure SPIRE federation with the https_spiffe profile {#zero-trust-manager-federation-configuration_zero-trust-manager-spire-federation}
 
-The Zero Trust Workload Identity Manager includes SPIRE Federation support, allowing multiple independent SPIRE deployments to establish trust relationships. This procedure demonstrates how to configure federation using the `https_spiffe` profile, which uses SPIFFE-based TLS authentication between SPIRE servers.
+The Zero Trust Workload Identity Manager includes SPIRE federation support, allowing multiple independent SPIRE deployments to establish trust relationships by using the `https_spiffe` profile with SPIFFE-based TLS authentication.
 
 **Prerequisites**
 
@@ -570,7 +570,7 @@ Using SPIRE federation with Automatic Certificate Management Environment (ACME) 
 
 ## Use SPIRE federation with manual certificate management {#zero-trust-manager-manual-management_zero-trust-manager-spire-federation}
 
-You can use SPIRE federation with custom certificate management using cert-manager or other certificate providers. This approach provides flexibility for organizations that require control over certificate issuance, support for internal certificate authorities (CAs), or integration with existing certificate management infrastructure.
+You can use SPIRE federation with custom certificate management by using cert-manager or other certificate providers for control over certificate issuance and integration with internal certificate authorities (CAs).
 
 **Prerequisites**
 

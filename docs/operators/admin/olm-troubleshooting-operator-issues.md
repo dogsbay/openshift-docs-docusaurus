@@ -33,7 +33,7 @@ Default OpenShift Container Platform cluster Operators are managed by the Cluste
 
 - [Catalog health requirements](/docs/operators/understanding/olm/olm-understanding-olm#olm-cs-health_olm-understanding-olm)
 
-## Viewing Operator subscription status by using the CLI {#olm-status-viewing-cli_olm-troubleshooting-operator-issues}
+## View Operator subscription status by using the CLI {#olm-status-viewing-cli_olm-troubleshooting-operator-issues}
 
 You can view Operator subscription status by using the CLI.
 
@@ -76,7 +76,7 @@ You can view Operator subscription status by using the CLI.
 
    :::
 
-## Viewing Operator catalog source status by using the CLI {#olm-cs-status-cli_olm-troubleshooting-operator-issues}
+## View Operator catalog source status by using the CLI {#olm-cs-status-cli_olm-troubleshooting-operator-issues}
 
 You can view the status of an Operator catalog source by using the CLI.
 
@@ -174,7 +174,7 @@ You can view the status of an Operator catalog source by using the CLI.
 - [gRPC documentation: States of Connectivity](https://grpc.github.io/grpc/core/md_doc_connectivity-semantics-and-api.html)
 - [Accessing images for Operators from private registries](/docs/operators/admin/olm-managing-custom-catalogs#olm-accessing-images-private-registries_olm-managing-custom-catalogs)
 
-## Querying Operator pod status {#querying-operator-pod-status_olm-troubleshooting-operator-issues}
+## Query Operator pod status {#querying-operator-pod-status_olm-troubleshooting-operator-issues}
 
 You can list Operator pods within a cluster and their status. You can also collect a detailed Operator pod summary.
 
@@ -223,7 +223,7 @@ You can list Operator pods within a cluster and their status. You can also colle
       ```
    5. Exit from the debug shell.
 
-## Gathering Operator logs {#gathering-operator-logs_olm-troubleshooting-operator-issues}
+## Gather Operator logs {#gathering-operator-logs_olm-troubleshooting-operator-issues}
 
 If you experience Operator issues, you can gather detailed diagnostic information from Operator pod logs.
 

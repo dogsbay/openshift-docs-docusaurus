@@ -153,7 +153,7 @@ The installation process with user-provisioned infrastructure
 - [Control plane node sizing](/docs/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#master-node-sizing_recommended-control-plane-practices)
 - [Red Hat OpenShift Network Calculator](https://access.redhat.com/labs/ocpnc/)
 
-### Verifying node state after installation {#ipi-verifying-nodes-after-installation_ocp-installation-overview}
+### Verify node state after installation {#ipi-verifying-nodes-after-installation_ocp-installation-overview}
 
 The OpenShift Container Platform installation completes when the following installation health checks are successful:
 

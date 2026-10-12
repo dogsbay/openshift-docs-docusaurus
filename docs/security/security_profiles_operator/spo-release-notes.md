@@ -11,6 +11,17 @@ The Security Profiles Operator provides a way to define secure computing (seccom
 
 These release notes track the development of the Security Profiles Operator in OpenShift Container Platform.
 
+## Release notes for OpenShift Security Profiles Operator 0.10.1 {#spo-release-notes-0-10-1_spo-release-notes}
+
+OpenShift Security Profiles Operator 0.10.1 is now available. The `stable` update channel tracks and receives updates for the Security Profiles Operator. The following Red Hat Bug Fix Advisory (RHBA) is available:
+
+- [RHSA-2026:76752 - OpenShift Security Profiles Operator 0.10.1 bug fix and enhancement update](https://access.redhat.com/errata/RHSA-2026:76752)
+
+### New features and enhancements {#spo-0-10-1-new-features-and-enhancements_spo-release-notes}
+
+- With this release, the Security Profiles Operator uses the `ubi9/ubi-minimal-pqc` as a base image. This change enables Post-Quantum Cryptography (PQC) support through OpenSSL and helps TLS endpoints offer ML-KEM during key exchange. ([CMP-4572](https://issues.redhat.com/browse/CMP-4572))
+- This update includes upgraded dependencies in the underlying base images.
+
 ## Release notes for Security Profiles Operator 0.10.0 {#spo-release-notes-0-10-0_spo-release-notes}
 
 Release notes for Security Profiles Operator 0.10.0.

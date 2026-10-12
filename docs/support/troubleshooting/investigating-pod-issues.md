@@ -13,7 +13,7 @@ After a pod is defined, it is assigned to run on a node until its containers exi
 
 The first thing to check when pod issues arise is the pod’s status. If an explicit pod failure has occurred, observe the pod’s error state to identify specific image, container, or pod network issues. Focus diagnostic data collection according to the error state. Review pod event messages, as well as pod and container log information. Diagnose issues dynamically by accessing running Pods on the command line, or start a debug pod with root access based on a problematic pod’s deployment configuration.
 
-## Understanding pod error states {#understanding-pod-error-states_investigating-pod-issues}
+## Understand pod error states {#understanding-pod-error-states_investigating-pod-issues}
 
 Pod failures return explicit error states that can be observed in the `status` field in the output of `oc get pods`. Pod error states cover image, container, and container network related failures.
 
@@ -41,7 +41,7 @@ The following table provides a list of pod error states along with their descrip
 | `ErrSetupNetwork` | Network initialization failed. |
 | `ErrTeardownNetwork` | Network termination failed. |
 
-## Reviewing pod status {#reviewing-pod-status_investigating-pod-issues}
+## Review pod status {#reviewing-pod-status_investigating-pod-issues}
 
 You can query pod status and error states. You can also query a pod’s associated deployment configuration and review base image availability.
 
@@ -84,7 +84,7 @@ You can query pod status and error states. You can also query a pod’s associat
    $ oc get events
    ```
 
-## Inspecting pod and container logs {#inspecting-pod-and-container-logs_investigating-pod-issues}
+## Inspect pod and container logs {#inspecting-pod-and-container-logs_investigating-pod-issues}
 
 You can inspect pod and container logs for warnings and error messages related to explicit pod failures. Depending on policy and exit code, pod and container logs remain available after pods have been terminated.
 
@@ -150,7 +150,7 @@ You can inspect pod and container logs for warnings and error messages related t
       $ oc exec <pod_name> -c <container_name> cat /var/log/<path_to_log>
       ```
 
-## Accessing running pods {#accessing-running-pods_investigating-pod-issues}
+## Access running pods {#accessing-running-pods_investigating-pod-issues}
 
 You can review running pods dynamically by opening a shell inside a pod or by gaining network access through port forwarding.
 
@@ -193,7 +193,7 @@ You can review running pods dynamically by opening a shell inside a pod or by ga
    <dd>Enter <code>Ctrl+C</code> to cancel the port forwarding session.</dd>
    </dl>
 
-## Starting debug pods with root access {#starting-debug-pods-with-root-access_investigating-pod-issues}
+## Start debug pods with root access {#starting-debug-pods-with-root-access_investigating-pod-issues}
 
 You can start a debug pod with root access, based on a problematic pod’s deployment or deployment configuration. Pod users typically run with non-root privileges, but running troubleshooting pods with temporary root privileges can be useful during issue investigation.
 
@@ -230,7 +230,7 @@ You can start a debug pod with root access, based on a problematic pod’s deplo
 
       :::
 
-## Copying files to and from pods and containers {#copying-files-pods-and-containers_investigating-pod-issues}
+## Copy files to and from pods and containers {#copying-files-pods-and-containers_investigating-pod-issues}
 
 You can copy files to and from a pod to test configuration changes or gather diagnostic information.
 

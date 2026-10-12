@@ -83,7 +83,7 @@ When running Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreO
 
 :::
 
-## Preparing your cluster for users after installation {#installing-preparing-cluster-for-users_installing-preparing}
+## Prepare your cluster for users after installation {#installing-preparing-cluster-for-users_installing-preparing}
 
 Configure a production cluster for users before they access it.
 
@@ -95,7 +95,7 @@ For a production cluster, you must configure the following integrations:
 - [An identity provider](/docs/authentication/understanding-identity-provider#understanding-identity-provider)
 - [Monitoring core OpenShift Container Platform components](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/getting_started/core-platform-monitoring-first-steps)
 
-## Preparing your cluster for workloads {#installing-preparing-cluster-for-workloads_installing-preparing}
+## Prepare your cluster for workloads {#installing-preparing-cluster-for-workloads_installing-preparing}
 
 Take extra steps to prepare your cluster before deploying applications, depending on your workload needs.
 

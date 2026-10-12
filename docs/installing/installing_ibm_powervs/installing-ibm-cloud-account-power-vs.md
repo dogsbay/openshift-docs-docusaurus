@@ -15,7 +15,7 @@ To install OpenShift Container Platform on IBM Power(R) Virtual Server, you must
 
 ## Quotas and limits on IBM Power Virtual Server {#quotas-and-limits-ibm-power-vs_installing-ibm-cloud-account-power-vs}
 
-The OpenShift Container Platform cluster uses several IBM Cloud(R) and IBM Power(R) Virtual Server components. Default quotas and limits affect your ability to install clusters, so you might need to request additional resources for your IBM Cloud(R) account depending on your configuration, region, or number of clusters.
+Default IBM Cloud(R) and IBM Power(R) Virtual Server quotas and limits affect your ability to install OpenShift Container Platform clusters. You might need to request additional resources depending on your configuration, region, or number of clusters.
 
 ### Virtual private cloud {#_virtual_private_cloud}
 

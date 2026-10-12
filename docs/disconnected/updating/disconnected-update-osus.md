@@ -18,7 +18,7 @@ The following steps outline the high-level workflow about updating a cluster in 
 5. Install the OSUS application and configure your clusters to use the OpenShift Update Service in your environment.
 6. Perform a supported update procedure from the documentation as you would with a connected cluster.
 
-## Using the OpenShift Update Service in a disconnected environment {#update-service-overview_updating-disconnected-cluster-osus}
+## Use the OpenShift Update Service in a disconnected environment {#update-service-overview_updating-disconnected-cluster-osus}
 
 The OpenShift Update Service (OSUS) provides update recommendations to OpenShift Container Platform clusters. Red Hat publicly hosts the OpenShift Update Service, and clusters in a connected environment can connect to the service through public APIs to retrieve update recommendations.
 
@@ -82,7 +82,9 @@ If your release images are contained in a registry whose HTTPS X.509 certificate
 
 ## Update the global cluster pull secret {#images-update-global-pull-secret_updating-disconnected-cluster-osus}
 
-To add new registries or update authentication for your OpenShift Container Platform cluster, you can update the global pull secret by appending new credentials to the *additional-pull-secret*. To do this, you can use the `oc set data secret/additional-pull-secret -n kube-system` command. Hypershift manages the new credential propagation among the HostedCluster nodes.
+To add new registries or update authentication for your OpenShift Container Platform cluster, you can update the global pull secret by appending new credentials to the *additional-pull-secret* by using the `oc set data secret/additional-pull-secret -n kube-system` command.
+
+Hypershift manages the new credential propagation among the HostedCluster nodes.
 
 Use this procedure when you need a separate registry to store images than the registry used during installation.
 

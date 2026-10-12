@@ -69,7 +69,7 @@ Use the latest available version of the oc-mirror plugin regardless of which ver
 
 - [Viewing the image pull source](/docs/installing/validation_and_troubleshooting/validating-an-installation#viewing-the-image-pull-source_validating-an-installation)
 
-## About the mirror registry {#installation-about-mirror-registry_installing-mirroring-disconnected}
+## Mirror registry {#installation-about-mirror-registry_installing-mirroring-disconnected}
 
 You must have access to the internet to obtain the necessary container images. Using an alternative registry means that you place the mirror registry on a mirror host that has access to both your network and the internet.
 
@@ -99,7 +99,7 @@ Red Hat does not test third party registries with OpenShift Container Platform.
 
 - [Viewing the image pull source](/docs/installing/validation_and_troubleshooting/validating-an-installation#viewing-the-image-pull-source_validating-an-installation)
 
-## Prerequisites {#prerequisites_installing-mirroring-disconnected}
+## Prerequisites for disconnected installation mirroring {#prerequisites_installing-mirroring-disconnected}
 
 Before you can mirror images using the oc-mirror plugin, you must meet several prerequisites.
 

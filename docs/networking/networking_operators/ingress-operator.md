@@ -1382,11 +1382,7 @@ To enable HTTP/2 for Ingress Controllers in OpenShift Container Platform, you ca
   ```terminal
   $ oc annotate ingresses.config/cluster ingress.operator.openshift.io/default-enable-http2=true
   ```
-
-  :::tip
-
-  Alternatively, you can apply the following YAML code to enable HTTP/2:
-
+- Alternatively, apply the following YAML to enable HTTP/2:
   ```yaml
   apiVersion: config.openshift.io/v1
   kind: Ingress
@@ -1395,8 +1391,6 @@ To enable HTTP/2 for Ingress Controllers in OpenShift Container Platform, you ca
     annotations:
       ingress.operator.openshift.io/default-enable-http2: "true"
   ```
-
-  :::
 
 #### Disable HTTP/2 {#nw-disable-http2_configuring-ingress}
 
@@ -1414,11 +1408,7 @@ To disable HTTP/2 for Ingress Controllers in OpenShift Container Platform, you c
   ```terminal
   $ oc annotate ingresses.config/cluster ingress.operator.openshift.io/default-enable-http2=false
   ```
-
-  :::tip
-
-  Alternatively, you can apply the following YAML code to disable HTTP/2:
-
+- Alternatively, apply the following YAML to disable HTTP/2:
   ```yaml
   apiVersion: config.openshift.io/v1
   kind: Ingress
@@ -1427,8 +1417,6 @@ To disable HTTP/2 for Ingress Controllers in OpenShift Container Platform, you c
     annotations:
       ingress.operator.openshift.io/default-enable-http2: "false"
   ```
-
-  :::
 
 ### Configure the PROXY protocol for an Ingress Controller {#nw-ingress-controller-configuration-proxy-protocol_configuring-ingress}
 

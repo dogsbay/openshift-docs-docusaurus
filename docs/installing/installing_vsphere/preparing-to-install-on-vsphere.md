@@ -20,7 +20,7 @@ You can install OpenShift Container Platform with the Assisted Installer. This m
 
 ## Agent-based Installer {#preparing-to-install-on-vsphere-agent-based-installer-reference_preparing-to-install-on-vsphere}
 
-You can install an OpenShift Container Platform cluster on vSphere using the Agent-based Installer. The Agent-based Installer can be used to boot an on-premise server in a disconnected environment by using a bootable image. With the Agent-based Installer, users also have the flexibility to provision infrastructure, customize network configurations, and customize installations within a disconnected environment.
+You can install an OpenShift Container Platform cluster on vSphere by using the Agent-based Installer, which boots on-premise servers in disconnected environments with a bootable image and supports custom network configurations.
 
 **Additional resources**
 
@@ -28,7 +28,7 @@ You can install an OpenShift Container Platform cluster on vSphere using the Age
 
 ## Installer-provisioned infrastructure installation {#preparing-to-install-on-vsphere-installer-provisioned-reference_preparing-to-install-on-vsphere}
 
-You can install OpenShift Container Platform on vSphere by using installer-provisioned infrastructure. Installer-provisioned infrastructure allows the installation program to preconfigure and automate the provisioning of resources required by OpenShift Container Platform. Installer-provisioned infrastructure is useful for installing in environments with disconnected networks, where the installation program provisions the underlying infrastructure for the cluster.
+You can install OpenShift Container Platform on vSphere by using installer-provisioned infrastructure, which automates the provisioning of cluster resources and supports disconnected network environments.
 
 - **Installing a cluster on vSphere**: You can install OpenShift Container Platform on vSphere by using installer-provisioned infrastructure installation with no customization.
 - **Installing a cluster on vSphere with customizations**: You can install OpenShift Container Platform on vSphere by using installer-provisioned infrastructure installation with the default customization options.
@@ -43,7 +43,7 @@ You can install OpenShift Container Platform on vSphere by using installer-provi
 
 ## User-provisioned infrastructure installation {#preparing-to-install-on-vsphere-user-provisioned-reference_preparing-to-install-on-vsphere}
 
-You can install OpenShift Container Platform on vSphere by using user-provisioned infrastructure. User-provisioned infrastructure requires the user to provision all resources required by OpenShift Container Platform. If you do not use infrastructure that the installation program provisions, you must manage and maintain the cluster resources yourself.
+You can install OpenShift Container Platform on vSphere by using user-provisioned infrastructure, where you provision and manage all resources required by the cluster.
 
 - **Installing a cluster on vSphere with user-provisioned infrastructure**: You can install OpenShift Container Platform on VMware vSphere infrastructure that you provision or you can install OpenShift Container Platform on VMware vSphere infrastructure that you provision with customized network configuration options.
 - **Installing a cluster on vSphere in a restricted network with user-provisioned infrastructure**: OpenShift Container Platform can be installed on VMware vSphere infrastructure that you provision in a restricted network.

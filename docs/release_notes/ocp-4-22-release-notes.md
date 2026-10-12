@@ -388,11 +388,11 @@ Support for the PCI addresses of NICs in `BareMetalHost` hardware data
 
   For more information, see [About the BareMetalHost resource](/docs/installing/installing_bare_metal/bare-metal-postinstallation-configuration#bmo-about-the-baremetalhost-resource_bare-metal-postinstallation-configuration) and [The BareMetalHost status](/docs/installing/installing_bare_metal/bare-metal-postinstallation-configuration#the-baremetalhost-status).
 
-Red Hat Bare Metal as a Service for OpenShift is generally available
-: With this update, Red Hat Bare Metal as a Service for OpenShift, formerly known as Bare Metal as a Service (BMaaS), is generally available. You can provision and manage bare-metal hosts by using the Metal^3^ API and the Bare Metal Operator (BMO). These hosts, external to the OpenShift Container Platform cluster, can run workloads that might not be suitable for containerization or virtualization, such as legacy applications or applications that require direct hardware access. For more information, see [Using Red Hat Bare Metal as a Service for OpenShift](/docs/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service#bare-metal-using-bare-metal-as-a-service).
+Red Hat Bare-Metal-as-a-Service for OpenShift is generally available
+: With this update, Red Hat Bare-Metal-as-a-Service for OpenShift, formerly known as Bare Metal as a Service (BMaaS), is generally available. You can provision and manage bare-metal hosts by using the Metal^3^ API and the Bare Metal Operator (BMO). These hosts, external to the OpenShift Container Platform cluster, can run workloads that might not be suitable for containerization or virtualization, such as legacy applications or applications that require direct hardware access. For more information, see [Using Red Hat Bare-Metal-as-a-Service for OpenShift](/docs/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service#bare-metal-using-bare-metal-as-a-service).
 
-Expanding bare-metal clusters using OCI images and Red Hat Bare Metal as a Service for OpenShift (Technology Preview)
-: With this update, you can expand your bare-metal cluster using Red Hat Bare Metal as a Service for OpenShift with images from an OCI registry as a Technology Preview feature. You can use images from public OCI registries or from the built-in cluster registry. For more information, see [Using Red Hat Bare Metal as a Service for OpenShift](/docs/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service).
+Expanding bare-metal clusters using OCI images and Red Hat Bare-Metal-as-a-Service for OpenShift (Technology Preview)
+: With this update, you can expand your bare-metal cluster using Red Hat Bare-Metal-as-a-Service for OpenShift with images from an OCI registry as a Technology Preview feature. You can use images from public OCI registries or from the built-in cluster registry. For more information, see [Using Red Hat Bare-Metal-as-a-Service for OpenShift](/docs/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service).
 
 Adding an ARM node to an x86 bare metal cluster
 : With this update, you can add ARM nodes to bare metal clusters with x86 control planes using PXE or virtual media. You can expand your cluster by creating a `BareMetalHost` object with the `aarch64` architecture, and then scaling the machine set to deploy the new machine.
@@ -956,7 +956,7 @@ In the following tables, features are marked with the following statuses:
 | Enabling a user-provisioned DNS on Amazon Web Services (AWS) | Not Available | Technology Preview | Technology Preview |
 | Installing a cluster using Google Cloud private and restricted API endpoints | Not Available | General Availability | General Availability |
 | Installing a cluster on VMware vSphere with multiple network interface controllers | General Availability | General Availability | General Availability |
-| Red Hat Bare Metal as a Service for OpenShift (formerly known as bare-metal as a service) | Technology Preview | Technology Preview | General Availability |
+| Red Hat Bare-Metal-as-a-Service for OpenShift (formerly known as bare-metal as a service) | Technology Preview | Technology Preview | General Availability |
 | Installing a cluster on Amazon Web Services (AWS) European Sovereign Cloud | Not Available | Not Available | Technology Preview |
 | Installing a cluster on Amazon Web Services (AWS) with dual-stack networking | Not Available | Not Available | Technology Preview |
 | Running firmware upgrades for hosts in deployed bare-metal clusters | Technology Preview | General Availability | General Availability |
@@ -1149,6 +1149,33 @@ This section will continue to be updated over time to provide notes on enhanceme
 For any OpenShift Container Platform release, always review the instructions on [updating your cluster](/docs/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console) properly.
 
 :::
+
+### RHSA-2026:74429 - OpenShift Container Platform 4.22.17 bug fix and security update {#zstream-4-22-17_release-notes}
+
+Issued: 06 October 2026
+
+OpenShift Container Platform release 4.22.17 is now available. The list of fixed issues that are included in the update is documented in the [RHSA-2026:74429](https://access.redhat.com/errata/RHSA-2026:74429) advisory. The RPM packages that are included in the update are provided by the [RHSA-2026:74427](https://access.redhat.com/errata/RHSA-2026:74427) advisory.
+
+Space precluded documenting all of the container images for this release in the advisory.
+
+You can view the container images in this release by running the following command:
+
+```terminal
+$ oc adm release info 4.22.17 --pullspecs
+```
+
+#### Fixed issues {#zstream-4-22-17-fixed-issues_release-notes}
+
+- Before this update, when you removed failure domains from the infrastructure specification, the VMware vSphere Problem Detector (VPD) logged errors about failure domain labels missing from nodes. As a consequence, VPD logged warnings that were not relevant. With this release, VPD improves processing logic for failure domain changes in the infrastructure specification. As a result, these unnecessary warnings no longer appear. ([OCPBUGS-105280](https://issues.redhat.com/browse/OCPBUGS-105280))
+- Before this update, in dual-stack hosted clusters, mismatched IP SAN byte lengths such as 4-byte versus 16-byte IPv4-mapped addresses caused false validation failures. As a consequence, the Control Plane Operator was forced to continuously regenerate `kas-server-crt`, causing generation churn that could stall installations. With this release, IP SANs are normalized using net.IP.To1ptp Operator config6() before comparison. As a result, unnecessary certificate regeneration and continuous `kube-apiserver` rolling updates do not occur. ([OCPBUGS-112731](https://issues.redhat.com/browse/OCPBUGS-112731))
+- Before this update, for Microsoft Azure OpenShift Container Platform hosted clusters that used private Azure Key Vaults, unreachable private endpoints caused Kubernetes Key Management Service (KMS) validation to be reported as failed. With this update, the `ValidAzureKMSConfig` parameter is reported as `Unknown`. As a result, false failures are not reported due to network reachability limits. ([OCPBUGS-123727](https://issues.redhat.com/browse/OCPBUGS-123727))
+- Before this update, when you removed a `MachineConfig` resource that required a revert to a `MachineOSBuild` in a terminal state, the digested image push configuration was not changed. As a consequence, the associated `MachineConfigPool` resource was stuck in an `Updating` state. With this release, terminal builds update correctly when the digested image push configuration changes, enabling image reuse for a new build. As a result, you can successfully delete `MachineConfig` resources in an image mode cluster. ([OCPBUGS-127018](https://issues.redhat.com/browse/OCPBUGS-127018))
+- Before this update, the rendezvous node IP address list was not refreshed after a static IP address was added through the agent TUI networking screen. As a consequence, the newly added IP address was not shown or available in the rendezvous node IP address selection screen. With this release, the host IP address list refreshes whenever the selection screen opens. As a result, newly configured IP addresses appear for selection. ([OCPBUGS-127041](https://issues.redhat.com/browse/OCPBUGS-127041))
+- Before this update, sometimes during startup the default Precision Time Protocol (PTP) Operator configuration failed to create because the webhook was not ready. As a consequence, the `linuxptp-daemon` service was not scheduled. With this release, the Operator waits for the webhook to become ready before creating the default PTP Operator configuration. As a result, the default PTP Operator configuration is populated reliably. ([OCPBUGS-128642](https://issues.redhat.com/browse/OCPBUGS-128642))
+
+#### Updating {#zstream-4-22-17-updating_release-notes}
+
+To update an OpenShift Container Platform 4.22 cluster to this latest release, see [Updating a cluster using the CLI](/docs/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli).
 
 ### RHSA-2026:71454 - OpenShift Container Platform 4.22.16 bug fix and security update {#zstream-4-22-16_release-notes}
 

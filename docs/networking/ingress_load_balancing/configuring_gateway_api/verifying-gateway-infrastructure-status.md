@@ -15,19 +15,72 @@ To verify that your `GatewayClass` custom resource (CR) is valid and ready to pr
 
 `GatewayClass`** CR status conditions**
 
-| Condition | Status | Description and common reasons |
-| --- | --- | --- |
-| `Accepted` | `True` | The `GatewayClass` CR is valid and the controller has claimed it. |
-| `Accepted` | `False` | The configuration has errors or was rejected. Common reasons include `InvalidParameters` (referenced parameters are invalid or not found), `Pending` (the controller has not processed the resource yet), or `Unknown` (an unsupported `controllerName` was provided). |
-| `Accepted` | `Unknown` | The `GatewayClass` CR is waiting for the controller to process it. |
-| `SupportedVersion` | `True` | The installed Gateway API version is compatible with the controller. |
-| `SupportedVersion` | `False` | There is a version mismatch. A common reason is `UnsupportedVersion`, which indicates that the custom resource definition (CRD) version does not match the controller requirements. |
-| `ControllerInstalled` | `True` | The Cluster Ingress Operator successfully installed the Gateway API controller. |
-| `ControllerInstalled` | `False` | The installation failed. |
-| `ControllerInstalled` | `Unknown` | The controller has not started the installation yet. |
-| `CRDsReady` | `True` | The Istio CRDs are installed and actively managed by either the Cluster Ingress Operator or OLM. |
-| `CRDsReady` | `False` | The CRDs were installed by a third party or have mixed ownership, preventing the controller from managing them. |
-| `CRDsReady` | `Unknown` | The CRDs are not installed yet. |
+<table>
+<thead>
+<tr>
+  <th>Condition</th>
+  <th>Status</th>
+  <th>Description and common reasons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>Accepted</code></td>
+  <td><code>True</code></td>
+  <td>The <code>GatewayClass</code> CR is valid and the controller has claimed it.</td>
+</tr>
+<tr>
+  <td><code>Accepted</code></td>
+  <td><code>False</code></td>
+  <td>The configuration has errors or was rejected. Common reasons include:<br><br><ul><li><code>InvalidParameters</code>: Referenced parameters are invalid or not found.</li><li><code>Pending</code>: The controller has not processed the resource yet.</li><li><code>Unknown</code>: An unsupported <code>controllerName</code> was provided.</li></ul></td>
+</tr>
+<tr>
+  <td><code>Accepted</code></td>
+  <td><code>Unknown</code></td>
+  <td>The <code>GatewayClass</code> CR is waiting for the controller to process it.</td>
+</tr>
+<tr>
+  <td><code>SupportedVersion</code></td>
+  <td><code>True</code></td>
+  <td>The installed Gateway API version is compatible with the controller.</td>
+</tr>
+<tr>
+  <td><code>SupportedVersion</code></td>
+  <td><code>False</code></td>
+  <td>There is a version mismatch. A common reason is <code>UnsupportedVersion</code>, which indicates that the custom resource definition (CRD) version does not match the controller requirements.</td>
+</tr>
+<tr>
+  <td><code>ControllerInstalled</code></td>
+  <td><code>True</code></td>
+  <td>The Cluster Ingress Operator successfully installed the controller for Gateway API.</td>
+</tr>
+<tr>
+  <td><code>ControllerInstalled</code></td>
+  <td><code>False</code></td>
+  <td>The installation failed.</td>
+</tr>
+<tr>
+  <td><code>ControllerInstalled</code></td>
+  <td><code>Unknown</code></td>
+  <td>The controller has not started the installation yet.</td>
+</tr>
+<tr>
+  <td><code>CRDsReady</code></td>
+  <td><code>True</code></td>
+  <td>The Istio CRDs are installed and actively managed by either the Cluster Ingress Operator or OLM.</td>
+</tr>
+<tr>
+  <td><code>CRDsReady</code></td>
+  <td><code>False</code></td>
+  <td>The CRDs were installed by a third party or have mixed ownership, preventing the controller from managing them.</td>
+</tr>
+<tr>
+  <td><code>CRDsReady</code></td>
+  <td><code>Unknown</code></td>
+  <td>The CRDs are not installed yet.</td>
+</tr>
+</tbody>
+</table>
 
 ## Gateway and listener status conditions reference {#gateway-listener-status-conditions_verifying-gateway-infrastructure-status}
 
@@ -41,18 +94,67 @@ The `Conflicted` listener condition uses negative polarity. This means that a st
 
 **Gateway-level status conditions**
 
-| Condition | Status | Description and common reasons |
-| --- | --- | --- |
-| `Accepted` | `True` | The gateway configuration is valid and working properly. |
-| `Accepted` | `False` | The configuration has errors. Common reasons include `ListenersNotValid` (one or more listeners have issues) or `InvalidParameters` (the configuration is invalid). |
-| `Accepted` | `Unknown` | The controller has not evaluated the gateway yet. |
-| `Programmed` | `True` | The infrastructure is provisioned and the gateway is configured in the data plane, such as a load balancer or proxy. |
-| `Programmed` | `False` | Programming failed or the data plane is not ready. Common reasons include `NoResources` (insufficient resources or pods unavailable), `Invalid` (cannot apply to the data plane), or `Pending`. |
-| `Programmed` | `Unknown` | Programming is currently in progress. |
-| `LoadBalancerReady` | `True` | The cloud load balancer service for the gateway is successfully provisioned. |
-| `LoadBalancerReady` | `False` | The load balancer service failed to provision or is pending. Common reasons include `ServiceNotFound`, `LoadBalancerPending`, or `SyncLoadBalancerFailed`. |
-| `DNSReady` | `True` | DNS records for all listeners are functioning correctly. |
-| `DNSReady` | `False` | One or more listeners have DNS provisioning issues. |
+<table>
+<thead>
+<tr>
+  <th>Condition</th>
+  <th>Status</th>
+  <th>Description and common reasons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>Accepted</code></td>
+  <td><code>True</code></td>
+  <td>The gateway configuration is valid and working properly.</td>
+</tr>
+<tr>
+  <td><code>Accepted</code></td>
+  <td><code>False</code></td>
+  <td>The configuration has errors. Common reasons include:<br><br><ul><li><code>ListenersNotValid</code>: One or more listeners have issues.</li><li><code>InvalidParameters</code>: The configuration is invalid.</li></ul></td>
+</tr>
+<tr>
+  <td><code>Accepted</code></td>
+  <td><code>Unknown</code></td>
+  <td>The controller has not evaluated the gateway yet.</td>
+</tr>
+<tr>
+  <td><code>Programmed</code></td>
+  <td><code>True</code></td>
+  <td>The infrastructure is provisioned and the gateway is configured in the data plane, such as a load balancer or proxy.</td>
+</tr>
+<tr>
+  <td><code>Programmed</code></td>
+  <td><code>False</code></td>
+  <td>Programming failed or the data plane is not ready. Common reasons include:<br><br><ul><li><code>NoResources</code>: Insufficient resources or pods unavailable.</li><li><code>Invalid</code>: Cannot apply to the data plane.</li><li><code>Pending</code></li></ul></td>
+</tr>
+<tr>
+  <td><code>Programmed</code></td>
+  <td><code>Unknown</code></td>
+  <td>Programming is currently in progress.</td>
+</tr>
+<tr>
+  <td><code>LoadBalancerReady</code></td>
+  <td><code>True</code></td>
+  <td>The cloud load balancer service for the gateway is successfully provisioned.</td>
+</tr>
+<tr>
+  <td><code>LoadBalancerReady</code></td>
+  <td><code>False</code></td>
+  <td>The load balancer service failed to provision or is pending. Common reasons include <code>ServiceNotFound</code>, <code>LoadBalancerPending</code>, or <code>SyncLoadBalancerFailed</code>.</td>
+</tr>
+<tr>
+  <td><code>DNSReady</code></td>
+  <td><code>True</code></td>
+  <td>DNS records for all listeners are functioning correctly.</td>
+</tr>
+<tr>
+  <td><code>DNSReady</code></td>
+  <td><code>False</code></td>
+  <td>One or more listeners have DNS provisioning issues.</td>
+</tr>
+</tbody>
+</table>
 
 **Listener-level status conditions**
 
@@ -93,7 +195,7 @@ The `Conflicted` listener condition uses negative polarity. This means that a st
 <tr>
   <td><code>ResolvedRefs</code></td>
   <td><code>False</code></td>
-  <td>At least one reference is invalid. Common reasons include <code>InvalidCertificateRef</code> (a TLS certificate was not found or is invalid) or <code>RefNotPermitted</code> (a cross-namespace reference is not allowed).</td>
+  <td>At least one reference is invalid. Common reasons include:<br><br><ul><li><code>InvalidCertificateRef</code>: A TLS certificate was not found or is invalid.</li><li><code>RefNotPermitted</code>: A cross-namespace reference is not allowed.</li></ul></td>
 </tr>
 <tr>
   <td><code>Conflicted</code> (Negative polarity)</td>
@@ -103,7 +205,7 @@ The `Conflicted` listener condition uses negative polarity. This means that a st
 <tr>
   <td><code>Conflicted</code> (Negative polarity)</td>
   <td><code>True</code></td>
-  <td>The listener conflicts with another listener. Common reasons include <code>ProtocolConflict</code> (multiple listeners on the same port with incompatible protocols) or <code>HostnameConflict</code> (overlapping hostnames).</td>
+  <td>The listener conflicts with another listener. Common reasons include:<br><br><ul><li><code>ProtocolConflict</code>: Multiple listeners on the same port with incompatible protocols.</li><li><code>HostnameConflict</code>: Overlapping hostnames.</li></ul></td>
 </tr>
 <tr>
   <td><code>DNSReady</code></td>

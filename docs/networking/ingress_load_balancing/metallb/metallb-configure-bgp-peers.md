@@ -13,7 +13,7 @@ The peers receive the route advertisements for the load-balancer IP addresses th
 
 ## About the BGP peer custom resource {#nw-metallb-bgppeer-cr_configure-metallb-bgp-peers}
 
-To establish network connectivity and advertise routes for load-balancer services, configure the properties of the MetalLB Border Gateway Protocol (BGP) peer custom resource (CR). Establishing these parameters ensures that your cluster authorizes specific routing peers to direct external traffic correctly to your application workloads.
+Configure the MetalLB Border Gateway Protocol (BGP) peer custom resource (CR) to establish network connectivity and advertise routes for load-balancer services.
 
 The following table describes the parameters for the BGP peer CR:
 
@@ -409,7 +409,7 @@ The following high-level steps demonstrate how to expose a service through a net
 
 ## Example BGP peer configurations {#nw-metallb-example-bgppeer_configure-metallb-bgp-peers}
 
-To precisely manage network topology and improve routing resilience, configure MetalLB BGP peer settings that limit node connectivity and incorporate BFD profiles. Defining these parameters ensures that your cluster maintains secure peer relationships and rapidly detects path failures for high service availability.
+Configure MetalLB BGP peer settings that limit node connectivity and incorporate BFD profiles to maintain secure peer relationships and detect path failures.
 
 Example of limiting which nodes connect to a BGP peer
 : You can specify the `nodeSelectors` parameter to control which nodes can connect to a BGP peer.

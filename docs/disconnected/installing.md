@@ -19,7 +19,7 @@ For example, if you plan to install a cluster on AWS with installer-provisioned 
 
 :::
 
-## Installing a cluster with the Agent-based Installer {#installing-agent_installing-disconnected-environments}
+## Install a cluster with the Agent-based Installer {#installing-agent_installing-disconnected-environments}
 
 You can install an OpenShift Container Platform cluster in a disconnected environment with the Agent-based Installer.
 

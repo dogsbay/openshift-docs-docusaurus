@@ -13,7 +13,9 @@ OpenShift Container Platform uses a flexible Operator and plugin design to decou
 
 ## Secrets management Operators in OpenShift Container Platform {#secrets-management-operators_understanding-secrets-management}
 
-OpenShift Container Platform offers a suite of supported Operators designed to secure and automate the management of sensitive data, such as external credentials and digital certificates. Each secrets management Operator provides quick starts and sample YAML manifests to streamline the onboarding process. These tools simplify installation and deployment, and help you build complex custom resources by using pre-defined YAML snippets. The following list details the key Operators available for these tasks:
+OpenShift Container Platform offers supported Operators to secure and automate the management of sensitive data such as external credentials and digital certificates.
+
+The following Operators are available for secrets management:
 
 - **Secrets Store CSI driver**: Enables Kubernetes to connect to external systems, and mount credentials from the external system into an application workload.
 - **External Secrets Operator for Red Hat OpenShift**: Retrieves credentials stored in external management systems and makes them available within OpenShift Container Platform as standard Kubernetes Secrets.
@@ -21,7 +23,7 @@ OpenShift Container Platform offers a suite of supported Operators designed to s
 
 ## Secrets management use cases {#secrets-management-scenarios_understanding-secrets-management}
 
-Using secrets management tools with other Red Hat products can protect sensitive data across your OpenShift Container Platform cluster. You can integrate secrets management Operators with other OpenShift Container Platform components to securely manage, automate, and consume credentials across various infrastructure and application workflows.
+You can integrate secrets management Operators with other OpenShift Container Platform components to securely manage, automate, and consume credentials across infrastructure and application workflows.
 
 ### External Secrets Operator for Red Hat OpenShift use cases {#secrets-management-scenarios-eso_understanding-secrets-management}
 

@@ -229,7 +229,9 @@ To deploy a small registry by using Podman, complete the following steps.
 
 ## Setting up a management cluster for hosted control planes in a disconnected environment {#hcp-dc-mgmt-cluster_hcp-deploy-dc-bm}
 
-An important part of a hosted control planes deployment is the OpenShift Container Platform management cluster. To set up an management cluster for a disconnected environment, you must install multicluster engine for Kubernetes Operator on it. The multicluster engine Operator plays a crucial role in deploying clusters across providers.
+An important part of a hosted control planes deployment is the OpenShift Container Platform management cluster. To set up an management cluster for a disconnected environment, you must install multicluster engine for Kubernetes Operator on it.
+
+The multicluster engine Operator plays a crucial role in deploying clusters across providers.
 
 **Prerequisites**
 
@@ -631,7 +633,7 @@ A hosted cluster is an OpenShift Container Platform cluster with its control pla
 
 ### Deploying hosted cluster objects {#hcp-hc-objects_hcp-deploy-dc-bm}
 
-Typically, the HyperShift Operator creates the `HostedControlPlane` namespace. However, you might want to include all the objects before the HyperShift Operator begins to reconcile the `HostedCluster` object. Then, when the Operator starts the reconciliation process, it can find all of the objects in place.
+Typically, the HyperShift Operator creates the `HostedControlPlane` namespace. However, you might want to include all objects before the HyperShift Operator begins to reconcile the `HostedCluster` object. Then, when the Operator starts the reconciliation process, it finds the objects in place.
 
 **Procedure**
 

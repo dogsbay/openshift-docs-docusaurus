@@ -44,7 +44,9 @@ After installation, you must edit the Image Registry Operator configuration to s
 
 ## Image Registry Operator distribution across availability zones {#registry-operator-distribution-across-availability-zones_configuring-registry-operator}
 
-The default configuration of the Image Registry Operator spreads image registry pods across topology zones to prevent delayed recovery times in case of a complete zone failure where all pods are impacted. Reference the example YAML to understand the default parameter values that the Image Registry Operator uses when the Operator deploys with a zone-related topology constraint:
+The Image Registry Operator spreads image registry pods across topology zones by default to prevent delayed recovery times during a complete zone failure.
+
+The following example YAML shows the default topology constraint parameter values:
 
 ```yaml
   topologySpreadConstraints:
@@ -169,7 +171,7 @@ You can configure the Image Registry Operator using the `configs.imageregistry.o
 
 ## Enable the Image Registry default route by using a CRD {#registry-operator-default-crd_configuring-registry-operator}
 
-In OpenShift Container Platform, the `Registry` Operator controls the OpenShift image registry feature and you define this Operator in the `configs.imageregistry.operator.openshift.io` Custom Resource Definition (CRD). If you need to automatically enable the Image Registry default route, patch the Image Registry Operator CRD.
+In OpenShift Container Platform, the `Registry` Operator controls the OpenShift image registry feature by using the `configs.imageregistry.operator.openshift.io` CRD. Patch this CRD to automatically enable the Image Registry default route.
 
 **Procedure**
 

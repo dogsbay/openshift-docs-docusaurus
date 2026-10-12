@@ -770,7 +770,7 @@ You can install single-node OpenShift with z/VM on IBM Z and IBM LinuxONE.
    ```terminal
    $ ./openshift-install --dir=ocp create single-node-ignition-config
    ```
-7. Obtain the RHEL `kernel`, `initramfs`, and `rootfs`  artifacts from the [Product Downloads](https://access.redhat.com/downloads/content/290) page on the Red Hat Customer Portal or from the [RHCOS image mirror](https://mirror.openshift.com/pub/openshift-v4/s390x/dependencies/rhcos/latest/) page.
+7. Obtain the RHEL `kernel`, `initramfs`, and `rootfs`  artifacts from the "Product Downloads" page on the Red Hat Customer Portal or from the "RHCOS image mirror" page.
    :::warning
 
    The RHCOS images might not change with every release of OpenShift Container Platform. You must download images with the highest version that is less than or equal to the OpenShift Container Platform version that you install. Only use the appropriate `kernel`, `initramfs`, and `rootfs` artifacts described in the following procedure.
@@ -821,7 +821,7 @@ You can install single-node OpenShift with z/VM on IBM Z and IBM LinuxONE.
     - `kernel` and `initramfs` artifacts
     - Parameter files
     - RHCOS images
-      For details about how to transfer the files with FTP and boot from the virtual reader, see [Installing under Z/VM](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/sect-installing-zvm-s390).
+      For details about how to transfer the files with FTP and boot from the virtual reader, see "Installing under Z/VM" in the RHCOS documentation.
 11. Punch the files to the virtual reader of the z/VM guest virtual machine that is to become your bootstrap node.
 12. Log in to CMS on the bootstrap machine.
 13. IPL the bootstrap machine from the reader by running the following command:
@@ -868,7 +868,7 @@ You can install single-node OpenShift with z/VM on IBM Z and IBM LinuxONE.
 
        Optional: Specify `APPEND` to append kernel parameters to existing SCPDATA. This is the default. Specify `NEW` to replace existing SCPDATA.
 
-       ```terminal title="Example"
+       ```terminal
        $ cp set loaddev scpdata 'rd.zfcp=0.0.8001,0x500507630a0350a4,0x4000409D00000000
        ip=encbdd0:dhcp::02:00:00:02:34:02 rd.neednet=1'
        ```
@@ -880,6 +880,12 @@ You can install single-node OpenShift with z/VM on IBM Z and IBM LinuxONE.
        ```
 
        Replace `<devno>` with the device number of the boot device as seen by the guest.
+
+**Additional resources**
+
+- [Product Downloads](https://access.redhat.com/downloads/content/290)
+- [RHCOS image mirror](https://mirror.openshift.com/pub/openshift-v4/s390x/dependencies/rhcos/latest/)
+- [Installing under Z/VM](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/sect-installing-zvm-s390)
 
 ### Installing single-node OpenShift with RHEL KVM on IBM Z and IBM LinuxONE {#installing-sno-on-ibm-z-kvm_install-sno-installing-sno-with-the-assisted-installer}
 

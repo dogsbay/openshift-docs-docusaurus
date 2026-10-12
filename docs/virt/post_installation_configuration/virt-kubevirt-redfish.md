@@ -147,69 +147,54 @@ Install KubeVirt Redfish on your OpenShift Virtualization cluster by applying a 
    ```terminal
    $ oc apply -f clusterrolebinding.yaml
    ```
-9. Create a `Secret` CR to enable the Redfish API to manage specific VMs:
-   1. Generate a `bcrypt` hashed password for the Redfish API by running the following command in a Linux terminal:
-      ```terminal
-      $ htpasswd -nbB "" '<password>' | cut -d: -f2
-      ```
+9. Create the `Secret` CR containing the configuration by creating a YAML file with content such as the following example. Edit the `config.yaml` section to match your environment:
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: kubevirt-redfish-secret
+     namespace: kubevirt-redfish
+     labels:
+       app.kubernetes.io/name: kubevirt-redfish
+       app.kubernetes.io/component: config
+   type: Opaque
+   stringData:
+     config.yaml: |
+       server:
+         host: "0.0.0.0"
+         port: 8443
+         tls:
+           enabled: false
+       system_id_convention: "enhanced"
+       chassis:
+         - name: "<chassis_name>"
+           namespace: "<vm_namespace>"
+           service_account: "kubevirt-redfish"
+           vm_selector:
+             labels:
+               redfish-enabled: "true"
+       authentication:
+         users:
+           - username: "admin"
+             password: "<password>"
+             chassis: ["<chassis_name>"]
+       datavolume:
+         storage_class: "<storage_class>"
+         storage_size: "3Gi"
+   ```
 
-      - `<password>` is the password you want to use for the Redfish API.
-        The output is a `bcrypt` hashed password beginning with `$2a$`, `$2b$`, or `$2y$`.
+   where:
 
-        :::note
-
-        In earlier Technology Preview releases, plain text passwords were used. Use `bcrypt` hashed passwords for improved security.
-
-        :::
-   2. Create the `Secret` CR containing the configuration with content such as the following example. Edit the `config.yaml` section to match your environment:
-      ```yaml
-      apiVersion: v1
-      kind: Secret
-      metadata:
-        name: kubevirt-redfish-secret
-        namespace: kubevirt-redfish
-        labels:
-          app.kubernetes.io/name: kubevirt-redfish
-          app.kubernetes.io/component: config
-      type: Opaque
-      stringData:
-        config.yaml: |
-          server:
-            host: "0.0.0.0"
-            port: 8443
-            tls:
-              enabled: false
-          system_id_convention: "enhanced"
-          chassis:
-            - name: "<chassis_name>"
-              namespace: "<vm_namespace>"
-              service_account: "kubevirt-redfish"
-              vm_selector:
-                labels:
-                  redfish-enabled: "true"
-          authentication:
-            users:
-              - username: "admin"
-                password:
-                  hash: "<bcrypt_password>"
-                chassis: ["<chassis_name>"]
-          datavolume:
-            storage_class: "<storage_class>"
-            storage_size: "3Gi"
-      ```
-
-      where:
-
-      <dl>
-      <dt><code>system_id_convention</code></dt>
-      <dd>Specifies the format for Redfish system IDs. The recommended setting is <code>enhanced</code> to use <code>&lt;namespace&gt;.&lt;vm-name&gt;</code> format. The <code>legacy</code> setting uses <code>&lt;vm-name&gt;</code> only.</dd>
-      <dt><code>chassis</code></dt>
-      <dd>Specifies the namespaces where VMs are deployed. Replace <code>&lt;chassis_name&gt;</code> with a name for this chassis configuration and <code>&lt;vm_namespace&gt;</code> with the namespace containing your VMs. The <code>vm_selector</code> labels identify which VMs in the namespace are exposed through Redfish. Only VMs with matching labels are visible. You can configure multiple chassis entries to expose different subsets of VMs in the same namespace, each with different authentication users.</dd>
-      <dt><code>authentication</code></dt>
-      <dd>Specifies the username and password required to validate requests to the Redfish API. Replace <code>&lt;bcrypt_password&gt;</code> with the <code>bcrypt</code> hashed password that you generated.</dd>
-      <dt><code>datavolume</code></dt>
-      <dd>Specifies storage for VirtualMedia operations. Replace <code>&lt;storage_class&gt;</code> with a storage class available on your cluster, such as <code>lvms-vg1</code> or <code>ocs-storagecluster-ceph-rbd-virtualization</code>. For more information about storage options, see <em>Storage requirements</em> in "Prerequisites for virtualized control planes".</dd>
-      </dl>
+   <dl>
+   <dt><code>system_id_convention</code></dt>
+   <dd>Specifies the format for Redfish system IDs. The recommended setting is <code>enhanced</code> to use <code>&lt;namespace&gt;.&lt;vm-name&gt;</code> format. The <code>legacy</code> setting uses <code>&lt;vm-name&gt;</code> only.</dd>
+   <dt><code>chassis</code></dt>
+   <dd>Specifies the namespaces where VMs are deployed. Replace <code>&lt;chassis_name&gt;</code> with a name for this chassis configuration and <code>&lt;vm_namespace&gt;</code> with the namespace containing your VMs. The <code>vm_selector</code> labels identify which VMs in the namespace are exposed through Redfish. Only VMs with matching labels are visible. You can configure multiple chassis entries to expose different subsets of VMs in the same namespace, each with different authentication users.</dd>
+   <dt><code>authentication</code></dt>
+   <dd>Specifies the username and password required to access the Redfish API. These credentials enable full management control over exposed VMs, independently of any OpenShift Container Platform privileges. Replace <code>&lt;password&gt;</code> with a secure password.</dd>
+   <dt><code>datavolume</code></dt>
+   <dd>Specifies storage for VirtualMedia operations. Replace <code>&lt;storage_class&gt;</code> with a storage class available on your cluster, such as <code>lvms-vg1</code> or <code>ocs-storagecluster-ceph-rbd-virtualization</code>. For more information about storage options, see <em>Storage requirements</em> in "Prerequisites for virtualized control planes".</dd>
+   </dl>
 10. Apply the resource by running the following command:
     ```terminal
     $ oc apply -f secret.yaml

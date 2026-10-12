@@ -24,7 +24,7 @@ When using the `oc adm release mirror` command, release image signatures are not
 
 :::
 
-## Prerequisites {#prerequisites_installing-mirroring-installation-images}
+## Prerequisites for mirroring images with the oc adm command {#prerequisites_installing-mirroring-installation-images}
 
 You must meet several prerequisites before you can mirror images using the `oc adm release mirror` command.
 
@@ -39,7 +39,7 @@ You must meet the following prerequisites:
   If you have an entitlement to Red Hat Quay, see the documentation on deploying Red Hat Quay [for proof-of-concept purposes](https://docs.redhat.com/en/documentation/red_hat_quay/3.9/html/deploy_red_hat_quay_for_proof-of-concept_non-production_purposes/index) or [by using the Red Hat Quay Operator](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/deploying_the_red_hat_quay_operator_on_openshift_container_platform/index). If you need additional assistance selecting and installing a registry, contact your sales representative or Red Hat Support.
 - If you do not already have an existing solution for a container image registry, subscribers of OpenShift Container Platform are provided a [mirror registry for Red Hat OpenShift](/docs/disconnected/installing-mirroring-creating-registry#installing-mirroring-creating-registry). The *mirror registry for Red Hat OpenShift* is included with your subscription and is a small-scale container registry that can be used to mirror the required container images of OpenShift Container Platform in disconnected installations.
 
-## About the mirror registry {#installation-about-mirror-registry_installing-mirroring-installation-images}
+## Mirror registry {#installation-about-mirror-registry_installing-mirroring-installation-images}
 
 You must have access to the internet to obtain the necessary container images. Using an alternative registry means that you place the mirror registry on a mirror host that has access to both your network and the internet.
 
@@ -494,7 +494,7 @@ The following prerequisites must be met:
 
 ### Extracting and mirroring catalog contents {#olm-mirror-catalog-extracting_installing-mirroring-installation-images}
 
-The `oc adm catalog mirror` command extracts the contents of an index image to generate the manifests required for mirroring. The default behavior of the command generates manifests, then automatically mirrors all of the image content from the index image, as well as the index image itself, to your mirror registry.
+The `oc adm catalog mirror` command extracts the contents of an index image to generate mirroring manifests, then automatically mirrors all image content and the index image itself to your mirror registry.
 
 Alternatively, if your mirror registry is on a completely disconnected, or *airgapped*, host, you can first mirror the content to removable media, move the media to the disconnected environment, then mirror the content from the media to the registry.
 
@@ -538,7 +538,7 @@ If your mirror registry is co-located on the same network as your workstation wi
    <dd>Specifies the <code>--manifests-only</code> flag. This flag is optional. Generates only the manifests required for mirroring without actually mirroring the image content to a registry. This option can be useful for reviewing what will be mirrored, and lets you make any changes to the mapping list, if you require only a subset of packages. You can then use the <code>mapping.txt</code> file with the <code>oc image mirror</code> command to mirror the modified list of images in a later step. This flag is intended for only advanced selective mirroring of content from the catalog.</dd>
    </dl>
 
-   ```terminal title="Example output"
+   ```terminal
    src image has index label for database path: /database/index.db
    using database path mapping: /database/index.db:/tmp/153048078
    wrote database to /tmp/153048078
@@ -595,7 +595,7 @@ If your mirror registry is on a completely disconnected, or airgapped, host, tak
    <dd>Specifies which platform and architecture of the index image to select when multiple variants are available. This is optional. Images are specified as <code>'&lt;platform&gt;/&lt;arch&gt;[/&lt;variant&gt;]'</code>. This does not apply to images referenced by the index. Valid values are <code>linux/amd64</code>, <code>linux/ppc64le</code>, <code>linux/s390x</code>, <code>linux/arm64</code>, and <code>.*</code></dd>
    </dl>
 
-   ```terminal title="Example output"
+   ```terminal
    ...
    info: Mirroring completed in 5.93s (5.915MB/s)
    wrote mirroring manifests to manifests-my-index-1614985528
@@ -714,7 +714,7 @@ The manifests directory contains the following files, some of which might requir
 
 ### Postinstallation requirements {#olm-mirror-catalog-post_installing-mirroring-installation-images}
 
-After you mirror the catalog, you can continue with the remainder of your cluster installation. After your cluster installation has finished successfully, you must specify the manifests directory from this procedure to create the `ImageContentSourcePolicy` and `CatalogSource` objects. These objects are required to populate and enable installation of Operators from the software catalog.
+After mirroring the catalog and completing the cluster installation, you must create `ImageContentSourcePolicy` and `CatalogSource` objects from the manifests directory to enable installation of Operators from the software catalog.
 
 **Additional resources**
 

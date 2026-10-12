@@ -19,7 +19,9 @@ To view your applications in the **Topology** view and interact with them, ensur
 
 ## View the topology of your application {#odc-viewing-application-topology_viewing-application-composition-using-topology-view}
 
-You can navigate to the **Topology** view using the left navigation panel in the **Developer** perspective. After you deploy an application, you are directed automatically to the **Graph view** where you can see the status of the application pods, quickly access the application on a public URL, access the source code to modify it, and see the status of your last build. You can zoom in and out to see more details for a particular application.
+You can navigate to the **Topology** view in the **Developer** perspective to see the status of application pods, access the application on a public URL, access the source code, and see the status of your last build.
+
+After you deploy an application, the **Graph view** opens automatically. You can zoom in and out to see more details for a particular application.
 
 The **Topology** view provides you the option to monitor your applications using the **List** view. Use the **List view** icon (![odc_list_view_icon](/images/odc_list_view_icon.png "List view icon")) to see a list of all your applications and use the **Graph view** icon (![odc_topology_view_icon](/images/odc_topology_view_icon.png "Topology view icon")) to switch back to the graph view.
 

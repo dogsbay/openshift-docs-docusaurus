@@ -9,7 +9,7 @@ sidebar_position: 12
 
 You can investigate OpenShift CLI (`oc`) issues by increasing the log level to get more detailed diagnostic information.
 
-## Understanding OpenShift CLI (`oc`) log levels {#understanding-oc-log-levels_diagnosing-oc-issues}
+## Understand OpenShift CLI (`oc`) log levels {#understanding-oc-log-levels_diagnosing-oc-issues}
 
 With the OpenShift CLI (`oc`), you can create applications and manage OpenShift Container Platform projects from a terminal.
 
@@ -28,7 +28,7 @@ If `oc` command-specific issues arise, increase the `oc` log level to output API
 | 9 | Log API requests, headers, and body, API response headers and body, plus `curl` requests to stderr. |
 | 10 | Log API requests, headers, and body, API response headers and body, plus `curl` requests to stderr, in verbose detail. |
 
-## Specifying OpenShift CLI (`oc`) log levels {#specifying-oc-log-levels_diagnosing-oc-issues}
+## Specify OpenShift CLI (`oc`) log levels {#specifying-oc-log-levels_diagnosing-oc-issues}
 
 You can investigate OpenShift CLI (`oc`) issues by increasing the command’s log level.
 

@@ -37,7 +37,7 @@ Before installing an OpenShift Container Platform cluster on IBM Cloud(R) in a d
 
 ## About installations in restricted networks {#installation-about-restricted-networks_installing-ibm-cloud-restricted}
 
-You can install OpenShift Container Platform 4.22 in a restricted network without an active internet connection to obtain software components. Restricted network installations can use installer-provisioned or user-provisioned infrastructure, depending on the cloud platform to which you are installing the cluster.
+You can install OpenShift Container Platform 4.22 in a restricted network that lacks an active internet connection. These restricted installations use installer-provisioned or user-provisioned infrastructure, depending on your cloud platform.
 
 ### Required internet access and an installation host {#required-internet-access-and-an-installation-host_installing-ibm-cloud-restricted}
 
@@ -193,7 +193,7 @@ If you choose to configure a new security group, the security group must be conf
 
 ## Generating a key pair for cluster node SSH access {#ssh-agent-using_installing-ibm-cloud-restricted}
 
-During an OpenShift Container Platform installation, you can provide an SSH public key to the installation program. The key is passed to the Red Hat Enterprise Linux CoreOS (RHCOS) nodes through their Ignition config files and is used to authenticate SSH access to the nodes. The key is added to the `~/.ssh/authorized_keys` list for the `core` user on each node, which enables password-less authentication.
+During an OpenShift Container Platform installation, you can provide an SSH public key to the installation program. The key is passed to Red Hat Enterprise Linux CoreOS (RHCOS) nodes through their Ignition config files and is added to `~/.ssh/authorized_keys` for the `core` user on each node.
 
 The key is added to the `~/.ssh/authorized_keys` list for the `core` user on each node, which enables password-less authentication. After the key is passed to the nodes, you can use the key pair to SSH in to the RHCOS nodes as the user `core`. To access the nodes through SSH, the private key identity must be managed by SSH for your local user.
 

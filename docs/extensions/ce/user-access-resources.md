@@ -42,7 +42,7 @@ Cluster extensions commonly include the following default cluster role policies:
 
 ## Find API groups and resources exposed by a cluster extension {#olmv1-finding-ce-resources_user-access-resources}
 
-To create appropriate RBAC policies for granting user access to cluster extension resources, you must know which API groups and resources are exposed by the installed extension. As an administrator, you can inspect custom resource definitions (CRDs) installed on the cluster by using OpenShift CLI (`oc`).
+To create appropriate RBAC policies for user access to cluster extension resources, you must know which API groups and resources the extension exposes. You can inspect installed CRDs by using the OpenShift CLI (`oc`).
 
 **Prerequisites**
 

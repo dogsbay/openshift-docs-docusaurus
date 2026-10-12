@@ -1,26 +1,26 @@
 ---
-title: "Using Red&#160;Hat Bare Metal as a Service for OpenShift"
+title: "Using Red&#160;Hat Bare-Metal-as-a-Service for OpenShift"
 sidebar_position: 6
 ---
 
-# Using Red Hat Bare Metal as a Service for OpenShift {#bare-metal-using-bare-metal-as-a-service}
+# Using Red Hat Bare-Metal-as-a-Service for OpenShift {#bare-metal-using-bare-metal-as-a-service}
 
 <a id="bare-metal-using-bare-metal-as-a-service"></a>
 
 You can provision and manage bare-metal hosts by using the Metal^3^ API and the Bare Metal Operator (BMO). These hosts, external to the OpenShift Container Platform cluster, can run workloads that might not be suitable for containerization or virtualization, such as legacy applications or applications that require direct hardware access.
 
-Red Hat Bare Metal as a Service for OpenShift has the following capabilities:
+Red Hat Bare-Metal-as-a-Service for OpenShift has the following capabilities:
 
 - Provisioning of bare-metal hosts, including initial configuration.
 - Lifecycle management such as power management, firmware updates, and decommissioning by using the BMO.
 
-As standalone systems, these hosts operate independently of the OpenShift Container Platform cluster and support diverse workloads by integrating bare metal resources with containerized and virtualized applications. Red Hat Bare Metal as a Service for OpenShift can run other operating systems, but only Red Hat Enterprise Linux (RHEL) and CentOS Stream 9 were tested.
+As standalone systems, these hosts operate independently of the OpenShift Container Platform cluster and support diverse workloads by integrating bare metal resources with containerized and virtualized applications. Red Hat Bare-Metal-as-a-Service for OpenShift can run other operating systems, but only Red Hat Enterprise Linux (RHEL) and CentOS Stream 9 were tested.
 
-## Prerequisites for using Red Hat Bare Metal as a Service for OpenShift {#bmaas-prerequisites_bare-metal-using-bmaas}
+## Prerequisites for using Red Hat Bare-Metal-as-a-Service for OpenShift {#bmaas-prerequisites_bare-metal-using-bmaas}
 
-Red Hat Bare Metal as a Service for OpenShift lets you apply cloud-native management practices to bare-metal infrastructure, enabling automated provisioning and lifecycle management for workloads that require physical hardware.
+Red Hat Bare-Metal-as-a-Service for OpenShift lets you apply cloud-native management practices to bare-metal infrastructure, enabling automated provisioning and lifecycle management for workloads that require physical hardware.
 
-To use Red Hat Bare Metal as a Service for OpenShift, complete the following prerequisites:
+To use Red Hat Bare-Metal-as-a-Service for OpenShift, complete the following prerequisites:
 
 BareMetalHost Configuration
 : All bare-metal hosts must use a Baseboard Management Controller (BMC) configured with the Redfish protocol and virtual media (`redfish-virtualmedia`) driver. Each bare-metal host requires a boot interface with a MAC address configured to receive an IP address lease.
@@ -32,15 +32,15 @@ Cluster Privileges
 : You must have `cluster-admin` privileges on the OpenShift Container Platform cluster to perform configuration tasks.
 
 Web server with images
-: Red Hat Bare Metal as a Service for OpenShift does not provide images for deployment on hardware. You must configure a web server with the images and checksums you want to use. The `image` field of the `BareMetalHost` spec references these images during deployment. Ensure that the bare-metal hosts can reach the web server URL. Alternatively, you can access images from an OCI registry as a Technology Preview. This can be done by accessing a public registry such as Quay.io, or by hosting OCI images from the built-in registry in your cluster. The following is an example of images and checksums you might include:
+: Red Hat Bare-Metal-as-a-Service for OpenShift does not provide images for deployment on hardware. You must configure a web server with the images and checksums you want to use. The `image` field of the `BareMetalHost` spec references these images during deployment. Ensure that the bare-metal hosts can reach the web server URL. Alternatively, you can access images from an OCI registry as a Technology Preview. This can be done by accessing a public registry such as Quay.io, or by hosting OCI images from the built-in registry in your cluster. The following is an example of images and checksums you might include:
 
   - `http://example.com/rhel9.qcow2`
   - `http://example.com/rhel9.qcow2.sha512sum`
   - `http://example.com/stream9.qcow2`
   - `http://example.com/stream9.qcow2.sha512sum`
-  - `oci://quay.io/example/image:version`
+  - `\oci://quay.io/example/image:version`
 
-These prerequisites ensure that Red Hat Bare Metal as a Service for OpenShift can provision and manage bare-metal hosts effectively.
+These prerequisites ensure that Red Hat Bare-Metal-as-a-Service for OpenShift can provision and manage bare-metal hosts effectively.
 
 :::warning
 
@@ -72,7 +72,7 @@ This configuration is important to avoid mixing non-OpenShift Container Platform
 
 ## Setting up a dedicated namespace {#bmaas-setting-up-a-dedicated-namespace_bare-metal-using-bmaas}
 
-To prevent accidental interference between Red Hat Bare Metal as a Service for OpenShift workloads and the OpenShift Container Platform infrastructure, set up a dedicated namespace. Repeat this procedure for every project where you intend to use Red Hat Bare Metal as a Service for OpenShift.
+To prevent accidental interference between Red Hat Bare-Metal-as-a-Service for OpenShift workloads and the OpenShift Container Platform infrastructure, set up a dedicated namespace. Repeat this procedure for every project where you intend to use Red Hat Bare-Metal-as-a-Service for OpenShift.
 
 **Prerequisites**
 
@@ -154,7 +154,7 @@ To prevent accidental interference between Red Hat Bare Metal as a Service for 
    <dt>&lt;username&gt;</dt>
    <dd>The user name. Replace <code>&lt;username&gt;</code> with your username. The following examples use <code>bmadmin</code> as the username.</dd>
    </dl>
-2. Create a dedicated `bmaas` namespace for Red Hat Bare Metal as a Service for OpenShift hosts by running the following command:
+2. Create a dedicated `bmaas` namespace for Red Hat Bare-Metal-as-a-Service for OpenShift hosts by running the following command:
    ```terminal
    $ oc new-project <namespace>
    ```
@@ -285,7 +285,7 @@ To deploy a bare-metal host, you must create a `BareMetalHost` resource.
 
   The state progresses from **registering**, to **inspecting**, and finally to **available**.
 
-## Configuring users for Red Hat Bare Metal as a Service for OpenShift hosts {#bmo-configuring-users-for-bmaas-hosts_bare-metal-using-bmaas}
+## Configuring users for Red Hat Bare-Metal-as-a-Service for OpenShift hosts {#bmo-configuring-users-for-bmaas-hosts_bare-metal-using-bmaas}
 
 Configure bare-metal host users and add them to a Kubernetes secret. Then, create and apply the secret to customize the host. With configured users you can access or manage the bare-metal host after it is provisioned.
 

@@ -366,9 +366,9 @@ For information about verifying that both control plane nodes and etcd are opera
 - [Verifying etcd health in a two-node OpenShift cluster with fencing](/docs/installing/installing_two_node_cluster/installing_tnf/install-post-tnf#installation-verifying-etcd-health_install-post-tnf)
 - [Gathering an sosreport for OpenShift Container Platform](/docs/support/gathering-cluster-data#about-sosreport_gathering-cluster-data)
 
-## Replacing control plane nodes in a two-node OpenShift cluster with fencing {#installation-replacing-control-plane-nodes_install-post-tnf}
+## Replacing control plane nodes in a two-node OpenShift Container Platform cluster with fencing {#installation-replacing-control-plane-nodes_install-post-tnf}
 
-You can replace a failed control plane node in a two-node OpenShift cluster. The replacement node must use the same host name and IP address as the failed node.
+You can replace a failed control plane node in a two-node OpenShift Container Platform cluster. The replacement node must use the same host name and IP address as the failed node.
 
 **Prerequisites**
 
@@ -607,10 +607,10 @@ Do an etcd backup before proceeding to ensure that you can restore the cluster i
    ```terminal
    $ oc annotate bmh <bmh_name> -n openshift-machine-api baremetalhost.metal3.io/detached='' --overwrite
    ```
-8. Rejoin the replacement node to the pacemaker cluster by running the following command:
+8. Rejoin the replacement node to the pacemaker cluster by running the following commands:
    :::note
 
-   Run the following command on the survivor control plane node, not the node being replaced.
+   Run the following commands on the survivor control plane node and not on the node being replaced.
 
    :::
 
@@ -621,18 +621,75 @@ Do an etcd backup before proceeding to ensure that you can restore the cluster i
    ```terminal
    $ sudo pcs cluster node add <node_name> addr=<node_ip> --start --enable
    ```
-9. Delete stale jobs for the failed node by running the following command:
-   ```terminal
-   $ oc project openshift-etcd
-   ```
+9. Update the fencing secret so that STONITH can fence the new node. You must update the secret if the replacement node has a different BMC system UUID than the failed node.
+   :::note
 
-   ```terminal
-   $ oc delete job tnf-auth-job-<node_name>
-   ```
+   - Do not update the STONITH resource directly with the command `pcs stonith update`. The cluster etcd Operator manages STONITH configuration and overwrites manual changes.
+   - For clusters using MAC-based fencing credentials, run `update-fencing-credentials.sh` from a TNF control-plane node. The script locates the existing secret by hostname, MAC hash, or the existing STONITH address, then updates the secret and STONITH configuration.
 
-   ```terminal
-   $ oc delete job tnf-after-setup-job-<node_name>
-   ```
+   :::
+
+   The fencing secret contains a Redfish URL in its `address` field. If the replacement node has a new BMC system UUID, the URL still points to the old UUID and STONITH cannot fence the new node.
+
+   1. Verify the new BMC system UUID by querying the Redfish API:
+      ```terminal
+      $ curl -k https://<bmc_address>/redfish/v1/Systems/ -u <username>:<password>
+      ```
+
+      ```json title="Example output"
+      {
+        "Members": [
+          {"@odata.id": "/redfish/v1/Systems/<new_uuid>"}
+        ]
+      }
+      ```
+
+      The UUID is the last path segment of the `@odata.id` value under `Members`.
+   2. Update the fencing secret for the replacement node by running the following command:
+      ```terminal
+      $ oc create secret generic fencing-credentials-<node_name> \
+        --namespace openshift-etcd \
+        --from-literal=address='redfish+https://<bmc_address>:<port>/redfish/v1/Systems/<new_uuid>' \
+        --from-literal=username='<username>' \
+        --from-literal=password='<password>' \
+        --from-literal=certificateVerification='<Disabled_or_Enabled>' \
+        --dry-run=client -o yaml | oc apply -f -
+      ```
+
+      where:
+
+      - Replace `<node_name>` with the hostname of the replacement node as it appears in `oc get nodes` command.
+      - Replace `<bmc_address>` and `<port>` with the BMC IP address and port.
+      - Replace `<new_uuid>` with the new BMC system UUID.
+      - Replace `<username>` and `<password>` with the BMC credentials.
+      - Replace `<Disabled_or_Enabled>` with `Disabled` to skip certificate validation and match `disableCertificateVerification: true` on the BMH object or `Enabled` if your BMC has a valid TLS certificate.
+   3. Verify that the secret is updated successfully by running the following command:
+      ```terminal
+      $ oc get secret fencing-credentials-<node_name> -n openshift-etcd \
+        -o jsonpath='{.data.address}' | base64 -d
+      ```
+
+      Confirm the output contains the new BMC system UUID.
+
+      :::note
+
+      All four keys must be present because the cluster etcd Operator rejects secrets with missing keys.
+
+      Do not use the `update-fencing-credentials.sh` script in this step. The script requires a healthy STONITH device, which is unavailable until the fencing setup completes. Only use this script for subsequent rotations after the cluster is fully operational.
+
+      :::
+10. Delete stale jobs for the failed node by running the following commands:
+    ```terminal
+    $ oc project openshift-etcd
+    ```
+
+    ```terminal
+    $ oc delete job tnf-auth-job-<node_name>
+    ```
+
+    ```terminal
+    $ oc delete job tnf-after-setup-job-<node_name>
+    ```
 
 **Verification**
 

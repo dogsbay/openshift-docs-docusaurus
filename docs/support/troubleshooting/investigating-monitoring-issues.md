@@ -15,7 +15,7 @@ Use these procedures if the following issues occur:
 - Prometheus is consuming a lot of disk space.
 - The `KubePersistentVolumeFillingUp` alert is firing for Prometheus.
 
-## Investigating why user-defined project metrics are unavailable {#investigating-why-user-defined-metrics-are-unavailable_investigating-monitoring-issues}
+## Investigate why user-defined project metrics are unavailable {#investigating-why-user-defined-metrics-are-unavailable_investigating-monitoring-issues}
 
 `ServiceMonitor` resources enable you to determine how to use the metrics exposed by a service in user-defined projects. Follow the steps outlined in this procedure if you have created a `ServiceMonitor` resource but cannot see any corresponding metrics in the Metrics UI.
 
@@ -166,7 +166,7 @@ Use these procedures if the following issues occur:
 - [Specifying how a service is monitored](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/configuring-metrics-uwm#specifying-how-a-service-is-monitored_configuring-metrics-uwm)
 - [Getting detailed information about a metrics target](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-an-administrator#getting-detailed-information-about-a-target_accessing-metrics-as-an-administrator)
 
-## Determining why Prometheus is consuming a lot of disk space {#determining-why-prometheus-is-consuming-disk-space_investigating-monitoring-issues}
+## Determine why Prometheus is consuming a lot of disk space {#determining-why-prometheus-is-consuming-disk-space_investigating-monitoring-issues}
 
 Developers can create labels to define attributes for metrics in the form of key-value pairs. The number of potential key-value pairs corresponds to the number of possible values for an attribute. An attribute that has an unlimited number of potential values is called an unbound attribute. For example, a `customer_id` attribute is unbound because it has an infinite number of possible values.
 
@@ -231,7 +231,7 @@ You can use the following measures when Prometheus consumes a lot of disk:
 
 - [Setting scrape intervals, evaluation intervals, and enforced limits for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/configuring-performance-and-scalability-uwm#setting-scrape-and-evaluation-intervals-limits-for-user-defined-projects_configuring-performance-and-scalability-uwm)
 
-## Resolving the KubePersistentVolumeFillingUp alert firing for Prometheus {#resolving-the-kubepersistentvolumefillingup-alert-firing-for-prometheus_investigating-monitoring-issues}
+## Resolve the KubePersistentVolumeFillingUp alert firing for Prometheus {#resolving-the-kubepersistentvolumefillingup-alert-firing-for-prometheus_investigating-monitoring-issues}
 
 As a cluster administrator, you can resolve the `KubePersistentVolumeFillingUp` alert being triggered for Prometheus.
 

@@ -79,7 +79,7 @@ You can add optional environment details and scripts to the `must-gather` comman
 - Run the `must-gather` command to collect data about OpenShift Virtualization:
   ```terminal
   $ oc adm must-gather \
-    --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6 \
+    --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.9 \
     -- /usr/bin/gather
   ```
 
@@ -96,7 +96,7 @@ You can add optional environment details and scripts to the `must-gather` comman
   1. Run the following command to modify the number of processes running in parallel when collecting `must-gather` data:
      ```terminal
      $ oc adm must-gather \
-       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6 \
+       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.9 \
        -- PROS=<number> /usr/bin/gather
      ```
 
@@ -104,7 +104,7 @@ You can add optional environment details and scripts to the `must-gather` comman
   2. Run the following command to collect detailed information for a specific VM in a specific namespace:
      ```terminal
      $ oc adm must-gather \
-       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6 \
+       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.9 \
        -- NS=<namespace name> VM=<VM name> /usr/bin/gather --vms_details
      ```
 
@@ -112,13 +112,13 @@ You can add optional environment details and scripts to the `must-gather` comman
   3. Run the following command to collect image, image-stream, and image-stream-tags information from the cluster:
      ```terminal
      $ oc adm must-gather \
-      --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6 \
+      --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.9 \
       /usr/bin/gather --images
      ```
   4. Run the following command to collect information about instance types from the cluster:
      ```terminal
      $ oc adm must-gather \
-      --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6 \
+      --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.9 \
       /usr/bin/gather --instancetypes
      ```
 
@@ -174,7 +174,7 @@ You can run a script by itself or with one or more compatible environment variab
 
 ```terminal title="must-gather syntax with optional parameters"
 $ oc adm must-gather \
-  --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.6 \
+  --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v4.22.9 \
   -- <environment_variable_1> <environment_variable_2> <script_name>
 ```
 

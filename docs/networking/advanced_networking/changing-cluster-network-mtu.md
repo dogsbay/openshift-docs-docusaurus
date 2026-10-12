@@ -123,7 +123,7 @@ To ensure network stability and performance in a hybrid environment where part o
 
 ### Prepare your hardware MTU configuration {#nw-cluster-mtu-preparing_changing-cluster-network-mtu}
 
-To maintain network stability during an MTU change, you must prepare the configuration for your underlying hardware using a method such as DHCP, PXE, or NetworkManager. This preparation ensures that all cluster nodes are ready to accept the new MTU value before you apply the changes to the cluster network.
+You must prepare the MTU configuration for your underlying hardware by using a method such as DHCP, PXE, or NetworkManager before you apply the changes to the cluster network.
 
 **Procedure**
 
@@ -345,7 +345,7 @@ Verify the machine configuration on your hosts to confirm that the maximum trans
 
 ### Apply the new hardware MTU value {#nw-cluster-mtu-applying-mtu-value_changing-cluster-network-mtu}
 
-To ensure consistent network communication across your cluster, you must apply the new hardware maximum transmission unit (MTU) value to your nodes. This process involves updating the underlying network interfaces and verifying that the Machine Config Operator successfully reboots and updates each node.
+You must apply the new hardware maximum transmission unit (MTU) value to your nodes by updating the underlying network interfaces and verifying that the Machine Config Operator successfully reboots each node.
 
 **Procedure**
 

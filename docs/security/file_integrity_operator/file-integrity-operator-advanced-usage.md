@@ -44,7 +44,9 @@ This pause and resume logic only applies to updates through the `MachineConfig` 
 
 ## Explore the daemon sets {#file-integrity-operator-exploring-daemon-sets_file-integrity-operator}
 
-Each `FileIntegrity` object represents a scan on several nodes. The scan itself is performed by pods managed by a daemon set. The config maps created by the AIDE daemon are not retained and are deleted after the File Integrity Operator processes them. However, on failure and error, the contents of these config maps are copied to the config map that the `FileIntegrityNodeStatus` object points to.
+Each `FileIntegrity` object represents a scan on several nodes. The scan itself is performed by pods managed by a daemon set. The config maps created by the AIDE daemon are not retained and are deleted after the File Integrity Operator processes them.
+
+However, on failure and error, the contents of these config maps are copied to the config map that the `FileIntegrityNodeStatus` object points to.
 
 **Procedure**
 

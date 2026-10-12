@@ -26,7 +26,7 @@ To ensure successful deployment of hosted control planes on Amazon Web Services 
   ```terminal
   $ oc get managedclusters local-cluster
   ```
-- You installed the [`aws` command-line interface (CLI)](https://aws.amazon.com/cli/).
+- You installed the "`aws` command-line interface (CLI)".
 - You installed the hosted control plane CLI, `hcp`.
 
 :::warning
@@ -37,6 +37,10 @@ To ensure successful deployment of hosted control planes on Amazon Web Services 
 - Do not create a hosted cluster in the namespace of a multicluster engine Operator managed cluster.
 
 :::
+
+**Additional resources**
+
+- [`aws` command-line interface (CLI)](https://aws.amazon.com/cli/)
 
 **Additional resources**
 
@@ -433,7 +437,11 @@ You can deploy `external-dns` alongside the HyperShift Operator in the `hypershi
 
 You can use external DNS on cloud environments only. For the other environments, you need to manually configure DNS and services.
 
-For more information about external DNS, see [external DNS](https://github.com/kubernetes-sigs/external-dns).
+For more information about external DNS, see "external DNS".
+
+**Additional resources**
+
+- [external DNS](https://github.com/kubernetes-sigs/external-dns)
 
 ### Setting up external DNS for hosted control planes {#hcp-aws-set-up-ext-dns_hcp-deploy-aws}
 

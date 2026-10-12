@@ -11,7 +11,9 @@ In OpenShift Container Platform version 4.22, you can install a cluster on Micro
 
 ## Azure government regions {#installation-azure-about-government-region_installing-azure-government-region}
 
-Microsoft Azure Government (MAG) is a cloud environment designed for US government agencies for US government agencies at the federal, state, and local level, as well as contractors, educational institutions, and other US customers that must run sensitive workloads on Azure. MAG is composed of government-only data center regions, all granted an Impact Level 5 Provisional Authorization.
+Microsoft Azure Government (MAG) is a cloud environment designed for US government agencies for US government agencies at the federal, state, and local level, as well as contractors, educational institutions, and other US customers that must run sensitive workloads on Azure.
+
+MAG is composed of government-only data center regions, all granted an Impact Level 5 Provisional Authorization.
 
 Deploying a OpenShift Container Platform cluster to a Microsoft Azure Government (MAG) region requires manually configuring the Azure Government cloud instance and region in the `install-config.yaml` file before you install the cluster. You must also update your service principal to reference the appropriate government environment.
 
@@ -45,7 +47,7 @@ To deploy a private cluster, you must:
 
 ### Private clusters in Azure {#private-clusters-about-azure_installing-azure-government-region}
 
-To create a private cluster on Microsoft Azure, you must provide an existing private VNet and subnets to host the cluster. The installation program must also be able to resolve the DNS records that the cluster requires. The installation program configures the Ingress Operator and API server for only internal traffic.
+To create a private cluster on Microsoft Azure, you must provide an existing private VNet and subnets to host the cluster. The installation program resolves required DNS records and configures the Ingress Operator and API server for internal traffic only.
 
 Depending how your network connects to the private VNET, you might need to use a DNS forwarder to resolve the cluster’s private DNS records. The cluster’s machines use `168.63.129.16` internally for DNS resolution. For more information, see "What is Azure Private DNS?" and "What is IP address 168.63.129.16?".
 
@@ -98,7 +100,9 @@ By deploying OpenShift Container Platform into an existing Azure VNet, you might
 
 ### Requirements for using your VNet {#installation-about-custom-azure-vnet-requirements_installing-azure-government-region}
 
-When you deploy a cluster by using an existing VNet, you must perform additional network configuration before you install the cluster. In installer-provisioned infrastructure clusters, the installation program usually creates the following components, but it does not create them when you install into an existing VNet:
+When you deploy a cluster by using an existing VNet, you must perform additional network configuration before you install the cluster.
+
+In installer-provisioned infrastructure clusters, the installation program usually creates the following components, but it does not create them when you install into an existing VNet:
 
 - Subnets
 - Route tables
@@ -285,7 +289,9 @@ Because cluster components do not modify the user-provided network security grou
 
 ### Division of permissions {#installation-about-custom-azure-permissions_installing-azure-government-region}
 
-Starting with OpenShift Container Platform 4.3, you do not need all of the permissions that are required for an installation program-provisioned infrastructure cluster to deploy a cluster. This change mimics the division of permissions that you might have at your company: some individuals can create different resources in your clouds than others. For example, you might be able to create application-specific items, like instances, storage, and load balancers, but not networking-related components such as VNets, subnet, or ingress rules.
+You do not need all of the permissions that are required for an installer-provisioned infrastructure cluster to deploy a cluster. This change mimics the division of permissions that you might have at your company: some individuals can create different resources in your clouds than others.
+
+For example, you might be able to create application-specific items, like instances, storage, and load balancers, but not networking-related components such as VNets, subnet, or ingress rules.
 
 The Azure credentials that you use when you create your cluster do not need the networking permissions that are required to make VNets and core networking components within the VNet, such as subnets, routing tables, internet gateways, NAT, and VPN. You still need permission to make the application resources that the machines within the cluster require, such as load balancers, security groups, storage accounts, and nodes.
 

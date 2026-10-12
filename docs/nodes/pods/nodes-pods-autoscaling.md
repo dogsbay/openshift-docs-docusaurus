@@ -339,7 +339,7 @@ You can use the web console to remove a horizontal pod autoscaler (HPA).
 
 ## Creating a horizontal pod autoscaler by using the CLI {#nodes-pods-autoscaling-creating-cpu_nodes-pods-autoscaling}
 
-By using the OpenShift Container Platform CLI, you can create a horizontal pod autoscaler (HPA) to automatically scale an existing `Deployment`, `DeploymentConfig`, `ReplicaSet`, `ReplicationController`, or `StatefulSet` object. The HPA scales the pods associated with that object to maintain the CPU or memory resources that you specify.
+You can create a horizontal pod autoscaler (HPA) to automatically scale an existing `Deployment`, `DeploymentConfig`, `ReplicaSet`, `ReplicationController`, or `StatefulSet` object to maintain specified CPU or memory usage.
 
 You can autoscale based on CPU or memory use by specifying a percentage of resource usage or a specific value, as described in the following sections.
 
@@ -435,7 +435,7 @@ Events:                <none>
 
 ### Create a horizontal pod autoscaler for a specific CPU value {#nodes-pods-autoscaling-creating-cpu-specific_nodes-pods-autoscaling}
 
-You can use the OpenShift Container Platform CLI to create a horizontal pod autoscaler (HPA) that automatically scales an existing object based on a specific CPU value by creating a `HorizontalPodAutoscaler` object with the target CPU and pod limits. The HPA scales the pods associated with that object to maintain the CPU use that you specify.
+You can create a `HorizontalPodAutoscaler` object with a target CPU value and pod limits to automatically scale an existing object. The HPA scales the pods associated with that object to maintain the CPU usage that you specify.
 
 :::note
 
