@@ -117,8 +117,8 @@ You can verify that you are updating to a viable release by running the `oc adm 
 
    :::warning
 
-   - **Control plane only update**: Ensure you point to the interim <y+1> release path
-   - **Y-stream update** - Ensure you use the correct <y.z> release that follows the Kubernetes [version skew policy](https://kubernetes.io/releases/version-skew-policy/).
+   - **Control plane only update**: Ensure you point to the interim &lt;y+1> release path
+   - **Y-stream update** - Ensure you use the correct &lt;y.z> release that follows the Kubernetes [version skew policy](https://kubernetes.io/releases/version-skew-policy/).
    - **Z-stream update** - Verify that there are no problems moving to that specific release
 
    :::
@@ -306,7 +306,7 @@ After completing the first y-stream update, you must update the y-stream control
 
 **Procedure**
 
-1. Verify that the <4.y.z> release that you selected is still listed as a good channel to move to:
+1. Verify that the &lt;4.y.z> release that you selected is still listed as a good channel to move to:
    ```terminal
    $ oc adm upgrade
    ```
@@ -485,13 +485,13 @@ After you have determined the full new release that you are moving to, you can r
   Requested update to 4.16.15
   ```
 
-## Monitoring the second part of a <y+1> cluster update {#update-monitoring-second-part-y-update_completing-the-update}
+## Monitoring the second part of a &lt;y+1> cluster update {#update-monitoring-second-part-y-update_completing-the-update}
 
-Monitor the second part of the cluster update to the <y+1> version.
+Monitor the second part of the cluster update to the &lt;y+1> version.
 
 **Procedure**
 
-- Monitor the progress of the second part of the <y+1> update. For example, to monitor the update from 4.15 to 4.16, run the following command:
+- Monitor the progress of the second part of the &lt;y+1> update. For example, to monitor the update from 4.15 to 4.16, run the following command:
   ```terminal
   $ watch "oc get clusterversion; echo; oc get co | head -1; oc get co | grep 4.15; oc get co | grep 4.16; echo; oc get no; echo; oc get po -A | grep -E -iv 'running|complete'"
   ```
@@ -603,11 +603,11 @@ During this part of the update, messages are reported that state cluster Operato
 
 You upgrade the worker nodes after you have updated the control plane by unpausing the relevant `mcp` groups you created. Unpausing the `mcp` group starts the upgrade process for the worker nodes in that group. Each of the worker nodes in the cluster reboot to upgrade to the new EUS, y-stream or z-stream version as required.
 
-In the case of control plane only upgrades, note that when a worker node is updated it will only require one reboot and will jump <y+2>-release versions. This is a feature that was added to decrease the amount of time that it takes to upgrade large bare-metal clusters.
+In the case of control plane only upgrades, note that when a worker node is updated it will only require one reboot and will jump &lt;y+2>-release versions. This is a feature that was added to decrease the amount of time that it takes to upgrade large bare-metal clusters.
 
 :::warning
 
-This is a potential holding point. You can have a cluster version that is fully supported to run in production with the control plane that is updated to a new EUS release while the worker nodes are at a <y-2>-release. This allows large clusters to upgrade in steps across several maintenance windows.
+This is a potential holding point. You can have a cluster version that is fully supported to run in production with the control plane that is updated to a new EUS release while the worker nodes are at a &lt;y-2>-release. This allows large clusters to upgrade in steps across several maintenance windows.
 
 :::
 
@@ -659,7 +659,7 @@ This is a potential holding point. You can have a cluster version that is fully 
 
    :::note
 
-   Each `MachineConfigPool` can be unpaused independently. Therefore, if a maintenance window runs out of time other MCPs do not need to be unpaused immediately. The cluster is supported to run with some worker nodes still at <y-2>-release version.
+   Each `MachineConfigPool` can be unpaused independently. Therefore, if a maintenance window runs out of time other MCPs do not need to be unpaused immediately. The cluster is supported to run with some worker nodes still at &lt;y-2>-release version.
 
    :::
 4. Unpause the required `mcp` group to begin the upgrade:

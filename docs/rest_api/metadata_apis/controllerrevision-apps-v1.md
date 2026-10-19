@@ -3,7 +3,7 @@ title: "ControllerRevision [apps/v1]"
 sidebar_position: 6
 ---
 
-# ControllerRevision [apps/v1] {#controllerrevision-apps-v1}
+# ControllerRevision \[apps/v1\] {#controllerrevision-apps-v1}
 
 <a id="controllerrevision-apps-v1"></a>
 
@@ -88,7 +88,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/controllerrevisions {#_apisappsv1namespaces_namespace_controllerrevisions}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/controllerrevisions {#_apisappsv1namespaces_namespace_controllerrevisions}
 
 HTTP method
 : ```
@@ -162,7 +162,7 @@ Description
 | 202 - Accepted | [`ControllerRevision`](/docs/rest_api/metadata_apis/controllerrevision-apps-v1#controllerrevision-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{namespace}/controllerrevisions {#_apisappsv1watchnamespaces_namespace_controllerrevisions}
+### /apis/apps/v1/watch/namespaces/&#123;namespace&#125;/controllerrevisions {#_apisappsv1watchnamespaces_namespace_controllerrevisions}
 
 HTTP method
 : ```
@@ -181,7 +181,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/controllerrevisions/{name} {#_apisappsv1namespaces_namespace_controllerrevisions_name}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/controllerrevisions/&#123;name&#125; {#_apisappsv1namespaces_namespace_controllerrevisions_name}
 
 **Global path parameters**
 
@@ -286,7 +286,7 @@ Description
 | 201 - Created | [`ControllerRevision`](/docs/rest_api/metadata_apis/controllerrevision-apps-v1#controllerrevision-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{namespace}/controllerrevisions/{name} {#_apisappsv1watchnamespaces_namespace_controllerrevisions_name}
+### /apis/apps/v1/watch/namespaces/&#123;namespace&#125;/controllerrevisions/&#123;name&#125; {#_apisappsv1watchnamespaces_namespace_controllerrevisions_name}
 
 **Global path parameters**
 

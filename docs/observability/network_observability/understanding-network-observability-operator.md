@@ -80,7 +80,7 @@ The Network Observability Operator provides the Flow Collector API. When a Flow 
    lokistack-query-frontend-85c6db4fbd-jm94f           1/1     Running   0          18h
    ```
 
-## Network Observablity Operator architecture {#network-observability-architecture_nw-network-observability-operator}
+## Network Observability Operator architecture {#network-observability-architecture_nw-network-observability-operator}
 
 Review the Network Observability Operator architecture, detailing how the `FlowCollector` resource manages the `eBPF agent`, which collects and enriches flows, sending the data to Loki for storage or Prometheus for metrics.
 

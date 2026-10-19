@@ -164,7 +164,7 @@ When you create a `VolumeGroupSnapshot` object, OpenShift Container Platform cre
 
 Individual volume snapshots are created according to how many PVCs were specified as part of the volume group snapshot.
 
-These individual volume snapshots are named with the following format: <hash of VolumeGroupSnaphotContentUUID+volumeHandle>:
+These individual volume snapshots are named with the following format: &lt;hash of VolumeGroupSnaphotContentUUID+volumeHandle>:
 
 ```yaml
 apiVersion: snapshot.storage.k8s.io/v1

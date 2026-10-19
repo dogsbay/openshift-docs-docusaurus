@@ -3,7 +3,7 @@ title: "FeatureGate [config.openshift.io/v1]"
 sidebar_position: 10
 ---
 
-# FeatureGate [config.openshift.io/v1] {#featuregate-config-openshift-io-v1}
+# FeatureGate \[config.openshift.io/v1\] {#featuregate-config-openshift-io-v1}
 
 <a id="featuregate-config-openshift-io-v1"></a>
 
@@ -42,7 +42,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `customNoUpgrade` | `` | customNoUpgrade allows the enabling or disabling of any feature. Turning this feature set on IS NOT SUPPORTED, CANNOT BE UNDONE, and PREVENTS UPGRADES. Because of its nature, this setting cannot be validated.  If you have any typos or accidentally apply invalid combinations your cluster may fail in an unrecoverable way.  featureSet must equal "CustomNoUpgrade" must be set to use this field. |
+| `customNoUpgrade` | &#96;&#96; | customNoUpgrade allows the enabling or disabling of any feature. Turning this feature set on IS NOT SUPPORTED, CANNOT BE UNDONE, and PREVENTS UPGRADES. Because of its nature, this setting cannot be validated.  If you have any typos or accidentally apply invalid combinations your cluster may fail in an unrecoverable way.  featureSet must equal "CustomNoUpgrade" must be set to use this field. |
 | `featureSet` | `string` | featureSet changes the list of features in the cluster.  The default is empty.  Be very careful adjusting this setting. Turning on or off features may cause irreversible changes in your cluster which cannot be undone. |
 
 ### .status {#_status}
@@ -72,7 +72,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -93,7 +93,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -108,7 +108,7 @@ Type
   `array`
   ```
 
-### .status.featureGates[] {#_statusfeaturegates}
+### .status.featureGates\[\] {#_statusfeaturegates}
 
 Description
 
@@ -128,7 +128,7 @@ Required
 | `enabled[]` | `object` |  |
 | `version` | `string` | version matches the version provided by the ClusterVersion and in the ClusterOperator.Status.Versions field. |
 
-### .status.featureGates[].disabled {#_statusfeaturegatesdisabled}
+### .status.featureGates\[\].disabled {#_statusfeaturegatesdisabled}
 
 Description
 : disabled is a list of all feature gates that are disabled in the cluster for the named version.
@@ -138,7 +138,7 @@ Type
   `array`
   ```
 
-### .status.featureGates[].disabled[] {#_statusfeaturegatesdisabled}
+### .status.featureGates\[\].disabled\[\] {#_statusfeaturegatesdisabled}
 
 Description
 
@@ -154,7 +154,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the name of the FeatureGate. |
 
-### .status.featureGates[].enabled {#_statusfeaturegatesenabled}
+### .status.featureGates\[\].enabled {#_statusfeaturegatesenabled}
 
 Description
 : enabled is a list of all feature gates that are enabled in the cluster for the named version.
@@ -164,7 +164,7 @@ Type
   `array`
   ```
 
-### .status.featureGates[].enabled[] {#_statusfeaturegatesenabled}
+### .status.featureGates\[\].enabled\[\] {#_statusfeaturegatesenabled}
 
 Description
 
@@ -266,7 +266,7 @@ Description
 | 202 - Accepted | [`FeatureGate`](/docs/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/featuregates/{name} {#_apisconfigopenshiftiov1featuregates_name}
+### /apis/config.openshift.io/v1/featuregates/&#123;name&#125; {#_apisconfigopenshiftiov1featuregates_name}
 
 **Global path parameters**
 
@@ -370,7 +370,7 @@ Description
 | 201 - Created | [`FeatureGate`](/docs/rest_api/config_apis/featuregate-config-openshift-io-v1#featuregate-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/featuregates/{name}/status {#_apisconfigopenshiftiov1featuregates_name_status}
+### /apis/config.openshift.io/v1/featuregates/&#123;name&#125;/status {#_apisconfigopenshiftiov1featuregates_name_status}
 
 **Global path parameters**
 

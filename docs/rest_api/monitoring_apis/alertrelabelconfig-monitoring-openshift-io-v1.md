@@ -3,7 +3,7 @@ title: "AlertRelabelConfig [monitoring.openshift.io/v1]"
 sidebar_position: 4
 ---
 
-# AlertRelabelConfig [monitoring.openshift.io/v1] {#alertrelabelconfig-monitoring-openshift-io-v1}
+# AlertRelabelConfig \[monitoring.openshift.io/v1\] {#alertrelabelconfig-monitoring-openshift-io-v1}
 
 <a id="alertrelabelconfig-monitoring-openshift-io-v1"></a>
 
@@ -58,7 +58,7 @@ Type
   `array`
   ```
 
-### .spec.configs[] {#_specconfigs}
+### .spec.configs\[\] {#_specconfigs}
 
 Description
 : RelabelConfig allows dynamic rewriting of label sets for alerts. See Prometheus documentation:
@@ -75,8 +75,8 @@ Type
 | --- | --- | --- |
 | `action` | `string` | action to perform based on regex matching. Must be one of: 'Replace', 'Keep', 'Drop', 'HashMod', 'LabelMap', 'LabelDrop', or 'LabelKeep'. Default is: 'Replace' |
 | `modulus` | `integer` | modulus to take of the hash of the source label values.  This can be combined with the 'HashMod' action to set 'target_label' to the 'modulus' of a hash of the concatenated 'source_labels'. This is only valid if sourceLabels is not empty and action is not 'LabelKeep' or 'LabelDrop'. |
-| `regex` | `string` | regex against which the extracted value is matched. Default is: '(.*)' regex is required for all actions except 'HashMod' |
-| `replacement` | `string` | replacement value against which a regex replace is performed if the regular expression matches. This is required if the action is 'Replace' or 'LabelMap' and forbidden for actions 'LabelKeep' and 'LabelDrop'. Regex capture groups are available. Default is: '$1' |
+| `regex` | `string` | regex against which the extracted value is matched. Default is: '(.\*)' regex is required for all actions except 'HashMod' |
+| `replacement` | `string` | replacement value against which a regex replace is performed if the regular expression matches. This is required if the action is 'Replace' or 'LabelMap' and forbidden for actions 'LabelKeep' and 'LabelDrop'. Regex capture groups are available. Default is: '&#36;1' |
 | `separator` | `string` | separator placed between concatenated source label values. When omitted, Prometheus will use its default value of ';'. |
 | `sourceLabels` | `array (string)` | sourceLabels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the 'Replace', 'Keep', and 'Drop' actions. Not allowed for actions 'LabelKeep' and 'LabelDrop'. |
 | `targetLabel` | `string` | targetLabel to which the resulting value is written in a 'Replace' action. It is required for 'Replace' and 'HashMod' actions and forbidden for actions 'LabelKeep' and 'LabelDrop'. Regex capture groups are available. |
@@ -106,7 +106,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -127,7 +127,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -171,7 +171,7 @@ Description
 | 200 - OK | [`AlertRelabelConfigList`](/docs/rest_api/objects#io-openshift-monitoring-v1-AlertRelabelConfigList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.openshift.io/v1/namespaces/{namespace}/alertrelabelconfigs {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs}
+### /apis/monitoring.openshift.io/v1/namespaces/&#123;namespace&#125;/alertrelabelconfigs {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs}
 
 HTTP method
 : ```
@@ -239,7 +239,7 @@ Description
 | 202 - Accepted | [`AlertRelabelConfig`](/docs/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.openshift.io/v1/namespaces/{namespace}/alertrelabelconfigs/{name} {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs_name}
+### /apis/monitoring.openshift.io/v1/namespaces/&#123;namespace&#125;/alertrelabelconfigs/&#123;name&#125; {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs_name}
 
 **Global path parameters**
 
@@ -343,7 +343,7 @@ Description
 | 201 - Created | [`AlertRelabelConfig`](/docs/rest_api/monitoring_apis/alertrelabelconfig-monitoring-openshift-io-v1#alertrelabelconfig-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.openshift.io/v1/namespaces/{namespace}/alertrelabelconfigs/{name}/status {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs_name_status}
+### /apis/monitoring.openshift.io/v1/namespaces/&#123;namespace&#125;/alertrelabelconfigs/&#123;name&#125;/status {#_apismonitoringopenshiftiov1namespaces_namespace_alertrelabelconfigs_name_status}
 
 **Global path parameters**
 

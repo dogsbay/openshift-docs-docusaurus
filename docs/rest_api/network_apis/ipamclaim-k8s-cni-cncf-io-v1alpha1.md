@@ -3,7 +3,7 @@ title: "IPAMClaim [k8s.cni.cncf.io/v1alpha1]"
 sidebar_position: 22
 ---
 
-# IPAMClaim [k8s.cni.cncf.io/v1alpha1] {#ipamclaim-k8s-cni-cncf-io-v1alpha1}
+# IPAMClaim \[k8s.cni.cncf.io/v1alpha1\] {#ipamclaim-k8s-cni-cncf-io-v1alpha1}
 
 <a id="ipamclaim-k8s-cni-cncf-io-v1alpha1"></a>
 
@@ -73,7 +73,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -94,7 +94,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -152,7 +152,7 @@ Description
 | 200 - OK | [`IPAMClaimList`](/docs/rest_api/objects#io-cncf-cni-k8s-v1alpha1-IPAMClaimList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/{namespace}/ipamclaims {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims}
+### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/&#123;namespace&#125;/ipamclaims {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims}
 
 HTTP method
 : ```
@@ -220,7 +220,7 @@ Description
 | 202 - Accepted | [`IPAMClaim`](/docs/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/{namespace}/ipamclaims/{name} {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims_name}
+### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/&#123;namespace&#125;/ipamclaims/&#123;name&#125; {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims_name}
 
 **Global path parameters**
 
@@ -324,7 +324,7 @@ Description
 | 201 - Created | [`IPAMClaim`](/docs/rest_api/network_apis/ipamclaim-k8s-cni-cncf-io-v1alpha1#ipamclaim-k8s-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/{namespace}/ipamclaims/{name}/status {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims_name_status}
+### /apis/k8s.cni.cncf.io/v1alpha1/namespaces/&#123;namespace&#125;/ipamclaims/&#123;name&#125;/status {#_apisk8scnicncfiov1alpha1namespaces_namespace_ipamclaims_name_status}
 
 **Global path parameters**
 

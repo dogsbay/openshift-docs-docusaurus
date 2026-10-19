@@ -240,7 +240,7 @@ To deploy a bare-metal host, you must create a `BareMetalHost` resource.
    $ vim bmaas-<name>-bmh.yaml
    ```
 
-   **<name>**
+   **&lt;name>**
 
    ```
      Replace `<name>` with the name of the bare-metal host.
@@ -260,13 +260,13 @@ To deploy a bare-metal host, you must create a `BareMetalHost` resource.
        credentialsName: bmaas-<num>-bmc-secret
    ```
 
-   **<mac_addr>**
+   **&lt;mac_addr>**
 
    ```
      Replace `<mac_addr>` with the MAC address of the first NIC on the bare-metal host.
    ```
 
-   **<address>**
+   **&lt;address>**
 
    ```
      Replace `<address>` with IP address or FQDN of the host.

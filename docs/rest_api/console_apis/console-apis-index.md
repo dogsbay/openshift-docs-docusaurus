@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="console-apis"></a>
 
-## ConsoleCLIDownload [console.openshift.io/v1] {#_consoleclidownload_consoleopenshiftiov1}
+## ConsoleCLIDownload \[console.openshift.io/v1\] {#_consoleclidownload_consoleopenshiftiov1}
 
 Description
 : ConsoleCLIDownload is an extension for configuring openshift web console command line interface (CLI) downloads.
@@ -19,7 +19,7 @@ Type
   `object`
   ```
 
-## ConsoleExternalLogLink [console.openshift.io/v1] {#_consoleexternalloglink_consoleopenshiftiov1}
+## ConsoleExternalLogLink \[console.openshift.io/v1\] {#_consoleexternalloglink_consoleopenshiftiov1}
 
 Description
 : ConsoleExternalLogLink is an extension for customizing OpenShift web console log links.
@@ -31,7 +31,7 @@ Type
   `object`
   ```
 
-## ConsoleLink [console.openshift.io/v1] {#_consolelink_consoleopenshiftiov1}
+## ConsoleLink \[console.openshift.io/v1\] {#_consolelink_consoleopenshiftiov1}
 
 Description
 : ConsoleLink is an extension for customizing OpenShift web console links.
@@ -43,7 +43,7 @@ Type
   `object`
   ```
 
-## ConsoleNotification [console.openshift.io/v1] {#_consolenotification_consoleopenshiftiov1}
+## ConsoleNotification \[console.openshift.io/v1\] {#_consolenotification_consoleopenshiftiov1}
 
 Description
 : ConsoleNotification is the extension for configuring openshift web console notifications.
@@ -55,7 +55,7 @@ Type
   `object`
   ```
 
-## ConsolePlugin [console.openshift.io/v1] {#_consoleplugin_consoleopenshiftiov1}
+## ConsolePlugin \[console.openshift.io/v1\] {#_consoleplugin_consoleopenshiftiov1}
 
 Description
 : ConsolePlugin is an extension for customizing OpenShift web console by dynamically loading code from another service running on the cluster.
@@ -67,7 +67,7 @@ Type
   `object`
   ```
 
-## ConsoleQuickStart [console.openshift.io/v1] {#_consolequickstart_consoleopenshiftiov1}
+## ConsoleQuickStart \[console.openshift.io/v1\] {#_consolequickstart_consoleopenshiftiov1}
 
 Description
 : ConsoleQuickStart is an extension for guiding user through various workflows in the OpenShift web console.
@@ -79,7 +79,7 @@ Type
   `object`
   ```
 
-## ConsoleSample [console.openshift.io/v1] {#_consolesample_consoleopenshiftiov1}
+## ConsoleSample \[console.openshift.io/v1\] {#_consolesample_consoleopenshiftiov1}
 
 Description
 : ConsoleSample is an extension to customizing OpenShift web console by adding samples.
@@ -91,7 +91,7 @@ Type
   `object`
   ```
 
-## ConsoleYAMLSample [console.openshift.io/v1] {#_consoleyamlsample_consoleopenshiftiov1}
+## ConsoleYAMLSample \[console.openshift.io/v1\] {#_consoleyamlsample_consoleopenshiftiov1}
 
 Description
 : ConsoleYAMLSample is an extension for customizing OpenShift web console YAML samples.

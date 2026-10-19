@@ -66,7 +66,7 @@ The **Overview** tab provides information about how the cluster was configured:
 - **Version** is the OpenShift version that is installed on the cluster. If there is an update available, you can update from this field.
 - **Created at** shows the date and time that the cluster was created.
 - **Owner** identifies who created the cluster and has owner rights.
-- **Delete Protection: <status>** shows whether or not the cluster’s delete protection is enabled.
+- **Delete Protection: &lt;status>** shows whether or not the cluster’s delete protection is enabled.
 - **Total vCPU** shows the total available virtual CPU for this cluster.
 - **Total memory** shows the total available memory for this cluster.
 - **Infrastructure AWS account** displays the AWS account that is responsible for cluster creation and maintenance.

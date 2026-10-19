@@ -3,7 +3,7 @@ title: "VolumeSnapshotContent [snapshot.storage.k8s.io/v1]"
 sidebar_position: 15
 ---
 
-# VolumeSnapshotContent [snapshot.storage.k8s.io/v1] {#volumesnapshotcontent-snapshot-storage-k8s-io-v1}
+# VolumeSnapshotContent \[snapshot.storage.k8s.io/v1\] {#volumesnapshotcontent-snapshot-storage-k8s-io-v1}
 
 <a id="volumesnapshotcontent-snapshot-storage-k8s-io-v1"></a>
 
@@ -81,7 +81,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. TODO: this design is not final and this field is subject to change in the future. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -208,7 +208,7 @@ Description
 | 202 - Accepted | [`VolumeSnapshotContent`](/docs/rest_api/storage_apis/volumesnapshotcontent-snapshot-storage-k8s-io-v1#volumesnapshotcontent-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{name} {#_apissnapshotstoragek8siov1volumesnapshotcontents_name}
+### /apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/&#123;name&#125; {#_apissnapshotstoragek8siov1volumesnapshotcontents_name}
 
 **Global path parameters**
 
@@ -312,7 +312,7 @@ Description
 | 201 - Created | [`VolumeSnapshotContent`](/docs/rest_api/storage_apis/volumesnapshotcontent-snapshot-storage-k8s-io-v1#volumesnapshotcontent-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/{name}/status {#_apissnapshotstoragek8siov1volumesnapshotcontents_name_status}
+### /apis/snapshot.storage.k8s.io/v1/volumesnapshotcontents/&#123;name&#125;/status {#_apissnapshotstoragek8siov1volumesnapshotcontents_name_status}
 
 **Global path parameters**
 

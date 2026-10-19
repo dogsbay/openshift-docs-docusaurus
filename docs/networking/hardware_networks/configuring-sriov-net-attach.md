@@ -1171,7 +1171,7 @@ To exclude advertising the SR-IOV network resource’s Non-Uniform Memory Access
    test-deployment-sriov-76cbbf4756-k9v72   1/1     Running   0          45h
    ```
 2. Open a debug session with the target pod to verify that the SR-IOV network resources are deployed to a different node than the memory and CPU resources.
-   1. Open a debug session with the pod by running the following command, replacing <pod_name> with the target pod name.
+   1. Open a debug session with the pod by running the following command, replacing &lt;pod_name> with the target pod name.
       ```terminal
       $ oc debug pod/<pod_name>
       ```

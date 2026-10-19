@@ -3,9 +3,9 @@ title: Network observability per-tenant model
 sidebar_position: 7
 ---
 
-# Network observability per-tenant model {#network-observability-per-tenant-model_{context}}
+# Network observability per-tenant model {#network-observability-per-tenant-model_-context-}
 
-<a id="network-observability-per-tenant-model_{context}"></a>
+<a id="network-observability-per-tenant-model_-context-"></a>
 
 Use the `FlowCollectorSlice` resource to delegate network traffic analysis management to project administrators while maintaining global cluster governance.
 
@@ -153,7 +153,7 @@ Disable slice-based filtering in the Network Observability Operator to resume gl
 3. Save the changes.
    Flow collection resumes for all traffic, and existing `FlowCollectorSlice` resources remain available for future use.
 
-## Configure the FlowCollectorSlice as a project administrator {#network-observability-per-tenant-flowcollector-slice-configure-project-administrator_network-observability-per-tenant-configuration}
+## Configure FlowCollectorSlice as a project administrator {#network-observability-per-tenant-flowcollector-slice-configure-project-administrator_network-observability-per-tenant-configuration}
 
 Project administrators can manage flow collection and data enrichment within their own namespaces by configuring a `FlowCollectorSlice` custom resource for decentralized network traffic analysis.
 
@@ -188,7 +188,9 @@ Project administrators can manage flow collection and data enrichment within the
 1. In the OpenShift Container Platform console, navigate to **Observe** → **Network Traffic**.
 2. Ensure flows to `192.168.50.0/24` subnet are observed with the `EXT:Database` label.
 
-## FlowCollectorSlice [flows.netobserv.io/v1alpha1] {#flowcollectorslice-flows-netobserv-io-v1alpha1_network-observability-per-tenant-configuration}
+## FlowCollectorSlice \[flows.netobserv.io/v1alpha1\] {#flowcollectorslice-flows-netobserv-io-v1alpha1_network-observability-per-tenant-configuration}
+
+`FlowCollectorSlice` is the API allowing to decentralize some of the `FlowCollector` configuration per namespace tenant.
 
 Description
 : FlowCollectorSlice is the API allowing to decentralize some of the FlowCollector configuration per namespace tenant.
@@ -242,7 +244,7 @@ Type
   `array`
   ```
 
-### .spec.subnetLabels[] {#_specsubnetlabels}
+### .spec.subnetLabels\[\] {#_specsubnetlabels}
 
 Description
 : SubnetLabel allows to label subnets and IPs, such as to identify cluster-external workloads or web services.

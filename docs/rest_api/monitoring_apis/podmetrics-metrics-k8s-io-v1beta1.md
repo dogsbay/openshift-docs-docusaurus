@@ -3,7 +3,7 @@ title: "PodMetrics [metrics.k8s.io/v1beta1]"
 sidebar_position: 14
 ---
 
-# PodMetrics [metrics.k8s.io/v1beta1] {#podmetrics-metrics-k8s-io-v1beta1}
+# PodMetrics \[metrics.k8s.io/v1beta1\] {#podmetrics-metrics-k8s-io-v1beta1}
 
 <a id="podmetrics-metrics-k8s-io-v1beta1"></a>
 
@@ -29,7 +29,7 @@ Required
 | `containers[]` | `object` | ContainerMetrics sets resource usage metrics of a container. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `timestamp` | [`Time`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The following fields define time interval from which metrics were collected from the interval [Timestamp-Window, Timestamp]. |
+| `timestamp` | [`Time`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | The following fields define time interval from which metrics were collected from the interval \[Timestamp-Window, Timestamp\]. |
 | `window` | [`Duration`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-Duration) |  |
 
 ### .containers {#_containers}
@@ -42,7 +42,7 @@ Type
   `array`
   ```
 
-### .containers[] {#_containers}
+### .containers\[\] {#_containers}
 
 Description
 : ContainerMetrics sets resource usage metrics of a container.
@@ -90,7 +90,7 @@ Description
 | --- | --- |
 | 200 - OK | [`PodMetricsList`](/docs/rest_api/objects#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList) schema |
 
-### /apis/metrics.k8s.io/v1beta1/namespaces/{namespace}/pods {#_apismetricsk8siov1beta1namespaces_namespace_pods}
+### /apis/metrics.k8s.io/v1beta1/namespaces/&#123;namespace&#125;/pods {#_apismetricsk8siov1beta1namespaces_namespace_pods}
 
 HTTP method
 : ```
@@ -108,7 +108,7 @@ Description
 | --- | --- |
 | 200 - OK | [`PodMetricsList`](/docs/rest_api/objects#io-k8s-metrics-pkg-apis-metrics-v1beta1-PodMetricsList) schema |
 
-### /apis/metrics.k8s.io/v1beta1/namespaces/{namespace}/pods/{name} {#_apismetricsk8siov1beta1namespaces_namespace_pods_name}
+### /apis/metrics.k8s.io/v1beta1/namespaces/&#123;namespace&#125;/pods/&#123;name&#125; {#_apismetricsk8siov1beta1namespaces_namespace_pods_name}
 
 **Global path parameters**
 

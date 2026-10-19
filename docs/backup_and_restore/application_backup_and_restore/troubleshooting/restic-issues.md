@@ -9,7 +9,7 @@ sidebar_position: 9
 
 Troubleshoot common Restic issues during application backups and restores to maintain reliable data protection. Common Restic issues include NFS permission errors, backup custom resource re-creation failures, and restore failures caused by pod security admission policy changes.
 
-## Troubleshooting Restic permission errors for NFS data volumes {#restic-permission-error-for-nfs-data-volumes-with-root-squash-enabled_restic-issues}
+## Troubleshoot Restic permission errors for NFS data volumes {#restic-permission-error-for-nfs-data-volumes-with-root-squash-enabled_restic-issues}
 
 Create a supplemental group and add its group ID to the `DataProtectionApplication` customer resource CR to resolve `Restic` permission errors on NFS data volumes with `root_squash` enabled. This helps you to restore backup functionality for NFS volumes without disabling root squash.
 
@@ -46,7 +46,7 @@ controller=pod-volume-backup error="fork/exec/usr/bin/restic: permission denied"
    </dl>
 4. Wait for the `Restic` pods to restart so that the changes are applied.
 
-## Troubleshooting Restic Backup CR issue that cannot be re-created after bucket is emptied {#restic-backup-cr-cannot-be-recreated-after-bucket-is-emptied_restic-issues}
+## Troubleshoot Restic Backup CR issue that cannot be re-created after bucket is emptied {#restic-backup-cr-cannot-be-recreated-after-bucket-is-emptied_restic-issues}
 
 Resolve the `Backup` custom resource (CR) re-creation failure that occurs after you empty the object storage bucket. This failure occurs because Velero does not automatically re-create the Restic repository from the `ResticRepository` manifest.
 
@@ -84,11 +84,11 @@ stderr=Fatal: unable to open config file: Stat: The specified key does not exist
    logSource="pkg/backup/backup.go:435" name=mysql-7d99fc949-qbkds
   ```
 
-## Troubleshooting restic restore partially failed issue on {ocp} 4.14 onward due to changed PSA policy {#oadp-restic-restore-failing-psa-policy_restic-issues}
+## Troubleshoot restic restore partially failed issue on &#123;ocp&#125; 4.14 onward due to changed PSA policy {#oadp-restic-restore-failing-psa-policy_restic-issues}
 
-Resolve a partial failure of Restic restore on {ocp} 4.14 onward caused by Pod Security Admission (PSA) policy enforcement by adjusting the `restore-resource-priorities` field in your `DataProtectionApplication` (DPA) custom resource (CR). By doing so, you ensure that `SecurityContextConstraints` (SCC) resources are restored before pods. This helps you to complete restore operations successfully when PSA policies deny pod admission due to Velero resource restore order.
+Resolve a partial failure of Restic restore on &#123;ocp&#125; 4.14 onward caused by Pod Security Admission (PSA) policy enforcement by adjusting the `restore-resource-priorities` field in your `DataProtectionApplication` (DPA) custom resource (CR). By doing so, you ensure that `SecurityContextConstraints` (SCC) resources are restored before pods. This helps you to complete restore operations successfully when PSA policies deny pod admission due to Velero resource restore order.
 
-From 4.14 onward, {ocp} enforces a PSA policy that can hinder the readiness of pods during a Restic restore process. If an SCC resource is not found when a pod is created, and the PSA policy on the pod is not set up to meet the required standards, pod admission is denied.
+From 4.14 onward, &#123;ocp&#125; enforces a PSA policy that can hinder the readiness of pods during a Restic restore process. If an SCC resource is not found when a pod is created, and the PSA policy on the pod is not set up to meet the required standards, pod admission is denied.
 
 Review the following example error:
 

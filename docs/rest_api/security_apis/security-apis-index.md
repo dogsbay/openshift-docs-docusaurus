@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="security-apis"></a>
 
-## CertificateSigningRequest [certificates.k8s.io/v1] {#_certificatesigningrequest_certificatesk8siov1}
+## CertificateSigningRequest \[certificates.k8s.io/v1\] {#_certificatesigningrequest_certificatesk8siov1}
 
 Description
 : CertificateSigningRequest objects provide a mechanism to obtain x509 certificates by submitting a certificate signing request, and having it asynchronously approved and issued.
@@ -24,7 +24,7 @@ Type
   `object`
   ```
 
-## CredentialsRequest [cloudcredential.openshift.io/v1] {#_credentialsrequest_cloudcredentialopenshiftiov1}
+## CredentialsRequest \[cloudcredential.openshift.io/v1\] {#_credentialsrequest_cloudcredentialopenshiftiov1}
 
 Description
 : CredentialsRequest is the Schema for the credentialsrequests API
@@ -34,7 +34,7 @@ Type
   `object`
   ```
 
-## PodSecurityPolicyReview [security.openshift.io/v1] {#_podsecuritypolicyreview_securityopenshiftiov1}
+## PodSecurityPolicyReview \[security.openshift.io/v1\] {#_podsecuritypolicyreview_securityopenshiftiov1}
 
 Description
 : PodSecurityPolicyReview checks which service accounts (not users, since that would be cluster-wide) can create the `PodTemplateSpec` in question.
@@ -46,7 +46,7 @@ Type
   `object`
   ```
 
-## PodSecurityPolicySelfSubjectReview [security.openshift.io/v1] {#_podsecuritypolicyselfsubjectreview_securityopenshiftiov1}
+## PodSecurityPolicySelfSubjectReview \[security.openshift.io/v1\] {#_podsecuritypolicyselfsubjectreview_securityopenshiftiov1}
 
 Description
 : PodSecurityPolicySelfSubjectReview checks whether this user/SA tuple can create the PodTemplateSpec
@@ -58,7 +58,7 @@ Type
   `object`
   ```
 
-## PodSecurityPolicySubjectReview [security.openshift.io/v1] {#_podsecuritypolicysubjectreview_securityopenshiftiov1}
+## PodSecurityPolicySubjectReview \[security.openshift.io/v1\] {#_podsecuritypolicysubjectreview_securityopenshiftiov1}
 
 Description
 : PodSecurityPolicySubjectReview checks whether a particular user/SA tuple can create the PodTemplateSpec.
@@ -70,7 +70,7 @@ Type
   `object`
   ```
 
-## RangeAllocation [security.openshift.io/v1] {#_rangeallocation_securityopenshiftiov1}
+## RangeAllocation \[security.openshift.io/v1\] {#_rangeallocation_securityopenshiftiov1}
 
 Description
 : RangeAllocation is used so we can easily expose a RangeAllocation typed for security group
@@ -82,7 +82,7 @@ Type
   `object`
   ```
 
-## Secret [v1] {#_secret_v1}
+## Secret \[v1\] {#_secret_v1}
 
 Description
 : Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes.
@@ -92,7 +92,7 @@ Type
   `object`
   ```
 
-## SecurityContextConstraints [security.openshift.io/v1] {#_securitycontextconstraints_securityopenshiftiov1}
+## SecurityContextConstraints \[security.openshift.io/v1\] {#_securitycontextconstraints_securityopenshiftiov1}
 
 Description
 : SecurityContextConstraints governs the ability to make requests that affect the SecurityContext that will be applied to a container. For historical reasons SCC was exposed under the core Kubernetes API group. That exposure is deprecated and will be removed in a future release - users should instead use the security.openshift.io group to manage SecurityContextConstraints.
@@ -104,10 +104,10 @@ Type
   `object`
   ```
 
-## ServiceAccount [v1] {#_serviceaccount_v1}
+## ServiceAccount \[v1\] {#_serviceaccount_v1}
 
 Description
-: ServiceAccount binds together: * a name, understood by users, and perhaps by peripheral systems, for an identity * a principal that can be authenticated and authorized * a set of secrets
+: ServiceAccount binds together: \* a name, understood by users, and perhaps by peripheral systems, for an identity \* a principal that can be authenticated and authorized \* a set of secrets
 
 Type
 : ```

@@ -3,7 +3,7 @@ title: "CSIDriver [storage.k8s.io/v1]"
 sidebar_position: 2
 ---
 
-# CSIDriver [storage.k8s.io/v1] {#csidriver-storage-k8s-io-v1}
+# CSIDriver \[storage.k8s.io/v1\] {#csidriver-storage-k8s-io-v1}
 
 <a id="csidriver-storage-k8s-io-v1"></a>
 
@@ -24,7 +24,7 @@ Required
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
-| `metadata` | [`ObjectMeta`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata. metadata.Name indicates the name of the CSI driver that this object refers to; it MUST be the same name returned by the CSI GetPluginName() call for that driver. The driver name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), dots (.), and alphanumerics between. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object metadata. metadata.Name indicates the name of the CSI driver that this object refers to; it MUST be the same name returned by the CSI GetPluginName() call for that driver. The driver name must be 63 characters or less, beginning and ending with an alphanumeric character (\[a-z0-9A-Z\]) with dashes (-), dots (.), and alphanumerics between. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | CSIDriverSpec is the specification of a CSIDriver. |
 
 ### .spec {#_spec}
@@ -46,15 +46,15 @@ Type
 | `requiresRepublish` | `boolean` | requiresRepublish indicates the CSI driver wants `NodePublishVolume` being periodically called to reflect any possible change in the mounted volume. This field defaults to false.<br>Note: After a successful initial NodePublishVolume call, subsequent calls to NodePublishVolume should only update the contents of the volume. New mount points will not be seen by a running container. |
 | `seLinuxMount` | `boolean` | seLinuxMount specifies if the CSI driver supports "-o context" mount option.<br>When "true", the CSI driver must ensure that all volumes provided by this CSI driver can be mounted separately with different `-o context` options. This is typical for storage backends that provide volumes as filesystems on block devices or as independent shared volumes. Kubernetes will call NodeStage / NodePublish with "-o context=xyz" mount option when mounting a ReadWriteOncePod volume used in Pod that has explicitly set SELinux context. In the future, it may be expanded to other volume AccessModes. In any case, Kubernetes will ensure that the volume is mounted only with a single SELinux context.<br>When "false", Kubernetes won’t pass any special SELinux mount options to the driver. This is typical for volumes that represent subdirectories of a bigger shared filesystem.<br>Default is "false". |
 | `serviceAccountTokenInSecrets` | `boolean` | serviceAccountTokenInSecrets is an opt-in for CSI drivers to indicate that service account tokens should be passed via the Secrets field in NodePublishVolumeRequest instead of the VolumeContext field. The CSI specification provides a dedicated Secrets field for sensitive information like tokens, which is the appropriate mechanism for handling credentials. This addresses security concerns where sensitive tokens were being logged as part of volume context.<br>When "true", kubelet will pass the tokens only in the Secrets field with the key "csi.storage.k8s.io/serviceAccount.tokens". The CSI driver must be updated to read tokens from the Secrets field instead of VolumeContext.<br>When "false" or not set, kubelet will pass the tokens in VolumeContext with the key "csi.storage.k8s.io/serviceAccount.tokens" (existing behavior). This maintains backward compatibility with existing CSI drivers.<br>This field can only be set when TokenRequests is configured. The API server will reject CSIDriver specs that set this field without TokenRequests.<br>Default behavior if unset is to pass tokens in the VolumeContext field. |
-| `storageCapacity` | `boolean` | storageCapacity indicates that the CSI volume driver wants pod scheduling to consider the storage capacity that the driver deployment will report by creating CSIStorageCapacity objects with capacity information, if set to true.<br>The check can be enabled immediately when deploying a driver. In that case, provisioning new volumes with late binding will pause until the driver deployment has published some suitable CSIStorageCapacity object.<br>Alternatively, the driver can be deployed with the field unset or false and it can be flipped later when storage capacity information has been published.<br>This field was immutable in Kubernetes <= 1.22 and now is mutable. |
-| `tokenRequests` | `array` | tokenRequests indicates the CSI driver needs pods' service account tokens it is mounting volume for to do necessary authentication. Kubelet will pass the tokens in VolumeContext in the CSI NodePublishVolume calls. The CSI driver should parse and validate the following VolumeContext: "csi.storage.k8s.io/serviceAccount.tokens": {   "<audience>": {     "token": <token>,     "expirationTimestamp": <expiration timestamp in RFC3339>,   },   ... }<br>Note: Audience in each TokenRequest should be different and at most one token is empty string. To receive a new token after expiry, RequiresRepublish can be used to trigger NodePublishVolume periodically. |
+| `storageCapacity` | `boolean` | storageCapacity indicates that the CSI volume driver wants pod scheduling to consider the storage capacity that the driver deployment will report by creating CSIStorageCapacity objects with capacity information, if set to true.<br>The check can be enabled immediately when deploying a driver. In that case, provisioning new volumes with late binding will pause until the driver deployment has published some suitable CSIStorageCapacity object.<br>Alternatively, the driver can be deployed with the field unset or false and it can be flipped later when storage capacity information has been published.<br>This field was immutable in Kubernetes &lt;= 1.22 and now is mutable. |
+| `tokenRequests` | `array` | tokenRequests indicates the CSI driver needs pods' service account tokens it is mounting volume for to do necessary authentication. Kubelet will pass the tokens in VolumeContext in the CSI NodePublishVolume calls. The CSI driver should parse and validate the following VolumeContext: "csi.storage.k8s.io/serviceAccount.tokens": &#123;   "&lt;audience>": &#123;     "token": &lt;token>,     "expirationTimestamp": &lt;expiration timestamp in RFC3339>,   &#125;,   ... &#125;<br>Note: Audience in each TokenRequest should be different and at most one token is empty string. To receive a new token after expiry, RequiresRepublish can be used to trigger NodePublishVolume periodically. |
 | `tokenRequests[]` | `object` | TokenRequest contains parameters of a service account token. |
 | `volumeLifecycleModes` | `array (string)` | volumeLifecycleModes defines what kind of volumes this CSI volume driver supports. The default if the list is empty is "Persistent", which is the usage defined by the CSI specification and implemented in Kubernetes via the usual PV/PVC mechanism.<br>The other mode is "Ephemeral". In this mode, volumes are defined inline inside the pod spec with CSIVolumeSource and their lifecycle is tied to the lifecycle of that pod. A driver has to be aware of this because it is only going to get a NodePublishVolume call for such a volume.<br>For more information about implementing this mode, see https://kubernetes-csi.github.io/docs/ephemeral-local-volumes.html A driver can support one or more of these modes and more modes may be added in the future.<br>This field is beta. This field is immutable. |
 
 ### .spec.tokenRequests {#_spectokenrequests}
 
 Description
-: tokenRequests indicates the CSI driver needs pods' service account tokens it is mounting volume for to do necessary authentication. Kubelet will pass the tokens in VolumeContext in the CSI NodePublishVolume calls. The CSI driver should parse and validate the following VolumeContext: "csi.storage.k8s.io/serviceAccount.tokens": { "<audience>": { "token": <token>, "expirationTimestamp": <expiration timestamp in RFC3339>, }, ... }
+: tokenRequests indicates the CSI driver needs pods' service account tokens it is mounting volume for to do necessary authentication. Kubelet will pass the tokens in VolumeContext in the CSI NodePublishVolume calls. The CSI driver should parse and validate the following VolumeContext: "csi.storage.k8s.io/serviceAccount.tokens": &#123; "&lt;audience>": &#123; "token": &lt;token>, "expirationTimestamp": &lt;expiration timestamp in RFC3339>, &#125;, ... &#125;
 
   Note: Audience in each TokenRequest should be different and at most one token is empty string. To receive a new token after expiry, RequiresRepublish can be used to trigger NodePublishVolume periodically.
 
@@ -63,7 +63,7 @@ Type
   `array`
   ```
 
-### .spec.tokenRequests[] {#_spectokenrequests}
+### .spec.tokenRequests\[\] {#_spectokenrequests}
 
 Description
 : TokenRequest contains parameters of a service account token.
@@ -192,7 +192,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/csidrivers/{name} {#_apisstoragek8siov1csidrivers_name}
+### /apis/storage.k8s.io/v1/csidrivers/&#123;name&#125; {#_apisstoragek8siov1csidrivers_name}
 
 **Global path parameters**
 
@@ -297,7 +297,7 @@ Description
 | 201 - Created | [`CSIDriver`](/docs/rest_api/storage_apis/csidriver-storage-k8s-io-v1#csidriver-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/watch/csidrivers/{name} {#_apisstoragek8siov1watchcsidrivers_name}
+### /apis/storage.k8s.io/v1/watch/csidrivers/&#123;name&#125; {#_apisstoragek8siov1watchcsidrivers_name}
 
 **Global path parameters**
 

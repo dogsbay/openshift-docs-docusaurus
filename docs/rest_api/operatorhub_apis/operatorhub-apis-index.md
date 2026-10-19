@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="operatorhub-apis"></a>
 
-## CatalogSource [operators.coreos.com/v1alpha1] {#_catalogsource_operatorscoreoscomv1alpha1}
+## CatalogSource \[operators.coreos.com/v1alpha1\] {#_catalogsource_operatorscoreoscomv1alpha1}
 
 Description
 : CatalogSource is a repository of CSVs, CRDs, and operator packages.
@@ -17,7 +17,7 @@ Type
   `object`
   ```
 
-## ClusterCatalog [olm.operatorframework.io/v1] {#_clustercatalog_olmoperatorframeworkiov1}
+## ClusterCatalog \[olm.operatorframework.io/v1\] {#_clustercatalog_olmoperatorframeworkiov1}
 
 Description
 : ClusterCatalog makes File-Based Catalog (FBC) data available to your cluster. For more information on FBC, see https://olm.operatorframework.io/docs/reference/file-based-catalogs/#docs
@@ -27,7 +27,7 @@ Type
   `object`
   ```
 
-## ClusterExtension [olm.operatorframework.io/v1] {#_clusterextension_olmoperatorframeworkiov1}
+## ClusterExtension \[olm.operatorframework.io/v1\] {#_clusterextension_olmoperatorframeworkiov1}
 
 Description
 : ClusterExtension is the Schema for the clusterextensions API
@@ -37,7 +37,7 @@ Type
   `object`
   ```
 
-## ClusterServiceVersion [operators.coreos.com/v1alpha1] {#_clusterserviceversion_operatorscoreoscomv1alpha1}
+## ClusterServiceVersion \[operators.coreos.com/v1alpha1\] {#_clusterserviceversion_operatorscoreoscomv1alpha1}
 
 Description
 : ClusterServiceVersion is a Custom Resource of type `ClusterServiceVersionSpec`.
@@ -47,7 +47,7 @@ Type
   `object`
   ```
 
-## InstallPlan [operators.coreos.com/v1alpha1] {#_installplan_operatorscoreoscomv1alpha1}
+## InstallPlan \[operators.coreos.com/v1alpha1\] {#_installplan_operatorscoreoscomv1alpha1}
 
 Description
 : InstallPlan defines the installation of a set of operators.
@@ -57,7 +57,7 @@ Type
   `object`
   ```
 
-## OLM [operator.openshift.io/v1] {#_olm_operatoropenshiftiov1}
+## OLM \[operator.openshift.io/v1\] {#_olm_operatoropenshiftiov1}
 
 Description
 : OLM provides information to configure an operator to manage the OLM controllers
@@ -69,7 +69,7 @@ Type
   `object`
   ```
 
-## OLMConfig [operators.coreos.com/v1] {#_olmconfig_operatorscoreoscomv1}
+## OLMConfig \[operators.coreos.com/v1\] {#_olmconfig_operatorscoreoscomv1}
 
 Description
 : OLMConfig is a resource responsible for configuring OLM.
@@ -79,7 +79,7 @@ Type
   `object`
   ```
 
-## Operator [operators.coreos.com/v1] {#_operator_operatorscoreoscomv1}
+## Operator \[operators.coreos.com/v1\] {#_operator_operatorscoreoscomv1}
 
 Description
 : Operator represents a cluster operator.
@@ -89,7 +89,7 @@ Type
   `object`
   ```
 
-## OperatorCondition [operators.coreos.com/v2] {#_operatorcondition_operatorscoreoscomv2}
+## OperatorCondition \[operators.coreos.com/v2\] {#_operatorcondition_operatorscoreoscomv2}
 
 Description
 : OperatorCondition is a Custom Resource of type `OperatorCondition` which is used to convey information to OLM about the state of an operator.
@@ -99,7 +99,7 @@ Type
   `object`
   ```
 
-## OperatorGroup [operators.coreos.com/v1] {#_operatorgroup_operatorscoreoscomv1}
+## OperatorGroup \[operators.coreos.com/v1\] {#_operatorgroup_operatorscoreoscomv1}
 
 Description
 : OperatorGroup is the unit of multitenancy for OLM managed operators. It constrains the installation of operators in its namespace to a specified set of target namespaces.
@@ -109,7 +109,7 @@ Type
   `object`
   ```
 
-## PackageManifest [packages.operators.coreos.com/v1] {#_packagemanifest_packagesoperatorscoreoscomv1}
+## PackageManifest \[packages.operators.coreos.com/v1\] {#_packagemanifest_packagesoperatorscoreoscomv1}
 
 Description
 : PackageManifest holds information about a package, which is a reference to one (or more) channels under a single package.
@@ -119,7 +119,7 @@ Type
   `object`
   ```
 
-## Subscription [operators.coreos.com/v1alpha1] {#_subscription_operatorscoreoscomv1alpha1}
+## Subscription \[operators.coreos.com/v1alpha1\] {#_subscription_operatorscoreoscomv1alpha1}
 
 Description
 : Subscription keeps operators up to date by tracking changes to Catalogs.

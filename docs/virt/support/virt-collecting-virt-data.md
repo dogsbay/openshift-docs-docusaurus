@@ -182,9 +182,9 @@ $ oc adm must-gather \
 
 | Script | Compatible environment variable |
 | --- | --- |
-| `/usr/bin/gather` | * `PROS=<number_of_processes>` |
-| `/usr/bin/gather --vms_details` | * For a namespace: `NS=<namespace_name>`<br>* For a VM: `VM=<vm_name> NS=<namespace_name>`<br>* `PROS=<number_of_processes>` |
-| `/usr/bin/gather --images` | * `PROS=<number_of_processes>` |
+| `/usr/bin/gather` | \* `PROS=<number_of_processes>` |
+| `/usr/bin/gather --vms_details` | \* For a namespace: `NS=<namespace_name>`<br>\* For a VM: `VM=<vm_name> NS=<namespace_name>`<br>\* `PROS=<number_of_processes>` |
+| `/usr/bin/gather --images` | \* `PROS=<number_of_processes>` |
 
 ## Generating a VM memory dump {#virt-generating-a-vm-memory-dump_virt-collecting-virt-data}
 

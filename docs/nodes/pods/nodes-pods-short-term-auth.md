@@ -185,7 +185,7 @@ The following example demonstrates how to deploy a pod that uses the OpenShift C
                  sleep infinity
    ```
 
-   Replace <service_account_name> with the name of the OpenShift Container Platform service account.
+   Replace &lt;service_account_name> with the name of the OpenShift Container Platform service account.
 2. Apply the deployment file by running the following command:
    ```terminal
    $ oc apply -f deployment.yaml

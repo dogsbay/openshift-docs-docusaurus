@@ -3,7 +3,7 @@ title: "AppliedClusterResourceQuota [quota.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# AppliedClusterResourceQuota [quota.openshift.io/v1] {#appliedclusterresourcequota-quota-openshift-io-v1}
+# AppliedClusterResourceQuota \[quota.openshift.io/v1\] {#appliedclusterresourcequota-quota-openshift-io-v1}
 
 <a id="appliedclusterresourcequota-quota-openshift-io-v1"></a>
 
@@ -94,7 +94,7 @@ Type
   `array`
   ```
 
-### .status.namespaces[] {#_statusnamespaces}
+### .status.namespaces\[\] {#_statusnamespaces}
 
 Description
 : ResourceQuotaStatusByNamespace gives status for a particular project
@@ -143,7 +143,7 @@ Description
 | 200 - OK | [`AppliedClusterResourceQuotaList`](/docs/rest_api/objects#com-github-openshift-api-quota-v1-AppliedClusterResourceQuotaList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/quota.openshift.io/v1/namespaces/{namespace}/appliedclusterresourcequotas {#_apisquotaopenshiftiov1namespaces_namespace_appliedclusterresourcequotas}
+### /apis/quota.openshift.io/v1/namespaces/&#123;namespace&#125;/appliedclusterresourcequotas {#_apisquotaopenshiftiov1namespaces_namespace_appliedclusterresourcequotas}
 
 HTTP method
 : ```
@@ -162,7 +162,7 @@ Description
 | 200 - OK | [`AppliedClusterResourceQuotaList`](/docs/rest_api/objects#com-github-openshift-api-quota-v1-AppliedClusterResourceQuotaList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/quota.openshift.io/v1/namespaces/{namespace}/appliedclusterresourcequotas/{name} {#_apisquotaopenshiftiov1namespaces_namespace_appliedclusterresourcequotas_name}
+### /apis/quota.openshift.io/v1/namespaces/&#123;namespace&#125;/appliedclusterresourcequotas/&#123;name&#125; {#_apisquotaopenshiftiov1namespaces_namespace_appliedclusterresourcequotas_name}
 
 **Global path parameters**
 

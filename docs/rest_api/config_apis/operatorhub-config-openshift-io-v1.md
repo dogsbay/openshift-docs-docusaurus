@@ -3,7 +3,7 @@ title: "OperatorHub [config.openshift.io/v1]"
 sidebar_position: 23
 ---
 
-# OperatorHub [config.openshift.io/v1] {#operatorhub-config-openshift-io-v1}
+# OperatorHub \[config.openshift.io/v1\] {#operatorhub-config-openshift-io-v1}
 
 <a id="operatorhub-config-openshift-io-v1"></a>
 
@@ -53,7 +53,7 @@ Type
   `array`
   ```
 
-### .spec.sources[] {#_specsources}
+### .spec.sources\[\] {#_specsources}
 
 Description
 : HubSource is used to specify the hub source and its configuration
@@ -93,7 +93,7 @@ Type
   `array`
   ```
 
-### .status.sources[] {#_statussources}
+### .status.sources\[\] {#_statussources}
 
 Description
 : HubSourceStatus is used to reflect the current state of applying the configuration to a default source
@@ -196,7 +196,7 @@ Description
 | 202 - Accepted | [`OperatorHub`](/docs/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/operatorhubs/{name} {#_apisconfigopenshiftiov1operatorhubs_name}
+### /apis/config.openshift.io/v1/operatorhubs/&#123;name&#125; {#_apisconfigopenshiftiov1operatorhubs_name}
 
 **Global path parameters**
 
@@ -300,7 +300,7 @@ Description
 | 201 - Created | [`OperatorHub`](/docs/rest_api/config_apis/operatorhub-config-openshift-io-v1#operatorhub-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/operatorhubs/{name}/status {#_apisconfigopenshiftiov1operatorhubs_name_status}
+### /apis/config.openshift.io/v1/operatorhubs/&#123;name&#125;/status {#_apisconfigopenshiftiov1operatorhubs_name_status}
 
 **Global path parameters**
 

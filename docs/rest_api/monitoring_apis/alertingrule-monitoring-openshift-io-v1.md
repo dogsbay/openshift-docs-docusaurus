@@ -3,7 +3,7 @@ title: "AlertingRule [monitoring.openshift.io/v1]"
 sidebar_position: 5
 ---
 
-# AlertingRule [monitoring.openshift.io/v1] {#alertingrule-monitoring-openshift-io-v1}
+# AlertingRule \[monitoring.openshift.io/v1\] {#alertingrule-monitoring-openshift-io-v1}
 
 <a id="alertingrule-monitoring-openshift-io-v1"></a>
 
@@ -66,7 +66,7 @@ Type
   `array`
   ```
 
-### .spec.groups[] {#_specgroups}
+### .spec.groups\[\] {#_specgroups}
 
 Description
 : RuleGroup is a list of sequentially evaluated alerting rules.
@@ -87,7 +87,7 @@ Required
 | `rules` | `array` | rules is a list of sequentially evaluated alerting rules.  Prometheus may process rule groups in parallel, but rules within a single group are always processed sequentially, and all rules are processed. |
 | `rules[]` | `object` | Rule describes an alerting rule. See Prometheus documentation: - https://www.prometheus.io/docs/prometheus/latest/configuration/alerting_rules |
 
-### .spec.groups[].rules {#_specgroupsrules}
+### .spec.groups\[\].rules {#_specgroupsrules}
 
 Description
 : rules is a list of sequentially evaluated alerting rules.  Prometheus may process rule groups in parallel, but rules within a single group are always processed sequentially, and all rules are processed.
@@ -97,7 +97,7 @@ Type
   `array`
   ```
 
-### .spec.groups[].rules[] {#_specgroupsrules}
+### .spec.groups\[\].rules\[\] {#_specgroupsrules}
 
 Description
 : Rule describes an alerting rule. See Prometheus documentation:
@@ -192,7 +192,7 @@ Description
 | 200 - OK | [`AlertingRuleList`](/docs/rest_api/objects#io-openshift-monitoring-v1-AlertingRuleList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.openshift.io/v1/namespaces/{namespace}/alertingrules {#_apismonitoringopenshiftiov1namespaces_namespace_alertingrules}
+### /apis/monitoring.openshift.io/v1/namespaces/&#123;namespace&#125;/alertingrules {#_apismonitoringopenshiftiov1namespaces_namespace_alertingrules}
 
 HTTP method
 : ```
@@ -260,7 +260,7 @@ Description
 | 202 - Accepted | [`AlertingRule`](/docs/rest_api/monitoring_apis/alertingrule-monitoring-openshift-io-v1#alertingrule-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.openshift.io/v1/namespaces/{namespace}/alertingrules/{name} {#_apismonitoringopenshiftiov1namespaces_namespace_alertingrules_name}
+### /apis/monitoring.openshift.io/v1/namespaces/&#123;namespace&#125;/alertingrules/&#123;name&#125; {#_apismonitoringopenshiftiov1namespaces_namespace_alertingrules_name}
 
 **Global path parameters**
 
@@ -364,7 +364,7 @@ Description
 | 201 - Created | [`AlertingRule`](/docs/rest_api/monitoring_apis/alertingrule-monitoring-openshift-io-v1#alertingrule-monitoring-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.openshift.io/v1/namespaces/{namespace}/alertingrules/{name}/status {#_apismonitoringopenshiftiov1namespaces_namespace_alertingrules_name_status}
+### /apis/monitoring.openshift.io/v1/namespaces/&#123;namespace&#125;/alertingrules/&#123;name&#125;/status {#_apismonitoringopenshiftiov1namespaces_namespace_alertingrules_name_status}
 
 **Global path parameters**
 

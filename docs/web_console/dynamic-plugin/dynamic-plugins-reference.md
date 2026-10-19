@@ -3,13 +3,17 @@ title: Dynamic plugin reference
 sidebar_position: 6
 ---
 
-# Dynamic plugin reference {#dynamic-plugins-reference_{context}}
+# Dynamic plugin reference {#dynamic-plugins-reference_-context-}
 
-<a id="dynamic-plugins-reference_{context}"></a>
+<a id="dynamic-plugins-reference_-context-"></a>
 
 You can add extensions that allow you to customize your plugin. Those extensions are then loaded to the console at runtime.
 
 ## Dynamic plugin extension types {#dynamic-plugin-sdk-extensions_dynamic-plugins-reference}
+
+Dynamic plugin extension types define the contracts for extending the OpenShift Container Platform web console with custom actions, navigation, pages, dashboards, topology views, and catalog items.
+
+You can declare these extension types in your plugin to contribute new functionality that loads into the console at runtime.
 
 ### `console.action/filter` {#_consoleactionfilter}
 
@@ -977,6 +981,8 @@ Deprecated: Use `console.tab/horizontalNav` instead. Adds a new resource tab pag
 - [JavaScript Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
 
 ## Dynamic plugin API {#dynamic-plugin-api_dynamic-plugins-reference}
+
+The dynamic plugin API provides hooks, components, and utilities for extending the OpenShift Container Platform web console. You can use these APIs to manage cluster resources, perform access control checks, build customized list pages and overlays, query Prometheus, and make authenticated console requests.
 
 ### `useActivePerspective` {#_useactiveperspective}
 

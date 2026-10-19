@@ -68,8 +68,8 @@ While the cluster nodes can contain more than two NICs, the installation process
 
 | NIC | Network | VLAN |
 | --- | --- | --- |
-| NIC1 | `provisioning` | <provisioning_vlan> |
-| NIC2 | `baremetal` | <baremetal_vlan> |
+| NIC1 | `provisioning` | &lt;provisioning_vlan> |
+| NIC2 | `baremetal` | &lt;baremetal_vlan> |
 
 In the earlier example, NIC1 on all control plane and worker nodes connects to the non-routable network (`provisioning`) that is only used for the installation of the OpenShift Container Platform cluster. NIC2 on all control plane and worker nodes connects to the `baremetal` network.
 
@@ -104,8 +104,8 @@ You must create DNS `A` record entries resolving to unused IP addresses on the p
 
 | Usage | Hostname | IP |
 | --- | --- | --- |
-| API | api.<cluster_name>.<domain> | <ip> |
-| Ingress LB (apps) | *.apps.<cluster_name>.<domain> | <ip> |
+| API | api.&lt;cluster_name>.&lt;domain> | &lt;ip> |
+| Ingress LB (apps) | \*.apps.&lt;cluster_name>.&lt;domain> | &lt;ip> |
 
 Control plane and worker nodes already have DNS entries after provisioning.
 
@@ -113,15 +113,15 @@ The following table provides an example of fully qualified domain names. The API
 
 | Usage | Hostname | IP |
 | --- | --- | --- |
-| API | api.<cluster_name>.<domain> | <ip> |
-| Ingress LB (apps) | *.apps.<cluster_name>.<domain> | <ip> |
-| Provisioner node | provisioner.<cluster_name>.<domain> | <ip> |
-| Control plane 0 | openshift-control-0.<cluster_name>.<domain> | <ip> |
-| Control plane 1 | openshift-control-1.<cluster_name>.<domain> | <ip> |
-| Control plane 2 | openshift-control-2.<cluster_name>.<domain> | <ip> |
-| Compute 0 | openshift-compute-0.<cluster_name>.<domain> | <ip> |
-| Compute 1 | openshift-compute-1.<cluster_name>.<domain> | <ip> |
-| Compute n | openshift-compute-n.<cluster_name>.<domain> | <ip> |
+| API | api.&lt;cluster_name>.&lt;domain> | &lt;ip> |
+| Ingress LB (apps) | \*.apps.&lt;cluster_name>.&lt;domain> | &lt;ip> |
+| Provisioner node | provisioner.&lt;cluster_name>.&lt;domain> | &lt;ip> |
+| Control plane 0 | openshift-control-0.&lt;cluster_name>.&lt;domain> | &lt;ip> |
+| Control plane 1 | openshift-control-1.&lt;cluster_name>.&lt;domain> | &lt;ip> |
+| Control plane 2 | openshift-control-2.&lt;cluster_name>.&lt;domain> | &lt;ip> |
+| Compute 0 | openshift-compute-0.&lt;cluster_name>.&lt;domain> | &lt;ip> |
+| Compute 1 | openshift-compute-1.&lt;cluster_name>.&lt;domain> | &lt;ip> |
+| Compute n | openshift-compute-n.&lt;cluster_name>.&lt;domain> | &lt;ip> |
 
 OpenShift Container Platform includes functionality that uses cluster membership information to generate `A` records. This resolves the node names to their IP addresses. After the nodes register with the API, the cluster can disperse node information without using CoreDNS-mDNS. This eliminates the network traffic associated with multicast DNS.
 

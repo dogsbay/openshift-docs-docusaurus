@@ -3,7 +3,7 @@ title: "MachineAutoscaler [autoscaling.openshift.io/v1beta1]"
 sidebar_position: 3
 ---
 
-# MachineAutoscaler [autoscaling.openshift.io/v1beta1] {#machineautoscaler-autoscaling-openshift-io-v1beta1}
+# MachineAutoscaler \[autoscaling.openshift.io/v1beta1\] {#machineautoscaler-autoscaling-openshift-io-v1beta1}
 
 <a id="machineautoscaler-autoscaling-openshift-io-v1beta1"></a>
 
@@ -139,7 +139,7 @@ Description
 | 200 - OK | [`MachineAutoscalerList`](/docs/rest_api/objects#io-openshift-autoscaling-v1beta1-MachineAutoscalerList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling.openshift.io/v1beta1/namespaces/{namespace}/machineautoscalers {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers}
+### /apis/autoscaling.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machineautoscalers {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers}
 
 HTTP method
 : ```
@@ -207,7 +207,7 @@ Description
 | 202 - Accepted | [`MachineAutoscaler`](/docs/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling.openshift.io/v1beta1/namespaces/{namespace}/machineautoscalers/{name} {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers_name}
+### /apis/autoscaling.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machineautoscalers/&#123;name&#125; {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers_name}
 
 **Global path parameters**
 
@@ -311,7 +311,7 @@ Description
 | 201 - Created | [`MachineAutoscaler`](/docs/rest_api/autoscale_apis/machineautoscaler-autoscaling-openshift-io-v1beta1#machineautoscaler-autoscaling-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling.openshift.io/v1beta1/namespaces/{namespace}/machineautoscalers/{name}/status {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers_name_status}
+### /apis/autoscaling.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machineautoscalers/&#123;name&#125;/status {#_apisautoscalingopenshiftiov1beta1namespaces_namespace_machineautoscalers_name_status}
 
 **Global path parameters**
 

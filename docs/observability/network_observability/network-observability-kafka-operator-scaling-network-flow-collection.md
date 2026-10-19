@@ -1,9 +1,9 @@
 ---
-title: Scaling network flow collection with Kafka
+title: Scale network flow collection with Kafka
 sidebar_position: 4
 ---
 
-# Scaling network flow collection with Kafka {#network-observability-kafka-operator-scaling-network-flow-collection}
+# Scale network flow collection with Kafka {#network-observability-kafka-operator-scaling-network-flow-collection}
 
 <a id="network-observability-kafka-operator-scaling-network-flow-collection"></a>
 
@@ -32,7 +32,7 @@ To uninstall Kafka, refer to the uninstallation process that corresponds with th
 
 :::
 
-## Reducing network bandwidth for flow telemetry {#network-observability-kafka-compression-benefits_network-observability-kafka-operator-scaling-network-flow-collection}
+## Kafka compression benefits for network flow telemetry {#network-observability-kafka-compression-benefits_network-observability-kafka-operator-scaling-network-flow-collection}
 
 Enable Kafka compression for flow records to optimize network traffic. This configuration reduces network bandwidth consumption while increasing the CPU load on the eBPF agent.
 

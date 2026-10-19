@@ -3,7 +3,7 @@ title: "HorizontalPodAutoscaler [autoscaling/v2]"
 sidebar_position: 4
 ---
 
-# HorizontalPodAutoscaler [autoscaling/v2] {#horizontalpodautoscaler-autoscaling-v2}
+# HorizontalPodAutoscaler \[autoscaling/v2\] {#horizontalpodautoscaler-autoscaling-v2}
 
 <a id="horizontalpodautoscaler-autoscaling-v2"></a>
 
@@ -95,7 +95,7 @@ Type
   `array`
   ```
 
-### .spec.behavior.scaleDown.policies[] {#_specbehaviorscaledownpolicies}
+### .spec.behavior.scaleDown.policies\[\] {#_specbehaviorscaledownpolicies}
 
 Description
 : HPAScalingPolicy is a single policy which must hold true for a specified past interval.
@@ -148,7 +148,7 @@ Type
   `array`
   ```
 
-### .spec.behavior.scaleUp.policies[] {#_specbehaviorscaleuppolicies}
+### .spec.behavior.scaleUp.policies\[\] {#_specbehaviorscaleuppolicies}
 
 Description
 : HPAScalingPolicy is a single policy which must hold true for a specified past interval.
@@ -179,7 +179,7 @@ Type
   `array`
   ```
 
-### .spec.metrics[] {#_specmetrics}
+### .spec.metrics\[\] {#_specmetrics}
 
 Description
 : MetricSpec specifies how to scale based on a single metric (only `type` and one other matching field should be set at once).
@@ -201,7 +201,7 @@ Required
 | `resource` | `object` | ResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.  Only one "target" type should be set. |
 | `type` | `string` | type is the type of metric source.  It should be one of "ContainerResource", "External", "Object", "Pods" or "Resource", each mapping to a matching field in the object. |
 
-### .spec.metrics[].containerResource {#_specmetricscontainerresource}
+### .spec.metrics\[\].containerResource {#_specmetricscontainerresource}
 
 Description
 : ContainerResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.  Only one "target" type should be set.
@@ -222,7 +222,7 @@ Required
 | `name` | `string` | name is the name of the resource in question. |
 | `target` | `object` | MetricTarget defines the target value, average value, or average utilization of a specific metric |
 
-### .spec.metrics[].containerResource.target {#_specmetricscontainerresourcetarget}
+### .spec.metrics\[\].containerResource.target {#_specmetricscontainerresourcetarget}
 
 Description
 : MetricTarget defines the target value, average value, or average utilization of a specific metric
@@ -242,7 +242,7 @@ Required
 | `type` | `string` | type represents whether the metric type is Utilization, Value, or AverageValue |
 | `value` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
 
-### .spec.metrics[].external {#_specmetricsexternal}
+### .spec.metrics\[\].external {#_specmetricsexternal}
 
 Description
 : ExternalMetricSource indicates how to scale on a metric not associated with any Kubernetes object (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
@@ -261,7 +261,7 @@ Required
 | `metric` | `object` | MetricIdentifier defines the name and optionally selector for a metric |
 | `target` | `object` | MetricTarget defines the target value, average value, or average utilization of a specific metric |
 
-### .spec.metrics[].external.metric {#_specmetricsexternalmetric}
+### .spec.metrics\[\].external.metric {#_specmetricsexternalmetric}
 
 Description
 : MetricIdentifier defines the name and optionally selector for a metric
@@ -279,7 +279,7 @@ Required
 | `name` | `string` | name is the name of the given metric |
 | `selector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
 
-### .spec.metrics[].external.target {#_specmetricsexternaltarget}
+### .spec.metrics\[\].external.target {#_specmetricsexternaltarget}
 
 Description
 : MetricTarget defines the target value, average value, or average utilization of a specific metric
@@ -299,7 +299,7 @@ Required
 | `type` | `string` | type represents whether the metric type is Utilization, Value, or AverageValue |
 | `value` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
 
-### .spec.metrics[].object {#_specmetricsobject}
+### .spec.metrics\[\].object {#_specmetricsobject}
 
 Description
 : ObjectMetricSource indicates how to scale on a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).
@@ -320,7 +320,7 @@ Required
 | `metric` | `object` | MetricIdentifier defines the name and optionally selector for a metric |
 | `target` | `object` | MetricTarget defines the target value, average value, or average utilization of a specific metric |
 
-### .spec.metrics[].object.describedObject {#_specmetricsobjectdescribedobject}
+### .spec.metrics\[\].object.describedObject {#_specmetricsobjectdescribedobject}
 
 Description
 : CrossVersionObjectReference contains enough information to let you identify the referred resource.
@@ -340,7 +340,7 @@ Required
 | `kind` | `string` | kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 
-### .spec.metrics[].object.metric {#_specmetricsobjectmetric}
+### .spec.metrics\[\].object.metric {#_specmetricsobjectmetric}
 
 Description
 : MetricIdentifier defines the name and optionally selector for a metric
@@ -358,7 +358,7 @@ Required
 | `name` | `string` | name is the name of the given metric |
 | `selector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
 
-### .spec.metrics[].object.target {#_specmetricsobjecttarget}
+### .spec.metrics\[\].object.target {#_specmetricsobjecttarget}
 
 Description
 : MetricTarget defines the target value, average value, or average utilization of a specific metric
@@ -378,7 +378,7 @@ Required
 | `type` | `string` | type represents whether the metric type is Utilization, Value, or AverageValue |
 | `value` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
 
-### .spec.metrics[].pods {#_specmetricspods}
+### .spec.metrics\[\].pods {#_specmetricspods}
 
 Description
 : PodsMetricSource indicates how to scale on a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.
@@ -397,7 +397,7 @@ Required
 | `metric` | `object` | MetricIdentifier defines the name and optionally selector for a metric |
 | `target` | `object` | MetricTarget defines the target value, average value, or average utilization of a specific metric |
 
-### .spec.metrics[].pods.metric {#_specmetricspodsmetric}
+### .spec.metrics\[\].pods.metric {#_specmetricspodsmetric}
 
 Description
 : MetricIdentifier defines the name and optionally selector for a metric
@@ -415,7 +415,7 @@ Required
 | `name` | `string` | name is the name of the given metric |
 | `selector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
 
-### .spec.metrics[].pods.target {#_specmetricspodstarget}
+### .spec.metrics\[\].pods.target {#_specmetricspodstarget}
 
 Description
 : MetricTarget defines the target value, average value, or average utilization of a specific metric
@@ -435,7 +435,7 @@ Required
 | `type` | `string` | type represents whether the metric type is Utilization, Value, or AverageValue |
 | `value` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the target value of the metric (as a quantity). |
 
-### .spec.metrics[].resource {#_specmetricsresource}
+### .spec.metrics\[\].resource {#_specmetricsresource}
 
 Description
 : ResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.  Only one "target" type should be set.
@@ -454,7 +454,7 @@ Required
 | `name` | `string` | name is the name of the resource in question. |
 | `target` | `object` | MetricTarget defines the target value, average value, or average utilization of a specific metric |
 
-### .spec.metrics[].resource.target {#_specmetricsresourcetarget}
+### .spec.metrics\[\].resource.target {#_specmetricsresourcetarget}
 
 Description
 : MetricTarget defines the target value, average value, or average utilization of a specific metric
@@ -528,7 +528,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : HorizontalPodAutoscalerCondition describes the state of a HorizontalPodAutoscaler at a certain point.
@@ -560,7 +560,7 @@ Type
   `array`
   ```
 
-### .status.currentMetrics[] {#_statuscurrentmetrics}
+### .status.currentMetrics\[\] {#_statuscurrentmetrics}
 
 Description
 : MetricStatus describes the last-read state of a single metric.
@@ -582,7 +582,7 @@ Required
 | `resource` | `object` | ResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source. |
 | `type` | `string` | type is the type of metric source.  It will be one of "ContainerResource", "External", "Object", "Pods" or "Resource", each corresponds to a matching field in the object. |
 
-### .status.currentMetrics[].containerResource {#_statuscurrentmetricscontainerresource}
+### .status.currentMetrics\[\].containerResource {#_statuscurrentmetricscontainerresource}
 
 Description
 : ContainerResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing a single container in each pod in the current scale target (e.g. CPU or memory).  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
@@ -603,7 +603,7 @@ Required
 | `current` | `object` | MetricValueStatus holds the current value for a metric |
 | `name` | `string` | name is the name of the resource in question. |
 
-### .status.currentMetrics[].containerResource.current {#_statuscurrentmetricscontainerresourcecurrent}
+### .status.currentMetrics\[\].containerResource.current {#_statuscurrentmetricscontainerresourcecurrent}
 
 Description
 : MetricValueStatus holds the current value for a metric
@@ -619,7 +619,7 @@ Type
 | `averageValue` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
 | `value` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
 
-### .status.currentMetrics[].external {#_statuscurrentmetricsexternal}
+### .status.currentMetrics\[\].external {#_statuscurrentmetricsexternal}
 
 Description
 : ExternalMetricStatus indicates the current value of a global metric not associated with any Kubernetes object.
@@ -638,7 +638,7 @@ Required
 | `current` | `object` | MetricValueStatus holds the current value for a metric |
 | `metric` | `object` | MetricIdentifier defines the name and optionally selector for a metric |
 
-### .status.currentMetrics[].external.current {#_statuscurrentmetricsexternalcurrent}
+### .status.currentMetrics\[\].external.current {#_statuscurrentmetricsexternalcurrent}
 
 Description
 : MetricValueStatus holds the current value for a metric
@@ -654,7 +654,7 @@ Type
 | `averageValue` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
 | `value` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
 
-### .status.currentMetrics[].external.metric {#_statuscurrentmetricsexternalmetric}
+### .status.currentMetrics\[\].external.metric {#_statuscurrentmetricsexternalmetric}
 
 Description
 : MetricIdentifier defines the name and optionally selector for a metric
@@ -672,7 +672,7 @@ Required
 | `name` | `string` | name is the name of the given metric |
 | `selector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
 
-### .status.currentMetrics[].object {#_statuscurrentmetricsobject}
+### .status.currentMetrics\[\].object {#_statuscurrentmetricsobject}
 
 Description
 : ObjectMetricStatus indicates the current value of a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).
@@ -693,7 +693,7 @@ Required
 | `describedObject` | `object` | CrossVersionObjectReference contains enough information to let you identify the referred resource. |
 | `metric` | `object` | MetricIdentifier defines the name and optionally selector for a metric |
 
-### .status.currentMetrics[].object.current {#_statuscurrentmetricsobjectcurrent}
+### .status.currentMetrics\[\].object.current {#_statuscurrentmetricsobjectcurrent}
 
 Description
 : MetricValueStatus holds the current value for a metric
@@ -709,7 +709,7 @@ Type
 | `averageValue` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
 | `value` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
 
-### .status.currentMetrics[].object.describedObject {#_statuscurrentmetricsobjectdescribedobject}
+### .status.currentMetrics\[\].object.describedObject {#_statuscurrentmetricsobjectdescribedobject}
 
 Description
 : CrossVersionObjectReference contains enough information to let you identify the referred resource.
@@ -729,7 +729,7 @@ Required
 | `kind` | `string` | kind is the kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | name is the name of the referent; More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 
-### .status.currentMetrics[].object.metric {#_statuscurrentmetricsobjectmetric}
+### .status.currentMetrics\[\].object.metric {#_statuscurrentmetricsobjectmetric}
 
 Description
 : MetricIdentifier defines the name and optionally selector for a metric
@@ -747,7 +747,7 @@ Required
 | `name` | `string` | name is the name of the given metric |
 | `selector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
 
-### .status.currentMetrics[].pods {#_statuscurrentmetricspods}
+### .status.currentMetrics\[\].pods {#_statuscurrentmetricspods}
 
 Description
 : PodsMetricStatus indicates the current value of a metric describing each pod in the current scale target (for example, transactions-processed-per-second).
@@ -766,7 +766,7 @@ Required
 | `current` | `object` | MetricValueStatus holds the current value for a metric |
 | `metric` | `object` | MetricIdentifier defines the name and optionally selector for a metric |
 
-### .status.currentMetrics[].pods.current {#_statuscurrentmetricspodscurrent}
+### .status.currentMetrics\[\].pods.current {#_statuscurrentmetricspodscurrent}
 
 Description
 : MetricValueStatus holds the current value for a metric
@@ -782,7 +782,7 @@ Type
 | `averageValue` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | averageValue is the current value of the average of the metric across all relevant pods (as a quantity) |
 | `value` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | value is the current value of the metric (as a quantity). |
 
-### .status.currentMetrics[].pods.metric {#_statuscurrentmetricspodsmetric}
+### .status.currentMetrics\[\].pods.metric {#_statuscurrentmetricspodsmetric}
 
 Description
 : MetricIdentifier defines the name and optionally selector for a metric
@@ -800,7 +800,7 @@ Required
 | `name` | `string` | name is the name of the given metric |
 | `selector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics. |
 
-### .status.currentMetrics[].resource {#_statuscurrentmetricsresource}
+### .status.currentMetrics\[\].resource {#_statuscurrentmetricsresource}
 
 Description
 : ResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
@@ -819,7 +819,7 @@ Required
 | `current` | `object` | MetricValueStatus holds the current value for a metric |
 | `name` | `string` | name is the name of the resource in question. |
 
-### .status.currentMetrics[].resource.current {#_statuscurrentmetricsresourcecurrent}
+### .status.currentMetrics\[\].resource.current {#_statuscurrentmetricsresourcecurrent}
 
 Description
 : MetricValueStatus holds the current value for a metric
@@ -899,7 +899,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers}
+### /apis/autoscaling/v2/namespaces/&#123;namespace&#125;/horizontalpodautoscalers {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers}
 
 HTTP method
 : ```
@@ -973,7 +973,7 @@ Description
 | 202 - Accepted | [`HorizontalPodAutoscaler`](/docs/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling/v2/watch/namespaces/{namespace}/horizontalpodautoscalers {#_apisautoscalingv2watchnamespaces_namespace_horizontalpodautoscalers}
+### /apis/autoscaling/v2/watch/namespaces/&#123;namespace&#125;/horizontalpodautoscalers {#_apisautoscalingv2watchnamespaces_namespace_horizontalpodautoscalers}
 
 HTTP method
 : ```
@@ -992,7 +992,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name} {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers_name}
+### /apis/autoscaling/v2/namespaces/&#123;namespace&#125;/horizontalpodautoscalers/&#123;name&#125; {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers_name}
 
 **Global path parameters**
 
@@ -1097,7 +1097,7 @@ Description
 | 201 - Created | [`HorizontalPodAutoscaler`](/docs/rest_api/autoscale_apis/horizontalpodautoscaler-autoscaling-v2#horizontalpodautoscaler-autoscaling-v2) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling/v2/watch/namespaces/{namespace}/horizontalpodautoscalers/{name} {#_apisautoscalingv2watchnamespaces_namespace_horizontalpodautoscalers_name}
+### /apis/autoscaling/v2/watch/namespaces/&#123;namespace&#125;/horizontalpodautoscalers/&#123;name&#125; {#_apisautoscalingv2watchnamespaces_namespace_horizontalpodautoscalers_name}
 
 **Global path parameters**
 
@@ -1122,7 +1122,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name}/status {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers_name_status}
+### /apis/autoscaling/v2/namespaces/&#123;namespace&#125;/horizontalpodautoscalers/&#123;name&#125;/status {#_apisautoscalingv2namespaces_namespace_horizontalpodautoscalers_name_status}
 
 **Global path parameters**
 

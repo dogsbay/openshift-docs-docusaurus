@@ -3,7 +3,7 @@ title: "Metal3Remediation [infrastructure.cluster.x-k8s.io/v1beta1]"
 sidebar_position: 10
 ---
 
-# Metal3Remediation [infrastructure.cluster.x-k8s.io/v1beta1] {#metal3remediation-infrastructure-cluster-x-k8s-io-v1beta1}
+# Metal3Remediation \[infrastructure.cluster.x-k8s.io/v1beta1\] {#metal3remediation-infrastructure-cluster-x-k8s-io-v1beta1}
 
 <a id="metal3remediation-infrastructure-cluster-x-k8s-io-v1beta1"></a>
 
@@ -110,7 +110,7 @@ Description
 | 200 - OK | [`Metal3RemediationList`](/docs/rest_api/objects#io-x-k8s-cluster-infrastructure-v1beta1-Metal3RemediationList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/metal3remediations {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediations}
+### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/&#123;namespace&#125;/metal3remediations {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediations}
 
 HTTP method
 : ```
@@ -178,7 +178,7 @@ Description
 | 202 - Accepted | [`Metal3Remediation`](/docs/rest_api/provisioning_apis/metal3remediation-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediation-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/metal3remediations/{name} {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediations_name}
+### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/&#123;namespace&#125;/metal3remediations/&#123;name&#125; {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediations_name}
 
 **Global path parameters**
 
@@ -282,7 +282,7 @@ Description
 | 201 - Created | [`Metal3Remediation`](/docs/rest_api/provisioning_apis/metal3remediation-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediation-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/metal3remediations/{name}/status {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediations_name_status}
+### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/&#123;namespace&#125;/metal3remediations/&#123;name&#125;/status {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediations_name_status}
 
 **Global path parameters**
 

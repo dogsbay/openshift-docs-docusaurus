@@ -153,11 +153,11 @@ A Red Hat OpenShift Service Mesh control plane component called Istio OpenShift
 
 #### Catch-all domains {#ossm-catch-all-domains_ossm-vs-istio}
 
-Catch-all domains ("*") are not supported. If one is found in the Gateway definition, Red Hat OpenShift Service Mesh *will* create the route, but will rely on OpenShift to create a default hostname. This means that the newly created route will **not** be a catch all ("*") route, instead it will have a hostname in the form `<route-name>[-<project>].<suffix>`. See the OpenShift Container Platform documentation for more information about how default hostnames work and how a `cluster-admin` can customize it. If you use Red Hat OpenShift Dedicated, refer to the Red Hat OpenShift Dedicated the `dedicated-admin` role.
+Catch-all domains ("\*") are not supported. If one is found in the Gateway definition, Red Hat OpenShift Service Mesh *will* create the route, but will rely on OpenShift to create a default hostname. This means that the newly created route will **not** be a catch all ("\*") route, instead it will have a hostname in the form `<route-name>[-<project>].<suffix>`. See the OpenShift Container Platform documentation for more information about how default hostnames work and how a `cluster-admin` can customize it. If you use Red Hat OpenShift Dedicated, refer to the Red Hat OpenShift Dedicated the `dedicated-admin` role.
 
 #### Subdomains {#ossm-subdomains_ossm-vs-istio}
 
-Subdomains (e.g.: "*.domain.com") are supported. However this ability does not come enabled by default in OpenShift Container Platform. This means that Red Hat OpenShift Service Mesh *will* create the route with the subdomain, but it will only be in effect if OpenShift Container Platform is configured to enable it.
+Subdomains (e.g.: "\*.domain.com") are supported. However this ability does not come enabled by default in OpenShift Container Platform. This means that Red Hat OpenShift Service Mesh *will* create the route with the subdomain, but it will only be in effect if OpenShift Container Platform is configured to enable it.
 
 #### Transport layer security {#ossm-tls_ossm-vs-istio}
 

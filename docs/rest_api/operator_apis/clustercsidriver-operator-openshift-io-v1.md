@@ -3,7 +3,7 @@ title: "ClusterCSIDriver [operator.openshift.io/v1]"
 sidebar_position: 4
 ---
 
-# ClusterCSIDriver [operator.openshift.io/v1] {#clustercsidriver-operator-openshift-io-v1}
+# ClusterCSIDriver \[operator.openshift.io/v1\] {#clustercsidriver-operator-openshift-io-v1}
 
 <a id="clustercsidriver-operator-openshift-io-v1"></a>
 
@@ -45,10 +45,10 @@ Type
 | `driverConfig` | `object` | driverConfig can be used to specify platform specific driver configuration. When omitted, this means no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. |
 | `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
-| `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
+| `observedConfig` | &#96;&#96; | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
 | `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `storageClassState` | `string` | storageClassState determines if CSI operator should create and manage storage classes. If this field value is empty or Managed - CSI operator will continuously reconcile storage class and create if necessary. If this field value is Unmanaged - CSI operator will not reconcile any previously created storage class. If this field value is Removed - CSI operator will delete the storage class it created previously. When omitted, this means the user has no opinion and the platform chooses a reasonable default, which is subject to change over time. The current default behaviour is Managed. |
-| `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
+| `unsupportedConfigOverrides` | &#96;&#96; | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 
 ### .spec.driverConfig {#_specdriverconfig}
 
@@ -85,7 +85,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `efsVolumeMetrics` | `object` | efsVolumeMetrics sets the configuration for collecting metrics from EFS volumes used by the EFS CSI Driver. |
-| `kmsKeyARN` | `string` | kmsKeyARN sets the cluster default storage class to encrypt volumes with a user-defined KMS key, rather than the default KMS key used by AWS. The value may be either the ARN or Alias ARN of a KMS key.<br>The ARN must follow the format: arn:<partition>:kms:<region>:<account-id>:(key\|alias)/<key-id-or-alias>, where: <partition> is the AWS partition (aws, aws-cn, aws-us-gov, aws-iso, aws-iso-b, aws-iso-e, aws-iso-f, or aws-eusc), <region> is the AWS region, <account-id> is a 12-digit numeric identifier for the AWS account, <key-id-or-alias> is the KMS key ID or alias name. |
+| `kmsKeyARN` | `string` | kmsKeyARN sets the cluster default storage class to encrypt volumes with a user-defined KMS key, rather than the default KMS key used by AWS. The value may be either the ARN or Alias ARN of a KMS key.<br>The ARN must follow the format: arn:&lt;partition>:kms:&lt;region>:&lt;account-id>:(key\|alias)/&lt;key-id-or-alias>, where: &lt;partition> is the AWS partition (aws, aws-cn, aws-us-gov, aws-iso, aws-iso-b, aws-iso-e, aws-iso-f, or aws-eusc), &lt;region> is the AWS region, &lt;account-id> is a 12-digit numeric identifier for the AWS account, &lt;key-id-or-alias> is the KMS key ID or alias name. |
 
 ### .spec.driverConfig.aws.efsVolumeMetrics {#_specdriverconfigawsefsvolumemetrics}
 
@@ -151,8 +151,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | name is the name of the disk encryption set that will be set on the default storage class. The value should consist of only alphanumberic characters, underscores (_), hyphens, and be at most 80 characters in length. |
-| `resourceGroup` | `string` | resourceGroup defines the Azure resource group that contains the disk encryption set. The value should consist of only alphanumberic characters, underscores (_), parentheses, hyphens and periods. The value should not end in a period and be at most 90 characters in length. |
+| `name` | `string` | name is the name of the disk encryption set that will be set on the default storage class. The value should consist of only alphanumberic characters, underscores (\_), hyphens, and be at most 80 characters in length. |
+| `resourceGroup` | `string` | resourceGroup defines the Azure resource group that contains the disk encryption set. The value should consist of only alphanumberic characters, underscores (\_), parentheses, hyphens and periods. The value should not end in a period and be at most 90 characters in length. |
 | `subscriptionID` | `string` | subscriptionID defines the Azure subscription that contains the disk encryption set. The value should meet the following conditions: 1. It should be a 128-bit number. 2. It should be 36 characters (32 hexadecimal characters and 4 hyphens) long. 3. It should be displayed in five groups separated by hyphens (-). 4. The first group should be 8 characters long. 5. The second, third, and fourth groups should be 4 characters long. 6. The fifth group should be 12 characters long. An Example SubscrionID: f2007bbf-f802-4a47-9336-cf7c6b89b378 |
 
 ### .spec.driverConfig.gcp {#_specdriverconfiggcp}
@@ -186,9 +186,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `keyRing` | `string` | keyRing is the name of the KMS Key Ring which the KMS Key belongs to. The value should correspond to an existing KMS key ring and should consist of only alphanumeric characters, hyphens (-) and underscores (_), and be at most 63 characters in length. |
+| `keyRing` | `string` | keyRing is the name of the KMS Key Ring which the KMS Key belongs to. The value should correspond to an existing KMS key ring and should consist of only alphanumeric characters, hyphens (-) and underscores (\_), and be at most 63 characters in length. |
 | `location` | `string` | location is the GCP location in which the Key Ring exists. The value must match an existing GCP location, or "global". Defaults to global, if not set. |
-| `name` | `string` | name is the name of the customer-managed encryption key to be used for disk encryption. The value should correspond to an existing KMS key and should consist of only alphanumeric characters, hyphens (-) and underscores (_), and be at most 63 characters in length. |
+| `name` | `string` | name is the name of the customer-managed encryption key to be used for disk encryption. The value should correspond to an existing KMS key and should consist of only alphanumeric characters, hyphens (-) and underscores (\_), and be at most 63 characters in length. |
 | `projectID` | `string` | projectID is the ID of the Project in which the KMS Key Ring exists. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. |
 
 ### .spec.driverConfig.ibmcloud {#_specdriverconfigibmcloud}
@@ -256,7 +256,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : OperatorCondition is just the standard condition fields.
@@ -289,7 +289,7 @@ Type
   `array`
   ```
 
-### .status.generations[] {#_statusgenerations}
+### .status.generations\[\] {#_statusgenerations}
 
 Description
 : GenerationStatus keeps track of the generation for a given resource so that decisions about forced updates can be made.
@@ -400,7 +400,7 @@ Description
 | 202 - Accepted | [`ClusterCSIDriver`](/docs/rest_api/operator_apis/clustercsidriver-operator-openshift-io-v1#clustercsidriver-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/clustercsidrivers/{name} {#_apisoperatoropenshiftiov1clustercsidrivers_name}
+### /apis/operator.openshift.io/v1/clustercsidrivers/&#123;name&#125; {#_apisoperatoropenshiftiov1clustercsidrivers_name}
 
 **Global path parameters**
 
@@ -504,7 +504,7 @@ Description
 | 201 - Created | [`ClusterCSIDriver`](/docs/rest_api/operator_apis/clustercsidriver-operator-openshift-io-v1#clustercsidriver-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/clustercsidrivers/{name}/status {#_apisoperatoropenshiftiov1clustercsidrivers_name_status}
+### /apis/operator.openshift.io/v1/clustercsidrivers/&#123;name&#125;/status {#_apisoperatoropenshiftiov1clustercsidrivers_name_status}
 
 **Global path parameters**
 

@@ -37,7 +37,7 @@ Before you start this tutorial, ensure that you have the following required prer
   If you are using Developer Sandbox, a project is created for you with the required permissions.
 - You have [logged in to your cluster by using the OpenShift CLI (`oc`)](/docs/cli_reference/openshift_cli/getting-started-cli#cli-logging-in_cli-developer-commands).
 
-## Creating a project {#getting-started-cli-creating-new-project_dev-app-cli}
+## Create a project {#getting-started-cli-creating-new-project_dev-app-cli}
 
 Create a new project to contain all required resources and application components for the tutorial.
 
@@ -73,7 +73,7 @@ If you are using Developer Sandbox to complete this tutorial, skip this procedur
 
 - [oc new-project](/docs/cli_reference/openshift_cli/developer-cli-commands#oc-new-project)
 
-## Granting view permissions {#getting-started-cli-granting-permissions_dev-app-cli}
+## Grant view permissions {#getting-started-cli-granting-permissions_dev-app-cli}
 
 Configure the necessary permissions for the application to access the required cluster resources.
 
@@ -107,7 +107,7 @@ As a requirement of the application, you must assign the `view` role to the `def
 - [RBAC overview](/docs/authentication/using-rbac#authorization-overview_using-rbac)
 - [oc adm policy add-role-to-user](/docs/cli_reference/openshift_cli/administrator-cli-commands#oc-adm-policy-add-role-to-user)
 
-## Deploying the front-end application {#getting-started-cli-deploying-first-image_dev-app-cli}
+## Deploy the front-end application {#getting-started-cli-deploying-first-image_dev-app-cli}
 
 Deploy the front-end application that provides the external-facing web component for the tutorial.
 
@@ -146,7 +146,7 @@ The following procedure deploys `parksmap`, which is the front-end component of 
 
 - [oc new-app](/docs/cli_reference/openshift_cli/developer-cli-commands#oc-new-app)
 
-### Exposing the front-end service {#getting-started-cli-creating-route_dev-app-cli}
+### Expose the front-end service {#getting-started-cli-creating-route_dev-app-cli}
 
 By default, services running on OpenShift Container Platform are not accessible externally. To expose your service so that external clients can access it, you can create a *route*.
 
@@ -183,7 +183,7 @@ Optionally, you can define security, such as TLS, for the route.
 - [oc create route edge](/docs/cli_reference/openshift_cli/developer-cli-commands#oc-create-route-edge)
 - [oc get](/docs/cli_reference/openshift_cli/developer-cli-commands#oc-get)
 
-### Viewing pod details {#getting-started-cli-examining-pod_dev-app-cli}
+### View pod details {#getting-started-cli-examining-pod_dev-app-cli}
 
 Retrieve detailed pod information to confirm the running status and resource configuration of the applications in this tutorial.
 
@@ -245,7 +245,7 @@ You can view the pods in your cluster and to determine the health of those pods 
 - [Viewing pods](/docs/cli_reference/openshift_cli/getting-started-cli#viewing-pods)
 - [Viewing pod logs](/docs/cli_reference/openshift_cli/getting-started-cli#viewing-pod-logs)
 
-### Scaling up the deployment {#getting-started-cli-scaling-app_dev-app-cli}
+### Scale up the deployment {#getting-started-cli-scaling-app_dev-app-cli}
 
 Scale the application deployment up or down to meet workload demands.
 
@@ -299,7 +299,7 @@ The following procedure scales the `parksmap` deployment to use two instances.
 
 - [oc scale](/docs/cli_reference/openshift_cli/developer-cli-commands#oc-scale)
 
-## Deploying the back-end application {#getting-started-cli-deploying-python-app_dev-app-cli}
+## Deploy the back-end application {#getting-started-cli-deploying-python-app_dev-app-cli}
 
 Deploy the back-end application that provides the service that queries the database to return the national park data required for your application.
 
@@ -335,7 +335,7 @@ The following procedure deploys `nationalparks`, which is the back-end component
       Run 'oc status' to view your app.
   ```
 
-### Exposing the back-end service {#getting-started-cli-creating-route-backend_dev-app-cli}
+### Expose the back-end service {#getting-started-cli-creating-route-backend_dev-app-cli}
 
 To expose the back-end service so that it is accessible externally, create a route.
 
@@ -361,7 +361,7 @@ To expose the back-end service so that it is accessible externally, create a rou
 
 - [oc label](/docs/cli_reference/openshift_cli/developer-cli-commands#oc-label)
 
-## Deploying the database application {#getting-started-cli-connecting-database_dev-app-cli}
+## Deploy the database application {#getting-started-cli-connecting-database_dev-app-cli}
 
 Deploy a MongoDB database application to contain the information that your application requires. For this tutorial, you will deploy a database application called `mongodb-nationalparks` that holds the national park location information.
 
@@ -392,7 +392,7 @@ Deploy a MongoDB database application to contain the information that your appli
       Run 'oc status' to view your app.
   ```
 
-### Providing access to the database by creating a secret {#getting-started-cli-creating-secret_dev-app-cli}
+### Provide access to the database by creating a secret {#getting-started-cli-creating-secret_dev-app-cli}
 
 Create a `Secret` resource to securely provide the back-end application with the sensitive database connection credentials.
 
@@ -435,7 +435,7 @@ The following procedure creates the `nationalparks-mongodb-parameters` secret an
 - [oc set env](/docs/cli_reference/openshift_cli/developer-cli-commands#oc-set-env)
 - [oc rollout status](/docs/cli_reference/openshift_cli/developer-cli-commands#oc-rollout-status)
 
-### Loading data into the database {#getting-started-cli-load-data-output_dev-app-cli}
+### Load data into the database {#getting-started-cli-load-data-output_dev-app-cli}
 
 After you have deployed the `mongodb-nationalparks` database application, load the national park location information into the database.
 
@@ -471,7 +471,7 @@ After you have deployed the `mongodb-nationalparks` database application, load t
 
 - [oc exec](/docs/cli_reference/openshift_cli/developer-cli-commands#oc-exec)
 
-## Viewing the application in a web browser {#getting-started-cli-view_dev-app-cli}
+## View the application in a web browser {#getting-started-cli-view_dev-app-cli}
 
 After you have deployed the necessary applications and loaded data into the database, you are now ready view your application through a browser. You can get the URL for the application by retrieving the route information for the front-end application.
 

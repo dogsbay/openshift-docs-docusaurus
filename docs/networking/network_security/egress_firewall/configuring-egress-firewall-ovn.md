@@ -119,19 +119,19 @@ status:
 
 where:
 
-<name>
+&lt;name>
 : Specifies the DNS name. This can be either a standard DNS name or a wildcard DNS name. For a wildcard DNS name, the DNS name resolution information contains all of the DNS names that match the wildcard DNS name.
 
-<dnsName>
+&lt;dnsName>
 : Specifies the resolved DNS name matching the `spec.name` field. If the `spec.name` field contains a wildcard DNS name, then multiple `dnsName` entries are created that contain the standard DNS names that match the wildcard DNS name when resolved. If the wildcard DNS name can also be successfully resolved, then this field also stores the wildcard DNS name.
 
-<ip>
+&lt;ip>
 : Specifies the current IP addresses associated with the DNS name.
 
-<ttlSeconds>
+&lt;ttlSeconds>
 : Specifies the last time-to-live (TTL) duration.
 
-<lastLookupTime>
+&lt;lastLookupTime>
 : Specifies the last lookup time.
 
 If during DNS resolution the DNS name in the query matches any name defined in a `DNSNameResolver` CR, then the previous information is updated accordingly in the CR `status` field. For unsuccessful DNS wildcard name lookups, the request is retried after a default TTL of 30 minutes.
@@ -162,10 +162,10 @@ spec:
 
 where:
 
-<ovn>
+&lt;ovn>
 : The name for the object must be `default`.
 
-<egress_rules>
+&lt;egress_rules>
 : Specifies a collection of one or more egress network policy rules as described in the following section.
 
 ### EgressFirewall rules {#egress-firewall-rules_configuring-egress-firewall-ovn}
@@ -185,22 +185,22 @@ egress:
 
 where:
 
-<type>
+&lt;type>
 : Specifies the type of rule. The value must be either `Allow` or `Deny`.
 
-<to>
+&lt;to>
 : Specifies a stanza describing an egress traffic match rule that specifies the `cidrSelector` field or the `dnsName` field. You cannot use both fields in the same rule.
 
-<cidr_range>
+&lt;cidr_range>
 : Specifies an IP address range in CIDR format.
 
-<dns_name>
+&lt;dns_name>
 : Specifies a DNS domain name.
 
-<nodeSelector>
+&lt;nodeSelector>
 : Specifies labels which are key and value pairs that the user defines. Labels are attached to objects, such as pods. The `nodeSelector` allows for one or more node labels to be selected and attached to pods.
 
-<ports>
+&lt;ports>
 : Specifies an optional field that describes a collection of network ports and protocols for the rule.
 
 ```yaml title="Ports stanza"
@@ -211,10 +211,10 @@ ports:
 
 where:
 
-<port>
+&lt;port>
 : Specifies a network port, such as `80` or `443`. If you specify a value for this field, you must also specify a value for the `protocol` field.
 
-<protocol>
+&lt;protocol>
 : Specifies a network protocol. The value must be either `TCP`, `UDP`, or `SCTP`.
 
 ### Example EgressFirewall CR {#egress-firewall-example_configuring-egress-firewall-ovn}
@@ -238,7 +238,7 @@ spec:
 
 where:
 
-<egress>
+&lt;egress>
 : Specifies a collection of egress firewall policy rule objects.
 
 The following example defines a policy rule that denies traffic to the host at the `172.16.1.1/32` IP address, if the traffic is using either the TCP protocol and destination port `80` or any protocol and destination port `443`.

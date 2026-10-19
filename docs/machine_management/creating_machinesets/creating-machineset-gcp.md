@@ -907,7 +907,7 @@ The following table lists the validated instance types:
    - Change `.spec.selector.matchLabels["machine.openshift.io/cluster-api-machineset"]` to match the new `.metadata.name`.
    - Change `.spec.template.metadata.labels["machine.openshift.io/cluster-api-machineset"]` to match the new `.metadata.name`.
    - Change `.spec.template.spec.providerSpec.value.MachineType` to `a2-highgpu-1g`.
-   - Add the following line under `machineType`: `"onHostMaintenance": "Terminate". For example:
+   - Add the following line under `machineType`: &#96;"onHostMaintenance": "Terminate". For example:
      ```json
      "machineType": "a2-highgpu-1g",
      "onHostMaintenance": "Terminate",

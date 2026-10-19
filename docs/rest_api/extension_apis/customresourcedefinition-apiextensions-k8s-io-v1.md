@@ -3,12 +3,12 @@ title: "CustomResourceDefinition [apiextensions.k8s.io/v1]"
 sidebar_position: 3
 ---
 
-# CustomResourceDefinition [apiextensions.k8s.io/v1] {#customresourcedefinition-apiextensions-k8s-io-v1}
+# CustomResourceDefinition \[apiextensions.k8s.io/v1\] {#customresourcedefinition-apiextensions-k8s-io-v1}
 
 <a id="customresourcedefinition-apiextensions-k8s-io-v1"></a>
 
 Description
-: CustomResourceDefinition represents a resource that should be exposed on the API server.  Its name MUST be in the format <.spec.name>.<.spec.group>.
+: CustomResourceDefinition represents a resource that should be exposed on the API server.  Its name MUST be in the format &lt;.spec.name>.&lt;.spec.group>.
 
 Type
 : ```
@@ -160,7 +160,7 @@ Type
   `array`
   ```
 
-### .spec.versions[] {#_specversions}
+### .spec.versions\[\] {#_specversions}
 
 Description
 : CustomResourceDefinitionVersion describes a version for CRD.
@@ -189,7 +189,7 @@ Required
 | `storage` | `boolean` | storage indicates this version should be used when persisting custom resources to storage. There must be exactly one version with storage=true. |
 | `subresources` | `object` | CustomResourceSubresources defines the status and scale subresources for CustomResources. |
 
-### .spec.versions[].additionalPrinterColumns {#_specversionsadditionalprintercolumns}
+### .spec.versions\[\].additionalPrinterColumns {#_specversionsadditionalprintercolumns}
 
 Description
 : additionalPrinterColumns specifies additional columns returned in Table output. See https://kubernetes.io/docs/reference/using-api/api-concepts/#receiving-resources-as-tables for details. If no columns are specified, a single column displaying the age of the custom resource is used.
@@ -199,7 +199,7 @@ Type
   `array`
   ```
 
-### .spec.versions[].additionalPrinterColumns[] {#_specversionsadditionalprintercolumns}
+### .spec.versions\[\].additionalPrinterColumns\[\] {#_specversionsadditionalprintercolumns}
 
 Description
 : CustomResourceColumnDefinition specifies a column for server side printing.
@@ -223,7 +223,7 @@ Required
 | `priority` | `integer` | priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a priority greater than 0. |
 | `type` | `string` | type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details. |
 
-### .spec.versions[].schema {#_specversionsschema}
+### .spec.versions\[\].schema {#_specversionsschema}
 
 Description
 : CustomResourceValidation is a list of validation methods for CustomResources.
@@ -235,9 +235,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `openAPIV3Schema` | [``](/docs/rest_api/objects#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) | openAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning. |
+| `openAPIV3Schema` | [&#96;&#96;](/docs/rest_api/objects#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) | openAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning. |
 
-### .spec.versions[].selectableFields {#_specversionsselectablefields}
+### .spec.versions\[\].selectableFields {#_specversionsselectablefields}
 
 Description
 : selectableFields specifies paths to fields that may be used as field selectors. A maximum of 8 selectable fields are allowed. See https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors
@@ -247,7 +247,7 @@ Type
   `array`
   ```
 
-### .spec.versions[].selectableFields[] {#_specversionsselectablefields}
+### .spec.versions\[\].selectableFields\[\] {#_specversionsselectablefields}
 
 Description
 : SelectableField specifies the JSON path of a field that may be used with field selectors.
@@ -264,7 +264,7 @@ Required
 | --- | --- | --- |
 | `jsonPath` | `string` | jsonPath is a simple JSON path which is evaluated against each custom resource to produce a field selector value. Only JSON paths without the array notation are allowed. Must point to a field of type string, boolean or integer. Types with enum values and strings with formats are allowed. If jsonPath refers to absent field in a resource, the jsonPath evaluates to an empty string. Must not point to metdata fields. Required. |
 
-### .spec.versions[].subresources {#_specversionssubresources}
+### .spec.versions\[\].subresources {#_specversionssubresources}
 
 Description
 : CustomResourceSubresources defines the status and scale subresources for CustomResources.
@@ -277,9 +277,9 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `scale` | `object` | CustomResourceSubresourceScale defines how to serve the scale subresource for CustomResources. |
-| `status` | `object` | CustomResourceSubresourceStatus defines how to serve the status subresource for CustomResources. Status is represented by the `.status` JSON path inside of a CustomResource. When set, * exposes a /status subresource for the custom resource * PUT requests to the /status subresource take a custom resource object, and ignore changes to anything except the status stanza * PUT/POST/PATCH requests to the custom resource ignore changes to the status stanza |
+| `status` | `object` | CustomResourceSubresourceStatus defines how to serve the status subresource for CustomResources. Status is represented by the `.status` JSON path inside of a CustomResource. When set, \* exposes a /status subresource for the custom resource \* PUT requests to the /status subresource take a custom resource object, and ignore changes to anything except the status stanza \* PUT/POST/PATCH requests to the custom resource ignore changes to the status stanza |
 
-### .spec.versions[].subresources.scale {#_specversionssubresourcesscale}
+### .spec.versions\[\].subresources.scale {#_specversionssubresourcesscale}
 
 Description
 : CustomResourceSubresourceScale defines how to serve the scale subresource for CustomResources.
@@ -299,10 +299,10 @@ Required
 | `specReplicasPath` | `string` | specReplicasPath defines the JSON path inside of a custom resource that corresponds to Scale `spec.replicas`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.spec`. If there is no value under the given path in the custom resource, the `/scale` subresource will return an error on GET. |
 | `statusReplicasPath` | `string` | statusReplicasPath defines the JSON path inside of a custom resource that corresponds to Scale `status.replicas`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.status`. If there is no value under the given path in the custom resource, the `status.replicas` value in the `/scale` subresource will default to 0. |
 
-### .spec.versions[].subresources.status {#_specversionssubresourcesstatus}
+### .spec.versions\[\].subresources.status {#_specversionssubresourcesstatus}
 
 Description
-: CustomResourceSubresourceStatus defines how to serve the status subresource for CustomResources. Status is represented by the `.status` JSON path inside of a CustomResource. When set, * exposes a /status subresource for the custom resource * PUT requests to the /status subresource take a custom resource object, and ignore changes to anything except the status stanza * PUT/POST/PATCH requests to the custom resource ignore changes to the status stanza
+: CustomResourceSubresourceStatus defines how to serve the status subresource for CustomResources. Status is represented by the `.status` JSON path inside of a CustomResource. When set, \* exposes a /status subresource for the custom resource \* PUT requests to the /status subresource take a custom resource object, and ignore changes to anything except the status stanza \* PUT/POST/PATCH requests to the custom resource ignore changes to the status stanza
 
 Type
 : ```
@@ -360,7 +360,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : CustomResourceDefinitionCondition contains details for the current condition of this pod.
@@ -378,7 +378,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | [`Time`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime last time the condition transitioned from one status to another. |
 | `message` | `string` | message is a human-readable message indicating details about last transition. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason is a unique, one-word, CamelCase reason for the condition’s last transition. |
 | `status` | `string` | status is the status of the condition. Can be True, False, Unknown. |
 | `type` | `string` | type is the type of the condition. Types include Established, NamesAccepted and Terminating. |
@@ -498,7 +498,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name} {#_apisapiextensionsk8siov1customresourcedefinitions_name}
+### /apis/apiextensions.k8s.io/v1/customresourcedefinitions/&#123;name&#125; {#_apisapiextensionsk8siov1customresourcedefinitions_name}
 
 **Global path parameters**
 
@@ -603,7 +603,7 @@ Description
 | 201 - Created | [`CustomResourceDefinition`](/docs/rest_api/extension_apis/customresourcedefinition-apiextensions-k8s-io-v1#customresourcedefinition-apiextensions-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiextensions.k8s.io/v1/watch/customresourcedefinitions/{name} {#_apisapiextensionsk8siov1watchcustomresourcedefinitions_name}
+### /apis/apiextensions.k8s.io/v1/watch/customresourcedefinitions/&#123;name&#125; {#_apisapiextensionsk8siov1watchcustomresourcedefinitions_name}
 
 **Global path parameters**
 
@@ -628,7 +628,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}/status {#_apisapiextensionsk8siov1customresourcedefinitions_name_status}
+### /apis/apiextensions.k8s.io/v1/customresourcedefinitions/&#123;name&#125;/status {#_apisapiextensionsk8siov1customresourcedefinitions_name_status}
 
 **Global path parameters**
 

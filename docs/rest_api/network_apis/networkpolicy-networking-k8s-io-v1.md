@@ -3,7 +3,7 @@ title: "NetworkPolicy [networking.k8s.io/v1]"
 sidebar_position: 26
 ---
 
-# NetworkPolicy [networking.k8s.io/v1] {#networkpolicy-networking-k8s-io-v1}
+# NetworkPolicy \[networking.k8s.io/v1\] {#networkpolicy-networking-k8s-io-v1}
 
 <a id="networkpolicy-networking-k8s-io-v1"></a>
 
@@ -41,7 +41,7 @@ Type
 | `ingress` | `array` | ingress is a list of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod’s local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default) |
 | `ingress[]` | `object` | NetworkPolicyIngressRule describes a particular set of traffic that is allowed to the pods matched by a NetworkPolicySpec’s podSelector. The traffic must match both ports and from. |
 | `podSelector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | podSelector selects the pods to which this NetworkPolicy object applies. The array of rules is applied to any pods selected by this field. An empty selector matches all pods in the policy’s namespace. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is optional. If it is not specified, it defaults to an empty selector. |
-| `policyTypes` | `array (string)` | policyTypes is a list of rule types that the NetworkPolicy relates to. Valid options are ["Ingress"], ["Egress"], or ["Ingress", "Egress"]. If this field is not specified, it will default based on the existence of ingress or egress rules; policies that contain an egress section are assumed to affect egress, and all policies (whether or not they contain an ingress section) are assumed to affect ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8 |
+| `policyTypes` | `array (string)` | policyTypes is a list of rule types that the NetworkPolicy relates to. Valid options are \["Ingress"\], \["Egress"\], or \["Ingress", "Egress"\]. If this field is not specified, it will default based on the existence of ingress or egress rules; policies that contain an egress section are assumed to affect egress, and all policies (whether or not they contain an ingress section) are assumed to affect ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes \[ "Egress" \]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an egress section and would otherwise default to just \[ "Ingress" \]). This field is beta-level in 1.8 |
 
 ### .spec.egress {#_specegress}
 
@@ -53,7 +53,7 @@ Type
   `array`
   ```
 
-### .spec.egress[] {#_specegress}
+### .spec.egress\[\] {#_specegress}
 
 Description
 : NetworkPolicyEgressRule describes a particular set of traffic that is allowed out of pods matched by a NetworkPolicySpec’s podSelector. The traffic must match both ports and to. This type is beta-level in 1.8
@@ -70,7 +70,7 @@ Type
 | `to` | `array` | to is a list of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list. |
 | `to[]` | `object` | NetworkPolicyPeer describes a peer to allow traffic to/from. Only certain combinations of fields are allowed |
 
-### .spec.egress[].ports {#_specegressports}
+### .spec.egress\[\].ports {#_specegressports}
 
 Description
 : ports is a list of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
@@ -80,7 +80,7 @@ Type
   `array`
   ```
 
-### .spec.egress[].ports[] {#_specegressports}
+### .spec.egress\[\].ports\[\] {#_specegressports}
 
 Description
 : NetworkPolicyPort describes a port to allow traffic on
@@ -96,7 +96,7 @@ Type
 | `port` | [`IntOrString`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | port represents the port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched. |
 | `protocol` | `string` | protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.<br>Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
 
-### .spec.egress[].to {#_specegressto}
+### .spec.egress\[\].to {#_specegressto}
 
 Description
 : to is a list of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
@@ -106,7 +106,7 @@ Type
   `array`
   ```
 
-### .spec.egress[].to[] {#_specegressto}
+### .spec.egress\[\].to\[\] {#_specegressto}
 
 Description
 : NetworkPolicyPeer describes a peer to allow traffic to/from. Only certain combinations of fields are allowed
@@ -122,7 +122,7 @@ Type
 | `namespaceSelector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.<br>If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. |
 | `podSelector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.<br>If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy’s own namespace. |
 
-### .spec.egress[].to[].ipBlock {#_specegresstoipblock}
+### .spec.egress\[\].to\[\].ipBlock {#_specegresstoipblock}
 
 Description
 : IPBlock describes a particular CIDR (Ex. "192.168.1.0/24","2001:db8::/64") that is allowed to the pods matched by a NetworkPolicySpec’s podSelector. The except entry describes CIDRs that should not be included within this rule.
@@ -150,7 +150,7 @@ Type
   `array`
   ```
 
-### .spec.ingress[] {#_specingress}
+### .spec.ingress\[\] {#_specingress}
 
 Description
 : NetworkPolicyIngressRule describes a particular set of traffic that is allowed to the pods matched by a NetworkPolicySpec’s podSelector. The traffic must match both ports and from.
@@ -167,7 +167,7 @@ Type
 | `ports` | `array` | ports is a list of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list. |
 | `ports[]` | `object` | NetworkPolicyPort describes a port to allow traffic on |
 
-### .spec.ingress[].from {#_specingressfrom}
+### .spec.ingress\[\].from {#_specingressfrom}
 
 Description
 : from is a list of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
@@ -177,7 +177,7 @@ Type
   `array`
   ```
 
-### .spec.ingress[].from[] {#_specingressfrom}
+### .spec.ingress\[\].from\[\] {#_specingressfrom}
 
 Description
 : NetworkPolicyPeer describes a peer to allow traffic to/from. Only certain combinations of fields are allowed
@@ -193,7 +193,7 @@ Type
 | `namespaceSelector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | namespaceSelector selects namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.<br>If podSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the namespaces selected by namespaceSelector. Otherwise it selects all pods in the namespaces selected by namespaceSelector. |
 | `podSelector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | podSelector is a label selector which selects pods. This field follows standard label selector semantics; if present but empty, it selects all pods.<br>If namespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the pods matching podSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the pods matching podSelector in the policy’s own namespace. |
 
-### .spec.ingress[].from[].ipBlock {#_specingressfromipblock}
+### .spec.ingress\[\].from\[\].ipBlock {#_specingressfromipblock}
 
 Description
 : IPBlock describes a particular CIDR (Ex. "192.168.1.0/24","2001:db8::/64") that is allowed to the pods matched by a NetworkPolicySpec’s podSelector. The except entry describes CIDRs that should not be included within this rule.
@@ -211,7 +211,7 @@ Required
 | `cidr` | `string` | cidr is a string representing the IPBlock Valid examples are "192.168.1.0/24" or "2001:db8::/64" |
 | `except` | `array (string)` | except is a slice of CIDRs that should not be included within an IPBlock Valid examples are "192.168.1.0/24" or "2001:db8::/64" Except values will be rejected if they are outside the cidr range |
 
-### .spec.ingress[].ports {#_specingressports}
+### .spec.ingress\[\].ports {#_specingressports}
 
 Description
 : ports is a list of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
@@ -221,7 +221,7 @@ Type
   `array`
   ```
 
-### .spec.ingress[].ports[] {#_specingressports}
+### .spec.ingress\[\].ports\[\] {#_specingressports}
 
 Description
 : NetworkPolicyPort describes a port to allow traffic on
@@ -297,7 +297,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies {#_apisnetworkingk8siov1namespaces_namespace_networkpolicies}
+### /apis/networking.k8s.io/v1/namespaces/&#123;namespace&#125;/networkpolicies {#_apisnetworkingk8siov1namespaces_namespace_networkpolicies}
 
 HTTP method
 : ```
@@ -371,7 +371,7 @@ Description
 | 202 - Accepted | [`NetworkPolicy`](/docs/rest_api/network_apis/networkpolicy-networking-k8s-io-v1#networkpolicy-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/watch/namespaces/{namespace}/networkpolicies {#_apisnetworkingk8siov1watchnamespaces_namespace_networkpolicies}
+### /apis/networking.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/networkpolicies {#_apisnetworkingk8siov1watchnamespaces_namespace_networkpolicies}
 
 HTTP method
 : ```
@@ -390,7 +390,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/namespaces/{namespace}/networkpolicies/{name} {#_apisnetworkingk8siov1namespaces_namespace_networkpolicies_name}
+### /apis/networking.k8s.io/v1/namespaces/&#123;namespace&#125;/networkpolicies/&#123;name&#125; {#_apisnetworkingk8siov1namespaces_namespace_networkpolicies_name}
 
 **Global path parameters**
 
@@ -495,7 +495,7 @@ Description
 | 201 - Created | [`NetworkPolicy`](/docs/rest_api/network_apis/networkpolicy-networking-k8s-io-v1#networkpolicy-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/watch/namespaces/{namespace}/networkpolicies/{name} {#_apisnetworkingk8siov1watchnamespaces_namespace_networkpolicies_name}
+### /apis/networking.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/networkpolicies/&#123;name&#125; {#_apisnetworkingk8siov1watchnamespaces_namespace_networkpolicies_name}
 
 **Global path parameters**
 

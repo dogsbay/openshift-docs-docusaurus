@@ -3,7 +3,7 @@ title: "Metal3RemediationTemplate [infrastructure.cluster.x-k8s.io/v1beta1]"
 sidebar_position: 11
 ---
 
-# Metal3RemediationTemplate [infrastructure.cluster.x-k8s.io/v1beta1] {#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1}
+# Metal3RemediationTemplate \[infrastructure.cluster.x-k8s.io/v1beta1\] {#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1}
 
 <a id="metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1"></a>
 
@@ -161,7 +161,7 @@ Description
 | 200 - OK | [`Metal3RemediationTemplateList`](/docs/rest_api/objects#io-x-k8s-cluster-infrastructure-v1beta1-Metal3RemediationTemplateList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/metal3remediationtemplates {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates}
+### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/&#123;namespace&#125;/metal3remediationtemplates {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates}
 
 HTTP method
 : ```
@@ -229,7 +229,7 @@ Description
 | 202 - Accepted | [`Metal3RemediationTemplate`](/docs/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/metal3remediationtemplates/{name} {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates_name}
+### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/&#123;namespace&#125;/metal3remediationtemplates/&#123;name&#125; {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates_name}
 
 **Global path parameters**
 
@@ -333,7 +333,7 @@ Description
 | 201 - Created | [`Metal3RemediationTemplate`](/docs/rest_api/provisioning_apis/metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1#metal3remediationtemplate-infrastructure-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/metal3remediationtemplates/{name}/status {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates_name_status}
+### /apis/infrastructure.cluster.x-k8s.io/v1beta1/namespaces/&#123;namespace&#125;/metal3remediationtemplates/&#123;name&#125;/status {#_apisinfrastructureclusterx-k8siov1beta1namespaces_namespace_metal3remediationtemplates_name_status}
 
 **Global path parameters**
 

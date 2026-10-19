@@ -249,7 +249,7 @@ Only certain action combinations are supported and listed in *Supported action c
 
    :::note
 
-   If you add the seed image pull secret in the hub cluster, in the same namespace as the `ImageBasedGroupUpgrade` resource, the {lco} adds the secret to the manifest list for the `Prep` stage. The {lco} recreates the secret in each spoke cluster in the `openshift-lifecycle-agent` namespace.
+   If you add the seed image pull secret in the hub cluster, in the same namespace as the `ImageBasedGroupUpgrade` resource, the &#123;lco&#125; adds the secret to the manifest list for the `Prep` stage. The &#123;lco&#125; recreates the secret in each spoke cluster in the `openshift-lifecycle-agent` namespace.
 
    :::
 

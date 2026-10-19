@@ -3,18 +3,18 @@ title: "EgressRouter [network.operator.openshift.io/v1]"
 sidebar_position: 14
 ---
 
-# EgressRouter [network.operator.openshift.io/v1] {#egressrouter-network-operator-openshift-io-v1}
+# EgressRouter \[network.operator.openshift.io/v1\] {#egressrouter-network-operator-openshift-io-v1}
 
 <a id="egressrouter-network-operator-openshift-io-v1"></a>
 
 Description
 : EgressRouter is a feature allowing the user to define an egress router that acts as a bridge between pods and external systems. The egress router runs a service that redirects egress traffic originating from a pod or a group of pods to a remote external system or multiple destinations as per configuration.
 
-  It is consumed by the cluster-network-operator. More specifically, given an EgressRouter CR with <name>, the CNO will create and manage:
+  It is consumed by the cluster-network-operator. More specifically, given an EgressRouter CR with &lt;name>, the CNO will create and manage:
 
-  - A service called <name>
-  - An egress pod called <name>
-  - A NAD called <name>
+  - A service called &lt;name>
+  - An egress pod called &lt;name>
+  - A NAD called &lt;name>
 
   Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).
 
@@ -71,7 +71,7 @@ Type
   `array`
   ```
 
-### .spec.addresses[] {#_specaddresses}
+### .spec.addresses\[\] {#_specaddresses}
 
 Description
 : EgressRouterAddress contains a pair of IP CIDR and gateway to be configured on the router’s interface
@@ -147,7 +147,7 @@ Type
   `array`
   ```
 
-### .spec.redirect.redirectRules[] {#_specredirectredirectrules}
+### .spec.redirect.redirectRules\[\] {#_specredirectredirectrules}
 
 Description
 : L4RedirectRule defines a DNAT redirection from a given port to a destination IP and port.
@@ -197,7 +197,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : EgressRouterStatusCondition represents the state of the egress router’s managed and monitored components.
@@ -213,7 +213,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `` | lastTransitionTime is the time of the last update to the current status property. |
+| `lastTransitionTime` | &#96;&#96; | lastTransitionTime is the time of the last update to the current status property. |
 | `message` | `string` | message provides additional information about the current condition. This is only to be consumed by humans.  It may contain Line Feed characters (U+000A), which should be rendered as new lines. |
 | `reason` | `string` | reason is the CamelCase reason for the condition’s current status. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -258,7 +258,7 @@ Description
 | 200 - OK | [`EgressRouterList`](/docs/rest_api/objects#io-openshift-operator-network-v1-EgressRouterList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/network.operator.openshift.io/v1/namespaces/{namespace}/egressrouters {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters}
+### /apis/network.operator.openshift.io/v1/namespaces/&#123;namespace&#125;/egressrouters {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters}
 
 HTTP method
 : ```
@@ -326,7 +326,7 @@ Description
 | 202 - Accepted | [`EgressRouter`](/docs/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/network.operator.openshift.io/v1/namespaces/{namespace}/egressrouters/{name} {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters_name}
+### /apis/network.operator.openshift.io/v1/namespaces/&#123;namespace&#125;/egressrouters/&#123;name&#125; {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters_name}
 
 **Global path parameters**
 
@@ -430,7 +430,7 @@ Description
 | 201 - Created | [`EgressRouter`](/docs/rest_api/network_apis/egressrouter-network-operator-openshift-io-v1#egressrouter-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/network.operator.openshift.io/v1/namespaces/{namespace}/egressrouters/{name}/status {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters_name_status}
+### /apis/network.operator.openshift.io/v1/namespaces/&#123;namespace&#125;/egressrouters/&#123;name&#125;/status {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_egressrouters_name_status}
 
 **Global path parameters**
 

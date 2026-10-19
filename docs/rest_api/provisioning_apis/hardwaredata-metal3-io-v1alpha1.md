@@ -3,7 +3,7 @@ title: "HardwareData [metal3.io/v1alpha1]"
 sidebar_position: 6
 ---
 
-# HardwareData [metal3.io/v1alpha1] {#hardwaredata-metal3-io-v1alpha1}
+# HardwareData \[metal3.io/v1alpha1\] {#hardwaredata-metal3-io-v1alpha1}
 
 <a id="hardwaredata-metal3-io-v1alpha1"></a>
 
@@ -118,7 +118,7 @@ Type
   `array`
   ```
 
-### .spec.hardware.nics[] {#_spechardwarenics}
+### .spec.hardware.nics\[\] {#_spechardwarenics}
 
 Description
 : NIC describes one network interface on the host.
@@ -142,7 +142,7 @@ Type
 | `vlans` | `array` | The VLANs available |
 | `vlans[]` | `object` | VLAN represents the name and ID of a VLAN. |
 
-### .spec.hardware.nics[].lldp {#_spechardwarenicslldp}
+### .spec.hardware.nics\[\].lldp {#_spechardwarenicslldp}
 
 Description
 : LLDP data for this interface
@@ -158,7 +158,7 @@ Type
 | `switchID` | `string` | The switch chassis ID from LLDP |
 | `switchSystemName` | `string` | The switch system name from LLDP |
 
-### .spec.hardware.nics[].vlans {#_spechardwarenicsvlans}
+### .spec.hardware.nics\[\].vlans {#_spechardwarenicsvlans}
 
 Description
 : The VLANs available
@@ -168,7 +168,7 @@ Type
   `array`
   ```
 
-### .spec.hardware.nics[].vlans[] {#_spechardwarenicsvlans}
+### .spec.hardware.nics\[\].vlans\[\] {#_spechardwarenicsvlans}
 
 Description
 : VLAN represents the name and ID of a VLAN.
@@ -193,7 +193,7 @@ Type
   `array`
   ```
 
-### .spec.hardware.storage[] {#_spechardwarestorage}
+### .spec.hardware.storage\[\] {#_spechardwarestorage}
 
 Description
 : Storage describes one storage device (disk, SSD, etc.) on the host.
@@ -269,7 +269,7 @@ Description
 | 200 - OK | [`HardwareDataList`](/docs/rest_api/objects#io-metal3-v1alpha1-HardwareDataList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hardwaredata {#_apismetal3iov1alpha1namespaces_namespace_hardwaredata}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/hardwaredata {#_apismetal3iov1alpha1namespaces_namespace_hardwaredata}
 
 HTTP method
 : ```
@@ -337,7 +337,7 @@ Description
 | 202 - Accepted | [`HardwareData`](/docs/rest_api/provisioning_apis/hardwaredata-metal3-io-v1alpha1#hardwaredata-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hardwaredata/{name} {#_apismetal3iov1alpha1namespaces_namespace_hardwaredata_name}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/hardwaredata/&#123;name&#125; {#_apismetal3iov1alpha1namespaces_namespace_hardwaredata_name}
 
 **Global path parameters**
 

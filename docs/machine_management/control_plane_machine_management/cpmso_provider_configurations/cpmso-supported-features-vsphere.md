@@ -139,7 +139,7 @@ Adding data disks attaches them to the VM and mounts them to the location that R
    # ...
    ```
 
-   where tag:compute[][]
+   where tag::compute\[\]
 
    **`spec.template.spec.providerSpec.value.dataDisks`**
 
@@ -159,9 +159,9 @@ Adding data disks attaches them to the VM and mounts them to the location that R
 
    **`spec.template.spec.providerSpec.value.dataDisks.sizeGiB`**
 
-   Specifies the size of the data disk in GiB. The maximum size is 16,384 GiB. end:compute[][]
+   Specifies the size of the data disk in GiB. The maximum size is 16,384 GiB. end::compute\[\]
 
-   tag:controlplane[][]
+   tag::controlplane\[\]
 
    **`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.dataDisks`**
 
@@ -181,7 +181,7 @@ Adding data disks attaches them to the VM and mounts them to the location that R
 
    **`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.dataDisks.sizeGiB`**
 
-   Specifies the size of the data disk in GiB. The maximum size is 16,384 GiB. end:controlplane[][]
+   Specifies the size of the data disk in GiB. The maximum size is 16,384 GiB. end::controlplane\[\]
 
 **Additional resources**
 

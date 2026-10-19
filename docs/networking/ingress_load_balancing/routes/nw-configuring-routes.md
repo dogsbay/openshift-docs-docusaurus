@@ -291,16 +291,16 @@ To create an allow list with multiple source IPs or subnets, use a space-delimit
 
 | Variable | Description |
 | --- | --- |
-| `haproxy.router.openshift.io/balance` | Sets the load-balancing algorithm. Available options are `random`, `source`, `roundrobin`[<sup>1</sup>], and `leastconn`.  The default value is `source` for TLS passthrough routes. For all other routes, the default is `random`. |
+| `haproxy.router.openshift.io/balance` | Sets the load-balancing algorithm. Available options are `random`, `source`, `roundrobin`\[<sup>1</sup>\], and `leastconn`.  The default value is `source` for TLS passthrough routes. For all other routes, the default is `random`. |
 | `haproxy.router.openshift.io/disable_cookies` | Disables the use of cookies to track related connections. If set to `'true'` or `'TRUE'`, the balance algorithm is used to choose which back-end serves connections for each incoming HTTP request. |
-| `router.openshift.io/cookie_name` | Specifies an optional cookie to use for this route. The name must consist of any combination of upper and lower case letters, digits, "_", and "-". The default is the hashed internal key name for the route. |
+| `router.openshift.io/cookie_name` | Specifies an optional cookie to use for this route. The name must consist of any combination of upper and lower case letters, digits, "\_", and "-". The default is the hashed internal key name for the route. |
 | `haproxy.router.openshift.io/pod-concurrent-connections` | Sets the maximum number of connections that are allowed to a backing pod from a router. Note: If there are multiple pods, each can have this many connections. If you have multiple routers, there is no coordination among them, each may connect this many times. If not set, or set to 0, there is no limit. |
 | `haproxy.router.openshift.io/rate-limit-connections` | Setting `'true'` or `'TRUE'` enables rate limiting functionality which is implemented through stick-tables on the specific backend per route. Note: Using this annotation provides basic protection against denial-of-service attacks. |
 | `haproxy.router.openshift.io/rate-limit-connections.concurrent-tcp` | Limits the number of concurrent TCP connections made through the same source IP address. It accepts a numeric value. Note: Using this annotation provides basic protection against denial-of-service attacks. |
 | `haproxy.router.openshift.io/rate-limit-connections.rate-http` | Limits the rate at which a client with the same source IP address can make HTTP requests. It accepts a numeric value. Note: Using this annotation provides basic protection against denial-of-service attacks. |
 | `haproxy.router.openshift.io/rate-limit-connections.rate-tcp` | Limits the rate at which a client with the same source IP address can make TCP connections. It accepts a numeric value. |
 | `router.openshift.io/haproxy.health.check.interval` | Sets the interval for the back-end health checks. (TimeUnits) |
-| `haproxy.router.openshift.io/ip_allowlist` | Sets an allowlist for the route. The allowlist is a space-separated list of IP addresses and CIDR ranges for the approved source addresses. Requests from IP addresses that are not in the allowlist are dropped.<br>The maximum number of IP addresses and CIDR ranges directly visible in the `haproxy.config` file is 61. [<sup>2</sup>] |
+| `haproxy.router.openshift.io/ip_allowlist` | Sets an allowlist for the route. The allowlist is a space-separated list of IP addresses and CIDR ranges for the approved source addresses. Requests from IP addresses that are not in the allowlist are dropped.<br>The maximum number of IP addresses and CIDR ranges directly visible in the `haproxy.config` file is 61. \[<sup>2</sup>\] |
 | `haproxy.router.openshift.io/hsts_header` | Sets a Strict-Transport-Security header for the edge terminated or re-encrypt route. |
 | `haproxy.router.openshift.io/rewrite-target` | Sets the rewrite path of the request on the backend. |
 | `router.openshift.io/cookie-same-site` | Sets a value to restrict cookies. The values are:<br>`Lax`: the browser does not send cookies on cross-site requests, but does send cookies when users navigate to the origin site from an external site. This is the default browser behavior when the `SameSite` value is not specified.<br>`Strict`: the browser sends cookies only for same-site requests.<br>`None`: the browser sends cookies for both cross-site and same-site requests.<br>This value is applicable to re-encrypt and edge routes only. |
@@ -385,7 +385,7 @@ Certain special characters in `haproxy.router.openshift.io/rewrite-target` requi
 | --- | --- | --- |
 | # | # | Avoid # because it terminates the rewrite expression |
 | % | % or %% | Avoid odd sequences such as %%% |
-| ‘ | \’ | Avoid ‘ because it is ignored |
+| ‘ | \\’ | Avoid ‘ because it is ignored |
 
 All other valid URL characters can be used without escaping.
 

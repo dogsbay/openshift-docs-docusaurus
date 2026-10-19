@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="oauth-apis"></a>
 
-## OAuthAccessToken [oauth.openshift.io/v1] {#_oauthaccesstoken_oauthopenshiftiov1}
+## OAuthAccessToken \[oauth.openshift.io/v1\] {#_oauthaccesstoken_oauthopenshiftiov1}
 
 Description
 : OAuthAccessToken describes an OAuth access token. The name of a token must be prefixed with a `sha256~` string, must not contain "/" or "%" characters and must be at least 32 characters long.
@@ -21,7 +21,7 @@ Type
   `object`
   ```
 
-## OAuthAuthorizeToken [oauth.openshift.io/v1] {#_oauthauthorizetoken_oauthopenshiftiov1}
+## OAuthAuthorizeToken \[oauth.openshift.io/v1\] {#_oauthauthorizetoken_oauthopenshiftiov1}
 
 Description
 : OAuthAuthorizeToken describes an OAuth authorization token
@@ -33,7 +33,7 @@ Type
   `object`
   ```
 
-## OAuthClientAuthorization [oauth.openshift.io/v1] {#_oauthclientauthorization_oauthopenshiftiov1}
+## OAuthClientAuthorization \[oauth.openshift.io/v1\] {#_oauthclientauthorization_oauthopenshiftiov1}
 
 Description
 : OAuthClientAuthorization describes an authorization created by an OAuth client
@@ -45,7 +45,7 @@ Type
   `object`
   ```
 
-## OAuthClient [oauth.openshift.io/v1] {#_oauthclient_oauthopenshiftiov1}
+## OAuthClient \[oauth.openshift.io/v1\] {#_oauthclient_oauthopenshiftiov1}
 
 Description
 : OAuthClient describes an OAuth client
@@ -57,7 +57,7 @@ Type
   `object`
   ```
 
-## UserOAuthAccessToken [oauth.openshift.io/v1] {#_useroauthaccesstoken_oauthopenshiftiov1}
+## UserOAuthAccessToken \[oauth.openshift.io/v1\] {#_useroauthaccesstoken_oauthopenshiftiov1}
 
 Description
 : UserOAuthAccessToken is a virtual resource to mirror OAuthAccessTokens to the user the access token was issued for

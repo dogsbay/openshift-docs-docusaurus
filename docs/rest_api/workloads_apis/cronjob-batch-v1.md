@@ -3,7 +3,7 @@ title: "CronJob [batch/v1]"
 sidebar_position: 6
 ---
 
-# CronJob [batch/v1] {#cronjob-batch-v1}
+# CronJob \[batch/v1\] {#cronjob-batch-v1}
 
 <a id="cronjob-batch-v1"></a>
 
@@ -125,7 +125,7 @@ Type
   `array`
   ```
 
-### .spec.jobTemplate.spec.podFailurePolicy.rules[] {#_specjobtemplatespecpodfailurepolicyrules}
+### .spec.jobTemplate.spec.podFailurePolicy.rules\[\] {#_specjobtemplatespecpodfailurepolicyrules}
 
 Description
 : PodFailurePolicyRule describes how a pod failure is handled when the requirements are met. One of onExitCodes and onPodConditions, but not both, can be used in each rule.
@@ -145,7 +145,7 @@ Required
 | `onPodConditions` | `array` | Represents the requirement on the pod conditions. The requirement is represented as a list of pod condition patterns. The requirement is satisfied if at least one pattern matches an actual pod condition. At most 20 elements are allowed. |
 | `onPodConditions[]` | `object` | PodFailurePolicyOnPodConditionsPattern describes a pattern for matching an actual pod condition type. |
 
-### .spec.jobTemplate.spec.podFailurePolicy.rules[].onExitCodes {#_specjobtemplatespecpodfailurepolicyrulesonexitcodes}
+### .spec.jobTemplate.spec.podFailurePolicy.rules\[\].onExitCodes {#_specjobtemplatespecpodfailurepolicyrulesonexitcodes}
 
 Description
 : PodFailurePolicyOnExitCodesRequirement describes the requirement for handling a failed pod based on its container exit codes. In particular, it lookups the .state.terminated.exitCode for each app container and init container status, represented by the .status.containerStatuses and .status.initContainerStatuses fields in the Pod status, respectively. Containers completed with success (exit code 0) are excluded from the requirement check.
@@ -165,7 +165,7 @@ Required
 | `operator` | `string` | Represents the relationship between the container exit code(s) and the specified values. Containers completed with success (exit code 0) are excluded from the requirement check. Possible values are:<br>- In: the requirement is satisfied if at least one container exit code   (might be multiple if there are multiple containers not restricted   by the 'containerName' field) is in the set of specified values. - NotIn: the requirement is satisfied if at least one container exit code   (might be multiple if there are multiple containers not restricted   by the 'containerName' field) is not in the set of specified values. Additional values are considered to be added in the future. Clients should react to an unknown operator by assuming the requirement is not satisfied.<br>Possible enum values:  - `"In"`  - `"NotIn"` |
 | `values` | `array (integer)` | Specifies the set of values. Each returned container exit code (might be multiple in case of multiple containers) is checked against this set of values with respect to the operator. The list of values must be ordered and must not contain duplicates. Value '0' cannot be used for the In operator. At least one element is required. At most 255 elements are allowed. |
 
-### .spec.jobTemplate.spec.podFailurePolicy.rules[].onPodConditions {#_specjobtemplatespecpodfailurepolicyrulesonpodconditions}
+### .spec.jobTemplate.spec.podFailurePolicy.rules\[\].onPodConditions {#_specjobtemplatespecpodfailurepolicyrulesonpodconditions}
 
 Description
 : Represents the requirement on the pod conditions. The requirement is represented as a list of pod condition patterns. The requirement is satisfied if at least one pattern matches an actual pod condition. At most 20 elements are allowed.
@@ -175,7 +175,7 @@ Type
   `array`
   ```
 
-### .spec.jobTemplate.spec.podFailurePolicy.rules[].onPodConditions[] {#_specjobtemplatespecpodfailurepolicyrulesonpodconditions}
+### .spec.jobTemplate.spec.podFailurePolicy.rules\[\].onPodConditions\[\] {#_specjobtemplatespecpodfailurepolicyrulesonpodconditions}
 
 Description
 : PodFailurePolicyOnPodConditionsPattern describes a pattern for matching an actual pod condition type.
@@ -221,7 +221,7 @@ Type
   `array`
   ```
 
-### .spec.jobTemplate.spec.successPolicy.rules[] {#_specjobtemplatespecsuccesspolicyrules}
+### .spec.jobTemplate.spec.successPolicy.rules\[\] {#_specjobtemplatespecsuccesspolicyrules}
 
 Description
 : SuccessPolicyRule describes rule for declaring a Job as succeeded. Each rule must have at least one of the "succeededIndexes" or "succeededCount" specified.
@@ -316,7 +316,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/batch/v1/namespaces/{namespace}/cronjobs {#_apisbatchv1namespaces_namespace_cronjobs}
+### /apis/batch/v1/namespaces/&#123;namespace&#125;/cronjobs {#_apisbatchv1namespaces_namespace_cronjobs}
 
 HTTP method
 : ```
@@ -390,7 +390,7 @@ Description
 | 202 - Accepted | [`CronJob`](/docs/rest_api/workloads_apis/cronjob-batch-v1#cronjob-batch-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/batch/v1/watch/namespaces/{namespace}/cronjobs {#_apisbatchv1watchnamespaces_namespace_cronjobs}
+### /apis/batch/v1/watch/namespaces/&#123;namespace&#125;/cronjobs {#_apisbatchv1watchnamespaces_namespace_cronjobs}
 
 HTTP method
 : ```
@@ -409,7 +409,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/batch/v1/namespaces/{namespace}/cronjobs/{name} {#_apisbatchv1namespaces_namespace_cronjobs_name}
+### /apis/batch/v1/namespaces/&#123;namespace&#125;/cronjobs/&#123;name&#125; {#_apisbatchv1namespaces_namespace_cronjobs_name}
 
 **Global path parameters**
 
@@ -514,7 +514,7 @@ Description
 | 201 - Created | [`CronJob`](/docs/rest_api/workloads_apis/cronjob-batch-v1#cronjob-batch-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/batch/v1/watch/namespaces/{namespace}/cronjobs/{name} {#_apisbatchv1watchnamespaces_namespace_cronjobs_name}
+### /apis/batch/v1/watch/namespaces/&#123;namespace&#125;/cronjobs/&#123;name&#125; {#_apisbatchv1watchnamespaces_namespace_cronjobs_name}
 
 **Global path parameters**
 
@@ -539,7 +539,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/batch/v1/namespaces/{namespace}/cronjobs/{name}/status {#_apisbatchv1namespaces_namespace_cronjobs_name_status}
+### /apis/batch/v1/namespaces/&#123;namespace&#125;/cronjobs/&#123;name&#125;/status {#_apisbatchv1namespaces_namespace_cronjobs_name_status}
 
 **Global path parameters**
 

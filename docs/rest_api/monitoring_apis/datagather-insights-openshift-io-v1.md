@@ -3,7 +3,7 @@ title: "DataGather [insights.openshift.io/v1]"
 sidebar_position: 6
 ---
 
-# DataGather [insights.openshift.io/v1] {#datagather-insights-openshift-io-v1}
+# DataGather \[insights.openshift.io/v1\] {#datagather-insights-openshift-io-v1}
 
 <a id="datagather-insights-openshift-io-v1"></a>
 
@@ -82,20 +82,20 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `configs` | `array` | configs is a required list of gatherers configurations that can be used to enable or disable specific gatherers. It may not exceed 100 items and each gatherer can be present only once. It is possible to disable an entire set of gatherers while allowing a specific function within that set. The particular gatherers IDs can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \| jq '.status.gatherStatus.gatherers[].name'" |
+| `configs` | `array` | configs is a required list of gatherers configurations that can be used to enable or disable specific gatherers. It may not exceed 100 items and each gatherer can be present only once. It is possible to disable an entire set of gatherers while allowing a specific function within that set. The particular gatherers IDs can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \| jq '.status.gatherStatus.gatherers\[\].name'" |
 | `configs[]` | `object` | GathererConfig allows to configure specific gatherers |
 
 ### .spec.gatherers.custom.configs {#_specgathererscustomconfigs}
 
 Description
-: configs is a required list of gatherers configurations that can be used to enable or disable specific gatherers. It may not exceed 100 items and each gatherer can be present only once. It is possible to disable an entire set of gatherers while allowing a specific function within that set. The particular gatherers IDs can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json | jq '.status.gatherStatus.gatherers[].name'"
+: configs is a required list of gatherers configurations that can be used to enable or disable specific gatherers. It may not exceed 100 items and each gatherer can be present only once. It is possible to disable an entire set of gatherers while allowing a specific function within that set. The particular gatherers IDs can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json | jq '.status.gatherStatus.gatherers\[\].name'"
 
 Type
 : ```
   `array`
   ```
 
-### .spec.gatherers.custom.configs[] {#_specgathererscustomconfigs}
+### .spec.gatherers.custom.configs\[\] {#_specgathererscustomconfigs}
 
 Description
 : GathererConfig allows to configure specific gatherers
@@ -111,7 +111,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | name is the required name of a specific gatherer. It may not exceed 256 characters. The format for a gatherer name is: {gatherer}/{function} where the function is optional. Gatherer consists of a lowercase letters only that may include underscores (*). Function consists of a lowercase letters only that may include underscores (*) and is separated from the gatherer by a forward slash (/). The particular gatherers can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \| jq '.status.gatherStatus.gatherers[].name'" |
+| `name` | `string` | name is the required name of a specific gatherer. It may not exceed 256 characters. The format for a gatherer name is: &#123;gatherer&#125;/&#123;function&#125; where the function is optional. Gatherer consists of a lowercase letters only that may include underscores (*). Function consists of a lowercase letters only that may include underscores (*) and is separated from the gatherer by a forward slash (/). The particular gatherers can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \| jq '.status.gatherStatus.gatherers\[\].name'" |
 | `state` | `string` | state is a required field that allows you to configure specific gatherer. Valid values are "Enabled" and "Disabled". When set to Enabled the gatherer will run. When set to Disabled the gatherer will not run. |
 
 ### .spec.storage {#_specstorage}
@@ -214,7 +214,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -235,7 +235,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -250,7 +250,7 @@ Type
   `array`
   ```
 
-### .status.gatherers[] {#_statusgatherers}
+### .status.gatherers\[\] {#_statusgatherers}
 
 Description
 : GathererStatus represents information about a particular data gatherer.
@@ -271,7 +271,7 @@ Required
 | `lastGatherSeconds` | `integer` | lastGatherSeconds is required field that represents the time spent gathering in seconds |
 | `name` | `string` | name is the required name of the gatherer. It must contain at least 5 characters and may not exceed 256 characters. |
 
-### .status.gatherers[].conditions {#_statusgatherersconditions}
+### .status.gatherers\[\].conditions {#_statusgatherersconditions}
 
 Description
 : conditions provide details on the status of each gatherer.
@@ -285,7 +285,7 @@ Type
   `array`
   ```
 
-### .status.gatherers[].conditions[] {#_statusgatherersconditions}
+### .status.gatherers\[\].conditions\[\] {#_statusgatherersconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -306,7 +306,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -342,7 +342,7 @@ Type
   `array`
   ```
 
-### .status.insightsReport.healthChecks[] {#_statusinsightsreporthealthchecks}
+### .status.insightsReport.healthChecks\[\] {#_statusinsightsreporthealthchecks}
 
 Description
 : HealthCheck represents an Insights health check attributes.
@@ -373,7 +373,7 @@ Type
   `array`
   ```
 
-### .status.relatedObjects[] {#_statusrelatedobjects}
+### .status.relatedObjects\[\] {#_statusrelatedobjects}
 
 Description
 : ObjectReference contains enough information to let you inspect or modify the referred object.
@@ -482,7 +482,7 @@ Description
 | 202 - Accepted | [`DataGather`](/docs/rest_api/monitoring_apis/datagather-insights-openshift-io-v1#datagather-insights-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/insights.openshift.io/v1/datagathers/{name} {#_apisinsightsopenshiftiov1datagathers_name}
+### /apis/insights.openshift.io/v1/datagathers/&#123;name&#125; {#_apisinsightsopenshiftiov1datagathers_name}
 
 **Global path parameters**
 
@@ -586,7 +586,7 @@ Description
 | 201 - Created | [`DataGather`](/docs/rest_api/monitoring_apis/datagather-insights-openshift-io-v1#datagather-insights-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/insights.openshift.io/v1/datagathers/{name}/status {#_apisinsightsopenshiftiov1datagathers_name_status}
+### /apis/insights.openshift.io/v1/datagathers/&#123;name&#125;/status {#_apisinsightsopenshiftiov1datagathers_name_status}
 
 **Global path parameters**
 

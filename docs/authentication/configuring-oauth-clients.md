@@ -119,4 +119,4 @@ If the token inactivity timeout is also configured in the internal OAuth server 
 
 **Additional resources**
 
-- [OAuthClient [oauth.openshift.io/v1](/docs/rest_api/oauth_apis/oauthclient-oauth-openshift-io-v1#oauthclient-oauth-openshift-io-v1)]
+- \[OAuthClient [oauth.openshift.io/v1](/docs/rest_api/oauth_apis/oauthclient-oauth-openshift-io-v1#oauthclient-oauth-openshift-io-v1)\]

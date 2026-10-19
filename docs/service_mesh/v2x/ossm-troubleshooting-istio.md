@@ -307,7 +307,7 @@ Starting with Red Hat OpenShift Service Mesh 2.5, Red Hat OpenShift Distribute
    $ oc get route -n istio-system jaeger -o jsonpath='{.spec.host}'
    ```
 3. Launch a browser and navigate to `https://<JAEGER_URL>`, where `<JAEGER_URL>` is the route that you discovered in the previous step.
-4. Log in using the same user name and password that you use to access the {Product_title} console.
+4. Log in using the same user name and password that you use to access the &#123;Product_title&#125; console.
 5. If you have added services to the service mesh and have generated traces, you can use the filters and **Find Traces** button to search your trace data.
    If you are validating the console installation, there is no trace data to display.
 

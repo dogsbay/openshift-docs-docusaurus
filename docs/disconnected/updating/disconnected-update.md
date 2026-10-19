@@ -125,7 +125,7 @@ In order to update a cluster in a disconnected environment using the `oc adm upg
    ```
 2. Copy the sha256 digest for use when updating your cluster.
 
-## Updating the disconnected cluster {#update-disconnected_updating-disconnected-cluster}
+## Update the disconnected cluster {#update-disconnected_updating-disconnected-cluster}
 
 Update the disconnected cluster to the OpenShift Container Platform version that you downloaded the release images for.
 
@@ -249,7 +249,7 @@ However, you can configure a cluster-wide `CRIOCredentialProviderConfig` object 
 
 :::
 
-### Configuring image registry repository mirroring {#images-configuration-registry-mirror-configuring_updating-disconnected-cluster}
+### Configure image registry repository mirroring {#images-configuration-registry-mirror-configuring_updating-disconnected-cluster}
 
 You can create postinstallation mirror configuration custom resources (CR) to redirect image pull requests from a source image registry to a mirrored image registry.
 
@@ -263,7 +263,7 @@ You can create postinstallation mirror configuration custom resources (CR) to re
    - Setting up a mirrored repository with Red Hat Quay. You can copy images from one repository to another and also automatically sync those repositories repeatedly over time by using Red Hat Quay.
      - [Red Hat Quay Repository Mirroring](https://docs.redhat.com/en/documentation/red_hat_quay/3/html/manage_red_hat_quay/arch-mirroring-intro#enabling-repository-mirroring-quay)
    - Using a tool such as `skopeo` to copy images manually from the source repository to the mirrored repository.
-     For example, after installing the skopeo RPM package on a {op-system-base-full system}, use the `skopeo` command as shown in the following example:
+     For example, after installing the skopeo RPM package on a &#123;op-system-base-full system&#125;, use the `skopeo` command as shown in the following example:
 
      ```terminal
      $ skopeo copy --all \
@@ -465,7 +465,7 @@ If the repository mirroring procedure does not work as described, use the follow
 - From the system context, the `Insecure` flags are used as fallback.
 - The format of the `/etc/containers/registries.conf` file has changed recently. It is now version 2 and in TOML format.
 
-### Converting ImageContentSourcePolicy (ICSP) files for image registry repository mirroring {#images-configuration-registry-mirror-convert_updating-disconnected-cluster}
+### Convert ImageContentSourcePolicy (ICSP) files for image registry repository mirroring {#images-configuration-registry-mirror-convert_updating-disconnected-cluster}
 
 You can convert existing `ImageContentSourcePolicy` (ICSP) files to `ImageDigestMirrorSet` files to configure image registry repository mirroring.
 

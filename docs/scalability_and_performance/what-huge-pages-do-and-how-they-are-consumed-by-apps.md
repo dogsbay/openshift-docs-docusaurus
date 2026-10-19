@@ -62,7 +62,7 @@ spec:
 
 ### Allocating huge pages of a specific size {#huge-pages-allocating-specific-size_huge-pages}
 
-Some platforms support multiple huge page sizes. To allocate huge pages of a specific size, precede the huge pages boot command parameters with a huge page size selection parameter `hugepagesz=<size>`. The `<size>` value must be specified in bytes with an optional scale suffix [`kKmMgG`]. The default huge page size can be defined with the `default_hugepagesz=<size>` boot parameter.
+Some platforms support multiple huge page sizes. To allocate huge pages of a specific size, precede the huge pages boot command parameters with a huge page size selection parameter `hugepagesz=<size>`. The `<size>` value must be specified in bytes with an optional scale suffix \[`kKmMgG`\]. The default huge page size can be defined with the `default_hugepagesz=<size>` boot parameter.
 
 ### Huge page requirements {#huge-pages-requirements_huge-pages}
 

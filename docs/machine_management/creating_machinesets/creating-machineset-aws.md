@@ -481,7 +481,9 @@ Public tenancy is the default tenancy. Instances with public tenancy run on shar
 
 ## Machine sets that place machines on Dedicated Hosts {#machineset-dedicated-hosts_creating-machineset-aws}
 
-You can configure machine sets to place machines on Amazon Web Services (AWS) Dedicated Hosts. Dedicated Hosts are physical servers with instance capacity that is fully dedicated to your use. You can use Dedicated Hosts with your existing per-socket, per-core, or per-VM software licenses. With dynamic host allocation, the Machine API Operator requests a Dedicated Host from AWS and applies the specified tags to the Dedicated Host.
+You can configure machine sets to place machines on Amazon Web Services (AWS) Dedicated Hosts. Dedicated Hosts are physical servers with instance capacity that is fully dedicated to your use.
+
+You can use Dedicated Hosts with your existing per-socket, per-core, or per-VM software licenses. With dynamic host allocation, the Machine API Operator requests a Dedicated Host from AWS and applies the specified tags to the Dedicated Host.
 
 :::warning
 
@@ -689,16 +691,16 @@ For more information, including limitations and suggested use cases for this Ama
   : Use this market type with Capacity Blocks for ML.
 
   `OnDemand`
-  : Use this market type with On-Demand Capacity Reservations. tag:compute[][]
+  : Use this market type with On-Demand Capacity Reservations. tag::compute\[\]
 
   `Spot`
-  : Use this market type with Spot Instances. This option is not compatible with Capacity Reservations. end:compute[][]
+  : Use this market type with Spot Instances. This option is not compatible with Capacity Reservations. end::compute\[\]
 
-1. Save your changes and exit the object specification. tag:controlplane[][]
+1. Save your changes and exit the object specification. tag::controlplane\[\]
    When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy.
 
    - For clusters that use the default `RollingUpdate` update strategy, the Operator automatically propagates the changes to your control plane configuration.
-   - For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually. end:controlplane[][]
+   - For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually. end::controlplane\[\]
 
 **Verification**
 
@@ -716,9 +718,9 @@ For more information, including limitations and suggested use cases for this Ama
   end::controlplane[]
   ```
 
-  tag:compute[][]
+  tag::compute\[\]
 
-  where `<machine_set_name>` is the name of the compute machine set. end:compute[][]
+  where `<machine_set_name>` is the name of the compute machine set. end::compute\[\]
 
   In the output, verify that the characteristics of the listed machines match the parameters of your Capacity Reservation.
 

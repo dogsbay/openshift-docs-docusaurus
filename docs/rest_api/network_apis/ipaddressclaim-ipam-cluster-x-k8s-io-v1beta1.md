@@ -3,7 +3,7 @@ title: "IPAddressClaim [ipam.cluster.x-k8s.io/v1beta1]"
 sidebar_position: 34
 ---
 
-# IPAddressClaim [ipam.cluster.x-k8s.io/v1beta1] {#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1}
+# IPAddressClaim \[ipam.cluster.x-k8s.io/v1beta1\] {#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1}
 
 <a id="ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1"></a>
 
@@ -104,7 +104,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition defines an observation of a Cluster API resource operational state.
@@ -153,7 +153,7 @@ Type
   `array`
   ```
 
-### .status.v1beta2.conditions[] {#_statusv1beta2conditions}
+### .status.v1beta2.conditions\[\] {#_statusv1beta2conditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -174,7 +174,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -218,7 +218,7 @@ Description
 | 200 - OK | [`IPAddressClaimList`](/docs/rest_api/objects#io-x-k8s-cluster-ipam-v1beta1-IPAddressClaimList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/ipaddressclaims {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims}
+### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/&#123;namespace&#125;/ipaddressclaims {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims}
 
 HTTP method
 : ```
@@ -286,7 +286,7 @@ Description
 | 202 - Accepted | [`IPAddressClaim`](/docs/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/ipaddressclaims/{name} {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims_name}
+### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/&#123;namespace&#125;/ipaddressclaims/&#123;name&#125; {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims_name}
 
 **Global path parameters**
 
@@ -390,7 +390,7 @@ Description
 | 201 - Created | [`IPAddressClaim`](/docs/rest_api/network_apis/ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1#ipaddressclaim-ipam-cluster-x-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/{namespace}/ipaddressclaims/{name}/status {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims_name_status}
+### /apis/ipam.cluster.x-k8s.io/v1beta1/namespaces/&#123;namespace&#125;/ipaddressclaims/&#123;name&#125;/status {#_apisipamclusterx-k8siov1beta1namespaces_namespace_ipaddressclaims_name_status}
 
 **Global path parameters**
 

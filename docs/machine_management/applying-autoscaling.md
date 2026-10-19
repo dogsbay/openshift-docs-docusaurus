@@ -394,10 +394,10 @@ spec:
 
 where:
 
-<name>
+&lt;name>
 : Specify the machine autoscaler name. To make it easier to identify which compute machine set this machine autoscaler scales, specify or include the name of the compute machine set to scale. The compute machine set name takes the following form: `<clusterid>-<machineset>-<region>`.
 
-<minReplicas>
+&lt;minReplicas>
 : Specify the minimum number machines of the specified type that must remain in the specified zone after the cluster autoscaler initiates cluster scaling. If running in AWS, Google Cloud, Azure, RHOSP, or vSphere, this value can be set to `0`. For other providers, do not set this value to `0`.
 
   You can save on costs by setting this value to `0` for use cases such as running expensive or limited-usage hardware that is used for specialized workloads, or by scaling a compute machine set with extra large machines. The cluster autoscaler scales the compute machine set down to zero if the machines are not in use.
@@ -408,16 +408,16 @@ where:
 
   :::
 
-<maxReplicas>
+&lt;maxReplicas>
 : Specify the maximum number machines of the specified type that the cluster autoscaler can deploy in the specified zone after it initiates cluster scaling. Ensure that the `maxNodesTotal` value in the `ClusterAutoscaler` resource definition is large enough to allow the machine autoscaler to deploy this number of machines.
 
-<scaleTargetRef>
+&lt;scaleTargetRef>
 : In this section, provide values that describe the existing compute machine set to scale.
 
-<kind>
+&lt;kind>
 : The `kind` parameter value is always `MachineSet`.
 
-<name>
+&lt;name>
 : The `name` value must match the name of an existing compute machine set, as shown in the `metadata.name` parameter value.
 
 ### Deploy a machine autoscaler {#MachineAutoscaler-deploying_applying-autoscaling}

@@ -3,7 +3,7 @@ title: "OperatorGroup [operators.coreos.com/v1]"
 sidebar_position: 11
 ---
 
-# OperatorGroup [operators.coreos.com/v1] {#operatorgroup-operators-coreos-com-v1}
+# OperatorGroup \[operators.coreos.com/v1\] {#operatorgroup-operators-coreos-com-v1}
 
 <a id="operatorgroup-operators-coreos-com-v1"></a>
 
@@ -60,7 +60,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.selector.matchExpressions {#_specselectormatchexpressions}
 
@@ -72,7 +72,7 @@ Type
   `array`
   ```
 
-### .spec.selector.matchExpressions[] {#_specselectormatchexpressions}
+### .spec.selector.matchExpressions\[\] {#_specselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -123,7 +123,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -144,7 +144,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -162,7 +162,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -208,7 +208,7 @@ Description
 | 200 - OK | [`OperatorGroupList`](/docs/rest_api/objects#com-coreos-operators-v1-OperatorGroupList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1/namespaces/{namespace}/operatorgroups {#_apisoperatorscoreoscomv1namespaces_namespace_operatorgroups}
+### /apis/operators.coreos.com/v1/namespaces/&#123;namespace&#125;/operatorgroups {#_apisoperatorscoreoscomv1namespaces_namespace_operatorgroups}
 
 HTTP method
 : ```
@@ -276,7 +276,7 @@ Description
 | 202 - Accepted | [`OperatorGroup`](/docs/rest_api/operatorhub_apis/operatorgroup-operators-coreos-com-v1#operatorgroup-operators-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1/namespaces/{namespace}/operatorgroups/{name} {#_apisoperatorscoreoscomv1namespaces_namespace_operatorgroups_name}
+### /apis/operators.coreos.com/v1/namespaces/&#123;namespace&#125;/operatorgroups/&#123;name&#125; {#_apisoperatorscoreoscomv1namespaces_namespace_operatorgroups_name}
 
 **Global path parameters**
 
@@ -380,7 +380,7 @@ Description
 | 201 - Created | [`OperatorGroup`](/docs/rest_api/operatorhub_apis/operatorgroup-operators-coreos-com-v1#operatorgroup-operators-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1/namespaces/{namespace}/operatorgroups/{name}/status {#_apisoperatorscoreoscomv1namespaces_namespace_operatorgroups_name_status}
+### /apis/operators.coreos.com/v1/namespaces/&#123;namespace&#125;/operatorgroups/&#123;name&#125;/status {#_apisoperatorscoreoscomv1namespaces_namespace_operatorgroups_name_status}
 
 **Global path parameters**
 

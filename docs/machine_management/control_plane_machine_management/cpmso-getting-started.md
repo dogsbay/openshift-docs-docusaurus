@@ -32,12 +32,12 @@ The status of the control plane machine set after installation depends on your c
 
 | Cloud provider | Active by default | Generated CR | Manual CR required |
 | --- | --- | --- | --- |
-| Amazon Web Services (AWS) | X <sup>[1]</sup> | X |  |
-| Google Cloud | X <sup>[2]</sup> | X |  |
-| Microsoft Azure | X <sup>[2]</sup> | X |  |
-| Nutanix | X <sup>[3]</sup> | X |  |
-| Red Hat OpenStack Platform (RHOSP) | X <sup>[3]</sup> | X |  |
-| VMware vSphere | X <sup>[4]</sup> | X |  |
+| Amazon Web Services (AWS) | X <sup>\[1\]</sup> | X |  |
+| Google Cloud | X <sup>\[2\]</sup> | X |  |
+| Microsoft Azure | X <sup>\[2\]</sup> | X |  |
+| Nutanix | X <sup>\[3\]</sup> | X |  |
+| Red Hat OpenStack Platform (RHOSP) | X <sup>\[3\]</sup> | X |  |
+| VMware vSphere | X <sup>\[4\]</sup> | X |  |
 
 1. AWS clusters that are upgraded from version 4.11 or earlier require [CR activation](/docs/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started).
 2. Google Cloud and Azure clusters that are upgraded from version 4.12 or earlier require [CR activation](/docs/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started).

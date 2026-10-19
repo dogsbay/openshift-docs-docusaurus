@@ -3,7 +3,7 @@ title: "Operator [operators.coreos.com/v1]"
 sidebar_position: 9
 ---
 
-# Operator [operators.coreos.com/v1] {#operator-operators-coreos-com-v1}
+# Operator \[operators.coreos.com/v1\] {#operator-operators-coreos-com-v1}
 
 <a id="operator-operators-coreos-com-v1"></a>
 
@@ -82,7 +82,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .status.components.labelSelector.matchExpressions {#_statuscomponentslabelselectormatchexpressions}
 
@@ -94,7 +94,7 @@ Type
   `array`
   ```
 
-### .status.components.labelSelector.matchExpressions[] {#_statuscomponentslabelselectormatchexpressions}
+### .status.components.labelSelector.matchExpressions\[\] {#_statuscomponentslabelselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -124,7 +124,7 @@ Type
   `array`
   ```
 
-### .status.components.refs[] {#_statuscomponentsrefs}
+### .status.components.refs\[\] {#_statuscomponentsrefs}
 
 Description
 : RichReference is a reference to a resource, enriched with its status conditions.
@@ -139,14 +139,14 @@ Type
 | `apiVersion` | `string` | API version of the referent. |
 | `conditions` | `array` | Conditions represents the latest state of the component. |
 | `conditions[]` | `object` | Condition represent the latest available observations of an component’s state. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
 
-### .status.components.refs[].conditions {#_statuscomponentsrefsconditions}
+### .status.components.refs\[\].conditions {#_statuscomponentsrefsconditions}
 
 Description
 : Conditions represents the latest state of the component.
@@ -156,7 +156,7 @@ Type
   `array`
   ```
 
-### .status.components.refs[].conditions[] {#_statuscomponentsrefsconditions}
+### .status.components.refs\[\].conditions\[\] {#_statuscomponentsrefsconditions}
 
 Description
 : Condition represent the latest available observations of an component’s state.
@@ -265,7 +265,7 @@ Description
 | 202 - Accepted | [`Operator`](/docs/rest_api/operatorhub_apis/operator-operators-coreos-com-v1#operator-operators-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1/operators/{name} {#_apisoperatorscoreoscomv1operators_name}
+### /apis/operators.coreos.com/v1/operators/&#123;name&#125; {#_apisoperatorscoreoscomv1operators_name}
 
 **Global path parameters**
 
@@ -369,7 +369,7 @@ Description
 | 201 - Created | [`Operator`](/docs/rest_api/operatorhub_apis/operator-operators-coreos-com-v1#operator-operators-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1/operators/{name}/status {#_apisoperatorscoreoscomv1operators_name_status}
+### /apis/operators.coreos.com/v1/operators/&#123;name&#125;/status {#_apisoperatorscoreoscomv1operators_name_status}
 
 **Global path parameters**
 

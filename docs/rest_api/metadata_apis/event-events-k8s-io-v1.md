@@ -3,7 +3,7 @@ title: "Event [events.k8s.io/v1]"
 sidebar_position: 7
 ---
 
-# Event [events.k8s.io/v1] {#event-events-k8s-io-v1}
+# Event \[events.k8s.io/v1\] {#event-events-k8s-io-v1}
 
 <a id="event-events-k8s-io-v1"></a>
 
@@ -119,7 +119,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/events.k8s.io/v1/namespaces/{namespace}/events {#_apiseventsk8siov1namespaces_namespace_events}
+### /apis/events.k8s.io/v1/namespaces/&#123;namespace&#125;/events {#_apiseventsk8siov1namespaces_namespace_events}
 
 HTTP method
 : ```
@@ -193,7 +193,7 @@ Description
 | 202 - Accepted | [`Event`](/docs/rest_api/metadata_apis/event-events-k8s-io-v1#event-events-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/events.k8s.io/v1/watch/namespaces/{namespace}/events {#_apiseventsk8siov1watchnamespaces_namespace_events}
+### /apis/events.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/events {#_apiseventsk8siov1watchnamespaces_namespace_events}
 
 HTTP method
 : ```
@@ -212,7 +212,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/events.k8s.io/v1/namespaces/{namespace}/events/{name} {#_apiseventsk8siov1namespaces_namespace_events_name}
+### /apis/events.k8s.io/v1/namespaces/&#123;namespace&#125;/events/&#123;name&#125; {#_apiseventsk8siov1namespaces_namespace_events_name}
 
 **Global path parameters**
 
@@ -317,7 +317,7 @@ Description
 | 201 - Created | [`Event`](/docs/rest_api/metadata_apis/event-events-k8s-io-v1#event-events-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/events.k8s.io/v1/watch/namespaces/{namespace}/events/{name} {#_apiseventsk8siov1watchnamespaces_namespace_events_name}
+### /apis/events.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/events/&#123;name&#125; {#_apiseventsk8siov1watchnamespaces_namespace_events_name}
 
 **Global path parameters**
 

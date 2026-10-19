@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="rbac-apis"></a>
 
-## ClusterRoleBinding [rbac.authorization.k8s.io/v1] {#_clusterrolebinding_rbacauthorizationk8siov1}
+## ClusterRoleBinding \[rbac.authorization.k8s.io/v1\] {#_clusterrolebinding_rbacauthorizationk8siov1}
 
 Description
 : ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a ClusterRole in the global namespace, and adds who information via Subject.
@@ -17,7 +17,7 @@ Type
   `object`
   ```
 
-## ClusterRole [rbac.authorization.k8s.io/v1] {#_clusterrole_rbacauthorizationk8siov1}
+## ClusterRole \[rbac.authorization.k8s.io/v1\] {#_clusterrole_rbacauthorizationk8siov1}
 
 Description
 : ClusterRole is a cluster level, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding or ClusterRoleBinding.
@@ -27,7 +27,7 @@ Type
   `object`
   ```
 
-## RoleBinding [rbac.authorization.k8s.io/v1] {#_rolebinding_rbacauthorizationk8siov1}
+## RoleBinding \[rbac.authorization.k8s.io/v1\] {#_rolebinding_rbacauthorizationk8siov1}
 
 Description
 : RoleBinding references a role, but does not contain it.  It can reference a Role in the same namespace or a ClusterRole in the global namespace. It adds who information via Subjects and namespace information by which namespace it exists in.  RoleBindings in a given namespace only have effect in that namespace.
@@ -37,7 +37,7 @@ Type
   `object`
   ```
 
-## Role [rbac.authorization.k8s.io/v1] {#_role_rbacauthorizationk8siov1}
+## Role \[rbac.authorization.k8s.io/v1\] {#_role_rbacauthorizationk8siov1}
 
 Description
 : Role is a namespaced, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding.

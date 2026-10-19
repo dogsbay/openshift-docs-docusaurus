@@ -3,7 +3,7 @@ title: "Group [user.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# Group [user.openshift.io/v1] {#group-user-openshift-io-v1}
+# Group \[user.openshift.io/v1\] {#group-user-openshift-io-v1}
 
 <a id="group-user-openshift-io-v1"></a>
 
@@ -140,7 +140,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/user.openshift.io/v1/groups/{name} {#_apisuseropenshiftiov1groups_name}
+### /apis/user.openshift.io/v1/groups/&#123;name&#125; {#_apisuseropenshiftiov1groups_name}
 
 **Global path parameters**
 
@@ -245,7 +245,7 @@ Description
 | 201 - Created | [`Group`](/docs/rest_api/user_and_group_apis/group-user-openshift-io-v1#group-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/user.openshift.io/v1/watch/groups/{name} {#_apisuseropenshiftiov1watchgroups_name}
+### /apis/user.openshift.io/v1/watch/groups/&#123;name&#125; {#_apisuseropenshiftiov1watchgroups_name}
 
 **Global path parameters**
 

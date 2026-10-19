@@ -3,7 +3,7 @@ title: "VolumeAttachment [storage.k8s.io/v1]"
 sidebar_position: 10
 ---
 
-# VolumeAttachment [storage.k8s.io/v1] {#volumeattachment-storage-k8s-io-v1}
+# VolumeAttachment \[storage.k8s.io/v1\] {#volumeattachment-storage-k8s-io-v1}
 
 <a id="volumeattachment-storage-k8s-io-v1"></a>
 
@@ -233,7 +233,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/volumeattachments/{name} {#_apisstoragek8siov1volumeattachments_name}
+### /apis/storage.k8s.io/v1/volumeattachments/&#123;name&#125; {#_apisstoragek8siov1volumeattachments_name}
 
 **Global path parameters**
 
@@ -338,7 +338,7 @@ Description
 | 201 - Created | [`VolumeAttachment`](/docs/rest_api/storage_apis/volumeattachment-storage-k8s-io-v1#volumeattachment-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/watch/volumeattachments/{name} {#_apisstoragek8siov1watchvolumeattachments_name}
+### /apis/storage.k8s.io/v1/watch/volumeattachments/&#123;name&#125; {#_apisstoragek8siov1watchvolumeattachments_name}
 
 **Global path parameters**
 
@@ -363,7 +363,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/volumeattachments/{name}/status {#_apisstoragek8siov1volumeattachments_name_status}
+### /apis/storage.k8s.io/v1/volumeattachments/&#123;name&#125;/status {#_apisstoragek8siov1volumeattachments_name_status}
 
 **Global path parameters**
 

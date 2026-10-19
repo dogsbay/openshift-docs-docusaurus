@@ -3,7 +3,7 @@ title: "PersistentVolume [v1]"
 sidebar_position: 5
 ---
 
-# PersistentVolume [v1]
+# PersistentVolume \[v1\]
 
 <a id="persistentvolume-v1"></a>
 
@@ -54,7 +54,7 @@ Type
 | `hostPath` | `object` | Represents a host path mapped into a pod. Host path volumes do not support ownership management or SELinux relabeling. |
 | `iscsi` | `object` | ISCSIPersistentVolumeSource represents an ISCSI disk. ISCSI volumes can only be mounted as read/write once. ISCSI volumes support ownership management and SELinux relabeling. |
 | `local` | `object` | Local represents directly-attached storage with node affinity |
-| `mountOptions` | `array (string)` | mountOptions is the list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options |
+| `mountOptions` | `array (string)` | mountOptions is the list of mount options, e.g. \["ro", "soft"\]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options |
 | `nfs` | `object` | Represents an NFS mount that lasts the lifetime of a pod. NFS volumes do not support ownership management or SELinux relabeling. |
 | `nodeAffinity` | `object` | VolumeNodeAffinity defines constraints that limit what nodes this volume can be accessed from. |
 | `persistentVolumeReclaimPolicy` | `string` | persistentVolumeReclaimPolicy defines what happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming<br>Possible enum values:  - `"Delete"` means the volume will be deleted from Kubernetes on release from its claim. The volume plugin must support Deletion.  - `"Recycle"` means the volume will be recycled back into the pool of unbound persistent volumes on release from its claim. The volume plugin must support Recycling.  - `"Retain"` means the volume will be left in its current phase (Released) for manual reclamation by the administrator. The default policy is Retain. |
@@ -220,7 +220,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -479,7 +479,7 @@ Required
 | `chapAuthDiscovery` | `boolean` | chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication |
 | `chapAuthSession` | `boolean` | chapAuthSession defines whether support iSCSI Session CHAP authentication |
 | `fsType` | `string` | fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi |
-| `initiatorName` | `string` | initiatorName is the custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection. |
+| `initiatorName` | `string` | initiatorName is the custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface &lt;target portal>:&lt;volume name> will be created for the connection. |
 | `iqn` | `string` | iqn is Target iSCSI Qualified Name. |
 | `iscsiInterface` | `string` | iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to 'default' (tcp). |
 | `lun` | `integer` | lun is iSCSI Target Lun number. |
@@ -583,7 +583,7 @@ Type
   `array`
   ```
 
-### .spec.nodeAffinity.required.nodeSelectorTerms[] {#_specnodeaffinityrequirednodeselectorterms}
+### .spec.nodeAffinity.required.nodeSelectorTerms\[\] {#_specnodeaffinityrequirednodeselectorterms}
 
 Description
 : A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.
@@ -600,7 +600,7 @@ Type
 | `matchFields` | `array` | A list of node selector requirements by node’s fields. |
 | `matchFields[]` | `object` | A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 
-### .spec.nodeAffinity.required.nodeSelectorTerms[].matchExpressions {#_specnodeaffinityrequirednodeselectortermsmatchexpressions}
+### .spec.nodeAffinity.required.nodeSelectorTerms\[\].matchExpressions {#_specnodeaffinityrequirednodeselectortermsmatchexpressions}
 
 Description
 : A list of node selector requirements by node’s labels.
@@ -610,7 +610,7 @@ Type
   `array`
   ```
 
-### .spec.nodeAffinity.required.nodeSelectorTerms[].matchExpressions[] {#_specnodeaffinityrequirednodeselectortermsmatchexpressions}
+### .spec.nodeAffinity.required.nodeSelectorTerms\[\].matchExpressions\[\] {#_specnodeaffinityrequirednodeselectortermsmatchexpressions}
 
 Description
 : A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -630,7 +630,7 @@ Required
 | `operator` | `string` | Represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.<br>Possible enum values:  - `"DoesNotExist"`  - `"Exists"`  - `"Gt"`  - `"In"`  - `"Lt"`  - `"NotIn"` |
 | `values` | `array (string)` | An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch. |
 
-### .spec.nodeAffinity.required.nodeSelectorTerms[].matchFields {#_specnodeaffinityrequirednodeselectortermsmatchfields}
+### .spec.nodeAffinity.required.nodeSelectorTerms\[\].matchFields {#_specnodeaffinityrequirednodeselectortermsmatchfields}
 
 Description
 : A list of node selector requirements by node’s fields.
@@ -640,7 +640,7 @@ Type
   `array`
   ```
 
-### .spec.nodeAffinity.required.nodeSelectorTerms[].matchFields[] {#_specnodeaffinityrequirednodeselectortermsmatchfields}
+### .spec.nodeAffinity.required.nodeSelectorTerms\[\].matchFields\[\] {#_specnodeaffinityrequirednodeselectortermsmatchfields}
 
 Description
 : A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -834,7 +834,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -993,7 +993,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/persistentvolumes/{name} {#_apiv1persistentvolumes_name}
+### /api/v1/persistentvolumes/&#123;name&#125; {#_apiv1persistentvolumes_name}
 
 **Global path parameters**
 
@@ -1098,7 +1098,7 @@ Description
 | 201 - Created | [`PersistentVolume`](/docs/rest_api/storage_apis/persistentvolume-v1#persistentvolume-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/persistentvolumes/{name} {#_apiv1watchpersistentvolumes_name}
+### /api/v1/watch/persistentvolumes/&#123;name&#125; {#_apiv1watchpersistentvolumes_name}
 
 **Global path parameters**
 
@@ -1123,7 +1123,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/persistentvolumes/{name}/status {#_apiv1persistentvolumes_name_status}
+### /api/v1/persistentvolumes/&#123;name&#125;/status {#_apiv1persistentvolumes_name_status}
 
 **Global path parameters**
 

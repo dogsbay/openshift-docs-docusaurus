@@ -34,8 +34,8 @@ Not all CCO modes are supported for all cloud providers, as described in the fol
 | Global Microsoft Azure |  | X | X | X |
 | Microsoft Azure Stack Hub |  |  | X |  |
 | Google Cloud | X | X | X | X |
-| IBM Cloud(R) |  |  | X <sup>[1]</sup> |  |
-| Nutanix |  |  | X <sup>[1]</sup> |  |
+| IBM Cloud(R) |  |  | X <sup>\[1\]</sup> |  |
+| Nutanix |  |  | X <sup>\[1\]</sup> |  |
 | Red Hat OpenStack Platform (RHOSP) |  | X |  |  |
 | VMware vSphere |  | X |  |  |
 

@@ -1,6 +1,6 @@
 ---
 title: Routing HTTP requests to services
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # Routing HTTP requests to services

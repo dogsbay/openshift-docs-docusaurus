@@ -1078,7 +1078,7 @@ You configure Federation for failover by setting the `importAsLocal` and `locali
 
 ### Configuring an ImportedServiceSet for failover {#ossm-federation-config-importedserviceset-failover_federation}
 
-Locality-weighted load balancing allows administrators to control the distribution of traffic to endpoints based on the localities of where the traffic originates and where it will terminate. These localities are specified using arbitrary labels that designate a hierarchy of localities in {region}/{zone}/{sub_zone} form.
+Locality-weighted load balancing allows administrators to control the distribution of traffic to endpoints based on the localities of where the traffic originates and where it will terminate. These localities are specified using arbitrary labels that designate a hierarchy of localities in &#123;region&#125;/&#123;zone&#125;/&#123;sub_zone&#125; form.
 
 In the examples in this section, the `green-mesh` is located in the `us-east` region, and the `red-mesh` is located in the `us-west` region.
 

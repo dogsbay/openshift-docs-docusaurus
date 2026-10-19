@@ -687,7 +687,7 @@ Create floating IP (FIP) addresses for external access to the OpenShift Containe
    - `<application_floating_ip> console-openshift-console.apps.<cluster_name>.<base_domain>`
    - `application_floating_ip integrated-oauth-server-openshift-authentication.apps.<cluster_name>.<base_domain>`
 
-   The cluster domain names in the `/etc/hosts` file grant access to the web console and the monitoring interface of your cluster locally. You can also use the `kubectl` or `oc`. You can access the user applications by using the additional entries pointing to the <application_floating_ip>. This action makes the API and applications accessible to only you, which is not suitable for production deployment, but does allow installation for development and testing.
+   The cluster domain names in the `/etc/hosts` file grant access to the web console and the monitoring interface of your cluster locally. You can also use the `kubectl` or `oc`. You can access the user applications by using the additional entries pointing to the &lt;application_floating_ip>. This action makes the API and applications accessible to only you, which is not suitable for production deployment, but does allow installation for development and testing.
 
    :::
 4. Add the FIPs to the `install-config.yaml` file as the values of the following parameters:

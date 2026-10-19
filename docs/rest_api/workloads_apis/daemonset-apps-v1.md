@@ -3,7 +3,7 @@ title: "DaemonSet [apps/v1]"
 sidebar_position: 7
 ---
 
-# DaemonSet [apps/v1] {#daemonset-apps-v1}
+# DaemonSet \[apps/v1\] {#daemonset-apps-v1}
 
 <a id="daemonset-apps-v1"></a>
 
@@ -117,7 +117,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : DaemonSetCondition describes the state of a DaemonSet at a certain point.
@@ -203,7 +203,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/daemonsets {#_apisappsv1namespaces_namespace_daemonsets}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/daemonsets {#_apisappsv1namespaces_namespace_daemonsets}
 
 HTTP method
 : ```
@@ -277,7 +277,7 @@ Description
 | 202 - Accepted | [`DaemonSet`](/docs/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{namespace}/daemonsets {#_apisappsv1watchnamespaces_namespace_daemonsets}
+### /apis/apps/v1/watch/namespaces/&#123;namespace&#125;/daemonsets {#_apisappsv1watchnamespaces_namespace_daemonsets}
 
 HTTP method
 : ```
@@ -296,7 +296,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/daemonsets/{name} {#_apisappsv1namespaces_namespace_daemonsets_name}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/daemonsets/&#123;name&#125; {#_apisappsv1namespaces_namespace_daemonsets_name}
 
 **Global path parameters**
 
@@ -401,7 +401,7 @@ Description
 | 201 - Created | [`DaemonSet`](/docs/rest_api/workloads_apis/daemonset-apps-v1#daemonset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{namespace}/daemonsets/{name} {#_apisappsv1watchnamespaces_namespace_daemonsets_name}
+### /apis/apps/v1/watch/namespaces/&#123;namespace&#125;/daemonsets/&#123;name&#125; {#_apisappsv1watchnamespaces_namespace_daemonsets_name}
 
 **Global path parameters**
 
@@ -426,7 +426,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/daemonsets/{name}/status {#_apisappsv1namespaces_namespace_daemonsets_name_status}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/daemonsets/&#123;name&#125;/status {#_apisappsv1namespaces_namespace_daemonsets_name_status}
 
 **Global path parameters**
 

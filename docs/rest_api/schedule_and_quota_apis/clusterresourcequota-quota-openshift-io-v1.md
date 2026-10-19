@@ -3,7 +3,7 @@ title: "ClusterResourceQuota [quota.openshift.io/v1]"
 sidebar_position: 3
 ---
 
-# ClusterResourceQuota [quota.openshift.io/v1] {#clusterresourcequota-quota-openshift-io-v1}
+# ClusterResourceQuota \[quota.openshift.io/v1\] {#clusterresourcequota-quota-openshift-io-v1}
 
 <a id="clusterresourcequota-quota-openshift-io-v1"></a>
 
@@ -91,7 +91,7 @@ Type
   `array`
   ```
 
-### .spec.quota.scopeSelector.matchExpressions[] {#_specquotascopeselectormatchexpressions}
+### .spec.quota.scopeSelector.matchExpressions\[\] {#_specquotascopeselectormatchexpressions}
 
 Description
 : A scoped-resource selector requirement is a selector that contains values, a scope name, and an operator that relates the scope name and values.
@@ -124,7 +124,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `annotations` | `undefined (string)` | AnnotationSelector is used to select projects by annotation. |
-| `labels` | `` | LabelSelector is used to select projects by label. |
+| `labels` | &#96;&#96; | LabelSelector is used to select projects by label. |
 
 ### .status {#_status}
 
@@ -141,7 +141,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `namespaces` | `` | namespaces slices the usage by project.  This division allows for quick resolution of deletion reconciliation inside of a single project without requiring a recalculation across all projects.  This can be used to pull the deltas for a given project. |
+| `namespaces` | &#96;&#96; | namespaces slices the usage by project.  This division allows for quick resolution of deletion reconciliation inside of a single project without requiring a recalculation across all projects.  This can be used to pull the deltas for a given project. |
 | `total` | `object` | total defines the actual enforced quota and its current usage across all projects |
 
 ### .status.total {#_statustotal}
@@ -268,7 +268,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/quota.openshift.io/v1/clusterresourcequotas/{name} {#_apisquotaopenshiftiov1clusterresourcequotas_name}
+### /apis/quota.openshift.io/v1/clusterresourcequotas/&#123;name&#125; {#_apisquotaopenshiftiov1clusterresourcequotas_name}
 
 **Global path parameters**
 
@@ -372,7 +372,7 @@ Description
 | 201 - Created | [`ClusterResourceQuota`](/docs/rest_api/schedule_and_quota_apis/clusterresourcequota-quota-openshift-io-v1#clusterresourcequota-quota-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/quota.openshift.io/v1/watch/clusterresourcequotas/{name} {#_apisquotaopenshiftiov1watchclusterresourcequotas_name}
+### /apis/quota.openshift.io/v1/watch/clusterresourcequotas/&#123;name&#125; {#_apisquotaopenshiftiov1watchclusterresourcequotas_name}
 
 **Global path parameters**
 
@@ -397,7 +397,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/quota.openshift.io/v1/clusterresourcequotas/{name}/status {#_apisquotaopenshiftiov1clusterresourcequotas_name_status}
+### /apis/quota.openshift.io/v1/clusterresourcequotas/&#123;name&#125;/status {#_apisquotaopenshiftiov1clusterresourcequotas_name_status}
 
 **Global path parameters**
 

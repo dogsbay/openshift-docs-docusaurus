@@ -302,7 +302,7 @@ where:
 
   :::note
 
-  When simultaneous multithreading (SMT) is not enabled, one vCPU is equivalent to one physical core. When enabled, total vCPUs is computed as: (Thread(s) per core * Core(s) per socket) * Socket(s). The smtLevel controls the threads per core. Lower SMT levels may require additional assigned cores when deploying the cluster nodes. You can do this by setting the `'processors'` parameter in the `install-config.yaml` file to an appropriate value to meet the requirements for deploying OpenShift Container Platform successfully.
+  When simultaneous multithreading (SMT) is not enabled, one vCPU is equivalent to one physical core. When enabled, total vCPUs is computed as: (Thread(s) per core \* Core(s) per socket) \* Socket(s). The smtLevel controls the threads per core. Lower SMT levels may require additional assigned cores when deploying the cluster nodes. You can do this by setting the `'processors'` parameter in the `install-config.yaml` file to an appropriate value to meet the requirements for deploying OpenShift Container Platform successfully.
 
   :::
 
@@ -581,7 +581,7 @@ When the cluster deployment completes successfully:
 
   :::
 
-## Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-ibm-power-vs-customizations}
+## Install the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-ibm-power-vs-customizations}
 
 To manage your cluster and deploy applications from the command line on Linux, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -617,7 +617,7 @@ Download and install the new version of `oc`.
   $ oc <command>
   ```
 
-## Installing the OpenShift CLI on Windows {#cli-installing-cli-windows_installing-ibm-power-vs-customizations}
+## Install the OpenShift CLI on Windows {#cli-installing-cli-windows_installing-ibm-power-vs-customizations}
 
 To manage your cluster and deploy applications from the command line on Windows, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -649,7 +649,7 @@ Download and install the new version of `oc`.
   C:\> oc <command>
   ```
 
-## Installing the OpenShift CLI on macOS {#cli-installing-cli-macos_installing-ibm-power-vs-customizations}
+## Install the OpenShift CLI on macOS {#cli-installing-cli-macos_installing-ibm-power-vs-customizations}
 
 To manage your cluster and deploy applications from the command line on macOS, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 

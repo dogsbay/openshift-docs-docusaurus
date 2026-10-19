@@ -3,9 +3,9 @@ title: Networking dashboards
 sidebar_position: 3
 ---
 
-# Networking dashboards {#networking-dashboards_{context}}
+# Networking dashboards {#networking-dashboards_-context-}
 
-<a id="networking-dashboards_{context}"></a>
+<a id="networking-dashboards_-context-"></a>
 
 To monitor and analyze network performance within your cluster, view networking metrics in the OpenShift Container Platform web console.
 

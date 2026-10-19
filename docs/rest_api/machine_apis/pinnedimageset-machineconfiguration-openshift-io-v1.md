@@ -3,7 +3,7 @@ title: "PinnedImageSet [machineconfiguration.openshift.io/v1]"
 sidebar_position: 14
 ---
 
-# PinnedImageSet [machineconfiguration.openshift.io/v1] {#pinnedimageset-machineconfiguration-openshift-io-v1}
+# PinnedImageSet \[machineconfiguration.openshift.io/v1\] {#pinnedimageset-machineconfiguration-openshift-io-v1}
 
 <a id="pinnedimageset-machineconfiguration-openshift-io-v1"></a>
 
@@ -44,7 +44,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `pinnedImages` | `array` | pinnedImages is a list of OCI Image referenced by digest that should be pinned and pre-loaded by the nodes of a MachineConfigPool. Translates into a new file inside the /etc/crio/crio.conf.d directory with content similar to this:<br>     pinned_images = [              "quay.io/openshift-release-dev/ocp-release@sha256:...",              "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...",              "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...",              ...      ]<br>Image references must be by digest. A maximum of 500 images may be specified. |
+| `pinnedImages` | `array` | pinnedImages is a list of OCI Image referenced by digest that should be pinned and pre-loaded by the nodes of a MachineConfigPool. Translates into a new file inside the /etc/crio/crio.conf.d directory with content similar to this:<br>     pinned_images = \[              "quay.io/openshift-release-dev/ocp-release@sha256:...",              "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...",              "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:...",              ...      \]<br>Image references must be by digest. A maximum of 500 images may be specified. |
 | `pinnedImages[]` | `object` | PinnedImageRef represents a reference to an OCI image |
 
 ### .spec.pinnedImages {#_specpinnedimages}
@@ -68,7 +68,7 @@ Type
   `array`
   ```
 
-### .spec.pinnedImages[] {#_specpinnedimages}
+### .spec.pinnedImages\[\] {#_specpinnedimages}
 
 Description
 : PinnedImageRef represents a reference to an OCI image
@@ -83,7 +83,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | name is an OCI Image referenced by digest. The format of the image pull spec is: host[:port][/namespace]/name@sha256:<digest>, where the digest must be 64 characters long, and consist only of lowercase hexadecimal characters, a-f and 0-9. The length of the whole spec must be between 1 to 447 characters. |
+| `name` | `string` | name is an OCI Image referenced by digest. The format of the image pull spec is: host\[:port\]\[/namespace\]/name@sha256:&lt;digest>, where the digest must be 64 characters long, and consist only of lowercase hexadecimal characters, a-f and 0-9. The length of the whole spec must be between 1 to 447 characters. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -167,7 +167,7 @@ Description
 | 202 - Accepted | [`PinnedImageSet`](/docs/rest_api/machine_apis/pinnedimageset-machineconfiguration-openshift-io-v1#pinnedimageset-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/pinnedimagesets/{name} {#_apismachineconfigurationopenshiftiov1pinnedimagesets_name}
+### /apis/machineconfiguration.openshift.io/v1/pinnedimagesets/&#123;name&#125; {#_apismachineconfigurationopenshiftiov1pinnedimagesets_name}
 
 **Global path parameters**
 

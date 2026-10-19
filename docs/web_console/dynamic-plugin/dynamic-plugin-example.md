@@ -3,9 +3,9 @@ title: Dynamic plugin example
 sidebar_position: 5
 ---
 
-# Dynamic plugin example {#dynamic-plugin-example_{context}}
+# Dynamic plugin example {#dynamic-plugin-example_-context-}
 
-<a id="dynamic-plugin-example_{context}"></a>
+<a id="dynamic-plugin-example_-context-"></a>
 
 Before working through the example, verify that the plugin is working by following the steps in the Dynamic plugin development documentation.
 

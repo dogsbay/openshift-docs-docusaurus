@@ -3,7 +3,7 @@ title: "ClusterVersion [config.openshift.io/v1]"
 sidebar_position: 7
 ---
 
-# ClusterVersion [config.openshift.io/v1] {#clusterversion-config-openshift-io-v1}
+# ClusterVersion \[config.openshift.io/v1\] {#clusterversion-config-openshift-io-v1}
 
 <a id="clusterversion-config-openshift-io-v1"></a>
 
@@ -94,7 +94,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `architecture` | `string` | architecture is an optional field that indicates the desired value of the cluster architecture. In this context cluster architecture means either a single architecture or a multi architecture. architecture can only be set to Multi thereby only allowing updates from single to multi architecture. If architecture is set, image cannot be set and version must be set. Valid values are 'Multi' and empty. |
-| `force` | `boolean` | force allows an administrator to update to an image that has failed verification or upgradeable checks that are designed to keep your cluster safe. Only use this if: * you are testing unsigned release images in short-lived test clusters or * you are working around a known bug in the cluster-version   operator and you have verified the authenticity of the provided   image yourself. The provided image will run with full administrative access to the cluster. Do not use this flag with images that come from unknown or potentially malicious sources. |
+| `force` | `boolean` | force allows an administrator to update to an image that has failed verification or upgradeable checks that are designed to keep your cluster safe. Only use this if: \* you are testing unsigned release images in short-lived test clusters or \* you are working around a known bug in the cluster-version   operator and you have verified the authenticity of the provided   image yourself. The provided image will run with full administrative access to the cluster. Do not use this flag with images that come from unknown or potentially malicious sources. |
 | `image` | `string` | image is a container image location that contains the update. image should be used when the desired version does not exist in availableUpdates or history. When image is set, architecture cannot be specified. If both version and image are set, the version extracted from the referenced image must match the specified version. |
 | `version` | `string` | version is a semantic version identifying the update version. version is required if architecture is specified. If both version and image are set, the version extracted from the referenced image must match the specified version. |
 
@@ -108,7 +108,7 @@ Type
   `array`
   ```
 
-### .spec.overrides[] {#_specoverrides}
+### .spec.overrides\[\] {#_specoverrides}
 
 Description
 : ComponentOverride allows overriding cluster version operator’s behavior for a component.
@@ -150,7 +150,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `availableUpdates` | `` | availableUpdates contains updates recommended for this cluster. Updates which appear in conditionalUpdates but not in availableUpdates may expose this cluster to known issues. This list may be empty if no updates are recommended, if the update service is unavailable, or if an invalid channel has been specified. |
+| `availableUpdates` | &#96;&#96; | availableUpdates contains updates recommended for this cluster. Updates which appear in conditionalUpdates but not in availableUpdates may expose this cluster to known issues. This list may be empty if no updates are recommended, if the update service is unavailable, or if an invalid channel has been specified. |
 | `capabilities` | `object` | capabilities describes the state of optional, core cluster components. |
 | `conditionalUpdates` | `array` | conditionalUpdates contains the list of updates that may be recommended for this cluster if it meets specific required conditions. Consumers interested in the set of updates that are actually recommended for this cluster should use availableUpdates. This list may be empty if no updates are recommended, if the update service is unavailable, or if an empty or invalid channel has been specified. |
 | `conditionalUpdates[]` | `object` | ConditionalUpdate represents an update which is recommended to some clusters on the version the current cluster is reconciling, but which may not be recommended for the current cluster. |
@@ -187,7 +187,7 @@ Type
   `array`
   ```
 
-### .status.conditionalUpdates[] {#_statusconditionalupdates}
+### .status.conditionalUpdates\[\] {#_statusconditionalupdates}
 
 Description
 : ConditionalUpdate represents an update which is recommended to some clusters on the version the current cluster is reconciling, but which may not be recommended for the current cluster.
@@ -203,13 +203,13 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `conditions` | `array` | conditions represents the observations of the conditional update’s current status. Known types are: * Recommended, for whether the update is recommended for the current cluster. |
+| `conditions` | `array` | conditions represents the observations of the conditional update’s current status. Known types are: \* Recommended, for whether the update is recommended for the current cluster. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `release` | `object` | release is the target of the update. |
 | `risks` | `array` | risks represents the range of issues associated with updating to the target release. The cluster-version operator will evaluate all entries, and only recommend the update if there is at least one entry and all entries recommend the update. |
 | `risks[]` | `object` | ConditionalUpdateRisk represents a reason and cluster-state for not recommending a conditional update. |
 
-### .status.conditionalUpdates[].conditions {#_statusconditionalupdatesconditions}
+### .status.conditionalUpdates\[\].conditions {#_statusconditionalupdatesconditions}
 
 Description
 : conditions represents the observations of the conditional update’s current status. Known types are:
@@ -221,7 +221,7 @@ Type
   `array`
   ```
 
-### .status.conditionalUpdates[].conditions[] {#_statusconditionalupdatesconditions}
+### .status.conditionalUpdates\[\].conditions\[\] {#_statusconditionalupdatesconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -242,12 +242,12 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
 
-### .status.conditionalUpdates[].release {#_statusconditionalupdatesrelease}
+### .status.conditionalUpdates\[\].release {#_statusconditionalupdatesrelease}
 
 Description
 : release is the target of the update.
@@ -269,7 +269,7 @@ Required
 | `url` | `string` | url contains information about this release. This URL is set by the 'url' metadata property on a release or the metadata returned by the update API and should be displayed as a link in user interfaces. The URL field may not be set for test or nightly releases. |
 | `version` | `string` | version is a semantic version identifying the update version. When this field is part of spec, version is optional if image is specified. |
 
-### .status.conditionalUpdates[].risks {#_statusconditionalupdatesrisks}
+### .status.conditionalUpdates\[\].risks {#_statusconditionalupdatesrisks}
 
 Description
 : risks represents the range of issues associated with updating to the target release. The cluster-version operator will evaluate all entries, and only recommend the update if there is at least one entry and all entries recommend the update.
@@ -279,7 +279,7 @@ Type
   `array`
   ```
 
-### .status.conditionalUpdates[].risks[] {#_statusconditionalupdatesrisks}
+### .status.conditionalUpdates\[\].risks\[\] {#_statusconditionalupdatesrisks}
 
 Description
 : ConditionalUpdateRisk represents a reason and cluster-state for not recommending a conditional update.
@@ -303,7 +303,7 @@ Required
 | `name` | `string` | name is the CamelCase reason for not recommending a conditional update, in the event that matchingRules match the cluster state. |
 | `url` | `string` | url contains information about this risk. |
 
-### .status.conditionalUpdates[].risks[].matchingRules {#_statusconditionalupdatesrisksmatchingrules}
+### .status.conditionalUpdates\[\].risks\[\].matchingRules {#_statusconditionalupdatesrisksmatchingrules}
 
 Description
 : matchingRules is a slice of conditions for deciding which clusters match the risk and which do not. The slice is ordered by decreasing precedence. The cluster-version operator will walk the slice in order, and stop after the first it can successfully evaluate. If no condition can be successfully evaluated, the update will not be recommended.
@@ -313,7 +313,7 @@ Type
   `array`
   ```
 
-### .status.conditionalUpdates[].risks[].matchingRules[] {#_statusconditionalupdatesrisksmatchingrules}
+### .status.conditionalUpdates\[\].risks\[\].matchingRules\[\] {#_statusconditionalupdatesrisksmatchingrules}
 
 Description
 : ClusterCondition is a union of typed cluster conditions.  The 'type' property determines which of the type-specific properties are relevant. When evaluated on a cluster, the condition may match, not match, or fail to evaluate.
@@ -331,7 +331,7 @@ Required
 | `promql` | `object` | promql represents a cluster condition based on PromQL. |
 | `type` | `string` | type represents the cluster-condition type. This defines the members and semantics of any additional properties. |
 
-### .status.conditionalUpdates[].risks[].matchingRules[].promql {#_statusconditionalupdatesrisksmatchingrulespromql}
+### .status.conditionalUpdates\[\].risks\[\].matchingRules\[\].promql {#_statusconditionalupdatesrisksmatchingrulespromql}
 
 Description
 : promql represents a cluster condition based on PromQL.
@@ -358,7 +358,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : ClusterOperatorStatusCondition represents the state of the operator’s managed and monitored components.
@@ -413,7 +413,7 @@ Type
   `array`
   ```
 
-### .status.history[] {#_statushistory}
+### .status.history\[\] {#_statushistory}
 
 Description
 : UpdateHistory is a single attempted update to the cluster.
@@ -432,7 +432,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `acceptedRisks` | `string` | acceptedRisks records risks which were accepted to initiate the update. For example, it may mention an Upgradeable=False or missing signature that was overridden via desiredUpdate.force, or an update that was initiated despite not being in the availableUpdates set of recommended update targets. |
-| `completionTime` | `` | completionTime, if set, is when the update was fully applied. The update that is currently being applied will have a null completion time. Completion time will always be set for entries that are not the current update (usually to the started time of the next update). |
+| `completionTime` | &#96;&#96; | completionTime, if set, is when the update was fully applied. The update that is currently being applied will have a null completion time. Completion time will always be set for entries that are not the current update (usually to the started time of the next update). |
 | `image` | `string` | image is a container image location that contains the update. This value is always populated. |
 | `startedTime` | `string` | startedTime is the time at which the update was started. |
 | `state` | `string` | state reflects whether the update was fully applied. The Partial state indicates the update is not fully applied, while the Completed state indicates the update was successfully rolled out at least once (all parts of the update successfully applied). |
@@ -525,7 +525,7 @@ Description
 | 202 - Accepted | [`ClusterVersion`](/docs/rest_api/config_apis/clusterversion-config-openshift-io-v1#clusterversion-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/clusterversions/{name} {#_apisconfigopenshiftiov1clusterversions_name}
+### /apis/config.openshift.io/v1/clusterversions/&#123;name&#125; {#_apisconfigopenshiftiov1clusterversions_name}
 
 **Global path parameters**
 
@@ -629,7 +629,7 @@ Description
 | 201 - Created | [`ClusterVersion`](/docs/rest_api/config_apis/clusterversion-config-openshift-io-v1#clusterversion-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/clusterversions/{name}/status {#_apisconfigopenshiftiov1clusterversions_name_status}
+### /apis/config.openshift.io/v1/clusterversions/&#123;name&#125;/status {#_apisconfigopenshiftiov1clusterversions_name_status}
 
 **Global path parameters**
 

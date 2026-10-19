@@ -23,10 +23,10 @@ If you only want to export flows to a Kafka consumer or IPFIX collector, or you 
 | --- | --- | --- |
 | **Exporters** | X | X |
 | **Multi-tenancy** | X | X |
-| **Complete filtering and aggregations capabilities** <sup>[1]</sup> | X |  |
-| **Partial filtering and aggregations capabilities** <sup>[2]</sup> | X | X |
+| **Complete filtering and aggregations capabilities** <sup>\[1\]</sup> | X |  |
+| **Partial filtering and aggregations capabilities** <sup>\[2\]</sup> | X | X |
 | **Flow-based metrics and dashboards** | X | X |
-| **Traffic flows view overview** <sup>[3]</sup> | X | X |
+| **Traffic flows view overview** <sup>\[3\]</sup> | X | X |
 | **Traffic flows view table** | X |  |
 | **Topology view** | X | X |
 | **OpenShift Container Platform console Network Traffic tab integration** | X | X |
@@ -294,7 +294,7 @@ To confirm this was successful, when you navigate to **Observe** you should see 
 
 In the absence of **Application Traffic** within the OpenShift Container Platform cluster, default filters might show that there are "No results", which results in no visual flow. Beside the filter selections, select **Clear all filters** to see the flow.
 
-### Important FlowCollector configuration considerations {#network-observability-important-flowcollector-configuration-considerations_network_observability}
+### Important FlowCollector configuration considerations {#network-observability-important-flowcollector-configuration-consideration_network_observability}
 
 Review essential `FlowCollector` configuration options before initial deployment to avoid pod disruptions caused by later reconfiguration. Key settings include Kafka integration, enriched flow data exports, SR-IOV traffic monitoring, and advanced tracking for DNS and packet drops.
 
@@ -315,66 +315,6 @@ Therefore, you can consider configuring the following options when creating the 
 - [Resource considerations](/docs/observability/network_observability/configuring-operator#network-observability-resources-table_network_observability)
 - [Troubleshooting network observability controller manager pod runs out of memory](/docs/observability/network_observability/troubleshooting-network-observability#controller-manager-pod-runs-out-of-memory_network-observability-troubleshooting)
 - [Network observability architecture](/docs/observability/network_observability/understanding-network-observability-operator#network-observability-architecture_nw-network-observability-operator)
-
-## Migrate removed stored versions of the FlowCollector CRD {#network-observability-updating-migrating_network_observability}
-
-Manually remove the deprecated `v1alpha1` version from the `FlowCollector` custom resource definition (CRD) `storedVersion` list to prevent upgrade errors and successfully migrate to Network Observability Operator 1.6.
-
-There are two options to remove stored versions:
-
-1. Use the Storage Version Migrator Operator.
-2. Uninstall and reinstall the Network Observability Operator, ensuring that the installation is in a clean state.
-
-**Prerequisites**
-
-- You have an older version of the Operator installed, and you want to prepare your cluster to install the latest version of the Operator. Or you have attempted to install the Network Observability Operator 1.6 and run into the error: `Failed risk of data loss updating "flowcollectors.flows.netobserv.io": new CRD removes version v1alpha1 that is listed as a stored version on the existing CRD`.
-
-**Procedure**
-
-1. Verify that the old `FlowCollector` CRD version is still referenced in the `storedVersion`:
-   ```terminal
-   $ oc get crd flowcollectors.flows.netobserv.io -ojsonpath='{.status.storedVersions}'
-   ```
-2. If `v1alpha1` appears in the list of results, proceed with **Step a** to use the Kubernetes Storage Version Migrator or **Step b** to uninstall and reinstall the CRD and the Operator.
-   1. **Option 1: Kubernetes Storage Version Migrator**: Create a YAML to define the `StorageVersionMigration` object, for example `migrate-flowcollector-v1alpha1.yaml`:
-      ```yaml
-      apiVersion: migration.k8s.io/v1alpha1
-      kind: StorageVersionMigration
-      metadata:
-        name: migrate-flowcollector-v1alpha1
-      spec:
-        resource:
-          group: flows.netobserv.io
-          resource: flowcollectors
-          version: v1alpha1
-      ```
-
-      1. Save the file.
-      2. Apply the `StorageVersionMigration` by running the following command:
-         ```terminal
-         $ oc apply -f migrate-flowcollector-v1alpha1.yaml
-         ```
-      3. Update the `FlowCollector` CRD to manually remove `v1alpha1` from the `storedVersion`:
-         ```terminal
-         $ oc edit crd flowcollectors.flows.netobserv.io
-         ```
-   2. **Option 2: Reinstall**: Save the Network Observability Operator 1.5 version of the `FlowCollector` CR to a file, for example `flowcollector-1.5.yaml`.
-      ```terminal
-      $ oc get flowcollector cluster -o yaml > flowcollector-1.5.yaml
-      ```
-
-      1. Follow the steps in "Uninstalling the Network Observability Operator", which uninstalls the Operator and removes the existing `FlowCollector` CRD.
-      2. Install the Network Observability Operator latest version, 1.6.0.
-      3. Create the `FlowCollector` using backup that was saved in Step b.
-
-**Verification**
-
-- Run the following command:
-  ```terminal
-  $ oc get crd flowcollectors.flows.netobserv.io -ojsonpath='{.status.storedVersions}'
-  ```
-
-  The list of results should no longer show `v1alpha1` and only show the latest version, `v1beta1`.
 
 ## Enable multi-tenancy in network observability {#network-observability-multi-tenancy_network_observability}
 
@@ -416,7 +356,7 @@ For Developers, multi-tenancy is available for both Loki and Prometheus but requ
 
 - [Kubernetes Storage Version Migrator Operator](/docs/operators/operator-reference#cluster-kube-storage-version-migrator-operator_operator-reference)
 
-## Uninstalling the Network Observability Operator {#network-observability-operator-uninstall_network_observability}
+## Uninstall the Network Observability Operator {#network-observability-operator-uninstall_network_observability}
 
 Uninstall the Network Observability Operator using the OpenShift Container Platform web console Operator Hub, working in the **Ecosystem** → **Installed Operators** area.
 

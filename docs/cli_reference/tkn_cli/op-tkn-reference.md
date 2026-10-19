@@ -27,7 +27,7 @@ Parent command for `tkn` CLI.
 $ tkn
 ```
 
-### completion [shell] {#_completion_shell}
+### completion \[shell\] {#_completion_shell}
 
 Print shell completion code which must be evaluated to provide interactive completion. Supported shells are `bash` and `zsh`.
 

@@ -3,7 +3,7 @@ title: "APIService [apiregistration.k8s.io/v1]"
 sidebar_position: 2
 ---
 
-# APIService [apiregistration.k8s.io/v1] {#apiservice-apiregistration-k8s-io-v1}
+# APIService \[apiregistration.k8s.io/v1\] {#apiservice-apiregistration-k8s-io-v1}
 
 <a id="apiservice-apiregistration-k8s-io-v1"></a>
 
@@ -43,7 +43,7 @@ Required
 | --- | --- | --- |
 | `caBundle` | `string` | CABundle is a PEM encoded CA bundle which will be used to validate an API server’s serving certificate. If unspecified, system trust roots on the apiserver are used. |
 | `group` | `string` | Group is the API group name this server hosts |
-| `groupPriorityMinimum` | `integer` | GroupPriorityMinimum is the priority this group should have at least. Higher priority means that the group is preferred by clients over lower priority ones. Note that other versions of this group might specify even higher GroupPriorityMinimum values such that the whole group gets a higher priority. The primary sort is based on GroupPriorityMinimum, ordered highest number to lowest (20 before 10). The secondary sort is based on the alphabetical comparison of the name of the object.  (v1.bar before v1.foo) We’d recommend something like: *.k8s.io (except extensions) at 18000 and PaaSes (OpenShift, Deis) are recommended to be in the 2000s |
+| `groupPriorityMinimum` | `integer` | GroupPriorityMinimum is the priority this group should have at least. Higher priority means that the group is preferred by clients over lower priority ones. Note that other versions of this group might specify even higher GroupPriorityMinimum values such that the whole group gets a higher priority. The primary sort is based on GroupPriorityMinimum, ordered highest number to lowest (20 before 10). The secondary sort is based on the alphabetical comparison of the name of the object.  (v1.bar before v1.foo) We’d recommend something like: \*.k8s.io (except extensions) at 18000 and PaaSes (OpenShift, Deis) are recommended to be in the 2000s |
 | `insecureSkipTLSVerify` | `boolean` | InsecureSkipTLSVerify disables TLS certificate verification when communicating with this server. This is strongly discouraged.  You should use the CABundle instead. |
 | `service` | `object` | ServiceReference holds a reference to Service.legacy.k8s.io |
 | `version` | `string` | Version is the API version this server hosts.  For example, "v1" |
@@ -90,7 +90,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : APIServiceCondition describes the state of an APIService at a particular point
@@ -227,7 +227,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiregistration.k8s.io/v1/apiservices/{name} {#_apisapiregistrationk8siov1apiservices_name}
+### /apis/apiregistration.k8s.io/v1/apiservices/&#123;name&#125; {#_apisapiregistrationk8siov1apiservices_name}
 
 **Global path parameters**
 
@@ -332,7 +332,7 @@ Description
 | 201 - Created | [`APIService`](/docs/rest_api/extension_apis/apiservice-apiregistration-k8s-io-v1#apiservice-apiregistration-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiregistration.k8s.io/v1/watch/apiservices/{name} {#_apisapiregistrationk8siov1watchapiservices_name}
+### /apis/apiregistration.k8s.io/v1/watch/apiservices/&#123;name&#125; {#_apisapiregistrationk8siov1watchapiservices_name}
 
 **Global path parameters**
 
@@ -357,7 +357,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiregistration.k8s.io/v1/apiservices/{name}/status {#_apisapiregistrationk8siov1apiservices_name_status}
+### /apis/apiregistration.k8s.io/v1/apiservices/&#123;name&#125;/status {#_apisapiregistrationk8siov1apiservices_name_status}
 
 **Global path parameters**
 

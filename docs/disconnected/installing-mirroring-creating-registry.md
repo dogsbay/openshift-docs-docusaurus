@@ -72,7 +72,7 @@ The following limitations apply to the *mirror registry for Red Hat OpenShift*:
 - [OpenShift console Downloads](https://console.redhat.com/openshift/downloads#tool-mirror-registry)
 - [Self-managed Red Hat OpenShift sizing and subscription guide](https://www.redhat.com/en/resources/self-managed-openshift-sizing-subscription-guide)
 
-## Configuring rootless Podman networking {#configuring-rootless-podman_installing-mirroring-creating-registry}
+## Configure rootless Podman networking {#configuring-rootless-podman_installing-mirroring-creating-registry}
 
 To restore rootless Podman networking when the default `pasta` stack fails on OpenShift Container Platform mirror or install hosts, you can set the default rootless network back to `slirp4netns` in the `/etc/containers/containers.conf` file, or in the user’s `~/.config/containers/container.conf` file.
 
@@ -110,7 +110,7 @@ External interface not usable
    $ podman system migrate
    ```
 
-## Mirroring on a local host with mirror registry for Red Hat OpenShift {#mirror-registry-localhost_installing-mirroring-creating-registry}
+## Mirror on a local host with mirror registry for Red Hat OpenShift {#mirror-registry-localhost_installing-mirroring-creating-registry}
 
 You can install the *mirror registry for Red Hat OpenShift* on a local host by using the `mirror-registry` installer tool. By doing so, users can create a local host registry running on port 443 for the purpose of storing a mirror of OpenShift Container Platform images.
 
@@ -222,7 +222,7 @@ When upgrading from version 1 to version 2, be aware of the following constraint
    registry.redhat.io/quay/quay-rhel8:v3.12.10
    ```
 
-## Mirroring on a remote host with mirror registry for Red Hat OpenShift {#mirror-registry-remote_installing-mirroring-creating-registry}
+## Mirror on a remote host with mirror registry for Red Hat OpenShift {#mirror-registry-remote_installing-mirroring-creating-registry}
 
 You can install the *mirror registry for Red Hat OpenShift* on a remote host by using the `mirror-registry` tool. By doing so, users can create a registry to hold a mirror of OpenShift Container Platform images.
 
@@ -419,13 +419,13 @@ The following flags are available for the *mirror registry for Red Hat OpenShif
 | `--initPassword` | The password of the init user created during Quay installation. Must be at least eight characters and contain no whitespace. |
 | `--initUser string` | Shows the username of the initial user. Defaults to `init` if left unspecified. |
 | `--no-color`, `-c` | Allows users to disable color sequences and propagate that to Ansible when running install, uninstall, and upgrade commands. |
-| `--quayHostname` | The fully-qualified domain name of the mirror registry that clients will use to contact the registry. Equivalent to `SERVER_HOSTNAME` in the Quay `config.yaml`. Must resolve by DNS. Defaults to `<targetHostname>:8443` if left unspecified. <sup>[1]</sup> |
+| `--quayHostname` | The fully-qualified domain name of the mirror registry that clients will use to contact the registry. Equivalent to `SERVER_HOSTNAME` in the Quay `config.yaml`. Must resolve by DNS. Defaults to `<targetHostname>:8443` if left unspecified. <sup>\[1\]</sup> |
 | `--quayStorage` | The folder where Quay persistent storage data is saved. Defaults to the `quay-storage` Podman volume. Root privileges are required to uninstall. |
 | `--quayRoot`, `-r` | The directory where container image layer and configuration data is saved, including `rootCA.key`, `rootCA.pem`, and `rootCA.srl` certificates. Defaults to `$HOME/quay-install` if left unspecified. |
 | `--sqliteStorage` | The folder where SQLite database data is saved. Defaults to `sqlite-storage` Podman volume if not specified. Root is required to uninstall. |
 | `--ssh-key`, `-k` | The path of your SSH identity key. Defaults to `~/.ssh/quay_installer` if left unspecified. |
 | `--sslCert` | The path to the SSL/TLS public key / certificate. Defaults to `{quayRoot}/quay-config` and is auto-generated if left unspecified. |
-| `--sslCheckSkip` | Skips the check for the certificate hostname against the `SERVER_HOSTNAME` in the `config.yaml` file. <sup>[2]</sup> |
+| `--sslCheckSkip` | Skips the check for the certificate hostname against the `SERVER_HOSTNAME` in the `config.yaml` file. <sup>\[2\]</sup> |
 | `--sslKey` | The path to the SSL/TLS private key used for HTTPS communication. Defaults to `{quayRoot}/quay-config` and is auto-generated if left unspecified. |
 | `--targetHostname`, `-H` | The hostname of the target you want to install Quay to. Defaults to `$HOST`, for example, a local host, if left unspecified. |
 | `--targetUsername`, `-u` | The user on the target host which will be used for SSH. Defaults to `$USER`, for example, the current user if left unspecified. |

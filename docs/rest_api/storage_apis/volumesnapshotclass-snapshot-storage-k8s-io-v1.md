@@ -3,7 +3,7 @@ title: "VolumeSnapshotClass [snapshot.storage.k8s.io/v1]"
 sidebar_position: 14
 ---
 
-# VolumeSnapshotClass [snapshot.storage.k8s.io/v1] {#volumesnapshotclass-snapshot-storage-k8s-io-v1}
+# VolumeSnapshotClass \[snapshot.storage.k8s.io/v1\] {#volumesnapshotclass-snapshot-storage-k8s-io-v1}
 
 <a id="volumesnapshotclass-snapshot-storage-k8s-io-v1"></a>
 
@@ -112,7 +112,7 @@ Description
 | 202 - Accepted | [`VolumeSnapshotClass`](/docs/rest_api/storage_apis/volumesnapshotclass-snapshot-storage-k8s-io-v1#volumesnapshotclass-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/snapshot.storage.k8s.io/v1/volumesnapshotclasses/{name} {#_apissnapshotstoragek8siov1volumesnapshotclasses_name}
+### /apis/snapshot.storage.k8s.io/v1/volumesnapshotclasses/&#123;name&#125; {#_apissnapshotstoragek8siov1volumesnapshotclasses_name}
 
 **Global path parameters**
 

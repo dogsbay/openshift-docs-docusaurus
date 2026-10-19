@@ -35,7 +35,7 @@ The following sections describe how to install an OSUS instance and configure it
 - [About the OpenShift Update Service](/docs/updating/understanding_updates/intro-to-updates#update-service-about_understanding-openshift-updates)
 - [Understanding update channels and releases](/docs/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)
 
-## Configuring access to a secured registry for the OpenShift Update Service {#registry-configuration-for-update-service_updating-disconnected-cluster-osus}
+## Configure access to a secured registry for the OpenShift Update Service {#registry-configuration-for-update-service_updating-disconnected-cluster-osus}
 
 If your release images are contained in a registry whose HTTPS X.509 certificate is signed by a custom certificate authority, you must configure additional trust stores for image registry access for the update service.
 
@@ -171,7 +171,7 @@ Use this procedure when you need a separate registry to store images than the re
 
 - [Transferring cluster ownership](https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html-single/managing_clusters/index#transferring-cluster-ownership_downloading-and-updating-pull-secrets)
 
-## Installing the OpenShift Update Service Operator {#update-service-install_updating-disconnected-cluster-osus}
+## Install the OpenShift Update Service Operator {#update-service-install_updating-disconnected-cluster-osus}
 
 To install the OpenShift Update Service, you must first install the OpenShift Update Service Operator by using the OpenShift Container Platform web console or CLI.
 
@@ -181,7 +181,7 @@ For clusters that are installed in disconnected environments, also known as disc
 
 :::
 
-### Installing the OpenShift Update Service Operator by using the web console {#update-service-install-web-console_updating-disconnected-cluster-osus}
+### Install the OpenShift Update Service Operator by using the web console {#update-service-install-web-console_updating-disconnected-cluster-osus}
 
 You can use the web console to install the OpenShift Update Service Operator.
 
@@ -205,7 +205,7 @@ You can use the web console to install the OpenShift Update Service Operator.
 3. Go to **Ecosystem** → **Installed Operators** and verify that the OpenShift Update Service Operator is installed.
 4. Ensure that **OpenShift Update Service** is listed in the correct namespace with a **Status** of **Succeeded**.
 
-### Installing the OpenShift Update Service Operator by using the CLI {#update-service-install-cli_updating-disconnected-cluster-osus}
+### Install the OpenShift Update Service Operator by using the CLI {#update-service-install-cli_updating-disconnected-cluster-osus}
 
 You can use the OpenShift CLI (`oc`) to install the OpenShift Update Service Operator.
 
@@ -308,7 +308,7 @@ You can use the OpenShift CLI (`oc`) to install the OpenShift Update Service Ope
 - [Using Operator Lifecycle Manager in disconnected environments](/docs/disconnected/using-olm#olm-restricted-networks)
 - [Installing Operators in your namespace](/docs/operators/user/olm-installing-operators-in-namespace#olm-installing-operators-in-namespace)
 
-## Creating the OpenShift Update Service graph data container image {#update-service-graph-data_updating-disconnected-cluster-osus}
+## Create the OpenShift Update Service graph data container image {#update-service-graph-data_updating-disconnected-cluster-osus}
 
 The OpenShift Update Service requires a graph data container image, from which the OpenShift Update Service retrieves information about channel membership and blocked update edges.
 
@@ -349,11 +349,11 @@ The oc-mirror OpenShift CLI (`oc`) plugin creates this graph data container imag
 
    :::
 
-## Creating an OpenShift Update Service application {#update-service-create-service_updating-disconnected-cluster-osus}
+## Create an OpenShift Update Service application {#update-service-create-service_updating-disconnected-cluster-osus}
 
 You can create an OpenShift Update Service application by using the OpenShift Container Platform web console or CLI.
 
-### Creating an OpenShift Update Service application by using the web console {#update-service-create-service-web-console_updating-disconnected-cluster-osus}
+### Create an OpenShift Update Service application by using the web console {#update-service-create-service-web-console_updating-disconnected-cluster-osus}
 
 You can use the OpenShift Container Platform web console to create an OpenShift Update Service application by using the OpenShift Update Service Operator.
 
@@ -379,7 +379,7 @@ You can use the OpenShift Container Platform web console to create an OpenShift 
     - Click the **Resources** tab.
     - Verify each application resource has a status of **Created**.
 
-### Creating an OpenShift Update Service application by using the CLI {#update-service-create-service-cli_updating-disconnected-cluster-osus}
+### Create an OpenShift Update Service application by using the CLI {#update-service-create-service-cli_updating-disconnected-cluster-osus}
 
 You can use the OpenShift CLI (`oc`) to create an OpenShift Update Service application.
 
@@ -442,7 +442,7 @@ You can use the OpenShift CLI (`oc`) to create an OpenShift Update Service appli
 
       :::
 
-## Configuring the Cluster Version Operator (CVO) {#update-service-configure-cvo}
+## Configure the Cluster Version Operator (CVO) {#update-service-configure-cvo}
 
 After the OpenShift Update Service Operator has been installed and the OpenShift Update Service application has been created, the Cluster Version Operator (CVO) can be updated to pull graph data from the OpenShift Update Service installed in your environment.
 

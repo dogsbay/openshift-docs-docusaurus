@@ -96,7 +96,7 @@ Configure MetalLB so that the peer BGP routers receive one `203.0.113.200/32` ro
 
 Because the `localPref` and `communities` fields are not specified, the routes are advertised with `localPref` set to zero and no BGP communities.
 
-Ensure that you can configure MetalLB so that the peer BGP routers receive one `203.0.113.200/32` route and one `fc00:f853:ccd:e799::1/128` route for each load-balancer IP address that MetalLB assigns to a service. If you do not specify the `localPref` and `communities` parameters, MetalLB advertises the routes with `localPref` set to `0 and no BGP communities.
+Ensure that you can configure MetalLB so that the peer BGP routers receive one `203.0.113.200/32` route and one `fc00:f853:ccd:e799::1/128` route for each load-balancer IP address that MetalLB assigns to a service. If you do not specify the `localPref` and `communities` parameters, MetalLB advertises the routes with `localPref` set to &#96;0 and no BGP communities.
 
 ### Advertise a basic address pool configuration with BGP {#nw-metallb-advertise-a-basic-address-pool-configuration-bgp_about-advertising-ip-address-pool}
 

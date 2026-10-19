@@ -1193,7 +1193,7 @@ Additionally, the SMMR must also be configured for cluster-wide deployment. This
     - '*' (1)
 ```
 
-1. Adds all namespaces to the mesh, including any namespaces you subsequently create. The following namespaces are not part of the mesh: kube, openshift, kube-* and openshift-*.
+1. Adds all namespaces to the mesh, including any namespaces you subsequently create. The following namespaces are not part of the mesh: kube, openshift, kube-\* and openshift-\*.
 
 ### New features Red Hat OpenShift Service Mesh version 2.2.12 {#_new_features_smproductname_version_2212}
 
@@ -1761,7 +1761,7 @@ spec:
 
 #### Required update for authorization policies {#_required_update_for_authorization_policies}
 
-Istio generates hostnames for both the hostname itself and all matching ports. For instance, a virtual service or Gateway for a host of "httpbin.foo" generates a config matching "httpbin.foo and httpbin.foo:*". However, exact match authorization policies only match the exact string given for the `hosts` or `notHosts` fields.
+Istio generates hostnames for both the hostname itself and all matching ports. For instance, a virtual service or Gateway for a host of "httpbin.foo" generates a config matching "httpbin.foo and httpbin.foo:\*". However, exact match authorization policies only match the exact string given for the `hosts` or `notHosts` fields.
 
 Your cluster is impacted if you have `AuthorizationPolicy` resources using exact string comparison for the rule to determine [hosts or notHosts](https://istio.io/latest/docs/reference/config/security/authorization-policy/#Operation).
 
@@ -2383,13 +2383,13 @@ The following issues have been resolved in previous releases:
     This also causes the READY and STATUS columns to be empty when you run `oc get servicemeshcontrolplanes.v1.maistra.io`.
 - [MAISTRA-1947](https://issues.jboss.org/browse/MAISTRA-1947) *Technology Preview* Updates to ServiceMeshExtensions are not applied.
   Workaround: Remove and recreate the `ServiceMeshExtensions`.
-- [MAISTRA-1983](https://issues.redhat.com/browse/MAISTRA-1983) *Migration to 2.0* Upgrading to 2.0.0 with an existing invalid `ServiceMeshControlPlane` cannot easily be repaired. The invalid items in the `ServiceMeshControlPlane` resource caused an unrecoverable error. The fix makes the errors recoverable. You can delete the invalid resource and replace it with a new one or edit the resource to fix the errors. For more information about editing your resource, see [Configuring the Red Hat OpenShift Service Mesh installation].
+- [MAISTRA-1983](https://issues.redhat.com/browse/MAISTRA-1983) *Migration to 2.0* Upgrading to 2.0.0 with an existing invalid `ServiceMeshControlPlane` cannot easily be repaired. The invalid items in the `ServiceMeshControlPlane` resource caused an unrecoverable error. The fix makes the errors recoverable. You can delete the invalid resource and replace it with a new one or edit the resource to fix the errors. For more information about editing your resource, see \[Configuring the Red Hat OpenShift Service Mesh installation\].
 - [MAISTRA-1502](https://issues.redhat.com/browse/MAISTRA-1502) As a result of CVEs fixes in version 1.0.10, the Istio dashboards are not available from the **Home Dashboard** menu in Grafana. To access the Istio dashboards, click the **Dashboard** menu in the navigation panel and select the **Manage** tab.
 - [MAISTRA-1399](https://issues.redhat.com/browse/MAISTRA-1399) Red Hat OpenShift Service Mesh no longer prevents you from installing unsupported CNI protocols. The supported network configurations has not changed.
 - [MAISTRA-1089](https://issues.jboss.org/browse/MAISTRA-1089) *Migration to 2.0* Gateways created in a non-control plane namespace are automatically deleted. After removing the gateway definition from the SMCP spec, you need to manually delete these resources.
 - [MAISTRA-858](https://issues.jboss.org/browse/MAISTRA-858) The following Envoy log messages describing [deprecated options and configurations associated with Istio 1.1.x](https://www.envoyproxy.io/docs/envoy/latest/intro/deprecated) are expected:
-  - [2019-06-03 07:03:28.943][19][warning][misc] [external/envoy/source/common/protobuf/utility.cc:129] Using deprecated option 'envoy.api.v2.listener.Filter.config'. This configuration will be removed from Envoy soon.
-  - [2019-08-12 22:12:59.001][13][warning][misc] [external/envoy/source/common/protobuf/utility.cc:174] Using deprecated option 'envoy.api.v2.Listener.use_original_dst' from file lds.proto. This configuration will be removed from Envoy soon.
+  - \[2019-06-03 07:03:28.943\]\[19\]\[warning\]\[misc\] \[external/envoy/source/common/protobuf/utility.cc:129\] Using deprecated option 'envoy.api.v2.listener.Filter.config'. This configuration will be removed from Envoy soon.
+  - \[2019-08-12 22:12:59.001\]\[13\]\[warning\]\[misc\] \[external/envoy/source/common/protobuf/utility.cc:174\] Using deprecated option 'envoy.api.v2.Listener.use_original_dst' from file lds.proto. This configuration will be removed from Envoy soon.
 - [MAISTRA-806](https://issues.jboss.org/browse/MAISTRA-806) Evicted Istio Operator Pod causes mesh and CNI not to deploy.
   Workaround: If the `istio-operator` pod is evicted while deploying the control pane, delete the evicted `istio-operator` pod.
 - [MAISTRA-681](https://issues.jboss.org/browse/MAISTRA-681) When the Service Mesh control plane has many namespaces, it can lead to performance issues.

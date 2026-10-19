@@ -9,7 +9,7 @@ sidebar_position: 1
 
 Restore application backups by previewing resources before running the restore, creating a `Restore` custom resource (CR), and configuring restore hooks to run commands in restored pods. This helps you to recover your application data and configuration while controlling the restore process.
 
-## Previewing resources before running backup and restore {#oadp-review-backup-restore_restoring-applications}
+## Preview resources before running backup and restore {#oadp-review-backup-restore_restoring-applications}
 
 Preview the backup and restore resources in advance by doing a dry run of the backup and restore operations. This helps you to verify which resources will be included before committing to a full backup or restore.
 
@@ -52,7 +52,7 @@ OADP backs up application resources based on the type, namespace, or label. This
 
    Replace `<restore_name>` with the name of the restore.
 
-## Creating a Restore CR {#oadp-creating-restore-cr_restoring-applications}
+## Create a Restore CR {#oadp-creating-restore-cr_restoring-applications}
 
 Restore a `Backup` custom resource (CR) by creating a `Restore` CR.
 
@@ -170,7 +170,7 @@ When you restore a stateful application that uses the `azurefile-csi` storage cl
    done
    ```
 
-## Creating restore hooks {#oadp-creating-restore-hooks_restoring-applications}
+## Create restore hooks {#oadp-creating-restore-hooks_restoring-applications}
 
 Create restore hooks to run commands in a container in a pod by editing the `Restore` custom resource (CR).
 

@@ -3,7 +3,7 @@ title: "BuildLog [build.openshift.io/v1]"
 sidebar_position: 4
 ---
 
-# BuildLog [build.openshift.io/v1] {#buildlog-build-openshift-io-v1}
+# BuildLog \[build.openshift.io/v1\] {#buildlog-build-openshift-io-v1}
 
 <a id="buildlog-build-openshift-io-v1"></a>
 
@@ -31,7 +31,7 @@ The following API endpoints are available:
 - `/apis/build.openshift.io/v1/namespaces/{namespace}/builds/{name}/log`
   - `GET`: read log of the specified Build
 
-### /apis/build.openshift.io/v1/namespaces/{namespace}/builds/{name}/log {#_apisbuildopenshiftiov1namespaces_namespace_builds_name_log}
+### /apis/build.openshift.io/v1/namespaces/&#123;namespace&#125;/builds/&#123;name&#125;/log {#_apisbuildopenshiftiov1namespaces_namespace_builds_name_log}
 
 **Global path parameters**
 

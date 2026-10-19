@@ -3,7 +3,7 @@ title: Monitoring MetalLB configuration status
 sidebar_position: 9
 ---
 
-# Monitoring MetalLB configuration status {id="monitoring-metallb-status""}
+# Monitoring MetalLB configuration status &#123;id="monitoring-metallb-status""&#125;
 
 <a id="monitoring-metallb-configuration-status-idmonitoring-metallb-status"></a>
 
@@ -510,7 +510,7 @@ These resources report whether the configuration is valid and surface error deta
    Confirm that the output has the following values:
 
    - `result: Valid` indicates that all configured resources are compatible and active. If this value is `Invalid`, check the `errorSummary` field for aggregated error messages that identify which part of the configuration has failed.
-   - ` message: Describes any configuration problem that occurs.  Here,  `""` confirms that no errors were reported.
+   - ` message: Describes any configuration problem that occurs.  Here,  `""&#96; confirms that no errors were reported.
    - `reason: Reconciled` with `status: "True"` confirms that the reconciler has successfully processed the configuration. If the `reason` is `ReconciliationFailed` and `status` is `"False"`, the `message` field contains details about the failure.
      :::note
 

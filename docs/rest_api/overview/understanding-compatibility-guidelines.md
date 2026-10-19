@@ -54,7 +54,7 @@ No assurances are made at this time that a modification to the cloud hosting env
 
 No assurances are made at this time that a new installation of a product minor release will have the same functional defaults as a version of the product that was installed with a prior minor release and upgraded to the equivalent version. For example, future versions of the product may provision cloud infrastructure with different defaults than prior minor versions. In addition, different default security choices may be made in future versions of the product than those made in past versions of the product. Past versions of the product will forward upgrade, but preserve legacy choices where appropriate specifically to maintain backwards compatibility.
 
-### Usage of API fields that have the prefix "unsupported” or undocumented annotations {id="API-fields-that-have-the-prefix-unsupported-annotations_compatibility-guidelines"}
+### Usage of API fields that have the prefix "unsupported” or undocumented annotations &#123;id="API-fields-that-have-the-prefix-unsupported-annotations_compatibility-guidelines"&#125;
 
 Select APIs in the product expose fields with the prefix `unsupported<FieldName>`. No assurances are made at this time that usage of this field is supported across releases or within a release. Product support can request a customer to specify a value in this field when debugging specific problems, but its usage is not supported outside of that interaction. Usage of annotations on objects that are not explicitly documented are not assured support across minor releases.
 

@@ -418,7 +418,7 @@ Because the signatures on the mirror site are not in a format readily understood
    $ oc adm release info <release_version>
    ```
 
-   - Substitute <release_version> with your release number, for example, `4.14.3`.
+   - Substitute &lt;release_version> with your release number, for example, `4.14.3`.
      ```terminal title="Example output snippet"
      ---
      Pull From: quay.io/openshift-release-dev/ocp-release@sha256:e73ab4b33a9c3ff00c9f800a38d69853ca0c4dfa5a88e3df331f66df8f18ec55

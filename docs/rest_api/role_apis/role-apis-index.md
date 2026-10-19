@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="role-apis"></a>
 
-## ClusterRoleBinding [authorization.openshift.io/v1] {#_clusterrolebinding_authorizationopenshiftiov1}
+## ClusterRoleBinding \[authorization.openshift.io/v1\] {#_clusterrolebinding_authorizationopenshiftiov1}
 
 Description
 : ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference any ClusterRole in the same namespace or in the global namespace. It adds who information via (Users and Groups) OR Subjects and namespace information by which namespace it exists in. ClusterRoleBindings in a given namespace only have effect in that namespace (excepting the master namespace which has power in all namespaces).
@@ -19,7 +19,7 @@ Type
   `object`
   ```
 
-## ClusterRole [authorization.openshift.io/v1] {#_clusterrole_authorizationopenshiftiov1}
+## ClusterRole \[authorization.openshift.io/v1\] {#_clusterrole_authorizationopenshiftiov1}
 
 Description
 : ClusterRole is a logical grouping of PolicyRules that can be referenced as a unit by ClusterRoleBindings.
@@ -31,7 +31,7 @@ Type
   `object`
   ```
 
-## RoleBindingRestriction [authorization.openshift.io/v1] {#_rolebindingrestriction_authorizationopenshiftiov1}
+## RoleBindingRestriction \[authorization.openshift.io/v1\] {#_rolebindingrestriction_authorizationopenshiftiov1}
 
 Description
 : RoleBindingRestriction is an object that can be matched against a subject (user, group, or service account) to determine whether rolebindings on that subject are allowed in the namespace to which the RoleBindingRestriction belongs.  If any one of those RoleBindingRestriction objects matches a subject, rolebindings on that subject in the namespace are allowed.
@@ -43,7 +43,7 @@ Type
   `object`
   ```
 
-## RoleBinding [authorization.openshift.io/v1] {#_rolebinding_authorizationopenshiftiov1}
+## RoleBinding \[authorization.openshift.io/v1\] {#_rolebinding_authorizationopenshiftiov1}
 
 Description
 : RoleBinding references a Role, but not contain it.  It can reference any Role in the same namespace or in the global namespace. It adds who information via (Users and Groups) OR Subjects and namespace information by which namespace it exists in. RoleBindings in a given namespace only have effect in that namespace (excepting the master namespace which has power in all namespaces).
@@ -55,7 +55,7 @@ Type
   `object`
   ```
 
-## Role [authorization.openshift.io/v1] {#_role_authorizationopenshiftiov1}
+## Role \[authorization.openshift.io/v1\] {#_role_authorizationopenshiftiov1}
 
 Description
 : Role is a logical grouping of PolicyRules that can be referenced as a unit by RoleBindings.

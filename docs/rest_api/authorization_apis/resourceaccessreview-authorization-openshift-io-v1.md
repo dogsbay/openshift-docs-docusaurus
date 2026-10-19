@@ -3,7 +3,7 @@ title: "ResourceAccessReview [authorization.openshift.io/v1]"
 sidebar_position: 4
 ---
 
-# ResourceAccessReview [authorization.openshift.io/v1] {#resourceaccessreview-authorization-openshift-io-v1}
+# ResourceAccessReview \[authorization.openshift.io/v1\] {#resourceaccessreview-authorization-openshift-io-v1}
 
 <a id="resourceaccessreview-authorization-openshift-io-v1"></a>
 

@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="schedule-and-quota-apis"></a>
 
-## AppliedClusterResourceQuota [quota.openshift.io/v1] {#_appliedclusterresourcequota_quotaopenshiftiov1}
+## AppliedClusterResourceQuota \[quota.openshift.io/v1\] {#_appliedclusterresourcequota_quotaopenshiftiov1}
 
 Description
 : AppliedClusterResourceQuota mirrors ClusterResourceQuota at a project scope, for projection into a project.  It allows a project-admin to know which ClusterResourceQuotas are applied to his project and their associated usage.
@@ -19,7 +19,7 @@ Type
   `object`
   ```
 
-## ClusterResourceQuota [quota.openshift.io/v1] {#_clusterresourcequota_quotaopenshiftiov1}
+## ClusterResourceQuota \[quota.openshift.io/v1\] {#_clusterresourcequota_quotaopenshiftiov1}
 
 Description
 : ClusterResourceQuota mirrors ResourceQuota at a cluster scope.  This object is easily convertible to synthetic ResourceQuota object to allow quota evaluation re-use.
@@ -31,7 +31,7 @@ Type
   `object`
   ```
 
-## DeviceClass [resource.k8s.io/v1] {#_deviceclass_resourcek8siov1}
+## DeviceClass \[resource.k8s.io/v1\] {#_deviceclass_resourcek8siov1}
 
 Description
 : DeviceClass is a vendor- or admin-provided resource that contains device configuration and selectors. It can be referenced in the device requests of a claim to apply these presets. Cluster scoped.
@@ -43,7 +43,7 @@ Type
   `object`
   ```
 
-## FlowSchema [flowcontrol.apiserver.k8s.io/v1] {#_flowschema_flowcontrolapiserverk8siov1}
+## FlowSchema \[flowcontrol.apiserver.k8s.io/v1\] {#_flowschema_flowcontrolapiserverk8siov1}
 
 Description
 : FlowSchema defines the schema of a group of flows. Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a "flow distinguisher".
@@ -53,7 +53,7 @@ Type
   `object`
   ```
 
-## LimitRange [v1] {#_limitrange_v1}
+## LimitRange \[v1\] {#_limitrange_v1}
 
 Description
 : LimitRange sets resource usage limits for each kind of resource in a Namespace.
@@ -63,7 +63,7 @@ Type
   `object`
   ```
 
-## PriorityClass [scheduling.k8s.io/v1] {#_priorityclass_schedulingk8siov1}
+## PriorityClass \[scheduling.k8s.io/v1\] {#_priorityclass_schedulingk8siov1}
 
 Description
 : PriorityClass defines mapping from a priority class name to the priority integer value. The value can be any valid integer.
@@ -73,7 +73,7 @@ Type
   `object`
   ```
 
-## PriorityLevelConfiguration [flowcontrol.apiserver.k8s.io/v1] {#_prioritylevelconfiguration_flowcontrolapiserverk8siov1}
+## PriorityLevelConfiguration \[flowcontrol.apiserver.k8s.io/v1\] {#_prioritylevelconfiguration_flowcontrolapiserverk8siov1}
 
 Description
 : PriorityLevelConfiguration represents the configuration of a priority level.
@@ -83,7 +83,7 @@ Type
   `object`
   ```
 
-## ResourceQuota [v1] {#_resourcequota_v1}
+## ResourceQuota \[v1\] {#_resourcequota_v1}
 
 Description
 : ResourceQuota sets aggregate quota restrictions enforced per namespace
@@ -93,7 +93,7 @@ Type
   `object`
   ```
 
-## ResourceClaim [resource.k8s.io/v1] {#_resourceclaim_resourcek8siov1}
+## ResourceClaim \[resource.k8s.io/v1\] {#_resourceclaim_resourcek8siov1}
 
 Description
 : ResourceClaim describes a request for access to resources in the cluster, for use by workloads. For example, if a workload needs an accelerator device with specific properties, this is how that request is expressed. The status stanza tracks whether this claim has been satisfied and what specific resources have been allocated.
@@ -105,7 +105,7 @@ Type
   `object`
   ```
 
-## ResourceClaimTemplate [resource.k8s.io/v1] {#_resourceclaimtemplate_resourcek8siov1}
+## ResourceClaimTemplate \[resource.k8s.io/v1\] {#_resourceclaimtemplate_resourcek8siov1}
 
 Description
 : ResourceClaimTemplate is used to produce ResourceClaim objects.
@@ -117,12 +117,12 @@ Type
   `object`
   ```
 
-## ResourceSlice [resource.k8s.io/v1] {#_resourceslice_resourcek8siov1}
+## ResourceSlice \[resource.k8s.io/v1\] {#_resourceslice_resourcek8siov1}
 
 Description
 : ResourceSlice represents one or more resources in a pool of similar resources, managed by a common driver. A pool may span more than one ResourceSlice, and exactly how many ResourceSlices comprise a pool is determined by the driver.
 
-  At the moment, the only supported resources are devices with attributes and capacities. Each device in a given pool, regardless of how many ResourceSlices, must have a unique name. The ResourceSlice in which a device gets published may change over time. The unique identifier for a device is the tuple <driver name>, <pool name>, <device name>.
+  At the moment, the only supported resources are devices with attributes and capacities. Each device in a given pool, regardless of how many ResourceSlices, must have a unique name. The ResourceSlice in which a device gets published may change over time. The unique identifier for a device is the tuple &lt;driver name>, &lt;pool name>, &lt;device name>.
 
   Whenever a driver needs to update a pool, it increments the pool.Spec.Pool.Generation number and updates all ResourceSlices with that new number and new resource definitions. A consumer must only use ResourceSlices with the highest generation number and ignore all others.
 

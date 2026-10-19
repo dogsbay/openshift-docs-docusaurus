@@ -244,7 +244,7 @@ Recommendation to use a storage class
    - `spec.capacity.storage`: Specifies the size of the PV.
    - `spec.storageClassName`: Specifies the storage class name.
    - `spec.csi.volumeHandle`: Specifies the `volumeHandle` parameter. Ensure that `volumeHandle` is unique for every identical share in the cluster.
-   - `spec.csi.volumeAttributes.shareName`: For `<existing-file-share-name>``, use only the file share name and not the full path.
+   - `spec.csi.volumeAttributes.shareName`: For &#96;<existing-file-share-name>&#96;&#96;, use only the file share name and not the full path.
    - `spec.csi.nodeStageSecretRef.name`: Specifies the secret name created in the previous step.
    - `spec.csi.nodeStageSecretRef.namespace`: Specifies the namespace where the secret resides.
 4. Create a persistent value claim (PVC) specifying the existing Azure File share referenced in Step 1 using a similar configuration to the following:
@@ -278,8 +278,8 @@ Use static provisioning to manually create persistent volumes (PVs) for existing
 1. If you have not yet created a secret for the Azure storage account, create it now:
    This secret must contain the Azure Storage Account name and key with the following very specific format with two key-value pairs:
 
-   - `azurestorageaccountname`: <storage_account_name>
-   - `azurestorageaccountkey`: <account_key>
+   - `azurestorageaccountname`: &lt;storage_account_name>
+   - `azurestorageaccountkey`: &lt;account_key>
      To create a secret named `azure-secret`, run the following command:
 
      ```terminal

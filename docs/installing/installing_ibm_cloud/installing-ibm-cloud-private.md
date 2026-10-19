@@ -43,7 +43,7 @@ To deploy a private cluster, you must:
 
 - Use existing networking that meets your requirements. Your cluster resources might be shared between other clusters on the network.
 - Create a DNS zone using IBM Cloud(R) DNS Services and specify it as the base domain of the cluster. For more information, see "Using IBM Cloud(R) DNS Services to configure DNS resolution".
-- Deploy from a machine that has access to: ** The API services for the cloud to which you provision. ** The hosts on the network that you provision. ** The internet to obtain installation media.
+- Deploy from a machine that has access to: \*\* The API services for the cloud to which you provision. \*\* The hosts on the network that you provision. \*\* The internet to obtain installation media.
 
 ## Private clusters in IBM Cloud {#private-clusters-about-ibm-cloud_installing-ibm-cloud-private}
 
@@ -805,7 +805,7 @@ When the cluster deployment completes successfully:
 
   :::
 
-## Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-ibm-cloud-private}
+## Install the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-ibm-cloud-private}
 
 To manage your cluster and deploy applications from the command line on Linux, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -841,7 +841,7 @@ Download and install the new version of `oc`.
   $ oc <command>
   ```
 
-## Installing the OpenShift CLI on Windows {#cli-installing-cli-windows_installing-ibm-cloud-private}
+## Install the OpenShift CLI on Windows {#cli-installing-cli-windows_installing-ibm-cloud-private}
 
 To manage your cluster and deploy applications from the command line on Windows, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -873,7 +873,7 @@ Download and install the new version of `oc`.
   C:\> oc <command>
   ```
 
-## Installing the OpenShift CLI on macOS {#cli-installing-cli-macos_installing-ibm-cloud-private}
+## Install the OpenShift CLI on macOS {#cli-installing-cli-macos_installing-ibm-cloud-private}
 
 To manage your cluster and deploy applications from the command line on macOS, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 

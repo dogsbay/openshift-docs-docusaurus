@@ -131,7 +131,7 @@ Install cert-manager Operator for Red Hat OpenShift and create an `Issuer` or `C
 
 ## Configuring the cert-manager upstream authority plugin {#zero-trust-manager-config-cert-manager_zero-trust-manager-plugins}
 
-Configure SPIRE Server to obtain intermediate signing certificates from cert-manager Operator for Red Hat OpenShift by setting `spec.upstreamAuthority.certManager` on the `SpireServer` custom resource. Zero Trust Workload Identity Manager generates SPIRE Server configuration and reconciles the SPIRE Server `StatefulSet.
+Configure SPIRE Server to obtain intermediate signing certificates from cert-manager Operator for Red Hat OpenShift by setting `spec.upstreamAuthority.certManager` on the `SpireServer` custom resource. Zero Trust Workload Identity Manager generates SPIRE Server configuration and reconciles the SPIRE Server &#96;StatefulSet.
 
 **Prerequisites**
 

@@ -3,7 +3,7 @@ title: "Profile [tuned.openshift.io/v1]"
 sidebar_position: 4
 ---
 
-# Profile [tuned.openshift.io/v1] {#profile-tuned-openshift-io-v1}
+# Profile \[tuned.openshift.io/v1\] {#profile-tuned-openshift-io-v1}
 
 <a id="profile-tuned-openshift-io-v1"></a>
 
@@ -58,7 +58,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `debug` | `boolean` | option to debug TuneD daemon execution |
-| `providerName` | `string` | Name of the cloud provider as taken from the Node providerID: <ProviderName>://<ProviderSpecificNodeID> |
+| `providerName` | `string` | Name of the cloud provider as taken from the Node providerID: &lt;ProviderName>://&lt;ProviderSpecificNodeID> |
 | `tunedConfig` | `object` | Global configuration for the TuneD daemon as defined in tuned-main.conf |
 | `tunedProfile` | `string` | TuneD profile to apply |
 | `verbosity` | `integer` | klog logging verbosity |
@@ -87,7 +87,7 @@ Type
   `array`
   ```
 
-### .spec.profile[] {#_specprofile}
+### .spec.profile\[\] {#_specprofile}
 
 Description
 : A Tuned profile.
@@ -136,7 +136,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : StatusCondition represents a partial state of the per-node Profile application.
@@ -198,7 +198,7 @@ Description
 | 200 - OK | [`ProfileList`](/docs/rest_api/objects#io-openshift-tuned-v1-ProfileList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/tuned.openshift.io/v1/namespaces/{namespace}/profiles {#_apistunedopenshiftiov1namespaces_namespace_profiles}
+### /apis/tuned.openshift.io/v1/namespaces/&#123;namespace&#125;/profiles {#_apistunedopenshiftiov1namespaces_namespace_profiles}
 
 HTTP method
 : ```
@@ -266,7 +266,7 @@ Description
 | 202 - Accepted | [`Profile`](/docs/rest_api/node_apis/profile-tuned-openshift-io-v1#profile-tuned-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/tuned.openshift.io/v1/namespaces/{namespace}/profiles/{name} {#_apistunedopenshiftiov1namespaces_namespace_profiles_name}
+### /apis/tuned.openshift.io/v1/namespaces/&#123;namespace&#125;/profiles/&#123;name&#125; {#_apistunedopenshiftiov1namespaces_namespace_profiles_name}
 
 **Global path parameters**
 
@@ -370,7 +370,7 @@ Description
 | 201 - Created | [`Profile`](/docs/rest_api/node_apis/profile-tuned-openshift-io-v1#profile-tuned-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/tuned.openshift.io/v1/namespaces/{namespace}/profiles/{name}/status {#_apistunedopenshiftiov1namespaces_namespace_profiles_name_status}
+### /apis/tuned.openshift.io/v1/namespaces/&#123;namespace&#125;/profiles/&#123;name&#125;/status {#_apistunedopenshiftiov1namespaces_namespace_profiles_name_status}
 
 **Global path parameters**
 

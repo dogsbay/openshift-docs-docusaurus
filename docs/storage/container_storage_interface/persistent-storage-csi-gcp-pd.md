@@ -205,7 +205,7 @@ To provision high-performance hyperdisk-balanced storage volumes, configure a st
       ```
 
       - `controlPlane.platform.gcp.type` and `compute.platform.gcp.type`: Specifies the node type as n4-standard-4.
-      - `controlPlane.platform.gcp.osDisk.diskType` and `compute.platform.osDisk.diskType`: Specifies the node has the root disk backed by hyperdisk-balanced disk type. All nodes in the cluster should use the same disk type, either hyperdisks-balanced or pd-*.
+      - `controlPlane.platform.gcp.osDisk.diskType` and `compute.platform.osDisk.diskType`: Specifies the node has the root disk backed by hyperdisk-balanced disk type. All nodes in the cluster should use the same disk type, either hyperdisks-balanced or pd-\*.
         :::note
 
         All nodes in the cluster must support hyperdisk-balanced volumes. Clusters with mixed nodes are not supported, for example N2 and N3 using hyperdisk-balanced disks.

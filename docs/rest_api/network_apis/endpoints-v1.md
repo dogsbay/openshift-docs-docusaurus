@@ -3,7 +3,7 @@ title: "Endpoints [v1]"
 sidebar_position: 12
 ---
 
-# Endpoints [v1]
+# Endpoints \[v1\]
 
 <a id="endpoints-v1"></a>
 
@@ -41,7 +41,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `subsets` | `array` | The set of all endpoints is the union of all subsets. Addresses are placed into subsets according to the IPs they share. A single address with multiple ports, some of which are ready and some of which are not (because they come from different containers) will result in the address being displayed in different subsets for the different ports. No address will appear in both Addresses and NotReadyAddresses in the same subset. Sets of addresses and ports that comprise a service. |
-| `subsets[]` | `object` | EndpointSubset is a group of addresses with a common set of ports. The expanded set of endpoints is the Cartesian product of Addresses x Ports. For example, given:<br>	{ 	  Addresses: [{"ip": "10.10.1.1"}, {"ip": "10.10.2.2"}], 	  Ports:     [{"name": "a", "port": 8675}, {"name": "b", "port": 309}] 	}<br>The resulting set of endpoints can be viewed as:<br>	a: [ 10.10.1.1:8675, 10.10.2.2:8675 ], 	b: [ 10.10.1.1:309, 10.10.2.2:309 ]<br>Deprecated: This API is deprecated in v1.33+. |
+| `subsets[]` | `object` | EndpointSubset is a group of addresses with a common set of ports. The expanded set of endpoints is the Cartesian product of Addresses x Ports. For example, given:<br>	&#123; 	  Addresses: \[&#123;"ip": "10.10.1.1"&#125;, &#123;"ip": "10.10.2.2"&#125;\], 	  Ports:     \[&#123;"name": "a", "port": 8675&#125;, &#123;"name": "b", "port": 309&#125;\] 	&#125;<br>The resulting set of endpoints can be viewed as:<br>	a: \[ 10.10.1.1:8675, 10.10.2.2:8675 \], 	b: \[ 10.10.1.1:309, 10.10.2.2:309 \]<br>Deprecated: This API is deprecated in v1.33+. |
 
 ### .subsets {#_subsets}
 
@@ -53,7 +53,7 @@ Type
   `array`
   ```
 
-### .subsets[] {#_subsets}
+### .subsets\[\] {#_subsets}
 
 Description
 : EndpointSubset is a group of addresses with a common set of ports. The expanded set of endpoints is the Cartesian product of Addresses x Ports. For example, given:
@@ -88,7 +88,7 @@ Type
 | `ports` | `array` | Port numbers available on the related IP addresses. |
 | `ports[]` | `object` | EndpointPort is a tuple that describes a single port. Deprecated: This API is deprecated in v1.33+. |
 
-### .subsets[].addresses {#_subsetsaddresses}
+### .subsets\[\].addresses {#_subsetsaddresses}
 
 Description
 : IP addresses which offer the related ports that are marked as ready. These endpoints should be considered safe for load balancers and clients to utilize.
@@ -98,7 +98,7 @@ Type
   `array`
   ```
 
-### .subsets[].addresses[] {#_subsetsaddresses}
+### .subsets\[\].addresses\[\] {#_subsetsaddresses}
 
 Description
 : EndpointAddress is a tuple that describes single IP address. Deprecated: This API is deprecated in v1.33+.
@@ -118,7 +118,7 @@ Required
 | `nodeName` | `string` | Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node. |
 | `targetRef` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 
-### .subsets[].addresses[].targetRef {#_subsetsaddressestargetref}
+### .subsets\[\].addresses\[\].targetRef {#_subsetsaddressestargetref}
 
 Description
 : ObjectReference contains enough information to let you inspect or modify the referred object.
@@ -131,14 +131,14 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
 
-### .subsets[].notReadyAddresses {#_subsetsnotreadyaddresses}
+### .subsets\[\].notReadyAddresses {#_subsetsnotreadyaddresses}
 
 Description
 : IP addresses which offer the related ports but are not currently marked as ready because they have not yet finished starting, have recently failed a readiness check, or have recently failed a liveness check.
@@ -148,7 +148,7 @@ Type
   `array`
   ```
 
-### .subsets[].notReadyAddresses[] {#_subsetsnotreadyaddresses}
+### .subsets\[\].notReadyAddresses\[\] {#_subsetsnotreadyaddresses}
 
 Description
 : EndpointAddress is a tuple that describes single IP address. Deprecated: This API is deprecated in v1.33+.
@@ -168,7 +168,7 @@ Required
 | `nodeName` | `string` | Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node. |
 | `targetRef` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 
-### .subsets[].notReadyAddresses[].targetRef {#_subsetsnotreadyaddressestargetref}
+### .subsets\[\].notReadyAddresses\[\].targetRef {#_subsetsnotreadyaddressestargetref}
 
 Description
 : ObjectReference contains enough information to let you inspect or modify the referred object.
@@ -181,14 +181,14 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
 
-### .subsets[].ports {#_subsetsports}
+### .subsets\[\].ports {#_subsetsports}
 
 Description
 : Port numbers available on the related IP addresses.
@@ -198,7 +198,7 @@ Type
   `array`
   ```
 
-### .subsets[].ports[] {#_subsetsports}
+### .subsets\[\].ports\[\] {#_subsetsports}
 
 Description
 : EndpointPort is a tuple that describes a single port. Deprecated: This API is deprecated in v1.33+.
@@ -213,7 +213,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `appProtocol` | `string` | The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either:<br>* Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names).<br>* Kubernetes-defined prefixed names:   * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-   * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455   * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455<br>* Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol. |
+| `appProtocol` | `string` | The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either:<br>\* Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names).<br>\* Kubernetes-defined prefixed names:   \* 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-   \* 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455   \* 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455<br>\* Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol. |
 | `name` | `string` | The name of this port.  This must match the 'name' field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined. |
 | `port` | `integer` | The port number of the endpoint. |
 | `protocol` | `string` | The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.<br>Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
@@ -278,7 +278,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/endpoints {#_apiv1namespaces_namespace_endpoints}
+### /api/v1/namespaces/&#123;namespace&#125;/endpoints {#_apiv1namespaces_namespace_endpoints}
 
 HTTP method
 : ```
@@ -352,7 +352,7 @@ Description
 | 202 - Accepted | [`Endpoints`](/docs/rest_api/network_apis/endpoints-v1#endpoints-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{namespace}/endpoints {#_apiv1watchnamespaces_namespace_endpoints}
+### /api/v1/watch/namespaces/&#123;namespace&#125;/endpoints {#_apiv1watchnamespaces_namespace_endpoints}
 
 HTTP method
 : ```
@@ -371,7 +371,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/endpoints/{name} {#_apiv1namespaces_namespace_endpoints_name}
+### /api/v1/namespaces/&#123;namespace&#125;/endpoints/&#123;name&#125; {#_apiv1namespaces_namespace_endpoints_name}
 
 **Global path parameters**
 
@@ -476,7 +476,7 @@ Description
 | 201 - Created | [`Endpoints`](/docs/rest_api/network_apis/endpoints-v1#endpoints-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{namespace}/endpoints/{name} {#_apiv1watchnamespaces_namespace_endpoints_name}
+### /api/v1/watch/namespaces/&#123;namespace&#125;/endpoints/&#123;name&#125; {#_apiv1watchnamespaces_namespace_endpoints_name}
 
 **Global path parameters**
 

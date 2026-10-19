@@ -3,7 +3,7 @@ title: "ClusterExtension [olm.operatorframework.io/v1]"
 sidebar_position: 4
 ---
 
-# ClusterExtension [olm.operatorframework.io/v1] {#clusterextension-olm-operatorframework-io-v1}
+# ClusterExtension \[olm.operatorframework.io/v1\] {#clusterextension-olm-operatorframework-io-v1}
 
 <a id="clusterextension-olm-operatorframework-io-v1"></a>
 
@@ -44,7 +44,7 @@ Required
 | --- | --- | --- |
 | `config` | `object` | config is optional and specifies bundle-specific configuration. Configuration is bundle-specific and a bundle may provide a configuration schema. When not specified, the default configuration of the resolved bundle is used.<br>config is validated against a configuration schema provided by the resolved bundle. If the bundle does not provide a configuration schema the bundle is deemed to not be configurable. More information on how to configure bundles can be found in the OLM documentation associated with your current OLM version. |
 | `install` | `object` | install is optional and configures installation options for the ClusterExtension, such as the pre-flight check configuration. |
-| `namespace` | `string` | namespace specifies a Kubernetes namespace. This is the namespace where the provided ServiceAccount must exist. It also designates the default namespace where namespace-scoped resources for the extension are applied to the cluster. Some extensions may contain namespace-scoped resources to be applied in other namespaces. This namespace must exist.<br>The namespace field is required, immutable, and follows the DNS label standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters or hyphens (-), start and end with an alphanumeric character, and be no longer than 63 characters.<br>[RFC 1123]: https://tools.ietf.org/html/rfc1123 |
+| `namespace` | `string` | namespace specifies a Kubernetes namespace. This is the namespace where the provided ServiceAccount must exist. It also designates the default namespace where namespace-scoped resources for the extension are applied to the cluster. Some extensions may contain namespace-scoped resources to be applied in other namespaces. This namespace must exist.<br>The namespace field is required, immutable, and follows the DNS label standard as defined in \[RFC 1123\]. It must contain only lowercase alphanumeric characters or hyphens (-), start and end with an alphanumeric character, and be no longer than 63 characters.<br>\[RFC 1123\]: https://tools.ietf.org/html/rfc1123 |
 | `progressDeadlineMinutes` | `integer` | progressDeadlineMinutes is an optional field that defines the maximum period of time in minutes after which an installation should be considered failed and require manual intervention. This functionality is disabled when no value is provided. The minimum period is 10 minutes, and the maximum is 720 minutes (12 hours). |
 | `serviceAccount` | `object` | serviceAccount specifies a ServiceAccount used to perform all interactions with the cluster that are required to manage the extension. The ServiceAccount must be configured with the necessary permissions to perform these interactions. The ServiceAccount must exist in the namespace referenced in the spec. The serviceAccount field is required. |
 | `source` | `object` | source is required and selects the installation source of content for this ClusterExtension. Set the sourceType field to perform the selection.<br>Catalog is currently the only implemented sourceType. Setting sourceType to "Catalog" requires the catalog field to also be defined.<br>Below is a minimal example of a source definition (in yaml):<br>source:   sourceType: Catalog   catalog:     packageName: example-package |
@@ -67,7 +67,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `configType` | `string` | configType is required and specifies the type of configuration source.<br>The only allowed value is "Inline".<br>When set to "Inline", the cluster extension configuration is defined inline within the ClusterExtension resource. |
-| `inline` | `` | inline contains JSON or YAML values specified directly in the ClusterExtension.<br>It is used to specify arbitrary configuration values for the ClusterExtension. It must be set if configType is 'Inline' and must be a valid JSON/YAML object containing at least one property. The configuration values are validated at runtime against a JSON schema provided by the bundle. |
+| `inline` | &#96;&#96; | inline contains JSON or YAML values specified directly in the ClusterExtension.<br>It is used to specify arbitrary configuration values for the ClusterExtension. It must be set if configType is 'Inline' and must be a valid JSON/YAML object containing at least one property. The configuration values are validated at runtime against a JSON schema provided by the bundle. |
 
 ### .spec.install {#_specinstall}
 
@@ -136,7 +136,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | name is a required, immutable reference to the name of the ServiceAccount used for installation and management of the content for the package specified in the packageName field.<br>This ServiceAccount must exist in the installNamespace.<br>The name field follows the DNS subdomain standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters.<br>Some examples of valid values are:   - some-serviceaccount   - 123-serviceaccount   - 1-serviceaccount-2   - someserviceaccount   - some.serviceaccount<br>Some examples of invalid values are:   - -some-serviceaccount   - some-serviceaccount-<br>[RFC 1123]: https://tools.ietf.org/html/rfc1123 |
+| `name` | `string` | name is a required, immutable reference to the name of the ServiceAccount used for installation and management of the content for the package specified in the packageName field.<br>This ServiceAccount must exist in the installNamespace.<br>The name field follows the DNS subdomain standard as defined in \[RFC 1123\]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters.<br>Some examples of valid values are:   - some-serviceaccount   - 123-serviceaccount   - 1-serviceaccount-2   - someserviceaccount   - some.serviceaccount<br>Some examples of invalid values are:   - -some-serviceaccount   - some-serviceaccount-<br>\[RFC 1123\]: https://tools.ietf.org/html/rfc1123 |
 
 ### .spec.source {#_specsource}
 
@@ -177,11 +177,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `channels` | `array (string)` | channels is optional and specifies a set of channels belonging to the package specified in the packageName field.<br>A channel is a package-author-defined stream of updates for an extension.<br>Each channel in the list must follow the DNS subdomain standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters. You can specify no more than 256 channels.<br>When specified, it constrains the set of installable bundles and the automated upgrade path. This constraint is an AND operation with the version field. For example:   - Given channel is set to "foo"   - Given version is set to ">=1.0.0, <1.5.0"   - Only bundles that exist in channel "foo" AND satisfy the version range comparison are considered installable   - Automatic upgrades are constrained to upgrade edges defined by the selected channel<br>When unspecified, upgrade edges across all channels are used to identify valid automatic upgrade paths.<br>Some examples of valid values are:   - 1.1.x   - alpha   - stable   - stable-v1   - v1-stable   - dev-preview   - preview   - community<br>Some examples of invalid values are:   - -some-channel   - some-channel-   - thisisareallylongchannelnamethatisgreaterthanthemaximumlength   - original_40   - --default-channel<br>[RFC 1123]: https://tools.ietf.org/html/rfc1123 |
-| `packageName` | `string` | packageName specifies the name of the package to be installed and is used to filter the content from catalogs.<br>It is required, immutable, and follows the DNS subdomain standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters.<br>Some examples of valid values are:   - some-package   - 123-package   - 1-package-2   - somepackage<br>Some examples of invalid values are:   - -some-package   - some-package-   - thisisareallylongpackagenamethatisgreaterthanthemaximumlength   - some.package<br>[RFC 1123]: https://tools.ietf.org/html/rfc1123 |
+| `channels` | `array (string)` | channels is optional and specifies a set of channels belonging to the package specified in the packageName field.<br>A channel is a package-author-defined stream of updates for an extension.<br>Each channel in the list must follow the DNS subdomain standard as defined in \[RFC 1123\]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters. You can specify no more than 256 channels.<br>When specified, it constrains the set of installable bundles and the automated upgrade path. This constraint is an AND operation with the version field. For example:   - Given channel is set to "foo"   - Given version is set to ">=1.0.0, &lt;1.5.0"   - Only bundles that exist in channel "foo" AND satisfy the version range comparison are considered installable   - Automatic upgrades are constrained to upgrade edges defined by the selected channel<br>When unspecified, upgrade edges across all channels are used to identify valid automatic upgrade paths.<br>Some examples of valid values are:   - 1.1.x   - alpha   - stable   - stable-v1   - v1-stable   - dev-preview   - preview   - community<br>Some examples of invalid values are:   - -some-channel   - some-channel-   - thisisareallylongchannelnamethatisgreaterthanthemaximumlength   - original_40   - --default-channel<br>\[RFC 1123\]: https://tools.ietf.org/html/rfc1123 |
+| `packageName` | `string` | packageName specifies the name of the package to be installed and is used to filter the content from catalogs.<br>It is required, immutable, and follows the DNS subdomain standard as defined in \[RFC 1123\]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters.<br>Some examples of valid values are:   - some-package   - 123-package   - 1-package-2   - somepackage<br>Some examples of invalid values are:   - -some-package   - some-package-   - thisisareallylongpackagenamethatisgreaterthanthemaximumlength   - some.package<br>\[RFC 1123\]: https://tools.ietf.org/html/rfc1123 |
 | `selector` | `object` | selector is optional and filters the set of ClusterCatalogs used in the bundle selection process.<br>When unspecified, all ClusterCatalogs are used in the bundle selection process. |
 | `upgradeConstraintPolicy` | `string` | upgradeConstraintPolicy is optional and controls whether the upgrade paths defined in the catalog are enforced for the package referenced in the packageName field.<br>Allowed values are "CatalogProvided", "SelfCertified", or omitted.<br>When set to "CatalogProvided", automatic upgrades only occur when upgrade constraints specified by the package author are met.<br>When set to "SelfCertified", the upgrade constraints specified by the package author are ignored. This allows upgrades and downgrades to any version of the package. This is considered a dangerous operation as it can lead to unknown and potentially disastrous outcomes, such as data loss. Use this option only if you have independently verified the changes.<br>When omitted, the default value is "CatalogProvided". |
-| `version` | `string` | version is an optional semver constraint (a specific version or range of versions). When unspecified, the latest version available is installed.<br>Acceptable version ranges are no longer than 64 characters. Version ranges are composed of comma- or space-delimited values and one or more comparison operators, known as comparison strings. You can add additional comparison strings using the OR operator (\|\|).<br># Range Comparisons<br>To specify a version range, you can use a comparison string like ">=3.0, <3.6". When specifying a range, automatic updates will occur within that range. The example comparison string means "install any version greater than or equal to 3.0.0 but less than 3.6.0.". It also states intent that if any upgrades are available within the version range after initial installation, those upgrades should be automatically performed.<br># Pinned Versions<br>To specify an exact version to install you can use a version range that "pins" to a specific version. When pinning to a specific version, no automatic updates will occur. An example of a pinned version range is "0.6.0", which means "only install version 0.6.0 and never upgrade from this version".<br># Basic Comparison Operators<br>The basic comparison operators and their meanings are:   - "=", equal (not aliased to an operator)   - "!=", not equal   - "<", less than   - ">", greater than   - ">=", greater than OR equal to   - "<=", less than OR equal to<br># Wildcard Comparisons<br>You can use the "x", "X", and "*" characters as wildcard characters in all comparison operations. Some examples of using the wildcard characters:   - "1.2.x", "1.2.X", and "1.2.*" is equivalent to ">=1.2.0, < 1.3.0"   - ">= 1.2.x", ">= 1.2.X", and ">= 1.2.*" is equivalent to ">= 1.2.0"   - "<= 2.x", "<= 2.X", and "<= 2.*" is equivalent to "< 3"   - "x", "X", and "*" is equivalent to ">= 0.0.0"<br># Patch Release Comparisons<br>When you want to specify a minor version up to the next major version you can use the "~" character to perform patch comparisons. Some examples:   - "~1.2.3" is equivalent to ">=1.2.3, <1.3.0"   - "~1" and "~1.x" is equivalent to ">=1, <2"   - "~2.3" is equivalent to ">=2.3, <2.4"   - "~1.2.x" is equivalent to ">=1.2.0, <1.3.0"<br># Major Release Comparisons<br>You can use the "^" character to make major release comparisons after a stable 1.0.0 version is published. If there is no stable version published, // minor versions define the stability level. Some examples:   - "^1.2.3" is equivalent to ">=1.2.3, <2.0.0"   - "^1.2.x" is equivalent to ">=1.2.0, <2.0.0"   - "^2.3" is equivalent to ">=2.3, <3"   - "^2.x" is equivalent to ">=2.0.0, <3"   - "^0.2.3" is equivalent to ">=0.2.3, <0.3.0"   - "^0.2" is equivalent to ">=0.2.0, <0.3.0"   - "^0.0.3" is equvalent to ">=0.0.3, <0.0.4"   - "^0.0" is equivalent to ">=0.0.0, <0.1.0"   - "^0" is equivalent to ">=0.0.0, <1.0.0"<br># OR Comparisons You can use the "\|\|" character to represent an OR operation in the version range. Some examples:   - ">=1.2.3, <2.0.0 \|\| >3.0.0"   - "^0 \|\| ^3 \|\| ^5"<br>For more information on semver, please see https://semver.org/ |
+| `version` | `string` | version is an optional semver constraint (a specific version or range of versions). When unspecified, the latest version available is installed.<br>Acceptable version ranges are no longer than 64 characters. Version ranges are composed of comma- or space-delimited values and one or more comparison operators, known as comparison strings. You can add additional comparison strings using the OR operator (\|\|).<br># Range Comparisons<br>To specify a version range, you can use a comparison string like ">=3.0, &lt;3.6". When specifying a range, automatic updates will occur within that range. The example comparison string means "install any version greater than or equal to 3.0.0 but less than 3.6.0.". It also states intent that if any upgrades are available within the version range after initial installation, those upgrades should be automatically performed.<br># Pinned Versions<br>To specify an exact version to install you can use a version range that "pins" to a specific version. When pinning to a specific version, no automatic updates will occur. An example of a pinned version range is "0.6.0", which means "only install version 0.6.0 and never upgrade from this version".<br># Basic Comparison Operators<br>The basic comparison operators and their meanings are:   - "=", equal (not aliased to an operator)   - "!=", not equal   - "&lt;", less than   - ">", greater than   - ">=", greater than OR equal to   - "&lt;=", less than OR equal to<br># Wildcard Comparisons<br>You can use the "x", "X", and "*" characters as wildcard characters in all comparison operations. Some examples of using the wildcard characters:   - "1.2.x", "1.2.X", and "1.2.*" is equivalent to ">=1.2.0, < 1.3.0"   - ">= 1.2.x", ">= 1.2.X", and ">= 1.2.*" is equivalent to ">= 1.2.0"   - "&lt;= 2.x", "&lt;= 2.X", and "&lt;= 2.*" is equivalent to "< 3"   - "x", "X", and "\*" is equivalent to ">= 0.0.0"<br># Patch Release Comparisons<br>When you want to specify a minor version up to the next major version you can use the "~" character to perform patch comparisons. Some examples:   - "~1.2.3" is equivalent to ">=1.2.3, &lt;1.3.0"   - "~1" and "~1.x" is equivalent to ">=1, &lt;2"   - "~2.3" is equivalent to ">=2.3, &lt;2.4"   - "~1.2.x" is equivalent to ">=1.2.0, &lt;1.3.0"<br># Major Release Comparisons<br>You can use the "^" character to make major release comparisons after a stable 1.0.0 version is published. If there is no stable version published, // minor versions define the stability level. Some examples:   - "^1.2.3" is equivalent to ">=1.2.3, &lt;2.0.0"   - "^1.2.x" is equivalent to ">=1.2.0, &lt;2.0.0"   - "^2.3" is equivalent to ">=2.3, &lt;3"   - "^2.x" is equivalent to ">=2.0.0, &lt;3"   - "^0.2.3" is equivalent to ">=0.2.3, &lt;0.3.0"   - "^0.2" is equivalent to ">=0.2.0, &lt;0.3.0"   - "^0.0.3" is equvalent to ">=0.0.3, &lt;0.0.4"   - "^0.0" is equivalent to ">=0.0.0, &lt;0.1.0"   - "^0" is equivalent to ">=0.0.0, &lt;1.0.0"<br># OR Comparisons You can use the "\|\|" character to represent an OR operation in the version range. Some examples:   - ">=1.2.3, &lt;2.0.0 \|\| >3.0.0"   - "^0 \|\| ^3 \|\| ^5"<br>For more information on semver, please see https://semver.org/ |
 
 ### .spec.source.catalog.selector {#_specsourcecatalogselector}
 
@@ -199,7 +199,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.source.catalog.selector.matchExpressions {#_specsourcecatalogselectormatchexpressions}
 
@@ -211,7 +211,7 @@ Type
   `array`
   ```
 
-### .spec.source.catalog.selector.matchExpressions[] {#_specsourcecatalogselectormatchexpressions}
+### .spec.source.catalog.selector.matchExpressions\[\] {#_specsourcecatalogselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -259,7 +259,7 @@ Type
   `array`
   ```
 
-### .status.activeRevisions[] {#_statusactiverevisions}
+### .status.activeRevisions\[\] {#_statusactiverevisions}
 
 Description
 : RevisionStatus defines the observed state of a ClusterObjectSet.
@@ -278,7 +278,7 @@ Required
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `name` | `string` | name of the ClusterObjectSet resource |
 
-### .status.activeRevisions[].conditions {#_statusactiverevisionsconditions}
+### .status.activeRevisions\[\].conditions {#_statusactiverevisionsconditions}
 
 Description
 : conditions optionally expose Progressing and Available condition of the revision, in case when it is not yet marked as successfully installed (condition Succeeded is not set to True). Given that a ClusterExtension should remain available during upgrades, an observer may use these conditions to get more insights about reasons for its current state.
@@ -288,7 +288,7 @@ Type
   `array`
   ```
 
-### .status.activeRevisions[].conditions[] {#_statusactiverevisionsconditions}
+### .status.activeRevisions\[\].conditions\[\] {#_statusactiverevisionsconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -309,7 +309,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -342,7 +342,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -363,7 +363,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -403,7 +403,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | name is required and follows the DNS subdomain standard as defined in [RFC 1123]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters. |
+| `name` | `string` | name is required and follows the DNS subdomain standard as defined in \[RFC 1123\]. It must contain only lowercase alphanumeric characters, hyphens (-) or periods (.), start and end with an alphanumeric character, and be no longer than 253 characters. |
 | `version` | `string` | version is required and references the version that this bundle represents. It follows the semantic versioning standard as defined in https://semver.org/. |
 
 ## API endpoints {#_api_endpoints}
@@ -492,7 +492,7 @@ Description
 | 202 - Accepted | [`ClusterExtension`](/docs/rest_api/operatorhub_apis/clusterextension-olm-operatorframework-io-v1#clusterextension-olm-operatorframework-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/olm.operatorframework.io/v1/clusterextensions/{name} {#_apisolmoperatorframeworkiov1clusterextensions_name}
+### /apis/olm.operatorframework.io/v1/clusterextensions/&#123;name&#125; {#_apisolmoperatorframeworkiov1clusterextensions_name}
 
 **Global path parameters**
 
@@ -596,7 +596,7 @@ Description
 | 201 - Created | [`ClusterExtension`](/docs/rest_api/operatorhub_apis/clusterextension-olm-operatorframework-io-v1#clusterextension-olm-operatorframework-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/olm.operatorframework.io/v1/clusterextensions/{name}/status {#_apisolmoperatorframeworkiov1clusterextensions_name_status}
+### /apis/olm.operatorframework.io/v1/clusterextensions/&#123;name&#125;/status {#_apisolmoperatorframeworkiov1clusterextensions_name_status}
 
 **Global path parameters**
 

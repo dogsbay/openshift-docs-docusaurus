@@ -3,7 +3,7 @@ title: "VolumePopulator [populator.storage.k8s.io/v1beta1]"
 sidebar_position: 12
 ---
 
-# VolumePopulator [populator.storage.k8s.io/v1beta1] {#volumepopulator-populator-storage-k8s-io-v1beta1}
+# VolumePopulator \[populator.storage.k8s.io/v1beta1\] {#volumepopulator-populator-storage-k8s-io-v1beta1}
 
 <a id="volumepopulator-populator-storage-k8s-io-v1beta1"></a>
 
@@ -128,7 +128,7 @@ Description
 | 202 - Accepted | [`VolumePopulator`](/docs/rest_api/storage_apis/volumepopulator-populator-storage-k8s-io-v1beta1#volumepopulator-populator-storage-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/populator.storage.k8s.io/v1beta1/volumepopulators/{name} {#_apispopulatorstoragek8siov1beta1volumepopulators_name}
+### /apis/populator.storage.k8s.io/v1beta1/volumepopulators/&#123;name&#125; {#_apispopulatorstoragek8siov1beta1volumepopulators_name}
 
 **Global path parameters**
 

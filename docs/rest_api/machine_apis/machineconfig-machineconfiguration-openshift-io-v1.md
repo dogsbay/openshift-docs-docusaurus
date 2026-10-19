@@ -3,7 +3,7 @@ title: "MachineConfig [machineconfiguration.openshift.io/v1]"
 sidebar_position: 6
 ---
 
-# MachineConfig [machineconfiguration.openshift.io/v1] {#machineconfig-machineconfiguration-openshift-io-v1}
+# MachineConfig \[machineconfiguration.openshift.io/v1\] {#machineconfig-machineconfiguration-openshift-io-v1}
 
 <a id="machineconfig-machineconfiguration-openshift-io-v1"></a>
 
@@ -39,10 +39,10 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `baseOSExtensionsContainerImage` | `string` | baseOSExtensionsContainerImage specifies the remote location that will be used to fetch the extensions container matching a new-format OS image |
-| `config` | `` | config is a Ignition Config object. |
+| `config` | &#96;&#96; | config is a Ignition Config object. |
 | `extensions` | `array (string)` | extensions contains a list of additional features that can be enabled on host |
 | `fips` | `boolean` | fips controls FIPS mode |
-| `kernelArguments` | `` | kernelArguments contains a list of kernel arguments to be added |
+| `kernelArguments` | &#96;&#96; | kernelArguments contains a list of kernel arguments to be added |
 | `kernelType` | `string` | kernelType contains which kernel we want to be running like default (traditional), realtime, 64k-pages (aarch64 only). |
 | `osImageURL` | `string` | osImageURL specifies the remote location that will be used to fetch the OS. |
 
@@ -128,7 +128,7 @@ Description
 | 202 - Accepted | [`MachineConfig`](/docs/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1#machineconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineconfigs/{name} {#_apismachineconfigurationopenshiftiov1machineconfigs_name}
+### /apis/machineconfiguration.openshift.io/v1/machineconfigs/&#123;name&#125; {#_apismachineconfigurationopenshiftiov1machineconfigs_name}
 
 **Global path parameters**
 

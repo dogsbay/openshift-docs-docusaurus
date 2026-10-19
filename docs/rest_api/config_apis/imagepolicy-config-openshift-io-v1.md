@@ -3,7 +3,7 @@ title: "ImagePolicy [config.openshift.io/v1]"
 sidebar_position: 15
 ---
 
-# ImagePolicy [config.openshift.io/v1] {#imagepolicy-config-openshift-io-v1}
+# ImagePolicy \[config.openshift.io/v1\] {#imagepolicy-config-openshift-io-v1}
 
 <a id="imagepolicy-config-openshift-io-v1"></a>
 
@@ -47,7 +47,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `policy` | `object` | policy is a required field that contains configuration to allow scopes to be verified, and defines how images not matching the verification policy will be treated. |
-| `scopes` | `array (string)` | scopes is a required field that defines the list of image identities assigned to a policy. Each item refers to a scope in a registry implementing the "Docker Registry HTTP API V2". Scopes matching individual images are named Docker references in the fully expanded form, either using a tag or digest. For example, docker.io/library/busybox:latest (not busybox:latest). More general scopes are prefixes of individual-image scopes, and specify a repository (by omitting the tag or digest), a repository namespace, or a registry host (by only specifying the host name and possibly a port number) or a wildcard expression starting with `\*.`, for matching all subdomains (not including a port number). Wildcards are only supported for subdomain matching, and may not be used in the middle of the host, i.e.  *.example.com is a valid case, but example*.*.com is not. This support no more than 256 scopes in one object. If multiple scopes match a given image, only the policy requirements for the most specific scope apply. The policy requirements for more general scopes are ignored. In addition to setting a policy appropriate for your own deployed applications, make sure that a policy on the OpenShift image repositories quay.io/openshift-release-dev/ocp-release, quay.io/openshift-release-dev/ocp-v4.0-art-dev (or on a more general scope) allows deployment of the OpenShift images required for cluster operation. If a scope is configured in both the ClusterImagePolicy and the ImagePolicy, or if the scope in ImagePolicy is nested under one of the scopes from the ClusterImagePolicy, only the policy from the ClusterImagePolicy will be applied. For additional details about the format, please refer to the document explaining the docker transport field, which can be found at: https://github.com/containers/image/blob/main/docs/containers-policy.json.5.md#docker |
+| `scopes` | `array (string)` | scopes is a required field that defines the list of image identities assigned to a policy. Each item refers to a scope in a registry implementing the "Docker Registry HTTP API V2". Scopes matching individual images are named Docker references in the fully expanded form, either using a tag or digest. For example, docker.io/library/busybox:latest (not busybox:latest). More general scopes are prefixes of individual-image scopes, and specify a repository (by omitting the tag or digest), a repository namespace, or a registry host (by only specifying the host name and possibly a port number) or a wildcard expression starting with `\*.`, for matching all subdomains (not including a port number). Wildcards are only supported for subdomain matching, and may not be used in the middle of the host, i.e.  \*.example.com is a valid case, but example\*.\*.com is not. This support no more than 256 scopes in one object. If multiple scopes match a given image, only the policy requirements for the most specific scope apply. The policy requirements for more general scopes are ignored. In addition to setting a policy appropriate for your own deployed applications, make sure that a policy on the OpenShift image repositories quay.io/openshift-release-dev/ocp-release, quay.io/openshift-release-dev/ocp-v4.0-art-dev (or on a more general scope) allows deployment of the OpenShift images required for cluster operation. If a scope is configured in both the ClusterImagePolicy and the ImagePolicy, or if the scope in ImagePolicy is nested under one of the scopes from the ClusterImagePolicy, only the policy from the ClusterImagePolicy will be applied. For additional details about the format, please refer to the document explaining the docker transport field, which can be found at: https://github.com/containers/image/blob/main/docs/containers-policy.json.5.md#docker |
 
 ### .spec.policy {#_specpolicy}
 
@@ -160,7 +160,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `email` | `string` | email specifies the expected email address imposed on the subject to which the certificate was issued, and must match the email address listed in the Subject Alternative Name (SAN) field of the certificate. The email must be a valid email address and at most 320 characters in length. |
-| `hostname` | `string` | hostname specifies the expected hostname imposed on the subject to which the certificate was issued, and it must match the hostname listed in the Subject Alternative Name (SAN) DNS field of the certificate. The hostname must be a valid dns 1123 subdomain name, optionally prefixed by '*.', and at most 253 characters in length. It must consist only of lowercase alphanumeric characters, hyphens, periods and the optional preceding asterisk. |
+| `hostname` | `string` | hostname specifies the expected hostname imposed on the subject to which the certificate was issued, and it must match the hostname listed in the Subject Alternative Name (SAN) DNS field of the certificate. The hostname must be a valid dns 1123 subdomain name, optionally prefixed by '\*.', and at most 253 characters in length. It must consist only of lowercase alphanumeric characters, hyphens, periods and the optional preceding asterisk. |
 
 ### .spec.policy.rootOfTrust.publicKey {#_specpolicyrootoftrustpublickey}
 
@@ -232,8 +232,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `prefix` | `string` | prefix is required if matchPolicy is set to "RemapIdentity". prefix is the prefix of the image identity to be matched. If the image identity matches the specified prefix, that prefix is replaced by the specified “signedPrefix” (otherwise it is used as unchanged and no remapping takes place). This is useful when verifying signatures for a mirror of some other repository namespace that preserves the vendor’s repository structure. The prefix and signedPrefix values can be either host[:port] values (matching exactly the same host[:port], string), repository namespaces, or repositories (i.e. they must not contain tags/digests), and match as prefixes of the fully expanded form. For example, docker.io/library/busybox (not busybox) to specify that single repository, or docker.io/library (not an empty string) to specify the parent namespace of docker.io/library/busybox. |
-| `signedPrefix` | `string` | signedPrefix is required if matchPolicy is set to "RemapIdentity". signedPrefix is the prefix of the image identity to be matched in the signature. The format is the same as "prefix". The values can be either host[:port] values (matching exactly the same host[:port], string), repository namespaces, or repositories (i.e. they must not contain tags/digests), and match as prefixes of the fully expanded form. For example, docker.io/library/busybox (not busybox) to specify that single repository, or docker.io/library (not an empty string) to specify the parent namespace of docker.io/library/busybox. |
+| `prefix` | `string` | prefix is required if matchPolicy is set to "RemapIdentity". prefix is the prefix of the image identity to be matched. If the image identity matches the specified prefix, that prefix is replaced by the specified “signedPrefix” (otherwise it is used as unchanged and no remapping takes place). This is useful when verifying signatures for a mirror of some other repository namespace that preserves the vendor’s repository structure. The prefix and signedPrefix values can be either host\[:port\] values (matching exactly the same host\[:port\], string), repository namespaces, or repositories (i.e. they must not contain tags/digests), and match as prefixes of the fully expanded form. For example, docker.io/library/busybox (not busybox) to specify that single repository, or docker.io/library (not an empty string) to specify the parent namespace of docker.io/library/busybox. |
+| `signedPrefix` | `string` | signedPrefix is required if matchPolicy is set to "RemapIdentity". signedPrefix is the prefix of the image identity to be matched in the signature. The format is the same as "prefix". The values can be either host\[:port\] values (matching exactly the same host\[:port\], string), repository namespaces, or repositories (i.e. they must not contain tags/digests), and match as prefixes of the fully expanded form. For example, docker.io/library/busybox (not busybox) to specify that single repository, or docker.io/library (not an empty string) to specify the parent namespace of docker.io/library/busybox. |
 
 ### .status {#_status}
 
@@ -260,7 +260,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -281,7 +281,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -325,7 +325,7 @@ Description
 | 200 - OK | [`ImagePolicyList`](/docs/rest_api/objects#io-openshift-config-v1-ImagePolicyList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/namespaces/{namespace}/imagepolicies {#_apisconfigopenshiftiov1namespaces_namespace_imagepolicies}
+### /apis/config.openshift.io/v1/namespaces/&#123;namespace&#125;/imagepolicies {#_apisconfigopenshiftiov1namespaces_namespace_imagepolicies}
 
 HTTP method
 : ```
@@ -393,7 +393,7 @@ Description
 | 202 - Accepted | [`ImagePolicy`](/docs/rest_api/config_apis/imagepolicy-config-openshift-io-v1#imagepolicy-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/namespaces/{namespace}/imagepolicies/{name} {#_apisconfigopenshiftiov1namespaces_namespace_imagepolicies_name}
+### /apis/config.openshift.io/v1/namespaces/&#123;namespace&#125;/imagepolicies/&#123;name&#125; {#_apisconfigopenshiftiov1namespaces_namespace_imagepolicies_name}
 
 **Global path parameters**
 
@@ -497,7 +497,7 @@ Description
 | 201 - Created | [`ImagePolicy`](/docs/rest_api/config_apis/imagepolicy-config-openshift-io-v1#imagepolicy-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/namespaces/{namespace}/imagepolicies/{name}/status {#_apisconfigopenshiftiov1namespaces_namespace_imagepolicies_name_status}
+### /apis/config.openshift.io/v1/namespaces/&#123;namespace&#125;/imagepolicies/&#123;name&#125;/status {#_apisconfigopenshiftiov1namespaces_namespace_imagepolicies_name_status}
 
 **Global path parameters**
 

@@ -1132,10 +1132,6 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 :::
 
-::::
-
-:::::
-
 :::note
 
 Follower digital phase-locked loop (DPLL) behavior on GNR-D add-on network interface cards (NICs) such as Carter Flat cards is only partially visible through the Intel NIC driver: you can read high-level follower DPLL lock state (locked or not locked). Intel does not plan to add interfaces that expose further follower DPLL lock accuracy in software or firmware.
@@ -5765,3 +5761,7 @@ You can use the `oc adm must-gather` command to collect information about your c
   ```terminal
   $ oc adm must-gather --image=registry.redhat.io/openshift4/ptp-must-gather-rhel9:v4.22
   ```
+
+::::
+
+:::::

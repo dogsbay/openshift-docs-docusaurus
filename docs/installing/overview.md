@@ -9,7 +9,7 @@ sidebar_position: 1
 
 Learn about the installation methods, requirements, and process for deploying an OpenShift Container Platform cluster.
 
-## The OpenShift Container Platform installation {#installation-overview_ocp-installation-overview}
+## OpenShift Container Platform installation options {#installation-overview_ocp-installation-overview}
 
 The OpenShift Container Platform installation program offers four methods for deploying a cluster. Each method has unique characteristics so that you can choose a method that meets your needs.
 
@@ -223,7 +223,9 @@ The scope of the OpenShift Container Platform installation program is intentiona
 
 ### OpenShift Local overview {#installation-openshift-local_ocp-installation-overview}
 
-OpenShift Local supports rapid application development to get started building OpenShift Container Platform clusters. OpenShift Local is designed to run on a local computer to simplify setup and testing, and to emulate the cloud development environment locally with all of the tools needed to develop container-based applications.
+OpenShift Local supports rapid application development to get started building OpenShift Container Platform clusters.
+
+OpenShift Local is designed to run on a local computer to simplify setup and testing, and to emulate the cloud development environment locally with all of the tools needed to develop container-based applications.
 
 Regardless of the programming language you use, OpenShift Local hosts your application and brings a minimal, preconfigured Red Hat OpenShift Container Platform cluster to your local PC without the need for a server-based infrastructure.
 
@@ -239,7 +241,7 @@ Review the platform support matrix to choose the installation method that meets 
 
 **Supported platforms**
 
-| Platform | Installer-provisioned infrastructure <sup>[1]</sup> | User-provisioned infrastructure <sup>[2]</sup> | Agent-based Installer | Assisted Installer |
+| Platform | Installer-provisioned infrastructure <sup>\[1\]</sup> | User-provisioned infrastructure <sup>\[2\]</sup> | Agent-based Installer | Assisted Installer |
 | --- | --- | --- | --- | --- |
 | Amazon Web Services (AWS) | X | X |  |  |
 | Bare metal | X | X | X | X |
@@ -254,7 +256,7 @@ Review the platform support matrix to choose the installation method that meets 
 | None |  |  | X | X |
 | Nutanix | X |  |  | X |
 | Oracle Cloud Infrastructure (OCI) |  |  | X | X |
-| Red Hat OpenStack Platform (RHOSP) <sup>[3]</sup> | X | X |  |  |
+| Red Hat OpenStack Platform (RHOSP) <sup>\[3\]</sup> | X | X |  |  |
 | VMware vSphere | X | X | X | X |
 
 The following list describes three different deployment pathways and their prerequisites:

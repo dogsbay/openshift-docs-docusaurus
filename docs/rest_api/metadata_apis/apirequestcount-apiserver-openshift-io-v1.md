@@ -3,7 +3,7 @@ title: "APIRequestCount [apiserver.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# APIRequestCount [apiserver.openshift.io/v1] {#apirequestcount-apiserver-openshift-io-v1}
+# APIRequestCount \[apiserver.openshift.io/v1\] {#apirequestcount-apiserver-openshift-io-v1}
 
 <a id="apirequestcount-apiserver-openshift-io-v1"></a>
 
@@ -55,7 +55,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `conditions` | `array` | conditions contains details of the current status of this API Resource. |
-| `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example,  type FooStatus struct{ // Represents the observations of a foo’s current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`  // other fields } |
+| `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example,  type FooStatus struct&#123; // Represents the observations of a foo’s current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions \[\]metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`  // other fields &#125; |
 | `currentHour` | `object` | currentHour contains request history for the current hour. This is porcelain to make the API easier to read by humans seeing if they addressed a problem. This field is reset on the hour. |
 | `last24h` | `array` | last24h contains request history for the last 24 hours, indexed by the hour, so 12:00AM-12:59 is in index 0, 6am-6:59am is index 6, etc. The index of the current hour is updated live and then duplicated into the requestsLastHour field. |
 | `last24h[]` | `object` | PerResourceAPIRequestLog logs request for various nodes. |
@@ -72,10 +72,10 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
-: Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct{ // Represents the observations of a foo’s current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` // other fields }
+: Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct&#123; // Represents the observations of a foo’s current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions \[\]metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` // other fields &#125;
 
 Type
 : ```
@@ -93,7 +93,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt) |
@@ -124,7 +124,7 @@ Type
   `array`
   ```
 
-### .status.currentHour.byNode[] {#_statuscurrenthourbynode}
+### .status.currentHour.byNode\[\] {#_statuscurrenthourbynode}
 
 Description
 : PerNodeAPIRequestLog contains logs of requests to a certain node.
@@ -141,7 +141,7 @@ Type
 | `nodeName` | `string` | nodeName where the request are being handled. |
 | `requestCount` | `integer` | requestCount is a sum of all requestCounts across all users, even those outside of the top 10 users. |
 
-### .status.currentHour.byNode[].byUser {#_statuscurrenthourbynodebyuser}
+### .status.currentHour.byNode\[\].byUser {#_statuscurrenthourbynodebyuser}
 
 Description
 : byUser contains request details by top .spec.numberOfUsersToReport users. Note that because in the case of an apiserver, restart the list of top users is determined on a best-effort basis, the list might be imprecise. In addition, some system users may be explicitly included in the list.
@@ -151,7 +151,7 @@ Type
   `array`
   ```
 
-### .status.currentHour.byNode[].byUser[] {#_statuscurrenthourbynodebyuser}
+### .status.currentHour.byNode\[\].byUser\[\] {#_statuscurrenthourbynodebyuser}
 
 Description
 : PerUserAPIRequestCount contains logs of a user’s requests.
@@ -169,7 +169,7 @@ Type
 | `userAgent` | `string` | userAgent that made the request. The same user often has multiple binaries which connect (pods with many containers).  The different binaries will have different userAgents, but the same user.  In addition, we have userAgents with version information embedded and the userName isn’t likely to change. |
 | `username` | `string` | userName that made the request. |
 
-### .status.currentHour.byNode[].byUser[].byVerb {#_statuscurrenthourbynodebyuserbyverb}
+### .status.currentHour.byNode\[\].byUser\[\].byVerb {#_statuscurrenthourbynodebyuserbyverb}
 
 Description
 : byVerb details by verb.
@@ -179,7 +179,7 @@ Type
   `array`
   ```
 
-### .status.currentHour.byNode[].byUser[].byVerb[] {#_statuscurrenthourbynodebyuserbyverb}
+### .status.currentHour.byNode\[\].byUser\[\].byVerb\[\] {#_statuscurrenthourbynodebyuserbyverb}
 
 Description
 : PerVerbAPIRequestCount requestCounts requests by API request verb.
@@ -204,7 +204,7 @@ Type
   `array`
   ```
 
-### .status.last24h[] {#_statuslast24h}
+### .status.last24h\[\] {#_statuslast24h}
 
 Description
 : PerResourceAPIRequestLog logs request for various nodes.
@@ -220,7 +220,7 @@ Type
 | `byNode[]` | `object` | PerNodeAPIRequestLog contains logs of requests to a certain node. |
 | `requestCount` | `integer` | requestCount is a sum of all requestCounts across nodes. |
 
-### .status.last24h[].byNode {#_statuslast24hbynode}
+### .status.last24h\[\].byNode {#_statuslast24hbynode}
 
 Description
 : byNode contains logs of requests per node.
@@ -230,7 +230,7 @@ Type
   `array`
   ```
 
-### .status.last24h[].byNode[] {#_statuslast24hbynode}
+### .status.last24h\[\].byNode\[\] {#_statuslast24hbynode}
 
 Description
 : PerNodeAPIRequestLog contains logs of requests to a certain node.
@@ -247,7 +247,7 @@ Type
 | `nodeName` | `string` | nodeName where the request are being handled. |
 | `requestCount` | `integer` | requestCount is a sum of all requestCounts across all users, even those outside of the top 10 users. |
 
-### .status.last24h[].byNode[].byUser {#_statuslast24hbynodebyuser}
+### .status.last24h\[\].byNode\[\].byUser {#_statuslast24hbynodebyuser}
 
 Description
 : byUser contains request details by top .spec.numberOfUsersToReport users. Note that because in the case of an apiserver, restart the list of top users is determined on a best-effort basis, the list might be imprecise. In addition, some system users may be explicitly included in the list.
@@ -257,7 +257,7 @@ Type
   `array`
   ```
 
-### .status.last24h[].byNode[].byUser[] {#_statuslast24hbynodebyuser}
+### .status.last24h\[\].byNode\[\].byUser\[\] {#_statuslast24hbynodebyuser}
 
 Description
 : PerUserAPIRequestCount contains logs of a user’s requests.
@@ -275,7 +275,7 @@ Type
 | `userAgent` | `string` | userAgent that made the request. The same user often has multiple binaries which connect (pods with many containers).  The different binaries will have different userAgents, but the same user.  In addition, we have userAgents with version information embedded and the userName isn’t likely to change. |
 | `username` | `string` | userName that made the request. |
 
-### .status.last24h[].byNode[].byUser[].byVerb {#_statuslast24hbynodebyuserbyverb}
+### .status.last24h\[\].byNode\[\].byUser\[\].byVerb {#_statuslast24hbynodebyuserbyverb}
 
 Description
 : byVerb details by verb.
@@ -285,7 +285,7 @@ Type
   `array`
   ```
 
-### .status.last24h[].byNode[].byUser[].byVerb[] {#_statuslast24hbynodebyuserbyverb}
+### .status.last24h\[\].byNode\[\].byUser\[\].byVerb\[\] {#_statuslast24hbynodebyuserbyverb}
 
 Description
 : PerVerbAPIRequestCount requestCounts requests by API request verb.
@@ -386,7 +386,7 @@ Description
 | 202 - Accepted | [`APIRequestCount`](/docs/rest_api/metadata_apis/apirequestcount-apiserver-openshift-io-v1#apirequestcount-apiserver-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiserver.openshift.io/v1/apirequestcounts/{name} {#_apisapiserveropenshiftiov1apirequestcounts_name}
+### /apis/apiserver.openshift.io/v1/apirequestcounts/&#123;name&#125; {#_apisapiserveropenshiftiov1apirequestcounts_name}
 
 **Global path parameters**
 
@@ -490,7 +490,7 @@ Description
 | 201 - Created | [`APIRequestCount`](/docs/rest_api/metadata_apis/apirequestcount-apiserver-openshift-io-v1#apirequestcount-apiserver-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apiserver.openshift.io/v1/apirequestcounts/{name}/status {#_apisapiserveropenshiftiov1apirequestcounts_name_status}
+### /apis/apiserver.openshift.io/v1/apirequestcounts/&#123;name&#125;/status {#_apisapiserveropenshiftiov1apirequestcounts_name_status}
 
 **Global path parameters**
 

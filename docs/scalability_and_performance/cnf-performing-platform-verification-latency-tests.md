@@ -108,7 +108,7 @@ Run the cluster latency tests to validate node tuning for your Cloud-native Netw
 
 :::note
 
-When executing `podman` commands as a non-root or non-privileged user, mounting paths can fail with `permission denied` errors. Depending on your local operating system and SELinux configuration, you might also experience issues running these commands from your home directory. To make the `podman` commands work, run the commands from a folder that is not your home/<username> directory, and append `:Z` to the volumes creation. For example, `-v $(pwd)/:/kubeconfig:Z`. This allows `podman` to do the proper SELinux relabeling.
+When executing `podman` commands as a non-root or non-privileged user, mounting paths can fail with `permission denied` errors. Depending on your local operating system and SELinux configuration, you might also experience issues running these commands from your home directory. To make the `podman` commands work, run the commands from a folder that is not your home/&lt;username> directory, and append `:Z` to the volumes creation. For example, `-v $(pwd)/:/kubeconfig:Z`. This allows `podman` to do the proper SELinux relabeling.
 
 :::
 
@@ -161,7 +161,7 @@ To measure hardware latency, run the `hwlatdetect` tool. This diagnostic utility
 
 :::note
 
-When executing `podman` commands as a non-root or non-privileged user, mounting paths can fail with `permission denied` errors. Depending on your local operating system and SELinux configuration, you might also experience issues running these commands from your home directory. To make the `podman` commands work, run the commands from a folder that is not your home/<username> directory, and append `:Z` to the volumes creation. For example, `-v $(pwd)/:/kubeconfig:Z`. This allows `podman` to do the proper SELinux relabeling.
+When executing `podman` commands as a non-root or non-privileged user, mounting paths can fail with `permission denied` errors. Depending on your local operating system and SELinux configuration, you might also experience issues running these commands from your home directory. To make the `podman` commands work, run the commands from a folder that is not your home/&lt;username> directory, and append `:Z` to the volumes creation. For example, `-v $(pwd)/:/kubeconfig:Z`. This allows `podman` to do the proper SELinux relabeling.
 
 :::
 
@@ -331,7 +331,7 @@ The `cyclictest` tool targets the real-time (`PREEMPT_RT`) kernel, which is avai
 
 :::note
 
-When executing `podman` commands as a non-root or non-privileged user, mounting paths can fail with `permission denied` errors. Depending on your local operating system and SELinux configuration, you might also experience issues running these commands from your home directory. To make the `podman` commands work, run the commands from a folder that is not your home/<username> directory, and append `:Z` to the volumes creation. For example, `-v $(pwd)/:/kubeconfig:Z`. This allows `podman` to do the proper SELinux relabeling.
+When executing `podman` commands as a non-root or non-privileged user, mounting paths can fail with `permission denied` errors. Depending on your local operating system and SELinux configuration, you might also experience issues running these commands from your home directory. To make the `podman` commands work, run the commands from a folder that is not your home/&lt;username> directory, and append `:Z` to the volumes creation. For example, `-v $(pwd)/:/kubeconfig:Z`. This allows `podman` to do the proper SELinux relabeling.
 
 :::
 
@@ -456,7 +456,7 @@ To evaluate how your cluster handles CPU-heavy data processing, run the `oslat` 
 
 :::note
 
-When executing `podman` commands as a non-root or non-privileged user, mounting paths can fail with `permission denied` errors. Depending on your local operating system and SELinux configuration, you might also experience issues running these commands from your home directory. To make the `podman` commands work, run the commands from a folder that is not your home/<username> directory, and append `:Z` to the volumes creation. For example, `-v $(pwd)/:/kubeconfig:Z`. This allows `podman` to do the proper SELinux relabeling.
+When executing `podman` commands as a non-root or non-privileged user, mounting paths can fail with `permission denied` errors. Depending on your local operating system and SELinux configuration, you might also experience issues running these commands from your home directory. To make the `podman` commands work, run the commands from a folder that is not your home/&lt;username> directory, and append `:Z` to the volumes creation. For example, `-v $(pwd)/:/kubeconfig:Z`. This allows `podman` to do the proper SELinux relabeling.
 
 :::
 

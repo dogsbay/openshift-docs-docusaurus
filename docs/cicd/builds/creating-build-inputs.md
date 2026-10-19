@@ -242,7 +242,7 @@ To use this functionality, a secret containing the Git repository credentials mu
 A URI pattern must consist of:
 
 - A valid scheme: `*://`, `git://`, `http://`, `https://` or `ssh://`
-- A host: *`or a valid hostname or IP address optionally preceded by`*.`
+- A host: \*`or a valid hostname or IP address optionally preceded by`\*.&#96;
 - A path: `/\*` or `/` followed by any characters optionally including `*` characters
 
 In all of the above, a `*` character is interpreted as a wildcard.

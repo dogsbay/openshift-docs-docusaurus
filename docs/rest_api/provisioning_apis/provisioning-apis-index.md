@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="provisioning-apis"></a>
 
-## BMCEventSubscription [metal3.io/v1alpha1] {#_bmceventsubscription_metal3iov1alpha1}
+## BMCEventSubscription \[metal3.io/v1alpha1\] {#_bmceventsubscription_metal3iov1alpha1}
 
 Description
 : BMCEventSubscription is the Schema for the fast eventing API
@@ -17,7 +17,7 @@ Type
   `object`
   ```
 
-## BareMetalHost [metal3.io/v1alpha1] {#_baremetalhost_metal3iov1alpha1}
+## BareMetalHost \[metal3.io/v1alpha1\] {#_baremetalhost_metal3iov1alpha1}
 
 Description
 : BareMetalHost is the Schema for the baremetalhosts API
@@ -27,7 +27,7 @@ Type
   `object`
   ```
 
-## DataImage [metal3.io/v1alpha1] {#_dataimage_metal3iov1alpha1}
+## DataImage \[metal3.io/v1alpha1\] {#_dataimage_metal3iov1alpha1}
 
 Description
 : DataImage is the Schema for the dataimages API.
@@ -37,7 +37,7 @@ Type
   `object`
   ```
 
-## FirmwareSchema [metal3.io/v1alpha1] {#_firmwareschema_metal3iov1alpha1}
+## FirmwareSchema \[metal3.io/v1alpha1\] {#_firmwareschema_metal3iov1alpha1}
 
 Description
 : FirmwareSchema is the Schema for the firmwareschemas API.
@@ -47,7 +47,7 @@ Type
   `object`
   ```
 
-## HardwareData [metal3.io/v1alpha1] {#_hardwaredata_metal3iov1alpha1}
+## HardwareData \[metal3.io/v1alpha1\] {#_hardwaredata_metal3iov1alpha1}
 
 Description
 : HardwareData is the Schema for the hardwaredata API.
@@ -57,7 +57,7 @@ Type
   `object`
   ```
 
-## HostFirmwareComponents [metal3.io/v1alpha1] {#_hostfirmwarecomponents_metal3iov1alpha1}
+## HostFirmwareComponents \[metal3.io/v1alpha1\] {#_hostfirmwarecomponents_metal3iov1alpha1}
 
 Description
 : HostFirmwareComponents is the Schema for the hostfirmwarecomponents API.
@@ -67,7 +67,7 @@ Type
   `object`
   ```
 
-## HostFirmwareSettings [metal3.io/v1alpha1] {#_hostfirmwaresettings_metal3iov1alpha1}
+## HostFirmwareSettings \[metal3.io/v1alpha1\] {#_hostfirmwaresettings_metal3iov1alpha1}
 
 Description
 : HostFirmwareSettings is the Schema for the hostfirmwaresettings API.
@@ -77,7 +77,7 @@ Type
   `object`
   ```
 
-## HostUpdatePolicy [metal3.io/v1alpha1] {#_hostupdatepolicy_metal3iov1alpha1}
+## HostUpdatePolicy \[metal3.io/v1alpha1\] {#_hostupdatepolicy_metal3iov1alpha1}
 
 Description
 : HostUpdatePolicy is the Schema for the hostupdatepolicy API.
@@ -87,7 +87,7 @@ Type
   `object`
   ```
 
-## Metal3Remediation [infrastructure.cluster.x-k8s.io/v1beta1] {#_metal3remediation_infrastructureclusterx-k8siov1beta1}
+## Metal3Remediation \[infrastructure.cluster.x-k8s.io/v1beta1\] {#_metal3remediation_infrastructureclusterx-k8siov1beta1}
 
 Description
 : Metal3Remediation is the Schema for the metal3remediations API.
@@ -97,7 +97,7 @@ Type
   `object`
   ```
 
-## Metal3RemediationTemplate [infrastructure.cluster.x-k8s.io/v1beta1] {#_metal3remediationtemplate_infrastructureclusterx-k8siov1beta1}
+## Metal3RemediationTemplate \[infrastructure.cluster.x-k8s.io/v1beta1\] {#_metal3remediationtemplate_infrastructureclusterx-k8siov1beta1}
 
 Description
 : Metal3RemediationTemplate is the Schema for the metal3remediationtemplates API.
@@ -107,7 +107,7 @@ Type
   `object`
   ```
 
-## PreprovisioningImage [metal3.io/v1alpha1] {#_preprovisioningimage_metal3iov1alpha1}
+## PreprovisioningImage \[metal3.io/v1alpha1\] {#_preprovisioningimage_metal3iov1alpha1}
 
 Description
 : PreprovisioningImage is the Schema for the preprovisioningimages API.
@@ -117,7 +117,7 @@ Type
   `object`
   ```
 
-## Provisioning [metal3.io/v1alpha1] {#_provisioning_metal3iov1alpha1}
+## Provisioning \[metal3.io/v1alpha1\] {#_provisioning_metal3iov1alpha1}
 
 Description
 : Provisioning contains configuration used by the Provisioning service (Ironic) to provision baremetal hosts. Provisioning is created by the OpenShift installer using admin or user provided information about the provisioning network and the NIC on the server that can be used to PXE boot it. This CR is a singleton, created by the installer and currently only consumed by the cluster-baremetal-operator to bring up and update containers in a metal3 cluster.

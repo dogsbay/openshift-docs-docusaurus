@@ -9,7 +9,7 @@ sidebar_position: 2
 
 The Network Observability CLI filters and visualizes network flow and packet telemetry directly within the terminal. The tool exports captured data as JSON, database files, or Packet Capture (PCAP) files for seamless integration with third-party analysis utilities.
 
-## Capturing flows {#network-observability-cli-capturing-flows_netobserv-cli-using}
+## Capture flows {#network-observability-cli-capturing-flows_netobserv-cli-using}
 
 Capture network flows and apply filters based on resources or zones directly in the CLI. This helps you solve complex use cases, such as visualizing the Round-Trip Time (RTT) between two different zones.
 
@@ -83,7 +83,7 @@ Table visualization in the CLI provides viewing and flow search capabilities.
       15|NoError|40548|10.0.0.3|45933||17|169.254.169.254|53|174|1
       ```
 
-## Capturing packets {#network-observability-cli-capturing-packets_netobserv-cli-using}
+## Capture packets {#network-observability-cli-capturing-packets_netobserv-cli-using}
 
 Use the Network Observability CLI to capture network packets. You can apply filters and refine them live in the terminal for accurate, real-time debugging.
 
@@ -107,7 +107,7 @@ Use the Network Observability CLI to capture network packets. You can apply filt
 5. View the captured data, which is written to a single file in an `./output/pcap` directory located in the same path that was used to install the CLI:
    1. The `./output/pcap/<capture_date_time>.pcap` file can be opened with Wireshark.
 
-## Capturing metrics {#network-observability-cli-capturing-metrics_netobserv-cli-using}
+## Capture metrics {#network-observability-cli-capturing-metrics_netobserv-cli-using}
 
 Generate on-demand network observability dashboards in Prometheus using a service monitor. This allows you to quickly view and analyze network metrics.
 
@@ -133,7 +133,7 @@ Generate on-demand network observability dashboards in Prometheus using a servic
 
    :::
 
-## Cleaning the Network Observability CLI {#network-observability-cli-uninstall_netobserv-cli-using}
+## Clean the Network Observability CLI {#network-observability-cli-uninstall_netobserv-cli-using}
 
 Use `oc netobserv cleanup` to manually remove all components installed by the Network Observability CLI from your cluster. While the client runs this command automatically after a capture, you may need to run it manually if you face connectivity issues.
 

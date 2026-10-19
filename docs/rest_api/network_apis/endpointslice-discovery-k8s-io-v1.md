@@ -3,7 +3,7 @@ title: "EndpointSlice [discovery.k8s.io/v1]"
 sidebar_position: 13
 ---
 
-# EndpointSlice [discovery.k8s.io/v1] {#endpointslice-discovery-k8s-io-v1}
+# EndpointSlice \[discovery.k8s.io/v1\] {#endpointslice-discovery-k8s-io-v1}
 
 <a id="endpointslice-discovery-k8s-io-v1"></a>
 
@@ -23,7 +23,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `addressType` | `string` | addressType specifies the type of address carried by this EndpointSlice. All addresses in this slice must be the same type. This field is immutable after creation. The following address types are currently supported: * IPv4: Represents an IPv4 Address. * IPv6: Represents an IPv6 Address. * FQDN: Represents a Fully Qualified Domain Name. (Deprecated) The EndpointSlice controller only generates, and kube-proxy only processes, slices of addressType "IPv4" and "IPv6". No semantics are defined for the "FQDN" type.<br>Possible enum values:  - `"FQDN"` represents a FQDN.  - `"IPv4"` represents an IPv4 Address.  - `"IPv6"` represents an IPv6 Address. |
+| `addressType` | `string` | addressType specifies the type of address carried by this EndpointSlice. All addresses in this slice must be the same type. This field is immutable after creation. The following address types are currently supported: \* IPv4: Represents an IPv4 Address. \* IPv6: Represents an IPv6 Address. \* FQDN: Represents a Fully Qualified Domain Name. (Deprecated) The EndpointSlice controller only generates, and kube-proxy only processes, slices of addressType "IPv4" and "IPv6". No semantics are defined for the "FQDN" type.<br>Possible enum values:  - `"FQDN"` represents a FQDN.  - `"IPv4"` represents an IPv4 Address.  - `"IPv6"` represents an IPv6 Address. |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `endpoints` | `array` | endpoints is a list of unique endpoints in this slice. Each slice may include a maximum of 1000 endpoints. |
 | `endpoints[]` | `object` | Endpoint represents a single logical "backend" implementing a service. |
@@ -42,7 +42,7 @@ Type
   `array`
   ```
 
-### .endpoints[] {#_endpoints}
+### .endpoints\[\] {#_endpoints}
 
 Description
 : Endpoint represents a single logical "backend" implementing a service.
@@ -66,7 +66,7 @@ Required
 | `targetRef` | [`ObjectReference`](/docs/rest_api/objects#io-k8s-api-core-v1-ObjectReference) | targetRef is a reference to a Kubernetes object that represents this endpoint. |
 | `zone` | `string` | zone is the name of the Zone this endpoint exists in. |
 
-### .endpoints[].conditions {#_endpointsconditions}
+### .endpoints\[\].conditions {#_endpointsconditions}
 
 Description
 : EndpointConditions represents the current condition of an endpoint.
@@ -82,7 +82,7 @@ Type
 | `serving` | `boolean` | serving indicates that this endpoint is able to receive traffic, according to whatever system is managing the endpoint. For endpoints backed by pods, the EndpointSlice controller will mark the endpoint as serving if the pod’s Ready condition is True. A nil value should be interpreted as "true". |
 | `terminating` | `boolean` | terminating indicates that this endpoint is terminating. A nil value should be interpreted as "false". |
 
-### .endpoints[].hints {#_endpointshints}
+### .endpoints\[\].hints {#_endpointshints}
 
 Description
 : EndpointHints provides hints describing how an endpoint should be consumed.
@@ -99,7 +99,7 @@ Type
 | `forZones` | `array` | forZones indicates the zone(s) this endpoint should be consumed by when using topology aware routing. May contain a maximum of 8 entries. |
 | `forZones[]` | `object` | ForZone provides information about which zones should consume this endpoint. |
 
-### .endpoints[].hints.forNodes {#_endpointshintsfornodes}
+### .endpoints\[\].hints.forNodes {#_endpointshintsfornodes}
 
 Description
 : forNodes indicates the node(s) this endpoint should be consumed by when using topology aware routing. May contain a maximum of 8 entries.
@@ -109,7 +109,7 @@ Type
   `array`
   ```
 
-### .endpoints[].hints.forNodes[] {#_endpointshintsfornodes}
+### .endpoints\[\].hints.forNodes\[\] {#_endpointshintsfornodes}
 
 Description
 : ForNode provides information about which nodes should consume this endpoint.
@@ -126,7 +126,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name represents the name of the node. |
 
-### .endpoints[].hints.forZones {#_endpointshintsforzones}
+### .endpoints\[\].hints.forZones {#_endpointshintsforzones}
 
 Description
 : forZones indicates the zone(s) this endpoint should be consumed by when using topology aware routing. May contain a maximum of 8 entries.
@@ -136,7 +136,7 @@ Type
   `array`
   ```
 
-### .endpoints[].hints.forZones[] {#_endpointshintsforzones}
+### .endpoints\[\].hints.forZones\[\] {#_endpointshintsforzones}
 
 Description
 : ForZone provides information about which zones should consume this endpoint.
@@ -163,7 +163,7 @@ Type
   `array`
   ```
 
-### .ports[] {#_ports}
+### .ports\[\] {#_ports}
 
 Description
 : EndpointPort represents a Port used by an EndpointSlice
@@ -175,8 +175,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `appProtocol` | `string` | The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either:<br>* Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names).<br>* Kubernetes-defined prefixed names:   * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-   * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455   * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455<br>* Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol. |
-| `name` | `string` | name represents the name of this port. All ports in an EndpointSlice must have a unique name. If the EndpointSlice is derived from a Kubernetes service, this corresponds to the Service.ports[].name. Name must either be an empty string or pass DNS_LABEL validation: * must be no more than 63 characters long. * must consist of lower case alphanumeric characters or '-'. * must start and end with an alphanumeric character. Default is empty string. |
+| `appProtocol` | `string` | The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either:<br>\* Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names).<br>\* Kubernetes-defined prefixed names:   \* 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-   \* 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455   \* 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455<br>\* Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol. |
+| `name` | `string` | name represents the name of this port. All ports in an EndpointSlice must have a unique name. If the EndpointSlice is derived from a Kubernetes service, this corresponds to the Service.ports\[\].name. Name must either be an empty string or pass DNS_LABEL validation: \* must be no more than 63 characters long. \* must consist of lower case alphanumeric characters or '-'. \* must start and end with an alphanumeric character. Default is empty string. |
 | `port` | `integer` | port represents the port number of the endpoint. If the EndpointSlice is derived from a Kubernetes service, this must be set to the service’s target port. EndpointSlices used for other purposes may have a nil port. |
 | `protocol` | `string` | protocol represents the IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.<br>Possible enum values:  - `"SCTP"` is the SCTP protocol.  - `"TCP"` is the TCP protocol.  - `"UDP"` is the UDP protocol. |
 
@@ -240,7 +240,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/discovery.k8s.io/v1/namespaces/{namespace}/endpointslices {#_apisdiscoveryk8siov1namespaces_namespace_endpointslices}
+### /apis/discovery.k8s.io/v1/namespaces/&#123;namespace&#125;/endpointslices {#_apisdiscoveryk8siov1namespaces_namespace_endpointslices}
 
 HTTP method
 : ```
@@ -314,7 +314,7 @@ Description
 | 202 - Accepted | [`EndpointSlice`](/docs/rest_api/network_apis/endpointslice-discovery-k8s-io-v1#endpointslice-discovery-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/discovery.k8s.io/v1/watch/namespaces/{namespace}/endpointslices {#_apisdiscoveryk8siov1watchnamespaces_namespace_endpointslices}
+### /apis/discovery.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/endpointslices {#_apisdiscoveryk8siov1watchnamespaces_namespace_endpointslices}
 
 HTTP method
 : ```
@@ -333,7 +333,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/discovery.k8s.io/v1/namespaces/{namespace}/endpointslices/{name} {#_apisdiscoveryk8siov1namespaces_namespace_endpointslices_name}
+### /apis/discovery.k8s.io/v1/namespaces/&#123;namespace&#125;/endpointslices/&#123;name&#125; {#_apisdiscoveryk8siov1namespaces_namespace_endpointslices_name}
 
 **Global path parameters**
 
@@ -438,7 +438,7 @@ Description
 | 201 - Created | [`EndpointSlice`](/docs/rest_api/network_apis/endpointslice-discovery-k8s-io-v1#endpointslice-discovery-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/discovery.k8s.io/v1/watch/namespaces/{namespace}/endpointslices/{name} {#_apisdiscoveryk8siov1watchnamespaces_namespace_endpointslices_name}
+### /apis/discovery.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/endpointslices/&#123;name&#125; {#_apisdiscoveryk8siov1watchnamespaces_namespace_endpointslices_name}
 
 **Global path parameters**
 

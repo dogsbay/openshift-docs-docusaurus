@@ -3,7 +3,7 @@ title: "PodMonitor [monitoring.coreos.com/v1]"
 sidebar_position: 7
 ---
 
-# PodMonitor [monitoring.coreos.com/v1] {#podmonitor-monitoring-coreos-com-v1}
+# PodMonitor \[monitoring.coreos.com/v1\] {#podmonitor-monitoring-coreos-com-v1}
 
 <a id="podmonitor-monitoring-coreos-com-v1"></a>
 
@@ -115,7 +115,7 @@ Type
   `array`
   ```
 
-### .spec.podMetricsEndpoints[] {#_specpodmetricsendpoints}
+### .spec.podMetricsEndpoints\[\] {#_specpodmetricsendpoints}
 
 Description
 : PodMetricsEndpoint defines an endpoint serving Prometheus metrics to be scraped by Prometheus.
@@ -144,7 +144,7 @@ Type
 | `params{}` | `array (string)` |  |
 | `path` | `string` | path defines the HTTP path from which to scrape for metrics.<br>If empty, Prometheus uses the default value (e.g. `/metrics`). |
 | `port` | `string` | port defines the `Pod` port name which exposes the endpoint.<br>If the pod doesn’t expose a port with the same name, it will result in no targets being discovered.<br>If a `Pod` has multiple `Port` values with the same name (which is not recommended), one target instance per unique port number will be generated.<br>It takes precedence over the `portNumber` and `targetPort` fields. |
-| `portNumber` | `integer` | portNumber defines the `Pod` port number which exposes the endpoint.<br>The `Pod` must declare the specified `Port` in its spec or the target will be dropped by Prometheus.<br>This cannot be used to enable scraping of an undeclared port. To scrape targets on a port which isn’t exposed, you need to use relabeling to override the `__address__` label (but beware of duplicate targets if the `Pod` has other declared ports).<br>In practice Prometheus will select targets for which the matches the target’s __meta_kubernetes_pod_container_port_number. |
+| `portNumber` | `integer` | portNumber defines the `Pod` port number which exposes the endpoint.<br>The `Pod` must declare the specified `Port` in its spec or the target will be dropped by Prometheus.<br>This cannot be used to enable scraping of an undeclared port. To scrape targets on a port which isn’t exposed, you need to use relabeling to override the `__address__` label (but beware of duplicate targets if the `Pod` has other declared ports).<br>In practice Prometheus will select targets for which the matches the target’s \_\_meta_kubernetes_pod_container_port_number. |
 | `proxyConnectHeader` | `object` | proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.<br>It requires Prometheus >= v2.43.0, Alertmanager >= v0.25.0 or Thanos >= v0.32.0. |
 | `proxyConnectHeader{}` | `array` |  |
 | `proxyConnectHeader{}[]` | `object` | SecretKeySelector selects a key of a Secret. |
@@ -158,7 +158,7 @@ Type
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration used by the client. |
 | `trackTimestampsStaleness` | `boolean` | trackTimestampsStaleness defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if `honorTimestamps` is false.<br>It requires Prometheus >= v2.48.0. |
 
-### .spec.podMetricsEndpoints[].authorization {#_specpodmetricsendpointsauthorization}
+### .spec.podMetricsEndpoints\[\].authorization {#_specpodmetricsendpointsauthorization}
 
 Description
 : authorization configures the Authorization header credentials used by the client.
@@ -175,7 +175,7 @@ Type
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
 | `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
-### .spec.podMetricsEndpoints[].authorization.credentials {#_specpodmetricsendpointsauthorizationcredentials}
+### .spec.podMetricsEndpoints\[\].authorization.credentials {#_specpodmetricsendpointsauthorizationcredentials}
 
 Description
 : credentials defines a key of a Secret in the namespace that contains the credentials for authentication.
@@ -194,7 +194,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].basicAuth {#_specpodmetricsendpointsbasicauth}
+### .spec.podMetricsEndpoints\[\].basicAuth {#_specpodmetricsendpointsbasicauth}
 
 Description
 : basicAuth defines the Basic Authentication credentials used by the client.
@@ -211,7 +211,7 @@ Type
 | `password` | `object` | password defines a key of a Secret containing the password for authentication. |
 | `username` | `object` | username defines a key of a Secret containing the username for authentication. |
 
-### .spec.podMetricsEndpoints[].basicAuth.password {#_specpodmetricsendpointsbasicauthpassword}
+### .spec.podMetricsEndpoints\[\].basicAuth.password {#_specpodmetricsendpointsbasicauthpassword}
 
 Description
 : password defines a key of a Secret containing the password for authentication.
@@ -230,7 +230,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].basicAuth.username {#_specpodmetricsendpointsbasicauthusername}
+### .spec.podMetricsEndpoints\[\].basicAuth.username {#_specpodmetricsendpointsbasicauthusername}
 
 Description
 : username defines a key of a Secret containing the username for authentication.
@@ -249,7 +249,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].bearerTokenSecret {#_specpodmetricsendpointsbearertokensecret}
+### .spec.podMetricsEndpoints\[\].bearerTokenSecret {#_specpodmetricsendpointsbearertokensecret}
 
 Description
 : bearerTokenSecret defines a key of a Secret containing the bearer token used by the client for authentication. The secret needs to be in the same namespace as the custom resource and readable by the Prometheus Operator.
@@ -272,7 +272,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].metricRelabelings {#_specpodmetricsendpointsmetricrelabelings}
+### .spec.podMetricsEndpoints\[\].metricRelabelings {#_specpodmetricsendpointsmetricrelabelings}
 
 Description
 : metricRelabelings defines the relabeling rules to apply to the samples before ingestion.
@@ -282,7 +282,7 @@ Type
   `array`
   ```
 
-### .spec.podMetricsEndpoints[].metricRelabelings[] {#_specpodmetricsendpointsmetricrelabelings}
+### .spec.podMetricsEndpoints\[\].metricRelabelings\[\] {#_specpodmetricsendpointsmetricrelabelings}
 
 Description
 : RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples.
@@ -304,7 +304,7 @@ Type
 | `sourceLabels` | `array (string)` | sourceLabels defines the source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression. |
 | `targetLabel` | `string` | targetLabel defines the label to which the resulting string is written in a replacement.<br>It is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`, `KeepEqual` and `DropEqual` actions.<br>Regex capture groups are available. |
 
-### .spec.podMetricsEndpoints[].oauth2 {#_specpodmetricsendpointsoauth2}
+### .spec.podMetricsEndpoints\[\].oauth2 {#_specpodmetricsendpointsoauth2}
 
 Description
 : oauth2 defines the OAuth2 settings used by the client.
@@ -338,7 +338,7 @@ Required
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
 | `tokenUrl` | `string` | tokenUrl defines the URL to fetch the token from. |
 
-### .spec.podMetricsEndpoints[].oauth2.clientId {#_specpodmetricsendpointsoauth2clientid}
+### .spec.podMetricsEndpoints\[\].oauth2.clientId {#_specpodmetricsendpointsoauth2clientid}
 
 Description
 : clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID.
@@ -353,7 +353,7 @@ Type
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
 
-### .spec.podMetricsEndpoints[].oauth2.clientId.configMap {#_specpodmetricsendpointsoauth2clientidconfigmap}
+### .spec.podMetricsEndpoints\[\].oauth2.clientId.configMap {#_specpodmetricsendpointsoauth2clientidconfigmap}
 
 Description
 : configMap defines the ConfigMap containing data to use for the targets.
@@ -372,7 +372,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
 
-### .spec.podMetricsEndpoints[].oauth2.clientId.secret {#_specpodmetricsendpointsoauth2clientidsecret}
+### .spec.podMetricsEndpoints\[\].oauth2.clientId.secret {#_specpodmetricsendpointsoauth2clientidsecret}
 
 Description
 : secret defines the Secret containing data to use for the targets.
@@ -391,7 +391,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].oauth2.clientSecret {#_specpodmetricsendpointsoauth2clientsecret}
+### .spec.podMetricsEndpoints\[\].oauth2.clientSecret {#_specpodmetricsendpointsoauth2clientsecret}
 
 Description
 : clientSecret defines a key of a Secret containing the OAuth2 client’s secret.
@@ -410,7 +410,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].oauth2.proxyConnectHeader {#_specpodmetricsendpointsoauth2proxyconnectheader}
+### .spec.podMetricsEndpoints\[\].oauth2.proxyConnectHeader {#_specpodmetricsendpointsoauth2proxyconnectheader}
 
 Description
 : proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.
@@ -422,7 +422,7 @@ Type
   `object`
   ```
 
-### .spec.podMetricsEndpoints[].oauth2.proxyConnectHeader{} {#_specpodmetricsendpointsoauth2proxyconnectheader}
+### .spec.podMetricsEndpoints\[\].oauth2.proxyConnectHeader&#123;&#125; {#_specpodmetricsendpointsoauth2proxyconnectheader}
 
 Description
 
@@ -431,7 +431,7 @@ Type
   `array`
   ```
 
-### .spec.podMetricsEndpoints[].oauth2.proxyConnectHeader{}[] {#_specpodmetricsendpointsoauth2proxyconnectheader}
+### .spec.podMetricsEndpoints\[\].oauth2.proxyConnectHeader&#123;&#125;\[\] {#_specpodmetricsendpointsoauth2proxyconnectheader}
 
 Description
 : SecretKeySelector selects a key of a Secret.
@@ -450,7 +450,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].oauth2.tlsConfig {#_specpodmetricsendpointsoauth2tlsconfig}
+### .spec.podMetricsEndpoints\[\].oauth2.tlsConfig {#_specpodmetricsendpointsoauth2tlsconfig}
 
 Description
 : tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.
@@ -470,7 +470,7 @@ Type
 | `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
-### .spec.podMetricsEndpoints[].oauth2.tlsConfig.ca {#_specpodmetricsendpointsoauth2tlsconfigca}
+### .spec.podMetricsEndpoints\[\].oauth2.tlsConfig.ca {#_specpodmetricsendpointsoauth2tlsconfigca}
 
 Description
 : ca defines the Certificate authority used when verifying server certificates.
@@ -485,7 +485,7 @@ Type
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
 
-### .spec.podMetricsEndpoints[].oauth2.tlsConfig.ca.configMap {#_specpodmetricsendpointsoauth2tlsconfigcaconfigmap}
+### .spec.podMetricsEndpoints\[\].oauth2.tlsConfig.ca.configMap {#_specpodmetricsendpointsoauth2tlsconfigcaconfigmap}
 
 Description
 : configMap defines the ConfigMap containing data to use for the targets.
@@ -504,7 +504,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
 
-### .spec.podMetricsEndpoints[].oauth2.tlsConfig.ca.secret {#_specpodmetricsendpointsoauth2tlsconfigcasecret}
+### .spec.podMetricsEndpoints\[\].oauth2.tlsConfig.ca.secret {#_specpodmetricsendpointsoauth2tlsconfigcasecret}
 
 Description
 : secret defines the Secret containing data to use for the targets.
@@ -523,7 +523,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].oauth2.tlsConfig.cert {#_specpodmetricsendpointsoauth2tlsconfigcert}
+### .spec.podMetricsEndpoints\[\].oauth2.tlsConfig.cert {#_specpodmetricsendpointsoauth2tlsconfigcert}
 
 Description
 : cert defines the Client certificate to present when doing client-authentication.
@@ -538,7 +538,7 @@ Type
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
 
-### .spec.podMetricsEndpoints[].oauth2.tlsConfig.cert.configMap {#_specpodmetricsendpointsoauth2tlsconfigcertconfigmap}
+### .spec.podMetricsEndpoints\[\].oauth2.tlsConfig.cert.configMap {#_specpodmetricsendpointsoauth2tlsconfigcertconfigmap}
 
 Description
 : configMap defines the ConfigMap containing data to use for the targets.
@@ -557,7 +557,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
 
-### .spec.podMetricsEndpoints[].oauth2.tlsConfig.cert.secret {#_specpodmetricsendpointsoauth2tlsconfigcertsecret}
+### .spec.podMetricsEndpoints\[\].oauth2.tlsConfig.cert.secret {#_specpodmetricsendpointsoauth2tlsconfigcertsecret}
 
 Description
 : secret defines the Secret containing data to use for the targets.
@@ -576,7 +576,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].oauth2.tlsConfig.keySecret {#_specpodmetricsendpointsoauth2tlsconfigkeysecret}
+### .spec.podMetricsEndpoints\[\].oauth2.tlsConfig.keySecret {#_specpodmetricsendpointsoauth2tlsconfigkeysecret}
 
 Description
 : keySecret defines the Secret containing the client key file for the targets.
@@ -595,7 +595,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].params {#_specpodmetricsendpointsparams}
+### .spec.podMetricsEndpoints\[\].params {#_specpodmetricsendpointsparams}
 
 Description
 : params define optional HTTP URL parameters.
@@ -605,7 +605,7 @@ Type
   `object`
   ```
 
-### .spec.podMetricsEndpoints[].proxyConnectHeader {#_specpodmetricsendpointsproxyconnectheader}
+### .spec.podMetricsEndpoints\[\].proxyConnectHeader {#_specpodmetricsendpointsproxyconnectheader}
 
 Description
 : proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.
@@ -617,7 +617,7 @@ Type
   `object`
   ```
 
-### .spec.podMetricsEndpoints[].proxyConnectHeader{} {#_specpodmetricsendpointsproxyconnectheader}
+### .spec.podMetricsEndpoints\[\].proxyConnectHeader&#123;&#125; {#_specpodmetricsendpointsproxyconnectheader}
 
 Description
 
@@ -626,7 +626,7 @@ Type
   `array`
   ```
 
-### .spec.podMetricsEndpoints[].proxyConnectHeader{}[] {#_specpodmetricsendpointsproxyconnectheader}
+### .spec.podMetricsEndpoints\[\].proxyConnectHeader&#123;&#125;\[\] {#_specpodmetricsendpointsproxyconnectheader}
 
 Description
 : SecretKeySelector selects a key of a Secret.
@@ -645,7 +645,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].relabelings {#_specpodmetricsendpointsrelabelings}
+### .spec.podMetricsEndpoints\[\].relabelings {#_specpodmetricsendpointsrelabelings}
 
 Description
 : relabelings defines the relabeling rules to apply the target’s metadata labels.
@@ -661,7 +661,7 @@ Type
   `array`
   ```
 
-### .spec.podMetricsEndpoints[].relabelings[] {#_specpodmetricsendpointsrelabelings}
+### .spec.podMetricsEndpoints\[\].relabelings\[\] {#_specpodmetricsendpointsrelabelings}
 
 Description
 : RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples.
@@ -683,7 +683,7 @@ Type
 | `sourceLabels` | `array (string)` | sourceLabels defines the source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression. |
 | `targetLabel` | `string` | targetLabel defines the label to which the resulting string is written in a replacement.<br>It is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`, `KeepEqual` and `DropEqual` actions.<br>Regex capture groups are available. |
 
-### .spec.podMetricsEndpoints[].tlsConfig {#_specpodmetricsendpointstlsconfig}
+### .spec.podMetricsEndpoints\[\].tlsConfig {#_specpodmetricsendpointstlsconfig}
 
 Description
 : tlsConfig defines the TLS configuration used by the client.
@@ -703,7 +703,7 @@ Type
 | `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
-### .spec.podMetricsEndpoints[].tlsConfig.ca {#_specpodmetricsendpointstlsconfigca}
+### .spec.podMetricsEndpoints\[\].tlsConfig.ca {#_specpodmetricsendpointstlsconfigca}
 
 Description
 : ca defines the Certificate authority used when verifying server certificates.
@@ -718,7 +718,7 @@ Type
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
 
-### .spec.podMetricsEndpoints[].tlsConfig.ca.configMap {#_specpodmetricsendpointstlsconfigcaconfigmap}
+### .spec.podMetricsEndpoints\[\].tlsConfig.ca.configMap {#_specpodmetricsendpointstlsconfigcaconfigmap}
 
 Description
 : configMap defines the ConfigMap containing data to use for the targets.
@@ -737,7 +737,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
 
-### .spec.podMetricsEndpoints[].tlsConfig.ca.secret {#_specpodmetricsendpointstlsconfigcasecret}
+### .spec.podMetricsEndpoints\[\].tlsConfig.ca.secret {#_specpodmetricsendpointstlsconfigcasecret}
 
 Description
 : secret defines the Secret containing data to use for the targets.
@@ -756,7 +756,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].tlsConfig.cert {#_specpodmetricsendpointstlsconfigcert}
+### .spec.podMetricsEndpoints\[\].tlsConfig.cert {#_specpodmetricsendpointstlsconfigcert}
 
 Description
 : cert defines the Client certificate to present when doing client-authentication.
@@ -771,7 +771,7 @@ Type
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
 
-### .spec.podMetricsEndpoints[].tlsConfig.cert.configMap {#_specpodmetricsendpointstlsconfigcertconfigmap}
+### .spec.podMetricsEndpoints\[\].tlsConfig.cert.configMap {#_specpodmetricsendpointstlsconfigcertconfigmap}
 
 Description
 : configMap defines the ConfigMap containing data to use for the targets.
@@ -790,7 +790,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
 
-### .spec.podMetricsEndpoints[].tlsConfig.cert.secret {#_specpodmetricsendpointstlsconfigcertsecret}
+### .spec.podMetricsEndpoints\[\].tlsConfig.cert.secret {#_specpodmetricsendpointstlsconfigcertsecret}
 
 Description
 : secret defines the Secret containing data to use for the targets.
@@ -809,7 +809,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.podMetricsEndpoints[].tlsConfig.keySecret {#_specpodmetricsendpointstlsconfigkeysecret}
+### .spec.podMetricsEndpoints\[\].tlsConfig.keySecret {#_specpodmetricsendpointstlsconfigkeysecret}
 
 Description
 : keySecret defines the Secret containing the client key file for the targets.
@@ -842,7 +842,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.selector.matchExpressions {#_specselectormatchexpressions}
 
@@ -854,7 +854,7 @@ Type
   `array`
   ```
 
-### .spec.selector.matchExpressions[] {#_specselectormatchexpressions}
+### .spec.selector.matchExpressions\[\] {#_specselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -901,7 +901,7 @@ Type
   `array`
   ```
 
-### .status.bindings[] {#_statusbindings}
+### .status.bindings\[\] {#_statusbindings}
 
 Description
 : WorkloadBinding is a link between a configuration resource and a workload resource.
@@ -926,7 +926,7 @@ Required
 | `namespace` | `string` | namespace defines the namespace of the referenced object. |
 | `resource` | `string` | resource defines the type of resource being referenced (e.g. Prometheus, PrometheusAgent, ThanosRuler or Alertmanager). |
 
-### .status.bindings[].conditions {#_statusbindingsconditions}
+### .status.bindings\[\].conditions {#_statusbindingsconditions}
 
 Description
 : conditions defines the current state of the configuration resource when bound to the referenced Workload object.
@@ -936,7 +936,7 @@ Type
   `array`
   ```
 
-### .status.bindings[].conditions[] {#_statusbindingsconditions}
+### .status.bindings\[\].conditions\[\] {#_statusbindingsconditions}
 
 Description
 : ConfigResourceCondition describes the status of configuration resources linked to Prometheus, PrometheusAgent, Alertmanager or ThanosRuler.
@@ -999,7 +999,7 @@ Description
 | 200 - OK | [`PodMonitorList`](/docs/rest_api/objects#com-coreos-monitoring-v1-PodMonitorList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/podmonitors {#_apismonitoringcoreoscomv1namespaces_namespace_podmonitors}
+### /apis/monitoring.coreos.com/v1/namespaces/&#123;namespace&#125;/podmonitors {#_apismonitoringcoreoscomv1namespaces_namespace_podmonitors}
 
 HTTP method
 : ```
@@ -1067,7 +1067,7 @@ Description
 | 202 - Accepted | [`PodMonitor`](/docs/rest_api/monitoring_apis/podmonitor-monitoring-coreos-com-v1#podmonitor-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/podmonitors/{name} {#_apismonitoringcoreoscomv1namespaces_namespace_podmonitors_name}
+### /apis/monitoring.coreos.com/v1/namespaces/&#123;namespace&#125;/podmonitors/&#123;name&#125; {#_apismonitoringcoreoscomv1namespaces_namespace_podmonitors_name}
 
 **Global path parameters**
 
@@ -1171,7 +1171,7 @@ Description
 | 201 - Created | [`PodMonitor`](/docs/rest_api/monitoring_apis/podmonitor-monitoring-coreos-com-v1#podmonitor-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/podmonitors/{name}/status {#_apismonitoringcoreoscomv1namespaces_namespace_podmonitors_name_status}
+### /apis/monitoring.coreos.com/v1/namespaces/&#123;namespace&#125;/podmonitors/&#123;name&#125;/status {#_apismonitoringcoreoscomv1namespaces_namespace_podmonitors_name_status}
 
 **Global path parameters**
 

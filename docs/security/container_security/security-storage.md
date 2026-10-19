@@ -15,20 +15,20 @@ Containers are useful for both stateless and stateful applications. Protecting a
 
 OpenShift Container Platform provides plugins for multiple types of storage, including:
 
-- Red Hat OpenShift Data Foundation *
-- AWS Elastic Block Stores (EBS) *
-- AWS Elastic File System (EFS) *
-- Azure Disk *
-- Azure File *
-- OpenStack Cinder *
-- Google Compute Engine (GCE) Persistent Disks *
-- VMware vSphere *
+- Red Hat OpenShift Data Foundation \*
+- AWS Elastic Block Stores (EBS) \*
+- AWS Elastic File System (EFS) \*
+- Azure Disk \*
+- Azure File \*
+- OpenStack Cinder \*
+- Google Compute Engine (GCE) Persistent Disks \*
+- VMware vSphere \*
 - Network File System (NFS)
 - FlexVolume
 - Fibre Channel
 - Internet Small Computer Systems Interface (iSCSI)
 
-Plugins for those storage types with dynamic provisioning are marked with an asterisk (*). Data in transit is encrypted via HTTPS for all OpenShift Container Platform components communicating with each other.
+Plugins for those storage types with dynamic provisioning are marked with an asterisk (\*). Data in transit is encrypted via HTTPS for all OpenShift Container Platform components communicating with each other.
 
 You can mount a persistent volume (PV) on a host in any way supported by your storage type. Different types of storage have different capabilities and each PV’s access modes are set to the specific modes supported by that particular volume.
 

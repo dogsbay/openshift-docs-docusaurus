@@ -186,7 +186,7 @@ The BlueField OpenShift Container Platform layer image that the Operator resolve
    ```terminal
    $ oc create secret generic $PULL_SECRET_NAME \
        --from-file=.dockerconfigjson=$OPENSHIFT_PULL_SECRET \
-       --type=Opaque \
+       --type=kubernetes.io/dockerconfigjson \
        -n $CLUSTERS_NAMESPACE
    ```
 3. Create the SSH key secret:

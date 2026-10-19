@@ -11,7 +11,7 @@ Install the OpenShift API for Data Protection (OADP) Operator on OpenShift Conta
 
 The OADP Operator installs Velero 1.16.
 
-## Installing the OADP Operator {#installing-operator-oadp_installing-oadp-operator}
+## Install the OADP Operator {#installing-operator-oadp_installing-oadp-operator}
 
 Install the OADP Operator by using the OpenShift Container Platform web console.
 

@@ -9,7 +9,7 @@ sidebar_position: 3
 
 Install the JobSet Operator on OpenShift Container Platform to enable management of large-scale, coordinated computing workloads, giving your applications a unified API and failure recovery.
 
-## Installing the JobSet Operator {#js-install_js-install}
+## Install the JobSet Operator {#js-install_js-install}
 
 Install the JobSet Operator on OpenShift Container Platform using the web console to begin managing large-scale, coordinated computing workloads.
 

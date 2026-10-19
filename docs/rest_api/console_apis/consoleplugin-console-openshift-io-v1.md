@@ -3,7 +3,7 @@ title: "ConsolePlugin [console.openshift.io/v1]"
 sidebar_position: 6
 ---
 
-# ConsolePlugin [console.openshift.io/v1] {#consoleplugin-console-openshift-io-v1}
+# ConsolePlugin \[console.openshift.io/v1\] {#consoleplugin-console-openshift-io-v1}
 
 <a id="consoleplugin-console-openshift-io-v1"></a>
 
@@ -123,7 +123,7 @@ Type
   `array`
   ```
 
-### .spec.contentSecurityPolicy[] {#_speccontentsecuritypolicy}
+### .spec.contentSecurityPolicy\[\] {#_speccontentsecuritypolicy}
 
 Description
 : ConsolePluginCSP holds configuration for a specific CSP directive
@@ -140,7 +140,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `directive` | `string` | directive specifies which Content-Security-Policy directive to configure. Available directive types are DefaultSrc, ScriptSrc, StyleSrc, ImgSrc, FontSrc and ConnectSrc. DefaultSrc directive serves as a fallback for the other CSP fetch directives. For more information about the DefaultSrc directive, see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/default-src ScriptSrc directive specifies valid sources for JavaScript. For more information about the ScriptSrc directive, see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src StyleSrc directive specifies valid sources for stylesheets. For more information about the StyleSrc directive, see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src ImgSrc directive specifies a valid sources of images and favicons. For more information about the ImgSrc directive, see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/img-src FontSrc directive specifies valid sources for fonts loaded using @font-face. For more information about the FontSrc directive, see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/font-src ConnectSrc directive restricts the URLs which can be loaded using script interfaces. For more information about the ConnectSrc directive, see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/connect-src |
-| `values` | `array (string)` | values defines an array of values to append to the console defaults for this directive. Each ConsolePlugin may define their own directives with their values. These will be set by the OpenShift web console’s backend, as part of its Content-Security-Policy header. The array can contain at most 16 values. Each directive value must have a maximum length of 1024 characters and must not contain whitespace, commas (,), semicolons (;) or single quotes ('). The value '*' is not permitted. Each value in the array must be unique. |
+| `values` | `array (string)` | values defines an array of values to append to the console defaults for this directive. Each ConsolePlugin may define their own directives with their values. These will be set by the OpenShift web console’s backend, as part of its Content-Security-Policy header. The array can contain at most 16 values. Each directive value must have a maximum length of 1024 characters and must not contain whitespace, commas (,), semicolons (;) or single quotes ('). The value '\*' is not permitted. Each value in the array must be unique. |
 
 ### .spec.i18n {#_speci18n}
 
@@ -169,7 +169,7 @@ Type
   `array`
   ```
 
-### .spec.proxy[] {#_specproxy}
+### .spec.proxy\[\] {#_specproxy}
 
 Description
 : ConsolePluginProxy holds information on various service types to which console’s backend will proxy the plugin’s requests.
@@ -185,12 +185,12 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `alias` | `string` | alias is a proxy name that identifies the plugin’s proxy. An alias name should be unique per plugin. The console backend exposes following proxy endpoint:<br>/api/proxy/plugin/<plugin-name>/<proxy-alias>/<request-path>?<optional-query-parameters><br>Request example path:<br>/api/proxy/plugin/acm/search/pods?namespace=openshift-apiserver |
+| `alias` | `string` | alias is a proxy name that identifies the plugin’s proxy. An alias name should be unique per plugin. The console backend exposes following proxy endpoint:<br>/api/proxy/plugin/&lt;plugin-name>/&lt;proxy-alias>/&lt;request-path>?&lt;optional-query-parameters><br>Request example path:<br>/api/proxy/plugin/acm/search/pods?namespace=openshift-apiserver |
 | `authorization` | `string` | authorization provides information about authorization type, which the proxied request should contain |
 | `caCertificate` | `string` | caCertificate provides the cert authority certificate contents, in case the proxied Service is using custom service CA. By default, the service CA bundle provided by the service-ca operator is used. |
 | `endpoint` | `object` | endpoint provides information about endpoint to which the request is proxied to. |
 
-### .spec.proxy[].endpoint {#_specproxyendpoint}
+### .spec.proxy\[\].endpoint {#_specproxyendpoint}
 
 Description
 : endpoint provides information about endpoint to which the request is proxied to.
@@ -208,7 +208,7 @@ Required
 | `service` | `object` | service is an in-cluster Service that the plugin will connect to. The Service must use HTTPS. The console backend exposes an endpoint in order to proxy communication between the plugin and the Service. Note: service field is required for now, since currently only "Service" type is supported. |
 | `type` | `string` | type is the type of the console plugin’s proxy. Currently only "Service" is supported. |
 
-### .spec.proxy[].endpoint.service {#_specproxyendpointservice}
+### .spec.proxy\[\].endpoint.service {#_specproxyendpointservice}
 
 Description
 : service is an in-cluster Service that the plugin will connect to. The Service must use HTTPS. The console backend exposes an endpoint in order to proxy communication between the plugin and the Service. Note: service field is required for now, since currently only "Service" type is supported.
@@ -311,7 +311,7 @@ Description
 | 202 - Accepted | [`ConsolePlugin`](/docs/rest_api/console_apis/consoleplugin-console-openshift-io-v1#consoleplugin-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consoleplugins/{name} {#_apisconsoleopenshiftiov1consoleplugins_name}
+### /apis/console.openshift.io/v1/consoleplugins/&#123;name&#125; {#_apisconsoleopenshiftiov1consoleplugins_name}
 
 **Global path parameters**
 

@@ -465,7 +465,7 @@ For example:
   </details>
 
   :::
-- To add a volume **v1** based on Git repository **$**$https://github.com/namespace1/project1$**$** with revision **5125c45f9f563** for all replication controllers:
+- To add a volume **v1** based on Git repository **&#36;**$https://github.com/namespace1/project1$**&#36;** with revision **5125c45f9f563** for all replication controllers:
   ```terminal
   $ oc set volume rc --all --add --name=v1 \
     --source='{"gitRepo": {

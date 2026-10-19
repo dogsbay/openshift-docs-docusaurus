@@ -3,7 +3,7 @@ title: "IngressClass [networking.k8s.io/v1]"
 sidebar_position: 20
 ---
 
-# IngressClass [networking.k8s.io/v1] {#ingressclass-networking-k8s-io-v1}
+# IngressClass \[networking.k8s.io/v1\] {#ingressclass-networking-k8s-io-v1}
 
 <a id="ingressclass-networking-k8s-io-v1"></a>
 
@@ -172,7 +172,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/ingressclasses/{name} {#_apisnetworkingk8siov1ingressclasses_name}
+### /apis/networking.k8s.io/v1/ingressclasses/&#123;name&#125; {#_apisnetworkingk8siov1ingressclasses_name}
 
 **Global path parameters**
 
@@ -277,7 +277,7 @@ Description
 | 201 - Created | [`IngressClass`](/docs/rest_api/network_apis/ingressclass-networking-k8s-io-v1#ingressclass-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/watch/ingressclasses/{name} {#_apisnetworkingk8siov1watchingressclasses_name}
+### /apis/networking.k8s.io/v1/watch/ingressclasses/&#123;name&#125; {#_apisnetworkingk8siov1watchingressclasses_name}
 
 **Global path parameters**
 

@@ -3,7 +3,7 @@ title: "Network [operator.openshift.io/v1]"
 sidebar_position: 22
 ---
 
-# Network [operator.openshift.io/v1] {#network-operator-openshift-io-v1}
+# Network \[operator.openshift.io/v1\] {#network-operator-openshift-io-v1}
 
 <a id="network-operator-openshift-io-v1"></a>
 
@@ -53,10 +53,10 @@ Type
 | `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
 | `migration` | `object` | migration enables and configures cluster network migration, for network changes that cannot be made instantly. |
-| `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
+| `observedConfig` | &#96;&#96; | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
 | `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `serviceNetwork` | `array (string)` | serviceNetwork is the ip address pool to use for Service IPs Currently, all existing network providers only support a single value here, but this is an array to allow for growth. |
-| `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
+| `unsupportedConfigOverrides` | &#96;&#96; | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 | `useMultiNetworkPolicy` | `boolean` | useMultiNetworkPolicy enables a controller which allows for MultiNetworkPolicy objects to be used on additional networks as created by Multus CNI. MultiNetworkPolicy are similar to NetworkPolicy objects, but NetworkPolicy objects only apply to the primary interface. With MultiNetworkPolicy, you can control the traffic that a pod can receive over the secondary interfaces. If unset, this property defaults to 'false' and MultiNetworkPolicy objects are ignored. If 'disableMultiNetwork' is 'true' then the value of this field is ignored. |
 
 ### .spec.additionalNetworks {#_specadditionalnetworks}
@@ -69,7 +69,7 @@ Type
   `array`
   ```
 
-### .spec.additionalNetworks[] {#_specadditionalnetworks}
+### .spec.additionalNetworks\[\] {#_specadditionalnetworks}
 
 Description
 : AdditionalNetworkDefinition configures an extra network that is available but not created by default. Instead, pods must request them by name. type must be specified, along with exactly one "Config" that matches the type.
@@ -90,7 +90,7 @@ Required
 | `simpleMacvlanConfig` | `object` | simpleMacvlanConfig configures the macvlan interface in case of type:NetworkTypeSimpleMacvlan |
 | `type` | `string` | type is the type of network The supported values are NetworkTypeRaw, NetworkTypeSimpleMacvlan |
 
-### .spec.additionalNetworks[].simpleMacvlanConfig {#_specadditionalnetworkssimplemacvlanconfig}
+### .spec.additionalNetworks\[\].simpleMacvlanConfig {#_specadditionalnetworkssimplemacvlanconfig}
 
 Description
 : simpleMacvlanConfig configures the macvlan interface in case of type:NetworkTypeSimpleMacvlan
@@ -107,7 +107,7 @@ Type
 | `mode` | `string` | mode is the macvlan mode: bridge, private, vepa, passthru. The default is bridge |
 | `mtu` | `integer` | mtu is the mtu to use for the macvlan interface. if unset, host’s kernel will select the value. |
 
-### .spec.additionalNetworks[].simpleMacvlanConfig.ipamConfig {#_specadditionalnetworkssimplemacvlanconfigipamconfig}
+### .spec.additionalNetworks\[\].simpleMacvlanConfig.ipamConfig {#_specadditionalnetworkssimplemacvlanconfigipamconfig}
 
 Description
 : ipamConfig configures IPAM module will be used for IP Address Management (IPAM).
@@ -122,7 +122,7 @@ Type
 | `staticIPAMConfig` | `object` | staticIPAMConfig configures the static IP address in case of type:IPAMTypeStatic |
 | `type` | `string` | type is the type of IPAM module will be used for IP Address Management(IPAM). The supported values are IPAMTypeDHCP, IPAMTypeStatic |
 
-### .spec.additionalNetworks[].simpleMacvlanConfig.ipamConfig.staticIPAMConfig {#_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfig}
+### .spec.additionalNetworks\[\].simpleMacvlanConfig.ipamConfig.staticIPAMConfig {#_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfig}
 
 Description
 : staticIPAMConfig configures the static IP address in case of type:IPAMTypeStatic
@@ -140,7 +140,7 @@ Type
 | `routes` | `array` | routes configures IP routes for the interface |
 | `routes[]` | `object` | StaticIPAMRoutes provides Destination/Gateway pairs for static IPAM routes |
 
-### .spec.additionalNetworks[].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.addresses {#_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigaddresses}
+### .spec.additionalNetworks\[\].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.addresses {#_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigaddresses}
 
 Description
 : addresses configures IP address for the interface
@@ -150,7 +150,7 @@ Type
   `array`
   ```
 
-### .spec.additionalNetworks[].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.addresses[] {#_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigaddresses}
+### .spec.additionalNetworks\[\].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.addresses\[\] {#_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigaddresses}
 
 Description
 : StaticIPAMAddresses provides IP address and Gateway for static IPAM addresses
@@ -165,7 +165,7 @@ Type
 | `address` | `string` | address is the IP address in CIDR format |
 | `gateway` | `string` | gateway is IP inside of subnet to designate as the gateway |
 
-### .spec.additionalNetworks[].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.dns {#_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigdns}
+### .spec.additionalNetworks\[\].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.dns {#_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigdns}
 
 Description
 : dns configures DNS for the interface
@@ -181,7 +181,7 @@ Type
 | `nameservers` | `array (string)` | nameservers points DNS servers for IP lookup |
 | `search` | `array (string)` | search configures priority ordered search domains for short hostname lookups |
 
-### .spec.additionalNetworks[].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.routes {#_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigroutes}
+### .spec.additionalNetworks\[\].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.routes {#_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigroutes}
 
 Description
 : routes configures IP routes for the interface
@@ -191,7 +191,7 @@ Type
   `array`
   ```
 
-### .spec.additionalNetworks[].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.routes[] {#_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigroutes}
+### .spec.additionalNetworks\[\].simpleMacvlanConfig.ipamConfig.staticIPAMConfig.routes\[\] {#_specadditionalnetworkssimplemacvlanconfigipamconfigstaticipamconfigroutes}
 
 Description
 : StaticIPAMRoutes provides Destination/Gateway pairs for static IPAM routes
@@ -233,7 +233,7 @@ Type
   `array`
   ```
 
-### .spec.clusterNetwork[] {#_specclusternetwork}
+### .spec.clusterNetwork\[\] {#_specclusternetwork}
 
 Description
 : ClusterNetworkEntry is a subnet from which to allocate PodIPs. A network of size HostPrefix (in CIDR notation) will be allocated when nodes join the cluster. If the HostPrefix field is not used by the plugin, it can be left unset. Not all network providers support multiple ClusterNetworks
@@ -392,7 +392,7 @@ Type
   `array`
   ```
 
-### .spec.defaultNetwork.ovnKubernetesConfig.hybridOverlayConfig.hybridClusterNetwork[] {#_specdefaultnetworkovnkubernetesconfighybridoverlayconfighybridclusternetwork}
+### .spec.defaultNetwork.ovnKubernetesConfig.hybridOverlayConfig.hybridClusterNetwork\[\] {#_specdefaultnetworkovnkubernetesconfighybridoverlayconfighybridclusternetwork}
 
 Description
 : ClusterNetworkEntry is a subnet from which to allocate PodIPs. A network of size HostPrefix (in CIDR notation) will be allocated when nodes join the cluster. If the HostPrefix field is not used by the plugin, it can be left unset. Not all network providers support multiple ClusterNetworks
@@ -678,7 +678,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : OperatorCondition is just the standard condition fields.
@@ -711,7 +711,7 @@ Type
   `array`
   ```
 
-### .status.generations[] {#_statusgenerations}
+### .status.generations\[\] {#_statusgenerations}
 
 Description
 : GenerationStatus keeps track of the generation for a given resource so that decisions about forced updates can be made.
@@ -822,7 +822,7 @@ Description
 | 202 - Accepted | [`Network`](/docs/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/networks/{name} {#_apisoperatoropenshiftiov1networks_name}
+### /apis/operator.openshift.io/v1/networks/&#123;name&#125; {#_apisoperatoropenshiftiov1networks_name}
 
 **Global path parameters**
 
@@ -926,7 +926,7 @@ Description
 | 201 - Created | [`Network`](/docs/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/networks/{name}/status {#_apisoperatoropenshiftiov1networks_name_status}
+### /apis/operator.openshift.io/v1/networks/&#123;name&#125;/status {#_apisoperatoropenshiftiov1networks_name_status}
 
 **Global path parameters**
 

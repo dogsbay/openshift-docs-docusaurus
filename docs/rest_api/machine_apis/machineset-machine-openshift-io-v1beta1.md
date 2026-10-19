@@ -3,7 +3,7 @@ title: "MachineSet [machine.openshift.io/v1beta1]"
 sidebar_position: 10
 ---
 
-# MachineSet [machine.openshift.io/v1beta1] {#machineset-machine-openshift-io-v1beta1}
+# MachineSet \[machine.openshift.io/v1beta1\] {#machineset-machine-openshift-io-v1beta1}
 
 <a id="machineset-machine-openshift-io-v1beta1"></a>
 
@@ -57,7 +57,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.selector.matchExpressions {#_specselectormatchexpressions}
 
@@ -69,7 +69,7 @@ Type
   `array`
   ```
 
-### .spec.selector.matchExpressions[] {#_specselectormatchexpressions}
+### .spec.selector.matchExpressions\[\] {#_specselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -134,7 +134,7 @@ Type
   `array`
   ```
 
-### .spec.template.metadata.ownerReferences[] {#_spectemplatemetadataownerreferences}
+### .spec.template.metadata.ownerReferences\[\] {#_spectemplatemetadataownerreferences}
 
 Description
 : OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.
@@ -205,7 +205,7 @@ Type
   `array`
   ```
 
-### .spec.template.spec.lifecycleHooks.preDrain[] {#_spectemplatespeclifecyclehookspredrain}
+### .spec.template.spec.lifecycleHooks.preDrain\[\] {#_spectemplatespeclifecyclehookspredrain}
 
 Description
 : LifecycleHook represents a single instance of a lifecycle hook
@@ -234,7 +234,7 @@ Type
   `array`
   ```
 
-### .spec.template.spec.lifecycleHooks.preTerminate[] {#_spectemplatespeclifecyclehookspreterminate}
+### .spec.template.spec.lifecycleHooks.preTerminate\[\] {#_spectemplatespeclifecyclehookspreterminate}
 
 Description
 : LifecycleHook represents a single instance of a lifecycle hook
@@ -283,7 +283,7 @@ Type
   `array`
   ```
 
-### .spec.template.spec.metadata.ownerReferences[] {#_spectemplatespecmetadataownerreferences}
+### .spec.template.spec.metadata.ownerReferences\[\] {#_spectemplatespecmetadataownerreferences}
 
 Description
 : OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.
@@ -320,7 +320,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `value` | `` | value is an inlined, serialized representation of the resource configuration. It is recommended that providers maintain their own versioned API types that should be serialized/deserialized from this field, akin to component config. |
+| `value` | &#96;&#96; | value is an inlined, serialized representation of the resource configuration. It is recommended that providers maintain their own versioned API types that should be serialized/deserialized from this field, akin to component config. |
 
 ### .spec.template.spec.taints {#_spectemplatespectaints}
 
@@ -332,7 +332,7 @@ Type
   `array`
   ```
 
-### .spec.template.spec.taints[] {#_spectemplatespectaints}
+### .spec.template.spec.taints\[\] {#_spectemplatespectaints}
 
 Description
 : The node this Taint is attached to has the "effect" on any pod that does not tolerate the Taint.
@@ -386,7 +386,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition defines an observation of a Machine API resource operational state.
@@ -453,7 +453,7 @@ Description
 | 200 - OK | [`MachineSetList`](/docs/rest_api/objects#io-openshift-machine-v1beta1-MachineSetList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinesets {#_apismachineopenshiftiov1beta1namespaces_namespace_machinesets}
+### /apis/machine.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machinesets {#_apismachineopenshiftiov1beta1namespaces_namespace_machinesets}
 
 HTTP method
 : ```
@@ -521,7 +521,7 @@ Description
 | 202 - Accepted | [`MachineSet`](/docs/rest_api/machine_apis/machineset-machine-openshift-io-v1beta1#machineset-machine-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinesets/{name} {#_apismachineopenshiftiov1beta1namespaces_namespace_machinesets_name}
+### /apis/machine.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machinesets/&#123;name&#125; {#_apismachineopenshiftiov1beta1namespaces_namespace_machinesets_name}
 
 **Global path parameters**
 
@@ -625,7 +625,7 @@ Description
 | 201 - Created | [`MachineSet`](/docs/rest_api/machine_apis/machineset-machine-openshift-io-v1beta1#machineset-machine-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinesets/{name}/scale {#_apismachineopenshiftiov1beta1namespaces_namespace_machinesets_name_scale}
+### /apis/machine.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machinesets/&#123;name&#125;/scale {#_apismachineopenshiftiov1beta1namespaces_namespace_machinesets_name_scale}
 
 **Global path parameters**
 
@@ -705,7 +705,7 @@ Description
 | 201 - Created | [`Scale`](/docs/rest_api/autoscale_apis/scale-autoscaling-v1#scale-autoscaling-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinesets/{name}/status {#_apismachineopenshiftiov1beta1namespaces_namespace_machinesets_name_status}
+### /apis/machine.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machinesets/&#123;name&#125;/status {#_apismachineopenshiftiov1beta1namespaces_namespace_machinesets_name_status}
 
 **Global path parameters**
 

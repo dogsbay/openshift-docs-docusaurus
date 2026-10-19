@@ -3,7 +3,7 @@ title: "TokenRequest [authentication.k8s.io/v1]"
 sidebar_position: 9
 ---
 
-# TokenRequest [authentication.k8s.io/v1] {#tokenrequest-authentication-k8s-io-v1}
+# TokenRequest \[authentication.k8s.io/v1\] {#tokenrequest-authentication-k8s-io-v1}
 
 <a id="tokenrequest-authentication-k8s-io-v1"></a>
 
@@ -90,7 +90,7 @@ The following API endpoints are available:
 - `/api/v1/namespaces/{namespace}/serviceaccounts/{name}/token`
   - `POST`: create token of a ServiceAccount
 
-### /api/v1/namespaces/{namespace}/serviceaccounts/{name}/token {#_apiv1namespaces_namespace_serviceaccounts_name_token}
+### /api/v1/namespaces/&#123;namespace&#125;/serviceaccounts/&#123;name&#125;/token {#_apiv1namespaces_namespace_serviceaccounts_name_token}
 
 **Global path parameters**
 

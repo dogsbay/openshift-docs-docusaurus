@@ -9,7 +9,7 @@ sidebar_position: 3
 
 You can include a self-signed Certificate Authority (CA) certificate in the Data Protection Application (DPA) and then back up an application. You store the backup in a NooBaa bucket provided by Red Hat OpenShift Data Foundation (ODF).
 
-## Backing up an application and its self-signed CA certificate {#oadp-usecase-include-ca-cert-backup_oadp-use-case-enable-ca-cert}
+## Back up an application and its self-signed CA certificate {#oadp-usecase-include-ca-cert-backup_oadp-use-case-enable-ca-cert}
 
 The `s3.openshift-storage.svc` service, provided by ODF, uses a Transport Layer Security protocol (TLS) certificate that is signed with the self-signed service CA.
 

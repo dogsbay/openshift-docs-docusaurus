@@ -3,7 +3,7 @@ title: "Node [v1]"
 sidebar_position: 2
 ---
 
-# Node [v1]
+# Node \[v1\]
 
 <a id="node-v1"></a>
 
@@ -41,7 +41,7 @@ Type
 | `externalID` | `string` | Deprecated. Not all kubelets will set this field. Remove field after 1.13. see: https://issues.k8s.io/61966 |
 | `podCIDR` | `string` | PodCIDR represents the pod IP range assigned to the node. |
 | `podCIDRs` | `array (string)` | podCIDRs represents the IP ranges assigned to the node for usage by Pods on that node. If this field is specified, the 0th entry must match the podCIDR field. It may contain at most 1 value for each of IPv4 and IPv6. |
-| `providerID` | `string` | ID of the node assigned by the cloud provider in the format: <ProviderName>://<ProviderSpecificNodeID> |
+| `providerID` | `string` | ID of the node assigned by the cloud provider in the format: &lt;ProviderName>://&lt;ProviderSpecificNodeID> |
 | `taints` | `array` | If specified, the node’s taints. |
 | `taints[]` | `object` | The node this Taint is attached to has the "effect" on any pod that does not tolerate the Taint. |
 | `unschedulable` | `boolean` | Unschedulable controls node schedulability of new pods. By default, node is schedulable. More info: https://kubernetes.io/docs/concepts/nodes/node/#manual-node-administration |
@@ -93,7 +93,7 @@ Type
   `array`
   ```
 
-### .spec.taints[] {#_spectaints}
+### .spec.taints\[\] {#_spectaints}
 
 Description
 : The node this Taint is attached to has the "effect" on any pod that does not tolerate the Taint.
@@ -156,7 +156,7 @@ Type
   `array`
   ```
 
-### .status.addresses[] {#_statusaddresses}
+### .status.addresses\[\] {#_statusaddresses}
 
 Description
 : NodeAddress contains information for the node’s address.
@@ -185,7 +185,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : NodeCondition contains condition information for a node.
@@ -391,7 +391,7 @@ Type
   `array`
   ```
 
-### .status.images[] {#_statusimages}
+### .status.images\[\] {#_statusimages}
 
 Description
 : Describe a container image
@@ -403,7 +403,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `names` | `array (string)` | Names by which this image is known. e.g. ["kubernetes.example/hyperkube:v1.0.7", "cloud-vendor.registry.example/cloud-vendor/hyperkube:v1.0.7"] |
+| `names` | `array (string)` | Names by which this image is known. e.g. \["kubernetes.example/hyperkube:v1.0.7", "cloud-vendor.registry.example/cloud-vendor/hyperkube:v1.0.7"\] |
 | `sizeBytes` | `integer` | The size of the image in bytes. |
 
 ### .status.nodeInfo {#_statusnodeinfo}
@@ -466,7 +466,7 @@ Type
   `array`
   ```
 
-### .status.runtimeHandlers[] {#_statusruntimehandlers}
+### .status.runtimeHandlers\[\] {#_statusruntimehandlers}
 
 Description
 : NodeRuntimeHandler is a set of runtime handler information.
@@ -481,7 +481,7 @@ Type
 | `features` | `object` | NodeRuntimeHandlerFeatures is a set of features implemented by the runtime handler. |
 | `name` | `string` | Runtime handler name. Empty for the default runtime handler. |
 
-### .status.runtimeHandlers[].features {#_statusruntimehandlersfeatures}
+### .status.runtimeHandlers\[\].features {#_statusruntimehandlersfeatures}
 
 Description
 : NodeRuntimeHandlerFeatures is a set of features implemented by the runtime handler.
@@ -506,7 +506,7 @@ Type
   `array`
   ```
 
-### .status.volumesAttached[] {#_statusvolumesattached}
+### .status.volumesAttached\[\] {#_statusvolumesattached}
 
 Description
 : AttachedVolume describes a volume attached to a node
@@ -640,7 +640,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/nodes/{name} {#_apiv1nodes_name}
+### /api/v1/nodes/&#123;name&#125; {#_apiv1nodes_name}
 
 **Global path parameters**
 
@@ -745,7 +745,7 @@ Description
 | 201 - Created | [`Node`](/docs/rest_api/node_apis/node-v1#node-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/nodes/{name} {#_apiv1watchnodes_name}
+### /api/v1/watch/nodes/&#123;name&#125; {#_apiv1watchnodes_name}
 
 **Global path parameters**
 
@@ -770,7 +770,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/nodes/{name}/status {#_apiv1nodes_name_status}
+### /api/v1/nodes/&#123;name&#125;/status {#_apiv1nodes_name_status}
 
 **Global path parameters**
 

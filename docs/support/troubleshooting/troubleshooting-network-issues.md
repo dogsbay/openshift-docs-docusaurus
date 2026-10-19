@@ -11,7 +11,9 @@ Use the following sections to troubleshoot network issues.
 
 ## How the network interface is selected {#nw-how-nw-iface-selected_troubleshooting-network-issues}
 
-For installations on bare metal or with virtual machines that have more than one network interface controller (NIC), the NIC that OpenShift Container Platform uses for communication with the Kubernetes API server is determined by the `nodeip-configuration.service` service unit that is run by systemd when the node boots. The `nodeip-configuration.service` selects the IP from the interface associated with the default route.
+For installations on bare metal or with virtual machines that have more than one network interface controller (NIC), the NIC that OpenShift Container Platform uses for communication with the Kubernetes API server is determined by the `nodeip-configuration.service` service unit.
+
+The unit is run by systemd when the node boots. The `nodeip-configuration.service` selects the IP from the interface associated with the default route.
 
 After the `nodeip-configuration.service` service determines the correct NIC, the service creates the `/etc/systemd/system/kubelet.service.d/20-nodenet.conf` file. The `20-nodenet.conf` file sets the `KUBELET_NODE_IP` environment variable to the IP address that the service selected.
 
@@ -23,7 +25,9 @@ If network communication is disrupted or misconfigured because a different NIC i
 
 ### Optional: Overriding the default node IP selection logic {#overriding-default-node-ip-selection-logic_troubleshooting-network-issues}
 
-To override the default IP selection logic, you can create a hint file that includes the `NODEIP_HINT` variable to override the default IP selection logic. Creating a hint file allows you to select a specific node IP address from the interface in the subnet of the IP address specified in the `NODEIP_HINT` variable.
+To override the default IP selection logic, you can create a hint file that includes the `NODEIP_HINT` variable to override the default IP selection logic.
+
+Creating a hint file allows you to select a specific node IP address from the interface in the subnet of the IP address specified in the `NODEIP_HINT` variable.
 
 For example, if a node has two interfaces, `eth0` with an address of `10.0.0.10/24`, and `eth1` with an address of `192.0.2.5/24`, and the default route points to `eth0` (`10.0.0.10`),the node IP address would normally use the `10.0.0.10` IP address.
 
@@ -104,7 +108,9 @@ The following procedure shows how to override the default node IP selection logi
 
 ### Configuring OVN-Kubernetes to use a secondary OVS bridge {#configuring-ovnk-use-second-ovs-bridge_troubleshooting-network-issues}
 
-You can create an additional or *secondary* Open vSwitch (OVS) bridge, `br-ex1`, that OVN-Kubernetes manages and the Multiple External Gateways (MEG) implementation uses for defining external gateways for an OpenShift Container Platform node. You can define a MEG in an `AdminPolicyBasedExternalRoute` custom resource (CR). The MEG implementation provides a pod with access to multiple gateways, equal-cost multipath (ECMP) routes, and the Bidirectional Forwarding Detection (BFD) implementation.
+You can create an additional or *secondary* Open vSwitch (OVS) bridge, `br-ex1`, that OVN-Kubernetes manages and the Multiple External Gateways (MEG) implementation uses for defining external gateways for an OpenShift Container Platform node.
+
+You can define a MEG in an `AdminPolicyBasedExternalRoute` custom resource (CR). The MEG implementation provides a pod with access to multiple gateways, equal-cost multipath (ECMP) routes, and the Bidirectional Forwarding Detection (BFD) implementation.
 
 Consider a use case for pods impacted by the Multiple External Gateways (MEG) feature and you want to egress traffic to a different interface, for example `br-ex1`, on a node. Egress traffic for pods not impacted by MEG get routed to the default OVS `br-ex` bridge.
 
@@ -241,7 +247,7 @@ For more information about useful situations for the additional `br-ex1` bridge 
    ```terminal
    $ oc create -f <machine_config_file_name>
    ```
-5. Create an Open vSwitch (OVS) bridge, `br-ex1`, on nodes by using the OVN-Kubernetes network plugin to create an `extra_bridge` file` . Ensure that you save the file in the  `/etc/ovnk/extra_bridge`path of the host. The file must state the interface name that supports the additional bridge and not the default interface that supports`br-ex`, which holds the primary IP address of the node.
+5. Create an Open vSwitch (OVS) bridge, `br-ex1`, on nodes by using the OVN-Kubernetes network plugin to create an `extra_bridge` file` . Ensure that you save the file in the  `/etc/ovnk/extra_bridge`path of the host. The file must state the interface name that supports the additional bridge and not the default interface that supports`br-ex&#96;, which holds the primary IP address of the node.
    ```text title="Example configuration for the extra_bridge file, /etc/ovnk/extra_bridge, that references a additional interface"
    bond1
    ```
@@ -478,7 +484,7 @@ For long-term changes to the Open vSwitch (OVS) log level, you can change the lo
 
    where:
 
-   - ` metadata.labels.machineconfiguration.openshift.io/role:: After you perform this procedure to configure control plane nodes, repeat the procedure and set the role to  `worker` to configure worker nodes.
+   - ` metadata.labels.machineconfiguration.openshift.io/role:: After you perform this procedure to configure control plane nodes, repeat the procedure and set the role to  `worker&#96; to configure worker nodes.
    - `spec.systemmd.units.dropins.contents.ExecStartPost`:: Set the `syslog:<log_level>` value. Log levels are `off`, `emer`, `err`, `warn`, `info`, or `dbg`. Setting the value to `off` filters out all log messages.
 2. Apply the machine config:
    ```terminal

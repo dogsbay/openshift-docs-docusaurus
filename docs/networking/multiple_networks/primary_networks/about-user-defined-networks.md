@@ -120,7 +120,7 @@ Additionally, you can set `spec.network.transport` to `NoOverlay` to route layer
 
 ### Best practices for ClusterUserDefinedNetwork CRs {#considerations-for-cudn_user-defined-networks}
 
-To create and deploy a successful instance of the `ClusterUserDefinedNetwork` (CUDN) CR, administrators must follow best practices such as avoiding default and openshift-* namespaces, use the proper namespace selector configuration, and ensure physical network parameter matching.
+To create and deploy a successful instance of the `ClusterUserDefinedNetwork` (CUDN) CR, administrators must follow best practices such as avoiding default and openshift-\* namespaces, use the proper namespace selector configuration, and ensure physical network parameter matching.
 
 The following details provide administrators with a best practice for designing a CUDN CR:
 
@@ -484,7 +484,7 @@ The following diagram shows four cluster namespaces, where each namespace has a 
 
 ### Best practices for UserDefinedNetwork CRs {#considerations-for-udn_user-defined-networks}
 
-To deploy a successful instance of the `UserDefinedNetwork` (UDN) CR, you must follow masquerade IP address requirements, avoid default and openshift-* namespaces, set a proper namespace selector configuration, and ensure physical network parameter matching.
+To deploy a successful instance of the `UserDefinedNetwork` (UDN) CR, you must follow masquerade IP address requirements, avoid default and openshift-\* namespaces, set a proper namespace selector configuration, and ensure physical network parameter matching.
 
 The following details provide a best practice for designing a UDN CR:
 

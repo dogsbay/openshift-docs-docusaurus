@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="project-apis"></a>
 
-## Project [project.openshift.io/v1] {#_project_projectopenshiftiov1}
+## Project \[project.openshift.io/v1\] {#_project_projectopenshiftiov1}
 
 Description
 : Projects are the unit of isolation and collaboration in OpenShift. A project has one or more members, a quota on the resources that the project may consume, and the security controls on the resources in the project. Within a project, members may have different roles - project administrators can set membership, editors can create and manage the resources, and viewers can see but not access running containers. In a normal cluster project administrators are not able to alter their quotas - that is restricted to cluster administrators.
@@ -23,7 +23,7 @@ Type
   `object`
   ```
 
-## ProjectRequest [project.openshift.io/v1] {#_projectrequest_projectopenshiftiov1}
+## ProjectRequest \[project.openshift.io/v1\] {#_projectrequest_projectopenshiftiov1}
 
 Description
 : ProjectRequest is the set of options necessary to fully qualify a project request

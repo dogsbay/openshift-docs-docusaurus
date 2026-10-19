@@ -3,7 +3,7 @@ title: "SelfSubjectRulesReview [authorization.k8s.io/v1]"
 sidebar_position: 13
 ---
 
-# SelfSubjectRulesReview [authorization.k8s.io/v1] {#selfsubjectrulesreview-authorization-k8s-io-v1}
+# SelfSubjectRulesReview \[authorization.k8s.io/v1\] {#selfsubjectrulesreview-authorization-k8s-io-v1}
 
 <a id="selfsubjectrulesreview-authorization-k8s-io-v1"></a>
 
@@ -76,7 +76,7 @@ Type
   `array`
   ```
 
-### .status.nonResourceRules[] {#_statusnonresourcerules}
+### .status.nonResourceRules\[\] {#_statusnonresourcerules}
 
 Description
 : NonResourceRule holds information that describes a rule for the non-resource
@@ -92,7 +92,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `nonResourceURLs` | `array (string)` | NonResourceURLs is a set of partial urls that a user should have access to.  **s are allowed, but only as the full, final step in the path.  "**" means all. |
-| `verbs` | `array (string)` | Verb is a list of kubernetes non-resource API verbs, like: get, post, put, delete, patch, head, options.  "*" means all. |
+| `verbs` | `array (string)` | Verb is a list of kubernetes non-resource API verbs, like: get, post, put, delete, patch, head, options.  "\*" means all. |
 
 ### .status.resourceRules {#_statusresourcerules}
 
@@ -104,7 +104,7 @@ Type
   `array`
   ```
 
-### .status.resourceRules[] {#_statusresourcerules}
+### .status.resourceRules\[\] {#_statusresourcerules}
 
 Description
 : ResourceRule is the list of actions the subject is allowed to perform on resources. The list ordering isn’t significant, may contain duplicates, and possibly be incomplete.
@@ -119,10 +119,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiGroups` | `array (string)` | APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed.  "*" means all. |
-| `resourceNames` | `array (string)` | ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed.  "*" means all. |
+| `apiGroups` | `array (string)` | APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed.  "\*" means all. |
+| `resourceNames` | `array (string)` | ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed.  "\*" means all. |
 | `resources` | `array (string)` | Resources is a list of resources this rule applies to.  "*" means all in the specified apiGroups.  "*/foo" represents the subresource 'foo' for all resources in the specified apiGroups. |
-| `verbs` | `array (string)` | Verb is a list of kubernetes resource API verbs, like: get, list, watch, create, update, delete, proxy.  "*" means all. |
+| `verbs` | `array (string)` | Verb is a list of kubernetes resource API verbs, like: get, list, watch, create, update, delete, proxy.  "\*" means all. |
 
 ## API endpoints {#_api_endpoints}
 

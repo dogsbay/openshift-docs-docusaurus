@@ -112,7 +112,7 @@ The following AWS S3 compatible object storage providers are known to work with 
 
 - [Scality ARTESCA S3 object storage (Scality documentation)](https://downloads.scality.com/artesca-ova/doc/general_introduction.html#)
 
-## Configuring Multicloud Object Gateway (MCG) for disaster recovery on OpenShift Data Foundation {#oadp-configuring-noobaa-for-dr_about-installing-oadp}
+## Configure Multicloud Object Gateway (MCG) for disaster recovery on OpenShift Data Foundation {#oadp-configuring-noobaa-for-dr_about-installing-oadp}
 
 If you use cluster storage for your MCG bucket `backupStorageLocation` on OpenShift Data Foundation, configure MCG as an external object store.
 
@@ -212,11 +212,11 @@ The following recommendations are based on observations of performance made in t
 
 ### CPU and memory requirement for configurations {#_cpu_and_memory_requirement_for_configurations}
 
-| Configuration types | <sup>[1]</sup> Average usage | <sup>[2]</sup> Large usage | resourceTimeouts |
+| Configuration types | <sup>\[1\]</sup> Average usage | <sup>\[2\]</sup> Large usage | resourceTimeouts |
 | --- | --- | --- | --- |
 | CSI | Velero:<br>CPU- Request 200m, Limits 1000m<br>Memory - Request 256Mi, Limits 1024Mi | Velero:<br>CPU- Request 200m, Limits 2000m<br>Memory- Request  256Mi, Limits 2048Mi | N/A |
-| Restic | <sup>[3]</sup> Restic:<br>CPU- Request 1000m, Limits 2000m<br>Memory - Request 16Gi, Limits 32Gi | <sup>[4]</sup> Restic:<br>CPU - Request 2000m, Limits 8000m<br>Memory - Request 16Gi, Limits 40Gi | 900m |
-| <sup>[5]</sup> Data Mover | N/A | N/A | 10m - average usage<br>60m - large usage |
+| Restic | <sup>\[3\]</sup> Restic:<br>CPU- Request 1000m, Limits 2000m<br>Memory - Request 16Gi, Limits 32Gi | <sup>\[4\]</sup> Restic:<br>CPU - Request 2000m, Limits 8000m<br>Memory - Request 16Gi, Limits 40Gi | 900m |
+| <sup>\[5\]</sup> Data Mover | N/A | N/A | 10m - average usage<br>60m - large usage |
 
 1. Average usage - use these settings for most usage situations.
 2. Large usage - use these settings for large usage situations, such as a large PV (500GB Usage), multiple namespaces (100+), or many pods within a single namespace (2000 pods+), and for optimal performance for backup and restore involving large datasets.

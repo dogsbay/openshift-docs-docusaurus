@@ -1,6 +1,6 @@
 ---
 title: Verifying Gateway infrastructure status
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 # Verifying Gateway infrastructure status

@@ -3,9 +3,9 @@ title: Configuring the egress proxy for the Zero Trust Workload Identity Manager
 sidebar_position: 6
 ---
 
-# Configuring the egress proxy for the Zero Trust Workload Identity Manager {#zero-trust-manager-proxy_{context}}
+# Configuring the egress proxy for the Zero Trust Workload Identity Manager {#zero-trust-manager-proxy_-context-}
 
-<a id="zero-trust-manager-proxy_{context}"></a>
+<a id="zero-trust-manager-proxy_-context-"></a>
 
 Operator Lifecycle Manager (OLM) automatically configures managed Operators with proxy settings when you use a cluster-wide egress proxy. To support proxying HTTPS connections, you can inject certificate authority (CA) certificates into the Zero Trust Workload Identity Manager.
 

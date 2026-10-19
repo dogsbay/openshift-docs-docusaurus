@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="workloads-apis"></a>
 
-## BuildConfig [build.openshift.io/v1] {#_buildconfig_buildopenshiftiov1}
+## BuildConfig \[build.openshift.io/v1\] {#_buildconfig_buildopenshiftiov1}
 
 Description
 : Build configurations define a build process for new container images. There are three types of builds possible - a container image build using a Dockerfile, a Source-to-Image build that uses a specially prepared base image that accepts source code that it can make runnable, and a custom build that can run // arbitrary container images as a base and accept the build parameters. Builds run on the cluster and on completion are pushed to the container image registry specified in the "output" section. A build can be triggered via a webhook, when the base image changes, or when a user manually requests a new build be // created.
@@ -21,7 +21,7 @@ Type
   `object`
   ```
 
-## Build [build.openshift.io/v1] {#_build_buildopenshiftiov1}
+## Build \[build.openshift.io/v1\] {#_build_buildopenshiftiov1}
 
 Description
 : Build encapsulates the inputs needed to produce a new deployable image, as well as the status of the execution and a reference to the Pod which executed the build.
@@ -33,7 +33,7 @@ Type
   `object`
   ```
 
-## BuildLog [build.openshift.io/v1] {#_buildlog_buildopenshiftiov1}
+## BuildLog \[build.openshift.io/v1\] {#_buildlog_buildopenshiftiov1}
 
 Description
 : BuildLog is the (unused) resource associated with the build log redirector
@@ -45,7 +45,7 @@ Type
   `object`
   ```
 
-## BuildRequest [build.openshift.io/v1] {#_buildrequest_buildopenshiftiov1}
+## BuildRequest \[build.openshift.io/v1\] {#_buildrequest_buildopenshiftiov1}
 
 Description
 : BuildRequest is the resource used to pass parameters to build generator
@@ -57,7 +57,7 @@ Type
   `object`
   ```
 
-## CronJob [batch/v1] {#_cronjob_batchv1}
+## CronJob \[batch/v1\] {#_cronjob_batchv1}
 
 Description
 : CronJob represents the configuration of a single cron job.
@@ -67,7 +67,7 @@ Type
   `object`
   ```
 
-## DaemonSet [apps/v1] {#_daemonset_appsv1}
+## DaemonSet \[apps/v1\] {#_daemonset_appsv1}
 
 Description
 : DaemonSet represents the configuration of a daemon set.
@@ -77,7 +77,7 @@ Type
   `object`
   ```
 
-## Deployment [apps/v1] {#_deployment_appsv1}
+## Deployment \[apps/v1\] {#_deployment_appsv1}
 
 Description
 : Deployment enables declarative updates for Pods and ReplicaSets.
@@ -87,7 +87,7 @@ Type
   `object`
   ```
 
-## DeploymentConfig [apps.openshift.io/v1] {#_deploymentconfig_appsopenshiftiov1}
+## DeploymentConfig \[apps.openshift.io/v1\] {#_deploymentconfig_appsopenshiftiov1}
 
 Description
 : Deployment Configs define the template for a pod and manages deploying new images or configuration changes. A single deployment configuration is usually analogous to a single micro-service. Can support many different deployment patterns, including full restart, customizable rolling updates, and  fully custom behaviors, as well as pre- and post- deployment hooks. Each individual deployment is represented as a replication controller.
@@ -101,7 +101,7 @@ Type
   `object`
   ```
 
-## DeploymentConfigRollback [apps.openshift.io/v1] {#_deploymentconfigrollback_appsopenshiftiov1}
+## DeploymentConfigRollback \[apps.openshift.io/v1\] {#_deploymentconfigrollback_appsopenshiftiov1}
 
 Description
 : DeploymentConfigRollback provides the input to rollback generation.
@@ -113,7 +113,7 @@ Type
   `object`
   ```
 
-## DeploymentLog [apps.openshift.io/v1] {#_deploymentlog_appsopenshiftiov1}
+## DeploymentLog \[apps.openshift.io/v1\] {#_deploymentlog_appsopenshiftiov1}
 
 Description
 : DeploymentLog represents the logs for a deployment
@@ -125,7 +125,7 @@ Type
   `object`
   ```
 
-## DeploymentRequest [apps.openshift.io/v1] {#_deploymentrequest_appsopenshiftiov1}
+## DeploymentRequest \[apps.openshift.io/v1\] {#_deploymentrequest_appsopenshiftiov1}
 
 Description
 : DeploymentRequest is a request to a deployment config for a new deployment.
@@ -137,7 +137,7 @@ Type
   `object`
   ```
 
-## Job [batch/v1] {#_job_batchv1}
+## Job \[batch/v1\] {#_job_batchv1}
 
 Description
 : Job represents the configuration of a single job.
@@ -147,7 +147,7 @@ Type
   `object`
   ```
 
-## Pod [v1] {#_pod_v1}
+## Pod \[v1\] {#_pod_v1}
 
 Description
 : Pod is a collection of containers that can run on a host. This resource is created by clients and scheduled onto hosts.
@@ -157,7 +157,7 @@ Type
   `object`
   ```
 
-## ReplicationController [v1] {#_replicationcontroller_v1}
+## ReplicationController \[v1\] {#_replicationcontroller_v1}
 
 Description
 : ReplicationController represents the configuration of a replication controller.
@@ -167,7 +167,7 @@ Type
   `object`
   ```
 
-## ReplicaSet [apps/v1] {#_replicaset_appsv1}
+## ReplicaSet \[apps/v1\] {#_replicaset_appsv1}
 
 Description
 : ReplicaSet ensures that a specified number of pod replicas are running at any given time.
@@ -177,7 +177,7 @@ Type
   `object`
   ```
 
-## StatefulSet [apps/v1] {#_statefulset_appsv1}
+## StatefulSet \[apps/v1\] {#_statefulset_appsv1}
 
 Description
 : StatefulSet represents a set of pods with consistent identities. Identities are defined as:

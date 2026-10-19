@@ -238,7 +238,7 @@ Container garbage collection removes terminated containers. Image garbage collec
 
 **Verification**
 
-- Verify that garbage collection is active by entering the following command. The Machine Config Pool you specified in the custom resource appears with `UPDATING` as 'true` until the change is fully implemented:
+- Verify that garbage collection is active by entering the following command. The Machine Config Pool you specified in the custom resource appears with `UPDATING` as 'true&#96; until the change is fully implemented:
   ```terminal
   $ oc get machineconfigpool
   ```

@@ -9,7 +9,7 @@ sidebar_position: 4
 
 You can use a CLI configuration file to create different profiles, or contexts, for use with the OpenShift CLI (`oc`). A context consists of user authentication and a OpenShift Container Platform server information associated with a *nickname*.
 
-## About switching between CLI profiles {#about-switches-between-cli-profiles_managing-cli-profiles}
+## Switch between CLI profiles {#about-switches-between-cli-profiles_managing-cli-profiles}
 
 You can use contexts to easily switch between users across multiple OpenShift Container Platform clusters when using the OpenShift CLI (`oc`). You specify a nickname to make managing CLI configurations easier by providing short-hand references to contexts, user credentials, and cluster details.
 
@@ -114,7 +114,7 @@ $ oc login -u system:admin -n default
 
 :::
 
-## Manually configuring CLI profiles {#manual-configuration-of-cli-profiles-example_managing-cli-profiles}
+## Configure CLI profiles manually {#manual-configuration-of-cli-profiles-example_managing-cli-profiles}
 
 If you want to manually configure your CLI configuration files, you can use the `oc config` command instead of directly modifying the files.
 

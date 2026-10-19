@@ -126,7 +126,7 @@ If the cluster has any public subnets, load balancer services created by adminis
 To deploy a private cluster, you must:
 
 - Use existing networking that meets your requirements. Your cluster resources might be shared between other clusters on the network.
-- Deploy from a machine that has access to: ** The API services for the cloud to which you provision. ** The hosts on the network that you provision. ** The internet to obtain installation media.
+- Deploy from a machine that has access to: \*\* The API services for the cloud to which you provision. \*\* The hosts on the network that you provision. \*\* The internet to obtain installation media.
 
 You can use any machine that meets these access requirements and follows your company’s guidelines. For example, this machine can be a bastion host on your cloud network.
 
@@ -138,7 +138,7 @@ AWS China does not support a VPN connection between the VPC and your network.
 
 **Additional resources**
 
-- [Amazon Virtual Private Cloud (AWS China documentation)](https://docs.amazonaws.cn/en_us/aws/latest/userguide/vpc.html)
+- [Amazon Virtual Private Cloud (AWS China documentation)](https://docs.amazonaws.cn/en_us/aws/latest/userguide/vpc.html) &#123;.\_additional-resources&#125;
 
 ### Private clusters in AWS {#private-clusters-about-aws_installing-aws-specialized-region}
 

@@ -361,7 +361,7 @@ The IDMS and ITMS objects must be created before you can add Windows nodes using
 
 :::
 
-### Configuring image registry repository mirroring {#images-configuration-registry-mirror-configuring_enabling-windows-container-workloads}
+### Configure image registry repository mirroring {#images-configuration-registry-mirror-configuring_enabling-windows-container-workloads}
 
 You can create postinstallation mirror configuration custom resources (CR) to redirect image pull requests from a source image registry to a mirrored image registry.
 
@@ -381,7 +381,7 @@ Windows images mirrored through `ImageDigestMirrorSet` and `ImageTagMirrorSet` o
    - Setting up a mirrored repository with Red Hat Quay. You can copy images from one repository to another and also automatically sync those repositories repeatedly over time by using Red Hat Quay.
      - [Red Hat Quay Repository Mirroring](https://docs.redhat.com/en/documentation/red_hat_quay/3/html/manage_red_hat_quay/arch-mirroring-intro#enabling-repository-mirroring-quay)
    - Using a tool such as `skopeo` to copy images manually from the source repository to the mirrored repository.
-     For example, after installing the skopeo RPM package on a {op-system-base-full system}, use the `skopeo` command as shown in the following example:
+     For example, after installing the skopeo RPM package on a &#123;op-system-base-full system&#125;, use the `skopeo` command as shown in the following example:
 
      ```terminal
      $ skopeo copy --all \

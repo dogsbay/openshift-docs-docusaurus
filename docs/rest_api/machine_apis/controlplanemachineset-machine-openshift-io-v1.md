@@ -3,7 +3,7 @@ title: "ControlPlaneMachineSet [machine.openshift.io/v1]"
 sidebar_position: 4
 ---
 
-# ControlPlaneMachineSet [machine.openshift.io/v1] {#controlplanemachineset-machine-openshift-io-v1}
+# ControlPlaneMachineSet \[machine.openshift.io/v1\] {#controlplanemachineset-machine-openshift-io-v1}
 
 <a id="controlplanemachineset-machine-openshift-io-v1"></a>
 
@@ -63,7 +63,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.selector.matchExpressions {#_specselectormatchexpressions}
 
@@ -75,7 +75,7 @@ Type
   `array`
   ```
 
-### .spec.selector.matchExpressions[] {#_specselectormatchexpressions}
+### .spec.selector.matchExpressions\[\] {#_specselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -186,7 +186,7 @@ Type
   `array`
   ```
 
-### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.aws[] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsaws}
+### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.aws\[\] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsaws}
 
 Description
 : AWSFailureDomain configures failure domain information for the AWS platform.
@@ -201,7 +201,7 @@ Type
 | `placement` | `object` | placement configures the placement information for this instance. |
 | `subnet` | `object` | subnet is a reference to the subnet to use for this instance. |
 
-### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.aws[].placement {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsawsplacement}
+### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.aws\[\].placement {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsawsplacement}
 
 Description
 : placement configures the placement information for this instance.
@@ -218,7 +218,7 @@ Required
 | --- | --- | --- |
 | `availabilityZone` | `string` | availabilityZone is the availability zone of the instance. |
 
-### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.aws[].subnet {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsawssubnet}
+### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.aws\[\].subnet {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsawssubnet}
 
 Description
 : subnet is a reference to the subnet to use for this instance.
@@ -239,7 +239,7 @@ Required
 | `id` | `string` | id of resource. |
 | `type` | `string` | type determines how the reference will fetch the AWS resource. |
 
-### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.aws[].subnet.filters {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsawssubnetfilters}
+### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.aws\[\].subnet.filters {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsawssubnetfilters}
 
 Description
 : filters is a set of filters used to identify a resource.
@@ -249,7 +249,7 @@ Type
   `array`
   ```
 
-### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.aws[].subnet.filters[] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsawssubnetfilters}
+### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.aws\[\].subnet.filters\[\] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsawssubnetfilters}
 
 Description
 : AWSResourceFilter is a filter used to identify an AWS resource
@@ -277,7 +277,7 @@ Type
   `array`
   ```
 
-### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.azure[] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsazure}
+### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.azure\[\] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsazure}
 
 Description
 : AzureFailureDomain configures failure domain information for the Azure platform.
@@ -305,7 +305,7 @@ Type
   `array`
   ```
 
-### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.gcp[] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsgcp}
+### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.gcp\[\] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsgcp}
 
 Description
 : GCPFailureDomain configures failure domain information for the GCP platform
@@ -332,7 +332,7 @@ Type
   `array`
   ```
 
-### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.nutanix[] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsnutanix}
+### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.nutanix\[\] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsnutanix}
 
 Description
 : NutanixFailureDomainReference refers to the failure domain of the Nutanix platform.
@@ -359,7 +359,7 @@ Type
   `array`
   ```
 
-### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.openstack[] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsopenstack}
+### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.openstack\[\] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsopenstack}
 
 Description
 : OpenStackFailureDomain configures failure domain information for the OpenStack platform.
@@ -374,7 +374,7 @@ Type
 | `availabilityZone` | `string` | availabilityZone is the nova availability zone in which the OpenStack machine provider will create the VM. If not specified, the VM will be created in the default availability zone specified in the nova configuration. Availability zone names must NOT contain : since it is used by admin users to specify hosts where instances are launched in server creation. Also, it must not contain spaces otherwise it will lead to node that belongs to this availability zone register failure, see kubernetes/cloud-provider-openstack#1379 for further information. The maximum length of availability zone name is 63 as per labels limits. |
 | `rootVolume` | `object` | rootVolume contains settings that will be used by the OpenStack machine provider to create the root volume attached to the VM. If not specified, no root volume will be created. |
 
-### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.openstack[].rootVolume {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsopenstackrootvolume}
+### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.openstack\[\].rootVolume {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsopenstackrootvolume}
 
 Description
 : rootVolume contains settings that will be used by the OpenStack machine provider to create the root volume attached to the VM. If not specified, no root volume will be created.
@@ -402,7 +402,7 @@ Type
   `array`
   ```
 
-### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.vsphere[] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsvsphere}
+### .spec.template.machines_v1beta1_machine_openshift_io.failureDomains.vsphere\[\] {#_spectemplatemachines_v1beta1_machine_openshift_iofailuredomainsvsphere}
 
 Description
 : VSphereFailureDomain configures failure domain information for the vSphere platform
@@ -483,7 +483,7 @@ Type
   `array`
   ```
 
-### .spec.template.machines_v1beta1_machine_openshift_io.spec.lifecycleHooks.preDrain[] {#_spectemplatemachines_v1beta1_machine_openshift_iospeclifecyclehookspredrain}
+### .spec.template.machines_v1beta1_machine_openshift_io.spec.lifecycleHooks.preDrain\[\] {#_spectemplatemachines_v1beta1_machine_openshift_iospeclifecyclehookspredrain}
 
 Description
 : LifecycleHook represents a single instance of a lifecycle hook
@@ -512,7 +512,7 @@ Type
   `array`
   ```
 
-### .spec.template.machines_v1beta1_machine_openshift_io.spec.lifecycleHooks.preTerminate[] {#_spectemplatemachines_v1beta1_machine_openshift_iospeclifecyclehookspreterminate}
+### .spec.template.machines_v1beta1_machine_openshift_io.spec.lifecycleHooks.preTerminate\[\] {#_spectemplatemachines_v1beta1_machine_openshift_iospeclifecyclehookspreterminate}
 
 Description
 : LifecycleHook represents a single instance of a lifecycle hook
@@ -561,7 +561,7 @@ Type
   `array`
   ```
 
-### .spec.template.machines_v1beta1_machine_openshift_io.spec.metadata.ownerReferences[] {#_spectemplatemachines_v1beta1_machine_openshift_iospecmetadataownerreferences}
+### .spec.template.machines_v1beta1_machine_openshift_io.spec.metadata.ownerReferences\[\] {#_spectemplatemachines_v1beta1_machine_openshift_iospecmetadataownerreferences}
 
 Description
 : OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.
@@ -598,7 +598,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `value` | `` | value is an inlined, serialized representation of the resource configuration. It is recommended that providers maintain their own versioned API types that should be serialized/deserialized from this field, akin to component config. |
+| `value` | &#96;&#96; | value is an inlined, serialized representation of the resource configuration. It is recommended that providers maintain their own versioned API types that should be serialized/deserialized from this field, akin to component config. |
 
 ### .spec.template.machines_v1beta1_machine_openshift_io.spec.taints {#_spectemplatemachines_v1beta1_machine_openshift_iospectaints}
 
@@ -610,7 +610,7 @@ Type
   `array`
   ```
 
-### .spec.template.machines_v1beta1_machine_openshift_io.spec.taints[] {#_spectemplatemachines_v1beta1_machine_openshift_iospectaints}
+### .spec.template.machines_v1beta1_machine_openshift_io.spec.taints\[\] {#_spectemplatemachines_v1beta1_machine_openshift_iospectaints}
 
 Description
 : The node this Taint is attached to has the "effect" on any pod that does not tolerate the Taint.
@@ -661,7 +661,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -682,7 +682,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -730,7 +730,7 @@ Description
 | 200 - OK | [`ControlPlaneMachineSetList`](/docs/rest_api/objects#io-openshift-machine-v1-ControlPlaneMachineSetList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1/namespaces/{namespace}/controlplanemachinesets {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets}
+### /apis/machine.openshift.io/v1/namespaces/&#123;namespace&#125;/controlplanemachinesets {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets}
 
 HTTP method
 : ```
@@ -798,7 +798,7 @@ Description
 | 202 - Accepted | [`ControlPlaneMachineSet`](/docs/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1/namespaces/{namespace}/controlplanemachinesets/{name} {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets_name}
+### /apis/machine.openshift.io/v1/namespaces/&#123;namespace&#125;/controlplanemachinesets/&#123;name&#125; {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets_name}
 
 **Global path parameters**
 
@@ -902,7 +902,7 @@ Description
 | 201 - Created | [`ControlPlaneMachineSet`](/docs/rest_api/machine_apis/controlplanemachineset-machine-openshift-io-v1#controlplanemachineset-machine-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1/namespaces/{namespace}/controlplanemachinesets/{name}/scale {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets_name_scale}
+### /apis/machine.openshift.io/v1/namespaces/&#123;namespace&#125;/controlplanemachinesets/&#123;name&#125;/scale {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets_name_scale}
 
 **Global path parameters**
 
@@ -982,7 +982,7 @@ Description
 | 201 - Created | [`Scale`](/docs/rest_api/autoscale_apis/scale-autoscaling-v1#scale-autoscaling-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1/namespaces/{namespace}/controlplanemachinesets/{name}/status {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets_name_status}
+### /apis/machine.openshift.io/v1/namespaces/&#123;namespace&#125;/controlplanemachinesets/&#123;name&#125;/status {#_apismachineopenshiftiov1namespaces_namespace_controlplanemachinesets_name_status}
 
 **Global path parameters**
 

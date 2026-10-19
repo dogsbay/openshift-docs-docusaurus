@@ -9,7 +9,7 @@ sidebar_position: 3
 
 Use OADP Self-Service as a namespace administrator to create backup storage locations, perform backup and restore operations, and review operation logs for your authorized namespaces. This helps you to manage data protection independently without cluster admin access.
 
-## Creating a NonAdminBackupStorageLocation CR {#oadp-self-service-creating-nabsl_oadp-self-service-namespace-admin-use-cases}
+## Create a NonAdminBackupStorageLocation CR {#oadp-self-service-creating-nabsl_oadp-self-service-namespace-admin-use-cases}
 
 Create a `NonAdminBackupStorageLocation` (NABSL) custom resource (CR) to define backup storage locations in your authorized namespace. With this feature, you can store backups in a cloud storage that meets your application requirements.
 
@@ -184,7 +184,7 @@ Create a `NonAdminBackupStorageLocation` (NABSL) custom resource (CR) to define 
    <dd>Specifies that the NABSL is ready for use.</dd>
    </dl>
 
-## Creating a NonAdminBackup CR {#oadp-self-service-creating-nab_oadp-self-service-namespace-admin-use-cases}
+## Create a NonAdminBackup CR {#oadp-self-service-creating-nab_oadp-self-service-namespace-admin-use-cases}
 
 Create a `NonAdminBackup` (NAB) custom resource (CR) to back up application resources in your authorized namespace. This helps you to protect your application data and configuration without requiring cluster administrator privileges.
 
@@ -351,7 +351,7 @@ Review the following important points when creating a NAB CR:
   <dd>Specifies that the <code>Velero</code> backup object is in the <code>Completed</code> phase and the backup is successful.</dd>
   </dl>
 
-## Deleting a NonAdminBackup CR {#oadp-self-service-deleting-nab_oadp-self-service-namespace-admin-use-cases}
+## Delete a NonAdminBackup CR {#oadp-self-service-deleting-nab_oadp-self-service-namespace-admin-use-cases}
 
 As a namespace admin user, you can delete a `NonAdminBackup` (NAB) custom resource (CR).
 
@@ -417,7 +417,7 @@ As a namespace admin user, you can delete a `NonAdminBackup` (NAB) custom resour
   Error from server (NotFound): nonadminbackups.oadp.openshift.io "test-nab" not found
   ```
 
-## Creating a NonAdminRestore CR {#oadp-self-service-creating-nar_oadp-self-service-namespace-admin-use-cases}
+## Create a NonAdminRestore CR {#oadp-self-service-creating-nar_oadp-self-service-namespace-admin-use-cases}
 
 Create a `NonAdminRestore` (NAR) custom resource (CR) to restore application resources from a backup to your authorized namespace. This provides an ability to recover your application data and configuration without requiring cluster administrator privileges.
 
@@ -557,7 +557,7 @@ You can download the following NADR resources:
 | `RestoreLog` | Logs from the restore operation | `velero restore logs` |
 | `RestoreResults` | Detailed results of the restore | `velero restore describe --details` |
 
-## Reviewing NAB and NAR logs {#oadp-self-service-nab-nar-logs_oadp-self-service-namespace-admin-use-cases}
+## Review NAB and NAR logs {#oadp-self-service-nab-nar-logs_oadp-self-service-namespace-admin-use-cases}
 
 Create a `NonAdminDownloadRequest` (NADR) custom resource (CR) to access and review detailed logs for `NonAdminBackup` (NAB) and `NonAdminRestore` (NAR) operations. This helps you troubleshoot backup and restore issues independently.
 

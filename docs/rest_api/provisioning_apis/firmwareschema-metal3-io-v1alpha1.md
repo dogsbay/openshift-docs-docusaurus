@@ -3,7 +3,7 @@ title: "FirmwareSchema [metal3.io/v1alpha1]"
 sidebar_position: 5
 ---
 
-# FirmwareSchema [metal3.io/v1alpha1] {#firmwareschema-metal3-io-v1alpha1}
+# FirmwareSchema \[metal3.io/v1alpha1\] {#firmwareschema-metal3-io-v1alpha1}
 
 <a id="firmwareschema-metal3-io-v1alpha1"></a>
 
@@ -54,7 +54,7 @@ Type
   `object`
   ```
 
-### .spec.schema{} {#_specschema}
+### .spec.schema&#123;&#125; {#_specschema}
 
 Description
 : Additional data describing the firmware setting.
@@ -110,7 +110,7 @@ Description
 | 200 - OK | [`FirmwareSchemaList`](/docs/rest_api/objects#io-metal3-v1alpha1-FirmwareSchemaList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/firmwareschemas {#_apismetal3iov1alpha1namespaces_namespace_firmwareschemas}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/firmwareschemas {#_apismetal3iov1alpha1namespaces_namespace_firmwareschemas}
 
 HTTP method
 : ```
@@ -178,7 +178,7 @@ Description
 | 202 - Accepted | [`FirmwareSchema`](/docs/rest_api/provisioning_apis/firmwareschema-metal3-io-v1alpha1#firmwareschema-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/firmwareschemas/{name} {#_apismetal3iov1alpha1namespaces_namespace_firmwareschemas_name}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/firmwareschemas/&#123;name&#125; {#_apismetal3iov1alpha1namespaces_namespace_firmwareschemas_name}
 
 **Global path parameters**
 

@@ -3,7 +3,7 @@ title: "Service [v1]"
 sidebar_position: 32
 ---
 
-# Service [v1]
+# Service \[v1\]
 
 <a id="service-v1"></a>
 
@@ -39,7 +39,7 @@ Type
 | --- | --- | --- |
 | `allocateLoadBalancerNodePorts` | `boolean` | allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer.  Default is "true". It may be set to "false" if the cluster load-balancer does not rely on NodePorts.  If the caller requests specific NodePorts (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type. |
 | `clusterIP` | `string` | clusterIP is the IP address of the service and is usually assigned randomly. If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be blank) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above).  Valid values are "None", empty string (""), or a valid IP address. Setting this to "None" makes a "headless service" (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required.  Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies |
-| `clusterIPs` | `array (string)` | ClusterIPs is a list of IP addresses assigned to this service, and are usually assigned randomly.  If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be empty) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above).  Valid values are "None", empty string (""), or a valid IP address.  Setting this to "None" makes a "headless service" (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required.  Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName.  If this field is not specified, it will be initialized from the clusterIP field.  If this field is specified, clients must ensure that clusterIPs[0] and clusterIP have the same value.<br>This field may hold a maximum of two entries (dual-stack IPs, in either order). These IPs must correspond to the values of the ipFamilies field. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies |
+| `clusterIPs` | `array (string)` | ClusterIPs is a list of IP addresses assigned to this service, and are usually assigned randomly.  If an address is specified manually, is in-range (as per system configuration), and is not in use, it will be allocated to the service; otherwise creation of the service will fail. This field may not be changed through updates unless the type field is also being changed to ExternalName (which requires this field to be empty) or the type field is being changed from ExternalName (in which case this field may optionally be specified, as describe above).  Valid values are "None", empty string (""), or a valid IP address.  Setting this to "None" makes a "headless service" (no virtual IP), which is useful when direct endpoint connections are preferred and proxying is not required.  Only applies to types ClusterIP, NodePort, and LoadBalancer. If this field is specified when creating a Service of type ExternalName, creation will fail. This field will be wiped when updating a Service to type ExternalName.  If this field is not specified, it will be initialized from the clusterIP field.  If this field is specified, clients must ensure that clusterIPs\[0\] and clusterIP have the same value.<br>This field may hold a maximum of two entries (dual-stack IPs, in either order). These IPs must correspond to the values of the ipFamilies field. Both clusterIPs and ipFamilies are governed by the ipFamilyPolicy field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies |
 | `externalIPs` | `array (string)` | externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.  These IPs are not managed by Kubernetes.  The user is responsible for ensuring that traffic arrives at a node with this IP.  A common example is external load-balancers that are not part of the Kubernetes system. |
 | `externalName` | `string` | externalName is the external reference that discovery mechanisms will return as an alias for this service (e.g. a DNS CNAME record). No proxying will be involved.  Must be a lowercase RFC-1123 hostname (https://tools.ietf.org/html/rfc1123) and requires `type` to be "ExternalName". |
 | `externalTrafficPolicy` | `string` | externalTrafficPolicy describes how nodes distribute service traffic they receive on one of the Service’s "externally-facing" addresses (NodePorts, ExternalIPs, and LoadBalancer IPs). If set to "Local", the proxy will configure the service in a way that assumes that external load balancers will take care of balancing the service traffic between nodes, and so each node will deliver traffic only to the node-local endpoints of the service, without masquerading the client source IP. (Traffic mistakenly sent to a node with no endpoints will be dropped.) The default value, "Cluster", uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features). Note that traffic sent to an External IP or LoadBalancer IP from within the cluster will always get "Cluster" semantics, but clients sending to a NodePort from within the cluster may need to take traffic policy into account when picking a node.<br>Possible enum values:  - `"Cluster"` routes traffic to all endpoints.  - `"Local"` preserves the source IP of the traffic by routing only to endpoints on the same node as the traffic was received on (dropping the traffic if there are no local endpoints). |
@@ -69,7 +69,7 @@ Type
   `array`
   ```
 
-### .spec.ports[] {#_specports}
+### .spec.ports\[\] {#_specports}
 
 Description
 : ServicePort contains information on service’s port.
@@ -84,7 +84,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `appProtocol` | `string` | The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either:<br>* Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names).<br>* Kubernetes-defined prefixed names:   * 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-   * 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455   * 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455<br>* Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol. |
+| `appProtocol` | `string` | The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either:<br>\* Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names).<br>\* Kubernetes-defined prefixed names:   \* 'kubernetes.io/h2c' - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior-   \* 'kubernetes.io/ws'  - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455   \* 'kubernetes.io/wss' - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455<br>\* Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol. |
 | `name` | `string` | The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the 'name' field in the EndpointPort. Optional if only one ServicePort is defined on this service. |
 | `nodePort` | `integer` | The port on each node on which this service is exposed when type is NodePort or LoadBalancer.  Usually assigned by the system. If a value is specified, in-range, and not in use it will be used, otherwise the operation will fail.  If not specified, a port will be allocated if this Service requires one.  If this field is specified when creating a Service which does not need it, creation will fail. This field will be wiped when updating a Service to no longer need it (e.g. changing type from NodePort to ClusterIP). More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport |
 | `port` | `integer` | The port that will be exposed by this service. |
@@ -117,7 +117,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `timeoutSeconds` | `integer` | timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == "ClientIP". Default value is 10800(for 3 hours). |
+| `timeoutSeconds` | `integer` | timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && &lt;=86400(for 1 day) if ServiceAffinity == "ClientIP". Default value is 10800(for 3 hours). |
 
 ### .status {#_status}
 
@@ -159,7 +159,7 @@ Type
   `array`
   ```
 
-### .status.loadBalancer.ingress[] {#_statusloadbalanceringress}
+### .status.loadBalancer.ingress\[\] {#_statusloadbalanceringress}
 
 Description
 : LoadBalancerIngress represents the status of a load-balancer ingress point: traffic intended for the service should be sent to an ingress point.
@@ -177,7 +177,7 @@ Type
 | `ports` | `array` | Ports is a list of records of service ports If used, every port defined in the service should have an entry in it |
 | `ports[]` | `object` | PortStatus represents the error condition of a service port |
 
-### .status.loadBalancer.ingress[].ports {#_statusloadbalanceringressports}
+### .status.loadBalancer.ingress\[\].ports {#_statusloadbalanceringressports}
 
 Description
 : Ports is a list of records of service ports If used, every port defined in the service should have an entry in it
@@ -187,7 +187,7 @@ Type
   `array`
   ```
 
-### .status.loadBalancer.ingress[].ports[] {#_statusloadbalanceringressports}
+### .status.loadBalancer.ingress\[\].ports\[\] {#_statusloadbalanceringressports}
 
 Description
 : PortStatus represents the error condition of a service port
@@ -271,7 +271,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/services {#_apiv1namespaces_namespace_services}
+### /api/v1/namespaces/&#123;namespace&#125;/services {#_apiv1namespaces_namespace_services}
 
 HTTP method
 : ```
@@ -345,7 +345,7 @@ Description
 | 202 - Accepted | [`Service`](/docs/rest_api/network_apis/service-v1#service-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{namespace}/services {#_apiv1watchnamespaces_namespace_services}
+### /api/v1/watch/namespaces/&#123;namespace&#125;/services {#_apiv1watchnamespaces_namespace_services}
 
 HTTP method
 : ```
@@ -364,7 +364,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/services/{name} {#_apiv1namespaces_namespace_services_name}
+### /api/v1/namespaces/&#123;namespace&#125;/services/&#123;name&#125; {#_apiv1namespaces_namespace_services_name}
 
 **Global path parameters**
 
@@ -469,7 +469,7 @@ Description
 | 201 - Created | [`Service`](/docs/rest_api/network_apis/service-v1#service-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{namespace}/services/{name} {#_apiv1watchnamespaces_namespace_services_name}
+### /api/v1/watch/namespaces/&#123;namespace&#125;/services/&#123;name&#125; {#_apiv1watchnamespaces_namespace_services_name}
 
 **Global path parameters**
 
@@ -494,7 +494,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/services/{name}/status {#_apiv1namespaces_namespace_services_name_status}
+### /api/v1/namespaces/&#123;namespace&#125;/services/&#123;name&#125;/status {#_apiv1namespaces_namespace_services_name_status}
 
 **Global path parameters**
 

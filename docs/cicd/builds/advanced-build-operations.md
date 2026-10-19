@@ -32,8 +32,8 @@ You can limit resource use in two ways:
           memory: "256Mi" (2)
     ```
 
-    1. `cpu` is in CPU units: `100m` represents 0.1 CPU units (100 * 1e-3).
-    2. `memory` is in bytes: `256Mi` represents 268435456 bytes (256 * 2 ^ 20).
+    1. `cpu` is in CPU units: `100m` represents 0.1 CPU units (100 \* 1e-3).
+    2. `memory` is in bytes: `256Mi` represents 268435456 bytes (256 \* 2 ^ 20).
        However, if a quota has been defined for your project, one of the following two items is required:
 
        - A `resources` section set with an explicit `requests`:

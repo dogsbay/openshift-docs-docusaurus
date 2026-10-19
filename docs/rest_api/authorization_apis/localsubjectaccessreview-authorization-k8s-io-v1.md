@@ -3,7 +3,7 @@ title: "LocalSubjectAccessReview [authorization.k8s.io/v1]"
 sidebar_position: 11
 ---
 
-# LocalSubjectAccessReview [authorization.k8s.io/v1] {#localsubjectaccessreview-authorization-k8s-io-v1}
+# LocalSubjectAccessReview \[authorization.k8s.io/v1\] {#localsubjectaccessreview-authorization-k8s-io-v1}
 
 <a id="localsubjectaccessreview-authorization-k8s-io-v1"></a>
 
@@ -85,20 +85,20 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `fieldSelector` | `object` | FieldSelectorAttributes indicates a field limited access. Webhook authors are encouraged to * ensure rawSelector and requirements are not both set * consider the requirements field if set * not try to parse or consider the rawSelector field if set. This is to avoid another CVE-2022-2880 (i.e. getting different systems to agree on how exactly to parse a query is not something we want), see https://www.oxeye.io/resources/golang-parameter-smuggling-attack for more details. For the *SubjectAccessReview endpoints of the kube-apiserver: * If rawSelector is empty and requirements are empty, the request is not limited. * If rawSelector is present and requirements are empty, the rawSelector will be parsed and limited if the parsing succeeds. * If rawSelector is empty and requirements are present, the requirements should be honored * If rawSelector is present and requirements are present, the request is invalid. |
-| `group` | `string` | Group is the API Group of the Resource.  "*" means all. |
-| `labelSelector` | `object` | LabelSelectorAttributes indicates a label limited access. Webhook authors are encouraged to * ensure rawSelector and requirements are not both set * consider the requirements field if set * not try to parse or consider the rawSelector field if set. This is to avoid another CVE-2022-2880 (i.e. getting different systems to agree on how exactly to parse a query is not something we want), see https://www.oxeye.io/resources/golang-parameter-smuggling-attack for more details. For the *SubjectAccessReview endpoints of the kube-apiserver: * If rawSelector is empty and requirements are empty, the request is not limited. * If rawSelector is present and requirements are empty, the rawSelector will be parsed and limited if the parsing succeeds. * If rawSelector is empty and requirements are present, the requirements should be honored * If rawSelector is present and requirements are present, the request is invalid. |
+| `fieldSelector` | `object` | FieldSelectorAttributes indicates a field limited access. Webhook authors are encouraged to \* ensure rawSelector and requirements are not both set \* consider the requirements field if set \* not try to parse or consider the rawSelector field if set. This is to avoid another CVE-2022-2880 (i.e. getting different systems to agree on how exactly to parse a query is not something we want), see https://www.oxeye.io/resources/golang-parameter-smuggling-attack for more details. For the \*SubjectAccessReview endpoints of the kube-apiserver: \* If rawSelector is empty and requirements are empty, the request is not limited. \* If rawSelector is present and requirements are empty, the rawSelector will be parsed and limited if the parsing succeeds. \* If rawSelector is empty and requirements are present, the requirements should be honored \* If rawSelector is present and requirements are present, the request is invalid. |
+| `group` | `string` | Group is the API Group of the Resource.  "\*" means all. |
+| `labelSelector` | `object` | LabelSelectorAttributes indicates a label limited access. Webhook authors are encouraged to \* ensure rawSelector and requirements are not both set \* consider the requirements field if set \* not try to parse or consider the rawSelector field if set. This is to avoid another CVE-2022-2880 (i.e. getting different systems to agree on how exactly to parse a query is not something we want), see https://www.oxeye.io/resources/golang-parameter-smuggling-attack for more details. For the \*SubjectAccessReview endpoints of the kube-apiserver: \* If rawSelector is empty and requirements are empty, the request is not limited. \* If rawSelector is present and requirements are empty, the rawSelector will be parsed and limited if the parsing succeeds. \* If rawSelector is empty and requirements are present, the requirements should be honored \* If rawSelector is present and requirements are present, the request is invalid. |
 | `name` | `string` | Name is the name of the resource being requested for a "get" or deleted for a "delete". "" (empty) means all. |
 | `namespace` | `string` | Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview |
-| `resource` | `string` | Resource is one of the existing resource types.  "*" means all. |
+| `resource` | `string` | Resource is one of the existing resource types.  "\*" means all. |
 | `subresource` | `string` | Subresource is one of the existing resource types.  "" means none. |
-| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all. |
-| `version` | `string` | Version is the API Version of the Resource.  "*" means all. |
+| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "\*" means all. |
+| `version` | `string` | Version is the API Version of the Resource.  "\*" means all. |
 
 ### .spec.resourceAttributes.fieldSelector {#_specresourceattributesfieldselector}
 
 Description
-: FieldSelectorAttributes indicates a field limited access. Webhook authors are encouraged to * ensure rawSelector and requirements are not both set * consider the requirements field if set * not try to parse or consider the rawSelector field if set. This is to avoid another CVE-2022-2880 (i.e. getting different systems to agree on how exactly to parse a query is not something we want), see https://www.oxeye.io/resources/golang-parameter-smuggling-attack for more details. For the *SubjectAccessReview endpoints of the kube-apiserver: * If rawSelector is empty and requirements are empty, the request is not limited. * If rawSelector is present and requirements are empty, the rawSelector will be parsed and limited if the parsing succeeds. * If rawSelector is empty and requirements are present, the requirements should be honored * If rawSelector is present and requirements are present, the request is invalid.
+: FieldSelectorAttributes indicates a field limited access. Webhook authors are encouraged to \* ensure rawSelector and requirements are not both set \* consider the requirements field if set \* not try to parse or consider the rawSelector field if set. This is to avoid another CVE-2022-2880 (i.e. getting different systems to agree on how exactly to parse a query is not something we want), see https://www.oxeye.io/resources/golang-parameter-smuggling-attack for more details. For the \*SubjectAccessReview endpoints of the kube-apiserver: \* If rawSelector is empty and requirements are empty, the request is not limited. \* If rawSelector is present and requirements are empty, the rawSelector will be parsed and limited if the parsing succeeds. \* If rawSelector is empty and requirements are present, the requirements should be honored \* If rawSelector is present and requirements are present, the request is invalid.
 
 Type
 : ```
@@ -107,13 +107,13 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
+| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s \*SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | [`array (FieldSelectorRequirement)`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-FieldSelectorRequirement) | requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 
 ### .spec.resourceAttributes.labelSelector {#_specresourceattributeslabelselector}
 
 Description
-: LabelSelectorAttributes indicates a label limited access. Webhook authors are encouraged to * ensure rawSelector and requirements are not both set * consider the requirements field if set * not try to parse or consider the rawSelector field if set. This is to avoid another CVE-2022-2880 (i.e. getting different systems to agree on how exactly to parse a query is not something we want), see https://www.oxeye.io/resources/golang-parameter-smuggling-attack for more details. For the *SubjectAccessReview endpoints of the kube-apiserver: * If rawSelector is empty and requirements are empty, the request is not limited. * If rawSelector is present and requirements are empty, the rawSelector will be parsed and limited if the parsing succeeds. * If rawSelector is empty and requirements are present, the requirements should be honored * If rawSelector is present and requirements are present, the request is invalid.
+: LabelSelectorAttributes indicates a label limited access. Webhook authors are encouraged to \* ensure rawSelector and requirements are not both set \* consider the requirements field if set \* not try to parse or consider the rawSelector field if set. This is to avoid another CVE-2022-2880 (i.e. getting different systems to agree on how exactly to parse a query is not something we want), see https://www.oxeye.io/resources/golang-parameter-smuggling-attack for more details. For the \*SubjectAccessReview endpoints of the kube-apiserver: \* If rawSelector is empty and requirements are empty, the request is not limited. \* If rawSelector is present and requirements are empty, the rawSelector will be parsed and limited if the parsing succeeds. \* If rawSelector is empty and requirements are present, the requirements should be honored \* If rawSelector is present and requirements are present, the request is invalid.
 
 Type
 : ```
@@ -122,7 +122,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
+| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s \*SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | [`array (LabelSelectorRequirement)`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelectorRequirement) | requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 
 ### .status {#_status}
@@ -152,7 +152,7 @@ The following API endpoints are available:
 - `/apis/authorization.k8s.io/v1/namespaces/{namespace}/localsubjectaccessreviews`
   - `POST`: create a LocalSubjectAccessReview
 
-### /apis/authorization.k8s.io/v1/namespaces/{namespace}/localsubjectaccessreviews {#_apisauthorizationk8siov1namespaces_namespace_localsubjectaccessreviews}
+### /apis/authorization.k8s.io/v1/namespaces/&#123;namespace&#125;/localsubjectaccessreviews {#_apisauthorizationk8siov1namespaces_namespace_localsubjectaccessreviews}
 
 **Global query parameters**
 

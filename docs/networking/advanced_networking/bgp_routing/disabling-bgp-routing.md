@@ -11,7 +11,7 @@ To stop external route advertisement and restore standard cluster networking beh
 
 As a cluster administrator, you can disable OVN-Kubernetes BGP routing support for your cluster.
 
-## Disabling Border Gateway Protocol (BGP) routing {#nw-bgp-routing-config_disable-bgp-routing}
+## Disabling Border Gateway Protocol (BGP) routing {#nw-bgp-routing-disable_disable-bgp-routing}
 
 Disable Border Gateway Protocol (BGP) routing for your cluster by removing additional routing capabilities from the network configuration.
 

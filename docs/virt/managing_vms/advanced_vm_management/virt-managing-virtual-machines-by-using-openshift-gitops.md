@@ -3,11 +3,11 @@ title: Managing virtual machines by using OpenShift GitOps
 sidebar_position: 16
 ---
 
-# Managing virtual machines by using OpenShift GitOps {#virt-managing-virtual-machines-by-using-openshift-gitops_{context}}
+# Managing virtual machines by using OpenShift GitOps {#virt-managing-virtual-machines-by-using-openshift-gitops_-context-}
 
-<a id="virt-managing-virtual-machines-by-using-openshift-gitops_{context}"></a>
+<a id="virt-managing-virtual-machines-by-using-openshift-gitops_-context-"></a>
 
-To automate and optimize virtual machine (VM) management in {VirtProductName}, you can use Red Hat OpenShift GitOps.
+To automate and optimize virtual machine (VM) management in &#123;VirtProductName&#125;, you can use Red Hat OpenShift GitOps.
 
 With GitOps, you can set up VM deployments based on configuration files stored in a Git repository. This also makes it easier to automate, update, or replicate these configurations, as well to use version control for tracking their changes.
 

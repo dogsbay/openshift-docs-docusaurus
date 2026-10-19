@@ -3,12 +3,12 @@ title: "ImageStreamImage [image.openshift.io/v1]"
 sidebar_position: 4
 ---
 
-# ImageStreamImage [image.openshift.io/v1] {#imagestreamimage-image-openshift-io-v1}
+# ImageStreamImage \[image.openshift.io/v1\] {#imagestreamimage-image-openshift-io-v1}
 
 <a id="imagestreamimage-image-openshift-io-v1"></a>
 
 Description
-: ImageStreamImage represents an Image that is retrieved by image name from an ImageStream. User interfaces and regular users can use this resource to access the metadata details of a tagged image in the image stream history for viewing, since Image resources are not directly accessible to end users. A not found error will be returned if no such image is referenced by a tag within the ImageStream. Images are created when spec tags are set on an image stream that represent an image in an external registry, when pushing to the integrated registry, or when tagging an existing image from one image stream to another. The name of an image stream image is in the form "<STREAM>@<DIGEST>", where the digest is the content addressible identifier for the image (sha256:xxxxx...). You can use ImageStreamImages as the from.kind of an image stream spec tag to reference an image exactly. The only operations supported on the imagestreamimage endpoint are retrieving the image.
+: ImageStreamImage represents an Image that is retrieved by image name from an ImageStream. User interfaces and regular users can use this resource to access the metadata details of a tagged image in the image stream history for viewing, since Image resources are not directly accessible to end users. A not found error will be returned if no such image is referenced by a tag within the ImageStream. Images are created when spec tags are set on an image stream that represent an image in an external registry, when pushing to the integrated registry, or when tagging an existing image from one image stream to another. The name of an image stream image is in the form "&lt;STREAM>@&lt;DIGEST>", where the digest is the content addressible identifier for the image (sha256:xxxxx...). You can use ImageStreamImages as the from.kind of an image stream spec tag to reference an image exactly. The only operations supported on the imagestreamimage endpoint are retrieving the image.
 
   Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).
 
@@ -70,7 +70,7 @@ Type
   `array`
   ```
 
-### .image.dockerImageLayers[] {#_imagedockerimagelayers}
+### .image.dockerImageLayers\[\] {#_imagedockerimagelayers}
 
 Description
 : ImageLayer represents a single layer of the image. Some images may have multiple layers. Some may have none.
@@ -101,7 +101,7 @@ Type
   `array`
   ```
 
-### .image.dockerImageManifests[] {#_imagedockerimagemanifests}
+### .image.dockerImageManifests\[\] {#_imagedockerimagemanifests}
 
 Description
 : ImageManifest represents sub-manifests of a manifest list. The Digest field points to a regular Image object.
@@ -137,7 +137,7 @@ Type
   `array`
   ```
 
-### .image.signatures[] {#_imagesignatures}
+### .image.signatures\[\] {#_imagesignatures}
 
 Description
 : ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.
@@ -168,7 +168,7 @@ Required
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
 
-### .image.signatures[].conditions {#_imagesignaturesconditions}
+### .image.signatures\[\].conditions {#_imagesignaturesconditions}
 
 Description
 : conditions represent the latest available observations of a signature’s current state.
@@ -178,7 +178,7 @@ Type
   `array`
   ```
 
-### .image.signatures[].conditions[] {#_imagesignaturesconditions}
+### .image.signatures\[\].conditions\[\] {#_imagesignaturesconditions}
 
 Description
 : SignatureCondition describes an image signature condition of particular kind at particular probe time.
@@ -201,7 +201,7 @@ Required
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
 
-### .image.signatures[].issuedBy {#_imagesignaturesissuedby}
+### .image.signatures\[\].issuedBy {#_imagesignaturesissuedby}
 
 Description
 : SignatureIssuer holds information about an issuer of signing certificate or key.
@@ -216,7 +216,7 @@ Type
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
 
-### .image.signatures[].issuedTo {#_imagesignaturesissuedto}
+### .image.signatures\[\].issuedTo {#_imagesignaturesissuedto}
 
 Description
 : SignatureSubject holds information about a person or entity who created the signature.
@@ -242,7 +242,7 @@ The following API endpoints are available:
 - `/apis/image.openshift.io/v1/namespaces/{namespace}/imagestreamimages/{name}`
   - `GET`: read the specified ImageStreamImage
 
-### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreamimages/{name} {#_apisimageopenshiftiov1namespaces_namespace_imagestreamimages_name}
+### /apis/image.openshift.io/v1/namespaces/&#123;namespace&#125;/imagestreamimages/&#123;name&#125; {#_apisimageopenshiftiov1namespaces_namespace_imagestreamimages_name}
 
 **Global path parameters**
 

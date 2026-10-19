@@ -45,15 +45,15 @@ The software catalog is available to administrators and helps with easy discover
 
 | Feature | New installer | Software catalog |
 | --- | --- | --- |
-| Console and authentication | * [x] | - |
-| Prometheus cluster monitoring | * [x] | - |
-| Over-the-air updates | * [x] | - |
-| Machine management | * [x] | - |
-| Optional service brokers | - | * [x] |
-| Optional OpenShift Container Platform components | - | * [x] |
-| Red Hat product Operators | - | * [x] |
-| Red Hat partner Operators | - | * [x] |
-| Community Operators | - | * [x] |
+| Console and authentication | \* \[x\] | - |
+| Prometheus cluster monitoring | \* \[x\] | - |
+| Over-the-air updates | \* \[x\] | - |
+| Machine management | \* \[x\] | - |
+| Optional service brokers | - | \* \[x\] |
+| Optional OpenShift Container Platform components | - | \* \[x\] |
+| Red Hat product Operators | - | \* \[x\] |
+| Red Hat partner Operators | - | \* \[x\] |
+| Community Operators | - | \* \[x\] |
 
 See [Understanding the software catalog](/docs/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog) for more information.
 

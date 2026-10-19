@@ -3,7 +3,7 @@ title: "IPPool [whereabouts.cni.cncf.io/v1alpha1]"
 sidebar_position: 23
 ---
 
-# IPPool [whereabouts.cni.cncf.io/v1alpha1] {#ippool-whereabouts-cni-cncf-io-v1alpha1}
+# IPPool \[whereabouts.cni.cncf.io/v1alpha1\] {#ippool-whereabouts-cni-cncf-io-v1alpha1}
 
 <a id="ippool-whereabouts-cni-cncf-io-v1alpha1"></a>
 
@@ -40,21 +40,21 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `allocations` | `object` | Allocations is the set of allocated IPs for the given range. Its` indices are a direct mapping to the IP with the same index/offset for the pool’s range. |
+| `allocations` | `object` | Allocations is the set of allocated IPs for the given range. Its&#96; indices are a direct mapping to the IP with the same index/offset for the pool’s range. |
 | `allocations{}` | `object` | IPAllocation represents metadata about the pod/container owner of a specific IP |
 | `range` | `string` | Range is a RFC 4632/4291-style string that represents an IP address and prefix length in CIDR notation |
 
 ### .spec.allocations {#_specallocations}
 
 Description
-: Allocations is the set of allocated IPs for the given range. Its` indices are a direct mapping to the IP with the same index/offset for the pool’s range.
+: Allocations is the set of allocated IPs for the given range. Its&#96; indices are a direct mapping to the IP with the same index/offset for the pool’s range.
 
 Type
 : ```
   `object`
   ```
 
-### .spec.allocations{} {#_specallocations}
+### .spec.allocations&#123;&#125; {#_specallocations}
 
 Description
 : IPAllocation represents metadata about the pod/container owner of a specific IP
@@ -109,7 +109,7 @@ Description
 | 200 - OK | [`IPPoolList`](/docs/rest_api/objects#io-cncf-cni-whereabouts-v1alpha1-IPPoolList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/ippools {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_ippools}
+### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/&#123;namespace&#125;/ippools {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_ippools}
 
 HTTP method
 : ```
@@ -177,7 +177,7 @@ Description
 | 202 - Accepted | [`IPPool`](/docs/rest_api/network_apis/ippool-whereabouts-cni-cncf-io-v1alpha1#ippool-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/ippools/{name} {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_ippools_name}
+### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/&#123;namespace&#125;/ippools/&#123;name&#125; {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_ippools_name}
 
 **Global path parameters**
 

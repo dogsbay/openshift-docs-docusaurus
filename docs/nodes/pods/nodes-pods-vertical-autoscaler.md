@@ -1007,7 +1007,7 @@ You can configure the memory increase by specifying the following values in the 
 - `oom-min-bump-up-bytes`. This value, in bytes, is a specific increase in memory after an OOM event occurs. The default is `100MiB`.
 - `oom-bump-up-ratio`. This value is a percentage increase in memory when the OOM event occurred. The default value is `1.2`.
 
-For example, if the pod memory usage during an OOM event is 100 MB, and `oom-min-bump-up-bytes` is set to 150 MB with a `oom-min-bump-ratio` of 1.2. After an OOM event, the VPA recommends increasing the memory request for that pod to 150 MB, as it is higher than at 120 MB (100 MB * 1.2).
+For example, if the pod memory usage during an OOM event is 100 MB, and `oom-min-bump-up-bytes` is set to 150 MB with a `oom-min-bump-ratio` of 1.2. After an OOM event, the VPA recommends increasing the memory request for that pod to 150 MB, as it is higher than at 120 MB (100 MB \* 1.2).
 
 ```yaml title="Example recommender deployment object"
 apiVersion: apps/v1

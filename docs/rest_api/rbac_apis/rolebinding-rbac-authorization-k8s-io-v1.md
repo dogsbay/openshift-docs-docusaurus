@@ -3,7 +3,7 @@ title: "RoleBinding [rbac.authorization.k8s.io/v1]"
 sidebar_position: 4
 ---
 
-# RoleBinding [rbac.authorization.k8s.io/v1] {#rolebinding-rbac-authorization-k8s-io-v1}
+# RoleBinding \[rbac.authorization.k8s.io/v1\] {#rolebinding-rbac-authorization-k8s-io-v1}
 
 <a id="rolebinding-rbac-authorization-k8s-io-v1"></a>
 
@@ -60,7 +60,7 @@ Type
   `array`
   ```
 
-### .subjects[] {#_subjects}
+### .subjects\[\] {#_subjects}
 
 Description
 : Subject contains a reference to the object or user identities a role binding applies to.  This can either hold a direct API object reference, or a value for non-objects such as user and group names.
@@ -141,7 +141,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings {#_apisrbacauthorizationk8siov1namespaces_namespace_rolebindings}
+### /apis/rbac.authorization.k8s.io/v1/namespaces/&#123;namespace&#125;/rolebindings {#_apisrbacauthorizationk8siov1namespaces_namespace_rolebindings}
 
 HTTP method
 : ```
@@ -215,7 +215,7 @@ Description
 | 202 - Accepted | [`RoleBinding`](/docs/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/rolebindings {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_rolebindings}
+### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/rolebindings {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_rolebindings}
 
 HTTP method
 : ```
@@ -234,7 +234,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings/{name} {#_apisrbacauthorizationk8siov1namespaces_namespace_rolebindings_name}
+### /apis/rbac.authorization.k8s.io/v1/namespaces/&#123;namespace&#125;/rolebindings/&#123;name&#125; {#_apisrbacauthorizationk8siov1namespaces_namespace_rolebindings_name}
 
 **Global path parameters**
 
@@ -339,7 +339,7 @@ Description
 | 201 - Created | [`RoleBinding`](/docs/rest_api/rbac_apis/rolebinding-rbac-authorization-k8s-io-v1#rolebinding-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/{namespace}/rolebindings/{name} {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_rolebindings_name}
+### /apis/rbac.authorization.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/rolebindings/&#123;name&#125; {#_apisrbacauthorizationk8siov1watchnamespaces_namespace_rolebindings_name}
 
 **Global path parameters**
 

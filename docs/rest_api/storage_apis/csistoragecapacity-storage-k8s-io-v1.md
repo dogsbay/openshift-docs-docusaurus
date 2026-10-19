@@ -3,7 +3,7 @@ title: "CSIStorageCapacity [storage.k8s.io/v1]"
 sidebar_position: 4
 ---
 
-# CSIStorageCapacity [storage.k8s.io/v1] {#csistoragecapacity-storage-k8s-io-v1}
+# CSIStorageCapacity \[storage.k8s.io/v1\] {#csistoragecapacity-storage-k8s-io-v1}
 
 <a id="csistoragecapacity-storage-k8s-io-v1"></a>
 
@@ -34,7 +34,7 @@ Required
 | `capacity` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields.<br>The semantic is currently (CSI spec 1.2) defined as: The available capacity, in bytes, of the storage that can be used to provision volumes. If not set, that information is currently unavailable. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `maximumVolumeSize` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | maximumVolumeSize is the value reported by the CSI driver in its GetCapacityResponse for a GetCapacityRequest with topology and parameters that match the previous fields.<br>This is defined since CSI spec 1.4.0 as the largest size that may be used in a CreateVolumeRequest.capacity_range.required_bytes field to create a volume with the same parameters as those in GetCapacityRequest. The corresponding value in the Kubernetes API is ResourceRequirements.Requests in a volume claim. |
-| `metadata` | [`ObjectMeta`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. The name has no particular meaning. It must be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-<uuid>, a generated name, or a reverse-domain name which ends with the unique CSI driver name.<br>Objects are namespaced.<br>More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
+| `metadata` | [`ObjectMeta`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. The name has no particular meaning. It must be a DNS subdomain (dots allowed, 253 characters). To ensure that there are no conflicts with other CSI drivers on the cluster, the recommendation is to use csisc-&lt;uuid>, a generated name, or a reverse-domain name which ends with the unique CSI driver name.<br>Objects are namespaced.<br>More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `nodeTopology` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | nodeTopology defines which nodes have access to the storage for which capacity was reported. If not set, the storage is not accessible from any node in the cluster. If empty, the storage is accessible from all nodes. This field is immutable. |
 | `storageClassName` | `string` | storageClassName represents the name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable. |
 
@@ -98,7 +98,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/namespaces/{namespace}/csistoragecapacities {#_apisstoragek8siov1namespaces_namespace_csistoragecapacities}
+### /apis/storage.k8s.io/v1/namespaces/&#123;namespace&#125;/csistoragecapacities {#_apisstoragek8siov1namespaces_namespace_csistoragecapacities}
 
 HTTP method
 : ```
@@ -172,7 +172,7 @@ Description
 | 202 - Accepted | [`CSIStorageCapacity`](/docs/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/watch/namespaces/{namespace}/csistoragecapacities {#_apisstoragek8siov1watchnamespaces_namespace_csistoragecapacities}
+### /apis/storage.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/csistoragecapacities {#_apisstoragek8siov1watchnamespaces_namespace_csistoragecapacities}
 
 HTTP method
 : ```
@@ -191,7 +191,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/namespaces/{namespace}/csistoragecapacities/{name} {#_apisstoragek8siov1namespaces_namespace_csistoragecapacities_name}
+### /apis/storage.k8s.io/v1/namespaces/&#123;namespace&#125;/csistoragecapacities/&#123;name&#125; {#_apisstoragek8siov1namespaces_namespace_csistoragecapacities_name}
 
 **Global path parameters**
 
@@ -296,7 +296,7 @@ Description
 | 201 - Created | [`CSIStorageCapacity`](/docs/rest_api/storage_apis/csistoragecapacity-storage-k8s-io-v1#csistoragecapacity-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/watch/namespaces/{namespace}/csistoragecapacities/{name} {#_apisstoragek8siov1watchnamespaces_namespace_csistoragecapacities_name}
+### /apis/storage.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/csistoragecapacities/&#123;name&#125; {#_apisstoragek8siov1watchnamespaces_namespace_csistoragecapacities_name}
 
 **Global path parameters**
 

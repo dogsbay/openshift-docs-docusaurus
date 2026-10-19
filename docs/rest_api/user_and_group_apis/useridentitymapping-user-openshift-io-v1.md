@@ -3,7 +3,7 @@ title: "UserIdentityMapping [user.openshift.io/v1]"
 sidebar_position: 4
 ---
 
-# UserIdentityMapping [user.openshift.io/v1] {#useridentitymapping-user-openshift-io-v1}
+# UserIdentityMapping \[user.openshift.io/v1\] {#useridentitymapping-user-openshift-io-v1}
 
 <a id="useridentitymapping-user-openshift-io-v1"></a>
 
@@ -73,7 +73,7 @@ Description
 | 202 - Accepted | [`UserIdentityMapping`](/docs/rest_api/user_and_group_apis/useridentitymapping-user-openshift-io-v1#useridentitymapping-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/user.openshift.io/v1/useridentitymappings/{name} {#_apisuseropenshiftiov1useridentitymappings_name}
+### /apis/user.openshift.io/v1/useridentitymappings/&#123;name&#125; {#_apisuseropenshiftiov1useridentitymappings_name}
 
 **Global path parameters**
 

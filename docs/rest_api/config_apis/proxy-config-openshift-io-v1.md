@@ -3,7 +3,7 @@ title: "Proxy [config.openshift.io/v1]"
 sidebar_position: 26
 ---
 
-# Proxy [config.openshift.io/v1] {#proxy-config-openshift-io-v1}
+# Proxy \[config.openshift.io/v1\] {#proxy-config-openshift-io-v1}
 
 <a id="proxy-config-openshift-io-v1"></a>
 
@@ -171,7 +171,7 @@ Description
 | 202 - Accepted | [`Proxy`](/docs/rest_api/config_apis/proxy-config-openshift-io-v1#proxy-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/proxies/{name} {#_apisconfigopenshiftiov1proxies_name}
+### /apis/config.openshift.io/v1/proxies/&#123;name&#125; {#_apisconfigopenshiftiov1proxies_name}
 
 **Global path parameters**
 
@@ -275,7 +275,7 @@ Description
 | 201 - Created | [`Proxy`](/docs/rest_api/config_apis/proxy-config-openshift-io-v1#proxy-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/proxies/{name}/status {#_apisconfigopenshiftiov1proxies_name_status}
+### /apis/config.openshift.io/v1/proxies/&#123;name&#125;/status {#_apisconfigopenshiftiov1proxies_name_status}
 
 **Global path parameters**
 

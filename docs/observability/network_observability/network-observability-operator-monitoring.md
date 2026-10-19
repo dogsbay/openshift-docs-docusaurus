@@ -1,9 +1,9 @@
 ---
-title: Monitoring the Network Observability Operator
+title: Monitor the Network Observability Operator
 sidebar_position: 14
 ---
 
-# Monitoring the Network Observability Operator {#network-observability-operator-monitoring}
+# Monitor the Network Observability Operator {#network-observability-operator-monitoring}
 
 <a id="network-observability-operator-monitoring"></a>
 

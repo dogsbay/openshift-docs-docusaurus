@@ -68,7 +68,7 @@ If you attempt to run the installation program on macOS, a known issue related t
 
    :::
 
-## Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_ipi-vsphere-preparing-to-install}
+## Install the OpenShift CLI on Linux {#cli-installing-cli-linux_ipi-vsphere-preparing-to-install}
 
 To manage your cluster and deploy applications from the command line on Linux, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -104,7 +104,7 @@ Download and install the new version of `oc`.
   $ oc <command>
   ```
 
-## Installing the OpenShift CLI on Windows {#cli-installing-cli-windows_ipi-vsphere-preparing-to-install}
+## Install the OpenShift CLI on Windows {#cli-installing-cli-windows_ipi-vsphere-preparing-to-install}
 
 To manage your cluster and deploy applications from the command line on Windows, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -136,7 +136,7 @@ Download and install the new version of `oc`.
   C:\> oc <command>
   ```
 
-## Installing the OpenShift CLI on macOS {#cli-installing-cli-macos_ipi-vsphere-preparing-to-install}
+## Install the OpenShift CLI on macOS {#cli-installing-cli-macos_ipi-vsphere-preparing-to-install}
 
 To manage your cluster and deploy applications from the command line on macOS, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 

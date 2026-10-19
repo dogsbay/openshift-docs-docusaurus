@@ -3,7 +3,7 @@ title: "ImageStream [image.openshift.io/v1]"
 sidebar_position: 8
 ---
 
-# ImageStream [image.openshift.io/v1] {#imagestream-image-openshift-io-v1}
+# ImageStream \[image.openshift.io/v1\] {#imagestream-image-openshift-io-v1}
 
 <a id="imagestream-image-openshift-io-v1"></a>
 
@@ -71,7 +71,7 @@ Type
   `array`
   ```
 
-### .spec.tags[] {#_spectags}
+### .spec.tags\[\] {#_spectags}
 
 Description
 : TagReference specifies optional annotations for images using this tag and an optional reference to an ImageStreamTag, ImageStreamImage, or DockerImage this tag should track.
@@ -94,7 +94,7 @@ Required
 | `reference` | `boolean` | reference states if the tag will be imported. Default value is false, which means the tag will be imported. |
 | `referencePolicy` | `object` | TagReferencePolicy describes how pull-specs for images in this image stream tag are generated when image change triggers in deployment configs or builds are resolved. This allows the image stream author to control how images are accessed. |
 
-### .spec.tags[].importPolicy {#_spectagsimportpolicy}
+### .spec.tags\[\].importPolicy {#_spectagsimportpolicy}
 
 Description
 : TagImportPolicy controls how images related to this tag will be imported.
@@ -110,7 +110,7 @@ Type
 | `insecure` | `boolean` | insecure is true if the server may bypass certificate verification or connect directly over HTTP during image import. |
 | `scheduled` | `boolean` | scheduled indicates to the server that this tag should be periodically checked to ensure it is up to date, and imported |
 
-### .spec.tags[].referencePolicy {#_spectagsreferencepolicy}
+### .spec.tags\[\].referencePolicy {#_spectagsreferencepolicy}
 
 Description
 : TagReferencePolicy describes how pull-specs for images in this image stream tag are generated when image change triggers in deployment configs or builds are resolved. This allows the image stream author to control how images are accessed.
@@ -154,7 +154,7 @@ Type
   `array`
   ```
 
-### .status.tags[] {#_statustags}
+### .status.tags\[\] {#_statustags}
 
 Description
 : NamedTagEventList relates a tag to its image history.
@@ -176,7 +176,7 @@ Required
 | `items[]` | `object` | TagEvent is used by ImageStreamStatus to keep a historical record of images associated with a tag. |
 | `tag` | `string` | tag is the tag for which the history is recorded |
 
-### .status.tags[].conditions {#_statustagsconditions}
+### .status.tags\[\].conditions {#_statustagsconditions}
 
 Description
 : conditions is an array of conditions that apply to the tag event list.
@@ -186,7 +186,7 @@ Type
   `array`
   ```
 
-### .status.tags[].conditions[] {#_statustagsconditions}
+### .status.tags\[\].conditions\[\] {#_statustagsconditions}
 
 Description
 : TagEventCondition contains condition information for a tag event.
@@ -210,7 +210,7 @@ Required
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of tag event condition, currently only ImportSuccess |
 
-### .status.tags[].items {#_statustagsitems}
+### .status.tags\[\].items {#_statustagsitems}
 
 Description
 : Standard object’s metadata.
@@ -220,7 +220,7 @@ Type
   `array`
   ```
 
-### .status.tags[].items[] {#_statustagsitems}
+### .status.tags\[\].items\[\] {#_statustagsitems}
 
 Description
 : TagEvent is used by ImageStreamStatus to keep a historical record of images associated with a tag.
@@ -307,7 +307,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams {#_apisimageopenshiftiov1namespaces_namespace_imagestreams}
+### /apis/image.openshift.io/v1/namespaces/&#123;namespace&#125;/imagestreams {#_apisimageopenshiftiov1namespaces_namespace_imagestreams}
 
 HTTP method
 : ```
@@ -381,7 +381,7 @@ Description
 | 202 - Accepted | [`ImageStream`](/docs/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/watch/namespaces/{namespace}/imagestreams {#_apisimageopenshiftiov1watchnamespaces_namespace_imagestreams}
+### /apis/image.openshift.io/v1/watch/namespaces/&#123;namespace&#125;/imagestreams {#_apisimageopenshiftiov1watchnamespaces_namespace_imagestreams}
 
 HTTP method
 : ```
@@ -400,7 +400,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name} {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name}
+### /apis/image.openshift.io/v1/namespaces/&#123;namespace&#125;/imagestreams/&#123;name&#125; {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name}
 
 **Global path parameters**
 
@@ -505,7 +505,7 @@ Description
 | 201 - Created | [`ImageStream`](/docs/rest_api/image_apis/imagestream-image-openshift-io-v1#imagestream-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/watch/namespaces/{namespace}/imagestreams/{name} {#_apisimageopenshiftiov1watchnamespaces_namespace_imagestreams_name}
+### /apis/image.openshift.io/v1/watch/namespaces/&#123;namespace&#125;/imagestreams/&#123;name&#125; {#_apisimageopenshiftiov1watchnamespaces_namespace_imagestreams_name}
 
 **Global path parameters**
 
@@ -530,7 +530,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name}/status {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_status}
+### /apis/image.openshift.io/v1/namespaces/&#123;namespace&#125;/imagestreams/&#123;name&#125;/status {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_status}
 
 **Global path parameters**
 

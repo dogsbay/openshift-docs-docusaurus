@@ -24,7 +24,7 @@ If the cluster has any public subnets, load balancer services created by adminis
 To deploy a private cluster, you must:
 
 - Use existing networking that meets your requirements. Your cluster resources might be shared between other clusters on the network.
-- Deploy from a machine that has access to: ** The API services for the cloud to which you provision. ** The hosts on the network that you provision. ** The internet to obtain installation media.
+- Deploy from a machine that has access to: \*\* The API services for the cloud to which you provision. \*\* The hosts on the network that you provision. \*\* The internet to obtain installation media.
 
 ### Private clusters in Azure {#private-clusters-about-azure_installing-azure-private}
 
@@ -1414,7 +1414,7 @@ where:
 - `<installation_directory>`: Specifies the location of your customized `./install-config.yaml` file.
 - `--log-level`: Specifies the log level. To view different installation details, specify `warn`, `debug`, or `error` instead of `info`.
 
-If the installation program cannot locate the `osServicePrincipal.json` configuration file from a previous installation, you are prompted for Azure subscription and authentication values. . Enter the following Azure parameter values for your subscription: *** *azure subscription id**: Enter the subscription ID to use for the cluster. *** *azure tenant id**: Enter the tenant ID. . Depending on the Azure identity you are using to deploy the cluster, do one of the following when prompted for the **azure service principal client id**: ** If you are using a service principal, enter its application ID. ** If you are using a system-assigned managed identity, leave this value blank. ** If you are using a user-assigned managed identity, specify its client ID. . Depending on the Azure identity you are using to deploy the cluster, do one of the following when prompted for the **azure service principal client secret**: ** If you are using a service principal, enter its password. ** If you are using a system-assigned managed identity, leave this value blank. ** If you are using a user-assigned managed identity,leave this value blank.
+If the installation program cannot locate the `osServicePrincipal.json` configuration file from a previous installation, you are prompted for Azure subscription and authentication values. . Enter the following Azure parameter values for your subscription: \*\*\* *azure subscription id*\*: Enter the subscription ID to use for the cluster. \*\*\* *azure tenant id*\*: Enter the tenant ID. . Depending on the Azure identity you are using to deploy the cluster, do one of the following when prompted for the **azure service principal client id**: \*\* If you are using a service principal, enter its application ID. \*\* If you are using a system-assigned managed identity, leave this value blank. \*\* If you are using a user-assigned managed identity, specify its client ID. . Depending on the Azure identity you are using to deploy the cluster, do one of the following when prompted for the **azure service principal client secret**: \*\* If you are using a service principal, enter its password. \*\* If you are using a system-assigned managed identity, leave this value blank. \*\* If you are using a user-assigned managed identity,leave this value blank.
 
 :::note
 

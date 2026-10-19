@@ -3,7 +3,7 @@ title: "OverlappingRangeIPReservation [whereabouts.cni.cncf.io/v1alpha1]"
 sidebar_position: 28
 ---
 
-# OverlappingRangeIPReservation [whereabouts.cni.cncf.io/v1alpha1] {#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1}
+# OverlappingRangeIPReservation \[whereabouts.cni.cncf.io/v1alpha1\] {#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1}
 
 <a id="overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1"></a>
 
@@ -81,7 +81,7 @@ Description
 | 200 - OK | [`OverlappingRangeIPReservationList`](/docs/rest_api/objects#io-cncf-cni-whereabouts-v1alpha1-OverlappingRangeIPReservationList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/overlappingrangeipreservations {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_overlappingrangeipreservations}
+### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/&#123;namespace&#125;/overlappingrangeipreservations {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_overlappingrangeipreservations}
 
 HTTP method
 : ```
@@ -149,7 +149,7 @@ Description
 | 202 - Accepted | [`OverlappingRangeIPReservation`](/docs/rest_api/network_apis/overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1#overlappingrangeipreservation-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/overlappingrangeipreservations/{name} {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_overlappingrangeipreservations_name}
+### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/&#123;namespace&#125;/overlappingrangeipreservations/&#123;name&#125; {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_overlappingrangeipreservations_name}
 
 **Global path parameters**
 

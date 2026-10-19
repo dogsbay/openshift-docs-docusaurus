@@ -3,9 +3,9 @@ title: Integrating Red Hat OpenShift Service Mesh with Zero Trust Workload Ident
 sidebar_position: 10
 ---
 
-# Integrating Red Hat OpenShift Service Mesh with Zero Trust Workload Identity Manager in a single-cluster {#zero-trust-manager-mesh-integration_{context}}
+# Integrating Red Hat OpenShift Service Mesh with Zero Trust Workload Identity Manager in a single-cluster {#zero-trust-manager-mesh-integration_-context-}
 
-<a id="zero-trust-manager-mesh-integration_{context}"></a>
+<a id="zero-trust-manager-mesh-integration_-context-"></a>
 
 Deploy and configure SPIFFE Runtime Environment as the certificate authority (CA) for Red Hat OpenShift Service Mesh workloads, replacing the Istio built-in CA with SPIFFE-compliant identities and automatically rotated short-lived certificates.
 

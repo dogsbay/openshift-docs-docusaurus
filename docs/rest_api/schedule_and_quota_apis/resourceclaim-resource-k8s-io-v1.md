@@ -3,7 +3,7 @@ title: "ResourceClaim [resource.k8s.io/v1]"
 sidebar_position: 10
 ---
 
-# ResourceClaim [resource.k8s.io/v1] {#resourceclaim-resource-k8s-io-v1}
+# ResourceClaim \[resource.k8s.io/v1\] {#resourceclaim-resource-k8s-io-v1}
 
 <a id="resourceclaim-resource-k8s-io-v1"></a>
 
@@ -73,7 +73,7 @@ Type
   `array`
   ```
 
-### .spec.devices.config[] {#_specdevicesconfig}
+### .spec.devices.config\[\] {#_specdevicesconfig}
 
 Description
 : DeviceClaimConfiguration is used for configuration parameters in DeviceClaim.
@@ -86,9 +86,9 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `opaque` | `object` | OpaqueDeviceConfiguration contains configuration parameters for a driver in a format defined by the driver vendor. |
-| `requests` | `array (string)` | Requests lists the names of requests where the configuration applies. If empty, it applies to all requests.<br>References to subrequests must include the name of the main request and may include the subrequest using the format <main request>[/<subrequest>]. If just the main request is given, the configuration applies to all subrequests. |
+| `requests` | `array (string)` | Requests lists the names of requests where the configuration applies. If empty, it applies to all requests.<br>References to subrequests must include the name of the main request and may include the subrequest using the format &lt;main request>\[/&lt;subrequest>\]. If just the main request is given, the configuration applies to all subrequests. |
 
-### .spec.devices.config[].opaque {#_specdevicesconfigopaque}
+### .spec.devices.config\[\].opaque {#_specdevicesconfigopaque}
 
 Description
 : OpaqueDeviceConfiguration contains configuration parameters for a driver in a format defined by the driver vendor.
@@ -117,7 +117,7 @@ Type
   `array`
   ```
 
-### .spec.devices.constraints[] {#_specdevicesconstraints}
+### .spec.devices.constraints\[\] {#_specdevicesconstraints}
 
 Description
 : DeviceConstraint must have exactly one field set besides Requests.
@@ -131,7 +131,7 @@ Type
 | --- | --- | --- |
 | `distinctAttribute` | `string` | DistinctAttribute requires that all devices in question have this attribute and that its type and value are unique across those devices.<br>This acts as the inverse of MatchAttribute.<br>This constraint is used to avoid allocating multiple requests to the same device by ensuring attribute-level differentiation.<br>This is useful for scenarios where resource requests must be fulfilled by separate physical devices. For example, a container requests two network interfaces that must be allocated from two different physical NICs. |
 | `matchAttribute` | `string` | MatchAttribute requires that all devices in question have this attribute and that its type and value are the same across those devices.<br>For example, if you specified "dra.example.com/numa" (a hypothetical example!), then only devices in the same NUMA node will be chosen. A device which does not have that attribute will not be chosen. All devices should use a value of the same type for this attribute because that is part of its specification, but if one device doesn’t, then it also will not be chosen.<br>Must include the domain qualifier. |
-| `requests` | `array (string)` | Requests is a list of the one or more requests in this claim which must co-satisfy this constraint. If a request is fulfilled by multiple devices, then all of the devices must satisfy the constraint. If this is not specified, this constraint applies to all requests in this claim.<br>References to subrequests must include the name of the main request and may include the subrequest using the format <main request>[/<subrequest>]. If just the main request is given, the constraint applies to all subrequests. |
+| `requests` | `array (string)` | Requests is a list of the one or more requests in this claim which must co-satisfy this constraint. If a request is fulfilled by multiple devices, then all of the devices must satisfy the constraint. If this is not specified, this constraint applies to all requests in this claim.<br>References to subrequests must include the name of the main request and may include the subrequest using the format &lt;main request>\[/&lt;subrequest>\]. If just the main request is given, the constraint applies to all subrequests. |
 
 ### .spec.devices.requests {#_specdevicesrequests}
 
@@ -143,7 +143,7 @@ Type
   `array`
   ```
 
-### .spec.devices.requests[] {#_specdevicesrequests}
+### .spec.devices.requests\[\] {#_specdevicesrequests}
 
 Description
 : DeviceRequest is a request for devices required for a claim. This is typically a request for a single resource like a device, but can also ask for several identical devices. With FirstAvailable it is also possible to provide a prioritized list of requests.
@@ -160,10 +160,10 @@ Required
 | --- | --- | --- |
 | `exactly` | `object` | ExactDeviceRequest is a request for one or more identical devices. |
 | `firstAvailable` | `array` | FirstAvailable contains subrequests, of which exactly one will be selected by the scheduler. It tries to satisfy them in the order in which they are listed here. So if there are two entries in the list, the scheduler will only check the second one if it determines that the first one can not be used.<br>DRA does not yet implement scoring, so the scheduler will select the first set of devices that satisfies all the requests in the claim. And if the requirements can be satisfied on more than one node, other scheduling features will determine which node is chosen. This means that the set of devices allocated to a claim might not be the optimal set available to the cluster. Scoring will be implemented later. |
-| `firstAvailable[]` | `object` | DeviceSubRequest describes a request for device provided in the claim.spec.devices.requests[].firstAvailable array. Each is typically a request for a single resource like a device, but can also ask for several identical devices.<br>DeviceSubRequest is similar to ExactDeviceRequest, but doesn’t expose the AdminAccess field as that one is only supported when requesting a specific device. |
-| `name` | `string` | Name can be used to reference this request in a pod.spec.containers[].resources.claims entry and in a constraint of the claim.<br>References using the name in the DeviceRequest will uniquely identify a request when the Exactly field is set. When the FirstAvailable field is set, a reference to the name of the DeviceRequest will match whatever subrequest is chosen by the scheduler.<br>Must be a DNS label. |
+| `firstAvailable[]` | `object` | DeviceSubRequest describes a request for device provided in the claim.spec.devices.requests\[\].firstAvailable array. Each is typically a request for a single resource like a device, but can also ask for several identical devices.<br>DeviceSubRequest is similar to ExactDeviceRequest, but doesn’t expose the AdminAccess field as that one is only supported when requesting a specific device. |
+| `name` | `string` | Name can be used to reference this request in a pod.spec.containers\[\].resources.claims entry and in a constraint of the claim.<br>References using the name in the DeviceRequest will uniquely identify a request when the Exactly field is set. When the FirstAvailable field is set, a reference to the name of the DeviceRequest will match whatever subrequest is chosen by the scheduler.<br>Must be a DNS label. |
 
-### .spec.devices.requests[].exactly {#_specdevicesrequestsexactly}
+### .spec.devices.requests\[\].exactly {#_specdevicesrequestsexactly}
 
 Description
 : ExactDeviceRequest is a request for one or more identical devices.
@@ -186,9 +186,9 @@ Required
 | `selectors` | `array` | Selectors define criteria which must be satisfied by a specific device in order for that device to be considered for this request. All selectors must be satisfied for a device to be considered. |
 | `selectors[]` | `object` | DeviceSelector must have exactly one field set. |
 | `tolerations` | `array` | If specified, the request’s tolerations.<br>Tolerations for NoSchedule are required to allocate a device which has a taint with that effect. The same applies to NoExecute.<br>In addition, should any of the allocated devices get tainted with NoExecute after allocation and that effect is not tolerated, then all pods consuming the ResourceClaim get deleted to evict them. The scheduler will not let new pods reserve the claim while it has these tainted devices. Once all pods are evicted, the claim will get deallocated.<br>The maximum number of tolerations is 16.<br>This is an alpha field and requires enabling the DRADeviceTaints feature gate. |
-| `tolerations[]` | `object` | The ResourceClaim this DeviceToleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>. |
+| `tolerations[]` | `object` | The ResourceClaim this DeviceToleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>. |
 
-### .spec.devices.requests[].exactly.capacity {#_specdevicesrequestsexactlycapacity}
+### .spec.devices.requests\[\].exactly.capacity {#_specdevicesrequestsexactlycapacity}
 
 Description
 : CapacityRequirements defines the capacity requirements for a specific device request.
@@ -200,9 +200,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `requests` | [`object (Quantity)`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests represent individual device resource requests for distinct resources, all of which must be provided by the device.<br>This value is used as an additional filtering condition against the available capacity on the device. This is semantically equivalent to a CEL selector with `device.capacity[<domain>].<name>.compareTo(quantity(<request quantity>)) >= 0`. For example, device.capacity['test-driver.cdi.k8s.io'].counters.compareTo(quantity('2')) >= 0.<br>When a requestPolicy is defined, the requested amount is adjusted upward to the nearest valid value based on the policy. If the requested amount cannot be adjusted to a valid value—because it exceeds what the requestPolicy allows— the device is considered ineligible for allocation.<br>For any capacity that is not explicitly requested: - If no requestPolicy is set, the default consumed capacity is equal to the full device capacity   (i.e., the whole device is claimed). - If a requestPolicy is set, the default consumed capacity is determined according to that policy.<br>If the device allows multiple allocation, the aggregated amount across all requests must not exceed the capacity value. The consumed capacity, which may be adjusted based on the requestPolicy if defined, is recorded in the resource claim’s status.devices[*].consumedCapacity field. |
+| `requests` | [`object (Quantity)`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests represent individual device resource requests for distinct resources, all of which must be provided by the device.<br>This value is used as an additional filtering condition against the available capacity on the device. This is semantically equivalent to a CEL selector with `device.capacity[<domain>].<name>.compareTo(quantity(<request quantity>)) >= 0`. For example, device.capacity\['test-driver.cdi.k8s.io'\].counters.compareTo(quantity('2')) >= 0.<br>When a requestPolicy is defined, the requested amount is adjusted upward to the nearest valid value based on the policy. If the requested amount cannot be adjusted to a valid value—because it exceeds what the requestPolicy allows— the device is considered ineligible for allocation.<br>For any capacity that is not explicitly requested: - If no requestPolicy is set, the default consumed capacity is equal to the full device capacity   (i.e., the whole device is claimed). - If a requestPolicy is set, the default consumed capacity is determined according to that policy.<br>If the device allows multiple allocation, the aggregated amount across all requests must not exceed the capacity value. The consumed capacity, which may be adjusted based on the requestPolicy if defined, is recorded in the resource claim’s status.devices\[\*\].consumedCapacity field. |
 
-### .spec.devices.requests[].exactly.selectors {#_specdevicesrequestsexactlyselectors}
+### .spec.devices.requests\[\].exactly.selectors {#_specdevicesrequestsexactlyselectors}
 
 Description
 : Selectors define criteria which must be satisfied by a specific device in order for that device to be considered for this request. All selectors must be satisfied for a device to be considered.
@@ -212,7 +212,7 @@ Type
   `array`
   ```
 
-### .spec.devices.requests[].exactly.selectors[] {#_specdevicesrequestsexactlyselectors}
+### .spec.devices.requests\[\].exactly.selectors\[\] {#_specdevicesrequestsexactlyselectors}
 
 Description
 : DeviceSelector must have exactly one field set.
@@ -226,7 +226,7 @@ Type
 | --- | --- | --- |
 | `cel` | `object` | CELDeviceSelector contains a CEL expression for selecting a device. |
 
-### .spec.devices.requests[].exactly.selectors[].cel {#_specdevicesrequestsexactlyselectorscel}
+### .spec.devices.requests\[\].exactly.selectors\[\].cel {#_specdevicesrequestsexactlyselectorscel}
 
 Description
 : CELDeviceSelector contains a CEL expression for selecting a device.
@@ -241,9 +241,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `expression` | `string` | Expression is a CEL expression which evaluates a single device. It must evaluate to true when the device under consideration satisfies the desired criteria, and false when it does not. Any other result is an error and causes allocation of devices to abort.<br>The expression’s input is an object named "device", which carries the following properties:  - driver (string): the name of the driver which defines this device.  - attributes (map[string]object): the device’s attributes, grouped by prefix    (e.g. device.attributes["dra.example.com"] evaluates to an object with all    of the attributes which were prefixed by "dra.example.com".  - capacity (map[string]object): the device’s capacities, grouped by prefix.  - allowMultipleAllocations (bool): the allowMultipleAllocations property of the device    (v1.34+ with the DRAConsumableCapacity feature enabled).<br>Example: Consider a device with driver="dra.example.com", which exposes two attributes named "model" and "ext.example.com/family" and which exposes one capacity named "modules". This input to this expression would have the following fields:<br>    device.driver     device.attributes["dra.example.com"].model     device.attributes["ext.example.com"].family     device.capacity["dra.example.com"].modules<br>The device.driver field can be used to check for a specific driver, either as a high-level precondition (i.e. you only want to consider devices from this driver) or as part of a multi-clause expression that is meant to consider devices from different drivers.<br>The value type of each attribute is defined by the device definition, and users who write these expressions must consult the documentation for their specific drivers. The value type of each capacity is Quantity.<br>If an unknown prefix is used as a lookup in either device.attributes or device.capacity, an empty map will be returned. Any reference to an unknown field will cause an evaluation error and allocation to abort.<br>A robust expression should check for the existence of attributes before referencing them.<br>For ease of use, the cel.bind() function is enabled, and can be used to simplify expressions that access multiple attributes with the same domain. For example:<br>    cel.bind(dra, device.attributes["dra.example.com"], dra.someBool && dra.anotherBool)<br>The length of the expression must be smaller or equal to 10 Ki. The cost of evaluating it is also limited based on the estimated number of logical steps. |
+| `expression` | `string` | Expression is a CEL expression which evaluates a single device. It must evaluate to true when the device under consideration satisfies the desired criteria, and false when it does not. Any other result is an error and causes allocation of devices to abort.<br>The expression’s input is an object named "device", which carries the following properties:  - driver (string): the name of the driver which defines this device.  - attributes (map\[string\]object): the device’s attributes, grouped by prefix    (e.g. device.attributes\["dra.example.com"\] evaluates to an object with all    of the attributes which were prefixed by "dra.example.com".  - capacity (map\[string\]object): the device’s capacities, grouped by prefix.  - allowMultipleAllocations (bool): the allowMultipleAllocations property of the device    (v1.34+ with the DRAConsumableCapacity feature enabled).<br>Example: Consider a device with driver="dra.example.com", which exposes two attributes named "model" and "ext.example.com/family" and which exposes one capacity named "modules". This input to this expression would have the following fields:<br>    device.driver     device.attributes\["dra.example.com"\].model     device.attributes\["ext.example.com"\].family     device.capacity\["dra.example.com"\].modules<br>The device.driver field can be used to check for a specific driver, either as a high-level precondition (i.e. you only want to consider devices from this driver) or as part of a multi-clause expression that is meant to consider devices from different drivers.<br>The value type of each attribute is defined by the device definition, and users who write these expressions must consult the documentation for their specific drivers. The value type of each capacity is Quantity.<br>If an unknown prefix is used as a lookup in either device.attributes or device.capacity, an empty map will be returned. Any reference to an unknown field will cause an evaluation error and allocation to abort.<br>A robust expression should check for the existence of attributes before referencing them.<br>For ease of use, the cel.bind() function is enabled, and can be used to simplify expressions that access multiple attributes with the same domain. For example:<br>    cel.bind(dra, device.attributes\["dra.example.com"\], dra.someBool && dra.anotherBool)<br>The length of the expression must be smaller or equal to 10 Ki. The cost of evaluating it is also limited based on the estimated number of logical steps. |
 
-### .spec.devices.requests[].exactly.tolerations {#_specdevicesrequestsexactlytolerations}
+### .spec.devices.requests\[\].exactly.tolerations {#_specdevicesrequestsexactlytolerations}
 
 Description
 : If specified, the request’s tolerations.
@@ -261,10 +261,10 @@ Type
   `array`
   ```
 
-### .spec.devices.requests[].exactly.tolerations[] {#_specdevicesrequestsexactlytolerations}
+### .spec.devices.requests\[\].exactly.tolerations\[\] {#_specdevicesrequestsexactlytolerations}
 
 Description
-: The ResourceClaim this DeviceToleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+: The ResourceClaim this DeviceToleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>.
 
 Type
 : ```
@@ -276,10 +276,10 @@ Type
 | `effect` | `string` | Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule and NoExecute.<br>Possible enum values:  - `"NoExecute"` Evict any already-running pods that do not tolerate the device taint.  - `"NoSchedule"` Do not allow new pods to schedule which use a tainted device unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running.  - `"None"` No effect, the taint is purely informational. |
 | `key` | `string` | Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys. Must be a label name. |
 | `operator` | `string` | Operator represents a key’s relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a ResourceClaim can tolerate all taints of a particular category.<br>Possible enum values:  - `"Equal"`  - `"Exists"` |
-| `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. If larger than zero, the time when the pod needs to be evicted is calculated as <time when taint was adedd> + <toleration seconds>. |
+| `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. If larger than zero, the time when the pod needs to be evicted is calculated as &lt;time when taint was adedd> + &lt;toleration seconds>. |
 | `value` | `string` | Value is the taint value the toleration matches to. If the operator is Exists, the value must be empty, otherwise just a regular string. Must be a label value. |
 
-### .spec.devices.requests[].firstAvailable {#_specdevicesrequestsfirstavailable}
+### .spec.devices.requests\[\].firstAvailable {#_specdevicesrequestsfirstavailable}
 
 Description
 : FirstAvailable contains subrequests, of which exactly one will be selected by the scheduler. It tries to satisfy them in the order in which they are listed here. So if there are two entries in the list, the scheduler will only check the second one if it determines that the first one can not be used.
@@ -291,10 +291,10 @@ Type
   `array`
   ```
 
-### .spec.devices.requests[].firstAvailable[] {#_specdevicesrequestsfirstavailable}
+### .spec.devices.requests\[\].firstAvailable\[\] {#_specdevicesrequestsfirstavailable}
 
 Description
-: DeviceSubRequest describes a request for device provided in the claim.spec.devices.requests[].firstAvailable array. Each is typically a request for a single resource like a device, but can also ask for several identical devices.
+: DeviceSubRequest describes a request for device provided in the claim.spec.devices.requests\[\].firstAvailable array. Each is typically a request for a single resource like a device, but can also ask for several identical devices.
 
   DeviceSubRequest is similar to ExactDeviceRequest, but doesn’t expose the AdminAccess field as that one is only supported when requesting a specific device.
 
@@ -313,13 +313,13 @@ Required
 | `capacity` | `object` | CapacityRequirements defines the capacity requirements for a specific device request. |
 | `count` | `integer` | Count is used only when the count mode is "ExactCount". Must be greater than zero. If AllocationMode is ExactCount and this field is not specified, the default is one. |
 | `deviceClassName` | `string` | DeviceClassName references a specific DeviceClass, which can define additional configuration and selectors to be inherited by this subrequest.<br>A class is required. Which classes are available depends on the cluster.<br>Administrators may use this to restrict which devices may get requested by only installing classes with selectors for permitted devices. If users are free to request anything without restrictions, then administrators can create an empty DeviceClass for users to reference. |
-| `name` | `string` | Name can be used to reference this subrequest in the list of constraints or the list of configurations for the claim. References must use the format <main request>/<subrequest>.<br>Must be a DNS label. |
+| `name` | `string` | Name can be used to reference this subrequest in the list of constraints or the list of configurations for the claim. References must use the format &lt;main request>/&lt;subrequest>.<br>Must be a DNS label. |
 | `selectors` | `array` | Selectors define criteria which must be satisfied by a specific device in order for that device to be considered for this subrequest. All selectors must be satisfied for a device to be considered. |
 | `selectors[]` | `object` | DeviceSelector must have exactly one field set. |
 | `tolerations` | `array` | If specified, the request’s tolerations.<br>Tolerations for NoSchedule are required to allocate a device which has a taint with that effect. The same applies to NoExecute.<br>In addition, should any of the allocated devices get tainted with NoExecute after allocation and that effect is not tolerated, then all pods consuming the ResourceClaim get deleted to evict them. The scheduler will not let new pods reserve the claim while it has these tainted devices. Once all pods are evicted, the claim will get deallocated.<br>The maximum number of tolerations is 16.<br>This is an alpha field and requires enabling the DRADeviceTaints feature gate. |
-| `tolerations[]` | `object` | The ResourceClaim this DeviceToleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>. |
+| `tolerations[]` | `object` | The ResourceClaim this DeviceToleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>. |
 
-### .spec.devices.requests[].firstAvailable[].capacity {#_specdevicesrequestsfirstavailablecapacity}
+### .spec.devices.requests\[\].firstAvailable\[\].capacity {#_specdevicesrequestsfirstavailablecapacity}
 
 Description
 : CapacityRequirements defines the capacity requirements for a specific device request.
@@ -331,9 +331,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `requests` | [`object (Quantity)`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests represent individual device resource requests for distinct resources, all of which must be provided by the device.<br>This value is used as an additional filtering condition against the available capacity on the device. This is semantically equivalent to a CEL selector with `device.capacity[<domain>].<name>.compareTo(quantity(<request quantity>)) >= 0`. For example, device.capacity['test-driver.cdi.k8s.io'].counters.compareTo(quantity('2')) >= 0.<br>When a requestPolicy is defined, the requested amount is adjusted upward to the nearest valid value based on the policy. If the requested amount cannot be adjusted to a valid value—because it exceeds what the requestPolicy allows— the device is considered ineligible for allocation.<br>For any capacity that is not explicitly requested: - If no requestPolicy is set, the default consumed capacity is equal to the full device capacity   (i.e., the whole device is claimed). - If a requestPolicy is set, the default consumed capacity is determined according to that policy.<br>If the device allows multiple allocation, the aggregated amount across all requests must not exceed the capacity value. The consumed capacity, which may be adjusted based on the requestPolicy if defined, is recorded in the resource claim’s status.devices[*].consumedCapacity field. |
+| `requests` | [`object (Quantity)`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | Requests represent individual device resource requests for distinct resources, all of which must be provided by the device.<br>This value is used as an additional filtering condition against the available capacity on the device. This is semantically equivalent to a CEL selector with `device.capacity[<domain>].<name>.compareTo(quantity(<request quantity>)) >= 0`. For example, device.capacity\['test-driver.cdi.k8s.io'\].counters.compareTo(quantity('2')) >= 0.<br>When a requestPolicy is defined, the requested amount is adjusted upward to the nearest valid value based on the policy. If the requested amount cannot be adjusted to a valid value—because it exceeds what the requestPolicy allows— the device is considered ineligible for allocation.<br>For any capacity that is not explicitly requested: - If no requestPolicy is set, the default consumed capacity is equal to the full device capacity   (i.e., the whole device is claimed). - If a requestPolicy is set, the default consumed capacity is determined according to that policy.<br>If the device allows multiple allocation, the aggregated amount across all requests must not exceed the capacity value. The consumed capacity, which may be adjusted based on the requestPolicy if defined, is recorded in the resource claim’s status.devices\[\*\].consumedCapacity field. |
 
-### .spec.devices.requests[].firstAvailable[].selectors {#_specdevicesrequestsfirstavailableselectors}
+### .spec.devices.requests\[\].firstAvailable\[\].selectors {#_specdevicesrequestsfirstavailableselectors}
 
 Description
 : Selectors define criteria which must be satisfied by a specific device in order for that device to be considered for this subrequest. All selectors must be satisfied for a device to be considered.
@@ -343,7 +343,7 @@ Type
   `array`
   ```
 
-### .spec.devices.requests[].firstAvailable[].selectors[] {#_specdevicesrequestsfirstavailableselectors}
+### .spec.devices.requests\[\].firstAvailable\[\].selectors\[\] {#_specdevicesrequestsfirstavailableselectors}
 
 Description
 : DeviceSelector must have exactly one field set.
@@ -357,7 +357,7 @@ Type
 | --- | --- | --- |
 | `cel` | `object` | CELDeviceSelector contains a CEL expression for selecting a device. |
 
-### .spec.devices.requests[].firstAvailable[].selectors[].cel {#_specdevicesrequestsfirstavailableselectorscel}
+### .spec.devices.requests\[\].firstAvailable\[\].selectors\[\].cel {#_specdevicesrequestsfirstavailableselectorscel}
 
 Description
 : CELDeviceSelector contains a CEL expression for selecting a device.
@@ -372,9 +372,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `expression` | `string` | Expression is a CEL expression which evaluates a single device. It must evaluate to true when the device under consideration satisfies the desired criteria, and false when it does not. Any other result is an error and causes allocation of devices to abort.<br>The expression’s input is an object named "device", which carries the following properties:  - driver (string): the name of the driver which defines this device.  - attributes (map[string]object): the device’s attributes, grouped by prefix    (e.g. device.attributes["dra.example.com"] evaluates to an object with all    of the attributes which were prefixed by "dra.example.com".  - capacity (map[string]object): the device’s capacities, grouped by prefix.  - allowMultipleAllocations (bool): the allowMultipleAllocations property of the device    (v1.34+ with the DRAConsumableCapacity feature enabled).<br>Example: Consider a device with driver="dra.example.com", which exposes two attributes named "model" and "ext.example.com/family" and which exposes one capacity named "modules". This input to this expression would have the following fields:<br>    device.driver     device.attributes["dra.example.com"].model     device.attributes["ext.example.com"].family     device.capacity["dra.example.com"].modules<br>The device.driver field can be used to check for a specific driver, either as a high-level precondition (i.e. you only want to consider devices from this driver) or as part of a multi-clause expression that is meant to consider devices from different drivers.<br>The value type of each attribute is defined by the device definition, and users who write these expressions must consult the documentation for their specific drivers. The value type of each capacity is Quantity.<br>If an unknown prefix is used as a lookup in either device.attributes or device.capacity, an empty map will be returned. Any reference to an unknown field will cause an evaluation error and allocation to abort.<br>A robust expression should check for the existence of attributes before referencing them.<br>For ease of use, the cel.bind() function is enabled, and can be used to simplify expressions that access multiple attributes with the same domain. For example:<br>    cel.bind(dra, device.attributes["dra.example.com"], dra.someBool && dra.anotherBool)<br>The length of the expression must be smaller or equal to 10 Ki. The cost of evaluating it is also limited based on the estimated number of logical steps. |
+| `expression` | `string` | Expression is a CEL expression which evaluates a single device. It must evaluate to true when the device under consideration satisfies the desired criteria, and false when it does not. Any other result is an error and causes allocation of devices to abort.<br>The expression’s input is an object named "device", which carries the following properties:  - driver (string): the name of the driver which defines this device.  - attributes (map\[string\]object): the device’s attributes, grouped by prefix    (e.g. device.attributes\["dra.example.com"\] evaluates to an object with all    of the attributes which were prefixed by "dra.example.com".  - capacity (map\[string\]object): the device’s capacities, grouped by prefix.  - allowMultipleAllocations (bool): the allowMultipleAllocations property of the device    (v1.34+ with the DRAConsumableCapacity feature enabled).<br>Example: Consider a device with driver="dra.example.com", which exposes two attributes named "model" and "ext.example.com/family" and which exposes one capacity named "modules". This input to this expression would have the following fields:<br>    device.driver     device.attributes\["dra.example.com"\].model     device.attributes\["ext.example.com"\].family     device.capacity\["dra.example.com"\].modules<br>The device.driver field can be used to check for a specific driver, either as a high-level precondition (i.e. you only want to consider devices from this driver) or as part of a multi-clause expression that is meant to consider devices from different drivers.<br>The value type of each attribute is defined by the device definition, and users who write these expressions must consult the documentation for their specific drivers. The value type of each capacity is Quantity.<br>If an unknown prefix is used as a lookup in either device.attributes or device.capacity, an empty map will be returned. Any reference to an unknown field will cause an evaluation error and allocation to abort.<br>A robust expression should check for the existence of attributes before referencing them.<br>For ease of use, the cel.bind() function is enabled, and can be used to simplify expressions that access multiple attributes with the same domain. For example:<br>    cel.bind(dra, device.attributes\["dra.example.com"\], dra.someBool && dra.anotherBool)<br>The length of the expression must be smaller or equal to 10 Ki. The cost of evaluating it is also limited based on the estimated number of logical steps. |
 
-### .spec.devices.requests[].firstAvailable[].tolerations {#_specdevicesrequestsfirstavailabletolerations}
+### .spec.devices.requests\[\].firstAvailable\[\].tolerations {#_specdevicesrequestsfirstavailabletolerations}
 
 Description
 : If specified, the request’s tolerations.
@@ -392,10 +392,10 @@ Type
   `array`
   ```
 
-### .spec.devices.requests[].firstAvailable[].tolerations[] {#_specdevicesrequestsfirstavailabletolerations}
+### .spec.devices.requests\[\].firstAvailable\[\].tolerations\[\] {#_specdevicesrequestsfirstavailabletolerations}
 
 Description
-: The ResourceClaim this DeviceToleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+: The ResourceClaim this DeviceToleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>.
 
 Type
 : ```
@@ -407,7 +407,7 @@ Type
 | `effect` | `string` | Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule and NoExecute.<br>Possible enum values:  - `"NoExecute"` Evict any already-running pods that do not tolerate the device taint.  - `"NoSchedule"` Do not allow new pods to schedule which use a tainted device unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running.  - `"None"` No effect, the taint is purely informational. |
 | `key` | `string` | Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys. Must be a label name. |
 | `operator` | `string` | Operator represents a key’s relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a ResourceClaim can tolerate all taints of a particular category.<br>Possible enum values:  - `"Equal"`  - `"Exists"` |
-| `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. If larger than zero, the time when the pod needs to be evicted is calculated as <time when taint was adedd> + <toleration seconds>. |
+| `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. If larger than zero, the time when the pod needs to be evicted is calculated as &lt;time when taint was adedd> + &lt;toleration seconds>. |
 | `value` | `string` | Value is the taint value the toleration matches to. If the operator is Exists, the value must be empty, otherwise just a regular string. Must be a label value. |
 
 ### .status {#_status}
@@ -473,7 +473,7 @@ Type
   `array`
   ```
 
-### .status.allocation.devices.config[] {#_statusallocationdevicesconfig}
+### .status.allocation.devices.config\[\] {#_statusallocationdevicesconfig}
 
 Description
 : DeviceAllocationConfiguration gets embedded in an AllocationResult.
@@ -489,10 +489,10 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `opaque` | `object` | OpaqueDeviceConfiguration contains configuration parameters for a driver in a format defined by the driver vendor. |
-| `requests` | `array (string)` | Requests lists the names of requests where the configuration applies. If empty, its applies to all requests.<br>References to subrequests must include the name of the main request and may include the subrequest using the format <main request>[/<subrequest>]. If just the main request is given, the configuration applies to all subrequests. |
+| `requests` | `array (string)` | Requests lists the names of requests where the configuration applies. If empty, its applies to all requests.<br>References to subrequests must include the name of the main request and may include the subrequest using the format &lt;main request>\[/&lt;subrequest>\]. If just the main request is given, the configuration applies to all subrequests. |
 | `source` | `string` | Source records whether the configuration comes from a class and thus is not something that a normal user would have been able to set or from a claim.<br>Possible enum values:  - `"FromClaim"`  - `"FromClass"` |
 
-### .status.allocation.devices.config[].opaque {#_statusallocationdevicesconfigopaque}
+### .status.allocation.devices.config\[\].opaque {#_statusallocationdevicesconfigopaque}
 
 Description
 : OpaqueDeviceConfiguration contains configuration parameters for a driver in a format defined by the driver vendor.
@@ -521,7 +521,7 @@ Type
   `array`
   ```
 
-### .status.allocation.devices.results[] {#_statusallocationdevicesresults}
+### .status.allocation.devices.results\[\] {#_statusallocationdevicesresults}
 
 Description
 : DeviceRequestAllocationResult contains the allocation result for one request.
@@ -546,12 +546,12 @@ Required
 | `device` | `string` | Device references one device instance via its name in the driver’s resource pool. It must be a DNS label. |
 | `driver` | `string` | Driver specifies the name of the DRA driver whose kubelet plugin should be invoked to process the allocation once the claim is needed on a node.<br>Must be a DNS subdomain and should end with a DNS domain owned by the vendor of the driver. It should use only lower case characters. |
 | `pool` | `string` | This name together with the driver name and the device name field identify which device was allocated (`<driver name>/<pool name>/<device name>`).<br>Must not be longer than 253 characters and may contain one or more DNS sub-domains separated by slashes. |
-| `request` | `string` | Request is the name of the request in the claim which caused this device to be allocated. If it references a subrequest in the firstAvailable list on a DeviceRequest, this field must include both the name of the main request and the subrequest using the format <main request>/<subrequest>.<br>Multiple devices may have been allocated per request. |
+| `request` | `string` | Request is the name of the request in the claim which caused this device to be allocated. If it references a subrequest in the firstAvailable list on a DeviceRequest, this field must include both the name of the main request and the subrequest using the format &lt;main request>/&lt;subrequest>.<br>Multiple devices may have been allocated per request. |
 | `shareID` | `string` | ShareID uniquely identifies an individual allocation share of the device, used when the device supports multiple simultaneous allocations. It serves as an additional map key to differentiate concurrent shares of the same device. |
 | `tolerations` | `array` | A copy of all tolerations specified in the request at the time when the device got allocated.<br>The maximum number of tolerations is 16.<br>This is an alpha field and requires enabling the DRADeviceTaints feature gate. |
-| `tolerations[]` | `object` | The ResourceClaim this DeviceToleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>. |
+| `tolerations[]` | `object` | The ResourceClaim this DeviceToleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>. |
 
-### .status.allocation.devices.results[].tolerations {#_statusallocationdevicesresultstolerations}
+### .status.allocation.devices.results\[\].tolerations {#_statusallocationdevicesresultstolerations}
 
 Description
 : A copy of all tolerations specified in the request at the time when the device got allocated.
@@ -565,10 +565,10 @@ Type
   `array`
   ```
 
-### .status.allocation.devices.results[].tolerations[] {#_statusallocationdevicesresultstolerations}
+### .status.allocation.devices.results\[\].tolerations\[\] {#_statusallocationdevicesresultstolerations}
 
 Description
-: The ResourceClaim this DeviceToleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+: The ResourceClaim this DeviceToleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>.
 
 Type
 : ```
@@ -580,7 +580,7 @@ Type
 | `effect` | `string` | Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule and NoExecute.<br>Possible enum values:  - `"NoExecute"` Evict any already-running pods that do not tolerate the device taint.  - `"NoSchedule"` Do not allow new pods to schedule which use a tainted device unless they tolerate the taint, but allow all pods submitted to Kubelet without going through the scheduler to start, and allow all already-running pods to continue running.  - `"None"` No effect, the taint is purely informational. |
 | `key` | `string` | Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys. Must be a label name. |
 | `operator` | `string` | Operator represents a key’s relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a ResourceClaim can tolerate all taints of a particular category.<br>Possible enum values:  - `"Equal"`  - `"Exists"` |
-| `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. If larger than zero, the time when the pod needs to be evicted is calculated as <time when taint was adedd> + <toleration seconds>. |
+| `tolerationSeconds` | `integer` | TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system. If larger than zero, the time when the pod needs to be evicted is calculated as &lt;time when taint was adedd> + &lt;toleration seconds>. |
 | `value` | `string` | Value is the taint value the toleration matches to. If the operator is Exists, the value must be empty, otherwise just a regular string. Must be a label value. |
 
 ### .status.devices {#_statusdevices}
@@ -593,7 +593,7 @@ Type
   `array`
   ```
 
-### .status.devices[] {#_statusdevices}
+### .status.devices\[\] {#_statusdevices}
 
 Description
 : AllocatedDeviceStatus contains the status of an allocated device, if the driver chooses to report it. This may include driver-specific information.
@@ -620,7 +620,7 @@ Required
 | `pool` | `string` | This name together with the driver name and the device name field identify which device was allocated (`<driver name>/<pool name>/<device name>`).<br>Must not be longer than 253 characters and may contain one or more DNS sub-domains separated by slashes. |
 | `shareID` | `string` | ShareID uniquely identifies an individual allocation share of the device. |
 
-### .status.devices[].networkData {#_statusdevicesnetworkdata}
+### .status.devices\[\].networkData {#_statusdevicesnetworkdata}
 
 Description
 : NetworkDeviceData provides network-related details for the allocated device. This information may be filled by drivers or other components to configure or identify the device within a network context.
@@ -652,7 +652,7 @@ Type
   `array`
   ```
 
-### .status.reservedFor[] {#_statusreservedfor}
+### .status.reservedFor\[\] {#_statusreservedfor}
 
 Description
 : ResourceClaimConsumerReference contains enough information to let you locate the consumer of a ResourceClaim. The user must be a resource in the same namespace as the ResourceClaim.
@@ -738,7 +738,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/resource.k8s.io/v1/namespaces/{namespace}/resourceclaims {#_apisresourcek8siov1namespaces_namespace_resourceclaims}
+### /apis/resource.k8s.io/v1/namespaces/&#123;namespace&#125;/resourceclaims {#_apisresourcek8siov1namespaces_namespace_resourceclaims}
 
 HTTP method
 : ```
@@ -812,7 +812,7 @@ Description
 | 202 - Accepted | [`ResourceClaim`](/docs/rest_api/schedule_and_quota_apis/resourceclaim-resource-k8s-io-v1#resourceclaim-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/resource.k8s.io/v1/watch/namespaces/{namespace}/resourceclaims {#_apisresourcek8siov1watchnamespaces_namespace_resourceclaims}
+### /apis/resource.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/resourceclaims {#_apisresourcek8siov1watchnamespaces_namespace_resourceclaims}
 
 HTTP method
 : ```
@@ -831,7 +831,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/resource.k8s.io/v1/namespaces/{namespace}/resourceclaims/{name} {#_apisresourcek8siov1namespaces_namespace_resourceclaims_name}
+### /apis/resource.k8s.io/v1/namespaces/&#123;namespace&#125;/resourceclaims/&#123;name&#125; {#_apisresourcek8siov1namespaces_namespace_resourceclaims_name}
 
 **Global path parameters**
 
@@ -936,7 +936,7 @@ Description
 | 201 - Created | [`ResourceClaim`](/docs/rest_api/schedule_and_quota_apis/resourceclaim-resource-k8s-io-v1#resourceclaim-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/resource.k8s.io/v1/watch/namespaces/{namespace}/resourceclaims/{name} {#_apisresourcek8siov1watchnamespaces_namespace_resourceclaims_name}
+### /apis/resource.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/resourceclaims/&#123;name&#125; {#_apisresourcek8siov1watchnamespaces_namespace_resourceclaims_name}
 
 **Global path parameters**
 
@@ -961,7 +961,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/resource.k8s.io/v1/namespaces/{namespace}/resourceclaims/{name}/status {#_apisresourcek8siov1namespaces_namespace_resourceclaims_name_status}
+### /apis/resource.k8s.io/v1/namespaces/&#123;namespace&#125;/resourceclaims/&#123;name&#125;/status {#_apisresourcek8siov1namespaces_namespace_resourceclaims_name_status}
 
 **Global path parameters**
 

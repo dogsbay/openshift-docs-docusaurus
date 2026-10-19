@@ -60,7 +60,7 @@ Before starting a File System Backup (FSB), you must specify which pod volumes t
 - FSB reads and writes data from volumes by accessing the file system of the node on which the pod is running. For this reason, FSB can only back up volumes that are mounted from a pod and not directly from a PVC. Some Velero users have overcome this limitation by running a staging pod, such as a BusyBox or Alpine container with an infinite sleep, to mount these PVC and PV pairs before performing a Velero backup..
 - FSB expects volumes to be mounted under `<hostPath>/<pod UID>`, with `<hostPath>` being configurable. Some Kubernetes systems, for example, vCluster, do not mount volumes under the `<pod UID>` subdirectory, and VFSB does not work with them as expected.
 
-### Backing up pod volumes by using the opt-in method {#oadp-backing-up-opt-in_oadp-backing-up-data-one-cluster-restoring-another-cluster}
+### Back up pod volumes by using the opt-in method {#oadp-backing-up-opt-in_oadp-backing-up-data-one-cluster-restoring-another-cluster}
 
 Use the opt-in method to specify the exact pod volumes you want to back up using File System Backup (FSB). By applying specific annotations, you can selectively include only the volumes you need, which helps you to manage storage and backup efficiency.
 
@@ -79,7 +79,7 @@ Use the opt-in method to specify the exact pod volumes you want to back up using
   <dd>specifies the name of the xth volume in the pod specification.</dd>
   </dl>
 
-### Backing up pod volumes by using the opt-out method {#oadp-backing-up-opt-out_oadp-backing-up-data-one-cluster-restoring-another-cluster}
+### Back up pod volumes by using the opt-out method {#oadp-backing-up-opt-out_oadp-backing-up-data-one-cluster-restoring-another-cluster}
 
 Use the opt-out method to exclude specific pod volumes from your default File System Backup (FSB). While this approach automatically backs up all pod volumes, to customize your backup operations you can use annotations to skip specific ones.
 
@@ -149,7 +149,7 @@ For an in-depth discussion of UID and GID ranges in OpenShift Container Platform
 - [A Guide to OpenShift and UIDs](https://cloud.redhat.com/blog/a-guide-to-openshift-and-uids)
 - [Resolving overlapping UID ranges in OpenShift namespaces after migration](https://access.redhat.com/articles/6844071)
 
-## Backing up data from one cluster and restoring it to another cluster {#oadp-backing-and-restoring-from-cluster-to-cluster_oadp-backing-up-data-one-cluster-restoring-another-cluster}
+## Back up data from one cluster and restore it to another cluster {#oadp-backing-and-restoring-from-cluster-to-cluster_oadp-backing-up-data-one-cluster-restoring-another-cluster}
 
 Review the specific prerequisites and procedure differences to successfully back up data on one cluster and restore it to another. This helps you adapt standard OADP tasks for cross-cluster data recovery.
 

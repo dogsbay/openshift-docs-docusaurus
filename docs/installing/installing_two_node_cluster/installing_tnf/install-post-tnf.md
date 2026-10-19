@@ -287,7 +287,7 @@ This scenario typically occurs when you need to replace a control plane node (on
    Type 'yes' or 'y' to proceed, anything else to cancel:
    ```
 
-   Replace <failed_node_name> with the name of the failed control plane node (for example, control-plane-1).
+   Replace &lt;failed_node_name> with the name of the failed control plane node (for example, control-plane-1).
 4. Verify that quorum is restored by running the following command:
    ```terminal
    $ sudo pcs quorum status

@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="storage-apis"></a>
 
-## CSIDriver [storage.k8s.io/v1] {#_csidriver_storagek8siov1}
+## CSIDriver \[storage.k8s.io/v1\] {#_csidriver_storagek8siov1}
 
 Description
 : CSIDriver captures information about a Container Storage Interface (CSI) volume driver deployed on the cluster. Kubernetes attach detach controller uses this object to determine whether attach is required. Kubelet uses this object to determine whether pod information needs to be passed on mount. CSIDriver objects are non-namespaced.
@@ -17,7 +17,7 @@ Type
   `object`
   ```
 
-## CSINode [storage.k8s.io/v1] {#_csinode_storagek8siov1}
+## CSINode \[storage.k8s.io/v1\] {#_csinode_storagek8siov1}
 
 Description
 : CSINode holds information about all CSI drivers installed on a node. CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn’t create this object. CSINode has an OwnerReference that points to the corresponding node object.
@@ -27,7 +27,7 @@ Type
   `object`
   ```
 
-## CSIStorageCapacity [storage.k8s.io/v1] {#_csistoragecapacity_storagek8siov1}
+## CSIStorageCapacity \[storage.k8s.io/v1\] {#_csistoragecapacity_storagek8siov1}
 
 Description
 : CSIStorageCapacity stores the result of one CSI GetCapacity call. For a given StorageClass, this describes the available capacity in a particular topology segment.  This can be used when considering where to instantiate new PersistentVolumes.
@@ -45,7 +45,7 @@ Type
   `object`
   ```
 
-## PersistentVolume [v1] {#_persistentvolume_v1}
+## PersistentVolume \[v1\] {#_persistentvolume_v1}
 
 Description
 : PersistentVolume (PV) is a storage resource provisioned by an administrator. It is analogous to a node. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes
@@ -55,7 +55,7 @@ Type
   `object`
   ```
 
-## PersistentVolumeClaim [v1] {#_persistentvolumeclaim_v1}
+## PersistentVolumeClaim \[v1\] {#_persistentvolumeclaim_v1}
 
 Description
 : PersistentVolumeClaim is a user’s request for and claim to a persistent volume
@@ -65,7 +65,7 @@ Type
   `object`
   ```
 
-## StorageClass [storage.k8s.io/v1] {#_storageclass_storagek8siov1}
+## StorageClass \[storage.k8s.io/v1\] {#_storageclass_storagek8siov1}
 
 Description
 : StorageClass describes the parameters for a class of storage for which PersistentVolumes can be dynamically provisioned.
@@ -77,7 +77,7 @@ Type
   `object`
   ```
 
-## StorageState [migration.k8s.io/v1alpha1] {#_storagestate_migrationk8siov1alpha1}
+## StorageState \[migration.k8s.io/v1alpha1\] {#_storagestate_migrationk8siov1alpha1}
 
 Description
 : The state of the storage of a specific resource.
@@ -87,7 +87,7 @@ Type
   `object`
   ```
 
-## StorageVersionMigration [migration.k8s.io/v1alpha1] {#_storageversionmigration_migrationk8siov1alpha1}
+## StorageVersionMigration \[migration.k8s.io/v1alpha1\] {#_storageversionmigration_migrationk8siov1alpha1}
 
 Description
 : StorageVersionMigration represents a migration of stored data to the latest storage version.
@@ -97,7 +97,7 @@ Type
   `object`
   ```
 
-## VolumeAttachment [storage.k8s.io/v1] {#_volumeattachment_storagek8siov1}
+## VolumeAttachment \[storage.k8s.io/v1\] {#_volumeattachment_storagek8siov1}
 
 Description
 : VolumeAttachment captures the intent to attach or detach the specified volume to/from the specified node.
@@ -109,7 +109,7 @@ Type
   `object`
   ```
 
-## VolumeAttributesClass [storage.k8s.io/v1] {#_volumeattributesclass_storagek8siov1}
+## VolumeAttributesClass \[storage.k8s.io/v1\] {#_volumeattributesclass_storagek8siov1}
 
 Description
 : VolumeAttributesClass represents a specification of mutable volume attributes defined by the CSI driver. The class can be specified during dynamic provisioning of PersistentVolumeClaims, and changed in the PersistentVolumeClaim spec after provisioning.
@@ -119,7 +119,7 @@ Type
   `object`
   ```
 
-## VolumePopulator [populator.storage.k8s.io/v1beta1] {#_volumepopulator_populatorstoragek8siov1beta1}
+## VolumePopulator \[populator.storage.k8s.io/v1beta1\] {#_volumepopulator_populatorstoragek8siov1beta1}
 
 Description
 : VolumePopulator represents the registration for a volume populator. VolumePopulators are cluster scoped.
@@ -129,7 +129,7 @@ Type
   `object`
   ```
 
-## VolumeSnapshot [snapshot.storage.k8s.io/v1] {#_volumesnapshot_snapshotstoragek8siov1}
+## VolumeSnapshot \[snapshot.storage.k8s.io/v1\] {#_volumesnapshot_snapshotstoragek8siov1}
 
 Description
 : VolumeSnapshot is a user’s request for either creating a point-in-time snapshot of a persistent volume, or binding to a pre-existing snapshot.
@@ -139,7 +139,7 @@ Type
   `object`
   ```
 
-## VolumeSnapshotClass [snapshot.storage.k8s.io/v1] {#_volumesnapshotclass_snapshotstoragek8siov1}
+## VolumeSnapshotClass \[snapshot.storage.k8s.io/v1\] {#_volumesnapshotclass_snapshotstoragek8siov1}
 
 Description
 : VolumeSnapshotClass specifies parameters that a underlying storage system uses when creating a volume snapshot. A specific VolumeSnapshotClass is used by specifying its name in a VolumeSnapshot object. VolumeSnapshotClasses are non-namespaced
@@ -149,7 +149,7 @@ Type
   `object`
   ```
 
-## VolumeSnapshotContent [snapshot.storage.k8s.io/v1] {#_volumesnapshotcontent_snapshotstoragek8siov1}
+## VolumeSnapshotContent \[snapshot.storage.k8s.io/v1\] {#_volumesnapshotcontent_snapshotstoragek8siov1}
 
 Description
 : VolumeSnapshotContent represents the actual "on-disk" snapshot object in the underlying storage system

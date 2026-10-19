@@ -3,7 +3,7 @@ title: "TokenReview [authentication.k8s.io/v1]"
 sidebar_position: 10
 ---
 
-# TokenReview [authentication.k8s.io/v1] {#tokenreview-authentication-k8s-io-v1}
+# TokenReview \[authentication.k8s.io/v1\] {#tokenreview-authentication-k8s-io-v1}
 
 <a id="tokenreview-authentication-k8s-io-v1"></a>
 

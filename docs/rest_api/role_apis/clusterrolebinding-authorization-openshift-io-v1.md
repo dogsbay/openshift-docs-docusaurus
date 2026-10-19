@@ -3,7 +3,7 @@ title: "ClusterRoleBinding [authorization.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# ClusterRoleBinding [authorization.openshift.io/v1] {#clusterrolebinding-authorization-openshift-io-v1}
+# ClusterRoleBinding \[authorization.openshift.io/v1\] {#clusterrolebinding-authorization-openshift-io-v1}
 
 <a id="clusterrolebinding-authorization-openshift-io-v1"></a>
 
@@ -97,7 +97,7 @@ Description
 | 202 - Accepted | [`ClusterRoleBinding`](/docs/rest_api/role_apis/clusterrolebinding-authorization-openshift-io-v1#clusterrolebinding-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/authorization.openshift.io/v1/clusterrolebindings/{name} {#_apisauthorizationopenshiftiov1clusterrolebindings_name}
+### /apis/authorization.openshift.io/v1/clusterrolebindings/&#123;name&#125; {#_apisauthorizationopenshiftiov1clusterrolebindings_name}
 
 **Global path parameters**
 

@@ -3,7 +3,7 @@ title: "ImageSignature [image.openshift.io/v1]"
 sidebar_position: 3
 ---
 
-# ImageSignature [image.openshift.io/v1] {#imagesignature-image-openshift-io-v1}
+# ImageSignature \[image.openshift.io/v1\] {#imagesignature-image-openshift-io-v1}
 
 <a id="imagesignature-image-openshift-io-v1"></a>
 
@@ -48,7 +48,7 @@ Type
   `array`
   ```
 
-### .conditions[] {#_conditions}
+### .conditions\[\] {#_conditions}
 
 Description
 : SignatureCondition describes an image signature condition of particular kind at particular probe time.
@@ -148,7 +148,7 @@ Description
 | 202 - Accepted | [`ImageSignature`](/docs/rest_api/image_apis/imagesignature-image-openshift-io-v1#imagesignature-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/imagesignatures/{name} {#_apisimageopenshiftiov1imagesignatures_name}
+### /apis/image.openshift.io/v1/imagesignatures/&#123;name&#125; {#_apisimageopenshiftiov1imagesignatures_name}
 
 **Global path parameters**
 

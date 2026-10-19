@@ -1,9 +1,9 @@
 ---
-title: Understanding network policy APIs
+title: Understand network policy APIs
 sidebar_position: 1
 ---
 
-# Understanding network policy APIs {#network-policy-apis}
+# Understand network policy APIs {#network-policy-apis}
 
 <a id="network-policy-apis"></a>
 

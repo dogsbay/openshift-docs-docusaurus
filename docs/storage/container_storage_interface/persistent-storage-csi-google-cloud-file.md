@@ -286,7 +286,7 @@ By default, a Filestore instance grants root level read/write access to all clie
    - `SquashMode`: Either `NO_ROOT_SQUASH`, which allows root access on the exported directory; or ROOT_SQUASH, which does not allow root access. The default is `NO_ROOT_SQUASH`.
    - `AnonUid`: An integer representing the anonymous user ID with a default value of 65534. `AnonUid` can only be set with `squashMode` set to `ROOT_SQUASH`; Otherwise, an error occurs.
    - `AnonGid`: An integer representing the anonymous group ID with a default value of 65534. `AnonGid` can only be set with
-   - `ipRanges`: List of either an IPv4 addresses in the format {octet1}.{octet2}.{octet3}.{octet4}, or CIDR ranges in the format {octet1}.{octet2}.{octet3}.{octet4}/{mask size}, which can mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions, otherwise, an error is returned. The limit is 64 IP ranges or addresses for each `FileShareConfig` among all NFS export options.
+   - `ipRanges`: List of either an IPv4 addresses in the format &#123;octet1&#125;.&#123;octet2&#125;.&#123;octet3&#125;.&#123;octet4&#125;, or CIDR ranges in the format &#123;octet1&#125;.&#123;octet2&#125;.&#123;octet3&#125;.&#123;octet4&#125;/&#123;mask size&#125;, which can mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions, otherwise, an error is returned. The limit is 64 IP ranges or addresses for each `FileShareConfig` among all NFS export options.
 
 ## Destroying clusters and GCP Filestore {#persistent-storage-csi-google-cloud-file-delete-instances_persistent-storage-csi-google-cloud-file}
 

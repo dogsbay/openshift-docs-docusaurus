@@ -43,7 +43,7 @@ Review the status fields in the `DataProtectionTest` (DPT) custom resource (CR) 
 | `s3Vendor` | string | AWS S3-compatible storage bucket vendors. For example, AWS, MinIO, Ceph. |
 | `errorMessage` | string | Error message if the DPT CR fails. |
 
-## Using the DataProtectionTest custom resource {#using-data-protection-test_oadp-data-protection-test}
+## Use the DataProtectionTest custom resource {#using-data-protection-test_oadp-data-protection-test}
 
 Configure and run the `DataProtectionTest` (DPT) custom resource (CR) to verify Container Storage Interface (CSI) snapshot readiness and data upload performance to your storage bucket. This helps you validate your OADP environment before performing backup and restore operations.
 
@@ -169,7 +169,7 @@ Configure and run the `DataProtectionTest` (DPT) custom resource (CR) to verify 
    <dd>Specifies the upload test details.</dd>
    </dl>
 
-## Running a data protection test by configuring a backup storage location specification {#oadp-dpt-use-case-bsl-spec_oadp-data-protection-test}
+## Run a data protection test by configuring a backup storage location specification {#oadp-dpt-use-case-bsl-spec_oadp-data-protection-test}
 
 Configure and run the `DataProtectionTest` (DPT) custom resource (CR) by specifying an inline backup storage location (BSL) specification instead of referencing an existing BSL name. This helps you test data upload performance and CSI snapshot readiness without creating a separate BSL resource.
 
@@ -259,7 +259,7 @@ Configure and run the `DataProtectionTest` (DPT) custom resource (CR) by specify
    dpt-sample   Complete   17m          546                 AES256       Enabled      2/2 passed   17m
    ```
 
-## Running a data protection test on an Azure object storage {#oadp-dpt-use-case-azure_oadp-data-protection-test}
+## Run a data protection test on an Azure object storage {#oadp-dpt-use-case-azure_oadp-data-protection-test}
 
 Run the `DataProtectionTest` (DPT) custom resource (CR) on Azure object storage by configuring the required Azure credentials, including the `STORAGE_ACCOUNT_ID` parameter in the secret object. This helps you validate your OADP configuration and verify CSI snapshot readiness on Azure clusters.
 
@@ -364,7 +364,7 @@ Run the `DataProtectionTest` (DPT) custom resource (CR) on Azure object storage 
    </dl>
 6. Run the DPT CR to verify the snapshot readiness.
 
-## Troubleshooting the DataProtectionTest custom resource {#oadp-troubleshooting-dpt_oadp-data-protection-test}
+## Troubleshoot the DataProtectionTest custom resource {#oadp-troubleshooting-dpt_oadp-data-protection-test}
 
 Troubleshoot common `DataProtectionTest` (DPT) custom resource (CR) issues, such as stuck progress states, upload test failures, and snapshot test failures. This helps you identify and resolve problems with your DPT configuration.
 

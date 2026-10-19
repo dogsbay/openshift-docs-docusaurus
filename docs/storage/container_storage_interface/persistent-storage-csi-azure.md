@@ -58,7 +58,7 @@ Both zone-redundant storage (ZRS) and PremiumV2_LRS have some region limitations
 
 **Procedure**
 
-1. Create a storage class designating the storage account type using a YAML file similar to the following: $ oc create -f - << EOF apiVersion: storage.k8s.io/v1 kind: StorageClass metadata: name: <storage-class> provisioner: disk.csi.azure.com parameters: skuName: <storage-class-account-type> reclaimPolicy: Delete volumeBindingMode: WaitForFirstConsumer allowVolumeExpansion: true EOF
+1. Create a storage class designating the storage account type using a YAML file similar to the following: &#36; oc create -f - &lt;< EOF apiVersion: storage.k8s.io/v1 kind: StorageClass metadata: name: &lt;storage-class> provisioner: disk.csi.azure.com parameters: skuName: &lt;storage-class-account-type> reclaimPolicy: Delete volumeBindingMode: WaitForFirstConsumer allowVolumeExpansion: true EOF
    - `metadata.name`: Specifies the storage class name.
    - `parameters.skuName`: The storage account type. This corresponds to your Azure storage account SKU tier:`Standard_LRS`, `Premium_LRS`, `StandardSSD_LRS`, `UltraSSD_LRS`, `Premium_ZRS`, `StandardSSD_ZRS`, `PremiumV2_LRS`.
      :::note

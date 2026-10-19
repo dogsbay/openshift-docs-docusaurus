@@ -3,7 +3,7 @@ title: "VolumeSnapshot [snapshot.storage.k8s.io/v1]"
 sidebar_position: 13
 ---
 
-# VolumeSnapshot [snapshot.storage.k8s.io/v1] {#volumesnapshot-snapshot-storage-k8s-io-v1}
+# VolumeSnapshot \[snapshot.storage.k8s.io/v1\] {#volumesnapshot-snapshot-storage-k8s-io-v1}
 
 <a id="volumesnapshot-snapshot-storage-k8s-io-v1"></a>
 
@@ -134,7 +134,7 @@ Description
 | 200 - OK | [`VolumeSnapshotList`](/docs/rest_api/objects#io-k8s-storage-snapshot-v1-VolumeSnapshotList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/snapshot.storage.k8s.io/v1/namespaces/{namespace}/volumesnapshots {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots}
+### /apis/snapshot.storage.k8s.io/v1/namespaces/&#123;namespace&#125;/volumesnapshots {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots}
 
 HTTP method
 : ```
@@ -202,7 +202,7 @@ Description
 | 202 - Accepted | [`VolumeSnapshot`](/docs/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/snapshot.storage.k8s.io/v1/namespaces/{namespace}/volumesnapshots/{name} {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots_name}
+### /apis/snapshot.storage.k8s.io/v1/namespaces/&#123;namespace&#125;/volumesnapshots/&#123;name&#125; {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots_name}
 
 **Global path parameters**
 
@@ -306,7 +306,7 @@ Description
 | 201 - Created | [`VolumeSnapshot`](/docs/rest_api/storage_apis/volumesnapshot-snapshot-storage-k8s-io-v1#volumesnapshot-snapshot-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/snapshot.storage.k8s.io/v1/namespaces/{namespace}/volumesnapshots/{name}/status {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots_name_status}
+### /apis/snapshot.storage.k8s.io/v1/namespaces/&#123;namespace&#125;/volumesnapshots/&#123;name&#125;/status {#_apissnapshotstoragek8siov1namespaces_namespace_volumesnapshots_name_status}
 
 **Global path parameters**
 

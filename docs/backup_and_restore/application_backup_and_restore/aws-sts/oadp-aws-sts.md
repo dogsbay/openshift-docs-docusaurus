@@ -22,7 +22,7 @@ This process is performed in the following two stages:
 1. Prepare AWS credentials.
 2. Install the OADP Operator and give it an IAM role.
 
-## Preparing AWS STS credentials for OADP {#preparing-aws-sts-credentials-for-oadp_oadp-aws-sts-backing-up-applications}
+## Prepare AWS STS credentials for OADP {#preparing-aws-sts-credentials-for-oadp_oadp-aws-sts-backing-up-applications}
 
 Configure an Amazon Web Services account to install the OpenShift API for Data Protection (OADP). Prepare the AWS credentials by using the following procedure.
 
@@ -177,7 +177,7 @@ Configure an Amazon Web Services account to install the OpenShift API for Data P
    $ aws iam attach-role-policy --role-name "${ROLE_NAME}" --policy-arn ${POLICY_ARN}
    ```
 
-## Installing the OADP Operator and providing the IAM role {#installing-oadp-aws-sts_oadp-aws-sts-backing-up-applications}
+## Install the OADP Operator and provide the IAM role {#installing-oadp-aws-sts_oadp-aws-sts-backing-up-applications}
 
 Install OpenShift API for Data Protection (OADP) on an AWS STS cluster. AWS Security Token Service (AWS STS) is a global web service that provides short-term credentials for IAM or federated users.
 
@@ -427,7 +427,7 @@ If you want to use two different clusters for backing up and restoring, the two 
 - [Installing from the software catalog using the web console](/docs/operators/user/olm-installing-operators-in-namespace#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace)
 - [Backing up applications](/docs/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
 
-## Performing a backup with OADP and AWS STS {#performing-a-backup-oadp-aws-sts_oadp-aws-sts-backing-up-applications}
+## Perform a backup with OADP and AWS STS {#performing-a-backup-oadp-aws-sts_oadp-aws-sts-backing-up-applications}
 
 Perform a backup by using OpenShift API for Data Protection (OADP) with Amazon Web Services (AWS) (AWS STS). The following `hello-world` example application has no persistent volumes (PVs) attached.
 
@@ -546,7 +546,7 @@ Either Data Protection Application (DPA) configuration will work.
 
     :::
 
-### Cleaning up a cluster after a backup with OADP and AWS STS {#cleanup-a-backup-oadp-aws-sts_oadp-aws-sts-backing-up-applications}
+### Clean up a cluster after a backup with OADP and AWS STS {#cleanup-a-backup-oadp-aws-sts_oadp-aws-sts-backing-up-applications}
 
 Uninstall the OpenShift API for Data Protection (OADP) Operator together with the backups and the S3 bucket from the `hello-world` example.
 

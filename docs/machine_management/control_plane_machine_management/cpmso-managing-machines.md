@@ -42,7 +42,7 @@ For more information about the parameters in the CR, see "Control plane machine 
 
 ### Automatic updates to the control plane configuration {#cpmso-feat-auto-update_cpmso-managing-machines}
 
-The `RollingUpdate` update strategy automatically propagates changes to your control plane configuration to minimize manual intervention. {._abstract} This update strategy is the default configuration for the control plane machine set.
+The `RollingUpdate` update strategy automatically propagates changes to your control plane configuration to minimize manual intervention. &#123;.\_abstract&#125; This update strategy is the default configuration for the control plane machine set.
 
 For clusters that use the `RollingUpdate` update strategy, the Operator creates a replacement control plane machine with the configuration that is specified in the CR. When the replacement control plane machine is ready, the Operator deletes the control plane machine that is marked for replacement. The replacement machine then joins the control plane.
 

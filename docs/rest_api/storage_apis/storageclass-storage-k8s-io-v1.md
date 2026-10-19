@@ -3,7 +3,7 @@ title: "StorageClass [storage.k8s.io/v1]"
 sidebar_position: 7
 ---
 
-# StorageClass [storage.k8s.io/v1] {#storageclass-storage-k8s-io-v1}
+# StorageClass \[storage.k8s.io/v1\] {#storageclass-storage-k8s-io-v1}
 
 <a id="storageclass-storage-k8s-io-v1"></a>
 
@@ -29,7 +29,7 @@ Required
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
-| `mountOptions` | `array (string)` | mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid. |
+| `mountOptions` | `array (string)` | mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. \["ro", "soft"\]. Not validated - mount of the PVs will simply fail if one is invalid. |
 | `parameters` | `object (string)` | parameters holds the parameters for the provisioner that should create volumes of this storage class. |
 | `provisioner` | `string` | provisioner indicates the type of the provisioner. |
 | `reclaimPolicy` | `string` | reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class. Defaults to Delete.<br>Possible enum values:  - `"Delete"` means the volume will be deleted from Kubernetes on release from its claim. The volume plugin must support Deletion.  - `"Recycle"` means the volume will be recycled back into the pool of unbound persistent volumes on release from its claim. The volume plugin must support Recycling.  - `"Retain"` means the volume will be left in its current phase (Released) for manual reclamation by the administrator. The default policy is Retain. |
@@ -146,7 +146,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/storageclasses/{name} {#_apisstoragek8siov1storageclasses_name}
+### /apis/storage.k8s.io/v1/storageclasses/&#123;name&#125; {#_apisstoragek8siov1storageclasses_name}
 
 **Global path parameters**
 
@@ -251,7 +251,7 @@ Description
 | 201 - Created | [`StorageClass`](/docs/rest_api/storage_apis/storageclass-storage-k8s-io-v1#storageclass-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/watch/storageclasses/{name} {#_apisstoragek8siov1watchstorageclasses_name}
+### /apis/storage.k8s.io/v1/watch/storageclasses/&#123;name&#125; {#_apisstoragek8siov1watchstorageclasses_name}
 
 **Global path parameters**
 

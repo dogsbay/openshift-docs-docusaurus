@@ -3,7 +3,7 @@ title: "ImageStreamMapping [image.openshift.io/v1]"
 sidebar_position: 7
 ---
 
-# ImageStreamMapping [image.openshift.io/v1] {#imagestreammapping-image-openshift-io-v1}
+# ImageStreamMapping \[image.openshift.io/v1\] {#imagestreammapping-image-openshift-io-v1}
 
 <a id="imagestreammapping-image-openshift-io-v1"></a>
 
@@ -72,7 +72,7 @@ Type
   `array`
   ```
 
-### .image.dockerImageLayers[] {#_imagedockerimagelayers}
+### .image.dockerImageLayers\[\] {#_imagedockerimagelayers}
 
 Description
 : ImageLayer represents a single layer of the image. Some images may have multiple layers. Some may have none.
@@ -103,7 +103,7 @@ Type
   `array`
   ```
 
-### .image.dockerImageManifests[] {#_imagedockerimagemanifests}
+### .image.dockerImageManifests\[\] {#_imagedockerimagemanifests}
 
 Description
 : ImageManifest represents sub-manifests of a manifest list. The Digest field points to a regular Image object.
@@ -139,7 +139,7 @@ Type
   `array`
   ```
 
-### .image.signatures[] {#_imagesignatures}
+### .image.signatures\[\] {#_imagesignatures}
 
 Description
 : ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.
@@ -170,7 +170,7 @@ Required
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
 
-### .image.signatures[].conditions {#_imagesignaturesconditions}
+### .image.signatures\[\].conditions {#_imagesignaturesconditions}
 
 Description
 : conditions represent the latest available observations of a signature’s current state.
@@ -180,7 +180,7 @@ Type
   `array`
   ```
 
-### .image.signatures[].conditions[] {#_imagesignaturesconditions}
+### .image.signatures\[\].conditions\[\] {#_imagesignaturesconditions}
 
 Description
 : SignatureCondition describes an image signature condition of particular kind at particular probe time.
@@ -203,7 +203,7 @@ Required
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
 
-### .image.signatures[].issuedBy {#_imagesignaturesissuedby}
+### .image.signatures\[\].issuedBy {#_imagesignaturesissuedby}
 
 Description
 : SignatureIssuer holds information about an issuer of signing certificate or key.
@@ -218,7 +218,7 @@ Type
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
 
-### .image.signatures[].issuedTo {#_imagesignaturesissuedto}
+### .image.signatures\[\].issuedTo {#_imagesignaturesissuedto}
 
 Description
 : SignatureSubject holds information about a person or entity who created the signature.
@@ -244,7 +244,7 @@ The following API endpoints are available:
 - `/apis/image.openshift.io/v1/namespaces/{namespace}/imagestreammappings`
   - `POST`: create an ImageStreamMapping
 
-### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreammappings {#_apisimageopenshiftiov1namespaces_namespace_imagestreammappings}
+### /apis/image.openshift.io/v1/namespaces/&#123;namespace&#125;/imagestreammappings {#_apisimageopenshiftiov1namespaces_namespace_imagestreammappings}
 
 **Global query parameters**
 

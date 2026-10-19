@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="operator-apis"></a>
 
-## Authentication [operator.openshift.io/v1] {#_authentication_operatoropenshiftiov1}
+## Authentication \[operator.openshift.io/v1\] {#_authentication_operatoropenshiftiov1}
 
 Description
 : Authentication provides information to configure an operator to manage authentication.
@@ -19,7 +19,7 @@ Type
   `object`
   ```
 
-## CloudCredential [operator.openshift.io/v1] {#_cloudcredential_operatoropenshiftiov1}
+## CloudCredential \[operator.openshift.io/v1\] {#_cloudcredential_operatoropenshiftiov1}
 
 Description
 : CloudCredential provides a means to configure an operator to manage CredentialsRequests.
@@ -31,7 +31,7 @@ Type
   `object`
   ```
 
-## ClusterCSIDriver [operator.openshift.io/v1] {#_clustercsidriver_operatoropenshiftiov1}
+## ClusterCSIDriver \[operator.openshift.io/v1\] {#_clustercsidriver_operatoropenshiftiov1}
 
 Description
 : ClusterCSIDriver object allows management and configuration of a CSI driver operator installed by default in OpenShift. Name of the object must be name of the CSI driver it operates. See CSIDriverName type for list of allowed values.
@@ -43,7 +43,7 @@ Type
   `object`
   ```
 
-## Console [operator.openshift.io/v1] {#_console_operatoropenshiftiov1}
+## Console \[operator.openshift.io/v1\] {#_console_operatoropenshiftiov1}
 
 Description
 : Console provides a means to configure an operator to manage the console.
@@ -55,7 +55,7 @@ Type
   `object`
   ```
 
-## Config [operator.openshift.io/v1] {#_config_operatoropenshiftiov1}
+## Config \[operator.openshift.io/v1\] {#_config_operatoropenshiftiov1}
 
 Description
 : Config specifies the behavior of the config operator which is responsible for creating the initial configuration of other components on the cluster.  The operator also handles installation, migration or synchronization of cloud configurations for AWS and Azure cloud based clusters
@@ -67,7 +67,7 @@ Type
   `object`
   ```
 
-## Config [imageregistry.operator.openshift.io/v1] {#_config_imageregistryoperatoropenshiftiov1}
+## Config \[imageregistry.operator.openshift.io/v1\] {#_config_imageregistryoperatoropenshiftiov1}
 
 Description
 : Config is the configuration object for a registry instance managed by the registry operator
@@ -79,7 +79,7 @@ Type
   `object`
   ```
 
-## Config [samples.operator.openshift.io/v1] {#_config_samplesoperatoropenshiftiov1}
+## Config \[samples.operator.openshift.io/v1\] {#_config_samplesoperatoropenshiftiov1}
 
 Description
 : Config contains the configuration and detailed condition status for the Samples Operator.
@@ -91,7 +91,7 @@ Type
   `object`
   ```
 
-## CSISnapshotController [operator.openshift.io/v1] {#_csisnapshotcontroller_operatoropenshiftiov1}
+## CSISnapshotController \[operator.openshift.io/v1\] {#_csisnapshotcontroller_operatoropenshiftiov1}
 
 Description
 : CSISnapshotController provides a means to configure an operator to manage the CSI snapshots. `cluster` is the canonical name.
@@ -103,7 +103,7 @@ Type
   `object`
   ```
 
-## DNS [operator.openshift.io/v1] {#_dns_operatoropenshiftiov1}
+## DNS \[operator.openshift.io/v1\] {#_dns_operatoropenshiftiov1}
 
 Description
 : DNS manages the CoreDNS component to provide a name resolution service for pods and services in the cluster.
@@ -119,7 +119,7 @@ Type
   `object`
   ```
 
-## DNSRecord [ingress.operator.openshift.io/v1] {#_dnsrecord_ingressoperatoropenshiftiov1}
+## DNSRecord \[ingress.operator.openshift.io/v1\] {#_dnsrecord_ingressoperatoropenshiftiov1}
 
 Description
 : DNSRecord is a DNS record managed in the zones defined by dns.config.openshift.io/cluster .spec.publicZone and .spec.privateZone.
@@ -135,7 +135,7 @@ Type
   `object`
   ```
 
-## Etcd [operator.openshift.io/v1] {#_etcd_operatoropenshiftiov1}
+## Etcd \[operator.openshift.io/v1\] {#_etcd_operatoropenshiftiov1}
 
 Description
 : Etcd provides information to configure an operator to manage etcd.
@@ -147,7 +147,7 @@ Type
   `object`
   ```
 
-## ImageContentSourcePolicy [operator.openshift.io/v1alpha1] {#_imagecontentsourcepolicy_operatoropenshiftiov1alpha1}
+## ImageContentSourcePolicy \[operator.openshift.io/v1alpha1\] {#_imagecontentsourcepolicy_operatoropenshiftiov1alpha1}
 
 Description
 : ImageContentSourcePolicy holds cluster-wide information about how to handle registry mirror rules. When multiple policies are defined, the outcome of the behavior is defined on each field.
@@ -159,7 +159,7 @@ Type
   `object`
   ```
 
-## ImagePruner [imageregistry.operator.openshift.io/v1] {#_imagepruner_imageregistryoperatoropenshiftiov1}
+## ImagePruner \[imageregistry.operator.openshift.io/v1\] {#_imagepruner_imageregistryoperatoropenshiftiov1}
 
 Description
 : ImagePruner is the configuration object for an image registry pruner managed by the registry operator.
@@ -171,7 +171,7 @@ Type
   `object`
   ```
 
-## IngressController [operator.openshift.io/v1] {#_ingresscontroller_operatoropenshiftiov1}
+## IngressController \[operator.openshift.io/v1\] {#_ingresscontroller_operatoropenshiftiov1}
 
 Description
 : IngressController describes a managed ingress controller for the cluster. The controller can service OpenShift Route and Kubernetes Ingress resources.
@@ -189,7 +189,7 @@ Type
   `object`
   ```
 
-## InsightsOperator [operator.openshift.io/v1] {#_insightsoperator_operatoropenshiftiov1}
+## InsightsOperator \[operator.openshift.io/v1\] {#_insightsoperator_operatoropenshiftiov1}
 
 Description
 : InsightsOperator holds cluster-wide information about the Insights Operator. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).
@@ -199,7 +199,7 @@ Type
   `object`
   ```
 
-## KubeAPIServer [operator.openshift.io/v1] {#_kubeapiserver_operatoropenshiftiov1}
+## KubeAPIServer \[operator.openshift.io/v1\] {#_kubeapiserver_operatoropenshiftiov1}
 
 Description
 : KubeAPIServer provides information to configure an operator to manage kube-apiserver.
@@ -211,7 +211,7 @@ Type
   `object`
   ```
 
-## KubeControllerManager [operator.openshift.io/v1] {#_kubecontrollermanager_operatoropenshiftiov1}
+## KubeControllerManager \[operator.openshift.io/v1\] {#_kubecontrollermanager_operatoropenshiftiov1}
 
 Description
 : KubeControllerManager provides information to configure an operator to manage kube-controller-manager.
@@ -223,7 +223,7 @@ Type
   `object`
   ```
 
-## KubeScheduler [operator.openshift.io/v1] {#_kubescheduler_operatoropenshiftiov1}
+## KubeScheduler \[operator.openshift.io/v1\] {#_kubescheduler_operatoropenshiftiov1}
 
 Description
 : KubeScheduler provides information to configure an operator to manage scheduler.
@@ -235,7 +235,7 @@ Type
   `object`
   ```
 
-## KubeStorageVersionMigrator [operator.openshift.io/v1] {#_kubestorageversionmigrator_operatoropenshiftiov1}
+## KubeStorageVersionMigrator \[operator.openshift.io/v1\] {#_kubestorageversionmigrator_operatoropenshiftiov1}
 
 Description
 : KubeStorageVersionMigrator provides information to configure an operator to manage kube-storage-version-migrator.
@@ -247,7 +247,7 @@ Type
   `object`
   ```
 
-## MachineConfiguration [operator.openshift.io/v1] {#_machineconfiguration_operatoropenshiftiov1}
+## MachineConfiguration \[operator.openshift.io/v1\] {#_machineconfiguration_operatoropenshiftiov1}
 
 Description
 : MachineConfiguration provides information to configure an operator to manage Machine Configuration.
@@ -259,7 +259,7 @@ Type
   `object`
   ```
 
-## Network [operator.openshift.io/v1] {#_network_operatoropenshiftiov1}
+## Network \[operator.openshift.io/v1\] {#_network_operatoropenshiftiov1}
 
 Description
 : Network describes the cluster’s desired network configuration. It is consumed by the cluster-network-operator.
@@ -271,7 +271,7 @@ Type
   `object`
   ```
 
-## OpenShiftAPIServer [operator.openshift.io/v1] {#_openshiftapiserver_operatoropenshiftiov1}
+## OpenShiftAPIServer \[operator.openshift.io/v1\] {#_openshiftapiserver_operatoropenshiftiov1}
 
 Description
 : OpenShiftAPIServer provides information to configure an operator to manage openshift-apiserver.
@@ -283,7 +283,7 @@ Type
   `object`
   ```
 
-## OpenShiftControllerManager [operator.openshift.io/v1] {#_openshiftcontrollermanager_operatoropenshiftiov1}
+## OpenShiftControllerManager \[operator.openshift.io/v1\] {#_openshiftcontrollermanager_operatoropenshiftiov1}
 
 Description
 : OpenShiftControllerManager provides information to configure an operator to manage openshift-controller-manager.
@@ -295,7 +295,7 @@ Type
   `object`
   ```
 
-## OperatorPKI [network.operator.openshift.io/v1] {#_operatorpki_networkoperatoropenshiftiov1}
+## OperatorPKI \[network.operator.openshift.io/v1\] {#_operatorpki_networkoperatoropenshiftiov1}
 
 Description
 : OperatorPKI is a simple certificate authority. It is not intended for external use - rather, it is internal to the network operator. The CNO creates a CA and a certificate signed by that CA. The certificate has both ClientAuth and ServerAuth extended usages enabled.
@@ -304,25 +304,25 @@ Description
     More specifically, given an OperatorPKI with &lt;name>, the CNO will manage:
   ```
 
-  - A Secret called <name>-ca with two data keys:
+  - A Secret called &lt;name>-ca with two data keys:
   - tls.key - the private key
   - tls.crt - the CA certificate
-  - A ConfigMap called <name>-ca with a single data key:
+  - A ConfigMap called &lt;name>-ca with a single data key:
   - cabundle.crt - the CA certificate(s)
-  - A Secret called <name>-cert with two data keys:
+  - A Secret called &lt;name>-cert with two data keys:
   - tls.key - the private key
   - tls.crt - the certificate, signed by the CA
 
   The CA certificate will have a validity of 10 years, rotated after 9. The target certificate will have a validity of 6 months, rotated after 3
 
-  The CA certificate will have a CommonName of "<namespace>_<name>-ca@<timestamp>", where <timestamp> is the last rotation time.
+  The CA certificate will have a CommonName of "&lt;namespace>\_&lt;name>-ca@&lt;timestamp>", where &lt;timestamp> is the last rotation time.
 
 Type
 : ```
   `object`
   ```
 
-## ServiceCA [operator.openshift.io/v1] {#_serviceca_operatoropenshiftiov1}
+## ServiceCA \[operator.openshift.io/v1\] {#_serviceca_operatoropenshiftiov1}
 
 Description
 : ServiceCA provides information to configure an operator to manage the service cert controllers
@@ -334,7 +334,7 @@ Type
   `object`
   ```
 
-## Storage [operator.openshift.io/v1] {#_storage_operatoropenshiftiov1}
+## Storage \[operator.openshift.io/v1\] {#_storage_operatoropenshiftiov1}
 
 Description
 : Storage provides a means to configure an operator to manage the cluster storage operator. `cluster` is the canonical name.

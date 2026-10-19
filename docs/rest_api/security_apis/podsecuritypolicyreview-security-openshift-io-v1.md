@@ -3,7 +3,7 @@ title: "PodSecurityPolicyReview [security.openshift.io/v1]"
 sidebar_position: 4
 ---
 
-# PodSecurityPolicyReview [security.openshift.io/v1] {#podsecuritypolicyreview-security-openshift-io-v1}
+# PodSecurityPolicyReview \[security.openshift.io/v1\] {#podsecuritypolicyreview-security-openshift-io-v1}
 
 <a id="podsecuritypolicyreview-security-openshift-io-v1"></a>
 
@@ -73,7 +73,7 @@ Type
   `array`
   ```
 
-### .status.allowedServiceAccounts[] {#_statusallowedserviceaccounts}
+### .status.allowedServiceAccounts\[\] {#_statusallowedserviceaccounts}
 
 Description
 : ServiceAccountPodSecurityPolicyReviewStatus represents ServiceAccount name and related review status
@@ -100,7 +100,7 @@ The following API endpoints are available:
 - `/apis/security.openshift.io/v1/namespaces/{namespace}/podsecuritypolicyreviews`
   - `POST`: create a PodSecurityPolicyReview
 
-### /apis/security.openshift.io/v1/namespaces/{namespace}/podsecuritypolicyreviews {#_apissecurityopenshiftiov1namespaces_namespace_podsecuritypolicyreviews}
+### /apis/security.openshift.io/v1/namespaces/&#123;namespace&#125;/podsecuritypolicyreviews {#_apissecurityopenshiftiov1namespaces_namespace_podsecuritypolicyreviews}
 
 **Global query parameters**
 

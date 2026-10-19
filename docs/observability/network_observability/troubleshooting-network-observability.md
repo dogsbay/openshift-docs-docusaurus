@@ -199,7 +199,7 @@ You can increase memory limits for the Network Observability Operator by editing
 
 Troubleshoot network flow data by running custom Loki queries to retrieve available labels or filter logs by specific criteria, such as source namespaces, using the command-line interface.
 
-There are two examples of ways to do this, which you can adapt according to your needs by replacing the <api_token> with your own.
+There are two examples of ways to do this, which you can adapt according to your needs by replacing the &lt;api_token> with your own.
 
 :::note
 

@@ -1,9 +1,9 @@
 ---
-title: Monitoring Transport Layer Security traffic
+title: Monitor Transport Layer Security traffic
 sidebar_position: 12
 ---
 
-# Monitoring Transport Layer Security traffic {#network-observability-monitoring-tls-traffic}
+# Monitor Transport Layer Security traffic {#network-observability-monitoring-tls-traffic}
 
 <a id="network-observability-monitoring-tls-traffic"></a>
 

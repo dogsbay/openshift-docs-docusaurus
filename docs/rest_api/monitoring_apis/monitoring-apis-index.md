@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="monitoring-apis"></a>
 
-## Alertmanager [monitoring.coreos.com/v1] {#_alertmanager_monitoringcoreoscomv1}
+## Alertmanager \[monitoring.coreos.com/v1\] {#_alertmanager_monitoringcoreoscomv1}
 
 Description
 : The `Alertmanager` custom resource definition (CRD) defines a desired [Alertmanager](https://prometheus.io/docs/alerting) setup to run in a Kubernetes cluster. It allows to specify many options such as the number of replicas, persistent storage and many more.
@@ -21,7 +21,7 @@ Type
   `object`
   ```
 
-## AlertmanagerConfig [monitoring.coreos.com/v1beta1] {#_alertmanagerconfig_monitoringcoreoscomv1beta1}
+## AlertmanagerConfig \[monitoring.coreos.com/v1beta1\] {#_alertmanagerconfig_monitoringcoreoscomv1beta1}
 
 Description
 : The `AlertmanagerConfig` custom resource definition (CRD) defines how `Alertmanager` objects process Prometheus alerts. It allows to specify alert grouping and routing, notification receivers and inhibition rules.
@@ -33,7 +33,7 @@ Type
   `object`
   ```
 
-## AlertRelabelConfig [monitoring.openshift.io/v1] {#_alertrelabelconfig_monitoringopenshiftiov1}
+## AlertRelabelConfig \[monitoring.openshift.io/v1\] {#_alertrelabelconfig_monitoringopenshiftiov1}
 
 Description
 : AlertRelabelConfig defines a set of relabel configs for alerts.
@@ -45,7 +45,7 @@ Type
   `object`
   ```
 
-## AlertingRule [monitoring.openshift.io/v1] {#_alertingrule_monitoringopenshiftiov1}
+## AlertingRule \[monitoring.openshift.io/v1\] {#_alertingrule_monitoringopenshiftiov1}
 
 Description
 : AlertingRule represents a set of user-defined Prometheus rule groups containing alerting rules.  This resource is the supported method for cluster admins to create alerts based on metrics recorded by the platform monitoring stack in OpenShift, i.e. the Prometheus instance deployed to the openshift-monitoring namespace.  You might use this to create custom alerting rules not shipped with OpenShift based on metrics from components such as the node_exporter, which provides machine-level metrics such as CPU usage, or kube-state-metrics, which provides metrics on Kubernetes usage.
@@ -63,7 +63,7 @@ Type
   `object`
   ```
 
-## DataGather [insights.openshift.io/v1] {#_datagather_insightsopenshiftiov1}
+## DataGather \[insights.openshift.io/v1\] {#_datagather_insightsopenshiftiov1}
 
 Description
 : DataGather provides data gather configuration options and status for the particular Insights data gathering.
@@ -75,7 +75,7 @@ Type
   `object`
   ```
 
-## PodMonitor [monitoring.coreos.com/v1] {#_podmonitor_monitoringcoreoscomv1}
+## PodMonitor \[monitoring.coreos.com/v1\] {#_podmonitor_monitoringcoreoscomv1}
 
 Description
 : The `PodMonitor` custom resource definition (CRD) defines how `Prometheus` and `PrometheusAgent` can scrape metrics from a group of pods. Among other things, it allows to specify:
@@ -92,7 +92,7 @@ Type
   `object`
   ```
 
-## Probe [monitoring.coreos.com/v1] {#_probe_monitoringcoreoscomv1}
+## Probe \[monitoring.coreos.com/v1\] {#_probe_monitoringcoreoscomv1}
 
 Description
 : The `Probe` custom resource definition (CRD) defines how to scrape metrics from prober exporters such as the [blackbox exporter](https://github.com/prometheus/blackbox_exporter).
@@ -109,7 +109,7 @@ Type
   `object`
   ```
 
-## Prometheus [monitoring.coreos.com/v1] {#_prometheus_monitoringcoreoscomv1}
+## Prometheus \[monitoring.coreos.com/v1\] {#_prometheus_monitoringcoreoscomv1}
 
 Description
 : The `Prometheus` custom resource definition (CRD) defines a desired [Prometheus](https://prometheus.io/docs/prometheus) setup to run in a Kubernetes cluster. It allows to specify many options such as the number of replicas, persistent storage, and Alertmanagers where firing alerts should be sent and many more.
@@ -125,7 +125,7 @@ Type
   `object`
   ```
 
-## PrometheusRule [monitoring.coreos.com/v1] {#_prometheusrule_monitoringcoreoscomv1}
+## PrometheusRule \[monitoring.coreos.com/v1\] {#_prometheusrule_monitoringcoreoscomv1}
 
 Description
 : The `PrometheusRule` custom resource definition (CRD) defines [alerting](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) and [recording](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) rules to be evaluated by `Prometheus` or `ThanosRuler` objects.
@@ -137,7 +137,7 @@ Type
   `object`
   ```
 
-## ServiceMonitor [monitoring.coreos.com/v1] {#_servicemonitor_monitoringcoreoscomv1}
+## ServiceMonitor \[monitoring.coreos.com/v1\] {#_servicemonitor_monitoringcoreoscomv1}
 
 Description
 : The `ServiceMonitor` custom resource definition (CRD) defines how `Prometheus` and `PrometheusAgent` can scrape metrics from a group of services. Among other things, it allows to specify:
@@ -154,7 +154,7 @@ Type
   `object`
   ```
 
-## ThanosRuler [monitoring.coreos.com/v1] {#_thanosruler_monitoringcoreoscomv1}
+## ThanosRuler \[monitoring.coreos.com/v1\] {#_thanosruler_monitoringcoreoscomv1}
 
 Description
 : The `ThanosRuler` custom resource definition (CRD) defines a desired [Thanos Ruler](https://github.com/thanos-io/thanos/blob/main/docs/components/rule.md) setup to run in a Kubernetes cluster.
@@ -168,7 +168,7 @@ Type
   `object`
   ```
 
-## NodeMetrics [metrics.k8s.io/v1beta1] {#_nodemetrics_metricsk8siov1beta1}
+## NodeMetrics \[metrics.k8s.io/v1beta1\] {#_nodemetrics_metricsk8siov1beta1}
 
 Description
 : NodeMetrics sets resource usage metrics of a node.
@@ -178,7 +178,7 @@ Type
   `object`
   ```
 
-## PodMetrics [metrics.k8s.io/v1beta1] {#_podmetrics_metricsk8siov1beta1}
+## PodMetrics \[metrics.k8s.io/v1beta1\] {#_podmetrics_metricsk8siov1beta1}
 
 Description
 : PodMetrics sets resource usage metrics of a pod.

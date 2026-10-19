@@ -512,7 +512,7 @@ UDNs enable a wide range of network architectures and topologies, enhancing netw
 
 When the `UDNMapping` feature is enabled with Network Observability, the **Traffic** flow table has a **UDN labels** column. You can filter on **Source Network Name** and **Destination Network Name**.
 
-### Working with user-defined networks {#network-observability-working-with-udn_nw-observe-network-traffic}
+### Work with user-defined networks {#network-observability-working-with-udn_nw-observe-network-traffic}
 
 Configure the `FlowCollector` custom resource to enable user-defined network (UDN) mapping, providing visibility into traffic across custom network interfaces within the web console.
 
@@ -707,7 +707,7 @@ Export network flow data from the **Traffic flows** view to a CSV file for exter
 2. In the window, select the **Export all data** checkbox to export all the data, and clear the checkbox to select the required fields to be exported.
 3. Click **Export**.
 
-### Configuring IPsec with the FlowCollector custom resource {#network-observability-configuring-ipsec-with-flow-collector-resource_nw-observe-network-traffic}
+### Configure IPsec with the FlowCollector custom resource {#network-observability-configuring-ipsec-with-flow-collector-resource_nw-observe-network-traffic}
 
 Enable IPsec tracking in the `FlowCollector` resource to monitor encrypted traffic, adding an IPsec status column to the traffic flow view and generating a dedicated encryption dashboard.
 
@@ -798,7 +798,7 @@ As an administrator, you can group network flows that are part of the same conve
 6. Select **Query Options** and choose the **Log Type**, **Conversation**. Now the **Event/Type** shows all of the desired conversation events.
 7. Next you can filter on a specific conversation ID or switch between the **Conversation** and **Flow** log type options from the side panel.
 
-### Working with the eBPF Manager Operator {#network-observability-ebpf-manager-operator_nw-observe-network-traffic}
+### Work with the eBPF Manager Operator {#network-observability-ebpf-manager-operator_nw-observe-network-traffic}
 
 Integrate the eBPF Manager Operator with Network Observability to manage eBPF programs and reduce the need for privileged agent permissions.
 
@@ -901,7 +901,7 @@ As network packets are processed, the eBPF hook enriches flow logs with metadata
 - Destination Port
 - Conntrack Zone ID
 
-### Working with endpoint translation (xlat) {#network-observability-packet-translation_nw-observe-network-traffic}
+### Work with endpoint translation (xlat) {#network-observability-packet-translation_nw-observe-network-traffic}
 
 Enable endpoint translation (xlat) in the `FlowCollector` resource to enrich network flows with translated packet information. You can use this information to identify the specific pods and objects serving service traffic through dedicated xlat columns.
 

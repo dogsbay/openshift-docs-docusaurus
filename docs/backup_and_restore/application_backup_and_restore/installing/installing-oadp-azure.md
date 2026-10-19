@@ -15,7 +15,7 @@ You configure Azure for Velero, create a default `Secret`, and then install the 
 
 To install the OADP Operator in a restricted network environment, you must first disable the default software catalog sources and mirror the Operator catalog.
 
-## Configuring Microsoft Azure {#migration-configuring-azure_installing-oadp-azure}
+## Configure Microsoft Azure {#migration-configuring-azure_installing-oadp-azure}
 
 Configure Microsoft Azure storage and service principal credentials for backup storage with OADP. This provides the necessary authentication and storage infrastructure for data protection operations.
 
@@ -172,7 +172,7 @@ You can authenticate OADP with Azure by using the following methods:
 - A Velero-specific storage account access key with secret-based authentication.
 - Azure Security Token Service.
 
-## Using a service principal or a storage account access key {#oadp-auth-azure-secret-based_installing-oadp-azure}
+## Use a service principal or a storage account access key {#oadp-auth-azure-secret-based_installing-oadp-azure}
 
 You create a default `Secret` object and reference it in the backup storage location custom resource. The credentials file for the `Secret` object can contain information about the Azure service principal or a storage account access key.
 
@@ -266,7 +266,7 @@ If you do not want to use the backup location credentials during the installatio
 
    :::
 
-## Using OADP with Azure Security Token Service authentication {#oadp-auth-azure-STS_installing-oadp-azure}
+## Use OADP with Azure Security Token Service authentication {#oadp-auth-azure-STS_installing-oadp-azure}
 
 You can use Microsoft Entra Workload ID to access Azure storage for OADP backup and restore operations. This approach uses the signed Kubernetes service account tokens of the OpenShift cluster. These token are automatically rotated every hour and exchanged with the Azure Active Directory (AD) access tokens, eliminating the need for long-term client secrets.
 
@@ -478,7 +478,7 @@ If your OpenShift cluster was not originally installed with Microsoft Entra Work
    ```
 4. Create a backup of an application and verify the backup is stored successfully in Azure storage.
 
-## Setting Velero CPU and memory resource allocations {#oadp-setting-resource-limits-and-requests_installing-oadp-azure}
+## Set Velero CPU and memory resource allocations {#oadp-setting-resource-limits-and-requests_installing-oadp-azure}
 
 You set the CPU and memory resource allocations for the `Velero` pod by editing the  `DataProtectionApplication` custom resource (CR) manifest.
 
@@ -528,7 +528,7 @@ You set the CPU and memory resource allocations for the `Velero` pod by editing 
 
 Use the `nodeSelector` field to select which nodes can run the node agent. The `nodeSelector` field is the simplest recommended form of node selection constraint. Any label specified must match the labels on each node.
 
-## Enabling self-signed CA certificates {#oadp-self-signed-certificate_installing-oadp-azure}
+## Enable self-signed CA certificates {#oadp-self-signed-certificate_installing-oadp-azure}
 
 You must enable a self-signed CA certificate for object storage by editing the `DataProtectionApplication` custom resource (CR) manifest to prevent a `certificate signed by unknown authority` error.
 
@@ -569,7 +569,7 @@ You must enable a self-signed CA certificate for object storage by editing the `
   <dd>Specifies the <code>insecureSkipTLSVerify</code> configuration. The configuration can be set to either <code>"true"</code> or <code>"false"</code>. If set to <code>"true"</code>, SSL/TLS security is disabled. If set to <code>"false"</code>, SSL/TLS security is enabled.</dd>
   </dl>
 
-## Using CA certificates with the velero command aliased for Velero deployment {#oadp-using-ca-certificates-with-velero-command-aliased-for-velero-deployment_installing-oadp-azure}
+## Use CA certificates with the velero command aliased for Velero deployment {#oadp-using-ca-certificates-with-velero-command-aliased-for-velero-deployment_installing-oadp-azure}
 
 You might want to use the Velero CLI without installing it locally on your system by creating an alias for it.
 
@@ -623,7 +623,7 @@ You might want to use the Velero CLI without installing it locally on your syste
 
    In a future release of OpenShift API for Data Protection (OADP), we plan to mount the certificate to the Velero pod so that this step is not required.
 
-## Installing the Data Protection Application {#oadp-installing-dpa_installing-oadp-azure}
+## Install the Data Protection Application {#oadp-installing-dpa_installing-oadp-azure}
 
 You install the Data Protection Application (DPA) by creating an instance of the `DataProtectionApplication` API.
 
@@ -778,7 +778,7 @@ You install the Data Protection Application (DPA) by creating an instance of the
    dpa-sample-1   Available   1s               3d16h   true
    ```
 
-## Configuring the DPA with client burst and QPS settings {#oadp-configuring-client-burst-qps_installing-oadp-azure}
+## Configure the DPA with client burst and QPS settings {#oadp-configuring-client-burst-qps_installing-oadp-azure}
 
 The burst setting determines how many requests can be sent to the `velero` server before the limit is applied. After the burst limit is reached, the queries per second (QPS) setting determines how many additional requests can be sent per second.
 
@@ -837,7 +837,7 @@ You can set the burst and QPS values of the `velero` server by configuring the D
   <dd>Specifies the <code>client-qps</code> value. In this example, the <code>client-qps</code> field is set to 300.</dd>
   </dl>
 
-## Configuring node agents and node labels {#oadp-configuring-node-agents_installing-oadp-azure}
+## Configure node agents and node labels {#oadp-configuring-node-agents_installing-oadp-azure}
 
 The Data Protection Application (DPA) uses the `nodeSelector` field to select which nodes can run the node agent. The `nodeSelector` field is the recommended form of node selection constraint.
 
@@ -875,7 +875,7 @@ The Data Protection Application (DPA) uses the `nodeSelector` field to select wh
                node-role.kubernetes.io/worker: ""
    ```
 
-## Configuring node agent load affinity {#oadp-configuring-node-agent-load-affinity_installing-oadp-azure}
+## Configure node agent load affinity {#oadp-configuring-node-agent-load-affinity_installing-oadp-azure}
 
 You can schedule the node agent pods on specific nodes by using the `spec.podConfig.nodeSelector` object of the `DataProtectionApplication` (DPA) custom resource (CR).
 
@@ -962,7 +962,7 @@ Use the following guidelines to configure the node agent `loadAffinity` object i
             label.io/gpu: 'no'
   ```
 
-## Configuring node agent load concurrency {#oadp-configuring-node-agent-load-concurrency_installing-oadp-azure}
+## Configure node agent load concurrency {#oadp-configuring-node-agent-load-concurrency_installing-oadp-azure}
 
 You can control the maximum number of node agent operations that can run simultaneously on each node within your cluster.
 
@@ -1007,7 +1007,7 @@ You can configure it using one of the following fields of the Data Protection Ap
    <dd>Specifies the per-node concurrent number. You can specify many per-node concurrent numbers, for example, based on the instance type and size. The range of per-node concurrent number is the same as the global concurrent number. If the configuration file contains a per-node concurrent number and a global concurrent number, the per-node concurrent number takes precedence.</dd>
    </dl>
 
-## Configuring the node agent as a non-root and non-privileged user {#oadp-configuring-node-agent-non-root_installing-oadp-azure}
+## Configure the node agent as a non-root and non-privileged user {#oadp-configuring-node-agent-non-root_installing-oadp-azure}
 
 To enhance the node agent security, you can configure the OADP Operator node agent daemonset to run as a non-root and non-privileged user by using the `spec.configuration.velero.disableFsBackup` setting in the `DataProtectionApplication` (DPA) custom resource (CR).
 
@@ -1127,7 +1127,7 @@ However, it also disables File System Backup (FSB) with Kopia. If your workloads
    <dd>Specifies that the node agent is run as a non-root user.</dd>
    </dl>
 
-## Configuring repository maintenance {#oadp-configuring-repository-maintenance_installing-oadp-azure}
+## Configure repository maintenance {#oadp-configuring-repository-maintenance_installing-oadp-azure}
 
 OADP repository maintenance is a background job, you can configure it independently of the node agent pods. This means that you can schedule the repository maintenance pod on a node where the node agent is or is not running.
 
@@ -1196,7 +1196,7 @@ You have the option to configure the load affinity at the global level affecting
     <dd>Specifies the <code>repositoryMaintenance</code> object for each repository.</dd>
     </dl>
 
-## Configuring Velero load affinity {#oadp-configuring-velero-load-affinity_installing-oadp-azure}
+## Configure Velero load affinity {#oadp-configuring-velero-load-affinity_installing-oadp-azure}
 
 With each OADP deployment, there is one Velero pod and its main purpose is to schedule Velero workloads. To schedule the Velero pod, you can use the `velero.podConfig.nodeSelector` and the `velero.loadAffinity` objects in the `DataProtectionApplication` (DPA) custom resource (CR) spec.
 
@@ -1241,7 +1241,7 @@ The OpenShift scheduler applies the rules and performs the scheduling of the Vel
                       - EU
     ```
 
-## Configuring a priority class for node agent and Velero pods {#oadp-configuring-priority-class_installing-oadp-azure}
+## Configure a priority class for node agent and Velero pods {#oadp-configuring-priority-class_installing-oadp-azure}
 
 Configure a `priorityClassName` field for the node agent and Velero pods by editing the `DataProtectionApplication` (DPA) custom resource (CR). This helps you ensure that the Kubernetes scheduler prioritizes OADP pods during resource contention.
 
@@ -1306,7 +1306,7 @@ By setting a priority class, you ensure that critical OADP pods are scheduled fi
    velero-xxxxx <priority_class_name>
    ```
 
-## Overriding the imagePullPolicy setting in the DPA  {#oadp-configuring-imagepullpolicy_installing-oadp-azure}
+## Override the imagePullPolicy setting in the DPA  {#oadp-configuring-imagepullpolicy_installing-oadp-azure}
 
 In OADP 1.4.0 or earlier, the Operator sets the `imagePullPolicy` field of the Velero and node agent pods to `Always` for all images.
 
@@ -1368,7 +1368,7 @@ You can also override the `imagePullPolicy` field by using the `spec.imagePullPo
   <dd>Specifies the value for <code>imagePullPolicy</code>. In this example, the <code>imagePullPolicy</code> field is set to <code>Never</code>.</dd>
   </dl>
 
-### Enabling CSI in the DataProtectionApplication CR {#oadp-enabling-csi-dpa_installing-oadp-azure}
+### Enable CSI in the DataProtectionApplication CR {#oadp-enabling-csi-dpa_installing-oadp-azure}
 
 You enable the Container Storage Interface (CSI) in the `DataProtectionApplication` custom resource (CR) in order to back up persistent volumes with CSI snapshots.
 
@@ -1398,7 +1398,7 @@ You enable the Container Storage Interface (CSI) in the `DataProtectionApplicati
   <dd>Specifies the <code>csi</code> default plugin.</dd>
   </dl>
 
-### Disabling the node agent in DataProtectionApplication {#oadp-about-disable-node-agent-dpa_installing-oadp-azure}
+### Disable the node agent in DataProtectionApplication {#oadp-about-disable-node-agent-dpa_installing-oadp-azure}
 
 If you are not using `Restic`, `Kopia`, or `DataMover` for your backups, you can disable the `nodeAgent` field in the `DataProtectionApplication` custom resource (CR). Before you disable `nodeAgent`, ensure the OADP Operator is idle and not running any backups.
 

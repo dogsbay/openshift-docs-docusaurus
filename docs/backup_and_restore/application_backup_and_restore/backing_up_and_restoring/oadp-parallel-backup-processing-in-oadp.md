@@ -3,9 +3,9 @@ title: Parallel backup processing in OADP
 sidebar_position: 3
 ---
 
-# Parallel backup processing in OADP {#oadp-parallel-backup-processing-in-oadp_{context}}
+# Parallel backup processing in OADP {#oadp-parallel-backup-processing-in-oadp_-context-}
 
-<a id="oadp-parallel-backup-processing-in-oadp_{context}"></a>
+<a id="oadp-parallel-backup-processing-in-oadp_-context-"></a>
 
 With parallel backup processing in OpenShift API for Data Protection, you can back up several applications from different namespaces simultaneously. This concurrent processing ensures that a single large backup task does not delay the backups for other applications in your cluster.
 

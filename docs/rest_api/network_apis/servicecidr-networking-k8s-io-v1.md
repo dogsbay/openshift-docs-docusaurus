@@ -3,7 +3,7 @@ title: "ServiceCIDR [networking.k8s.io/v1]"
 sidebar_position: 33
 ---
 
-# ServiceCIDR [networking.k8s.io/v1] {#servicecidr-networking-k8s-io-v1}
+# ServiceCIDR \[networking.k8s.io/v1\] {#servicecidr-networking-k8s-io-v1}
 
 <a id="servicecidr-networking-k8s-io-v1"></a>
 
@@ -168,7 +168,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/servicecidrs/{name} {#_apisnetworkingk8siov1servicecidrs_name}
+### /apis/networking.k8s.io/v1/servicecidrs/&#123;name&#125; {#_apisnetworkingk8siov1servicecidrs_name}
 
 **Global path parameters**
 
@@ -273,7 +273,7 @@ Description
 | 201 - Created | [`ServiceCIDR`](/docs/rest_api/network_apis/servicecidr-networking-k8s-io-v1#servicecidr-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/watch/servicecidrs/{name} {#_apisnetworkingk8siov1watchservicecidrs_name}
+### /apis/networking.k8s.io/v1/watch/servicecidrs/&#123;name&#125; {#_apisnetworkingk8siov1watchservicecidrs_name}
 
 **Global path parameters**
 
@@ -298,7 +298,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/servicecidrs/{name}/status {#_apisnetworkingk8siov1servicecidrs_name_status}
+### /apis/networking.k8s.io/v1/servicecidrs/&#123;name&#125;/status {#_apisnetworkingk8siov1servicecidrs_name_status}
 
 **Global path parameters**
 

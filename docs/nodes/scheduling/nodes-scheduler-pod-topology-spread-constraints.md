@@ -87,7 +87,7 @@ where:
 : Specifies how to handle a pod if it does not satisfy the spread constraint. The default is `DoNotSchedule`, which tells the scheduler not to schedule the pod. Set to `ScheduleAnyway` to still schedule the pod, but the scheduler prioritizes honoring the skew to not make the cluster more imbalanced.
 
 `spec.topologySpreadConstraints.labelSelector.matchLabels`
-: Specifies {key,value} pairs for matching. Pods that match this label selector are counted and recognized as a group when spreading to satisfy the constraint. Be sure to specify a label selector, otherwise no pods can be matched. Be sure that this `Pod` spec also sets its labels to match this label selector if you want it to be counted properly in the future.
+: Specifies &#123;key,value&#125; pairs for matching. Pods that match this label selector are counted and recognized as a group when spreading to satisfy the constraint. Be sure to specify a label selector, otherwise no pods can be matched. Be sure that this `Pod` spec also sets its labels to match this label selector if you want it to be counted properly in the future.
 
 `spec.topologySpreadConstraints.matchLabelKeys`
 : Specifies a list of pod label keys to select which pods to calculate spreading over.

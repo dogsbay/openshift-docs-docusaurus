@@ -3,7 +3,7 @@ title: "Project [project.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# Project [project.openshift.io/v1] {#project-project-openshift-io-v1}
+# Project \[project.openshift.io/v1\] {#project-project-openshift-io-v1}
 
 <a id="project-project-openshift-io-v1"></a>
 
@@ -147,7 +147,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/project.openshift.io/v1/projects/{name} {#_apisprojectopenshiftiov1projects_name}
+### /apis/project.openshift.io/v1/projects/&#123;name&#125; {#_apisprojectopenshiftiov1projects_name}
 
 **Global path parameters**
 
@@ -252,7 +252,7 @@ Description
 | 201 - Created | [`Project`](/docs/rest_api/project_apis/project-project-openshift-io-v1#project-project-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/project.openshift.io/v1/watch/projects/{name} {#_apisprojectopenshiftiov1watchprojects_name}
+### /apis/project.openshift.io/v1/watch/projects/&#123;name&#125; {#_apisprojectopenshiftiov1watchprojects_name}
 
 **Global path parameters**
 

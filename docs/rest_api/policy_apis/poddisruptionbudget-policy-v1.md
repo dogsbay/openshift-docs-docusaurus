@@ -3,7 +3,7 @@ title: "PodDisruptionBudget [policy/v1]"
 sidebar_position: 3
 ---
 
-# PodDisruptionBudget [policy/v1] {#poddisruptionbudget-policy-v1}
+# PodDisruptionBudget \[policy/v1\] {#poddisruptionbudget-policy-v1}
 
 <a id="poddisruptionbudget-policy-v1"></a>
 
@@ -39,7 +39,7 @@ Type
 | --- | --- | --- |
 | `maxUnavailable` | [`IntOrString`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable". |
 | `minAvailable` | [`IntOrString`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-util-intstr-IntOrString) | An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying "100%". |
-| `selector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Label query over pods whose evictions are managed by the disruption budget. A null selector will match no pods, while an empty ({}) selector will select all pods within the namespace. |
+| `selector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | Label query over pods whose evictions are managed by the disruption budget. A null selector will match no pods, while an empty (&#123;&#125;) selector will select all pods within the namespace. |
 | `unhealthyPodEvictionPolicy` | `string` | UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction. Current implementation considers healthy pods, as pods that have status.conditions item with type="Ready",status="True".<br>Valid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy.<br>IfHealthyBudget policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction.<br>AlwaysAllow policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction.<br>Additional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field.<br>Possible enum values:  - `"AlwaysAllow"` policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction.  - `"IfHealthyBudget"` policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction. |
 
 ### .status {#_status}
@@ -132,7 +132,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets {#_apispolicyv1namespaces_namespace_poddisruptionbudgets}
+### /apis/policy/v1/namespaces/&#123;namespace&#125;/poddisruptionbudgets {#_apispolicyv1namespaces_namespace_poddisruptionbudgets}
 
 HTTP method
 : ```
@@ -206,7 +206,7 @@ Description
 | 202 - Accepted | [`PodDisruptionBudget`](/docs/rest_api/policy_apis/poddisruptionbudget-policy-v1#poddisruptionbudget-policy-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/policy/v1/watch/namespaces/{namespace}/poddisruptionbudgets {#_apispolicyv1watchnamespaces_namespace_poddisruptionbudgets}
+### /apis/policy/v1/watch/namespaces/&#123;namespace&#125;/poddisruptionbudgets {#_apispolicyv1watchnamespaces_namespace_poddisruptionbudgets}
 
 HTTP method
 : ```
@@ -225,7 +225,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name} {#_apispolicyv1namespaces_namespace_poddisruptionbudgets_name}
+### /apis/policy/v1/namespaces/&#123;namespace&#125;/poddisruptionbudgets/&#123;name&#125; {#_apispolicyv1namespaces_namespace_poddisruptionbudgets_name}
 
 **Global path parameters**
 
@@ -330,7 +330,7 @@ Description
 | 201 - Created | [`PodDisruptionBudget`](/docs/rest_api/policy_apis/poddisruptionbudget-policy-v1#poddisruptionbudget-policy-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/policy/v1/watch/namespaces/{namespace}/poddisruptionbudgets/{name} {#_apispolicyv1watchnamespaces_namespace_poddisruptionbudgets_name}
+### /apis/policy/v1/watch/namespaces/&#123;namespace&#125;/poddisruptionbudgets/&#123;name&#125; {#_apispolicyv1watchnamespaces_namespace_poddisruptionbudgets_name}
 
 **Global path parameters**
 
@@ -355,7 +355,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/policy/v1/namespaces/{namespace}/poddisruptionbudgets/{name}/status {#_apispolicyv1namespaces_namespace_poddisruptionbudgets_name_status}
+### /apis/policy/v1/namespaces/&#123;namespace&#125;/poddisruptionbudgets/&#123;name&#125;/status {#_apispolicyv1namespaces_namespace_poddisruptionbudgets_name_status}
 
 **Global path parameters**
 

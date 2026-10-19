@@ -34,7 +34,7 @@ For the most recent list of major functionality that has been deprecated or remo
 
 :::
 
-## generate {#opm-cli-ref-generate_{Context}}
+## generate {#opm-cli-ref-generate_-Context-}
 
 Generate various artifacts for declarative config indexes.
 

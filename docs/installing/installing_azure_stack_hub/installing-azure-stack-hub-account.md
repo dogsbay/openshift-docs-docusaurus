@@ -104,7 +104,7 @@ To enable OpenShift Container Platform to create Azure resources, you must creat
    $ az cloud register -n AzureStackCloud --endpoint-resource-manager <endpoint>
    ```
 
-   `<endpoint>` is the Azure Resource Manager endpoint, `https://management.<region>.<fqdn>/`.
+   `<endpoint>` is the Azure Resource Manager endpoint, &#96;https://management.<region>.<fqdn>/&#96;.
 
    See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure-stack/mdc/azure-stack-version-profiles-azurecli-2-tzl#connect-to-azure-stack-hub) for details.
 2. Set the active environment:

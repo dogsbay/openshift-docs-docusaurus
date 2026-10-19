@@ -3,7 +3,7 @@ title: "NodeSlicePool [whereabouts.cni.cncf.io/v1alpha1]"
 sidebar_position: 27
 ---
 
-# NodeSlicePool [whereabouts.cni.cncf.io/v1alpha1] {#nodeslicepool-whereabouts-cni-cncf-io-v1alpha1}
+# NodeSlicePool \[whereabouts.cni.cncf.io/v1alpha1\] {#nodeslicepool-whereabouts-cni-cncf-io-v1alpha1}
 
 <a id="nodeslicepool-whereabouts-cni-cncf-io-v1alpha1"></a>
 
@@ -72,7 +72,7 @@ Type
   `array`
   ```
 
-### .status.allocations[] {#_statusallocations}
+### .status.allocations\[\] {#_statusallocations}
 
 Description
 
@@ -125,7 +125,7 @@ Description
 | 200 - OK | [`NodeSlicePoolList`](/docs/rest_api/objects#io-cncf-cni-whereabouts-v1alpha1-NodeSlicePoolList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/nodeslicepools {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_nodeslicepools}
+### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/&#123;namespace&#125;/nodeslicepools {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_nodeslicepools}
 
 HTTP method
 : ```
@@ -193,7 +193,7 @@ Description
 | 202 - Accepted | [`NodeSlicePool`](/docs/rest_api/network_apis/nodeslicepool-whereabouts-cni-cncf-io-v1alpha1#nodeslicepool-whereabouts-cni-cncf-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/{namespace}/nodeslicepools/{name} {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_nodeslicepools_name}
+### /apis/whereabouts.cni.cncf.io/v1alpha1/namespaces/&#123;namespace&#125;/nodeslicepools/&#123;name&#125; {#_apiswhereaboutscnicncfiov1alpha1namespaces_namespace_nodeslicepools_name}
 
 **Global path parameters**
 

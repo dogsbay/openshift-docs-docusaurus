@@ -330,8 +330,8 @@ The following table lists the network devices that are supported on each hypervi
 
 | Network device | z/VM | KVM | LPAR Classic | LPAR Dynamic Partition Manager (DPM) |
 | --- | --- | --- | --- | --- |
-| Virtual Switch | Supported <sup>[1]</sup> | Not applicable <sup>[2]</sup> | Not applicable | Not applicable |
-| Direct attached Open Systems Adapter (OSA) | Supported | Not required <sup>[3]</sup> | Supported | Not required |
+| Virtual Switch | Supported <sup>\[1\]</sup> | Not applicable <sup>\[2\]</sup> | Not applicable | Not applicable |
+| Direct attached Open Systems Adapter (OSA) | Supported | Not required <sup>\[3\]</sup> | Supported | Not required |
 | RDMA over Converged Ethernet (RoCE) | Not required | Not required | Not required | Not required |
 | HiperSockets | Supported | Not required | Supported | Not required |
 

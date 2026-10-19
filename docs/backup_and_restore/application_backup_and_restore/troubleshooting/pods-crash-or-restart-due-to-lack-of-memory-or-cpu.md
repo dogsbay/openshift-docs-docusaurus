@@ -23,7 +23,7 @@ requests:
 
 - [Velero CPU and memory requirements based on collected data](/docs/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#oadp-velero-cpu-memory-requirements_about-installing-oadp)
 
-## Setting resource requests for a Velero pod {#oadp-pod-crash-resource-request-velero_pods-crash-or-restart-due-to-lack-of-memory-or-cpu}
+## Set resource requests for a Velero pod {#oadp-pod-crash-resource-request-velero_pods-crash-or-restart-due-to-lack-of-memory-or-cpu}
 
 Use the `configuration.velero.podConfig.resourceAllocations` specification field in the `oadp_v1alpha1_dpa.yaml` file to set specific resource requests for a `Velero` pod.
 
@@ -94,7 +94,7 @@ To resolve this issue, identify the peak memory usage and increase the memory li
 6. Monitor the environment and repeat the process if necessary until `OOMKilled` events no longer occur.
 7. Record the final stable memory values for your environment to use for future sizing guidance.
 
-## Setting resource requests for a Restic pod {#oadp-pod-crash-resource-request-retics_pods-crash-or-restart-due-to-lack-of-memory-or-cpu}
+## Set resource requests for a Restic pod {#oadp-pod-crash-resource-request-retics_pods-crash-or-restart-due-to-lack-of-memory-or-cpu}
 
 Use the `configuration.restic.podConfig.resourceAllocations` specification field to set specific resource requests for a `Restic` pod.
 
@@ -122,7 +122,7 @@ With OADP 1.5.0, the `configuration.restic.podConfig.resourceAllocations` specif
 
   The `resourceAllocations` listed are for average usage.
 
-## Setting resource requests for a nodeAgent pod {#setting-resource-requests-for-a-nodeagent-pod_pods-crash-or-restart-due-to-lack-of-memory-or-cpu}
+## Set resource requests for a nodeAgent pod {#setting-resource-requests-for-a-nodeagent-pod_pods-crash-or-restart-due-to-lack-of-memory-or-cpu}
 
 Use the `configuration.nodeAgent.podConfig.resourceAllocations` specification field to set specific resource requests for a `nodeAgent` pod.
 

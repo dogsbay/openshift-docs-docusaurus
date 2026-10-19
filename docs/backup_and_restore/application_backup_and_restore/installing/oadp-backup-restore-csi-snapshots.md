@@ -9,7 +9,7 @@ sidebar_position: 2
 
 You can back up and restore persistent volumes by using the OADP 1.3 Data Mover.
 
-## Backing up persistent volumes with CSI snapshots {#oadp-1-3-backing-csi-snapshots_oadp-backup-restore-csi-snapshots}
+## Back up persistent volumes with CSI snapshots {#oadp-1-3-backing-csi-snapshots_oadp-backup-restore-csi-snapshots}
 
 You can use the OADP Data Mover to back up Container Storage Interface (CSI) volume snapshots to a remote object store.
 
@@ -127,7 +127,7 @@ You can use the OADP Data Mover to back up Container Storage Interface (CSI) vol
     <dd>Indicates that snapshot data is successfully transferred to the remote object store.</dd>
     </dl>
 
-## Restoring CSI volume snapshots {#oadp-1-3-restoring-csi-snapshots_oadp-backup-restore-csi-snapshots}
+## Restore CSI volume snapshots {#oadp-1-3-restoring-csi-snapshots_oadp-backup-restore-csi-snapshots}
 
 You can restore a volume snapshot by creating a `Restore` CR.
 

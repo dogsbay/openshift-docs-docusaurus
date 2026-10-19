@@ -74,7 +74,7 @@ To use only trusted or locally available Operator catalogs, disable the default 
 
   :::
 
-## Mirroring an Operator catalog {#olm-mirror-catalog_olm-restricted-networks}
+## Mirror an Operator catalog {#olm-mirror-catalog_olm-restricted-networks}
 
 For instructions about mirroring Operator catalogs for use with disconnected clusters, see "Mirroring Operator catalogs for use with disconnected clusters".
 
@@ -95,7 +95,7 @@ Many of the `opm` subcommands and flags for working with the SQLite database for
 - [Managing custom catalogs](/docs/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs-fb)
 - [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/docs/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 
-## Adding a catalog source to a cluster {#olm-creating-catalog-from-index_olm-restricted-networks}
+## Add a catalog source to a cluster {#olm-creating-catalog-from-index_olm-restricted-networks}
 
 To make Operators from a custom index image available for installation, create a catalog source that adds the catalog content to your cluster.
 

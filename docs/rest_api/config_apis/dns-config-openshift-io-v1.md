@@ -3,7 +3,7 @@ title: "DNS [config.openshift.io/v1]"
 sidebar_position: 9
 ---
 
-# DNS [config.openshift.io/v1] {#dns-config-openshift-io-v1}
+# DNS \[config.openshift.io/v1\] {#dns-config-openshift-io-v1}
 
 <a id="dns-config-openshift-io-v1"></a>
 
@@ -77,7 +77,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `privateZoneIAMRole` | `string` | privateZoneIAMRole contains the ARN of an IAM role that should be assumed when performing operations on the cluster’s private hosted zone specified in the cluster DNS config. When left empty, no role should be assumed.<br>The ARN must follow the format: arn:<partition>:iam::<account-id>:role/<role-name>, where: <partition> is the AWS partition (aws, aws-cn, aws-us-gov, or aws-eusc), <account-id> is a 12-digit numeric identifier for the AWS account, <role-name> is the IAM role name. |
+| `privateZoneIAMRole` | `string` | privateZoneIAMRole contains the ARN of an IAM role that should be assumed when performing operations on the cluster’s private hosted zone specified in the cluster DNS config. When left empty, no role should be assumed.<br>The ARN must follow the format: arn:&lt;partition>:iam::&lt;account-id>:role/&lt;role-name>, where: &lt;partition> is the AWS partition (aws, aws-cn, aws-us-gov, or aws-eusc), &lt;account-id> is a 12-digit numeric identifier for the AWS account, &lt;role-name> is the IAM role name. |
 
 ### .spec.privateZone {#_specprivatezone}
 
@@ -95,8 +95,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `id` | `string` | id is the identifier that can be used to find the DNS hosted zone.<br>on AWS zone can be fetched using `ID` as id in [1] on Azure zone can be fetched using `ID` as a pre-determined name in [2], on GCP zone can be fetched using `ID` as a pre-determined name in [3].<br>[1]: https://docs.aws.amazon.com/cli/latest/reference/route53/get-hosted-zone.html#options [2]: https://docs.microsoft.com/en-us/cli/azure/network/dns/zone?view=azure-cli-latest#az-network-dns-zone-show [3]: https://cloud.google.com/dns/docs/reference/v1/managedZones/get |
-| `tags` | `object (string)` | tags can be used to query the DNS hosted zone.<br>on AWS, resourcegroupstaggingapi [1] can be used to fetch a zone using `Tags` as tag-filters,<br>[1]: https://docs.aws.amazon.com/cli/latest/reference/resourcegroupstaggingapi/get-resources.html#options |
+| `id` | `string` | id is the identifier that can be used to find the DNS hosted zone.<br>on AWS zone can be fetched using `ID` as id in \[1\] on Azure zone can be fetched using `ID` as a pre-determined name in \[2\], on GCP zone can be fetched using `ID` as a pre-determined name in \[3\].<br>\[1\]: https://docs.aws.amazon.com/cli/latest/reference/route53/get-hosted-zone.html#options \[2\]: https://docs.microsoft.com/en-us/cli/azure/network/dns/zone?view=azure-cli-latest#az-network-dns-zone-show \[3\]: https://cloud.google.com/dns/docs/reference/v1/managedZones/get |
+| `tags` | `object (string)` | tags can be used to query the DNS hosted zone.<br>on AWS, resourcegroupstaggingapi \[1\] can be used to fetch a zone using `Tags` as tag-filters,<br>\[1\]: https://docs.aws.amazon.com/cli/latest/reference/resourcegroupstaggingapi/get-resources.html#options |
 
 ### .spec.publicZone {#_specpubliczone}
 
@@ -114,8 +114,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `id` | `string` | id is the identifier that can be used to find the DNS hosted zone.<br>on AWS zone can be fetched using `ID` as id in [1] on Azure zone can be fetched using `ID` as a pre-determined name in [2], on GCP zone can be fetched using `ID` as a pre-determined name in [3].<br>[1]: https://docs.aws.amazon.com/cli/latest/reference/route53/get-hosted-zone.html#options [2]: https://docs.microsoft.com/en-us/cli/azure/network/dns/zone?view=azure-cli-latest#az-network-dns-zone-show [3]: https://cloud.google.com/dns/docs/reference/v1/managedZones/get |
-| `tags` | `object (string)` | tags can be used to query the DNS hosted zone.<br>on AWS, resourcegroupstaggingapi [1] can be used to fetch a zone using `Tags` as tag-filters,<br>[1]: https://docs.aws.amazon.com/cli/latest/reference/resourcegroupstaggingapi/get-resources.html#options |
+| `id` | `string` | id is the identifier that can be used to find the DNS hosted zone.<br>on AWS zone can be fetched using `ID` as id in \[1\] on Azure zone can be fetched using `ID` as a pre-determined name in \[2\], on GCP zone can be fetched using `ID` as a pre-determined name in \[3\].<br>\[1\]: https://docs.aws.amazon.com/cli/latest/reference/route53/get-hosted-zone.html#options \[2\]: https://docs.microsoft.com/en-us/cli/azure/network/dns/zone?view=azure-cli-latest#az-network-dns-zone-show \[3\]: https://cloud.google.com/dns/docs/reference/v1/managedZones/get |
+| `tags` | `object (string)` | tags can be used to query the DNS hosted zone.<br>on AWS, resourcegroupstaggingapi \[1\] can be used to fetch a zone using `Tags` as tag-filters,<br>\[1\]: https://docs.aws.amazon.com/cli/latest/reference/resourcegroupstaggingapi/get-resources.html#options |
 
 ### .status {#_status}
 
@@ -213,7 +213,7 @@ Description
 | 202 - Accepted | [`DNS`](/docs/rest_api/config_apis/dns-config-openshift-io-v1#dns-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/dnses/{name} {#_apisconfigopenshiftiov1dnses_name}
+### /apis/config.openshift.io/v1/dnses/&#123;name&#125; {#_apisconfigopenshiftiov1dnses_name}
 
 **Global path parameters**
 
@@ -317,7 +317,7 @@ Description
 | 201 - Created | [`DNS`](/docs/rest_api/config_apis/dns-config-openshift-io-v1#dns-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/dnses/{name}/status {#_apisconfigopenshiftiov1dnses_name_status}
+### /apis/config.openshift.io/v1/dnses/&#123;name&#125;/status {#_apisconfigopenshiftiov1dnses_name_status}
 
 **Global path parameters**
 

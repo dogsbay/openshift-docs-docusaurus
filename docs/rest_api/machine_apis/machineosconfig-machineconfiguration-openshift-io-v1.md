@@ -3,7 +3,7 @@ title: "MachineOSConfig [machineconfiguration.openshift.io/v1]"
 sidebar_position: 13
 ---
 
-# MachineOSConfig [machineconfiguration.openshift.io/v1] {#machineosconfig-machineconfiguration-openshift-io-v1}
+# MachineOSConfig \[machineconfiguration.openshift.io/v1\] {#machineosconfig-machineconfiguration-openshift-io-v1}
 
 <a id="machineosconfig-machineconfiguration-openshift-io-v1"></a>
 
@@ -52,7 +52,7 @@ Required
 | `imageBuilder` | `object` | imageBuilder describes which image builder will be used in each build triggered by this MachineOSConfig. Currently supported type(s): Job |
 | `machineConfigPool` | `object` | machineConfigPool is the pool which the build is for. The Machine Config Operator will perform the build and roll out the built image to the specified pool. |
 | `renderedImagePushSecret` | `object` | renderedImagePushSecret is the secret used to connect to a user registry. The final image push and pull secrets should be separate and assume the principal of least privilege. The push secret with write privilege is only required to be present on the node hosting the MachineConfigController pod. The pull secret with read only privileges is required on all nodes. By separating the two secrets, the risk of write credentials becoming compromised is reduced. |
-| `renderedImagePushSpec` | `string` | renderedImagePushSpec describes the location of the final image. The MachineOSConfig object will use the in cluster image registry configuration. If you wish to use a mirror or any other settings specific to registries.conf, please specify those in the cluster wide registries.conf via the cluster image.config, ImageContentSourcePolicies, ImageDigestMirrorSet, or ImageTagMirrorSet objects. The format of the image push spec is: host[:port][/namespace]/name:<tag> or svc_name.namespace.svc[:port]/repository/name:<tag>. The length of the push spec must be between 1 to 447 characters. |
+| `renderedImagePushSpec` | `string` | renderedImagePushSpec describes the location of the final image. The MachineOSConfig object will use the in cluster image registry configuration. If you wish to use a mirror or any other settings specific to registries.conf, please specify those in the cluster wide registries.conf via the cluster image.config, ImageContentSourcePolicies, ImageDigestMirrorSet, or ImageTagMirrorSet objects. The format of the image push spec is: host\[:port\]\[/namespace\]/name:&lt;tag> or svc_name.namespace.svc\[:port\]/repository/name:&lt;tag>. The length of the push spec must be between 1 to 447 characters. |
 
 ### .spec.baseImagePullSecret {#_specbaseimagepullsecret}
 
@@ -81,7 +81,7 @@ Type
   `array`
   ```
 
-### .spec.containerFile[] {#_speccontainerfile}
+### .spec.containerFile\[\] {#_speccontainerfile}
 
 Description
 : MachineOSContainerfile contains all custom content the user wants built into the image
@@ -97,7 +97,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `containerfileArch` | `string` | containerfileArch describes the architecture this containerfile is to be built for. This arch is optional. If the user does not specify an architecture, it is assumed that the content can be applied to all architectures, or in a single arch cluster: the only architecture. |
-| `content` | `string` | content is an embedded Containerfile/Dockerfile that defines the contents to be built into your image. See https://github.com/containers/common/blob/main/docs/Containerfile.5.md for the spec reference. for example, this would add the tree package to your hosts:   FROM configs AS final   RUN rpm-ostree install tree && \     ostree container commit This is a required field and can have a maximum length of **4096** characters. |
+| `content` | `string` | content is an embedded Containerfile/Dockerfile that defines the contents to be built into your image. See https://github.com/containers/common/blob/main/docs/Containerfile.5.md for the spec reference. for example, this would add the tree package to your hosts:   FROM configs AS final   RUN rpm-ostree install tree && \\     ostree container commit This is a required field and can have a maximum length of **4096** characters. |
 
 ### .spec.imageBuilder {#_specimagebuilder}
 
@@ -164,7 +164,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | conditions are state related conditions for the object. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
-| `currentImagePullSpec` | `string` | currentImagePullSpec is the fully qualified image pull spec used by the MCO to pull down the new OSImage. This includes the sha256 image digest. This is generated when the Machine Config Operator’s build controller successfully completes the build, and is populated from the corresponding MachineOSBuild object’s FinalImagePushSpec. This may change after completion in reaction to spec changes that would cause a new image build, but will not be removed. The format of the image pull spec is: host[:port][/namespace]/name@sha256:<digest>, where the digest must be 64 characters long, and consist only of lowercase hexadecimal characters, a-f and 0-9. The length of the whole spec must be between 1 to 447 characters. |
+| `currentImagePullSpec` | `string` | currentImagePullSpec is the fully qualified image pull spec used by the MCO to pull down the new OSImage. This includes the sha256 image digest. This is generated when the Machine Config Operator’s build controller successfully completes the build, and is populated from the corresponding MachineOSBuild object’s FinalImagePushSpec. This may change after completion in reaction to spec changes that would cause a new image build, but will not be removed. The format of the image pull spec is: host\[:port\]\[/namespace\]/name@sha256:&lt;digest>, where the digest must be 64 characters long, and consist only of lowercase hexadecimal characters, a-f and 0-9. The length of the whole spec must be between 1 to 447 characters. |
 | `machineOSBuild` | `object` | machineOSBuild is a reference to the MachineOSBuild object for this MachineOSConfig, which contains the status for the image build. |
 | `observedGeneration` | `integer` | observedGeneration represents the generation of the MachineOSConfig object observed by the Machine Config Operator’s build controller. |
 
@@ -178,7 +178,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -199,7 +199,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -312,7 +312,7 @@ Description
 | 202 - Accepted | [`MachineOSConfig`](/docs/rest_api/machine_apis/machineosconfig-machineconfiguration-openshift-io-v1#machineosconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineosconfigs/{name} {#_apismachineconfigurationopenshiftiov1machineosconfigs_name}
+### /apis/machineconfiguration.openshift.io/v1/machineosconfigs/&#123;name&#125; {#_apismachineconfigurationopenshiftiov1machineosconfigs_name}
 
 **Global path parameters**
 
@@ -416,7 +416,7 @@ Description
 | 201 - Created | [`MachineOSConfig`](/docs/rest_api/machine_apis/machineosconfig-machineconfiguration-openshift-io-v1#machineosconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineosconfigs/{name}/status {#_apismachineconfigurationopenshiftiov1machineosconfigs_name_status}
+### /apis/machineconfiguration.openshift.io/v1/machineosconfigs/&#123;name&#125;/status {#_apismachineconfigurationopenshiftiov1machineosconfigs_name_status}
 
 **Global path parameters**
 

@@ -3,7 +3,7 @@ title: "Identity [user.openshift.io/v1]"
 sidebar_position: 3
 ---
 
-# Identity [user.openshift.io/v1] {#identity-user-openshift-io-v1}
+# Identity \[user.openshift.io/v1\] {#identity-user-openshift-io-v1}
 
 <a id="identity-user-openshift-io-v1"></a>
 
@@ -145,7 +145,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/user.openshift.io/v1/identities/{name} {#_apisuseropenshiftiov1identities_name}
+### /apis/user.openshift.io/v1/identities/&#123;name&#125; {#_apisuseropenshiftiov1identities_name}
 
 **Global path parameters**
 
@@ -250,7 +250,7 @@ Description
 | 201 - Created | [`Identity`](/docs/rest_api/user_and_group_apis/identity-user-openshift-io-v1#identity-user-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/user.openshift.io/v1/watch/identities/{name} {#_apisuseropenshiftiov1watchidentities_name}
+### /apis/user.openshift.io/v1/watch/identities/&#123;name&#125; {#_apisuseropenshiftiov1watchidentities_name}
 
 **Global path parameters**
 

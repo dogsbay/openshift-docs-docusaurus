@@ -863,7 +863,7 @@ You can configure the following video device types:
 - [Red Hat VirtIO drivers download page](https://access.redhat.com/downloads/content/479/virtio-win/noarch/package-latest)
 - [How to check virtio-win drivers version on Windows guest](https://access.redhat.com/solutions/764103)
 - [Installing and updating VirtIO drivers for Windows virtual machines](https://access.redhat.com/solutions/6957701)
-- link:https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation[Sysprep (Generalize) a Windows installation]
+- link:https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation\[Sysprep (Generalize) a Windows installation\]
 - [Configuration pass of Windows Setup (generalize)](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/generalize)
 - [Configuration pass of Windows Setup (specialize)](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/specialize)
 - [Cloning a VM by using the web console](/docs/virt/creating_vm/virt-creating-vms-web#virt-cloning-vm-wizard-web_virt-creating-vms-web)

@@ -3,7 +3,7 @@ title: "ClusterOperator [config.openshift.io/v1]"
 sidebar_position: 6
 ---
 
-# ClusterOperator [config.openshift.io/v1] {#clusteroperator-config-openshift-io-v1}
+# ClusterOperator \[config.openshift.io/v1\] {#clusteroperator-config-openshift-io-v1}
 
 <a id="clusteroperator-config-openshift-io-v1"></a>
 
@@ -52,7 +52,7 @@ Type
 | --- | --- | --- |
 | `conditions` | `array` | conditions describes the state of the operator’s managed and monitored components. |
 | `conditions[]` | `object` | ClusterOperatorStatusCondition represents the state of the operator’s managed and monitored components. |
-| `extension` | `` | extension contains any additional status information specific to the operator which owns this status object. |
+| `extension` | &#96;&#96; | extension contains any additional status information specific to the operator which owns this status object. |
 | `relatedObjects` | `array` | relatedObjects is a list of objects that are "interesting" or related to this operator.  Common uses are: 1. the detailed resource driving the operator 2. operator namespaces 3. operand namespaces |
 | `relatedObjects[]` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 | `versions` | `array` | versions is a slice of operator and operand version tuples.  Operators which manage multiple operands will have multiple operand entries in the array.  Available operators must report the version of the operator itself with the name "operator". An operator reports a new "operator" version when it has rolled out the new version to all of its operands. |
@@ -68,7 +68,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : ClusterOperatorStatusCondition represents the state of the operator’s managed and monitored components.
@@ -105,7 +105,7 @@ Type
   `array`
   ```
 
-### .status.relatedObjects[] {#_statusrelatedobjects}
+### .status.relatedObjects\[\] {#_statusrelatedobjects}
 
 Description
 : ObjectReference contains enough information to let you inspect or modify the referred object.
@@ -137,7 +137,7 @@ Type
   `array`
   ```
 
-### .status.versions[] {#_statusversions}
+### .status.versions\[\] {#_statusversions}
 
 Description
 
@@ -241,7 +241,7 @@ Description
 | 202 - Accepted | [`ClusterOperator`](/docs/rest_api/config_apis/clusteroperator-config-openshift-io-v1#clusteroperator-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/clusteroperators/{name} {#_apisconfigopenshiftiov1clusteroperators_name}
+### /apis/config.openshift.io/v1/clusteroperators/&#123;name&#125; {#_apisconfigopenshiftiov1clusteroperators_name}
 
 **Global path parameters**
 
@@ -345,7 +345,7 @@ Description
 | 201 - Created | [`ClusterOperator`](/docs/rest_api/config_apis/clusteroperator-config-openshift-io-v1#clusteroperator-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/clusteroperators/{name}/status {#_apisconfigopenshiftiov1clusteroperators_name_status}
+### /apis/config.openshift.io/v1/clusteroperators/&#123;name&#125;/status {#_apisconfigopenshiftiov1clusteroperators_name_status}
 
 **Global path parameters**
 

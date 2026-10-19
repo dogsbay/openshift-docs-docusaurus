@@ -880,7 +880,7 @@ Set up tool-level authorization for the Model Context Protocol (MCP) gateway to 
       ```terminal
       $ sleep 3
       ```
-   3. Open MCP Inspector by going to the following URL: http://localhost:6274/?transport=streamable-http&serverUrl=http://mcp-gateway.apps.<cluster-name>.<domain-name>:8001/mcp.
+   3. Open MCP Inspector by going to the following URL: http://localhost:6274/?transport=streamable-http&serverUrl=http://mcp-gateway.apps.&lt;cluster-name>.&lt;domain-name>:8001/mcp.
       `<cluster-name>.<domain-name>` is the name and domain of your cluster.
 2. To stop the services later, run the following command:
    ```terminal

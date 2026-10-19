@@ -286,7 +286,7 @@ If the `pcs status` command shows the failed node as `UNCLEAN (offline)`, the au
 
 If the surviving node does not automatically restart etcd after a successful fencing operation, reset the resource state to restore service. .Prerequisites
 
-- Ensure that you run the following `oc debug` commands in the two-node OpenShift cluster with fencing (TNF).
+- Ensure that you run the following `oc debug` commands in the two-node OpenShift cluster with fencing (TNF). &#123;.\_abstract&#125;
 
 **Procedure**
 

@@ -3,7 +3,7 @@ title: "MachineConfigPool [machineconfiguration.openshift.io/v1]"
 sidebar_position: 7
 ---
 
-# MachineConfigPool [machineconfiguration.openshift.io/v1] {#machineconfigpool-machineconfiguration-openshift-io-v1}
+# MachineConfigPool \[machineconfiguration.openshift.io/v1\] {#machineconfigpool-machineconfiguration-openshift-io-v1}
 
 <a id="machineconfigpool-machineconfiguration-openshift-io-v1"></a>
 
@@ -63,7 +63,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -82,7 +82,7 @@ Type
   `array`
   ```
 
-### .spec.configuration.source[] {#_specconfigurationsource}
+### .spec.configuration.source\[\] {#_specconfigurationsource}
 
 Description
 : ObjectReference contains enough information to let you inspect or modify the referred object.
@@ -95,7 +95,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -116,7 +116,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.machineConfigSelector.matchExpressions {#_specmachineconfigselectormatchexpressions}
 
@@ -128,7 +128,7 @@ Type
   `array`
   ```
 
-### .spec.machineConfigSelector.matchExpressions[] {#_specmachineconfigselectormatchexpressions}
+### .spec.machineConfigSelector.matchExpressions\[\] {#_specmachineconfigselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -162,7 +162,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.nodeSelector.matchExpressions {#_specnodeselectormatchexpressions}
 
@@ -174,7 +174,7 @@ Type
   `array`
   ```
 
-### .spec.nodeSelector.matchExpressions[] {#_specnodeselectormatchexpressions}
+### .spec.nodeSelector.matchExpressions\[\] {#_specnodeselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -206,7 +206,7 @@ Type
   `array`
   ```
 
-### .spec.pinnedImageSets[] {#_specpinnedimagesets}
+### .spec.pinnedImageSets\[\] {#_specpinnedimagesets}
 
 Description
 
@@ -258,7 +258,7 @@ Type
   `array`
   ```
 
-### .status.certExpirys[] {#_statuscertexpirys}
+### .status.certExpirys\[\] {#_statuscertexpirys}
 
 Description
 : ceryExpiry contains the bundle name and the expiry date
@@ -288,7 +288,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : MachineConfigPoolCondition contains condition information for an MachineConfigPool.
@@ -300,7 +300,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `` | lastTransitionTime is the timestamp corresponding to the last status change of this condition. |
+| `lastTransitionTime` | &#96;&#96; | lastTransitionTime is the timestamp corresponding to the last status change of this condition. |
 | `message` | `string` | message is a human readable description of the details of the last transition, complementing reason. |
 | `reason` | `string` | reason is a brief machine readable explanation for the condition’s last transition. |
 | `status` | `string` | status of the condition, one of ('True', 'False', 'Unknown'). |
@@ -319,7 +319,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -338,7 +338,7 @@ Type
   `array`
   ```
 
-### .status.configuration.source[] {#_statusconfigurationsource}
+### .status.configuration.source\[\] {#_statusconfigurationsource}
 
 Description
 : ObjectReference contains enough information to let you inspect or modify the referred object.
@@ -351,7 +351,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -368,7 +368,7 @@ Type
   `array`
   ```
 
-### .status.poolSynchronizersStatus[] {#_statuspoolsynchronizersstatus}
+### .status.poolSynchronizersStatus\[\] {#_statuspoolsynchronizersstatus}
 
 Description
 
@@ -481,7 +481,7 @@ Description
 | 202 - Accepted | [`MachineConfigPool`](/docs/rest_api/machine_apis/machineconfigpool-machineconfiguration-openshift-io-v1#machineconfigpool-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineconfigpools/{name} {#_apismachineconfigurationopenshiftiov1machineconfigpools_name}
+### /apis/machineconfiguration.openshift.io/v1/machineconfigpools/&#123;name&#125; {#_apismachineconfigurationopenshiftiov1machineconfigpools_name}
 
 **Global path parameters**
 
@@ -585,7 +585,7 @@ Description
 | 201 - Created | [`MachineConfigPool`](/docs/rest_api/machine_apis/machineconfigpool-machineconfiguration-openshift-io-v1#machineconfigpool-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineconfigpools/{name}/status {#_apismachineconfigurationopenshiftiov1machineconfigpools_name_status}
+### /apis/machineconfiguration.openshift.io/v1/machineconfigpools/&#123;name&#125;/status {#_apismachineconfigurationopenshiftiov1machineconfigpools_name_status}
 
 **Global path parameters**
 

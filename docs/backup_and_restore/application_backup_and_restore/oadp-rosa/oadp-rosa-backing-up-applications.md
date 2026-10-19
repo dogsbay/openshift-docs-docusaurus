@@ -26,7 +26,7 @@ This process is performed in the following two stages:
 1. Prepare AWS credentials
 2. Install the OADP Operator and give it an IAM role
 
-## Preparing AWS credentials for OADP {#preparing-aws-credentials-for-oadp_oadp-rosa-backing-up-applications}
+## Prepare AWS credentials for OADP {#preparing-aws-credentials-for-oadp_oadp-rosa-backing-up-applications}
 
 Prepare and configure an Amazon Web Services account to install OpenShift API for Data Protection (OADP).
 
@@ -193,7 +193,7 @@ $ echo "Cluster ID: ${ROSA_CLUSTER_ID}, Region: ${REGION}, OIDC Endpoint:
      --policy-arn ${POLICY_ARN}
    ```
 
-## Installing the OADP Operator and providing the IAM role {#installing-oadp-rosa-sts_oadp-rosa-backing-up-applications}
+## Install the OADP Operator and provide the IAM role {#installing-oadp-rosa-sts_oadp-rosa-backing-up-applications}
 
 Install OpenShift API for Data Protection (OADP) on clusters with AWS STS. AWS Security Token Service (AWS STS) is a global web service that provides short-term credentials for IAM or federated users. OpenShift Container Platform with STS is the recommended credential mode.
 
@@ -424,7 +424,7 @@ The `enable` parameter of `restic` is set to `false` in this configuration, beca
 
 If you want to use two different clusters for backing up and restoring, the two clusters must have the same AWS S3 storage names in both the cloud storage CR and the OADP `DataProtectionApplication` configuration.
 
-## Updating the IAM role ARN in the OADP Operator subscription {#updating-role-arn-oadp-rosa-sts_oadp-rosa-backing-up-applications}
+## Update the IAM role ARN in the OADP Operator subscription {#updating-role-arn-oadp-rosa-sts_oadp-rosa-backing-up-applications}
 
 Update the OADP Operator subscription to fix an installation error due to incorrect IAM role Amazon Resource Name (ARN).
 
@@ -695,7 +695,7 @@ Either Data Protection Application (DPA) configuration will work.
 
     :::
 
-## Cleaning up a cluster after a backup with OADP and ROSA STS {#cleanup-a-backup-oadp-rosa-sts_oadp-rosa-backing-up-applications}
+## Clean up a cluster after a backup with OADP and ROSA STS {#cleanup-a-backup-oadp-rosa-sts_oadp-rosa-backing-up-applications}
 
 Uninstall the OpenShift API for Data Protection (OADP) Operator together with the backups and the S3 bucket from the hello-world example.
 

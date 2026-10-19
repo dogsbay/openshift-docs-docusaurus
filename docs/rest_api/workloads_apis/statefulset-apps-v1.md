@@ -3,7 +3,7 @@ title: "StatefulSet [apps/v1]"
 sidebar_position: 17
 ---
 
-# StatefulSet [apps/v1] {#statefulset-apps-v1}
+# StatefulSet \[apps/v1\] {#statefulset-apps-v1}
 
 <a id="statefulset-apps-v1"></a>
 
@@ -54,7 +54,7 @@ Required
 | `revisionHistoryLimit` | `integer` | revisionHistoryLimit is the maximum number of revisions that will be maintained in the StatefulSet’s revision history. The revision history consists of all revisions not represented by a currently applied StatefulSetSpec version. The default value is 10. |
 | `selector` | [`LabelSelector`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelector) | selector is a label query over pods that should match the replica count. It must match the pod template’s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors |
 | `serviceName` | `string` | serviceName is the name of the service that governs this StatefulSet. This service must exist before the StatefulSet, and is responsible for the network identity of the set. Pods get DNS/hostnames that follow the pattern: pod-specific-string.serviceName.default.svc.cluster.local where "pod-specific-string" is managed by the StatefulSet controller. |
-| `template` | [`PodTemplateSpec`](/docs/rest_api/objects#io-k8s-api-core-v1-PodTemplateSpec) | template is the object that describes the pod that will be created if insufficient replicas are detected. Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet. Each pod will be named with the format <statefulsetname>-<podindex>. For example, a pod in a StatefulSet named "web" with index number "3" would be named "web-3". The only allowed template.spec.restartPolicy value is "Always". |
+| `template` | [`PodTemplateSpec`](/docs/rest_api/objects#io-k8s-api-core-v1-PodTemplateSpec) | template is the object that describes the pod that will be created if insufficient replicas are detected. Each pod stamped out by the StatefulSet will fulfill this Template, but have a unique identity from the rest of the StatefulSet. Each pod will be named with the format &lt;statefulsetname>-&lt;podindex>. For example, a pod in a StatefulSet named "web" with index number "3" would be named "web-3". The only allowed template.spec.restartPolicy value is "Always". |
 | `updateStrategy` | `object` | StatefulSetUpdateStrategy indicates the strategy that the StatefulSet controller will use to perform updates. It includes any additional parameters necessary to perform the update for the indicated strategy. |
 | `volumeClaimTemplates` | [`array (PersistentVolumeClaim)`](/docs/rest_api/storage_apis/persistentvolumeclaim-v1#persistentvolumeclaim-v1) | volumeClaimTemplates is a list of claims that pods are allowed to reference. The StatefulSet controller is responsible for mapping network identities to claims in a way that maintains the identity of a pod. Every claim in this list must have at least one matching (by name) volumeMount in one container in the template. A claim in this list takes precedence over any volumes in the template, with the same name. |
 
@@ -70,7 +70,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `start` | `integer` | start is the number representing the first replica’s index. It may be used to number replicas from an alternate index (eg: 1-indexed) over the default 0-indexed names, or to orchestrate progressive movement of replicas from one StatefulSet to another. If set, replica indices will be in the range:   [.spec.ordinals.start, .spec.ordinals.start + .spec.replicas). If unset, defaults to 0. Replica indices will be in the range:   [0, .spec.replicas). |
+| `start` | `integer` | start is the number representing the first replica’s index. It may be used to number replicas from an alternate index (eg: 1-indexed) over the default 0-indexed names, or to orchestrate progressive movement of replicas from one StatefulSet to another. If set, replica indices will be in the range:   \[.spec.ordinals.start, .spec.ordinals.start + .spec.replicas). If unset, defaults to 0. Replica indices will be in the range:   \[0, .spec.replicas). |
 
 ### .spec.persistentVolumeClaimRetentionPolicy {#_specpersistentvolumeclaimretentionpolicy}
 
@@ -137,11 +137,11 @@ Required
 | `conditions` | `array` | Represents the latest available observations of a statefulset’s current state. |
 | `conditions[]` | `object` | StatefulSetCondition describes the state of a statefulset at a certain point. |
 | `currentReplicas` | `integer` | currentReplicas is the number of Pods created by the StatefulSet controller from the StatefulSet version indicated by currentRevision. |
-| `currentRevision` | `string` | currentRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [0,currentReplicas). |
+| `currentRevision` | `string` | currentRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence \[0,currentReplicas). |
 | `observedGeneration` | `integer` | observedGeneration is the most recent generation observed for this StatefulSet. It corresponds to the StatefulSet’s generation, which is updated on mutation by the API Server. |
 | `readyReplicas` | `integer` | readyReplicas is the number of pods created for this StatefulSet with a Ready Condition. |
 | `replicas` | `integer` | replicas is the number of Pods created by the StatefulSet controller. |
-| `updateRevision` | `string` | updateRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [replicas-updatedReplicas,replicas) |
+| `updateRevision` | `string` | updateRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence \[replicas-updatedReplicas,replicas) |
 | `updatedReplicas` | `integer` | updatedReplicas is the number of Pods created by the StatefulSet controller from the StatefulSet version indicated by updateRevision. |
 
 ### .status.conditions {#_statusconditions}
@@ -154,7 +154,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : StatefulSetCondition describes the state of a statefulset at a certain point.
@@ -240,7 +240,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/statefulsets {#_apisappsv1namespaces_namespace_statefulsets}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/statefulsets {#_apisappsv1namespaces_namespace_statefulsets}
 
 HTTP method
 : ```
@@ -314,7 +314,7 @@ Description
 | 202 - Accepted | [`StatefulSet`](/docs/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{namespace}/statefulsets {#_apisappsv1watchnamespaces_namespace_statefulsets}
+### /apis/apps/v1/watch/namespaces/&#123;namespace&#125;/statefulsets {#_apisappsv1watchnamespaces_namespace_statefulsets}
 
 HTTP method
 : ```
@@ -333,7 +333,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/statefulsets/{name} {#_apisappsv1namespaces_namespace_statefulsets_name}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/statefulsets/&#123;name&#125; {#_apisappsv1namespaces_namespace_statefulsets_name}
 
 **Global path parameters**
 
@@ -438,7 +438,7 @@ Description
 | 201 - Created | [`StatefulSet`](/docs/rest_api/workloads_apis/statefulset-apps-v1#statefulset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{namespace}/statefulsets/{name} {#_apisappsv1watchnamespaces_namespace_statefulsets_name}
+### /apis/apps/v1/watch/namespaces/&#123;namespace&#125;/statefulsets/&#123;name&#125; {#_apisappsv1watchnamespaces_namespace_statefulsets_name}
 
 **Global path parameters**
 
@@ -463,7 +463,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/status {#_apisappsv1namespaces_namespace_statefulsets_name_status}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/statefulsets/&#123;name&#125;/status {#_apisappsv1namespaces_namespace_statefulsets_name_status}
 
 **Global path parameters**
 

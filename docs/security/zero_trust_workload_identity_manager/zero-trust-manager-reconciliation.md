@@ -3,9 +3,9 @@ title: Enabling create-only mode for the Zero Trust Workload Identity Manager
 sidebar_position: 12
 ---
 
-# Enabling create-only mode for the Zero Trust Workload Identity Manager {#zero-trust-manager-reconciliation_{context}}
+# Enabling create-only mode for the Zero Trust Workload Identity Manager {#zero-trust-manager-reconciliation_-context-}
 
-<a id="zero-trust-manager-reconciliation_{context}"></a>
+<a id="zero-trust-manager-reconciliation_-context-"></a>
 
 To pause Operator reconciliation, enable `create-only` mode by setting an environment variable in the subscription object. By setting this value, you can perform manual configurations or debug the operator without the controller overwriting your changes.
 

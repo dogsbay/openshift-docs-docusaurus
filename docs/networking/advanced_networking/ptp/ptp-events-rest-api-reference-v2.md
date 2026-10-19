@@ -161,7 +161,7 @@ Deletes all subscriptions.
 }
 ```
 
-### api/ocloudNotifications/v2/subscriptions/{subscription_id} {#api-ocloud-notifications-v2-subscriptions-subscription_id_using-ptp-hardware-fast-events-framework-v2}
+### api/ocloudNotifications/v2/subscriptions/&#123;subscription_id&#125; {#api-ocloud-notifications-v2-subscriptions-subscription_id_using-ptp-hardware-fast-events-framework-v2}
 
 #### HTTP method {#_http_method}
 
@@ -275,7 +275,7 @@ You can use equipment synchronization status subscriptions together to deliver a
 | --- | --- |
 | 200 OK | Success |
 
-### api/ocloudNotifications/v2/{resource_address}/CurrentState {#resource-address-current-state-v2_using-ptp-hardware-fast-events-framework-v2}
+### api/ocloudNotifications/v2/&#123;resource_address&#125;/CurrentState {#resource-address-current-state-v2_using-ptp-hardware-fast-events-framework-v2}
 
 #### HTTP method {#_http_method}
 

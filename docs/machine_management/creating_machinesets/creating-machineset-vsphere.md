@@ -257,11 +257,15 @@ For more information about creating an account with only the required privileges
 
 ## Requirements for clusters with user-provisioned infrastructure to use compute machine sets {#compute-machineset-upi-reqs_creating-machineset-vsphere}
 
-To enable the Machine API to manage and scale compute nodes on user-provisioned infrastructure, you can configure a `MachineSet` YAML file with specific vSphere parameters, for example data center and disk image. To use compute machine sets on clusters that have user-provisioned infrastructure, you must ensure that you cluster configuration supports using the Machine API.
+To enable the Machine API to manage and scale compute nodes on user-provisioned infrastructure, you can configure a `MachineSet` YAML file with specific vSphere parameters, for example data center and disk image.
+
+To use compute machine sets on clusters that have user-provisioned infrastructure, you must ensure that you cluster configuration supports using the Machine API.
 
 ### Obtaining the infrastructure ID {#machineset-upi-reqs-infra-id_creating-machineset-vsphere}
 
-To ensure the Machine API correctly identifies and manages virtual machines (VMs) that belong to a specific cluster, you must add the unique infrastructure ID to the `MachineSet` YAML file to label and link resources. To create compute machine sets, you must be able to supply the infrastructure ID for your cluster.
+To ensure the Machine API correctly identifies and manages virtual machines (VMs) that belong to a specific cluster, you must add the unique infrastructure ID to the `MachineSet` YAML file to label and link resources.
+
+To create compute machine sets, you must be able to supply the infrastructure ID for your cluster.
 
 **Procedure**
 
@@ -303,7 +307,9 @@ To use compute machine sets and manage virtual machine (VM) resources, the Machi
 
 ### Satisfying Ignition configuration requirements {#machineset-upi-reqs-ignition-config_creating-machineset-vsphere}
 
-For the Machine API to provision virtual machines (VMs) with the correct initial configuration using Ignition, a valid Ignition configuration is required. The Ignition configuration contains the `machine-config-server` address and a system trust bundle for obtaining further Ignition configurations from the Machine Config Operator.
+For the Machine API to provision virtual machines (VMs) with the correct initial configuration using Ignition, a valid Ignition configuration is required.
+
+The Ignition configuration contains the `machine-config-server` address and a system trust bundle for obtaining further Ignition configurations from the Machine Config Operator.
 
 By default, this configuration is stored in the `worker-user-data` secret in the `machine-api-operator` namespace. Compute machine sets reference the secret during the machine creation process.
 
@@ -621,7 +627,7 @@ You can use machine sets to manage this configuration.
 - If your cluster was set up during installation to use multiple NICs, machine sets that you create can use your existing failure domain configuration.
 - If your failure domain configuration changes, you can use machine sets to make updates that reflect those changes.
 
-tag:controlplane[][]
+tag::controlplane\[\]
 
 :::note
 
@@ -629,7 +635,7 @@ This feature is not compatible with a control plane machine set that uses more t
 
 :::
 
-end:controlplane[][]
+end::controlplane\[\]
 
 **Prerequisites**
 
@@ -648,7 +654,7 @@ end:controlplane[][]
    | --- | --- | --- |
    | `failureDomain.topology.networks[0]` | `<vm_network_name_1>` | The name of the first NIC to use. |
    | `failureDomain.topology.networks[1]` | `<vm_network_name_2>` | The name of the second NIC to use. |
-   | `failureDomain.topology.networks[<n-1>]` | `<vm_network_name_n>` | The name of the __n__th NIC to use. Collect the name of each NIC in the `Infrastructure` resource. |
+   | `failureDomain.topology.networks[<n-1>]` | `<vm_network_name_n>` | The name of the \_\_n__th NIC to use. Collect the name of each NIC in the `Infrastructure` resource. |
    | `failureDomain.topology.template` | `<vm_template_name>` | The vSphere VM template to use. |
    | `failureDomain.topology.datacenter` | `<vcenter_data_center_name>` | The vCenter data center to deploy the machine set on. |
    | `failureDomain.topology.datastore` | `<vcenter_datastore_name>` | The vCenter datastore to deploy the machine set on. |
@@ -709,7 +715,7 @@ end:controlplane[][]
    end::controlplane[]
    ```
 
-   where: tag:compute[][]
+   where: tag::compute\[\]
 
    **`spec.template.spec.providerSpec.value.network.devices`**
 
@@ -739,7 +745,7 @@ end:controlplane[][]
 
    Specifies the vCenter server IP or fully qualified domain name (FQDN).
 
-   end:compute[][] tag:controlplane[][]
+   end::compute\[\] tag::controlplane\[\]
 
    **`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.network.devices`**
 
@@ -769,7 +775,7 @@ end:controlplane[][]
 
    Specifies the vCenter server IP or fully qualified domain name (FQDN).
 
-   end:controlplane[][]
+   end::controlplane\[\]
 
 ## Configuring data disks by using machine sets {#machineset-vsphere-data-disks_creating-machineset-vsphere}
 
@@ -841,7 +847,7 @@ Adding data disks attaches them to the VM and mounts them to the location that R
    # ...
    ```
 
-   where tag:compute[][]
+   where tag::compute\[\]
 
    **`spec.template.spec.providerSpec.value.dataDisks`**
 
@@ -861,9 +867,9 @@ Adding data disks attaches them to the VM and mounts them to the location that R
 
    **`spec.template.spec.providerSpec.value.dataDisks.sizeGiB`**
 
-   Specifies the size of the data disk in GiB. The maximum size is 16,384 GiB. end:compute[][]
+   Specifies the size of the data disk in GiB. The maximum size is 16,384 GiB. end::compute\[\]
 
-   tag:controlplane[][]
+   tag::controlplane\[\]
 
    **`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.dataDisks`**
 
@@ -883,4 +889,4 @@ Adding data disks attaches them to the VM and mounts them to the location that R
 
    **`spec.template.machines_v1beta1_machine_openshift_io.spec.providerSpec.value.dataDisks.sizeGiB`**
 
-   Specifies the size of the data disk in GiB. The maximum size is 16,384 GiB. end:controlplane[][]
+   Specifies the size of the data disk in GiB. The maximum size is 16,384 GiB. end::controlplane\[\]

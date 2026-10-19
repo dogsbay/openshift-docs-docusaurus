@@ -3,7 +3,7 @@ title: "Authentication [operator.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# Authentication [operator.openshift.io/v1] {#authentication-operator-openshift-io-v1}
+# Authentication \[operator.openshift.io/v1\] {#authentication-operator-openshift-io-v1}
 
 <a id="authentication-operator-openshift-io-v1"></a>
 
@@ -43,9 +43,9 @@ Type
 | --- | --- | --- |
 | `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
-| `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
+| `observedConfig` | &#96;&#96; | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
 | `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
-| `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
+| `unsupportedConfigOverrides` | &#96;&#96; | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 
 ### .status {#_status}
 
@@ -78,7 +78,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : OperatorCondition is just the standard condition fields.
@@ -111,7 +111,7 @@ Type
   `array`
   ```
 
-### .status.generations[] {#_statusgenerations}
+### .status.generations\[\] {#_statusgenerations}
 
 Description
 : GenerationStatus keeps track of the generation for a given resource so that decisions about forced updates can be made.
@@ -236,7 +236,7 @@ Description
 | 202 - Accepted | [`Authentication`](/docs/rest_api/operator_apis/authentication-operator-openshift-io-v1#authentication-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/authentications/{name} {#_apisoperatoropenshiftiov1authentications_name}
+### /apis/operator.openshift.io/v1/authentications/&#123;name&#125; {#_apisoperatoropenshiftiov1authentications_name}
 
 **Global path parameters**
 
@@ -340,7 +340,7 @@ Description
 | 201 - Created | [`Authentication`](/docs/rest_api/operator_apis/authentication-operator-openshift-io-v1#authentication-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/authentications/{name}/status {#_apisoperatoropenshiftiov1authentications_name_status}
+### /apis/operator.openshift.io/v1/authentications/&#123;name&#125;/status {#_apisoperatoropenshiftiov1authentications_name_status}
 
 **Global path parameters**
 

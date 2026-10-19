@@ -1053,7 +1053,7 @@ After mirroring Operator catalog content to your mirror registry, create the req
 
   You can now create a `CatalogSource` object to reference your mirrored index image and Operator content.
 
-### Adding a catalog source to a cluster {#olm-creating-catalog-from-index_post-install-preparing-for-users}
+### Add a catalog source to a cluster {#olm-creating-catalog-from-index_post-install-preparing-for-users}
 
 To make Operators from a custom index image available for installation, create a catalog source that adds the catalog content to your cluster.
 

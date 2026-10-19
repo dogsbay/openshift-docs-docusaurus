@@ -48,15 +48,15 @@ includeList metrics names
   - `namespace_egress_packets_total`
   - `namespace_ingress_bytes_total`
   - `namespace_ingress_packets_total`
-  - `namespace_flows_total` *
+  - `namespace_flows_total` \*
   - `node_egress_bytes_total`
   - `node_egress_packets_total`
-  - `node_ingress_bytes_total` *
+  - `node_ingress_bytes_total` \*
   - `node_ingress_packets_total`
   - `node_flows_total`
   - `workload_egress_bytes_total`
   - `workload_egress_packets_total`
-  - `workload_ingress_bytes_total` *
+  - `workload_ingress_bytes_total` \*
   - `workload_ingress_packets_total`
   - `workload_flows_total`
 
@@ -64,7 +64,7 @@ PacketDrop metrics names
 : When the `PacketDrop` feature is enabled in `spec.agent.ebpf.features` (with `privileged` mode), the following additional metrics are available:
 
   - `namespace_drop_bytes_total`
-  - `namespace_drop_packets_total` *
+  - `namespace_drop_packets_total` \*
   - `node_drop_bytes_total`
   - `node_drop_packets_total`
   - `workload_drop_bytes_total`
@@ -73,14 +73,14 @@ PacketDrop metrics names
 DNS metrics names
 : When the `DNSTracking` feature is enabled in `spec.agent.ebpf.features`, the following additional metrics are available:
 
-  - `namespace_dns_latency_seconds` *
+  - `namespace_dns_latency_seconds` \*
   - `node_dns_latency_seconds`
   - `workload_dns_latency_seconds`
 
 FlowRTT metrics names
 : When the `FlowRTT` feature is enabled in `spec.agent.ebpf.features`, the following additional metrics are available:
 
-  - `namespace_rtt_seconds` *
+  - `namespace_rtt_seconds` \*
   - `node_rtt_seconds`
   - `workload_rtt_seconds`
 
@@ -233,7 +233,7 @@ where:
 `spec.buckets`
 : Specifies custom buckets for RTT precision. The optimal precision ranges between 5ms and 250ms.
 
-## Create metrics from nested or array fields in the Traffic flows table {#network-observability-creating-metrics-network-events_metrics-dashboards-alerts}
+## Create metrics from nested fields in Traffic flows {#network-observability-creating-metrics-network-events_metrics-dashboards-alerts}
 
 Create a `FlowMetric` custom resource to generate metrics for nested or array fields in the **Traffic flows** table, such as **Network events** or **Interfaces**.
 
@@ -375,7 +375,7 @@ where:
 : Specifies the namespace where the `FlowMetric` resources are created. This must match the namespace defined in the `FlowCollector` `spec.namespace`, which is `netobserv` by default.
 
 `spec.charts.dashboardName`
-: Specifies the name of the dashboard. Using a different `dashboardName` creates a new dashboard that is prefixed with `Netobserv`. For example, **Netobserv / <dashboard_name>**.
+: Specifies the name of the dashboard. Using a different `dashboardName` creates a new dashboard that is prefixed with `Netobserv`. For example, **Netobserv / &lt;dashboard_name>**.
 
 #### RTT latency chart for cluster external ingress traffic {#chart-rtt-latency-cluster-external-ingress-traffic_metrics-dashboards-alerts}
 
@@ -421,7 +421,7 @@ where:
 : Specifies the namespace where the `FlowMetric` resources are created. This must match the namespace defined in the `FlowCollector` `spec.namespace`, which is `netobserv` by default.
 
 `spec.charts.dashboardName`
-: Specifies the name of the dashboard. Using a different `dashboardName` creates a new dashboard that is prefixed with `Netobserv`. For example, **Netobserv / <dashboard_name>**.
+: Specifies the name of the dashboard. Using a different `dashboardName` creates a new dashboard that is prefixed with `Netobserv`. For example, **Netobserv / &lt;dashboard_name>**.
 
 #### Calculate histogram averages {#calculate-histogram-averages_metrics-dashboards-alerts}
 

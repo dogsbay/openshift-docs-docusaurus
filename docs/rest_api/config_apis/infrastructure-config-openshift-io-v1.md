@@ -3,7 +3,7 @@ title: "Infrastructure [config.openshift.io/v1]"
 sidebar_position: 18
 ---
 
-# Infrastructure [config.openshift.io/v1] {#infrastructure-config-openshift-io-v1}
+# Infrastructure \[config.openshift.io/v1\] {#infrastructure-config-openshift-io-v1}
 
 <a id="infrastructure-config-openshift-io-v1"></a>
 
@@ -125,7 +125,7 @@ Type
   `array`
   ```
 
-### .spec.platformSpec.aws.serviceEndpoints[] {#_specplatformspecawsserviceendpoints}
+### .spec.platformSpec.aws.serviceEndpoints\[\] {#_specplatformspecawsserviceendpoints}
 
 Description
 : AWSServiceEndpoint store the configuration of a custom url to override existing defaults of AWS Services.
@@ -252,7 +252,7 @@ Type
   `array`
   ```
 
-### .spec.platformSpec.nutanix.failureDomains[] {#_specplatformspecnutanixfailuredomains}
+### .spec.platformSpec.nutanix.failureDomains\[\] {#_specplatformspecnutanixfailuredomains}
 
 Description
 : NutanixFailureDomain configures failure domain information for the Nutanix platform.
@@ -274,7 +274,7 @@ Required
 | `subnets` | `array` | subnets holds a list of identifiers (one or more) of the cluster’s network subnets If the feature gate NutanixMultiSubnets is enabled, up to 32 subnets may be configured. for the Machine’s VM to connect to. The subnet identifiers (uuid or name) can be obtained from the Prism Central console or using the prism_central API. |
 | `subnets[]` | `object` | NutanixResourceIdentifier holds the identity of a Nutanix PC resource (cluster, image, subnet, etc.) |
 
-### .spec.platformSpec.nutanix.failureDomains[].cluster {#_specplatformspecnutanixfailuredomainscluster}
+### .spec.platformSpec.nutanix.failureDomains\[\].cluster {#_specplatformspecnutanixfailuredomainscluster}
 
 Description
 : cluster is to identify the cluster (the Prism Element under management of the Prism Central), in which the Machine’s VM will be created. The cluster identifier (uuid or name) can be obtained from the Prism Central console or using the prism_central API.
@@ -293,7 +293,7 @@ Required
 | `type` | `string` | type is the identifier type to use for this resource. |
 | `uuid` | `string` | uuid is the UUID of the resource in the PC. It cannot be empty if the type is UUID. |
 
-### .spec.platformSpec.nutanix.failureDomains[].subnets {#_specplatformspecnutanixfailuredomainssubnets}
+### .spec.platformSpec.nutanix.failureDomains\[\].subnets {#_specplatformspecnutanixfailuredomainssubnets}
 
 Description
 : subnets holds a list of identifiers (one or more) of the cluster’s network subnets If the feature gate NutanixMultiSubnets is enabled, up to 32 subnets may be configured. for the Machine’s VM to connect to. The subnet identifiers (uuid or name) can be obtained from the Prism Central console or using the prism_central API.
@@ -303,7 +303,7 @@ Type
   `array`
   ```
 
-### .spec.platformSpec.nutanix.failureDomains[].subnets[] {#_specplatformspecnutanixfailuredomainssubnets}
+### .spec.platformSpec.nutanix.failureDomains\[\].subnets\[\] {#_specplatformspecnutanixfailuredomainssubnets}
 
 Description
 : NutanixResourceIdentifier holds the identity of a Nutanix PC resource (cluster, image, subnet, etc.)
@@ -351,7 +351,7 @@ Type
   `array`
   ```
 
-### .spec.platformSpec.nutanix.prismElements[] {#_specplatformspecnutanixprismelements}
+### .spec.platformSpec.nutanix.prismElements\[\] {#_specplatformspecnutanixprismelements}
 
 Description
 : NutanixPrismElementEndpoint holds the name and endpoint data for a Prism Element (cluster)
@@ -370,7 +370,7 @@ Required
 | `endpoint` | `object` | endpoint holds the endpoint address and port data of the Prism Element (cluster). When a cluster-wide proxy is installed, by default, this endpoint will be accessed via the proxy. Should you wish for communication with this endpoint not to be proxied, please add the endpoint to the proxy spec.noProxy list. |
 | `name` | `string` | name is the name of the Prism Element (cluster). This value will correspond with the cluster field configured on other resources (eg Machines, PVCs, etc). |
 
-### .spec.platformSpec.nutanix.prismElements[].endpoint {#_specplatformspecnutanixprismelementsendpoint}
+### .spec.platformSpec.nutanix.prismElements\[\].endpoint {#_specplatformspecnutanixprismelementsendpoint}
 
 Description
 : endpoint holds the endpoint address and port data of the Prism Element (cluster). When a cluster-wide proxy is installed, by default, this endpoint will be accessed via the proxy. Should you wish for communication with this endpoint not to be proxied, please add the endpoint to the proxy spec.noProxy list.
@@ -440,7 +440,7 @@ Type
   `array`
   ```
 
-### .spec.platformSpec.powervs.serviceEndpoints[] {#_specplatformspecpowervsserviceendpoints}
+### .spec.platformSpec.powervs.serviceEndpoints\[\] {#_specplatformspecpowervsserviceendpoints}
 
 Description
 : PowervsServiceEndpoint stores the configuration of a custom url to override existing defaults of PowerVS Services.
@@ -490,7 +490,7 @@ Type
   `array`
   ```
 
-### .spec.platformSpec.vsphere.failureDomains[] {#_specplatformspecvspherefailuredomains}
+### .spec.platformSpec.vsphere.failureDomains\[\] {#_specplatformspecvspherefailuredomains}
 
 Description
 : VSpherePlatformFailureDomainSpec holds the region and zone failure domain and the vCenter topology of that failure domain.
@@ -517,7 +517,7 @@ Required
 | `zone` | `string` | zone defines the name of a zone tag that will be attached to a vCenter cluster. The tag category in vCenter must be named openshift-zone. |
 | `zoneAffinity` | `object` | zoneAffinity holds the type of the zone and the hostGroup which vmGroup and the hostGroup names in vCenter corresponds to a vm-host group of type Virtual Machine and Host respectively. Is also contains the vmHostRule which is an affinity vm-host rule in vCenter. |
 
-### .spec.platformSpec.vsphere.failureDomains[].regionAffinity {#_specplatformspecvspherefailuredomainsregionaffinity}
+### .spec.platformSpec.vsphere.failureDomains\[\].regionAffinity {#_specplatformspecvspherefailuredomainsregionaffinity}
 
 Description
 : regionAffinity holds the type of region, Datacenter or ComputeCluster. When set to Datacenter, this means the region is a vCenter Datacenter as defined in topology. When set to ComputeCluster, this means the region is a vCenter Cluster as defined in topology.
@@ -534,7 +534,7 @@ Required
 | --- | --- | --- |
 | `type` | `string` | type determines the vSphere object type for a region within this failure domain. Available types are Datacenter and ComputeCluster. When set to Datacenter, this means the vCenter Datacenter defined is the region. When set to ComputeCluster, this means the vCenter cluster defined is the region. |
 
-### .spec.platformSpec.vsphere.failureDomains[].topology {#_specplatformspecvspherefailuredomainstopology}
+### .spec.platformSpec.vsphere.failureDomains\[\].topology {#_specplatformspecvspherefailuredomainstopology}
 
 Description
 : topology describes a given failure domain using vSphere constructs
@@ -552,15 +552,15 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `computeCluster` | `string` | computeCluster the absolute path of the vCenter cluster in which virtual machine will be located. The absolute path is of the form /<datacenter>/host/<cluster>. The maximum length of the path is 2048 characters. |
+| `computeCluster` | `string` | computeCluster the absolute path of the vCenter cluster in which virtual machine will be located. The absolute path is of the form /&lt;datacenter>/host/&lt;cluster>. The maximum length of the path is 2048 characters. |
 | `datacenter` | `string` | datacenter is the name of vCenter datacenter in which virtual machines will be located. The maximum length of the datacenter name is 80 characters. |
-| `datastore` | `string` | datastore is the absolute path of the datastore in which the virtual machine is located. The absolute path is of the form /<datacenter>/datastore/<datastore> The maximum length of the path is 2048 characters. |
-| `folder` | `string` | folder is the absolute path of the folder where virtual machines are located. The absolute path is of the form /<datacenter>/vm/<folder>. The maximum length of the path is 2048 characters. |
-| `networks` | `array (string)` | networks is the list of port group network names within this failure domain. If feature gate VSphereMultiNetworks is enabled, up to 10 network adapters may be defined. 10 is the maximum number of virtual network devices which may be attached to a VM as defined by: https://configmax.esp.vmware.com/guest?vmwareproduct=vSphere&release=vSphere%208.0&categories=1-0 The available networks (port groups) can be listed using `govc ls 'network/*'` Networks should be in the form of an absolute path: /<datacenter>/network/<portgroup>. |
-| `resourcePool` | `string` | resourcePool is the absolute path of the resource pool where virtual machines will be created. The absolute path is of the form /<datacenter>/host/<cluster>/Resources/<resourcepool>. The maximum length of the path is 2048 characters. |
-| `template` | `string` | template is the full inventory path of the virtual machine or template that will be cloned when creating new machines in this failure domain. The maximum length of the path is 2048 characters.<br>When omitted, the template will be calculated by the control plane machineset operator based on the region and zone defined in VSpherePlatformFailureDomainSpec. For example, for zone=zonea, region=region1, and infrastructure name=test, the template path would be calculated as /<datacenter>/vm/test-rhcos-region1-zonea. |
+| `datastore` | `string` | datastore is the absolute path of the datastore in which the virtual machine is located. The absolute path is of the form /&lt;datacenter>/datastore/&lt;datastore> The maximum length of the path is 2048 characters. |
+| `folder` | `string` | folder is the absolute path of the folder where virtual machines are located. The absolute path is of the form /&lt;datacenter>/vm/&lt;folder>. The maximum length of the path is 2048 characters. |
+| `networks` | `array (string)` | networks is the list of port group network names within this failure domain. If feature gate VSphereMultiNetworks is enabled, up to 10 network adapters may be defined. 10 is the maximum number of virtual network devices which may be attached to a VM as defined by: https://configmax.esp.vmware.com/guest?vmwareproduct=vSphere&release=vSphere%208.0&categories=1-0 The available networks (port groups) can be listed using `govc ls 'network/*'` Networks should be in the form of an absolute path: /&lt;datacenter>/network/&lt;portgroup>. |
+| `resourcePool` | `string` | resourcePool is the absolute path of the resource pool where virtual machines will be created. The absolute path is of the form /&lt;datacenter>/host/&lt;cluster>/Resources/&lt;resourcepool>. The maximum length of the path is 2048 characters. |
+| `template` | `string` | template is the full inventory path of the virtual machine or template that will be cloned when creating new machines in this failure domain. The maximum length of the path is 2048 characters.<br>When omitted, the template will be calculated by the control plane machineset operator based on the region and zone defined in VSpherePlatformFailureDomainSpec. For example, for zone=zonea, region=region1, and infrastructure name=test, the template path would be calculated as /&lt;datacenter>/vm/test-rhcos-region1-zonea. |
 
-### .spec.platformSpec.vsphere.failureDomains[].zoneAffinity {#_specplatformspecvspherefailuredomainszoneaffinity}
+### .spec.platformSpec.vsphere.failureDomains\[\].zoneAffinity {#_specplatformspecvspherefailuredomainszoneaffinity}
 
 Description
 : zoneAffinity holds the type of the zone and the hostGroup which vmGroup and the hostGroup names in vCenter corresponds to a vm-host group of type Virtual Machine and Host respectively. Is also contains the vmHostRule which is an affinity vm-host rule in vCenter.
@@ -578,7 +578,7 @@ Required
 | `hostGroup` | `object` | hostGroup holds the vmGroup and the hostGroup names in vCenter corresponds to a vm-host group of type Virtual Machine and Host respectively. Is also contains the vmHostRule which is an affinity vm-host rule in vCenter. |
 | `type` | `string` | type determines the vSphere object type for a zone within this failure domain. Available types are ComputeCluster and HostGroup. When set to ComputeCluster, this means the vCenter cluster defined is the zone. When set to HostGroup, hostGroup must be configured with hostGroup, vmGroup and vmHostRule and this means the zone is defined by the grouping of those fields. |
 
-### .spec.platformSpec.vsphere.failureDomains[].zoneAffinity.hostGroup {#_specplatformspecvspherefailuredomainszoneaffinityhostgroup}
+### .spec.platformSpec.vsphere.failureDomains\[\].zoneAffinity.hostGroup {#_specplatformspecvspherefailuredomainszoneaffinityhostgroup}
 
 Description
 : hostGroup holds the vmGroup and the hostGroup names in vCenter corresponds to a vm-host group of type Virtual Machine and Host respectively. Is also contains the vmHostRule which is an affinity vm-host rule in vCenter.
@@ -656,7 +656,7 @@ Type
   `array`
   ```
 
-### .spec.platformSpec.vsphere.vcenters[] {#_specplatformspecvspherevcenters}
+### .spec.platformSpec.vsphere.vcenters\[\] {#_specplatformspecvspherevcenters}
 
 Description
 : VSpherePlatformVCenterSpec stores the vCenter connection fields. This is used by the vSphere CCM.
@@ -756,7 +756,7 @@ Type
   `array`
   ```
 
-### .status.platformStatus.alibabaCloud.resourceTags[] {#_statusplatformstatusalibabacloudresourcetags}
+### .status.platformStatus.alibabaCloud.resourceTags\[\] {#_statusplatformstatusalibabacloudresourcetags}
 
 Description
 : AlibabaCloudResourceTag is the set of tags to add to apply to resources.
@@ -803,7 +803,7 @@ Type
   `array`
   ```
 
-### .status.platformStatus.aws.resourceTags[] {#_statusplatformstatusawsresourcetags}
+### .status.platformStatus.aws.resourceTags\[\] {#_statusplatformstatusawsresourcetags}
 
 Description
 : AWSResourceTag is a tag to apply to AWS resources created for the cluster.
@@ -819,8 +819,8 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key sets the key of the AWS resource tag key-value pair. Key is required when defining an AWS resource tag. Key should consist of between 1 and 128 characters, and may contain only the set of alphanumeric characters, space (' '), '_', '.', '/', '=', '+', '-', ':', and '@'. |
-| `value` | `string` | value sets the value of the AWS resource tag key-value pair. Value is required when defining an AWS resource tag. Value should consist of between 1 and 256 characters, and may contain only the set of alphanumeric characters, space (' '), '_', '.', '/', '=', '+', '-', ':', and '@'. Some AWS service do not support empty values. Since tags are added to resources in many services, the length of the tag value must meet the requirements of all services. |
+| `key` | `string` | key sets the key of the AWS resource tag key-value pair. Key is required when defining an AWS resource tag. Key should consist of between 1 and 128 characters, and may contain only the set of alphanumeric characters, space (' '), '\_', '.', '/', '=', '+', '-', ':', and '@'. |
+| `value` | `string` | value sets the value of the AWS resource tag key-value pair. Value is required when defining an AWS resource tag. Value should consist of between 1 and 256 characters, and may contain only the set of alphanumeric characters, space (' '), '\_', '.', '/', '=', '+', '-', ':', and '@'. Some AWS service do not support empty values. Since tags are added to resources in many services, the length of the tag value must meet the requirements of all services. |
 
 ### .status.platformStatus.aws.serviceEndpoints {#_statusplatformstatusawsserviceendpoints}
 
@@ -832,7 +832,7 @@ Type
   `array`
   ```
 
-### .status.platformStatus.aws.serviceEndpoints[] {#_statusplatformstatusawsserviceendpoints}
+### .status.platformStatus.aws.serviceEndpoints\[\] {#_statusplatformstatusawsserviceendpoints}
 
 Description
 : AWSServiceEndpoint store the configuration of a custom url to override existing defaults of AWS Services.
@@ -908,7 +908,7 @@ Type
   `array`
   ```
 
-### .status.platformStatus.azure.resourceTags[] {#_statusplatformstatusazureresourcetags}
+### .status.platformStatus.azure.resourceTags\[\] {#_statusplatformstatusazureresourcetags}
 
 Description
 : AzureResourceTag is a tag to apply to Azure resources created for the cluster.
@@ -1016,7 +1016,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `cloudLoadBalancerConfig` | `` | cloudLoadBalancerConfig holds configuration related to DNS and cloud load balancers. It allows configuration of in-cluster DNS as an alternative to the platform default DNS implementation. When using the ClusterHosted DNS type, Load Balancer IP addresses must be provided for the API and internal API load balancers as well as the ingress load balancer. |
+| `cloudLoadBalancerConfig` | &#96;&#96; | cloudLoadBalancerConfig holds configuration related to DNS and cloud load balancers. It allows configuration of in-cluster DNS as an alternative to the platform default DNS implementation. When using the ClusterHosted DNS type, Load Balancer IP addresses must be provided for the API and internal API load balancers as well as the ingress load balancer. |
 | `projectID` | `string` | resourceGroupName is the Project ID for new GCP resources created for the cluster. |
 | `region` | `string` | region holds the region for new GCP resources created for the cluster. |
 | `resourceLabels` | `array` | resourceLabels is a list of additional labels to apply to GCP resources created for the cluster. See https://cloud.google.com/compute/docs/labeling-resources for information on labeling GCP resources. GCP supports a maximum of 64 labels per resource. OpenShift reserves 32 labels for internal use, allowing 32 labels for user configuration. |
@@ -1034,7 +1034,7 @@ Type
   `array`
   ```
 
-### .status.platformStatus.gcp.resourceLabels[] {#_statusplatformstatusgcpresourcelabels}
+### .status.platformStatus.gcp.resourceLabels\[\] {#_statusplatformstatusgcpresourcelabels}
 
 Description
 : GCPResourceLabel is a label to apply to GCP resources created for the cluster.
@@ -1063,7 +1063,7 @@ Type
   `array`
   ```
 
-### .status.platformStatus.gcp.resourceTags[] {#_statusplatformstatusgcpresourcetags}
+### .status.platformStatus.gcp.resourceTags\[\] {#_statusplatformstatusgcpresourcetags}
 
 Description
 : GCPResourceTag is a tag to apply to GCP resources created for the cluster.
@@ -1114,7 +1114,7 @@ Type
   `array`
   ```
 
-### .status.platformStatus.ibmcloud.serviceEndpoints[] {#_statusplatformstatusibmcloudserviceendpoints}
+### .status.platformStatus.ibmcloud.serviceEndpoints\[\] {#_statusplatformstatusibmcloudserviceendpoints}
 
 Description
 : IBMCloudServiceEndpoint stores the configuration of a custom url to override existing defaults of IBM Cloud Services.
@@ -1131,7 +1131,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | name is the name of the IBM Cloud service. Possible values are: CIS, COS, COSConfig, DNSServices, GlobalCatalog, GlobalSearch, GlobalTagging, HyperProtect, IAM, KeyProtect, ResourceController, ResourceManager, or VPC. For example, the IBM Cloud Private IAM service could be configured with the service `name` of `IAM` and `url` of `https://private.iam.cloud.ibm.com` Whereas the IBM Cloud Private VPC service for US South (Dallas) could be configured with the service `name` of `VPC` and `url` of `https://us.south.private.iaas.cloud.ibm.com` |
-| `url` | `string` | url is fully qualified URI with scheme https, that overrides the default generated endpoint for a client. This must be provided and cannot be empty. The path must follow the pattern /v[0,9]+ or /api/v[0,9]+ |
+| `url` | `string` | url is fully qualified URI with scheme https, that overrides the default generated endpoint for a client. This must be provided and cannot be empty. The path must follow the pattern /v\[0,9\]+ or /api/v\[0,9\]+ |
 
 ### .status.platformStatus.kubevirt {#_statusplatformstatuskubevirt}
 
@@ -1278,7 +1278,7 @@ Type
   `array`
   ```
 
-### .status.platformStatus.powervs.serviceEndpoints[] {#_statusplatformstatuspowervsserviceendpoints}
+### .status.platformStatus.powervs.serviceEndpoints\[\] {#_statusplatformstatuspowervsserviceendpoints}
 
 Description
 : PowervsServiceEndpoint stores the configuration of a custom url to override existing defaults of PowerVS Services.
@@ -1417,7 +1417,7 @@ Description
 | 202 - Accepted | [`Infrastructure`](/docs/rest_api/config_apis/infrastructure-config-openshift-io-v1#infrastructure-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/infrastructures/{name} {#_apisconfigopenshiftiov1infrastructures_name}
+### /apis/config.openshift.io/v1/infrastructures/&#123;name&#125; {#_apisconfigopenshiftiov1infrastructures_name}
 
 **Global path parameters**
 
@@ -1521,7 +1521,7 @@ Description
 | 201 - Created | [`Infrastructure`](/docs/rest_api/config_apis/infrastructure-config-openshift-io-v1#infrastructure-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/infrastructures/{name}/status {#_apisconfigopenshiftiov1infrastructures_name_status}
+### /apis/config.openshift.io/v1/infrastructures/&#123;name&#125;/status {#_apisconfigopenshiftiov1infrastructures_name_status}
 
 **Global path parameters**
 

@@ -3,9 +3,9 @@ title: Enabling Gateway API
 sidebar_position: 2
 ---
 
-# Enabling Gateway API {#enable-gateway-api_{context}}
+# Enabling Gateway API {#enable-gateway-api_-context-}
 
-<a id="enable-gateway-api_{context}"></a>
+<a id="enable-gateway-api_-context-"></a>
 
 To route traffic using Gateway API, you must first enable the feature on your cluster. You can enable Gateway API by creating a `GatewayClass` custom resource, which triggers the Ingress Operator to provision the necessary controller and components.
 

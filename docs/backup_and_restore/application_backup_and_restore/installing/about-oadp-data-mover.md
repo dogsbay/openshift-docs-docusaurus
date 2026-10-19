@@ -30,7 +30,7 @@ Not supported
 
 OADP 1.1 and OADP 1.2 are no longer supported. The DataMover feature in OADP 1.1 or OADP 1.2 was a Technology Preview and was never supported. DataMover backups taken with OADP 1.1 or OADP 1.2 cannot be restored on later versions of OADP.
 
-## Enabling the built-in Data Mover {#enabling-oadp-data-mover_about-oadp-data-mover}
+## Enable the built-in Data Mover {#enabling-oadp-data-mover_about-oadp-data-mover}
 
 Enable the built-in Data Mover by configuring the CSI plugin and node agent in the `DataProtectionApplication` custom resource (CR). This provides volume-level backup and restore operations by using the Kopia uploader.
 

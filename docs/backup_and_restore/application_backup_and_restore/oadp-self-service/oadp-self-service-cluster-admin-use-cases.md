@@ -9,7 +9,7 @@ sidebar_position: 2
 
 Configure and manage OADP Self-Service by enabling the feature, reviewing backup storage location requests, and enforcing policy templates. This helps you provide Self-Service backup capabilities while maintaining administrative control.
 
-## Enabling and disabling OADP Self-Service {#oadp-self-service-admin-enable-disable_oadp-self-service-cluster-admin-use-cases}
+## Enable and disable OADP Self-Service {#oadp-self-service-admin-enable-disable_oadp-self-service-cluster-admin-use-cases}
 
 Enable or disable the OADP Self-Service feature to allow namespace administrators to manage their own backup and restore operations without cluster admin privileges. This helps you delegate backup responsibilities while maintaining administrative control.
 
@@ -90,7 +90,7 @@ message: only a single instance of Non-Admin Controller can be installed across 
   non-admin-controller-5d....f5-p..9p   1/1     Running   0          99m
   ```
 
-## Enabling NonAdminBackupStorageLocation administrator approval workflow {#oadp-self-service-enabling-nabsl-approval_oadp-self-service-cluster-admin-use-cases}
+## Enable NonAdminBackupStorageLocation administrator approval workflow {#oadp-self-service-enabling-nabsl-approval_oadp-self-service-cluster-admin-use-cases}
 
 Enable the administrator approval workflow for `NonAdminBackupStorageLocation` custom resource to review backup storage location requests from namespace administrators before they are applied. This helps you maintain control over backup storage configurations.
 
@@ -134,7 +134,7 @@ Enable the administrator approval workflow for `NonAdminBackupStorageLocation` c
   <dd>Specifies whether the NABSL administrator approval workflow is enabled. Set to <code>true</code> to enable the approval workflow.</dd>
   </dl>
 
-## Approving a NonAdminBackupStorageLocation request {#oadp-self-service-approving-nabsl_oadp-self-service-cluster-admin-use-cases}
+## Approve a NonAdminBackupStorageLocation request {#oadp-self-service-approving-nabsl_oadp-self-service-cluster-admin-use-cases}
 
 Approve `NonAdminBackupStorageLocation` (NABSL) custom resource requests from namespace administrators to grant access to their specified backup storage locations. This enables self-service backup and restore operations for namespace resources.
 
@@ -178,7 +178,7 @@ Approve `NonAdminBackupStorageLocation` (NABSL) custom resource requests from na
   test-nac-test-bsl-cd...930   Available   62s              62s
   ```
 
-## Rejecting a NonAdminBackupStorageLocation request {#oadp-self-service-rejecting-nabsl_oadp-self-service-cluster-admin-use-cases}
+## Reject a NonAdminBackupStorageLocation request {#oadp-self-service-rejecting-nabsl_oadp-self-service-cluster-admin-use-cases}
 
 Reject `NonAdminBackupStorageLocation` (NABSL) custom resource (CR) requests from namespace administrators to deny access to backup storage locations that do not meet requirements. This helps you maintain security and compliance standards.
 

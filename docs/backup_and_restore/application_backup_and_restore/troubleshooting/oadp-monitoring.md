@@ -88,7 +88,7 @@ For more information about setting up the monitoring stack, see [Configuring use
    configmap/user-workload-monitoring-config created
    ```
 
-## Creating OADP service monitor {#oadp-creating-service-monitor_oadp-monitoring}
+## Create OADP service monitor {#oadp-creating-service-monitor_oadp-monitoring}
 
 Create a `ServiceMonitor` resource to scrape Velero metrics from the OADP service endpoint. This helps you collect metrics for monitoring backup and restore operations in the OpenShift Container Platform monitoring stack.
 
@@ -143,7 +143,7 @@ OADP provides an `openshift-adp-velero-metrics-svc` service. The user workload m
 
 ![OADP metrics targets](/images/oadp-metrics-targets.png)
 
-## Creating an alerting rule {#creating-alerting-rules_oadp-monitoring}
+## Create an alerting rule {#creating-alerting-rules_oadp-monitoring}
 
 Create a `PrometheusRule` resource to configure alerting rules for OADP backup operations. This helps you receive notifications when backup failures or other issues occur in your environment.
 
@@ -235,7 +235,7 @@ Review the following table for a list of `Velero` metrics provided by OADP toget
 | `velero_csi_snapshot_success_total` | Total number of CSI successful volume snapshots | Counter |
 | `velero_csi_snapshot_failure_total` | Total number of CSI failed volume snapshots | Counter |
 
-## Viewing metrics using the Observe UI {#viewing-metrics-observe-ui_oadp-monitoring}
+## View metrics using the Observe UI {#viewing-metrics-observe-ui_oadp-monitoring}
 
 Review metrics in the OpenShift Container Platform web console from the **Administrator** or **Developer** perspective, which must have access to the `openshift-adp` project.
 

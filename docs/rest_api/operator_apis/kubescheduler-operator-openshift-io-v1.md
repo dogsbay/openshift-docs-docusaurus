@@ -3,7 +3,7 @@ title: "KubeScheduler [operator.openshift.io/v1]"
 sidebar_position: 19
 ---
 
-# KubeScheduler [operator.openshift.io/v1] {#kubescheduler-operator-openshift-io-v1}
+# KubeScheduler \[operator.openshift.io/v1\] {#kubescheduler-operator-openshift-io-v1}
 
 <a id="kubescheduler-operator-openshift-io-v1"></a>
 
@@ -46,10 +46,10 @@ Type
 | `forceRedeploymentReason` | `string` | forceRedeploymentReason can be used to force the redeployment of the operand by providing a unique string. This provides a mechanism to kick a previously failed deployment and provide a reason why you think it will work this time instead of failing again on the same config. |
 | `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
-| `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
+| `observedConfig` | &#96;&#96; | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
 | `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `succeededRevisionLimit` | `integer` | succeededRevisionLimit is the number of successful static pod installer revisions to keep on disk and in the api -1 = unlimited, 0 or unset = 5 (default) |
-| `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
+| `unsupportedConfigOverrides` | &#96;&#96; | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 
 ### .status {#_status}
 
@@ -85,7 +85,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : OperatorCondition is just the standard condition fields.
@@ -118,7 +118,7 @@ Type
   `array`
   ```
 
-### .status.generations[] {#_statusgenerations}
+### .status.generations\[\] {#_statusgenerations}
 
 Description
 : GenerationStatus keeps track of the generation for a given resource so that decisions about forced updates can be made.
@@ -153,7 +153,7 @@ Type
   `array`
   ```
 
-### .status.nodeStatuses[] {#_statusnodestatuses}
+### .status.nodeStatuses\[\] {#_statusnodestatuses}
 
 Description
 : NodeStatus provides information about the current state of a particular node managed by this operator.
@@ -264,7 +264,7 @@ Description
 | 202 - Accepted | [`KubeScheduler`](/docs/rest_api/operator_apis/kubescheduler-operator-openshift-io-v1#kubescheduler-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/kubeschedulers/{name} {#_apisoperatoropenshiftiov1kubeschedulers_name}
+### /apis/operator.openshift.io/v1/kubeschedulers/&#123;name&#125; {#_apisoperatoropenshiftiov1kubeschedulers_name}
 
 **Global path parameters**
 
@@ -368,7 +368,7 @@ Description
 | 201 - Created | [`KubeScheduler`](/docs/rest_api/operator_apis/kubescheduler-operator-openshift-io-v1#kubescheduler-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/kubeschedulers/{name}/status {#_apisoperatoropenshiftiov1kubeschedulers_name_status}
+### /apis/operator.openshift.io/v1/kubeschedulers/&#123;name&#125;/status {#_apisoperatoropenshiftiov1kubeschedulers_name_status}
 
 **Global path parameters**
 

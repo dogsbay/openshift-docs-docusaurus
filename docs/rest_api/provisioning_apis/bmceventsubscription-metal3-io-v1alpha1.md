@@ -3,7 +3,7 @@ title: "BMCEventSubscription [metal3.io/v1alpha1]"
 sidebar_position: 2
 ---
 
-# BMCEventSubscription [metal3.io/v1alpha1] {#bmceventsubscription-metal3-io-v1alpha1}
+# BMCEventSubscription \[metal3.io/v1alpha1\] {#bmceventsubscription-metal3-io-v1alpha1}
 
 <a id="bmceventsubscription-metal3-io-v1alpha1"></a>
 
@@ -109,7 +109,7 @@ Description
 | 200 - OK | [`BMCEventSubscriptionList`](/docs/rest_api/objects#io-metal3-v1alpha1-BMCEventSubscriptionList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/bmceventsubscriptions {#_apismetal3iov1alpha1namespaces_namespace_bmceventsubscriptions}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/bmceventsubscriptions {#_apismetal3iov1alpha1namespaces_namespace_bmceventsubscriptions}
 
 HTTP method
 : ```
@@ -177,7 +177,7 @@ Description
 | 202 - Accepted | [`BMCEventSubscription`](/docs/rest_api/provisioning_apis/bmceventsubscription-metal3-io-v1alpha1#bmceventsubscription-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/bmceventsubscriptions/{name} {#_apismetal3iov1alpha1namespaces_namespace_bmceventsubscriptions_name}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/bmceventsubscriptions/&#123;name&#125; {#_apismetal3iov1alpha1namespaces_namespace_bmceventsubscriptions_name}
 
 **Global path parameters**
 
@@ -281,7 +281,7 @@ Description
 | 201 - Created | [`BMCEventSubscription`](/docs/rest_api/provisioning_apis/bmceventsubscription-metal3-io-v1alpha1#bmceventsubscription-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/bmceventsubscriptions/{name}/status {#_apismetal3iov1alpha1namespaces_namespace_bmceventsubscriptions_name_status}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/bmceventsubscriptions/&#123;name&#125;/status {#_apismetal3iov1alpha1namespaces_namespace_bmceventsubscriptions_name_status}
 
 **Global path parameters**
 

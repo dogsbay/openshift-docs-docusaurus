@@ -3,7 +3,7 @@ title: "DeploymentConfigRollback [apps.openshift.io/v1]"
 sidebar_position: 10
 ---
 
-# DeploymentConfigRollback [apps.openshift.io/v1] {#deploymentconfigrollback-apps-openshift-io-v1}
+# DeploymentConfigRollback \[apps.openshift.io/v1\] {#deploymentconfigrollback-apps-openshift-io-v1}
 
 <a id="deploymentconfigrollback-apps-openshift-io-v1"></a>
 
@@ -64,7 +64,7 @@ The following API endpoints are available:
 - `/apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name}/rollback`
   - `POST`: create rollback of a DeploymentConfig
 
-### /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name}/rollback {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_rollback}
+### /apis/apps.openshift.io/v1/namespaces/&#123;namespace&#125;/deploymentconfigs/&#123;name&#125;/rollback {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_rollback}
 
 **Global path parameters**
 

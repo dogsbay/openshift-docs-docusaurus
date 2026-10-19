@@ -26,7 +26,7 @@ Review failure domain support for your cloud provider to determine how to config
 | Microsoft Azure | X | [Azure availability zone](https://learn.microsoft.com/en-us/azure/azure-web-pubsub/concept-availability-zones) |
 | Nutanix | X | [failure domain](https://portal.nutanix.com/page/documents/solutions/details?targetId=RA-2147-Nutanix-for-Enterprise-Edge:failure-domain-considerations.html) |
 | Red Hat OpenStack Platform (RHOSP) | X | [OpenStack Nova availability zones](https://docs.openstack.org/nova/2023.2/admin/availability-zones.html) and [OpenStack Cinder availability zones](https://docs.openstack.org/cinder/2023.2/admin/availability-zone-type.html) |
-| VMware vSphere | X | failure domain mapped to a vSphere Zone <sup>[1]</sup> |
+| VMware vSphere | X | failure domain mapped to a vSphere Zone <sup>\[1\]</sup> |
 
 1. For more information, see "Regions and zones for a VMware vCenter".
 

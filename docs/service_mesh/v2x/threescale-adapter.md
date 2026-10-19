@@ -189,7 +189,7 @@ For 3scale SaaS customers, Red Hat OpenShift Service Mesh is enabled as part of
 
 **Procedure**
 
-1. Navigate to **[your_API_name]** → **Integration**
+1. Navigate to **\[your_API_name\]** → **Integration**
 2. Click **Settings**.
 3. Select the **Istio** option under *Deployment*.
    - The **API Key (user_key)** option under *Authentication* is selected by default.

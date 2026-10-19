@@ -3,7 +3,7 @@ title: "OAuth [config.openshift.io/v1]"
 sidebar_position: 22
 ---
 
-# OAuth [config.openshift.io/v1] {#oauth-config-openshift-io-v1}
+# OAuth \[config.openshift.io/v1\] {#oauth-config-openshift-io-v1}
 
 <a id="oauth-config-openshift-io-v1"></a>
 
@@ -57,7 +57,7 @@ Type
   `array`
   ```
 
-### .spec.identityProviders[] {#_specidentityproviders}
+### .spec.identityProviders\[\] {#_specidentityproviders}
 
 Description
 : IdentityProvider provides identities for users authenticating using credentials
@@ -82,7 +82,7 @@ Type
 | `requestHeader` | `object` | requestHeader enables user authentication using request header credentials |
 | `type` | `string` | type identifies the identity provider type for this entry. |
 
-### .spec.identityProviders[].basicAuth {#_specidentityprovidersbasicauth}
+### .spec.identityProviders\[\].basicAuth {#_specidentityprovidersbasicauth}
 
 Description
 : basicAuth contains configuration options for the BasicAuth IdP
@@ -99,7 +99,7 @@ Type
 | `tlsClientKey` | `object` | tlsClientKey is an optional reference to a secret by name that contains the PEM-encoded TLS private key for the client certificate referenced in tlsClientCert. The key "tls.key" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config. |
 | `url` | `string` | url is the remote URL to connect to |
 
-### .spec.identityProviders[].basicAuth.ca {#_specidentityprovidersbasicauthca}
+### .spec.identityProviders\[\].basicAuth.ca {#_specidentityprovidersbasicauthca}
 
 Description
 : ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key "ca.crt" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config.
@@ -116,7 +116,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
 
-### .spec.identityProviders[].basicAuth.tlsClientCert {#_specidentityprovidersbasicauthtlsclientcert}
+### .spec.identityProviders\[\].basicAuth.tlsClientCert {#_specidentityprovidersbasicauthtlsclientcert}
 
 Description
 : tlsClientCert is an optional reference to a secret by name that contains the PEM-encoded TLS client certificate to present when connecting to the server. The key "tls.crt" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config.
@@ -133,7 +133,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
 
-### .spec.identityProviders[].basicAuth.tlsClientKey {#_specidentityprovidersbasicauthtlsclientkey}
+### .spec.identityProviders\[\].basicAuth.tlsClientKey {#_specidentityprovidersbasicauthtlsclientkey}
 
 Description
 : tlsClientKey is an optional reference to a secret by name that contains the PEM-encoded TLS private key for the client certificate referenced in tlsClientCert. The key "tls.key" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config.
@@ -150,7 +150,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
 
-### .spec.identityProviders[].github {#_specidentityprovidersgithub}
+### .spec.identityProviders\[\].github {#_specidentityprovidersgithub}
 
 Description
 : github enables user authentication using GitHub credentials
@@ -167,9 +167,9 @@ Type
 | `clientSecret` | `object` | clientSecret is a required reference to the secret by name containing the oauth client secret. The key "clientSecret" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config. |
 | `hostname` | `string` | hostname is the optional domain (e.g. "mycompany.com") for use with a hosted instance of GitHub Enterprise. It must match the GitHub Enterprise settings value configured at /setup/settings#hostname. |
 | `organizations` | `array (string)` | organizations optionally restricts which organizations are allowed to log in |
-| `teams` | `array (string)` | teams optionally restricts which teams are allowed to log in. Format is <org>/<team>. |
+| `teams` | `array (string)` | teams optionally restricts which teams are allowed to log in. Format is &lt;org>/&lt;team>. |
 
-### .spec.identityProviders[].github.ca {#_specidentityprovidersgithubca}
+### .spec.identityProviders\[\].github.ca {#_specidentityprovidersgithubca}
 
 Description
 : ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key "ca.crt" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. This can only be configured when hostname is set to a non-empty value. The namespace for this config map is openshift-config.
@@ -186,7 +186,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
 
-### .spec.identityProviders[].github.clientSecret {#_specidentityprovidersgithubclientsecret}
+### .spec.identityProviders\[\].github.clientSecret {#_specidentityprovidersgithubclientsecret}
 
 Description
 : clientSecret is a required reference to the secret by name containing the oauth client secret. The key "clientSecret" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config.
@@ -203,7 +203,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
 
-### .spec.identityProviders[].gitlab {#_specidentityprovidersgitlab}
+### .spec.identityProviders\[\].gitlab {#_specidentityprovidersgitlab}
 
 Description
 : gitlab enables user authentication using GitLab credentials
@@ -220,7 +220,7 @@ Type
 | `clientSecret` | `object` | clientSecret is a required reference to the secret by name containing the oauth client secret. The key "clientSecret" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config. |
 | `url` | `string` | url is the oauth server base URL |
 
-### .spec.identityProviders[].gitlab.ca {#_specidentityprovidersgitlabca}
+### .spec.identityProviders\[\].gitlab.ca {#_specidentityprovidersgitlabca}
 
 Description
 : ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key "ca.crt" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config.
@@ -237,7 +237,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
 
-### .spec.identityProviders[].gitlab.clientSecret {#_specidentityprovidersgitlabclientsecret}
+### .spec.identityProviders\[\].gitlab.clientSecret {#_specidentityprovidersgitlabclientsecret}
 
 Description
 : clientSecret is a required reference to the secret by name containing the oauth client secret. The key "clientSecret" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config.
@@ -254,7 +254,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
 
-### .spec.identityProviders[].google {#_specidentityprovidersgoogle}
+### .spec.identityProviders\[\].google {#_specidentityprovidersgoogle}
 
 Description
 : google enables user authentication using Google credentials
@@ -270,7 +270,7 @@ Type
 | `clientSecret` | `object` | clientSecret is a required reference to the secret by name containing the oauth client secret. The key "clientSecret" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config. |
 | `hostedDomain` | `string` | hostedDomain is the optional Google App domain (e.g. "mycompany.com") to restrict logins to |
 
-### .spec.identityProviders[].google.clientSecret {#_specidentityprovidersgoogleclientsecret}
+### .spec.identityProviders\[\].google.clientSecret {#_specidentityprovidersgoogleclientsecret}
 
 Description
 : clientSecret is a required reference to the secret by name containing the oauth client secret. The key "clientSecret" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config.
@@ -287,7 +287,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
 
-### .spec.identityProviders[].htpasswd {#_specidentityprovidershtpasswd}
+### .spec.identityProviders\[\].htpasswd {#_specidentityprovidershtpasswd}
 
 Description
 : htpasswd enables user authentication using an HTPasswd file to validate credentials
@@ -301,7 +301,7 @@ Type
 | --- | --- | --- |
 | `fileData` | `object` | fileData is a required reference to a secret by name containing the data to use as the htpasswd file. The key "htpasswd" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. If the specified htpasswd data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config. |
 
-### .spec.identityProviders[].htpasswd.fileData {#_specidentityprovidershtpasswdfiledata}
+### .spec.identityProviders\[\].htpasswd.fileData {#_specidentityprovidershtpasswdfiledata}
 
 Description
 : fileData is a required reference to a secret by name containing the data to use as the htpasswd file. The key "htpasswd" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. If the specified htpasswd data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config.
@@ -318,7 +318,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
 
-### .spec.identityProviders[].keystone {#_specidentityproviderskeystone}
+### .spec.identityProviders\[\].keystone {#_specidentityproviderskeystone}
 
 Description
 : keystone enables user authentication using keystone password credentials
@@ -336,7 +336,7 @@ Type
 | `tlsClientKey` | `object` | tlsClientKey is an optional reference to a secret by name that contains the PEM-encoded TLS private key for the client certificate referenced in tlsClientCert. The key "tls.key" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config. |
 | `url` | `string` | url is the remote URL to connect to |
 
-### .spec.identityProviders[].keystone.ca {#_specidentityproviderskeystoneca}
+### .spec.identityProviders\[\].keystone.ca {#_specidentityproviderskeystoneca}
 
 Description
 : ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key "ca.crt" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config.
@@ -353,7 +353,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
 
-### .spec.identityProviders[].keystone.tlsClientCert {#_specidentityproviderskeystonetlsclientcert}
+### .spec.identityProviders\[\].keystone.tlsClientCert {#_specidentityproviderskeystonetlsclientcert}
 
 Description
 : tlsClientCert is an optional reference to a secret by name that contains the PEM-encoded TLS client certificate to present when connecting to the server. The key "tls.crt" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config.
@@ -370,7 +370,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
 
-### .spec.identityProviders[].keystone.tlsClientKey {#_specidentityproviderskeystonetlsclientkey}
+### .spec.identityProviders\[\].keystone.tlsClientKey {#_specidentityproviderskeystonetlsclientkey}
 
 Description
 : tlsClientKey is an optional reference to a secret by name that contains the PEM-encoded TLS private key for the client certificate referenced in tlsClientCert. The key "tls.key" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. If the specified certificate data is not valid, the identity provider is not honored. The namespace for this secret is openshift-config.
@@ -387,7 +387,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
 
-### .spec.identityProviders[].ldap {#_specidentityprovidersldap}
+### .spec.identityProviders\[\].ldap {#_specidentityprovidersldap}
 
 Description
 : ldap enables user authentication using LDAP credentials
@@ -406,7 +406,7 @@ Type
 | `insecure` | `boolean` | insecure, if true, indicates the connection should not use TLS WARNING: Should not be set to `true` with the URL scheme "ldaps://" as "ldaps://" URLs always          attempt to connect using TLS, even when `insecure` is set to `true` When `true`, "ldap://" URLS connect insecurely. When `false`, "ldap://" URLs are upgraded to a TLS connection using StartTLS as specified in https://tools.ietf.org/html/rfc2830. |
 | `url` | `string` | url is an RFC 2255 URL which specifies the LDAP search parameters to use. The syntax of the URL is: ldap://host:port/basedn?attribute?scope?filter |
 
-### .spec.identityProviders[].ldap.attributes {#_specidentityprovidersldapattributes}
+### .spec.identityProviders\[\].ldap.attributes {#_specidentityprovidersldapattributes}
 
 Description
 : attributes maps LDAP attributes to identities
@@ -423,7 +423,7 @@ Type
 | `name` | `array (string)` | name is the list of attributes whose values should be used as the display name. Optional. If unspecified, no display name is set for the identity LDAP standard display name attribute is "cn" |
 | `preferredUsername` | `array (string)` | preferredUsername is the list of attributes whose values should be used as the preferred username. LDAP standard login attribute is "uid" |
 
-### .spec.identityProviders[].ldap.bindPassword {#_specidentityprovidersldapbindpassword}
+### .spec.identityProviders\[\].ldap.bindPassword {#_specidentityprovidersldapbindpassword}
 
 Description
 : bindPassword is an optional reference to a secret by name containing a password to bind with during the search phase. The key "bindPassword" is used to locate the data. If specified and the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config.
@@ -440,7 +440,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
 
-### .spec.identityProviders[].ldap.ca {#_specidentityprovidersldapca}
+### .spec.identityProviders\[\].ldap.ca {#_specidentityprovidersldapca}
 
 Description
 : ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key "ca.crt" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config.
@@ -457,7 +457,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
 
-### .spec.identityProviders[].openID {#_specidentityprovidersopenid}
+### .spec.identityProviders\[\].openID {#_specidentityprovidersopenid}
 
 Description
 : openID enables user authentication using OpenID credentials
@@ -477,7 +477,7 @@ Type
 | `extraScopes` | `array (string)` | extraScopes are any scopes to request in addition to the standard "openid" scope. |
 | `issuer` | `string` | issuer is the URL that the OpenID Provider asserts as its Issuer Identifier. It must use the https scheme with no query or fragment component. |
 
-### .spec.identityProviders[].openID.ca {#_specidentityprovidersopenidca}
+### .spec.identityProviders\[\].openID.ca {#_specidentityprovidersopenidca}
 
 Description
 : ca is an optional reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. The key "ca.crt" is used to locate the data. If specified and the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. If empty, the default system roots are used. The namespace for this config map is openshift-config.
@@ -494,7 +494,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced config map |
 
-### .spec.identityProviders[].openID.claims {#_specidentityprovidersopenidclaims}
+### .spec.identityProviders\[\].openID.claims {#_specidentityprovidersopenidclaims}
 
 Description
 : claims mappings
@@ -511,7 +511,7 @@ Type
 | `name` | `array (string)` | name is the list of claims whose values should be used as the display name. Optional. If unspecified, no display name is set for the identity |
 | `preferredUsername` | `array (string)` | preferredUsername is the list of claims whose values should be used as the preferred username. If unspecified, the preferred username is determined from the value of the sub claim |
 
-### .spec.identityProviders[].openID.clientSecret {#_specidentityprovidersopenidclientsecret}
+### .spec.identityProviders\[\].openID.clientSecret {#_specidentityprovidersopenidclientsecret}
 
 Description
 : clientSecret is a required reference to the secret by name containing the oauth client secret. The key "clientSecret" is used to locate the data. If the secret or expected key is not found, the identity provider is not honored. The namespace for this secret is openshift-config.
@@ -528,7 +528,7 @@ Required
 | --- | --- | --- |
 | `name` | `string` | name is the metadata.name of the referenced secret |
 
-### .spec.identityProviders[].requestHeader {#_specidentityprovidersrequestheader}
+### .spec.identityProviders\[\].requestHeader {#_specidentityprovidersrequestheader}
 
 Description
 : requestHeader enables user authentication using request header credentials
@@ -541,15 +541,15 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `ca` | `object` | ca is a required reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. Specifically, it allows verification of incoming requests to prevent header spoofing. The key "ca.crt" is used to locate the data. If the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. The namespace for this config map is openshift-config. |
-| `challengeURL` | `string` | challengeURL is a URL to redirect unauthenticated /authorize requests to Unauthenticated requests from OAuth clients which expect WWW-Authenticate challenges will be redirected here. ${url} is replaced with the current URL, escaped to be safe in a query parameter   https://www.example.com/sso-login?then=${url} ${query} is replaced with the current query string   https://www.example.com/auth-proxy/oauth/authorize?${query} Required when challenge is set to true. |
+| `challengeURL` | `string` | challengeURL is a URL to redirect unauthenticated /authorize requests to Unauthenticated requests from OAuth clients which expect WWW-Authenticate challenges will be redirected here. ${url} is replaced with the current URL, escaped to be safe in a query parameter   https://www.example.com/sso-login?then=$&#123;url&#125; ${query} is replaced with the current query string   https://www.example.com/auth-proxy/oauth/authorize?$&#123;query&#125; Required when challenge is set to true. |
 | `clientCommonNames` | `array (string)` | clientCommonNames is an optional list of common names to require a match from. If empty, any client certificate validated against the clientCA bundle is considered authoritative. |
 | `emailHeaders` | `array (string)` | emailHeaders is the set of headers to check for the email address |
 | `headers` | `array (string)` | headers is the set of headers to check for identity information |
-| `loginURL` | `string` | loginURL is a URL to redirect unauthenticated /authorize requests to Unauthenticated requests from OAuth clients which expect interactive logins will be redirected here ${url} is replaced with the current URL, escaped to be safe in a query parameter   https://www.example.com/sso-login?then=${url} ${query} is replaced with the current query string   https://www.example.com/auth-proxy/oauth/authorize?${query} Required when login is set to true. |
+| `loginURL` | `string` | loginURL is a URL to redirect unauthenticated /authorize requests to Unauthenticated requests from OAuth clients which expect interactive logins will be redirected here ${url} is replaced with the current URL, escaped to be safe in a query parameter   https://www.example.com/sso-login?then=$&#123;url&#125; ${query} is replaced with the current query string   https://www.example.com/auth-proxy/oauth/authorize?$&#123;query&#125; Required when login is set to true. |
 | `nameHeaders` | `array (string)` | nameHeaders is the set of headers to check for the display name |
 | `preferredUsernameHeaders` | `array (string)` | preferredUsernameHeaders is the set of headers to check for the preferred username |
 
-### .spec.identityProviders[].requestHeader.ca {#_specidentityprovidersrequestheaderca}
+### .spec.identityProviders\[\].requestHeader.ca {#_specidentityprovidersrequestheaderca}
 
 Description
 : ca is a required reference to a config map by name containing the PEM-encoded CA bundle. It is used as a trust anchor to validate the TLS certificate presented by the remote server. Specifically, it allows verification of incoming requests to prevent header spoofing. The key "ca.crt" is used to locate the data. If the config map or expected key is not found, the identity provider is not honored. If the specified ca data is not valid, the identity provider is not honored. The namespace for this config map is openshift-config.
@@ -745,7 +745,7 @@ Description
 | 202 - Accepted | [`OAuth`](/docs/rest_api/config_apis/oauth-config-openshift-io-v1#oauth-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/oauths/{name} {#_apisconfigopenshiftiov1oauths_name}
+### /apis/config.openshift.io/v1/oauths/&#123;name&#125; {#_apisconfigopenshiftiov1oauths_name}
 
 **Global path parameters**
 
@@ -849,7 +849,7 @@ Description
 | 201 - Created | [`OAuth`](/docs/rest_api/config_apis/oauth-config-openshift-io-v1#oauth-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/oauths/{name}/status {#_apisconfigopenshiftiov1oauths_name_status}
+### /apis/config.openshift.io/v1/oauths/&#123;name&#125;/status {#_apisconfigopenshiftiov1oauths_name_status}
 
 **Global path parameters**
 

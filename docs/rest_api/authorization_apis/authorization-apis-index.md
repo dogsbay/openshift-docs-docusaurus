@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="authorization-apis"></a>
 
-## LocalResourceAccessReview [authorization.openshift.io/v1] {#_localresourceaccessreview_authorizationopenshiftiov1}
+## LocalResourceAccessReview \[authorization.openshift.io/v1\] {#_localresourceaccessreview_authorizationopenshiftiov1}
 
 Description
 : LocalResourceAccessReview is a means to request a list of which users and groups are authorized to perform the action specified by spec in a particular namespace
@@ -19,7 +19,7 @@ Type
   `object`
   ```
 
-## LocalSubjectAccessReview [authorization.openshift.io/v1] {#_localsubjectaccessreview_authorizationopenshiftiov1}
+## LocalSubjectAccessReview \[authorization.openshift.io/v1\] {#_localsubjectaccessreview_authorizationopenshiftiov1}
 
 Description
 : LocalSubjectAccessReview is an object for requesting information about whether a user or group can perform an action in a particular namespace
@@ -31,7 +31,7 @@ Type
   `object`
   ```
 
-## ResourceAccessReview [authorization.openshift.io/v1] {#_resourceaccessreview_authorizationopenshiftiov1}
+## ResourceAccessReview \[authorization.openshift.io/v1\] {#_resourceaccessreview_authorizationopenshiftiov1}
 
 Description
 : ResourceAccessReview is a means to request a list of which users and groups are authorized to perform the action specified by spec
@@ -43,7 +43,7 @@ Type
   `object`
   ```
 
-## SelfSubjectRulesReview [authorization.openshift.io/v1] {#_selfsubjectrulesreview_authorizationopenshiftiov1}
+## SelfSubjectRulesReview \[authorization.openshift.io/v1\] {#_selfsubjectrulesreview_authorizationopenshiftiov1}
 
 Description
 : SelfSubjectRulesReview is a resource you can create to determine which actions you can perform in a namespace
@@ -55,7 +55,7 @@ Type
   `object`
   ```
 
-## SubjectAccessReview [authorization.openshift.io/v1] {#_subjectaccessreview_authorizationopenshiftiov1}
+## SubjectAccessReview \[authorization.openshift.io/v1\] {#_subjectaccessreview_authorizationopenshiftiov1}
 
 Description
 : SubjectAccessReview is an object for requesting information about whether a user or group can perform an action
@@ -67,7 +67,7 @@ Type
   `object`
   ```
 
-## SubjectRulesReview [authorization.openshift.io/v1] {#_subjectrulesreview_authorizationopenshiftiov1}
+## SubjectRulesReview \[authorization.openshift.io/v1\] {#_subjectrulesreview_authorizationopenshiftiov1}
 
 Description
 : SubjectRulesReview is a resource you can create to determine which actions another user can perform in a namespace
@@ -79,7 +79,7 @@ Type
   `object`
   ```
 
-## SelfSubjectReview [authentication.k8s.io/v1] {#_selfsubjectreview_authenticationk8siov1}
+## SelfSubjectReview \[authentication.k8s.io/v1\] {#_selfsubjectreview_authenticationk8siov1}
 
 Description
 : SelfSubjectReview contains the user information that the kube-apiserver has about the user making this request. When using impersonation, users will receive the user info of the user being impersonated.  If impersonation or request header authentication is used, any extra keys will have their case ignored and returned as lowercase.
@@ -89,7 +89,7 @@ Type
   `object`
   ```
 
-## TokenRequest [authentication.k8s.io/v1] {#_tokenrequest_authenticationk8siov1}
+## TokenRequest \[authentication.k8s.io/v1\] {#_tokenrequest_authenticationk8siov1}
 
 Description
 : TokenRequest requests a token for a given service account.
@@ -99,7 +99,7 @@ Type
   `object`
   ```
 
-## TokenReview [authentication.k8s.io/v1] {#_tokenreview_authenticationk8siov1}
+## TokenReview \[authentication.k8s.io/v1\] {#_tokenreview_authenticationk8siov1}
 
 Description
 : TokenReview attempts to authenticate a token to a known user. Note: TokenReview requests may be cached by the webhook token authenticator plugin in the kube-apiserver.
@@ -109,7 +109,7 @@ Type
   `object`
   ```
 
-## LocalSubjectAccessReview [authorization.k8s.io/v1] {#_localsubjectaccessreview_authorizationk8siov1}
+## LocalSubjectAccessReview \[authorization.k8s.io/v1\] {#_localsubjectaccessreview_authorizationk8siov1}
 
 Description
 : LocalSubjectAccessReview checks whether or not a user or group can perform an action in a given namespace. Having a namespace scoped resource makes it much easier to grant namespace scoped policy that includes permissions checking.
@@ -119,7 +119,7 @@ Type
   `object`
   ```
 
-## SelfSubjectAccessReview [authorization.k8s.io/v1] {#_selfsubjectaccessreview_authorizationk8siov1}
+## SelfSubjectAccessReview \[authorization.k8s.io/v1\] {#_selfsubjectaccessreview_authorizationk8siov1}
 
 Description
 : SelfSubjectAccessReview checks whether or the current user can perform an action.  Not filling in a spec.namespace means "in all namespaces".  Self is a special case, because users should always be able to check whether they can perform an action
@@ -129,7 +129,7 @@ Type
   `object`
   ```
 
-## SelfSubjectRulesReview [authorization.k8s.io/v1] {#_selfsubjectrulesreview_authorizationk8siov1}
+## SelfSubjectRulesReview \[authorization.k8s.io/v1\] {#_selfsubjectrulesreview_authorizationk8siov1}
 
 Description
 : SelfSubjectRulesReview enumerates the set of actions the current user can perform within a namespace. The returned list of actions may be incomplete depending on the server’s authorization mode, and any errors experienced during the evaluation. SelfSubjectRulesReview should be used by UIs to show/hide actions, or to quickly let an end user reason about their permissions. It should NOT Be used by external systems to drive authorization decisions as this raises confused deputy, cache lifetime/revocation, and correctness concerns. SubjectAccessReview, and LocalAccessReview are the correct way to defer authorization decisions to the API server.
@@ -139,7 +139,7 @@ Type
   `object`
   ```
 
-## SubjectAccessReview [authorization.k8s.io/v1] {#_subjectaccessreview_authorizationk8siov1}
+## SubjectAccessReview \[authorization.k8s.io/v1\] {#_subjectaccessreview_authorizationk8siov1}
 
 Description
 : SubjectAccessReview checks whether or not a user or group can perform an action.

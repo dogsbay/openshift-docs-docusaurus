@@ -14,7 +14,7 @@ Ensure you have reviewed the following documentation before preparing for a sing
 - "OpenShift Container Platform installation and update"
 - "Selecting a cluster installation method and preparing it for users"
 
-## About OpenShift on a single node {#install-sno-about-installing-on-a-single-node_install-sno-preparing}
+## Single-node OpenShift {#install-sno-about-installing-on-a-single-node_install-sno-preparing}
 
 You can create a single-node cluster with standard installation methods. OpenShift Container Platform on a single node is a specialized installation that requires the creation of a special Ignition configuration file.
 

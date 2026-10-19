@@ -582,7 +582,7 @@ where:
 : Provides reverse DNS resolution for the bootstrap machine.
 
 `control-plane0.ocp4.example.com.`
-: Provides rebootstrap.ocp4.example.com.verse DNS resolution for the control plane machines.
+: Provides reverse DNS resolution for the control plane machines.
 
 `compute0.ocp4.example.com.`
 : Provides reverse DNS resolution for the compute machines.
@@ -1736,7 +1736,7 @@ To provision physical or virtual machines, install RHCOS by using a bootable ISO
    $ curl -k http://<HTTP_server>/bootstrap.ign
    ```
 
-   - <HTTP_server>: Replace `bootstrap.ign` with `master.ign` or `worker.ign` in the command to validate that the Ignition config files for the control plane and compute nodes are also available.
+   - &lt;HTTP_server>: Replace `bootstrap.ign` with `master.ign` or `worker.ign` in the command to validate that the Ignition config files for the control plane and compute nodes are also available.
      ```terminal title="Example output"
        % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                       Dload  Upload   Total   Spent    Left  Speed
@@ -1977,7 +1977,7 @@ bond=<name>[:<network_interfaces>][:<options>]
 
 - `<name>`: Specifies the bonding device name, for example `bond0`.
 - `<network_interfaces>`: Specifies a comma-separated list of physical (ethernet) interfaces, such as `em1,em2`.
-- ` <options>: Specifies a comma-separated list of bonding options. Enter the  `modinfo bonding` command to see available options.
+- ` <options>: Specifies a comma-separated list of bonding options. Enter the  `modinfo bonding&#96; command to see available options.
 
 When you create a bonded interface using the `bond=` command, you must specify how the IP address is assigned and other information for the bonded interface.
 

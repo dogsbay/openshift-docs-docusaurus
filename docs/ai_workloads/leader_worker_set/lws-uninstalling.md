@@ -9,7 +9,7 @@ sidebar_position: 4
 
 If you no longer need the Leader Worker Set Operator in your cluster, you can uninstall the Operator and remove its related resources.
 
-## Uninstalling the Leader Worker Set Operator {#lws-uninstall_lws-uninstalling}
+## Uninstall the Leader Worker Set Operator {#lws-uninstall_lws-uninstalling}
 
 You can use the web console to uninstall the Leader Worker Set Operator if you no longer need the Operator in your cluster.
 
@@ -33,7 +33,7 @@ You can use the web console to uninstall the Leader Worker Set Operator if you n
    2. Click the Options menu ![](/images/kebab.png "Options menu") next to the **Leader Worker Set Operator** entry and click **Uninstall Operator**.
    3. In the confirmation dialog, click **Uninstall**.
 
-## Uninstalling Leader Worker Set Operator resources {#lws-remove-resources_lws-uninstalling}
+## Uninstall Leader Worker Set Operator resources {#lws-remove-resources_lws-uninstalling}
 
 Optionally, remove custom resources (CRs) and the associated namespace after the Leader Worker Set Operator is uninstalled. This cleans up all remaining Leader Worker Set artifacts.
 

@@ -3,7 +3,7 @@ title: "OAuthAccessToken [oauth.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# OAuthAccessToken [oauth.openshift.io/v1] {#oauthaccesstoken-oauth-openshift-io-v1}
+# OAuthAccessToken \[oauth.openshift.io/v1\] {#oauthaccesstoken-oauth-openshift-io-v1}
 
 <a id="oauthaccesstoken-oauth-openshift-io-v1"></a>
 
@@ -147,7 +147,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/oauthaccesstokens/{name} {#_apisoauthopenshiftiov1oauthaccesstokens_name}
+### /apis/oauth.openshift.io/v1/oauthaccesstokens/&#123;name&#125; {#_apisoauthopenshiftiov1oauthaccesstokens_name}
 
 **Global path parameters**
 
@@ -252,7 +252,7 @@ Description
 | 201 - Created | [`OAuthAccessToken`](/docs/rest_api/oauth_apis/oauthaccesstoken-oauth-openshift-io-v1#oauthaccesstoken-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/watch/oauthaccesstokens/{name} {#_apisoauthopenshiftiov1watchoauthaccesstokens_name}
+### /apis/oauth.openshift.io/v1/watch/oauthaccesstokens/&#123;name&#125; {#_apisoauthopenshiftiov1watchoauthaccesstokens_name}
 
 **Global path parameters**
 

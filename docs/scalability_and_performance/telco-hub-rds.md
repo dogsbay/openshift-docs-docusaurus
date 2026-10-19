@@ -240,13 +240,13 @@ The following numbers are estimates. Tune the values for more accurate results. 
 
 | Persistent volume resource | Size (GB) |
 | --- | --- |
-| `imageStorage`<sup>[1]</sup> | 30 |
-| `filesystemStorage`<sup>[2]</sup> | 709 |
-| `dataBaseStorage`<sup>[3]</sup> | 0.7 |
+| `imageStorage`<sup>\[1\]</sup> | 30 |
+| `filesystemStorage`<sup>\[2\]</sup> | 709 |
+| `dataBaseStorage`<sup>\[3\]</sup> | 0.7 |
 
-[1][2] For more information, refer to the multicluster engine Operator documentation [About enabling central infrastructure management](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/clusters/cluster_mce_overview#enable-cim).
+\[1\]\[2\] For more information, refer to the multicluster engine Operator documentation [About enabling central infrastructure management](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html/clusters/cluster_mce_overview#enable-cim).
 
-[3] The `databaseStorage` value is an empirical estimate based on cluster topology, number of installation events, hardware profile, and configuration complexity. Based on empirical testing, estimate approximately 200 KB per host.
+\[3\] The `databaseStorage` value is an empirical estimate based on cluster topology, number of installation events, hardware profile, and configuration complexity. Based on empirical testing, estimate approximately 200 KB per host.
 
 **Additional resources**
 
@@ -314,13 +314,13 @@ With these input values, the sizing calculator as described in the Red Hat Knowl
 
 **Storage requirements**
 
-| `thanos rule` PV 2+ | `thanos store` PV 2+ | Object bucket<sup>[1]</sup> |
+| `thanos rule` PV 2+ | `thanos store` PV 2+ | Object bucket<sup>\[1\]</sup> |
 | --- | --- | --- |
 | **Per replica** | **Total** | **Per replica** |
 | **Total** | **Total** | 30 GiB |
 | 90 GiB | 100 GiB | 300 GiB |
 
-[1] This value assumes downsampling is enabled. You cannot configure the object bucket size in the `MultiClusterObservability` CR. Ensure this storage capacity is available in your environment.
+\[1\] This value assumes downsampling is enabled. You cannot configure the object bucket size in the `MultiClusterObservability` CR. Ensure this storage capacity is available in your environment.
 
 ### Storage considerations {#telco-hub-storage-considerations_telco-hub}
 

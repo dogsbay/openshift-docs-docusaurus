@@ -3,9 +3,9 @@ title: Glossary of common terms for OpenShift Container Platform
 sidebar_position: 6
 ---
 
-# Glossary of common terms for OpenShift Container Platform {#getting-started-openshift-common-terms_{context}}
+# Glossary of common terms for OpenShift Container Platform {#getting-started-openshift-common-terms_-context-}
 
-<a id="getting-started-openshift-common-terms_{context}"></a>
+<a id="getting-started-openshift-common-terms_-context-"></a>
 
 To better use OpenShift Container Platform, you should first understand common Kubernetes and OpenShift Container Platform terms.
 

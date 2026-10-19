@@ -3,7 +3,7 @@ title: "RangeAllocation [security.openshift.io/v1]"
 sidebar_position: 7
 ---
 
-# RangeAllocation [security.openshift.io/v1] {#rangeallocation-security-openshift-io-v1}
+# RangeAllocation \[security.openshift.io/v1\] {#rangeallocation-security-openshift-io-v1}
 
 <a id="rangeallocation-security-openshift-io-v1"></a>
 
@@ -142,7 +142,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/security.openshift.io/v1/rangeallocations/{name} {#_apissecurityopenshiftiov1rangeallocations_name}
+### /apis/security.openshift.io/v1/rangeallocations/&#123;name&#125; {#_apissecurityopenshiftiov1rangeallocations_name}
 
 **Global path parameters**
 
@@ -247,7 +247,7 @@ Description
 | 201 - Created | [`RangeAllocation`](/docs/rest_api/security_apis/rangeallocation-security-openshift-io-v1#rangeallocation-security-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/security.openshift.io/v1/watch/rangeallocations/{name} {#_apissecurityopenshiftiov1watchrangeallocations_name}
+### /apis/security.openshift.io/v1/watch/rangeallocations/&#123;name&#125; {#_apissecurityopenshiftiov1watchrangeallocations_name}
 
 **Global path parameters**
 

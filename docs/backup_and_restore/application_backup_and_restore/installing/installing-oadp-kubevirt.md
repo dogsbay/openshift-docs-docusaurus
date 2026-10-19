@@ -31,7 +31,7 @@ OADP versions before 1.3.0 are not supported for back up and restore of OpenShif
 
 :::
 
-## Installing and configuring OADP with OpenShift Virtualization {#install-and-configure-oadp-kubevirt_installing-oadp-kubevirt}
+## Install and configure OADP with OpenShift Virtualization {#install-and-configure-oadp-kubevirt_installing-oadp-kubevirt}
 
 As a cluster administrator, you can install the OpenShift API for Data Protection (OADP) with OpenShift Virtualization by installing the OADP Operator and configuring a backup location. You can then install the Data Protection Application.
 
@@ -73,7 +73,7 @@ Red Hat support is limited to only the following options:
 3. Back up virtual machines by creating a `Backup` custom resource (CR).
    You restore the `Backup` CR by creating a `Restore` CR.
 
-## Installing the Data Protection Application {#oadp-installing-dpa_installing-oadp-kubevirt}
+## Install the Data Protection Application {#oadp-installing-dpa_installing-oadp-kubevirt}
 
 You install the Data Protection Application (DPA) by creating an instance of the `DataProtectionApplication` API.
 
@@ -215,7 +215,7 @@ If you run a backup of a Microsoft Windows virtual machine (VM) immediately afte
 
 :::
 
-## Backing up a single VM {#oadp-backup-single-vm_installing-oadp-kubevirt}
+## Back up a single VM {#oadp-backup-single-vm_installing-oadp-kubevirt}
 
 If you have a namespace with multiple virtual machines (VMs), and want to back up only one of them, you can use the label selector to filter the VM that needs to be included in the backup. You can filter the VM by using the `app: vmname` label.
 
@@ -267,7 +267,7 @@ If you have a namespace with multiple virtual machines (VMs), and want to back u
    <dd>Specifies the name of the <code>Backup</code> CR file.</dd>
    </dl>
 
-## Restoring a single VM {#oadp-restore-single-vm_installing-oadp-kubevirt}
+## Restore a single VM {#oadp-restore-single-vm_installing-oadp-kubevirt}
 
 After you have backed up a single virtual machine (VM) by using the label selector in the `Backup` custom resource (CR), you can create a `Restore` CR and point it to the backup. This restore operation restores a single VM.
 
@@ -316,7 +316,7 @@ After you have backed up a single virtual machine (VM) by using the label select
 
    :::
 
-## Restoring a single VM from a backup of multiple VMs {#oadp-restore-single-vm-from-multiple-vm-backup_installing-oadp-kubevirt}
+## Restore a single VM from a backup of multiple VMs {#oadp-restore-single-vm-from-multiple-vm-backup_installing-oadp-kubevirt}
 
 If you have a backup containing multiple virtual machines (VMs), and you want to restore only one VM, you can use the `LabelSelectors` section in the `Restore` CR to select the VM to restore. To ensure that the persistent volume claim (PVC) attached to the VM is correctly restored, and the restored VM is not stuck in a `Provisioning` status, use both the `app: <vm_name>` and the `kubevirt.io/created-by` labels. To match the `kubevirt.io/created-by` label, use the UID of `DataVolume` of the VM.
 
@@ -369,7 +369,7 @@ If you have a backup containing multiple virtual machines (VMs), and you want to
    <dd>Specifies the name of the <code>Restore</code> CR file.</dd>
    </dl>
 
-## Configuring the DPA with client burst and QPS settings {#oadp-configuring-client-burst-qps_installing-oadp-kubevirt}
+## Configure the DPA with client burst and QPS settings {#oadp-configuring-client-burst-qps_installing-oadp-kubevirt}
 
 The burst setting determines how many requests can be sent to the `velero` server before the limit is applied. After the burst limit is reached, the queries per second (QPS) setting determines how many additional requests can be sent per second.
 
@@ -428,7 +428,7 @@ You can set the burst and QPS values of the `velero` server by configuring the D
   <dd>Specifies the <code>client-qps</code> value. In this example, the <code>client-qps</code> field is set to 300.</dd>
   </dl>
 
-## Configuring the node agent as a non-root and non-privileged user {#oadp-configuring-node-agent-non-root_installing-oadp-kubevirt}
+## Configure the node agent as a non-root and non-privileged user {#oadp-configuring-node-agent-non-root_installing-oadp-kubevirt}
 
 To enhance the node agent security, you can configure the OADP Operator node agent daemonset to run as a non-root and non-privileged user by using the `spec.configuration.velero.disableFsBackup` setting in the `DataProtectionApplication` (DPA) custom resource (CR).
 
@@ -548,7 +548,7 @@ However, it also disables File System Backup (FSB) with Kopia. If your workloads
    <dd>Specifies that the node agent is run as a non-root user.</dd>
    </dl>
 
-## Configuring node agents and node labels {#oadp-configuring-node-agents_installing-oadp-kubevirt}
+## Configure node agents and node labels {#oadp-configuring-node-agents_installing-oadp-kubevirt}
 
 The Data Protection Application (DPA) uses the `nodeSelector` field to select which nodes can run the node agent. The `nodeSelector` field is the recommended form of node selection constraint.
 
@@ -586,7 +586,7 @@ The Data Protection Application (DPA) uses the `nodeSelector` field to select wh
                node-role.kubernetes.io/worker: ""
    ```
 
-## Configuring node agent load affinity {#oadp-configuring-node-agent-load-affinity_installing-oadp-kubevirt}
+## Configure node agent load affinity {#oadp-configuring-node-agent-load-affinity_installing-oadp-kubevirt}
 
 You can schedule the node agent pods on specific nodes by using the `spec.podConfig.nodeSelector` object of the `DataProtectionApplication` (DPA) custom resource (CR).
 
@@ -673,7 +673,7 @@ Use the following guidelines to configure the node agent `loadAffinity` object i
             label.io/gpu: 'no'
   ```
 
-## Configuring node agent load concurrency {#oadp-configuring-node-agent-load-concurrency_installing-oadp-kubevirt}
+## Configure node agent load concurrency {#oadp-configuring-node-agent-load-concurrency_installing-oadp-kubevirt}
 
 You can control the maximum number of node agent operations that can run simultaneously on each node within your cluster.
 
@@ -718,7 +718,7 @@ You can configure it using one of the following fields of the Data Protection Ap
    <dd>Specifies the per-node concurrent number. You can specify many per-node concurrent numbers, for example, based on the instance type and size. The range of per-node concurrent number is the same as the global concurrent number. If the configuration file contains a per-node concurrent number and a global concurrent number, the per-node concurrent number takes precedence.</dd>
    </dl>
 
-## Configuring repository maintenance {#oadp-configuring-repository-maintenance_installing-oadp-kubevirt}
+## Configure repository maintenance {#oadp-configuring-repository-maintenance_installing-oadp-kubevirt}
 
 OADP repository maintenance is a background job, you can configure it independently of the node agent pods. This means that you can schedule the repository maintenance pod on a node where the node agent is or is not running.
 
@@ -787,7 +787,7 @@ You have the option to configure the load affinity at the global level affecting
     <dd>Specifies the <code>repositoryMaintenance</code> object for each repository.</dd>
     </dl>
 
-## Configuring Velero load affinity {#oadp-configuring-velero-load-affinity_installing-oadp-kubevirt}
+## Configure Velero load affinity {#oadp-configuring-velero-load-affinity_installing-oadp-kubevirt}
 
 With each OADP deployment, there is one Velero pod and its main purpose is to schedule Velero workloads. To schedule the Velero pod, you can use the `velero.podConfig.nodeSelector` and the `velero.loadAffinity` objects in the `DataProtectionApplication` (DPA) custom resource (CR) spec.
 
@@ -832,7 +832,7 @@ The OpenShift scheduler applies the rules and performs the scheduling of the Vel
                       - EU
     ```
 
-## Configuring a priority class for node agent and Velero pods {#oadp-configuring-priority-class_installing-oadp-kubevirt}
+## Configure a priority class for node agent and Velero pods {#oadp-configuring-priority-class_installing-oadp-kubevirt}
 
 Configure a `priorityClassName` field for the node agent and Velero pods by editing the `DataProtectionApplication` (DPA) custom resource (CR). This helps you ensure that the Kubernetes scheduler prioritizes OADP pods during resource contention.
 
@@ -897,7 +897,7 @@ By setting a priority class, you ensure that critical OADP pods are scheduled fi
    velero-xxxxx <priority_class_name>
    ```
 
-## Overriding the imagePullPolicy setting in the DPA  {#oadp-configuring-imagepullpolicy_installing-oadp-kubevirt}
+## Override the imagePullPolicy setting in the DPA  {#oadp-configuring-imagepullpolicy_installing-oadp-kubevirt}
 
 In OADP 1.4.0 or earlier, the Operator sets the `imagePullPolicy` field of the Velero and node agent pods to `Always` for all images.
 

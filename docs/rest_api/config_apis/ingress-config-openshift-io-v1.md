@@ -3,7 +3,7 @@ title: "Ingress [config.openshift.io/v1]"
 sidebar_position: 19
 ---
 
-# Ingress [config.openshift.io/v1] {#ingress-config-openshift-io-v1}
+# Ingress \[config.openshift.io/v1\] {#ingress-config-openshift-io-v1}
 
 <a id="ingress-config-openshift-io-v1"></a>
 
@@ -45,7 +45,7 @@ Type
 | `appsDomain` | `string` | appsDomain is an optional domain to use instead of the one specified in the domain field when a Route is created without specifying an explicit host. If appsDomain is nonempty, this value is used to generate default host values for Route. Unlike domain, appsDomain may be modified after installation. This assumes a new ingresscontroller has been setup with a wildcard certificate. |
 | `componentRoutes` | `array` | componentRoutes is an optional list of routes that are managed by OpenShift components that a cluster-admin is able to configure the hostname and serving certificate for. The namespace and name of each route in this list should match an existing entry in the status.componentRoutes list.<br>To determine the set of configurable Routes, look at namespace and name of entries in the .status.componentRoutes list, where participating operators write the status of configurable routes. |
 | `componentRoutes[]` | `object` | ComponentRouteSpec allows for configuration of a route’s hostname and serving certificate. |
-| `domain` | `string` | domain is used to generate a default host name for a route when the route’s host name is empty. The generated host name will follow this pattern: "<route-name>.<route-namespace>.<domain>".<br>It is also used as the default wildcard domain suffix for ingress. The default ingresscontroller domain will follow this pattern: "*.<domain>".<br>Once set, changing domain is not currently supported. |
+| `domain` | `string` | domain is used to generate a default host name for a route when the route’s host name is empty. The generated host name will follow this pattern: "&lt;route-name>.&lt;route-namespace>.&lt;domain>".<br>It is also used as the default wildcard domain suffix for ingress. The default ingresscontroller domain will follow this pattern: "\*.&lt;domain>".<br>Once set, changing domain is not currently supported. |
 | `loadBalancer` | `object` | loadBalancer contains the load balancer details in general which are not only specific to the underlying infrastructure provider of the current cluster and are required for Ingress Controller to work on OpenShift. |
 | `requiredHSTSPolicies` | `array` | requiredHSTSPolicies specifies HSTS policies that are required to be set on newly created  or updated routes matching the domainPattern/s and namespaceSelector/s that are specified in the policy. Each requiredHSTSPolicy must have at least a domainPattern and a maxAge to validate a route HSTS Policy route annotation, and affect route admission.<br>A candidate route is checked for HSTS Policies if it has the HSTS Policy route annotation: "haproxy.router.openshift.io/hsts_header" E.g. haproxy.router.openshift.io/hsts_header: max-age=31536000;preload;includeSubDomains<br>- For each candidate route, if it matches a requiredHSTSPolicy domainPattern and optional namespaceSelector, then the maxAge, preloadPolicy, and includeSubdomainsPolicy must be valid to be admitted.  Otherwise, the route is rejected. - The first match, by domainPattern and optional namespaceSelector, in the ordering of the RequiredHSTSPolicies determines the route’s admission status. - If the candidate route doesn’t match any requiredHSTSPolicy domainPattern and optional namespaceSelector, then it may use any HSTS Policy annotation.<br>The HSTS policy configuration may be changed after routes have already been created. An update to a previously admitted route may then fail if the updated route does not conform to the updated HSTS policy configuration. However, changing the HSTS policy configuration will not cause a route that is already admitted to stop working.<br>Note that if there are no RequiredHSTSPolicies, any HSTS Policy annotation on the route is valid. |
 | `requiredHSTSPolicies[]` | `object` |  |
@@ -62,7 +62,7 @@ Type
   `array`
   ```
 
-### .spec.componentRoutes[] {#_speccomponentroutes}
+### .spec.componentRoutes\[\] {#_speccomponentroutes}
 
 Description
 : ComponentRouteSpec allows for configuration of a route’s hostname and serving certificate.
@@ -84,7 +84,7 @@ Required
 | `namespace` | `string` | namespace is the namespace of the route to customize.<br>The namespace and name of this componentRoute must match a corresponding entry in the list of status.componentRoutes if the route is to be customized. |
 | `servingCertKeyPairSecret` | `object` | servingCertKeyPairSecret is a reference to a secret of type `kubernetes.io/tls` in the openshift-config namespace. The serving cert/key pair must match and will be used by the operator to fulfill the intent of serving with this name. If the custom hostname uses the default routing suffix of the cluster, the Secret specification for a serving certificate will not be needed. |
 
-### .spec.componentRoutes[].servingCertKeyPairSecret {#_speccomponentroutesservingcertkeypairsecret}
+### .spec.componentRoutes\[\].servingCertKeyPairSecret {#_speccomponentroutesservingcertkeypairsecret}
 
 Description
 : servingCertKeyPairSecret is a reference to a secret of type `kubernetes.io/tls` in the openshift-config namespace. The serving cert/key pair must match and will be used by the operator to fulfill the intent of serving with this name. If the custom hostname uses the default routing suffix of the cluster, the Secret specification for a serving certificate will not be needed.
@@ -145,7 +145,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `type` | `string` | type allows user to set a load balancer type. When this field is set the default ingresscontroller will get created using the specified LBType. If this field is not set then the default ingress controller of LBType Classic will be created. Valid values are:<br>* "Classic": A Classic Load Balancer that makes routing decisions at either   the transport layer (TCP/SSL) or the application layer (HTTP/HTTPS). See   the following for additional details:<br>    https://docs.aws.amazon.com/AmazonECS/latest/developerguide/load-balancer-types.html#clb<br>* "NLB": A Network Load Balancer that makes routing decisions at the   transport layer (TCP/SSL). See the following for additional details:<br>    https://docs.aws.amazon.com/AmazonECS/latest/developerguide/load-balancer-types.html#nlb |
+| `type` | `string` | type allows user to set a load balancer type. When this field is set the default ingresscontroller will get created using the specified LBType. If this field is not set then the default ingress controller of LBType Classic will be created. Valid values are:<br>\* "Classic": A Classic Load Balancer that makes routing decisions at either   the transport layer (TCP/SSL) or the application layer (HTTP/HTTPS). See   the following for additional details:<br>    https://docs.aws.amazon.com/AmazonECS/latest/developerguide/load-balancer-types.html#clb<br>\* "NLB": A Network Load Balancer that makes routing decisions at the   transport layer (TCP/SSL). See the following for additional details:<br>    https://docs.aws.amazon.com/AmazonECS/latest/developerguide/load-balancer-types.html#nlb |
 
 ### .spec.requiredHSTSPolicies {#_specrequiredhstspolicies}
 
@@ -167,7 +167,7 @@ Type
   `array`
   ```
 
-### .spec.requiredHSTSPolicies[] {#_specrequiredhstspolicies}
+### .spec.requiredHSTSPolicies\[\] {#_specrequiredhstspolicies}
 
 Description
 
@@ -181,13 +181,13 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `domainPatterns` | `array (string)` | domainPatterns is a list of domains for which the desired HSTS annotations are required. If domainPatterns is specified and a route is created with a spec.host matching one of the domains, the route must specify the HSTS Policy components described in the matching RequiredHSTSPolicy.<br>The use of wildcards is allowed like this: *.foo.com matches everything under foo.com. foo.com only matches foo.com, so to cover foo.com and everything under it, you must specify **both**. |
+| `domainPatterns` | `array (string)` | domainPatterns is a list of domains for which the desired HSTS annotations are required. If domainPatterns is specified and a route is created with a spec.host matching one of the domains, the route must specify the HSTS Policy components described in the matching RequiredHSTSPolicy.<br>The use of wildcards is allowed like this: \*.foo.com matches everything under foo.com. foo.com only matches foo.com, so to cover foo.com and everything under it, you must specify **both**. |
 | `includeSubDomainsPolicy` | `string` | includeSubDomainsPolicy means the HSTS Policy should apply to any subdomains of the host’s domain name.  Thus, for the host bar.foo.com, if includeSubDomainsPolicy was set to RequireIncludeSubDomains: - the host app.bar.foo.com would inherit the HSTS Policy of bar.foo.com - the host bar.foo.com would inherit the HSTS Policy of bar.foo.com - the host foo.com would NOT inherit the HSTS Policy of bar.foo.com - the host def.foo.com would NOT inherit the HSTS Policy of bar.foo.com |
 | `maxAge` | `object` | maxAge is the delta time range in seconds during which hosts are regarded as HSTS hosts. If set to 0, it negates the effect, and hosts are removed as HSTS hosts. If set to 0 and includeSubdomains is specified, all subdomains of the host are also removed as HSTS hosts. maxAge is a time-to-live value, and if this policy is not refreshed on a client, the HSTS policy will eventually expire on that client. |
 | `namespaceSelector` | `object` | namespaceSelector specifies a label selector such that the policy applies only to those routes that are in namespaces with labels that match the selector, and are in one of the DomainPatterns. Defaults to the empty LabelSelector, which matches everything. |
 | `preloadPolicy` | `string` | preloadPolicy directs the client to include hosts in its host preload list so that it never needs to do an initial load to get the HSTS header (note that this is not defined in RFC 6797 and is therefore client implementation-dependent). |
 
-### .spec.requiredHSTSPolicies[].maxAge {#_specrequiredhstspoliciesmaxage}
+### .spec.requiredHSTSPolicies\[\].maxAge {#_specrequiredhstspoliciesmaxage}
 
 Description
 : maxAge is the delta time range in seconds during which hosts are regarded as HSTS hosts. If set to 0, it negates the effect, and hosts are removed as HSTS hosts. If set to 0 and includeSubdomains is specified, all subdomains of the host are also removed as HSTS hosts. maxAge is a time-to-live value, and if this policy is not refreshed on a client, the HSTS policy will eventually expire on that client.
@@ -202,7 +202,7 @@ Type
 | `largestMaxAge` | `integer` | The largest allowed value (in seconds) of the RequiredHSTSPolicy max-age This value can be left unspecified, in which case no upper limit is enforced. |
 | `smallestMaxAge` | `integer` | The smallest allowed value (in seconds) of the RequiredHSTSPolicy max-age Setting max-age=0 allows the deletion of an existing HSTS header from a host.  This is a necessary tool for administrators to quickly correct mistakes. This value can be left unspecified, in which case no lower limit is enforced. |
 
-### .spec.requiredHSTSPolicies[].namespaceSelector {#_specrequiredhstspoliciesnamespaceselector}
+### .spec.requiredHSTSPolicies\[\].namespaceSelector {#_specrequiredhstspoliciesnamespaceselector}
 
 Description
 : namespaceSelector specifies a label selector such that the policy applies only to those routes that are in namespaces with labels that match the selector, and are in one of the DomainPatterns. Defaults to the empty LabelSelector, which matches everything.
@@ -216,9 +216,9 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
-### .spec.requiredHSTSPolicies[].namespaceSelector.matchExpressions {#_specrequiredhstspoliciesnamespaceselectormatchexpressions}
+### .spec.requiredHSTSPolicies\[\].namespaceSelector.matchExpressions {#_specrequiredhstspoliciesnamespaceselectormatchexpressions}
 
 Description
 : matchExpressions is a list of label selector requirements. The requirements are ANDed.
@@ -228,7 +228,7 @@ Type
   `array`
   ```
 
-### .spec.requiredHSTSPolicies[].namespaceSelector.matchExpressions[] {#_specrequiredhstspoliciesnamespaceselectormatchexpressions}
+### .spec.requiredHSTSPolicies\[\].namespaceSelector.matchExpressions\[\] {#_specrequiredhstspoliciesnamespaceselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -274,7 +274,7 @@ Type
   `array`
   ```
 
-### .status.componentRoutes[] {#_statuscomponentroutes}
+### .status.componentRoutes\[\] {#_statuscomponentroutes}
 
 Description
 : ComponentRouteStatus contains information allowing configuration of a route’s hostname and serving certificate.
@@ -302,7 +302,7 @@ Required
 | `relatedObjects` | `array` | relatedObjects is a list of resources which are useful when debugging or inspecting how spec.componentRoutes is applied. |
 | `relatedObjects[]` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 
-### .status.componentRoutes[].conditions {#_statuscomponentroutesconditions}
+### .status.componentRoutes\[\].conditions {#_statuscomponentroutesconditions}
 
 Description
 : conditions are used to communicate the state of the componentRoutes entry.
@@ -320,7 +320,7 @@ Type
   `array`
   ```
 
-### .status.componentRoutes[].conditions[] {#_statuscomponentroutesconditions}
+### .status.componentRoutes\[\].conditions\[\] {#_statuscomponentroutesconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -341,12 +341,12 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
 
-### .status.componentRoutes[].relatedObjects {#_statuscomponentroutesrelatedobjects}
+### .status.componentRoutes\[\].relatedObjects {#_statuscomponentroutesrelatedobjects}
 
 Description
 : relatedObjects is a list of resources which are useful when debugging or inspecting how spec.componentRoutes is applied.
@@ -356,7 +356,7 @@ Type
   `array`
   ```
 
-### .status.componentRoutes[].relatedObjects[] {#_statuscomponentroutesrelatedobjects}
+### .status.componentRoutes\[\].relatedObjects\[\] {#_statuscomponentroutesrelatedobjects}
 
 Description
 : ObjectReference contains enough information to let you inspect or modify the referred object.
@@ -464,7 +464,7 @@ Description
 | 202 - Accepted | [`Ingress`](/docs/rest_api/config_apis/ingress-config-openshift-io-v1#ingress-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/ingresses/{name} {#_apisconfigopenshiftiov1ingresses_name}
+### /apis/config.openshift.io/v1/ingresses/&#123;name&#125; {#_apisconfigopenshiftiov1ingresses_name}
 
 **Global path parameters**
 
@@ -568,7 +568,7 @@ Description
 | 201 - Created | [`Ingress`](/docs/rest_api/config_apis/ingress-config-openshift-io-v1#ingress-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/ingresses/{name}/status {#_apisconfigopenshiftiov1ingresses_name_status}
+### /apis/config.openshift.io/v1/ingresses/&#123;name&#125;/status {#_apisconfigopenshiftiov1ingresses_name_status}
 
 **Global path parameters**
 

@@ -3,7 +3,7 @@ title: "ImageDigestMirrorSet [config.openshift.io/v1]"
 sidebar_position: 13
 ---
 
-# ImageDigestMirrorSet [config.openshift.io/v1] {#imagedigestmirrorset-config-openshift-io-v1}
+# ImageDigestMirrorSet \[config.openshift.io/v1\] {#imagedigestmirrorset-config-openshift-io-v1}
 
 <a id="imagedigestmirrorset-config-openshift-io-v1"></a>
 
@@ -61,7 +61,7 @@ Type
   `array`
   ```
 
-### .spec.imageDigestMirrors[] {#_specimagedigestmirrors}
+### .spec.imageDigestMirrors\[\] {#_specimagedigestmirrors}
 
 Description
 : ImageDigestMirrors holds cluster-wide information about how to handle mirrors in the registries config.
@@ -77,8 +77,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `mirrorSourcePolicy` | `string` | mirrorSourcePolicy defines the fallback policy if fails to pull image from the mirrors. If unset, the image will continue to be pulled from the the repository in the pull spec. sourcePolicy is valid configuration only when one or more mirrors are in the mirror list. |
-| `mirrors` | `array (string)` | mirrors is zero or more locations that may also contain the same images. No mirror will be configured if not specified. Images can be pulled from these mirrors only if they are referenced by their digests. The mirrored location is obtained by replacing the part of the input reference that matches source by the mirrors entry, e.g. for registry.redhat.io/product/repo reference, a (source, mirror) pair *.redhat.io, mirror.local/redhat causes a mirror.local/redhat/product/repo repository to be used. The order of mirrors in this list is treated as the user’s desired priority, while source is by default considered lower priority than all mirrors. If no mirror is specified or all image pulls from the mirror list fail, the image will continue to be pulled from the repository in the pull spec unless explicitly prohibited by "mirrorSourcePolicy" Other cluster configuration, including (but not limited to) other imageDigestMirrors objects, may impact the exact order mirrors are contacted in, or some mirrors may be contacted in parallel, so this should be considered a preference rather than a guarantee of ordering. "mirrors" uses one of the following formats: host[:port] host[:port]/namespace[/namespace…] host[:port]/namespace[/namespace…]/repo for more information about the format, see the document about the location field: https://github.com/containers/image/blob/main/docs/containers-registries.conf.5.md#choosing-a-registry-toml-table |
-| `source` | `string` | source matches the repository that users refer to, e.g. in image pull specifications. Setting source to a registry hostname e.g. docker.io. quay.io, or registry.redhat.io, will match the image pull specification of corressponding registry. "source" uses one of the following formats: host[:port] host[:port]/namespace[/namespace…] host[:port]/namespace[/namespace…]/repo [*.]host for more information about the format, see the document about the location field: https://github.com/containers/image/blob/main/docs/containers-registries.conf.5.md#choosing-a-registry-toml-table |
+| `mirrors` | `array (string)` | mirrors is zero or more locations that may also contain the same images. No mirror will be configured if not specified. Images can be pulled from these mirrors only if they are referenced by their digests. The mirrored location is obtained by replacing the part of the input reference that matches source by the mirrors entry, e.g. for registry.redhat.io/product/repo reference, a (source, mirror) pair \*.redhat.io, mirror.local/redhat causes a mirror.local/redhat/product/repo repository to be used. The order of mirrors in this list is treated as the user’s desired priority, while source is by default considered lower priority than all mirrors. If no mirror is specified or all image pulls from the mirror list fail, the image will continue to be pulled from the repository in the pull spec unless explicitly prohibited by "mirrorSourcePolicy" Other cluster configuration, including (but not limited to) other imageDigestMirrors objects, may impact the exact order mirrors are contacted in, or some mirrors may be contacted in parallel, so this should be considered a preference rather than a guarantee of ordering. "mirrors" uses one of the following formats: host\[:port\] host\[:port\]/namespace\[/namespace…\] host\[:port\]/namespace\[/namespace…\]/repo for more information about the format, see the document about the location field: https://github.com/containers/image/blob/main/docs/containers-registries.conf.5.md#choosing-a-registry-toml-table |
+| `source` | `string` | source matches the repository that users refer to, e.g. in image pull specifications. Setting source to a registry hostname e.g. docker.io. quay.io, or registry.redhat.io, will match the image pull specification of corressponding registry. "source" uses one of the following formats: host\[:port\] host\[:port\]/namespace\[/namespace…\] host\[:port\]/namespace\[/namespace…\]/repo \[\*.\]host for more information about the format, see the document about the location field: https://github.com/containers/image/blob/main/docs/containers-registries.conf.5.md#choosing-a-registry-toml-table |
 
 ### .status {#_status}
 
@@ -176,7 +176,7 @@ Description
 | 202 - Accepted | [`ImageDigestMirrorSet`](/docs/rest_api/config_apis/imagedigestmirrorset-config-openshift-io-v1#imagedigestmirrorset-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/imagedigestmirrorsets/{name} {#_apisconfigopenshiftiov1imagedigestmirrorsets_name}
+### /apis/config.openshift.io/v1/imagedigestmirrorsets/&#123;name&#125; {#_apisconfigopenshiftiov1imagedigestmirrorsets_name}
 
 **Global path parameters**
 
@@ -280,7 +280,7 @@ Description
 | 201 - Created | [`ImageDigestMirrorSet`](/docs/rest_api/config_apis/imagedigestmirrorset-config-openshift-io-v1#imagedigestmirrorset-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/imagedigestmirrorsets/{name}/status {#_apisconfigopenshiftiov1imagedigestmirrorsets_name_status}
+### /apis/config.openshift.io/v1/imagedigestmirrorsets/&#123;name&#125;/status {#_apisconfigopenshiftiov1imagedigestmirrorsets_name_status}
 
 **Global path parameters**
 

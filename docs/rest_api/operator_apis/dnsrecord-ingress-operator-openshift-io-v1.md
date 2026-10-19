@@ -3,7 +3,7 @@ title: "DNSRecord [ingress.operator.openshift.io/v1]"
 sidebar_position: 11
 ---
 
-# DNSRecord [ingress.operator.openshift.io/v1] {#dnsrecord-ingress-operator-openshift-io-v1}
+# DNSRecord \[ingress.operator.openshift.io/v1\] {#dnsrecord-ingress-operator-openshift-io-v1}
 
 <a id="dnsrecord-ingress-operator-openshift-io-v1"></a>
 
@@ -82,7 +82,7 @@ Type
   `array`
   ```
 
-### .status.zones[] {#_statuszones}
+### .status.zones\[\] {#_statuszones}
 
 Description
 : DNSZoneStatus is the status of a record within a specific zone.
@@ -98,7 +98,7 @@ Type
 | `conditions[]` | `object` | DNSZoneCondition is just the standard condition fields. |
 | `dnsZone` | `object` | dnsZone is the zone where the record is published. |
 
-### .status.zones[].conditions {#_statuszonesconditions}
+### .status.zones\[\].conditions {#_statuszonesconditions}
 
 Description
 : conditions are any conditions associated with the record in the zone.
@@ -110,7 +110,7 @@ Type
   `array`
   ```
 
-### .status.zones[].conditions[] {#_statuszonesconditions}
+### .status.zones\[\].conditions\[\] {#_statuszonesconditions}
 
 Description
 : DNSZoneCondition is just the standard condition fields.
@@ -132,7 +132,7 @@ Required
 | `status` | `string` |  |
 | `type` | `string` |  |
 
-### .status.zones[].dnsZone {#_statuszonesdnszone}
+### .status.zones\[\].dnsZone {#_statuszonesdnszone}
 
 Description
 : dnsZone is the zone where the record is published.
@@ -144,8 +144,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `id` | `string` | id is the identifier that can be used to find the DNS hosted zone.<br>on AWS zone can be fetched using `ID` as id in [1] on Azure zone can be fetched using `ID` as a pre-determined name in [2], on GCP zone can be fetched using `ID` as a pre-determined name in [3].<br>[1]: https://docs.aws.amazon.com/cli/latest/reference/route53/get-hosted-zone.html#options [2]: https://docs.microsoft.com/en-us/cli/azure/network/dns/zone?view=azure-cli-latest#az-network-dns-zone-show [3]: https://cloud.google.com/dns/docs/reference/v1/managedZones/get |
-| `tags` | `object (string)` | tags can be used to query the DNS hosted zone.<br>on AWS, resourcegroupstaggingapi [1] can be used to fetch a zone using `Tags` as tag-filters,<br>[1]: https://docs.aws.amazon.com/cli/latest/reference/resourcegroupstaggingapi/get-resources.html#options |
+| `id` | `string` | id is the identifier that can be used to find the DNS hosted zone.<br>on AWS zone can be fetched using `ID` as id in \[1\] on Azure zone can be fetched using `ID` as a pre-determined name in \[2\], on GCP zone can be fetched using `ID` as a pre-determined name in \[3\].<br>\[1\]: https://docs.aws.amazon.com/cli/latest/reference/route53/get-hosted-zone.html#options \[2\]: https://docs.microsoft.com/en-us/cli/azure/network/dns/zone?view=azure-cli-latest#az-network-dns-zone-show \[3\]: https://cloud.google.com/dns/docs/reference/v1/managedZones/get |
+| `tags` | `object (string)` | tags can be used to query the DNS hosted zone.<br>on AWS, resourcegroupstaggingapi \[1\] can be used to fetch a zone using `Tags` as tag-filters,<br>\[1\]: https://docs.aws.amazon.com/cli/latest/reference/resourcegroupstaggingapi/get-resources.html#options |
 
 ## API endpoints {#_api_endpoints}
 
@@ -186,7 +186,7 @@ Description
 | 200 - OK | [`DNSRecordList`](/docs/rest_api/objects#io-openshift-operator-ingress-v1-DNSRecordList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/ingress.operator.openshift.io/v1/namespaces/{namespace}/dnsrecords {#_apisingressoperatoropenshiftiov1namespaces_namespace_dnsrecords}
+### /apis/ingress.operator.openshift.io/v1/namespaces/&#123;namespace&#125;/dnsrecords {#_apisingressoperatoropenshiftiov1namespaces_namespace_dnsrecords}
 
 HTTP method
 : ```
@@ -254,7 +254,7 @@ Description
 | 202 - Accepted | [`DNSRecord`](/docs/rest_api/operator_apis/dnsrecord-ingress-operator-openshift-io-v1#dnsrecord-ingress-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/ingress.operator.openshift.io/v1/namespaces/{namespace}/dnsrecords/{name} {#_apisingressoperatoropenshiftiov1namespaces_namespace_dnsrecords_name}
+### /apis/ingress.operator.openshift.io/v1/namespaces/&#123;namespace&#125;/dnsrecords/&#123;name&#125; {#_apisingressoperatoropenshiftiov1namespaces_namespace_dnsrecords_name}
 
 **Global path parameters**
 
@@ -358,7 +358,7 @@ Description
 | 201 - Created | [`DNSRecord`](/docs/rest_api/operator_apis/dnsrecord-ingress-operator-openshift-io-v1#dnsrecord-ingress-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/ingress.operator.openshift.io/v1/namespaces/{namespace}/dnsrecords/{name}/status {#_apisingressoperatoropenshiftiov1namespaces_namespace_dnsrecords_name_status}
+### /apis/ingress.operator.openshift.io/v1/namespaces/&#123;namespace&#125;/dnsrecords/&#123;name&#125;/status {#_apisingressoperatoropenshiftiov1namespaces_namespace_dnsrecords_name_status}
 
 **Global path parameters**
 

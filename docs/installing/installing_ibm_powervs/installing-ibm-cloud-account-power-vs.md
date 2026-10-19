@@ -142,10 +142,10 @@ For an IBM Cloud(R) IAM overview, see the "IBM Cloud(R) IAM overview" documentat
 
 | Role | Access |
 | --- | --- |
-| Viewer, Operator, Editor, Administrator, Reader, Writer, Manager | Internet Services service in <resource_group> resource group |
+| Viewer, Operator, Editor, Administrator, Reader, Writer, Manager | Internet Services service in &lt;resource_group> resource group |
 | Viewer, Operator, Editor, Administrator, User API key creator, Service ID creator | IAM Identity Service service |
-| Viewer, Operator, Administrator, Editor, Reader, Writer, Manager, Console Administrator | VPC Infrastructure Services service in <resource_group> resource group |
-| Viewer | Resource Group: Access to view the resource group itself. The resource type should equal `Resource group`, with a value of <your_resource_group_name>. |
+| Viewer, Operator, Administrator, Editor, Reader, Writer, Manager, Console Administrator | VPC Infrastructure Services service in &lt;resource_group> resource group |
+| Viewer | Resource Group: Access to view the resource group itself. The resource type should equal `Resource group`, with a value of &lt;your_resource_group_name>. |
 
 ### Cluster-creation permissions {#cluster-creation-permissions-ibm-cloud_installing-ibm-cloud-account-power-vs}
 
@@ -153,15 +153,15 @@ For an IBM Cloud(R) IAM overview, see the "IBM Cloud(R) IAM overview" documentat
 
 | Role | Access |
 | --- | --- |
-| Viewer | <resource_group> (Resource Group Created for Your Team) |
+| Viewer | &lt;resource_group> (Resource Group Created for Your Team) |
 | Viewer, Operator, Editor, Reader, Writer, Manager | All Identity and IAM enabled services in Default resource group |
 | Viewer, Reader | Internet Services service |
 | Viewer, Operator, Reader, Writer, Manager, Content Reader, Object Reader, Object Writer, Editor | Cloud Object Storage service |
 | Viewer | Default resource group: The resource type should equal `Resource group`, with a value of `Default`. If your account administrator changed your account’s default resource group to something other than Default, use that value instead. |
-| Viewer, Operator, Editor, Reader, Manager | Workspace for IBM Power(R) Virtual Server service in <resource_group> resource group |
-| Viewer, Operator, Editor, Reader, Writer, Manager, Administrator | Internet Services service in <resource_group> resource group: CIS functional scope string equals reliability |
+| Viewer, Operator, Editor, Reader, Manager | Workspace for IBM Power(R) Virtual Server service in &lt;resource_group> resource group |
+| Viewer, Operator, Editor, Reader, Writer, Manager, Administrator | Internet Services service in &lt;resource_group> resource group: CIS functional scope string equals reliability |
 | Viewer, Operator, Editor | Transit Gateway service |
-| Viewer, Operator, Editor, Administrator, Reader, Writer, Manager, Console Administrator | VPC Infrastructure Services service <resource_group> resource group |
+| Viewer, Operator, Editor, Administrator, Reader, Writer, Manager, Console Administrator | VPC Infrastructure Services service &lt;resource_group> resource group |
 
 ### Access policy assignment {#access-policy-assignment-ibm-cloud_installing-ibm-cloud-account-power-vs}
 

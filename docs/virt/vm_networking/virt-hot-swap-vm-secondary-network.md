@@ -7,7 +7,7 @@ sidebar_position: 12
 
 <a id="virt-hot-swap-vm-secondary-network"></a>
 
-toc::[]
+toc::\[\]
 
 You can change the secondary network of a virtual machine (VM) without rebooting your VM. The change is transparent to the guest operating system, preserving properties like the MAC address.
 

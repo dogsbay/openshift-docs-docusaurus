@@ -281,7 +281,7 @@ All VMFR custom resources must be created in the protected namespace, which is `
 
 **Procedure**
 
-1. [Optional] Create a secret containing the credentials for accessing the file browser:
+1. \[Optional\] Create a secret containing the credentials for accessing the file browser:
    If you do not create a secret, the VMFR controller creates a secret for you and references it in the VMFR CR.
 
    ```yaml

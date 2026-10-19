@@ -3,7 +3,7 @@ title: "ConsoleQuickStart [console.openshift.io/v1]"
 sidebar_position: 7
 ---
 
-# ConsoleQuickStart [console.openshift.io/v1] {#consolequickstart-console-openshift-io-v1}
+# ConsoleQuickStart \[console.openshift.io/v1\] {#consolequickstart-console-openshift-io-v1}
 
 <a id="consolequickstart-console-openshift-io-v1"></a>
 
@@ -72,7 +72,7 @@ Type
   `array`
   ```
 
-### .spec.accessReviewResources[] {#_specaccessreviewresources}
+### .spec.accessReviewResources\[\] {#_specaccessreviewresources}
 
 Description
 : ResourceAttributes includes the authorization attributes available for resource requests to the Authorizer interface
@@ -85,16 +85,16 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `fieldSelector` | `object` | fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it. |
-| `group` | `string` | Group is the API Group of the Resource.  "*" means all. |
+| `group` | `string` | Group is the API Group of the Resource.  "\*" means all. |
 | `labelSelector` | `object` | labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it. |
 | `name` | `string` | Name is the name of the resource being requested for a "get" or deleted for a "delete". "" (empty) means all. |
 | `namespace` | `string` | Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview |
-| `resource` | `string` | Resource is one of the existing resource types.  "*" means all. |
+| `resource` | `string` | Resource is one of the existing resource types.  "\*" means all. |
 | `subresource` | `string` | Subresource is one of the existing resource types.  "" means none. |
-| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all. |
-| `version` | `string` | Version is the API Version of the Resource.  "*" means all. |
+| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "\*" means all. |
+| `version` | `string` | Version is the API Version of the Resource.  "\*" means all. |
 
-### .spec.accessReviewResources[].fieldSelector {#_specaccessreviewresourcesfieldselector}
+### .spec.accessReviewResources\[\].fieldSelector {#_specaccessreviewresourcesfieldselector}
 
 Description
 : fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it.
@@ -106,11 +106,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
+| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s \*SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | `array` | requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 | `requirements[]` | `object` | FieldSelectorRequirement is a selector that contains values, a key, and an operator that relates the key and values. |
 
-### .spec.accessReviewResources[].fieldSelector.requirements {#_specaccessreviewresourcesfieldselectorrequirements}
+### .spec.accessReviewResources\[\].fieldSelector.requirements {#_specaccessreviewresourcesfieldselectorrequirements}
 
 Description
 : requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood.
@@ -120,7 +120,7 @@ Type
   `array`
   ```
 
-### .spec.accessReviewResources[].fieldSelector.requirements[] {#_specaccessreviewresourcesfieldselectorrequirements}
+### .spec.accessReviewResources\[\].fieldSelector.requirements\[\] {#_specaccessreviewresourcesfieldselectorrequirements}
 
 Description
 : FieldSelectorRequirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -140,7 +140,7 @@ Required
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. The list of operators may grow in the future. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. |
 
-### .spec.accessReviewResources[].labelSelector {#_specaccessreviewresourceslabelselector}
+### .spec.accessReviewResources\[\].labelSelector {#_specaccessreviewresourceslabelselector}
 
 Description
 : labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it.
@@ -152,11 +152,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
+| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s \*SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | `array` | requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 | `requirements[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 
-### .spec.accessReviewResources[].labelSelector.requirements {#_specaccessreviewresourceslabelselectorrequirements}
+### .spec.accessReviewResources\[\].labelSelector.requirements {#_specaccessreviewresourceslabelselectorrequirements}
 
 Description
 : requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood.
@@ -166,7 +166,7 @@ Type
   `array`
   ```
 
-### .spec.accessReviewResources[].labelSelector.requirements[] {#_specaccessreviewresourceslabelselectorrequirements}
+### .spec.accessReviewResources\[\].labelSelector.requirements\[\] {#_specaccessreviewresourceslabelselectorrequirements}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -196,7 +196,7 @@ Type
   `array`
   ```
 
-### .spec.tasks[] {#_spectasks}
+### .spec.tasks\[\] {#_spectasks}
 
 Description
 : ConsoleQuickStartTask is a single step in a Quick Start.
@@ -217,7 +217,7 @@ Required
 | `summary` | `object` | summary contains information about the passed step. |
 | `title` | `string` | title describes the task and is displayed as a step heading. |
 
-### .spec.tasks[].review {#_spectasksreview}
+### .spec.tasks\[\].review {#_spectasksreview}
 
 Description
 : review contains instructions to validate the task is complete. The user will select 'Yes' or 'No'. using a radio button, which indicates whether the step was completed successfully.
@@ -236,7 +236,7 @@ Required
 | `failedTaskHelp` | `string` | failedTaskHelp contains suggestions for a failed task review and is shown at the end of task. (includes markdown) |
 | `instructions` | `string` | instructions contains steps that user needs to take in order to validate his work after going through a task. (includes markdown) |
 
-### .spec.tasks[].summary {#_spectaskssummary}
+### .spec.tasks\[\].summary {#_spectaskssummary}
 
 Description
 : summary contains information about the passed step.
@@ -337,7 +337,7 @@ Description
 | 202 - Accepted | [`ConsoleQuickStart`](/docs/rest_api/console_apis/consolequickstart-console-openshift-io-v1#consolequickstart-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consolequickstarts/{name} {#_apisconsoleopenshiftiov1consolequickstarts_name}
+### /apis/console.openshift.io/v1/consolequickstarts/&#123;name&#125; {#_apisconsoleopenshiftiov1consolequickstarts_name}
 
 **Global path parameters**
 

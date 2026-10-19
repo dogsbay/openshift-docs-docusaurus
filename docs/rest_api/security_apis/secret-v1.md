@@ -3,7 +3,7 @@ title: "Secret [v1]"
 sidebar_position: 8
 ---
 
-# Secret [v1]
+# Secret \[v1\]
 
 <a id="secret-v1"></a>
 
@@ -20,7 +20,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `data` | `object (string)` | Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4 |
+| `data` | `object (string)` | Data contains the secret data. Each key must consist of alphanumeric characters, '-', '\_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4 |
 | `immutable` | `boolean` | Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
@@ -87,7 +87,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/secrets {#_apiv1namespaces_namespace_secrets}
+### /api/v1/namespaces/&#123;namespace&#125;/secrets {#_apiv1namespaces_namespace_secrets}
 
 HTTP method
 : ```
@@ -161,7 +161,7 @@ Description
 | 202 - Accepted | [`Secret`](/docs/rest_api/security_apis/secret-v1#secret-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{namespace}/secrets {#_apiv1watchnamespaces_namespace_secrets}
+### /api/v1/watch/namespaces/&#123;namespace&#125;/secrets {#_apiv1watchnamespaces_namespace_secrets}
 
 HTTP method
 : ```
@@ -180,7 +180,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/secrets/{name} {#_apiv1namespaces_namespace_secrets_name}
+### /api/v1/namespaces/&#123;namespace&#125;/secrets/&#123;name&#125; {#_apiv1namespaces_namespace_secrets_name}
 
 **Global path parameters**
 
@@ -285,7 +285,7 @@ Description
 | 201 - Created | [`Secret`](/docs/rest_api/security_apis/secret-v1#secret-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{namespace}/secrets/{name} {#_apiv1watchnamespaces_namespace_secrets_name}
+### /api/v1/watch/namespaces/&#123;namespace&#125;/secrets/&#123;name&#125; {#_apiv1watchnamespaces_namespace_secrets_name}
 
 **Global path parameters**
 

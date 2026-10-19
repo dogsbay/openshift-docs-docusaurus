@@ -44,7 +44,7 @@ Each cluster machine must meet the following minimum requirements:
 
 **Minimum resource requirements**
 
-| Machine | Operating System | CPU <sup>[1]</sup> | RAM | Storage | Input/Output Per Second (IOPS) <sup>[1]</sup> |
+| Machine | Operating System | CPU <sup>\[1\]</sup> | RAM | Storage | Input/Output Per Second (IOPS) <sup>\[1\]</sup> |
 | --- | --- | --- | --- | --- | --- |
 | Bootstrap | RHCOS | 4 | 16 GB | 120 GB | 300 |
 | Control plane | RHCOS | 4 | 16 GB | 120 GB | 300 |
@@ -231,7 +231,7 @@ where:
 : Provides reverse DNS resolution for the bootstrap machine.
 
 `control-plane0.ocp4.example.com.`
-: Provides rebootstrap.ocp4.example.com.verse DNS resolution for the control plane machines.
+: Provides reverse DNS resolution for the control plane machines.
 
 :::note
 

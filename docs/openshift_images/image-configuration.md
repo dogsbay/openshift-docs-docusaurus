@@ -253,7 +253,7 @@ When you define the `allowedRegistries` parameter, all registries, including `re
      $ oc debug node/<node_name>
      ```
 
-     Replace <node_name> with the name of your node.
+     Replace &lt;node_name> with the name of your node.
   3. When prompted, enter `chroot /host` into the terminal:
      ```terminal
      sh-4.4# chroot /host
@@ -434,7 +434,7 @@ To prevent pod failure, do not add the `registry.redhat.io` and `quay.io` regist
      $ oc debug node/<node_name>
      ```
 
-     Replace <node_name> with the name of the node you want details about.
+     Replace &lt;node_name> with the name of the node you want details about.
   3. When prompted, enter `chroot /host` into the terminal:
      ```terminal
      sh-4.4# chroot /host
@@ -1031,7 +1031,7 @@ In this example, the `crio-credential-provider` configuration was generated from
       # ...
       ```
 
-### Configuring image registry repository mirroring {#images-configuration-registry-mirror-configuring_image-configuration}
+### Configure image registry repository mirroring {#images-configuration-registry-mirror-configuring_image-configuration}
 
 You can create postinstallation mirror configuration custom resources (CR) to redirect image pull requests from a source image registry to a mirrored image registry.
 
@@ -1045,7 +1045,7 @@ You can create postinstallation mirror configuration custom resources (CR) to re
    - Setting up a mirrored repository with Red Hat Quay. You can copy images from one repository to another and also automatically sync those repositories repeatedly over time by using Red Hat Quay.
      - [Red Hat Quay Repository Mirroring](https://docs.redhat.com/en/documentation/red_hat_quay/3/html/manage_red_hat_quay/arch-mirroring-intro#enabling-repository-mirroring-quay)
    - Using a tool such as `skopeo` to copy images manually from the source repository to the mirrored repository.
-     For example, after installing the skopeo RPM package on a {op-system-base-full system}, use the `skopeo` command as shown in the following example:
+     For example, after installing the skopeo RPM package on a &#123;op-system-base-full system&#125;, use the `skopeo` command as shown in the following example:
 
      ```terminal
      $ skopeo copy --all \
@@ -1284,7 +1284,7 @@ You can use the following table for information about parameters when configurin
 </thead>
 </table>
 
-### Converting ImageContentSourcePolicy (ICSP) files for image registry repository mirroring {#images-configuration-registry-mirror-convert_image-configuration}
+### Convert ImageContentSourcePolicy (ICSP) files for image registry repository mirroring {#images-configuration-registry-mirror-convert_image-configuration}
 
 You can convert existing `ImageContentSourcePolicy` (ICSP) files to `ImageDigestMirrorSet` files to configure image registry repository mirroring.
 

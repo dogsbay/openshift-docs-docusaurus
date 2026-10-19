@@ -13,7 +13,7 @@ The scope of the OpenShift Container Platform installation program is intentiona
 
 After you read the information in the Installation and update section, you can select a cluster installation method and preparing the cluster for users.
 
-## The OpenShift Container Platform installation {#installation-overview_architecture-installation}
+## OpenShift Container Platform installation options {#installation-overview_architecture-installation}
 
 The OpenShift Container Platform installation program offers four methods for deploying a cluster. Each method has unique characteristics so that you can choose a method that meets your needs.
 
@@ -64,7 +64,7 @@ Review the platform support matrix to choose the installation method that meets 
 
 **Supported platforms**
 
-| Platform | Installer-provisioned infrastructure <sup>[1]</sup> | User-provisioned infrastructure <sup>[2]</sup> | Agent-based Installer | Assisted Installer |
+| Platform | Installer-provisioned infrastructure <sup>\[1\]</sup> | User-provisioned infrastructure <sup>\[2\]</sup> | Agent-based Installer | Assisted Installer |
 | --- | --- | --- | --- | --- |
 | Amazon Web Services (AWS) | X | X |  |  |
 | Bare metal | X | X | X | X |
@@ -79,7 +79,7 @@ Review the platform support matrix to choose the installation method that meets 
 | None |  |  | X | X |
 | Nutanix | X |  |  | X |
 | Oracle Cloud Infrastructure (OCI) |  |  | X | X |
-| Red Hat OpenStack Platform (RHOSP) <sup>[3]</sup> | X | X |  |  |
+| Red Hat OpenStack Platform (RHOSP) <sup>\[3\]</sup> | X | X |  |  |
 | VMware vSphere | X | X | X | X |
 
 The following list describes three different deployment pathways and their prerequisites:

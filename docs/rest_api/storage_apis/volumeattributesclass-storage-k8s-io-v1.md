@@ -3,7 +3,7 @@ title: "VolumeAttributesClass [storage.k8s.io/v1]"
 sidebar_position: 11
 ---
 
-# VolumeAttributesClass [storage.k8s.io/v1] {#volumeattributesclass-storage-k8s-io-v1}
+# VolumeAttributesClass \[storage.k8s.io/v1\] {#volumeattributesclass-storage-k8s-io-v1}
 
 <a id="volumeattributesclass-storage-k8s-io-v1"></a>
 
@@ -139,7 +139,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/volumeattributesclasses/{name} {#_apisstoragek8siov1volumeattributesclasses_name}
+### /apis/storage.k8s.io/v1/volumeattributesclasses/&#123;name&#125; {#_apisstoragek8siov1volumeattributesclasses_name}
 
 **Global path parameters**
 
@@ -244,7 +244,7 @@ Description
 | 201 - Created | [`VolumeAttributesClass`](/docs/rest_api/storage_apis/volumeattributesclass-storage-k8s-io-v1#volumeattributesclass-storage-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/storage.k8s.io/v1/watch/volumeattributesclasses/{name} {#_apisstoragek8siov1watchvolumeattributesclasses_name}
+### /apis/storage.k8s.io/v1/watch/volumeattributesclasses/&#123;name&#125; {#_apisstoragek8siov1watchvolumeattributesclasses_name}
 
 **Global path parameters**
 

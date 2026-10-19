@@ -3,7 +3,7 @@ title: "MachineOSBuild [machineconfiguration.openshift.io/v1]"
 sidebar_position: 12
 ---
 
-# MachineOSBuild [machineconfiguration.openshift.io/v1] {#machineosbuild-machineconfiguration-openshift-io-v1}
+# MachineOSBuild \[machineconfiguration.openshift.io/v1\] {#machineosbuild-machineconfiguration-openshift-io-v1}
 
 <a id="machineosbuild-machineconfiguration-openshift-io-v1"></a>
 
@@ -47,7 +47,7 @@ Required
 | --- | --- | --- |
 | `machineConfig` | `object` | machineConfig points to the rendered MachineConfig resource to be included in this image build. |
 | `machineOSConfig` | `object` | machineOSConfig references the MachineOSConfig resource that this image build extends. |
-| `renderedImagePushSpec` | `string` | renderedImagePushSpec is set by the Machine Config Operator from the MachineOSConfig object this build is attached to. This field describes the location of the final image, which will be pushed by the build once complete. The format of the image push spec is: host[:port][/namespace]/name:<tag> or svc_name.namespace.svc[:port]/repository/name:<tag>. The length of the push spec must be between 1 to 447 characters. |
+| `renderedImagePushSpec` | `string` | renderedImagePushSpec is set by the Machine Config Operator from the MachineOSConfig object this build is attached to. This field describes the location of the final image, which will be pushed by the build once complete. The format of the image push spec is: host\[:port\]\[/namespace\]/name:&lt;tag> or svc_name.namespace.svc\[:port\]/repository/name:&lt;tag>. The length of the push spec must be between 1 to 447 characters. |
 
 ### .spec.machineConfig {#_specmachineconfig}
 
@@ -100,7 +100,7 @@ Type
 | `builder` | `object` | builder describes the image builder backend used for this build. |
 | `conditions` | `array` | conditions are state related conditions for the build. Valid types are: Prepared, Building, Failed, Interrupted, and Succeeded. Once a Build is marked as Failed, Interrupted or Succeeded, no future conditions can be set. |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
-| `digestedImagePushSpec` | `string` | digestedImagePushSpec describes the fully qualified push spec produced by this build. The format of the push spec is: host[:port][/namespace]/name@sha256:<digest>, where the digest must be 64 characters long, and consist only of lowercase hexadecimal characters, a-f and 0-9. The length of the whole spec must be between 1 to 447 characters. |
+| `digestedImagePushSpec` | `string` | digestedImagePushSpec describes the fully qualified push spec produced by this build. The format of the push spec is: host\[:port\]\[/namespace\]/name@sha256:&lt;digest>, where the digest must be 64 characters long, and consist only of lowercase hexadecimal characters, a-f and 0-9. The length of the whole spec must be between 1 to 447 characters. |
 | `relatedObjects` | `array` | relatedObjects is a list of references to ephemeral objects such as ConfigMaps or Secrets that are meant to be consumed while the build process runs. After a successful build or when this MachineOSBuild is deleted, these ephemeral objects will be removed. In the event of a failed build, the objects will remain until the build is removed to allow for inspection. |
 | `relatedObjects[]` | `object` | ObjectReference contains enough information to let you inspect or modify the referred object. |
 
@@ -154,7 +154,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -175,7 +175,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -190,7 +190,7 @@ Type
   `array`
   ```
 
-### .status.relatedObjects[] {#_statusrelatedobjects}
+### .status.relatedObjects\[\] {#_statusrelatedobjects}
 
 Description
 : ObjectReference contains enough information to let you inspect or modify the referred object.
@@ -298,7 +298,7 @@ Description
 | 202 - Accepted | [`MachineOSBuild`](/docs/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineosbuilds/{name} {#_apismachineconfigurationopenshiftiov1machineosbuilds_name}
+### /apis/machineconfiguration.openshift.io/v1/machineosbuilds/&#123;name&#125; {#_apismachineconfigurationopenshiftiov1machineosbuilds_name}
 
 **Global path parameters**
 
@@ -402,7 +402,7 @@ Description
 | 201 - Created | [`MachineOSBuild`](/docs/rest_api/machine_apis/machineosbuild-machineconfiguration-openshift-io-v1#machineosbuild-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/machineosbuilds/{name}/status {#_apismachineconfigurationopenshiftiov1machineosbuilds_name_status}
+### /apis/machineconfiguration.openshift.io/v1/machineosbuilds/&#123;name&#125;/status {#_apismachineconfigurationopenshiftiov1machineosbuilds_name_status}
 
 **Global path parameters**
 

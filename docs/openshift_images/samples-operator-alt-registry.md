@@ -35,7 +35,7 @@ Red Hat does not test third party registries with OpenShift Container Platform.
 
 :::
 
-### Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_samples-operator-alt-registry}
+### Install the OpenShift CLI on Linux {#cli-installing-cli-linux_samples-operator-alt-registry}
 
 To manage your cluster and deploy applications from the command line on Linux, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -71,7 +71,7 @@ Download and install the new version of `oc`.
   $ oc <command>
   ```
 
-### Installing the OpenShift CLI on Windows {#cli-installing-cli-windows_samples-operator-alt-registry}
+### Install the OpenShift CLI on Windows {#cli-installing-cli-windows_samples-operator-alt-registry}
 
 To manage your cluster and deploy applications from the command line on Windows, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -103,7 +103,7 @@ Download and install the new version of `oc`.
   C:\> oc <command>
   ```
 
-### Installing the OpenShift CLI on macOS {#cli-installing-cli-macos_samples-operator-alt-registry}
+### Install the OpenShift CLI on macOS {#cli-installing-cli-macos_samples-operator-alt-registry}
 
 To manage your cluster and deploy applications from the command line on macOS, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -141,7 +141,7 @@ Download and install the new version of `oc`.
   $ oc <command>
   ```
 
-## Configuring credentials that allow images to be mirrored {#installation-adding-registry-pull-secret_samples-operator-alt-registry}
+## Configure credentials that allow images to be mirrored {#installation-adding-registry-pull-secret_samples-operator-alt-registry}
 
 Create a container image registry credentials file so that you can mirror images from Red Hat to your mirror. Complete the following steps on the installation host.
 
@@ -230,7 +230,7 @@ Create a container image registry credentials file so that you can mirror images
      }
      ```
 
-## Mirroring the OpenShift Container Platform image repository {#installation-mirror-repository_samples-operator-alt-registry}
+## Mirror the OpenShift Container Platform image repository {#installation-mirror-repository_samples-operator-alt-registry}
 
 Mirror the OpenShift Container Platform image repository to your registry to use during cluster installation or upgrade. Complete the following steps on the mirror host.
 

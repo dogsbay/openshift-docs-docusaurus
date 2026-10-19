@@ -9,7 +9,7 @@ sidebar_position: 8
 
 Resolve common issues with `Backup` and `Restore` custom resources (CRs), such as volume retrieval failures, and backups remaining in progress or partially failed states. This helps you ensure successful backup and restore operations in OADP.
 
-## Troubleshooting issue where backup CR cannot retrieve volume {#troubleshooting-backup-cr-cannot-retrieve-volume-issue_backup-and-restore-cr-issues}
+## Troubleshoot issue where backup CR cannot retrieve volume {#troubleshooting-backup-cr-cannot-retrieve-volume-issue_backup-and-restore-cr-issues}
 
 Resolve the `InvalidVolume.NotFound` error that occurs when the persistent volume (PV) and snapshot locations are in different regions. This helps you ensure the `Backup` CR can successfully retrieve volumes.
 
@@ -24,7 +24,7 @@ InvalidVolume.NotFound: The volume vol-xxxx does not exist.
 1. Edit the value of the `spec.snapshotLocations.velero.config.region` key in the `DataProtectionApplication` manifest so that the snapshot location is in the same region as the PV.
 2. Create a new `Backup` CR.
 
-## Troubleshooting issue where backup CR status remains in progress {#troubleshooting-backup-cr-status-remains-in-progress-issue_backup-and-restore-cr-issues}
+## Troubleshoot issue where backup CR status remains in progress {#troubleshooting-backup-cr-status-remains-in-progress-issue_backup-and-restore-cr-issues}
 
 Resolve the issue where an interrupted backup causes the `Backup` CR status to remain in the `InProgress` phase. This helps you clear stalled backups and create new ones to complete your backup operations.
 
@@ -47,7 +47,7 @@ Resolve the issue where an interrupted backup causes the `Backup` CR status to r
    $ velero backup describe <backup_name> --details
    ```
 
-## Troubleshooting issue where backup CR status remains partially failed {#troubleshooting-backup-cr-status-remains-in-partiallyfailed-issue_backup-and-restore-cr-issues}
+## Troubleshoot issue where backup CR status remains partially failed {#troubleshooting-backup-cr-status-remains-in-partiallyfailed-issue_backup-and-restore-cr-issues}
 
 Resolve the `PartiallyFailed` status that occurs when a `Backup` CR cannot create a CSI snapshot due to a missing label on the `VolumeSnapshotClass`. This helps you ensure successful backups by properly labeling the snapshot class.
 
@@ -70,7 +70,7 @@ time="2023-02-17T16:33:13Z" level=error msg="Error backing up item" backup=opens
    ```
 4. Create a new `Backup` CR.
 
-## Troubleshooting PVC binding failures with the waitForFirstConsumer storage class {#oadp-troubleshooting-pvc-binding-delay_backup-and-restore-cr-issues}
+## Troubleshoot PVC binding failures with the waitForFirstConsumer storage class {#oadp-troubleshooting-pvc-binding-delay_backup-and-restore-cr-issues}
 
 To ensure that restored persistent volume claims (PVCs) successfully bind to PVs when node affinity is configured, adjust the storage class binding mode settings during restore operations.
 

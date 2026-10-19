@@ -3,7 +3,7 @@ title: "PodNetworkConnectivityCheck [controlplane.operator.openshift.io/v1alpha1
 sidebar_position: 29
 ---
 
-# PodNetworkConnectivityCheck [controlplane.operator.openshift.io/v1alpha1] {#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1}
+# PodNetworkConnectivityCheck \[controlplane.operator.openshift.io/v1alpha1\] {#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1}
 
 <a id="podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1"></a>
 
@@ -98,7 +98,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : PodNetworkConnectivityCheckCondition represents the overall status of the pod network connectivity.
@@ -114,7 +114,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `` | Last time the condition transitioned from one status to another. |
+| `lastTransitionTime` | &#96;&#96; | Last time the condition transitioned from one status to another. |
 | `message` | `string` | message indicating details about last transition in a human readable format. |
 | `reason` | `string` | reason for the condition’s last status transition in a machine readable format. |
 | `status` | `string` | status of the condition |
@@ -130,7 +130,7 @@ Type
   `array`
   ```
 
-### .status.failures[] {#_statusfailures}
+### .status.failures\[\] {#_statusfailures}
 
 Description
 : LogEntry records events
@@ -145,11 +145,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `latency` | `` | latency records how long the action mentioned in the entry took. |
+| `latency` | &#96;&#96; | latency records how long the action mentioned in the entry took. |
 | `message` | `string` | message explaining status in a human readable format. |
 | `reason` | `string` | reason for status in a machine readable format. |
 | `success` | `boolean` | success indicates if the log entry indicates a success or failure. |
-| `time` | `` | Start time of check action. |
+| `time` | &#96;&#96; | Start time of check action. |
 
 ### .status.outages {#_statusoutages}
 
@@ -161,7 +161,7 @@ Type
   `array`
   ```
 
-### .status.outages[] {#_statusoutages}
+### .status.outages\[\] {#_statusoutages}
 
 Description
 : OutageEntry records time period of an outage
@@ -173,15 +173,15 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `end` | `` | end of outage detected |
+| `end` | &#96;&#96; | end of outage detected |
 | `endLogs` | `array` | endLogs contains log entries related to the end of this outage. Should contain the success entry that resolved the outage and possibly a few of the failure log entries that preceded it. |
 | `endLogs[]` | `object` | LogEntry records events |
 | `message` | `string` | message summarizes outage details in a human readable format. |
-| `start` | `` | start of outage detected |
+| `start` | &#96;&#96; | start of outage detected |
 | `startLogs` | `array` | startLogs contains log entries related to the start of this outage. Should contain the original failure, any entries where the failure mode changed. |
 | `startLogs[]` | `object` | LogEntry records events |
 
-### .status.outages[].endLogs {#_statusoutagesendlogs}
+### .status.outages\[\].endLogs {#_statusoutagesendlogs}
 
 Description
 : endLogs contains log entries related to the end of this outage. Should contain the success entry that resolved the outage and possibly a few of the failure log entries that preceded it.
@@ -191,7 +191,7 @@ Type
   `array`
   ```
 
-### .status.outages[].endLogs[] {#_statusoutagesendlogs}
+### .status.outages\[\].endLogs\[\] {#_statusoutagesendlogs}
 
 Description
 : LogEntry records events
@@ -206,13 +206,13 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `latency` | `` | latency records how long the action mentioned in the entry took. |
+| `latency` | &#96;&#96; | latency records how long the action mentioned in the entry took. |
 | `message` | `string` | message explaining status in a human readable format. |
 | `reason` | `string` | reason for status in a machine readable format. |
 | `success` | `boolean` | success indicates if the log entry indicates a success or failure. |
-| `time` | `` | Start time of check action. |
+| `time` | &#96;&#96; | Start time of check action. |
 
-### .status.outages[].startLogs {#_statusoutagesstartlogs}
+### .status.outages\[\].startLogs {#_statusoutagesstartlogs}
 
 Description
 : startLogs contains log entries related to the start of this outage. Should contain the original failure, any entries where the failure mode changed.
@@ -222,7 +222,7 @@ Type
   `array`
   ```
 
-### .status.outages[].startLogs[] {#_statusoutagesstartlogs}
+### .status.outages\[\].startLogs\[\] {#_statusoutagesstartlogs}
 
 Description
 : LogEntry records events
@@ -237,11 +237,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `latency` | `` | latency records how long the action mentioned in the entry took. |
+| `latency` | &#96;&#96; | latency records how long the action mentioned in the entry took. |
 | `message` | `string` | message explaining status in a human readable format. |
 | `reason` | `string` | reason for status in a machine readable format. |
 | `success` | `boolean` | success indicates if the log entry indicates a success or failure. |
-| `time` | `` | Start time of check action. |
+| `time` | &#96;&#96; | Start time of check action. |
 
 ### .status.successes {#_statussuccesses}
 
@@ -253,7 +253,7 @@ Type
   `array`
   ```
 
-### .status.successes[] {#_statussuccesses}
+### .status.successes\[\] {#_statussuccesses}
 
 Description
 : LogEntry records events
@@ -268,11 +268,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `latency` | `` | latency records how long the action mentioned in the entry took. |
+| `latency` | &#96;&#96; | latency records how long the action mentioned in the entry took. |
 | `message` | `string` | message explaining status in a human readable format. |
 | `reason` | `string` | reason for status in a machine readable format. |
 | `success` | `boolean` | success indicates if the log entry indicates a success or failure. |
-| `time` | `` | Start time of check action. |
+| `time` | &#96;&#96; | Start time of check action. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -313,7 +313,7 @@ Description
 | 200 - OK | [`PodNetworkConnectivityCheckList`](/docs/rest_api/objects#io-openshift-operator-controlplane-v1alpha1-PodNetworkConnectivityCheckList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{namespace}/podnetworkconnectivitychecks {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks}
+### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/&#123;namespace&#125;/podnetworkconnectivitychecks {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks}
 
 HTTP method
 : ```
@@ -381,7 +381,7 @@ Description
 | 202 - Accepted | [`PodNetworkConnectivityCheck`](/docs/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{namespace}/podnetworkconnectivitychecks/{name} {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks_name}
+### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/&#123;namespace&#125;/podnetworkconnectivitychecks/&#123;name&#125; {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks_name}
 
 **Global path parameters**
 
@@ -485,7 +485,7 @@ Description
 | 201 - Created | [`PodNetworkConnectivityCheck`](/docs/rest_api/network_apis/podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1#podnetworkconnectivitycheck-controlplane-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/{namespace}/podnetworkconnectivitychecks/{name}/status {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks_name_status}
+### /apis/controlplane.operator.openshift.io/v1alpha1/namespaces/&#123;namespace&#125;/podnetworkconnectivitychecks/&#123;name&#125;/status {#_apiscontrolplaneoperatoropenshiftiov1alpha1namespaces_namespace_podnetworkconnectivitychecks_name_status}
 
 **Global path parameters**
 

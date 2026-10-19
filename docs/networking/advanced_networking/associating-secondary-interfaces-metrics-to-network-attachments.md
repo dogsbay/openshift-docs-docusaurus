@@ -11,7 +11,9 @@ To gain better visibility into cluster traffic, you can associate secondary inte
 
 ## Extend secondary network metrics for monitoring {#cnf-associating-secondary-interfaces-metrics-to-network-attachments_secondary-interfaces-metrics}
 
-To monitor and manage network traffic effectively, you can extend secondary network metrics with identifying information. By using the `pod_network_name_info` metric to label interfaces based on their `NetworkAttachmentDefinition` resource, you can classify interface types to enable precise metric aggregation and alerting.
+To monitor and manage network traffic effectively, you can extend secondary network metrics with identifying information.
+
+By using the `pod_network_name_info` metric to label interfaces based on their `NetworkAttachmentDefinition` resource, you can classify interface types to enable precise metric aggregation and alerting.
 
 Secondary devices, or interfaces, are used for different purposes. Metrics from secondary network interfaces need to be classified to allow for effective aggregation and monitoring.
 
@@ -56,7 +58,9 @@ This is addressed by introducing the new `pod_network_name_info` described in th
 
 ## Metrics with network name {#cnf-metrics-secondary-interfaces-by-name_secondary-interfaces-metrics}
 
-To simplify the monitoring of secondary networks, you can use the `pod_network_name_info` metric to correlate network performance data with specific network names. By joining this metric with container network metrics, you can identify traffic patterns and errors across distinct network attachment definitions.
+To simplify the monitoring of secondary networks, you can use the `pod_network_name_info` metric to correlate network performance data with specific network names.
+
+By joining this metric with container network metrics, you can identify traffic patterns and errors across distinct network attachment definitions.
 
 ```bash title="Example of pod_network_name_info"
 pod_network_name_info{interface="net0",namespace="namespacename",network_name="nadnamespace/firstNAD",pod="podname"} 0

@@ -129,7 +129,7 @@ Prepare your OADP resources to restore your application after an upgrade.
    - The `lca.openshift.io/apply-wave` value must be lower than the values specified in the application `Restore` CRs.
 2. If you need to restore applications after the upgrade, create the OADP `Backup` and `Restore` CRs for your application in the `openshift-adp` namespace:
    1. Create the OADP CRs for cluster-scoped application artifacts in the `openshift-adp` namespace:
-      **Example OADP CRs for cluster-scoped application artifacts for LSO and {LVMS}**
+      **Example OADP CRs for cluster-scoped application artifacts for LSO and &#123;LVMS&#125;**
 
       ```yaml
       apiVersion: velero.io/v1

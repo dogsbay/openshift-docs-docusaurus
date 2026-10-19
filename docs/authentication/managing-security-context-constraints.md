@@ -254,7 +254,7 @@ The allowable values of this field correspond to the volume sources that are def
 - [`secret`](https://kubernetes.io/docs/concepts/storage/volumes/#secret)
 - [`storageos`](https://kubernetes.io/docs/concepts/storage/volumes/#storageos)
 - [`vsphereVolume`](https://kubernetes.io/docs/concepts/storage/volumes/#vspherevolume)
-- ***** (A special value to allow the use of all volume types.)
+- \*\*\*\*\* (A special value to allow the use of all volume types.)
 - `none` (A special value to disallow the use of all volumes types. Exists only for backwards compatibility.)
 
 The recommended minimum set of allowed volumes for new SCCs are `configMap`, `downwardAPI`, `emptyDir`, `persistentVolumeClaim`, `secret`, and `projected`.

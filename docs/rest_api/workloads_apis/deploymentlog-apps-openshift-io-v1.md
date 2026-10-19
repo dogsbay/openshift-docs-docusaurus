@@ -3,7 +3,7 @@ title: "DeploymentLog [apps.openshift.io/v1]"
 sidebar_position: 11
 ---
 
-# DeploymentLog [apps.openshift.io/v1] {#deploymentlog-apps-openshift-io-v1}
+# DeploymentLog \[apps.openshift.io/v1\] {#deploymentlog-apps-openshift-io-v1}
 
 <a id="deploymentlog-apps-openshift-io-v1"></a>
 
@@ -31,7 +31,7 @@ The following API endpoints are available:
 - `/apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name}/log`
   - `GET`: read log of the specified DeploymentConfig
 
-### /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name}/log {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_log}
+### /apis/apps.openshift.io/v1/namespaces/&#123;namespace&#125;/deploymentconfigs/&#123;name&#125;/log {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_log}
 
 **Global path parameters**
 

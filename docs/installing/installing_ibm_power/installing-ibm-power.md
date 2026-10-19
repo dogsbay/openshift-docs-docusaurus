@@ -568,7 +568,7 @@ where:
 : Provides reverse DNS resolution for the bootstrap machine.
 
 `control-plane0.ocp4.example.com.`
-: Provides rebootstrap.ocp4.example.com.verse DNS resolution for the control plane machines.
+: Provides reverse DNS resolution for the control plane machines.
 
 `compute0.ocp4.example.com.`
 : Provides reverse DNS resolution for the compute machines.
@@ -1008,7 +1008,7 @@ Before you install OpenShift Container Platform, download the installation file 
 
    :::
 
-## Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-ibm-power}
+## Install the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-ibm-power}
 
 To manage your cluster and deploy applications from the command line on Linux, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -1044,7 +1044,7 @@ Download and install the new version of `oc`.
   $ oc <command>
   ```
 
-## Installing the OpenShift CLI on Windows {#cli-installing-cli-windows_installing-ibm-power}
+## Install the OpenShift CLI on Windows {#cli-installing-cli-windows_installing-ibm-power}
 
 To manage your cluster and deploy applications from the command line on Windows, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -1076,7 +1076,7 @@ Download and install the new version of `oc`.
   C:\> oc <command>
   ```
 
-## Installing the OpenShift CLI on macOS {#cli-installing-cli-macos_installing-ibm-power}
+## Install the OpenShift CLI on macOS {#cli-installing-cli-macos_installing-ibm-power}
 
 To manage your cluster and deploy applications from the command line on macOS, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -1840,7 +1840,7 @@ To provision physical or virtual machines, install RHCOS by using a bootable ISO
    $ curl -k http://<HTTP_server>/bootstrap.ign
    ```
 
-   - <HTTP_server>: Replace `bootstrap.ign` with `master.ign` or `worker.ign` in the command to validate that the Ignition config files for the control plane and compute nodes are also available.
+   - &lt;HTTP_server>: Replace `bootstrap.ign` with `master.ign` or `worker.ign` in the command to validate that the Ignition config files for the control plane and compute nodes are also available.
      ```terminal title="Example output"
        % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                       Dload  Upload   Total   Spent    Left  Speed
@@ -2081,7 +2081,7 @@ bond=<name>[:<network_interfaces>][:<options>]
 
 - `<name>`: Specifies the bonding device name, for example `bond0`.
 - `<network_interfaces>`: Specifies a comma-separated list of physical (ethernet) interfaces, such as `em1,em2`.
-- ` <options>: Specifies a comma-separated list of bonding options. Enter the  `modinfo bonding` command to see available options.
+- ` <options>: Specifies a comma-separated list of bonding options. Enter the  `modinfo bonding&#96; command to see available options.
 
 When you create a bonded interface using the `bond=` command, you must specify how the IP address is assigned and other information for the bonded interface.
 

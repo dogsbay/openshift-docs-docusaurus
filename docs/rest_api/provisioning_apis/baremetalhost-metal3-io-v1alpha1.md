@@ -3,7 +3,7 @@ title: "BareMetalHost [metal3.io/v1alpha1]"
 sidebar_position: 3
 ---
 
-# BareMetalHost [metal3.io/v1alpha1] {#baremetalhost-metal3-io-v1alpha1}
+# BareMetalHost \[metal3.io/v1alpha1\] {#baremetalhost-metal3-io-v1alpha1}
 
 <a id="baremetalhost-metal3-io-v1alpha1"></a>
 
@@ -97,7 +97,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -201,8 +201,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `hardwareRAIDVolumes` | `` | The list of logical disks for hardware RAID, if rootDeviceHints isn’t used, first volume is root volume. You can set the value of this field to `[]` to clear all the hardware RAID configurations. |
-| `softwareRAIDVolumes` | `` | The list of logical disks for software RAID, if rootDeviceHints isn’t used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting host in case of a disk failure. Software RAID will always be deleted. |
+| `hardwareRAIDVolumes` | &#96;&#96; | The list of logical disks for hardware RAID, if rootDeviceHints isn’t used, first volume is root volume. You can set the value of this field to `[]` to clear all the hardware RAID configurations. |
+| `softwareRAIDVolumes` | &#96;&#96; | The list of logical disks for software RAID, if rootDeviceHints isn’t used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting host in case of a disk failure. Software RAID will always be deleted. |
 
 ### .spec.rootDeviceHints {#_specrootdevicehints}
 
@@ -237,7 +237,7 @@ Type
   `array`
   ```
 
-### .spec.taints[] {#_spectaints}
+### .spec.taints\[\] {#_spectaints}
 
 Description
 : The node this Taint is attached to has the "effect" on any pod that does not tolerate the Taint.
@@ -317,7 +317,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -338,7 +338,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -453,7 +453,7 @@ Type
   `array`
   ```
 
-### .status.hardware.nics[] {#_statushardwarenics}
+### .status.hardware.nics\[\] {#_statushardwarenics}
 
 Description
 : NIC describes one network interface on the host.
@@ -477,7 +477,7 @@ Type
 | `vlans` | `array` | The VLANs available |
 | `vlans[]` | `object` | VLAN represents the name and ID of a VLAN. |
 
-### .status.hardware.nics[].lldp {#_statushardwarenicslldp}
+### .status.hardware.nics\[\].lldp {#_statushardwarenicslldp}
 
 Description
 : LLDP data for this interface
@@ -493,7 +493,7 @@ Type
 | `switchID` | `string` | The switch chassis ID from LLDP |
 | `switchSystemName` | `string` | The switch system name from LLDP |
 
-### .status.hardware.nics[].vlans {#_statushardwarenicsvlans}
+### .status.hardware.nics\[\].vlans {#_statushardwarenicsvlans}
 
 Description
 : The VLANs available
@@ -503,7 +503,7 @@ Type
   `array`
   ```
 
-### .status.hardware.nics[].vlans[] {#_statushardwarenicsvlans}
+### .status.hardware.nics\[\].vlans\[\] {#_statushardwarenicsvlans}
 
 Description
 : VLAN represents the name and ID of a VLAN.
@@ -528,7 +528,7 @@ Type
   `array`
   ```
 
-### .status.hardware.storage[] {#_statushardwarestorage}
+### .status.hardware.storage\[\] {#_statushardwarestorage}
 
 Description
 : Storage describes one storage device (disk, SSD, etc.) on the host.
@@ -598,8 +598,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `end` | `` |  |
-| `start` | `` |  |
+| `end` | &#96;&#96; |  |
+| `start` | &#96;&#96; |  |
 
 ### .status.operationHistory.inspect {#_statusoperationhistoryinspect}
 
@@ -613,8 +613,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `end` | `` |  |
-| `start` | `` |  |
+| `end` | &#96;&#96; |  |
+| `start` | &#96;&#96; |  |
 
 ### .status.operationHistory.provision {#_statusoperationhistoryprovision}
 
@@ -628,8 +628,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `end` | `` |  |
-| `start` | `` |  |
+| `end` | &#96;&#96; |  |
+| `start` | &#96;&#96; |  |
 
 ### .status.operationHistory.register {#_statusoperationhistoryregister}
 
@@ -643,8 +643,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `end` | `` |  |
-| `start` | `` |  |
+| `end` | &#96;&#96; |  |
+| `start` | &#96;&#96; |  |
 
 ### .status.provisioning {#_statusprovisioning}
 
@@ -736,8 +736,8 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `hardwareRAIDVolumes` | `` | The list of logical disks for hardware RAID, if rootDeviceHints isn’t used, first volume is root volume. You can set the value of this field to `[]` to clear all the hardware RAID configurations. |
-| `softwareRAIDVolumes` | `` | The list of logical disks for software RAID, if rootDeviceHints isn’t used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting host in case of a disk failure. Software RAID will always be deleted. |
+| `hardwareRAIDVolumes` | &#96;&#96; | The list of logical disks for hardware RAID, if rootDeviceHints isn’t used, first volume is root volume. You can set the value of this field to `[]` to clear all the hardware RAID configurations. |
+| `softwareRAIDVolumes` | &#96;&#96; | The list of logical disks for software RAID, if rootDeviceHints isn’t used, first volume is root volume. If HardwareRAIDVolumes is set this item will be invalid. The number of created Software RAID devices must be 1 or 2. If there is only one Software RAID device, it has to be a RAID-1. If there are two, the first one has to be a RAID-1, while the RAID level for the second one can be 0, 1, or 1+0. As the first RAID device will be the deployment device, enforcing a RAID-1 reduces the risk of ending up with a non-booting host in case of a disk failure. Software RAID will always be deleted. |
 
 ### .status.provisioning.rootDeviceHints {#_statusprovisioningrootdevicehints}
 
@@ -831,7 +831,7 @@ Description
 | 200 - OK | [`BareMetalHostList`](/docs/rest_api/objects#io-metal3-v1alpha1-BareMetalHostList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/baremetalhosts {#_apismetal3iov1alpha1namespaces_namespace_baremetalhosts}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/baremetalhosts {#_apismetal3iov1alpha1namespaces_namespace_baremetalhosts}
 
 HTTP method
 : ```
@@ -899,7 +899,7 @@ Description
 | 202 - Accepted | [`BareMetalHost`](/docs/rest_api/provisioning_apis/baremetalhost-metal3-io-v1alpha1#baremetalhost-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/baremetalhosts/{name} {#_apismetal3iov1alpha1namespaces_namespace_baremetalhosts_name}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/baremetalhosts/&#123;name&#125; {#_apismetal3iov1alpha1namespaces_namespace_baremetalhosts_name}
 
 **Global path parameters**
 
@@ -1003,7 +1003,7 @@ Description
 | 201 - Created | [`BareMetalHost`](/docs/rest_api/provisioning_apis/baremetalhost-metal3-io-v1alpha1#baremetalhost-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/baremetalhosts/{name}/status {#_apismetal3iov1alpha1namespaces_namespace_baremetalhosts_name_status}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/baremetalhosts/&#123;name&#125;/status {#_apismetal3iov1alpha1namespaces_namespace_baremetalhosts_name_status}
 
 **Global path parameters**
 

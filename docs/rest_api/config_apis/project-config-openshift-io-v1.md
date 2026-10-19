@@ -3,7 +3,7 @@ title: "Project [config.openshift.io/v1]"
 sidebar_position: 24
 ---
 
-# Project [config.openshift.io/v1] {#project-config-openshift-io-v1}
+# Project \[config.openshift.io/v1\] {#project-config-openshift-io-v1}
 
 <a id="project-config-openshift-io-v1"></a>
 
@@ -155,7 +155,7 @@ Description
 | 202 - Accepted | [`Project`](/docs/rest_api/config_apis/project-config-openshift-io-v1#project-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/projects/{name} {#_apisconfigopenshiftiov1projects_name}
+### /apis/config.openshift.io/v1/projects/&#123;name&#125; {#_apisconfigopenshiftiov1projects_name}
 
 **Global path parameters**
 
@@ -259,7 +259,7 @@ Description
 | 201 - Created | [`Project`](/docs/rest_api/config_apis/project-config-openshift-io-v1#project-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/projects/{name}/status {#_apisconfigopenshiftiov1projects_name_status}
+### /apis/config.openshift.io/v1/projects/&#123;name&#125;/status {#_apisconfigopenshiftiov1projects_name_status}
 
 **Global path parameters**
 

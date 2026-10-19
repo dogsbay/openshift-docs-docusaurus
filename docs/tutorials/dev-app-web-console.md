@@ -36,7 +36,7 @@ Before you start this tutorial, ensure that you have the following required prer
   If you are using Developer Sandbox, a project is created for you with the required permissions.
 - You have [logged in to the OpenShift Container Platform web console](/docs/web_console/web-console#web-console-overview).
 
-## Creating a project {#getting-started-web-console-creating-new-project_dev-app-web-console}
+## Create a project {#getting-started-web-console-creating-new-project_dev-app-web-console}
 
 Create a new project to contain all required resources and application components for the tutorial.
 
@@ -67,7 +67,7 @@ If you are using Developer Sandbox to complete this tutorial, skip this procedur
 
 - [Viewing a project by using the web console](/docs/applications/projects/working-with-projects#viewing-a-project-using-the-web-console_projects)
 
-## Granting view permissions {#getting-started-web-console-granting-permissions_dev-app-web-console}
+## Grant view permissions {#getting-started-web-console-granting-permissions_dev-app-web-console}
 
 Configure the necessary permissions for the application to access the required cluster resources.
 
@@ -107,7 +107,7 @@ As a requirement of the application, you must assign the `view` role to the `def
 
 - [RBAC overview](/docs/authentication/using-rbac#authorization-overview_using-rbac)
 
-## Deploying the front-end application {#getting-started-web-console-deploying-first-image_dev-app-web-console}
+## Deploy the front-end application {#getting-started-web-console-deploying-first-image_dev-app-web-console}
 
 Deploy the front-end application that provides the external-facing web component for the tutorial.
 
@@ -139,7 +139,7 @@ The following procedure deploys `parksmap`, which is the front-end component of 
 
 - [Viewing the topology of your application](/docs/applications/odc-viewing-application-composition-using-topology-view#odc-viewing-application-topology_viewing-application-composition-using-topology-view)
 
-### Viewing pod details {#getting-started-web-console-examining-pod_dev-app-web-console}
+### View pod details {#getting-started-web-console-examining-pod_dev-app-web-console}
 
 Retrieve detailed pod information to confirm the running status and resource configuration of the applications in this tutorial.
 
@@ -172,7 +172,7 @@ The **Overview** panel enables you to access many features of the `parksmap` dep
 - [Scaling application pods and checking builds and routes](/docs/applications/odc-viewing-application-composition-using-topology-view#odc-scaling-application-pods-and-checking-builds-and-routes_viewing-application-composition-using-topology-view)
 - [Labels and annotations used for the Topology view](/docs/applications/odc-viewing-application-composition-using-topology-view#odc-labels-and-annotations-used-for-topology-view_viewing-application-composition-using-topology-view)
 
-### Scaling up the application {#getting-started-web-console-scaling-app_dev-app-web-console}
+### Scale up the application {#getting-started-web-console-scaling-app_dev-app-web-console}
 
 Scale the application deployment up or down to meet workload demands.
 
@@ -205,7 +205,7 @@ The following procedure scales the `parksmap` deployment to use two instances.
 
 - [Recommended practices for scaling the cluster](/docs/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-scale-practices_recommended-control-plane-practices)
 
-## Deploying the back-end application {#getting-started-web-console-deploying-python-app_dev-app-web-console}
+## Deploy the back-end application {#getting-started-web-console-deploying-python-app_dev-app-web-console}
 
 Deploy the back-end application that provides the service that queries the database to return the national park data required for your application.
 
@@ -253,7 +253,7 @@ The following procedure deploys `nationalparks`, which is the back-end component
 - [Adding services to your application](/docs/applications/odc-viewing-application-composition-using-topology-view#odc-adding-services-to-your-application_viewing-application-composition-using-topology-view)
 - [Importing a codebase from Git to create an application](/docs/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-importing-codebase-from-git-to-create-application_odc-creating-applications-using-developer-perspective)
 
-## Deploying the database application {#getting-started-web-console-connecting-database_dev-app-web-console}
+## Deploy the database application {#getting-started-web-console-connecting-database_dev-app-web-console}
 
 Deploy a MongoDB database application to contain the information that your application requires. For this tutorial, you will deploy a database application called `mongodb-nationalparks` that holds the national park location information.
 
@@ -293,7 +293,7 @@ Deploy a MongoDB database application to contain the information that your appli
 12. Click **Create**.
     You are redirected to the **Topology** page where you can see the `mongodb-nationalparks` deployment in the `national-parks-app` application.
 
-### Providing access to the database by creating a secret {#getting-started-web-console-creating-secret_dev-app-web-console}
+### Provide access to the database by creating a secret {#getting-started-web-console-creating-secret_dev-app-web-console}
 
 Create a `Secret` resource to securely provide the back-end application with the sensitive database connection credentials.
 
@@ -341,7 +341,7 @@ The following procedure creates the `nationalparks-mongodb-parameters` secret an
 
 - [Understanding secrets](/docs/nodes/pods/nodes-pods-secrets#nodes-pods-secrets-about_nodes-pods-secrets)
 
-### Loading data into the database {#getting-started-web-console-load-data-output_dev-app-web-console}
+### Load data into the database {#getting-started-web-console-load-data-output_dev-app-web-console}
 
 After you have deployed the `mongodb-nationalparks` database application, load the national park location information into the database.
 
@@ -370,7 +370,7 @@ After you have deployed the `mongodb-nationalparks` database application, load t
    Items inserted in database: 2893
    ```
 
-## Viewing the application in a web browser {#getting-started-web-console-view_dev-app-web-console}
+## View the application in a web browser {#getting-started-web-console-view_dev-app-web-console}
 
 After you have deployed the necessary applications and loaded data into the database, you are now ready view your application through a browser. You can access the application by opening the URL for the front-end application.
 

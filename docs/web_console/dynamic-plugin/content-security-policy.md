@@ -3,9 +3,9 @@ title: Content Security Policy (CSP)
 sidebar_position: 4
 ---
 
-# Content Security Policy (CSP) {#content-security-policy_{context}}
+# Content Security Policy (CSP) {#content-security-policy_-context-}
 
-<a id="content-security-policy_{context}"></a>
+<a id="content-security-policy_-context-"></a>
 
 Specify Content Security Policy (CSP) directives for your dynamic plugin using the `contentSecurityPolicy` field in `ConsolePluginSpec`. CSP restricts which sources supply scripts, styles, images, and fonts, mitigating risks for plugins loading resources externally.
 

@@ -3,7 +3,7 @@ title: "OAuthClient [oauth.openshift.io/v1]"
 sidebar_position: 5
 ---
 
-# OAuthClient [oauth.openshift.io/v1] {#oauthclient-oauth-openshift-io-v1}
+# OAuthClient \[oauth.openshift.io/v1\] {#oauthclient-oauth-openshift-io-v1}
 
 <a id="oauthclient-oauth-openshift-io-v1"></a>
 
@@ -44,7 +44,7 @@ Type
   `array`
   ```
 
-### .scopeRestrictions[] {#_scoperestrictions}
+### .scopeRestrictions\[\] {#_scoperestrictions}
 
 Description
 : ScopeRestriction describe one restriction on scopes.  Exactly one option must be non-nil.
@@ -59,7 +59,7 @@ Type
 | `clusterRole` | `object` | ClusterRoleScopeRestriction describes restrictions on cluster role scopes |
 | `literals` | `array (string)` | ExactValues means the scope has to match a particular set of strings exactly |
 
-### .scopeRestrictions[].clusterRole {#_scoperestrictionsclusterrole}
+### .scopeRestrictions\[\].clusterRole {#_scoperestrictionsclusterrole}
 
 Description
 : ClusterRoleScopeRestriction describes restrictions on cluster role scopes
@@ -77,8 +77,8 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `allowEscalation` | `boolean` | allowEscalation indicates whether you can request roles and their escalating resources |
-| `namespaces` | `array (string)` | namespaces is the list of namespaces that can be referenced.  * means any of them (including *) |
-| `roleNames` | `array (string)` | roleNames is the list of cluster roles that can referenced.  * means anything |
+| `namespaces` | `array (string)` | namespaces is the list of namespaces that can be referenced.  \* means any of them (including \*) |
+| `roleNames` | `array (string)` | roleNames is the list of cluster roles that can referenced.  \* means anything |
 
 ## API endpoints {#_api_endpoints}
 
@@ -191,7 +191,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/oauthclients/{name} {#_apisoauthopenshiftiov1oauthclients_name}
+### /apis/oauth.openshift.io/v1/oauthclients/&#123;name&#125; {#_apisoauthopenshiftiov1oauthclients_name}
 
 **Global path parameters**
 
@@ -296,7 +296,7 @@ Description
 | 201 - Created | [`OAuthClient`](/docs/rest_api/oauth_apis/oauthclient-oauth-openshift-io-v1#oauthclient-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/watch/oauthclients/{name} {#_apisoauthopenshiftiov1watchoauthclients_name}
+### /apis/oauth.openshift.io/v1/watch/oauthclients/&#123;name&#125; {#_apisoauthopenshiftiov1watchoauthclients_name}
 
 **Global path parameters**
 

@@ -17,7 +17,7 @@ You can use the following fields in the `nodeAgent.backupPVC` section of the DPA
 - `readOnly`: Indicates if the backup PVC should be mounted as read-only. Setting this field to `true` also requires you to set the `spcNoRelabeling` field to `true`.
 - `spcNoRelabeling`: Disables automatic relabeling of the volume if set to `true`. You can set this field to `true` only when `readOnly` is `true`. When the `readOnly` flag is `true`, SELinux relabeling of the volume is not possible. This causes the Data Mover backup to fail. Therefore, when you are using the `readOnly` access mode for the CephFS storage class, you must disable relabeling.
 
-## Configuring a  backup PVC for a Data Mover backup {#configuring-backup-pvc_configuring-backup-restore-pvc-datamover}
+## Configure a  backup PVC for a Data Mover backup {#configuring-backup-pvc_configuring-backup-restore-pvc-datamover}
 
 Configure backup persistent volume claim (PVC) settings in the `DataProtectionApplication` (DPA) to optimize Data Mover backup performance for different storage classes. The feature gives you read-only access modes for faster data movement.
 
@@ -105,7 +105,7 @@ Configure backup persistent volume claim (PVC) settings in the `DataProtectionAp
   test-backup1-l..d   Bound   pvc-1298....022f8   2Gi        ROX            standard-csi   <unset>                 37s
   ```
 
-## Configuring a restorePVC for a Data Mover restore {#configuring-restore-pvc_configuring-backup-restore-pvc-datamover}
+## Configure a restorePVC for a Data Mover restore {#configuring-restore-pvc_configuring-backup-restore-pvc-datamover}
 
 Configure restore persistent volume claim (PVC) settings in the `DataProtectionApplication` (DPA) to optimize Data Mover restore operations and enable parallel volume restores. This improves restore performance by distributing restore pods across nodes.
 

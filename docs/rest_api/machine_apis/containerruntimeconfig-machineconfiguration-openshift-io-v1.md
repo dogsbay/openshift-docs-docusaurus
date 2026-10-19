@@ -3,7 +3,7 @@ title: "ContainerRuntimeConfig [machineconfiguration.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# ContainerRuntimeConfig [machineconfiguration.openshift.io/v1] {#containerruntimeconfig-machineconfiguration-openshift-io-v1}
+# ContainerRuntimeConfig \[machineconfiguration.openshift.io/v1\] {#containerruntimeconfig-machineconfiguration-openshift-io-v1}
 
 <a id="containerruntimeconfig-machineconfiguration-openshift-io-v1"></a>
 
@@ -80,7 +80,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.machineConfigPoolSelector.matchExpressions {#_specmachineconfigpoolselectormatchexpressions}
 
@@ -92,7 +92,7 @@ Type
   `array`
   ```
 
-### .spec.machineConfigPoolSelector.matchExpressions[] {#_specmachineconfigpoolselectormatchexpressions}
+### .spec.machineConfigPoolSelector.matchExpressions\[\] {#_specmachineconfigpoolselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -138,7 +138,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : ContainerRuntimeConfigCondition defines the state of the ContainerRuntimeConfig
@@ -150,7 +150,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `` | lastTransitionTime is the time of the last update to the current status object. |
+| `lastTransitionTime` | &#96;&#96; | lastTransitionTime is the time of the last update to the current status object. |
 | `message` | `string` | message provides additional information about the current condition. This is only to be consumed by humans. |
 | `reason` | `string` | reason is the reason for the condition’s last transition.  Reasons are PascalCase |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -242,7 +242,7 @@ Description
 | 202 - Accepted | [`ContainerRuntimeConfig`](/docs/rest_api/machine_apis/containerruntimeconfig-machineconfiguration-openshift-io-v1#containerruntimeconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{name} {#_apismachineconfigurationopenshiftiov1containerruntimeconfigs_name}
+### /apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/&#123;name&#125; {#_apismachineconfigurationopenshiftiov1containerruntimeconfigs_name}
 
 **Global path parameters**
 
@@ -346,7 +346,7 @@ Description
 | 201 - Created | [`ContainerRuntimeConfig`](/docs/rest_api/machine_apis/containerruntimeconfig-machineconfiguration-openshift-io-v1#containerruntimeconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/{name}/status {#_apismachineconfigurationopenshiftiov1containerruntimeconfigs_name_status}
+### /apis/machineconfiguration.openshift.io/v1/containerruntimeconfigs/&#123;name&#125;/status {#_apismachineconfigurationopenshiftiov1containerruntimeconfigs_name_status}
 
 **Global path parameters**
 

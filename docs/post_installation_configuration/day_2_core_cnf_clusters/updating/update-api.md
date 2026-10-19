@@ -28,9 +28,9 @@ Use the [Red Hat OpenShift Container Platform Update Graph](https://access.redha
 
 :::warning
 
-The <4.y+1.z> or <4.y+2.z> version that you update to must have the same patch level as the <4.y.z> release you are updating from.
+The &lt;4.y+1.z> or &lt;4.y+2.z> version that you update to must have the same patch level as the &lt;4.y.z> release you are updating from.
 
-The OpenShift Container Platform update process mandates that if a fix is present in a specific <4.y.z> release, then the that fix must be present in the <4.y+1.z> release that you update to.
+The OpenShift Container Platform update process mandates that if a fix is present in a specific &lt;4.y.z> release, then the that fix must be present in the &lt;4.y+1.z> release that you update to.
 
 :::
 
@@ -156,14 +156,14 @@ To begin testing an update to a new release, you can use the fast channel.
      4.15.35     quay.io/openshift-release-dev/ocp-release@sha256:f21253
      4.15.34     quay.io/openshift-release-dev/ocp-release@sha256:2dd69c5
    ```
-3. Follow the update procedure to get to version 4.16 (<y+1> from version 4.15)
+3. Follow the update procedure to get to version 4.16 (&lt;y+1> from version 4.15)
    :::note
 
    You can keep your worker nodes paused between EUS releases even if you are using the fast channel.
 
    :::
-4. When you get to the required <y+1> release, change the channel again, this time to `fast-<y+2>`.
-5. Follow the EUS update procedure to get to the required <y+2> release.
+4. When you get to the required &lt;y+1> release, change the channel again, this time to `fast-<y+2>`.
+5. Follow the EUS update procedure to get to the required &lt;y+2> release.
 
 ### Changing the channel for a y-stream update {#update-updating-y-stream_update-api}
 

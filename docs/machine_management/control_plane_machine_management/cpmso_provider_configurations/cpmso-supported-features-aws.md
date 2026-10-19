@@ -13,7 +13,9 @@ When you save an update to the control plane machine set, the Control Plane Mach
 
 ## Restrict the API server to private for an Amazon Web Services cluster {#private-clusters-setting-api-private-aws_cpmso-supported-features-aws}
 
-If the security posture of your organization does not allow clusters to use an open API endpoint, you can restrict the API server to use only internal load balancers. To implement this API server restriction, use the Amazon Web Services (AWS) console and OpenShift CLI (`oc`) to delete the external load balancer components.
+If the security posture of your organization does not allow clusters to use an open API endpoint, you can restrict the API server to use only internal load balancers.
+
+To implement this API server restriction, use the Amazon Web Services (AWS) console and OpenShift CLI (`oc`) to delete the external load balancer components.
 
 **Prerequisites**
 
@@ -375,16 +377,16 @@ For more information, including limitations and suggested use cases for this Ama
   : Use this market type with Capacity Blocks for ML.
 
   `OnDemand`
-  : Use this market type with On-Demand Capacity Reservations. tag:compute[][]
+  : Use this market type with On-Demand Capacity Reservations. tag::compute\[\]
 
   `Spot`
-  : Use this market type with Spot Instances. This option is not compatible with Capacity Reservations. end:compute[][]
+  : Use this market type with Spot Instances. This option is not compatible with Capacity Reservations. end::compute\[\]
 
-1. Save your changes and exit the object specification. tag:controlplane[][]
+1. Save your changes and exit the object specification. tag::controlplane\[\]
    When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy.
 
    - For clusters that use the default `RollingUpdate` update strategy, the Operator automatically propagates the changes to your control plane configuration.
-   - For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually. end:controlplane[][]
+   - For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually. end::controlplane\[\]
 
 **Verification**
 
@@ -402,9 +404,9 @@ For more information, including limitations and suggested use cases for this Ama
   end::controlplane[]
   ```
 
-  tag:compute[][]
+  tag::compute\[\]
 
-  where `<machine_set_name>` is the name of the compute machine set. end:compute[][]
+  where `<machine_set_name>` is the name of the compute machine set. end::compute\[\]
 
   In the output, verify that the characteristics of the listed machines match the parameters of your Capacity Reservation.
 

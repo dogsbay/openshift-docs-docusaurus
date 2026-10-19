@@ -3,7 +3,7 @@ title: "BrokerTemplateInstance [template.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# BrokerTemplateInstance [template.openshift.io/v1] {#brokertemplateinstance-template-openshift-io-v1}
+# BrokerTemplateInstance \[template.openshift.io/v1\] {#brokertemplateinstance-template-openshift-io-v1}
 
 <a id="brokertemplateinstance-template-openshift-io-v1"></a>
 
@@ -160,7 +160,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/brokertemplateinstances/{name} {#_apistemplateopenshiftiov1brokertemplateinstances_name}
+### /apis/template.openshift.io/v1/brokertemplateinstances/&#123;name&#125; {#_apistemplateopenshiftiov1brokertemplateinstances_name}
 
 **Global path parameters**
 
@@ -265,7 +265,7 @@ Description
 | 201 - Created | [`BrokerTemplateInstance`](/docs/rest_api/template_apis/brokertemplateinstance-template-openshift-io-v1#brokertemplateinstance-template-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/template.openshift.io/v1/watch/brokertemplateinstances/{name} {#_apistemplateopenshiftiov1watchbrokertemplateinstances_name}
+### /apis/template.openshift.io/v1/watch/brokertemplateinstances/&#123;name&#125; {#_apistemplateopenshiftiov1watchbrokertemplateinstances_name}
 
 **Global path parameters**
 

@@ -517,7 +517,7 @@ where:
 : Provides reverse DNS resolution for the bootstrap machine.
 
 `control-plane0.ocp4.example.com.`
-: Provides rebootstrap.ocp4.example.com.verse DNS resolution for the control plane machines.
+: Provides reverse DNS resolution for the control plane machines.
 
 `compute0.ocp4.example.com.`
 : Provides reverse DNS resolution for the compute machines.
@@ -1752,7 +1752,7 @@ To provision physical or virtual machines, install RHCOS by using a bootable ISO
    $ curl -k http://<HTTP_server>/bootstrap.ign
    ```
 
-   - <HTTP_server>: Replace `bootstrap.ign` with `master.ign` or `worker.ign` in the command to validate that the Ignition config files for the control plane and compute nodes are also available.
+   - &lt;HTTP_server>: Replace `bootstrap.ign` with `master.ign` or `worker.ign` in the command to validate that the Ignition config files for the control plane and compute nodes are also available.
      ```terminal title="Example output"
        % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                       Dload  Upload   Total   Spent    Left  Speed
@@ -2229,7 +2229,7 @@ The following example preserves partitions 5 and higher:
 
 In the earlier examples where partition saving is used, `coreos-installer` recreates the partition immediately.
 
-The following examples preserve existing partitions during a PXE installation. The following `APPEND` option preserves any partition in which the partition label begins with 'data' ('data*').
+The following examples preserve existing partitions during a PXE installation. The following `APPEND` option preserves any partition in which the partition label begins with 'data' ('data\*').
 
 ```terminal
 coreos.inst.save_partlabel=data*
@@ -2539,7 +2539,7 @@ You can set the iSCSI target and initiator values for automatic mounting, bootin
    <dt><code>&lt;target_iqn&gt;</code></dt>
    <dd>Specifies the location of the destination system. You must provide the IP address of the target portal, the associated port number, the target iSCSI node in IQN format, and the iSCSI logical unit number (LUN).</dd>
    <dt><code>config.ign</code></dt>
-   <dd>Specifies the Ignition configuration for the destination system. <code>&lt;initiator_iqn&gt;</code>:Specifies[] the iSCSI initiator, or client, name in IQN format. The initiator forms a session to connect to the iSCSI target. <code>&lt;target_iqn&gt;</code>:Specifies[] the iSCSI target, or server, name in IQN format.</dd>
+   <dd>Specifies the Ignition configuration for the destination system. <code>&lt;initiator_iqn&gt;</code>::Specifies the iSCSI initiator, or client, name in IQN format. The initiator forms a session to connect to the iSCSI target. <code>&lt;target_iqn&gt;</code>::Specifies the iSCSI target, or server, name in IQN format.</dd>
    </dl>
 
    For more information about the iSCSI options supported by `dracut`, see the `dracut.cmdline` manual page.
@@ -2582,7 +2582,7 @@ You can set the iSCSI target and initiator values for automatic mounting, bootin
    <dt><code>/dev/mapper/mpatha</code></dt>
    <dd>Specifies the path to the device. If you are using multipath, the multipath device, <code>/dev/mapper/mpatha</code>, If there are multiple multipath devices connected, or to be explicit, you can use the World Wide Name (WWN) symlink available in <code>/dev/disk/by-path</code>.</dd>
    <dt><code>config.ign</code></dt>
-   <dd>Specifies the Ignition configuration for the destination system. <code>rd.iscsi.firmware=1</code>:Specifies[] the iSCSI parameter is read from the BIOS firmware.</dd>
+   <dd>Specifies the Ignition configuration for the destination system. <code>rd.iscsi.firmware=1</code>::Specifies the iSCSI parameter is read from the BIOS firmware.</dd>
    <dt><code>rd.multipath=default</code></dt>
    <dd>Specifies if you want to enable multipathing. Optional parameter.</dd>
    </dl>
@@ -2982,7 +2982,7 @@ bond=<name>[:<network_interfaces>][:<options>]
 
 - `<name>`: Specifies the bonding device name, for example `bond0`.
 - `<network_interfaces>`: Specifies a comma-separated list of physical (ethernet) interfaces, such as `em1,em2`.
-- ` <options>: Specifies a comma-separated list of bonding options. Enter the  `modinfo bonding` command to see available options.
+- ` <options>: Specifies a comma-separated list of bonding options. Enter the  `modinfo bonding&#96; command to see available options.
 
 When you create a bonded interface using the `bond=` command, you must specify how the IP address is assigned and other information for the bonded interface.
 

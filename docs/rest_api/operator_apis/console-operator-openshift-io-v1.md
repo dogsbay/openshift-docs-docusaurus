@@ -3,7 +3,7 @@ title: "Console [operator.openshift.io/v1]"
 sidebar_position: 5
 ---
 
-# Console [operator.openshift.io/v1] {#console-operator-openshift-io-v1}
+# Console \[operator.openshift.io/v1\] {#console-operator-openshift-io-v1}
 
 <a id="console-operator-openshift-io-v1"></a>
 
@@ -46,12 +46,12 @@ Type
 | `ingress` | `object` | ingress allows to configure the alternative ingress for the console. This field is intended for clusters without ingress capability, where access to routes is not possible. |
 | `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
-| `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
+| `observedConfig` | &#96;&#96; | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
 | `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.<br>Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `plugins` | `array (string)` | plugins defines a list of enabled console plugin names. |
 | `providers` | `object` | providers contains configuration for using specific service providers. |
 | `route` | `object` | route contains hostname and secret reference that contains the serving certificate. If a custom route is specified, a new route will be created with the provided hostname, under which console will be available. In case of custom hostname uses the default routing suffix of the cluster, the Secret specification for a serving certificate will not be needed. In case of custom hostname points to an arbitrary domain, manual DNS configurations steps are necessary. The default console route will be maintained to reserve the default hostname for console if the custom route is removed. If not specified, default route will be used. DEPRECATED |
-| `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
+| `unsupportedConfigOverrides` | &#96;&#96; | unsupportedConfigOverrides overrides the final configuration that was computed by the operator. Red Hat does not support the use of this field. Misuse of this field could lead to unexpected behavior or conflict with other configuration options. Seek guidance from the Red Hat support before using this field. Use of this property blocks cluster upgrades, it must be removed before upgrading your cluster. |
 
 ### .spec.customization {#_speccustomization}
 
@@ -104,7 +104,7 @@ Type
   `array`
   ```
 
-### .spec.customization.capabilities[] {#_speccustomizationcapabilities}
+### .spec.customization.capabilities\[\] {#_speccustomizationcapabilities}
 
 Description
 : Capabilities contains set of UI capabilities and their state in the console UI.
@@ -123,7 +123,7 @@ Required
 | `name` | `string` | name is the unique name of a capability. Available capabilities are LightspeedButton, GettingStartedBanner, and GuidedTour. |
 | `visibility` | `object` | visibility defines the visibility state of the capability. |
 
-### .spec.customization.capabilities[].visibility {#_speccustomizationcapabilitiesvisibility}
+### .spec.customization.capabilities\[\].visibility {#_speccustomizationcapabilitiesvisibility}
 
 Description
 : visibility defines the visibility state of the capability.
@@ -181,7 +181,7 @@ Type
   `array`
   ```
 
-### .spec.customization.developerCatalog.categories[] {#_speccustomizationdevelopercatalogcategories}
+### .spec.customization.developerCatalog.categories\[\] {#_speccustomizationdevelopercatalogcategories}
 
 Description
 : DeveloperConsoleCatalogCategory for the developer console catalog.
@@ -197,13 +197,13 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `id` | `string` | id is an identifier used in the URL to enable deep linking in console. ID is required and must have 1-32 URL safe (A-Z, a-z, 0-9, - and _) characters. |
+| `id` | `string` | id is an identifier used in the URL to enable deep linking in console. ID is required and must have 1-32 URL safe (A-Z, a-z, 0-9, - and \_) characters. |
 | `label` | `string` | label defines a category display label. It is required and must have 1-64 characters. |
 | `subcategories` | `array` | subcategories defines a list of child categories. |
 | `subcategories[]` | `object` | DeveloperConsoleCatalogCategoryMeta are the key identifiers of a developer catalog category. |
 | `tags` | `array (string)` | tags is a list of strings that will match the category. A selected category show all items which has at least one overlapping tag between category and item. |
 
-### .spec.customization.developerCatalog.categories[].subcategories {#_speccustomizationdevelopercatalogcategoriessubcategories}
+### .spec.customization.developerCatalog.categories\[\].subcategories {#_speccustomizationdevelopercatalogcategoriessubcategories}
 
 Description
 : subcategories defines a list of child categories.
@@ -213,7 +213,7 @@ Type
   `array`
   ```
 
-### .spec.customization.developerCatalog.categories[].subcategories[] {#_speccustomizationdevelopercatalogcategoriessubcategories}
+### .spec.customization.developerCatalog.categories\[\].subcategories\[\] {#_speccustomizationdevelopercatalogcategoriessubcategories}
 
 Description
 : DeveloperConsoleCatalogCategoryMeta are the key identifiers of a developer catalog category.
@@ -229,7 +229,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `id` | `string` | id is an identifier used in the URL to enable deep linking in console. ID is required and must have 1-32 URL safe (A-Z, a-z, 0-9, - and _) characters. |
+| `id` | `string` | id is an identifier used in the URL to enable deep linking in console. ID is required and must have 1-32 URL safe (A-Z, a-z, 0-9, - and \_) characters. |
 | `label` | `string` | label defines a category display label. It is required and must have 1-64 characters. |
 | `tags` | `array (string)` | tags is a list of strings that will match the category. A selected category show all items which has at least one overlapping tag between category and item. |
 
@@ -262,7 +262,7 @@ Type
   `array`
   ```
 
-### .spec.customization.logos[] {#_speccustomizationlogos}
+### .spec.customization.logos\[\] {#_speccustomizationlogos}
 
 Description
 : Logo defines a configuration based on theme modes for the console UI logo.
@@ -282,7 +282,7 @@ Required
 | `themes[]` | `object` | Theme defines a theme mode for the console UI. |
 | `type` | `string` | type specifies the type of the logo for the console UI. It determines whether the logo is for the masthead or favicon. type is a required field that allows values of Masthead and Favicon. When set to "Masthead", the logo will be used in the masthead and about modal of the console UI. When set to "Favicon", the logo will be used as the favicon of the console UI. |
 
-### .spec.customization.logos[].themes {#_speccustomizationlogosthemes}
+### .spec.customization.logos\[\].themes {#_speccustomizationlogosthemes}
 
 Description
 : themes specifies the themes for the console UI logo. themes is a required field that allows a list of themes. Each item in the themes list must have a unique mode and a source field. Each mode determines whether the logo is for the dark or light mode of the console UI. If a theme is not specified, the default OpenShift logo will be displayed for that theme. There must be at least one entry and no more than 2 entries.
@@ -292,7 +292,7 @@ Type
   `array`
   ```
 
-### .spec.customization.logos[].themes[] {#_speccustomizationlogosthemes}
+### .spec.customization.logos\[\].themes\[\] {#_speccustomizationlogosthemes}
 
 Description
 : Theme defines a theme mode for the console UI.
@@ -311,7 +311,7 @@ Required
 | `mode` | `string` | mode is used to specify what theme mode a logo will apply to in the console UI. mode is a required field that allows values of Dark and Light. When set to Dark, the logo file referenced in the 'file' field will be used when an end-user of the console UI enables the Dark mode. When set to Light, the logo file referenced in the 'file' field will be used when an end-user of the console UI enables the Light mode. |
 | `source` | `object` | source is used by the console to locate the specified file containing a custom logo. source is a required field that references a ConfigMap name and key that contains the custom logo file in the openshift-config namespace. You can create it with a command like: - 'oc create configmap custom-logos-config --namespace=openshift-config --from-file=/path/to/file' The ConfigMap key must include the file extension so that the console serves the file with the correct MIME type. The recommended file format for the Masthead and Favicon logos is SVG, but other file formats are allowed if supported by the browser. The logo image size must be less than 1 MB due to constraints on the ConfigMap size. For more information, see the documentation: https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/web_console/customizing-web-console#customizing-web-console |
 
-### .spec.customization.logos[].themes[].source {#_speccustomizationlogosthemessource}
+### .spec.customization.logos\[\].themes\[\].source {#_speccustomizationlogosthemessource}
 
 Description
 : source is used by the console to locate the specified file containing a custom logo. source is a required field that references a ConfigMap name and key that contains the custom logo file in the openshift-config namespace. You can create it with a command like:
@@ -331,7 +331,7 @@ Required
 | `configMap` | `object` | configMap specifies the ConfigMap sourcing details such as the name of the ConfigMap and the key for the file. The ConfigMap must exist in the openshift-config namespace. Required when from is "ConfigMap", and forbidden otherwise. |
 | `from` | `string` | from is a required field to specify the source type of the file reference. Allowed values are ConfigMap. When set to ConfigMap, the file will be sourced from a ConfigMap in the openshift-config namespace. The configMap field must be set when from is set to ConfigMap. |
 
-### .spec.customization.logos[].themes[].source.configMap {#_speccustomizationlogosthemessourceconfigmap}
+### .spec.customization.logos\[\].themes\[\].source.configMap {#_speccustomizationlogosthemessourceconfigmap}
 
 Description
 : configMap specifies the ConfigMap sourcing details such as the name of the ConfigMap and the key for the file. The ConfigMap must exist in the openshift-config namespace. Required when from is "ConfigMap", and forbidden otherwise.
@@ -347,7 +347,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `key` | `string` | key is the logo key inside the referenced ConfigMap. Must consist only of alphanumeric characters, dashes (-), underscores (_), and periods (.). Must be at most 253 characters in length. Must end in a valid file extension. A valid file extension must consist of a period followed by 2 to 5 alpha characters. |
+| `key` | `string` | key is the logo key inside the referenced ConfigMap. Must consist only of alphanumeric characters, dashes (-), underscores (\_), and periods (.). Must be at most 253 characters in length. Must end in a valid file extension. A valid file extension must consist of a period followed by 2 to 5 alpha characters. |
 | `name` | `string` | name is the name of the ConfigMap. name is a required field. Must consist of lower case alphanumeric characters, '-' or '.', and must start and end with an alphanumeric character. Must be at most 253 characters in length. |
 
 ### .spec.customization.perspectives {#_speccustomizationperspectives}
@@ -360,7 +360,7 @@ Type
   `array`
   ```
 
-### .spec.customization.perspectives[] {#_speccustomizationperspectives}
+### .spec.customization.perspectives\[\] {#_speccustomizationperspectives}
 
 Description
 : Perspective defines a perspective that cluster admins want to show/hide in the perspective switcher dropdown
@@ -381,7 +381,7 @@ Required
 | `pinnedResources[]` | `object` | PinnedResourceReference includes the group, version and type of resource |
 | `visibility` | `object` | visibility defines the state of perspective along with access review checks if needed for that perspective. |
 
-### .spec.customization.perspectives[].pinnedResources {#_speccustomizationperspectivespinnedresources}
+### .spec.customization.perspectives\[\].pinnedResources {#_speccustomizationperspectivespinnedresources}
 
 Description
 : pinnedResources defines the list of default pinned resources that users will see on the perspective navigation if they have not customized these pinned resources themselves. The list of available Kubernetes resources could be read via `kubectl api-resources`. The console will also provide a configuration UI and a YAML snippet that will list the available resources that can be pinned to the navigation. Incorrect or unknown resources will be ignored.
@@ -391,7 +391,7 @@ Type
   `array`
   ```
 
-### .spec.customization.perspectives[].pinnedResources[] {#_speccustomizationperspectivespinnedresources}
+### .spec.customization.perspectives\[\].pinnedResources\[\] {#_speccustomizationperspectivespinnedresources}
 
 Description
 : PinnedResourceReference includes the group, version and type of resource
@@ -412,7 +412,7 @@ Required
 | `resource` | `string` | resource is the type that is being referenced. It is normally the plural form of the resource kind in lowercase. This value should consist of only lowercase alphanumeric characters and hyphens. Example: "deployments", "deploymentconfigs", "pods", etc. |
 | `version` | `string` | version is the API Version of the Resource. This value should consist of only lowercase alphanumeric characters. Example: "v1", "v1beta1", etc. |
 
-### .spec.customization.perspectives[].visibility {#_speccustomizationperspectivesvisibility}
+### .spec.customization.perspectives\[\].visibility {#_speccustomizationperspectivesvisibility}
 
 Description
 : visibility defines the state of perspective along with access review checks if needed for that perspective.
@@ -430,7 +430,7 @@ Required
 | `accessReview` | `object` | accessReview defines required and missing access review checks. |
 | `state` | `string` | state defines the perspective is enabled or disabled or access review check is required. |
 
-### .spec.customization.perspectives[].visibility.accessReview {#_speccustomizationperspectivesvisibilityaccessreview}
+### .spec.customization.perspectives\[\].visibility.accessReview {#_speccustomizationperspectivesvisibilityaccessreview}
 
 Description
 : accessReview defines required and missing access review checks.
@@ -447,7 +447,7 @@ Type
 | `required` | `array` | required defines a list of permission checks. The perspective will only be shown when all checks are successful. When omitted, the access review is skipped and the perspective will not be shown unless it is required to do so based on the configuration of the missing access review list. |
 | `required[]` | `object` | ResourceAttributes includes the authorization attributes available for resource requests to the Authorizer interface |
 
-### .spec.customization.perspectives[].visibility.accessReview.missing {#_speccustomizationperspectivesvisibilityaccessreviewmissing}
+### .spec.customization.perspectives\[\].visibility.accessReview.missing {#_speccustomizationperspectivesvisibilityaccessreviewmissing}
 
 Description
 : missing defines a list of permission checks. The perspective will only be shown when at least one check fails. When omitted, the access review is skipped and the perspective will not be shown unless it is required to do so based on the configuration of the required access review list.
@@ -457,7 +457,7 @@ Type
   `array`
   ```
 
-### .spec.customization.perspectives[].visibility.accessReview.missing[] {#_speccustomizationperspectivesvisibilityaccessreviewmissing}
+### .spec.customization.perspectives\[\].visibility.accessReview.missing\[\] {#_speccustomizationperspectivesvisibilityaccessreviewmissing}
 
 Description
 : ResourceAttributes includes the authorization attributes available for resource requests to the Authorizer interface
@@ -470,16 +470,16 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `fieldSelector` | `object` | fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it. |
-| `group` | `string` | Group is the API Group of the Resource.  "*" means all. |
+| `group` | `string` | Group is the API Group of the Resource.  "\*" means all. |
 | `labelSelector` | `object` | labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it. |
 | `name` | `string` | Name is the name of the resource being requested for a "get" or deleted for a "delete". "" (empty) means all. |
 | `namespace` | `string` | Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview |
-| `resource` | `string` | Resource is one of the existing resource types.  "*" means all. |
+| `resource` | `string` | Resource is one of the existing resource types.  "\*" means all. |
 | `subresource` | `string` | Subresource is one of the existing resource types.  "" means none. |
-| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all. |
-| `version` | `string` | Version is the API Version of the Resource.  "*" means all. |
+| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "\*" means all. |
+| `version` | `string` | Version is the API Version of the Resource.  "\*" means all. |
 
-### .spec.customization.perspectives[].visibility.accessReview.missing[].fieldSelector {#_speccustomizationperspectivesvisibilityaccessreviewmissingfieldselector}
+### .spec.customization.perspectives\[\].visibility.accessReview.missing\[\].fieldSelector {#_speccustomizationperspectivesvisibilityaccessreviewmissingfieldselector}
 
 Description
 : fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it.
@@ -491,11 +491,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
+| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s \*SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | `array` | requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 | `requirements[]` | `object` | FieldSelectorRequirement is a selector that contains values, a key, and an operator that relates the key and values. |
 
-### .spec.customization.perspectives[].visibility.accessReview.missing[].fieldSelector.requirements {#_speccustomizationperspectivesvisibilityaccessreviewmissingfieldselectorrequirements}
+### .spec.customization.perspectives\[\].visibility.accessReview.missing\[\].fieldSelector.requirements {#_speccustomizationperspectivesvisibilityaccessreviewmissingfieldselectorrequirements}
 
 Description
 : requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood.
@@ -505,7 +505,7 @@ Type
   `array`
   ```
 
-### .spec.customization.perspectives[].visibility.accessReview.missing[].fieldSelector.requirements[] {#_speccustomizationperspectivesvisibilityaccessreviewmissingfieldselectorrequirements}
+### .spec.customization.perspectives\[\].visibility.accessReview.missing\[\].fieldSelector.requirements\[\] {#_speccustomizationperspectivesvisibilityaccessreviewmissingfieldselectorrequirements}
 
 Description
 : FieldSelectorRequirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -525,7 +525,7 @@ Required
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. The list of operators may grow in the future. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. |
 
-### .spec.customization.perspectives[].visibility.accessReview.missing[].labelSelector {#_speccustomizationperspectivesvisibilityaccessreviewmissinglabelselector}
+### .spec.customization.perspectives\[\].visibility.accessReview.missing\[\].labelSelector {#_speccustomizationperspectivesvisibilityaccessreviewmissinglabelselector}
 
 Description
 : labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it.
@@ -537,11 +537,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
+| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s \*SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | `array` | requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 | `requirements[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 
-### .spec.customization.perspectives[].visibility.accessReview.missing[].labelSelector.requirements {#_speccustomizationperspectivesvisibilityaccessreviewmissinglabelselectorrequirements}
+### .spec.customization.perspectives\[\].visibility.accessReview.missing\[\].labelSelector.requirements {#_speccustomizationperspectivesvisibilityaccessreviewmissinglabelselectorrequirements}
 
 Description
 : requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood.
@@ -551,7 +551,7 @@ Type
   `array`
   ```
 
-### .spec.customization.perspectives[].visibility.accessReview.missing[].labelSelector.requirements[] {#_speccustomizationperspectivesvisibilityaccessreviewmissinglabelselectorrequirements}
+### .spec.customization.perspectives\[\].visibility.accessReview.missing\[\].labelSelector.requirements\[\] {#_speccustomizationperspectivesvisibilityaccessreviewmissinglabelselectorrequirements}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -571,7 +571,7 @@ Required
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
 
-### .spec.customization.perspectives[].visibility.accessReview.required {#_speccustomizationperspectivesvisibilityaccessreviewrequired}
+### .spec.customization.perspectives\[\].visibility.accessReview.required {#_speccustomizationperspectivesvisibilityaccessreviewrequired}
 
 Description
 : required defines a list of permission checks. The perspective will only be shown when all checks are successful. When omitted, the access review is skipped and the perspective will not be shown unless it is required to do so based on the configuration of the missing access review list.
@@ -581,7 +581,7 @@ Type
   `array`
   ```
 
-### .spec.customization.perspectives[].visibility.accessReview.required[] {#_speccustomizationperspectivesvisibilityaccessreviewrequired}
+### .spec.customization.perspectives\[\].visibility.accessReview.required\[\] {#_speccustomizationperspectivesvisibilityaccessreviewrequired}
 
 Description
 : ResourceAttributes includes the authorization attributes available for resource requests to the Authorizer interface
@@ -594,16 +594,16 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `fieldSelector` | `object` | fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it. |
-| `group` | `string` | Group is the API Group of the Resource.  "*" means all. |
+| `group` | `string` | Group is the API Group of the Resource.  "\*" means all. |
 | `labelSelector` | `object` | labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it. |
 | `name` | `string` | Name is the name of the resource being requested for a "get" or deleted for a "delete". "" (empty) means all. |
 | `namespace` | `string` | Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview |
-| `resource` | `string` | Resource is one of the existing resource types.  "*" means all. |
+| `resource` | `string` | Resource is one of the existing resource types.  "\*" means all. |
 | `subresource` | `string` | Subresource is one of the existing resource types.  "" means none. |
-| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all. |
-| `version` | `string` | Version is the API Version of the Resource.  "*" means all. |
+| `verb` | `string` | Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "\*" means all. |
+| `version` | `string` | Version is the API Version of the Resource.  "\*" means all. |
 
-### .spec.customization.perspectives[].visibility.accessReview.required[].fieldSelector {#_speccustomizationperspectivesvisibilityaccessreviewrequiredfieldselector}
+### .spec.customization.perspectives\[\].visibility.accessReview.required\[\].fieldSelector {#_speccustomizationperspectivesvisibilityaccessreviewrequiredfieldselector}
 
 Description
 : fieldSelector describes the limitation on access based on field.  It can only limit access, not broaden it.
@@ -615,11 +615,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
+| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s \*SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | `array` | requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 | `requirements[]` | `object` | FieldSelectorRequirement is a selector that contains values, a key, and an operator that relates the key and values. |
 
-### .spec.customization.perspectives[].visibility.accessReview.required[].fieldSelector.requirements {#_speccustomizationperspectivesvisibilityaccessreviewrequiredfieldselectorrequirements}
+### .spec.customization.perspectives\[\].visibility.accessReview.required\[\].fieldSelector.requirements {#_speccustomizationperspectivesvisibilityaccessreviewrequiredfieldselectorrequirements}
 
 Description
 : requirements is the parsed interpretation of a field selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood.
@@ -629,7 +629,7 @@ Type
   `array`
   ```
 
-### .spec.customization.perspectives[].visibility.accessReview.required[].fieldSelector.requirements[] {#_speccustomizationperspectivesvisibilityaccessreviewrequiredfieldselectorrequirements}
+### .spec.customization.perspectives\[\].visibility.accessReview.required\[\].fieldSelector.requirements\[\] {#_speccustomizationperspectivesvisibilityaccessreviewrequiredfieldselectorrequirements}
 
 Description
 : FieldSelectorRequirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -649,7 +649,7 @@ Required
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. The list of operators may grow in the future. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. |
 
-### .spec.customization.perspectives[].visibility.accessReview.required[].labelSelector {#_speccustomizationperspectivesvisibilityaccessreviewrequiredlabelselector}
+### .spec.customization.perspectives\[\].visibility.accessReview.required\[\].labelSelector {#_speccustomizationperspectivesvisibilityaccessreviewrequiredlabelselector}
 
 Description
 : labelSelector describes the limitation on access based on labels.  It can only limit access, not broaden it.
@@ -661,11 +661,11 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s *SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
+| `rawSelector` | `string` | rawSelector is the serialization of a field selector that would be included in a query parameter. Webhook implementations are encouraged to ignore rawSelector. The kube-apiserver’s \*SubjectAccessReview will parse the rawSelector as long as the requirements are not present. |
 | `requirements` | `array` | requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood. |
 | `requirements[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
 
-### .spec.customization.perspectives[].visibility.accessReview.required[].labelSelector.requirements {#_speccustomizationperspectivesvisibilityaccessreviewrequiredlabelselectorrequirements}
+### .spec.customization.perspectives\[\].visibility.accessReview.required\[\].labelSelector.requirements {#_speccustomizationperspectivesvisibilityaccessreviewrequiredlabelselectorrequirements}
 
 Description
 : requirements is the parsed interpretation of a label selector. All requirements must be met for a resource instance to match the selector. Webhook implementations should handle requirements, but how to handle them is up to the webhook. Since requirements can only limit the request, it is safe to authorize as unlimited request if the requirements are not understood.
@@ -675,7 +675,7 @@ Type
   `array`
   ```
 
-### .spec.customization.perspectives[].visibility.accessReview.required[].labelSelector.requirements[] {#_speccustomizationperspectivesvisibilityaccessreviewrequiredlabelselectorrequirements}
+### .spec.customization.perspectives\[\].visibility.accessReview.required\[\].labelSelector.requirements\[\] {#_speccustomizationperspectivesvisibilityaccessreviewrequiredlabelselectorrequirements}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -832,7 +832,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : OperatorCondition is just the standard condition fields.
@@ -865,7 +865,7 @@ Type
   `array`
   ```
 
-### .status.generations[] {#_statusgenerations}
+### .status.generations\[\] {#_statusgenerations}
 
 Description
 : GenerationStatus keeps track of the generation for a given resource so that decisions about forced updates can be made.
@@ -976,7 +976,7 @@ Description
 | 202 - Accepted | [`Console`](/docs/rest_api/operator_apis/console-operator-openshift-io-v1#console-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/consoles/{name} {#_apisoperatoropenshiftiov1consoles_name}
+### /apis/operator.openshift.io/v1/consoles/&#123;name&#125; {#_apisoperatoropenshiftiov1consoles_name}
 
 **Global path parameters**
 
@@ -1080,7 +1080,7 @@ Description
 | 201 - Created | [`Console`](/docs/rest_api/operator_apis/console-operator-openshift-io-v1#console-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/consoles/{name}/status {#_apisoperatoropenshiftiov1consoles_name_status}
+### /apis/operator.openshift.io/v1/consoles/&#123;name&#125;/status {#_apisoperatoropenshiftiov1consoles_name_status}
 
 **Global path parameters**
 

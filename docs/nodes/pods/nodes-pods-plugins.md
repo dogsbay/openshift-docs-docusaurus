@@ -92,7 +92,7 @@ OpenShift Container Platform supports the device plugin API, but the device plug
 
 Device Manager advertises devices as **Extended Resources**. User pods can consume devices, advertised by Device Manager, using the same **Limit/Request** mechanism, which is used for requesting any other **Extended Resource**.
 
-Upon start, the device plugin registers itself with Device Manager invoking `Register` on the ***/var/lib/kubelet/device-plugins/kubelet.sock*** and starts a gRPC service at ***/var/lib/kubelet/device-plugins/<plugin>.sock*** for serving Device Manager requests.
+Upon start, the device plugin registers itself with Device Manager invoking `Register` on the ***/var/lib/kubelet/device-plugins/kubelet.sock*** and starts a gRPC service at ***/var/lib/kubelet/device-plugins/&lt;plugin>.sock*** for serving Device Manager requests.
 
 Device Manager, while processing a new registration request, invokes `ListAndWatch` remote procedure call (RPC) at the device plugin service. In response, Device Manager gets a list of **Device** objects from the plugin over a gRPC stream. Device Manager will keep watching on the stream for new updates from the plugin. On the plugin side, the plugin will also keep the stream open and whenever there is a change in the state of any of the devices, a new device list is sent to the Device Manager over the same streaming connection.
 

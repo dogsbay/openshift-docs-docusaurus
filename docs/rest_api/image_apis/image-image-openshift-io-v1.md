@@ -3,7 +3,7 @@ title: "Image [image.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# Image [image.openshift.io/v1] {#image-image-openshift-io-v1}
+# Image \[image.openshift.io/v1\] {#image-image-openshift-io-v1}
 
 <a id="image-image-openshift-io-v1"></a>
 
@@ -48,7 +48,7 @@ Type
   `array`
   ```
 
-### .dockerImageLayers[] {#_dockerimagelayers}
+### .dockerImageLayers\[\] {#_dockerimagelayers}
 
 Description
 : ImageLayer represents a single layer of the image. Some images may have multiple layers. Some may have none.
@@ -79,7 +79,7 @@ Type
   `array`
   ```
 
-### .dockerImageManifests[] {#_dockerimagemanifests}
+### .dockerImageManifests\[\] {#_dockerimagemanifests}
 
 Description
 : ImageManifest represents sub-manifests of a manifest list. The Digest field points to a regular Image object.
@@ -115,7 +115,7 @@ Type
   `array`
   ```
 
-### .signatures[] {#_signatures}
+### .signatures\[\] {#_signatures}
 
 Description
 : ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.
@@ -146,7 +146,7 @@ Required
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
 
-### .signatures[].conditions {#_signaturesconditions}
+### .signatures\[\].conditions {#_signaturesconditions}
 
 Description
 : conditions represent the latest available observations of a signature’s current state.
@@ -156,7 +156,7 @@ Type
   `array`
   ```
 
-### .signatures[].conditions[] {#_signaturesconditions}
+### .signatures\[\].conditions\[\] {#_signaturesconditions}
 
 Description
 : SignatureCondition describes an image signature condition of particular kind at particular probe time.
@@ -179,7 +179,7 @@ Required
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
 
-### .signatures[].issuedBy {#_signaturesissuedby}
+### .signatures\[\].issuedBy {#_signaturesissuedby}
 
 Description
 : SignatureIssuer holds information about an issuer of signing certificate or key.
@@ -194,7 +194,7 @@ Type
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
 
-### .signatures[].issuedTo {#_signaturesissuedto}
+### .signatures\[\].issuedTo {#_signaturesissuedto}
 
 Description
 : SignatureSubject holds information about a person or entity who created the signature.
@@ -324,7 +324,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/images/{name} {#_apisimageopenshiftiov1images_name}
+### /apis/image.openshift.io/v1/images/&#123;name&#125; {#_apisimageopenshiftiov1images_name}
 
 **Global path parameters**
 
@@ -429,7 +429,7 @@ Description
 | 201 - Created | [`Image`](/docs/rest_api/image_apis/image-image-openshift-io-v1#image-image-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/image.openshift.io/v1/watch/images/{name} {#_apisimageopenshiftiov1watchimages_name}
+### /apis/image.openshift.io/v1/watch/images/&#123;name&#125; {#_apisimageopenshiftiov1watchimages_name}
 
 **Global path parameters**
 

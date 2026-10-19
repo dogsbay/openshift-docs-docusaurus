@@ -904,6 +904,13 @@ As the fields in the `kubeletConfig` object are passed directly to the kubelet f
 
 :::
 
+You can set most kubelet configuration options. You cannot overwrite the following options:
+
+- `CgroupDriver`
+- `ClusterDNS`
+- `ClusterDomain`
+- `StaticPodPath`
+
 Consider the following guidance:
 
 - Edit an existing `KubeletConfig` CR to modify existing settings or add new settings, instead of creating a CR for each change. It is recommended that you create a CR only to modify a different machine config pool, or for changes that are intended to be temporary, so that you can revert the changes.
@@ -1061,7 +1068,7 @@ The following procedure is an example to show how to configure the maximum numbe
 
       **`spec.kubeletConfig`**
 
-      Specifies the kubelet configuration. For example: *   Use `podPidsLimit` to set the maximum number of PIDs in any pod. *   Use `containerLogMaxSize` to set the maximum size of the container log file before it is rotated. *   Use `maxPods` to set the maximum pods per node.
+      Specifies the kubelet configuration. For example: \*   Use `podPidsLimit` to set the maximum number of PIDs in any pod. \*   Use `containerLogMaxSize` to set the maximum size of the container log file before it is rotated. \*   Use `maxPods` to set the maximum pods per node. \*   Use `nodeStatusMaxImages` to set how many images the node reports. If a node contains more than 50 images, pod scheduling might be imbalanced because the image list is shortened to 50 by default. Set `nodeStatusMaxImages` to `-1` to disable that limit.
 
       :::note
 
@@ -1540,7 +1547,7 @@ spec:
 
 #### Allocating huge pages of a specific size {#huge-pages-allocating-specific-size_post-install-node-tasks}
 
-Some platforms support multiple huge page sizes. To allocate huge pages of a specific size, precede the huge pages boot command parameters with a huge page size selection parameter `hugepagesz=<size>`. The `<size>` value must be specified in bytes with an optional scale suffix [`kKmMgG`]. The default huge page size can be defined with the `default_hugepagesz=<size>` boot parameter.
+Some platforms support multiple huge page sizes. To allocate huge pages of a specific size, precede the huge pages boot command parameters with a huge page size selection parameter `hugepagesz=<size>`. The `<size>` value must be specified in bytes with an optional scale suffix \[`kKmMgG`\]. The default huge page size can be defined with the `default_hugepagesz=<size>` boot parameter.
 
 #### Huge page requirements {#huge-pages-requirements_post-install-node-tasks}
 
@@ -1720,7 +1727,7 @@ OpenShift Container Platform supports the device plugin API, but the device plug
 
 Device Manager advertises devices as **Extended Resources**. User pods can consume devices, advertised by Device Manager, using the same **Limit/Request** mechanism, which is used for requesting any other **Extended Resource**.
 
-Upon start, the device plugin registers itself with Device Manager invoking `Register` on the ***/var/lib/kubelet/device-plugins/kubelet.sock*** and starts a gRPC service at ***/var/lib/kubelet/device-plugins/<plugin>.sock*** for serving Device Manager requests.
+Upon start, the device plugin registers itself with Device Manager invoking `Register` on the ***/var/lib/kubelet/device-plugins/kubelet.sock*** and starts a gRPC service at ***/var/lib/kubelet/device-plugins/&lt;plugin>.sock*** for serving Device Manager requests.
 
 Device Manager, while processing a new registration request, invokes `ListAndWatch` remote procedure call (RPC) at the device plugin service. In response, Device Manager gets a list of **Device** objects from the plugin over a gRPC stream. Device Manager will keep watching on the stream for new updates from the plugin. On the plugin side, the plugin will also keep the stream open and whenever there is a change in the state of any of the devices, a new device list is sent to the Device Manager over the same streaming connection.
 
@@ -2998,7 +3005,7 @@ Alternatively, you can disable overcommitment for specific projects.
 
 ### Disable overcommitment for a project {#nodes-cluster-overcommit-project-disable_post-install-node-tasks}
 
-If overcommitment is enabled on a project, you can disable overcommitment for that projects. This allows infrastructure components to be configured independently of overcommitment.
+If overcommitment is enabled on a project, you can disable overcommitment for that project. This allows infrastructure components to be configured independently of overcommitment.
 
 **Procedure**
 
@@ -3248,7 +3255,7 @@ Container garbage collection removes terminated containers. Image garbage collec
 
 **Verification**
 
-- Verify that garbage collection is active by entering the following command. The Machine Config Pool you specified in the custom resource appears with `UPDATING` as 'true` until the change is fully implemented:
+- Verify that garbage collection is active by entering the following command. The Machine Config Pool you specified in the custom resource appears with `UPDATING` as 'true&#96; until the change is fully implemented:
   ```terminal
   $ oc get machineconfigpool
   ```
@@ -3265,9 +3272,13 @@ Understand and use the Node Tuning Operator to manage node-level performance tun
 
 ### Node Tuning Operator {#about-node-tuning-operator_post-install-node-tasks}
 
-The Node Tuning Operator helps you manage node-level tuning by orchestrating the TuneD daemon and achieves low latency performance by using the Performance Profile controller. The majority of high-performance applications require some level of kernel tuning. The Node Tuning Operator provides a unified management interface to users of node-level sysctls and more flexibility to add custom tuning specified by user needs.
+The Node Tuning Operator helps you manage node-level tuning by orchestrating the TuneD daemon and achieves low latency performance by using the Performance Profile controller.
 
-The Operator manages the containerized TuneD daemon for OpenShift Container Platform as a Kubernetes daemon set. It ensures the custom tuning specification is passed to all containerized TuneD daemons running in the cluster in the format that the daemons understand. The daemons run on all nodes in the cluster, one per node.
+The majority of high-performance applications require some level of kernel tuning. The Node Tuning Operator provides a unified management interface to users of node-level sysctls and more flexibility to add custom tuning specified by user needs.
+
+The Operator manages the containerized TuneD daemon for OpenShift Container Platform as a Kubernetes daemon set. It ensures the custom tuning specification is passed to all containerized TuneD daemons running in the cluster in the format that the daemons understand.
+
+The daemons run on all nodes in the cluster, one per node.
 
 Node-level settings applied by the containerized TuneD daemon are rolled back on an event that triggers a profile change or when the containerized TuneD daemon is terminated gracefully by receiving and handling a termination signal.
 

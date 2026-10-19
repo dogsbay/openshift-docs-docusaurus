@@ -3,7 +3,7 @@ title: "ResourceQuota [v1]"
 sidebar_position: 9
 ---
 
-# ResourceQuota [v1]
+# ResourceQuota \[v1\]
 
 <a id="resourcequota-v1"></a>
 
@@ -66,7 +66,7 @@ Type
   `array`
   ```
 
-### .spec.scopeSelector.matchExpressions[] {#_specscopeselectormatchexpressions}
+### .spec.scopeSelector.matchExpressions\[\] {#_specscopeselectormatchexpressions}
 
 Description
 : A scoped-resource selector requirement is a selector that contains values, a scope name, and an operator that relates the scope name and values.
@@ -165,7 +165,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/resourcequotas {#_apiv1namespaces_namespace_resourcequotas}
+### /api/v1/namespaces/&#123;namespace&#125;/resourcequotas {#_apiv1namespaces_namespace_resourcequotas}
 
 HTTP method
 : ```
@@ -239,7 +239,7 @@ Description
 | 202 - Accepted | [`ResourceQuota`](/docs/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{namespace}/resourcequotas {#_apiv1watchnamespaces_namespace_resourcequotas}
+### /api/v1/watch/namespaces/&#123;namespace&#125;/resourcequotas {#_apiv1watchnamespaces_namespace_resourcequotas}
 
 HTTP method
 : ```
@@ -258,7 +258,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/resourcequotas/{name} {#_apiv1namespaces_namespace_resourcequotas_name}
+### /api/v1/namespaces/&#123;namespace&#125;/resourcequotas/&#123;name&#125; {#_apiv1namespaces_namespace_resourcequotas_name}
 
 **Global path parameters**
 
@@ -363,7 +363,7 @@ Description
 | 201 - Created | [`ResourceQuota`](/docs/rest_api/schedule_and_quota_apis/resourcequota-v1#resourcequota-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{namespace}/resourcequotas/{name} {#_apiv1watchnamespaces_namespace_resourcequotas_name}
+### /api/v1/watch/namespaces/&#123;namespace&#125;/resourcequotas/&#123;name&#125; {#_apiv1watchnamespaces_namespace_resourcequotas_name}
 
 **Global path parameters**
 
@@ -388,7 +388,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/resourcequotas/{name}/status {#_apiv1namespaces_namespace_resourcequotas_name_status}
+### /api/v1/namespaces/&#123;namespace&#125;/resourcequotas/&#123;name&#125;/status {#_apiv1namespaces_namespace_resourcequotas_name_status}
 
 **Global path parameters**
 

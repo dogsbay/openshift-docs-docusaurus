@@ -3,7 +3,7 @@ title: "Build [build.openshift.io/v1]"
 sidebar_position: 3
 ---
 
-# Build [build.openshift.io/v1] {#build-build-openshift-io-v1}
+# Build \[build.openshift.io/v1\] {#build-build-openshift-io-v1}
 
 <a id="build-build-openshift-io-v1"></a>
 
@@ -46,7 +46,7 @@ Required
 | `mountTrustedCA` | `boolean` | mountTrustedCA bind mounts the cluster’s trusted certificate authorities, as defined in the cluster’s proxy configuration, into the build. This lets processes within a build trust components signed by custom PKI certificate authorities, such as private artifact repositories and HTTPS proxies.<br>When this field is set to true, the contents of `/etc/pki/ca-trust` within the build are managed by the build container, and any changes to this directory or its subdirectories (for example - within a Dockerfile `RUN` instruction) are not persisted in the build’s output image. |
 | `nodeSelector` | `object (string)` | nodeSelector is a selector which must be true for the build pod to fit on a node If nil, it can be overridden by default build nodeselector values for the cluster. If set to an empty map or a map with any values, default build nodeselector values are ignored. |
 | `output` | `object` | BuildOutput is input to a build strategy and describes the container image that the strategy should produce. |
-| `postCommit` | `object` | A BuildPostCommitSpec holds a build post commit hook specification. The hook executes a command in a temporary container running the build output image, immediately after the last layer of the image is committed and before the image is pushed to a registry. The command is executed with the current working directory ($PWD) set to the image’s WORKDIR.<br>The build will be marked as failed if the hook execution fails. It will fail if the script or command return a non-zero exit code, or if there is any other error related to starting the temporary container.<br>There are five different ways to configure the hook. As an example, all forms below are equivalent and will execute `rake test --verbose`.<br>1. Shell script:<br>	   "postCommit": { 	     "script": "rake test --verbose", 	   }<br>	The above is a convenient form which is equivalent to:<br>	   "postCommit": { 	     "command": ["/bin/sh", "-ic"], 	     "args":    ["rake test --verbose"] 	   }<br>2. A command as the image entrypoint:<br>	   "postCommit": { 	     "commit": ["rake", "test", "--verbose"] 	   }<br>	Command overrides the image entrypoint in the exec form, as documented in 	Docker: https://docs.docker.com/engine/reference/builder/#entrypoint.<br>3. Pass arguments to the default entrypoint:<br>	       "postCommit": { 			      "args": ["rake", "test", "--verbose"] 		      }<br>	    This form is only useful if the image entrypoint can handle arguments.<br>4. Shell script with arguments:<br>	   "postCommit": { 	     "script": "rake test $1", 	     "args":   ["--verbose"] 	   }<br>	This form is useful if you need to pass arguments that would otherwise be 	hard to quote properly in the shell script. In the script, $0 will be 	"/bin/sh" and $1, $2, etc, are the positional arguments from Args.<br>5. Command with arguments:<br>	   "postCommit": { 	     "command": ["rake", "test"], 	     "args":    ["--verbose"] 	   }<br>	This form is equivalent to appending the arguments to the Command slice.<br>It is invalid to provide both Script and Command simultaneously. If none of the fields are specified, the hook is not executed. |
+| `postCommit` | `object` | A BuildPostCommitSpec holds a build post commit hook specification. The hook executes a command in a temporary container running the build output image, immediately after the last layer of the image is committed and before the image is pushed to a registry. The command is executed with the current working directory (&#36;PWD) set to the image’s WORKDIR.<br>The build will be marked as failed if the hook execution fails. It will fail if the script or command return a non-zero exit code, or if there is any other error related to starting the temporary container.<br>There are five different ways to configure the hook. As an example, all forms below are equivalent and will execute `rake test --verbose`.<br>1. Shell script:<br>	   "postCommit": &#123; 	     "script": "rake test --verbose", 	   &#125;<br>	The above is a convenient form which is equivalent to:<br>	   "postCommit": &#123; 	     "command": \["/bin/sh", "-ic"\], 	     "args":    \["rake test --verbose"\] 	   &#125;<br>2. A command as the image entrypoint:<br>	   "postCommit": &#123; 	     "commit": \["rake", "test", "--verbose"\] 	   &#125;<br>	Command overrides the image entrypoint in the exec form, as documented in 	Docker: https://docs.docker.com/engine/reference/builder/#entrypoint.<br>3. Pass arguments to the default entrypoint:<br>	       "postCommit": &#123; 			      "args": \["rake", "test", "--verbose"\] 		      &#125;<br>	    This form is only useful if the image entrypoint can handle arguments.<br>4. Shell script with arguments:<br>	   "postCommit": &#123; 	     "script": "rake test &#36;1", 	     "args":   \["--verbose"\] 	   &#125;<br>	This form is useful if you need to pass arguments that would otherwise be 	hard to quote properly in the shell script. In the script, &#36;0 will be 	"/bin/sh" and &#36;1, &#36;2, etc, are the positional arguments from Args.<br>5. Command with arguments:<br>	   "postCommit": &#123; 	     "command": \["rake", "test"\], 	     "args":    \["--verbose"\] 	   &#125;<br>	This form is equivalent to appending the arguments to the Command slice.<br>It is invalid to provide both Script and Command simultaneously. If none of the fields are specified, the hook is not executed. |
 | `resources` | [`ResourceRequirements`](/docs/rest_api/objects#io-k8s-api-core-v1-ResourceRequirements) | resources computes resource requirements to execute the build. |
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `serviceAccount` | `string` | serviceAccount is the name of the ServiceAccount to use to run the pod created by this build. The pod will be allowed to use secrets referenced by the ServiceAccount |
@@ -82,7 +82,7 @@ Type
   `array`
   ```
 
-### .spec.output.imageLabels[] {#_specoutputimagelabels}
+### .spec.output.imageLabels\[\] {#_specoutputimagelabels}
 
 Description
 : ImageLabel represents a label applied to the resulting image.
@@ -103,20 +103,20 @@ Required
 ### .spec.postCommit {#_specpostcommit}
 
 Description
-: A BuildPostCommitSpec holds a build post commit hook specification. The hook executes a command in a temporary container running the build output image, immediately after the last layer of the image is committed and before the image is pushed to a registry. The command is executed with the current working directory ($PWD) set to the image’s WORKDIR.
+: A BuildPostCommitSpec holds a build post commit hook specification. The hook executes a command in a temporary container running the build output image, immediately after the last layer of the image is committed and before the image is pushed to a registry. The command is executed with the current working directory (&#36;PWD) set to the image’s WORKDIR.
 
   The build will be marked as failed if the hook execution fails. It will fail if the script or command return a non-zero exit code, or if there is any other error related to starting the temporary container.
 
   There are five different ways to configure the hook. As an example, all forms below are equivalent and will execute `rake test --verbose`.
 
   1. Shell script:
-     "postCommit": { "script": "rake test --verbose", }
+     "postCommit": &#123; "script": "rake test --verbose", &#125;
 
      The above is a convenient form which is equivalent to:
 
-     "postCommit": { "command": ["/bin/sh", "-ic"], "args":    ["rake test --verbose"] }
+     "postCommit": &#123; "command": \["/bin/sh", "-ic"\], "args":    \["rake test --verbose"\] &#125;
   2. A command as the image entrypoint:
-     "postCommit": { "commit": ["rake", "test", "--verbose"] }
+     "postCommit": &#123; "commit": \["rake", "test", "--verbose"\] &#125;
 
      Command overrides the image entrypoint in the exec form, as documented in Docker: https://docs.docker.com/engine/reference/builder/#entrypoint.
   3. Pass arguments to the default entrypoint:
@@ -128,11 +128,11 @@ Description
      This form is only useful if the image entrypoint can handle arguments.
      ```
   4. Shell script with arguments:
-     "postCommit": { "script": "rake test $1", "args":   ["--verbose"] }
+     "postCommit": &#123; "script": "rake test &#36;1", "args":   \["--verbose"\] &#125;
 
-     This form is useful if you need to pass arguments that would otherwise be hard to quote properly in the shell script. In the script, $0 will be "/bin/sh" and $1, $2, etc, are the positional arguments from Args.
+     This form is useful if you need to pass arguments that would otherwise be hard to quote properly in the shell script. In the script, &#36;0 will be "/bin/sh" and &#36;1, &#36;2, etc, are the positional arguments from Args.
   5. Command with arguments:
-     "postCommit": { "command": ["rake", "test"], "args":    ["--verbose"] }
+     "postCommit": &#123; "command": \["rake", "test"\], "args":    \["--verbose"\] &#125;
 
      This form is equivalent to appending the arguments to the Command slice.
 
@@ -263,7 +263,7 @@ Type
   `array`
   ```
 
-### .spec.source.configMaps[] {#_specsourceconfigmaps}
+### .spec.source.configMaps\[\] {#_specsourceconfigmaps}
 
 Description
 : ConfigMapBuildSource describes a configmap and its destination directory that will be used only at the build time. The content of the configmap referenced here will be copied into the destination directory instead of mounting.
@@ -312,7 +312,7 @@ Type
   `array`
   ```
 
-### .spec.source.images[] {#_specsourceimages}
+### .spec.source.images\[\] {#_specsourceimages}
 
 Description
 : ImageSource is used to describe build source that will be extracted from an image or used during a multi stage build. A reference of type ImageStreamTag, ImageStreamImage or DockerImage may be used. A pull secret can be specified to pull the image from an external registry or override the default service account secret if pulling from the internal registry. Image sources can either be used to extract content from an image and place it into the build context along with the repository source, or used directly during a multi-stage container image build to allow content to be copied without overwriting the contents of the repository source (see the 'paths' and 'as' fields).
@@ -333,7 +333,7 @@ Required
 | `paths[]` | `object` | ImageSourcePath describes a path to be copied from a source image and its destination within the build directory. |
 | `pullSecret` | [`LocalObjectReference`](/docs/rest_api/objects#io-k8s-api-core-v1-LocalObjectReference) | pullSecret is a reference to a secret to be used to pull the image from a registry If the image is pulled from the OpenShift registry, this field does not need to be set. |
 
-### .spec.source.images[].paths {#_specsourceimagespaths}
+### .spec.source.images\[\].paths {#_specsourceimagespaths}
 
 Description
 : paths is a list of source and destination paths to copy from the image. This content will be copied into the build context prior to starting the build. If no paths are set, the build context will not be altered.
@@ -343,7 +343,7 @@ Type
   `array`
   ```
 
-### .spec.source.images[].paths[] {#_specsourceimagespaths}
+### .spec.source.images\[\].paths\[\] {#_specsourceimagespaths}
 
 Description
 : ImageSourcePath describes a path to be copied from a source image and its destination within the build directory.
@@ -372,7 +372,7 @@ Type
   `array`
   ```
 
-### .spec.source.secrets[] {#_specsourcesecrets}
+### .spec.source.secrets\[\] {#_specsourcesecrets}
 
 Description
 : SecretBuildSource describes a secret and its destination directory that will be used only at the build time. The content of the secret referenced here will be copied into the destination directory instead of mounting.
@@ -442,7 +442,7 @@ Type
   `array`
   ```
 
-### .spec.strategy.customStrategy.secrets[] {#_specstrategycustomstrategysecrets}
+### .spec.strategy.customStrategy.secrets\[\] {#_specstrategycustomstrategysecrets}
 
 Description
 : SecretSpec specifies a secret to be included in a build pod and its corresponding mount point
@@ -494,7 +494,7 @@ Type
   `array`
   ```
 
-### .spec.strategy.dockerStrategy.volumes[] {#_specstrategydockerstrategyvolumes}
+### .spec.strategy.dockerStrategy.volumes\[\] {#_specstrategydockerstrategyvolumes}
 
 Description
 : BuildVolume describes a volume that is made available to build pods, such that it can be mounted into buildah’s runtime environment. Only a subset of Kubernetes Volume sources are supported.
@@ -516,7 +516,7 @@ Required
 | `name` | `string` | name is a unique identifier for this BuildVolume. It must conform to the Kubernetes DNS label standard and be unique within the pod. Names that collide with those added by the build controller will result in a failed build with an error message detailing which name caused the error. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `source` | `object` | BuildVolumeSource represents the source of a volume to mount Only one of its supported types may be specified at any given time. |
 
-### .spec.strategy.dockerStrategy.volumes[].mounts {#_specstrategydockerstrategyvolumesmounts}
+### .spec.strategy.dockerStrategy.volumes\[\].mounts {#_specstrategydockerstrategyvolumesmounts}
 
 Description
 : mounts represents the location of the volume in the image build container
@@ -526,7 +526,7 @@ Type
   `array`
   ```
 
-### .spec.strategy.dockerStrategy.volumes[].mounts[] {#_specstrategydockerstrategyvolumesmounts}
+### .spec.strategy.dockerStrategy.volumes\[\].mounts\[\] {#_specstrategydockerstrategyvolumesmounts}
 
 Description
 : BuildVolumeMount describes the mounting of a Volume within buildah’s runtime environment.
@@ -543,7 +543,7 @@ Required
 | --- | --- | --- |
 | `destinationPath` | `string` | destinationPath is the path within the buildah runtime environment at which the volume should be mounted. The transient mount within the build image and the backing volume will both be mounted read only. Must be an absolute path, must not contain '..' or ':', and must not collide with a destination path generated by the builder process Paths that collide with those added by the build controller will result in a failed build with an error message detailing which path caused the error. |
 
-### .spec.strategy.dockerStrategy.volumes[].source {#_specstrategydockerstrategyvolumessource}
+### .spec.strategy.dockerStrategy.volumes\[\].source {#_specstrategydockerstrategyvolumessource}
 
 Description
 : BuildVolumeSource represents the source of a volume to mount Only one of its supported types may be specified at any given time.
@@ -613,7 +613,7 @@ Type
   `array`
   ```
 
-### .spec.strategy.sourceStrategy.volumes[] {#_specstrategysourcestrategyvolumes}
+### .spec.strategy.sourceStrategy.volumes\[\] {#_specstrategysourcestrategyvolumes}
 
 Description
 : BuildVolume describes a volume that is made available to build pods, such that it can be mounted into buildah’s runtime environment. Only a subset of Kubernetes Volume sources are supported.
@@ -635,7 +635,7 @@ Required
 | `name` | `string` | name is a unique identifier for this BuildVolume. It must conform to the Kubernetes DNS label standard and be unique within the pod. Names that collide with those added by the build controller will result in a failed build with an error message detailing which name caused the error. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `source` | `object` | BuildVolumeSource represents the source of a volume to mount Only one of its supported types may be specified at any given time. |
 
-### .spec.strategy.sourceStrategy.volumes[].mounts {#_specstrategysourcestrategyvolumesmounts}
+### .spec.strategy.sourceStrategy.volumes\[\].mounts {#_specstrategysourcestrategyvolumesmounts}
 
 Description
 : mounts represents the location of the volume in the image build container
@@ -645,7 +645,7 @@ Type
   `array`
   ```
 
-### .spec.strategy.sourceStrategy.volumes[].mounts[] {#_specstrategysourcestrategyvolumesmounts}
+### .spec.strategy.sourceStrategy.volumes\[\].mounts\[\] {#_specstrategysourcestrategyvolumesmounts}
 
 Description
 : BuildVolumeMount describes the mounting of a Volume within buildah’s runtime environment.
@@ -662,7 +662,7 @@ Required
 | --- | --- | --- |
 | `destinationPath` | `string` | destinationPath is the path within the buildah runtime environment at which the volume should be mounted. The transient mount within the build image and the backing volume will both be mounted read only. Must be an absolute path, must not contain '..' or ':', and must not collide with a destination path generated by the builder process Paths that collide with those added by the build controller will result in a failed build with an error message detailing which path caused the error. |
 
-### .spec.strategy.sourceStrategy.volumes[].source {#_specstrategysourcestrategyvolumessource}
+### .spec.strategy.sourceStrategy.volumes\[\].source {#_specstrategysourcestrategyvolumessource}
 
 Description
 : BuildVolumeSource represents the source of a volume to mount Only one of its supported types may be specified at any given time.
@@ -692,7 +692,7 @@ Type
   `array`
   ```
 
-### .spec.triggeredBy[] {#_spectriggeredby}
+### .spec.triggeredBy\[\] {#_spectriggeredby}
 
 Description
 : BuildTriggerCause holds information about a triggered build. It is used for displaying build trigger data for each build and build configuration in oc describe. It is also used to describe which triggers led to the most recent update in the build configuration.
@@ -711,7 +711,7 @@ Type
 | `imageChangeBuild` | `object` | ImageChangeCause contains information about the image that triggered a build |
 | `message` | `string` | message is used to store a human readable message for why the build was triggered. E.g.: "Manually triggered by user", "Configuration change",etc. |
 
-### .spec.triggeredBy[].bitbucketWebHook {#_spectriggeredbybitbucketwebhook}
+### .spec.triggeredBy\[\].bitbucketWebHook {#_spectriggeredbybitbucketwebhook}
 
 Description
 : BitbucketWebHookCause has information about a Bitbucket webhook that triggered a build.
@@ -726,7 +726,7 @@ Type
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `secret` | `string` | secret is the obfuscated webhook secret that triggered a build. |
 
-### .spec.triggeredBy[].bitbucketWebHook.revision {#_spectriggeredbybitbucketwebhookrevision}
+### .spec.triggeredBy\[\].bitbucketWebHook.revision {#_spectriggeredbybitbucketwebhookrevision}
 
 Description
 : SourceRevision is the revision or commit information from the source for the build
@@ -744,7 +744,7 @@ Required
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
 
-### .spec.triggeredBy[].bitbucketWebHook.revision.git {#_spectriggeredbybitbucketwebhookrevisiongit}
+### .spec.triggeredBy\[\].bitbucketWebHook.revision.git {#_spectriggeredbybitbucketwebhookrevisiongit}
 
 Description
 : GitSourceRevision is the commit information from a git source for a build
@@ -761,7 +761,7 @@ Type
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
 
-### .spec.triggeredBy[].bitbucketWebHook.revision.git.author {#_spectriggeredbybitbucketwebhookrevisiongitauthor}
+### .spec.triggeredBy\[\].bitbucketWebHook.revision.git.author {#_spectriggeredbybitbucketwebhookrevisiongitauthor}
 
 Description
 : SourceControlUser defines the identity of a user of source control
@@ -776,7 +776,7 @@ Type
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
 
-### .spec.triggeredBy[].bitbucketWebHook.revision.git.committer {#_spectriggeredbybitbucketwebhookrevisiongitcommitter}
+### .spec.triggeredBy\[\].bitbucketWebHook.revision.git.committer {#_spectriggeredbybitbucketwebhookrevisiongitcommitter}
 
 Description
 : SourceControlUser defines the identity of a user of source control
@@ -791,7 +791,7 @@ Type
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
 
-### .spec.triggeredBy[].genericWebHook {#_spectriggeredbygenericwebhook}
+### .spec.triggeredBy\[\].genericWebHook {#_spectriggeredbygenericwebhook}
 
 Description
 : GenericWebHookCause holds information about a generic WebHook that triggered a build.
@@ -806,7 +806,7 @@ Type
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `secret` | `string` | secret is the obfuscated webhook secret that triggered a build. |
 
-### .spec.triggeredBy[].genericWebHook.revision {#_spectriggeredbygenericwebhookrevision}
+### .spec.triggeredBy\[\].genericWebHook.revision {#_spectriggeredbygenericwebhookrevision}
 
 Description
 : SourceRevision is the revision or commit information from the source for the build
@@ -824,7 +824,7 @@ Required
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
 
-### .spec.triggeredBy[].genericWebHook.revision.git {#_spectriggeredbygenericwebhookrevisiongit}
+### .spec.triggeredBy\[\].genericWebHook.revision.git {#_spectriggeredbygenericwebhookrevisiongit}
 
 Description
 : GitSourceRevision is the commit information from a git source for a build
@@ -841,7 +841,7 @@ Type
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
 
-### .spec.triggeredBy[].genericWebHook.revision.git.author {#_spectriggeredbygenericwebhookrevisiongitauthor}
+### .spec.triggeredBy\[\].genericWebHook.revision.git.author {#_spectriggeredbygenericwebhookrevisiongitauthor}
 
 Description
 : SourceControlUser defines the identity of a user of source control
@@ -856,7 +856,7 @@ Type
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
 
-### .spec.triggeredBy[].genericWebHook.revision.git.committer {#_spectriggeredbygenericwebhookrevisiongitcommitter}
+### .spec.triggeredBy\[\].genericWebHook.revision.git.committer {#_spectriggeredbygenericwebhookrevisiongitcommitter}
 
 Description
 : SourceControlUser defines the identity of a user of source control
@@ -871,7 +871,7 @@ Type
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
 
-### .spec.triggeredBy[].githubWebHook {#_spectriggeredbygithubwebhook}
+### .spec.triggeredBy\[\].githubWebHook {#_spectriggeredbygithubwebhook}
 
 Description
 : GitHubWebHookCause has information about a GitHub webhook that triggered a build.
@@ -886,7 +886,7 @@ Type
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `secret` | `string` | secret is the obfuscated webhook secret that triggered a build. |
 
-### .spec.triggeredBy[].githubWebHook.revision {#_spectriggeredbygithubwebhookrevision}
+### .spec.triggeredBy\[\].githubWebHook.revision {#_spectriggeredbygithubwebhookrevision}
 
 Description
 : SourceRevision is the revision or commit information from the source for the build
@@ -904,7 +904,7 @@ Required
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
 
-### .spec.triggeredBy[].githubWebHook.revision.git {#_spectriggeredbygithubwebhookrevisiongit}
+### .spec.triggeredBy\[\].githubWebHook.revision.git {#_spectriggeredbygithubwebhookrevisiongit}
 
 Description
 : GitSourceRevision is the commit information from a git source for a build
@@ -921,7 +921,7 @@ Type
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
 
-### .spec.triggeredBy[].githubWebHook.revision.git.author {#_spectriggeredbygithubwebhookrevisiongitauthor}
+### .spec.triggeredBy\[\].githubWebHook.revision.git.author {#_spectriggeredbygithubwebhookrevisiongitauthor}
 
 Description
 : SourceControlUser defines the identity of a user of source control
@@ -936,7 +936,7 @@ Type
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
 
-### .spec.triggeredBy[].githubWebHook.revision.git.committer {#_spectriggeredbygithubwebhookrevisiongitcommitter}
+### .spec.triggeredBy\[\].githubWebHook.revision.git.committer {#_spectriggeredbygithubwebhookrevisiongitcommitter}
 
 Description
 : SourceControlUser defines the identity of a user of source control
@@ -951,7 +951,7 @@ Type
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
 
-### .spec.triggeredBy[].gitlabWebHook {#_spectriggeredbygitlabwebhook}
+### .spec.triggeredBy\[\].gitlabWebHook {#_spectriggeredbygitlabwebhook}
 
 Description
 : GitLabWebHookCause has information about a GitLab webhook that triggered a build.
@@ -966,7 +966,7 @@ Type
 | `revision` | `object` | SourceRevision is the revision or commit information from the source for the build |
 | `secret` | `string` | secret is the obfuscated webhook secret that triggered a build. |
 
-### .spec.triggeredBy[].gitlabWebHook.revision {#_spectriggeredbygitlabwebhookrevision}
+### .spec.triggeredBy\[\].gitlabWebHook.revision {#_spectriggeredbygitlabwebhookrevision}
 
 Description
 : SourceRevision is the revision or commit information from the source for the build
@@ -984,7 +984,7 @@ Required
 | `git` | `object` | GitSourceRevision is the commit information from a git source for a build |
 | `type` | `string` | type of the build source, may be one of 'Source', 'Dockerfile', 'Binary', or 'Images' |
 
-### .spec.triggeredBy[].gitlabWebHook.revision.git {#_spectriggeredbygitlabwebhookrevisiongit}
+### .spec.triggeredBy\[\].gitlabWebHook.revision.git {#_spectriggeredbygitlabwebhookrevisiongit}
 
 Description
 : GitSourceRevision is the commit information from a git source for a build
@@ -1001,7 +1001,7 @@ Type
 | `committer` | `object` | SourceControlUser defines the identity of a user of source control |
 | `message` | `string` | message is the description of a specific commit |
 
-### .spec.triggeredBy[].gitlabWebHook.revision.git.author {#_spectriggeredbygitlabwebhookrevisiongitauthor}
+### .spec.triggeredBy\[\].gitlabWebHook.revision.git.author {#_spectriggeredbygitlabwebhookrevisiongitauthor}
 
 Description
 : SourceControlUser defines the identity of a user of source control
@@ -1016,7 +1016,7 @@ Type
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
 
-### .spec.triggeredBy[].gitlabWebHook.revision.git.committer {#_spectriggeredbygitlabwebhookrevisiongitcommitter}
+### .spec.triggeredBy\[\].gitlabWebHook.revision.git.committer {#_spectriggeredbygitlabwebhookrevisiongitcommitter}
 
 Description
 : SourceControlUser defines the identity of a user of source control
@@ -1031,7 +1031,7 @@ Type
 | `email` | `string` | email of the source control user |
 | `name` | `string` | name of the source control user |
 
-### .spec.triggeredBy[].imageChangeBuild {#_spectriggeredbyimagechangebuild}
+### .spec.triggeredBy\[\].imageChangeBuild {#_spectriggeredbyimagechangebuild}
 
 Description
 : ImageChangeCause contains information about the image that triggered a build
@@ -1084,7 +1084,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : BuildCondition describes the state of a build at a certain point.
@@ -1145,7 +1145,7 @@ Type
   `array`
   ```
 
-### .status.stages[] {#_statusstages}
+### .status.stages\[\] {#_statusstages}
 
 Description
 : StageInfo contains details about a build stage.
@@ -1163,7 +1163,7 @@ Type
 | `steps` | `array` | steps contains details about each step that occurs during a build stage including start time and duration in milliseconds. |
 | `steps[]` | `object` | StepInfo contains details about a build step. |
 
-### .status.stages[].steps {#_statusstagessteps}
+### .status.stages\[\].steps {#_statusstagessteps}
 
 Description
 : steps contains details about each step that occurs during a build stage including start time and duration in milliseconds.
@@ -1173,7 +1173,7 @@ Type
   `array`
   ```
 
-### .status.stages[].steps[] {#_statusstagessteps}
+### .status.stages\[\].steps\[\] {#_statusstagessteps}
 
 Description
 : StepInfo contains details about a build step.
@@ -1255,7 +1255,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{namespace}/builds {#_apisbuildopenshiftiov1namespaces_namespace_builds}
+### /apis/build.openshift.io/v1/namespaces/&#123;namespace&#125;/builds {#_apisbuildopenshiftiov1namespaces_namespace_builds}
 
 HTTP method
 : ```
@@ -1329,7 +1329,7 @@ Description
 | 202 - Accepted | [`Build`](/docs/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/watch/namespaces/{namespace}/builds {#_apisbuildopenshiftiov1watchnamespaces_namespace_builds}
+### /apis/build.openshift.io/v1/watch/namespaces/&#123;namespace&#125;/builds {#_apisbuildopenshiftiov1watchnamespaces_namespace_builds}
 
 HTTP method
 : ```
@@ -1348,7 +1348,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{namespace}/builds/{name} {#_apisbuildopenshiftiov1namespaces_namespace_builds_name}
+### /apis/build.openshift.io/v1/namespaces/&#123;namespace&#125;/builds/&#123;name&#125; {#_apisbuildopenshiftiov1namespaces_namespace_builds_name}
 
 **Global path parameters**
 
@@ -1453,7 +1453,7 @@ Description
 | 201 - Created | [`Build`](/docs/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/watch/namespaces/{namespace}/builds/{name} {#_apisbuildopenshiftiov1watchnamespaces_namespace_builds_name}
+### /apis/build.openshift.io/v1/watch/namespaces/&#123;namespace&#125;/builds/&#123;name&#125; {#_apisbuildopenshiftiov1watchnamespaces_namespace_builds_name}
 
 **Global path parameters**
 
@@ -1478,7 +1478,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{namespace}/builds/{name}/details {#_apisbuildopenshiftiov1namespaces_namespace_builds_name_details}
+### /apis/build.openshift.io/v1/namespaces/&#123;namespace&#125;/builds/&#123;name&#125;/details {#_apisbuildopenshiftiov1namespaces_namespace_builds_name_details}
 
 **Global path parameters**
 
@@ -1517,7 +1517,7 @@ Description
 | 201 - Created | [`Build`](/docs/rest_api/workloads_apis/build-build-openshift-io-v1#build-build-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs/{name}/webhooks {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name_webhooks}
+### /apis/build.openshift.io/v1/namespaces/&#123;namespace&#125;/buildconfigs/&#123;name&#125;/webhooks {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name_webhooks}
 
 **Global path parameters**
 
@@ -1542,7 +1542,7 @@ Description
 | 200 - OK | `string` |
 | 401 - Unauthorized | Empty |
 
-### /apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs/{name}/webhooks/{path} {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name_webhooks_path}
+### /apis/build.openshift.io/v1/namespaces/&#123;namespace&#125;/buildconfigs/&#123;name&#125;/webhooks/&#123;path&#125; {#_apisbuildopenshiftiov1namespaces_namespace_buildconfigs_name_webhooks_path}
 
 **Global path parameters**
 

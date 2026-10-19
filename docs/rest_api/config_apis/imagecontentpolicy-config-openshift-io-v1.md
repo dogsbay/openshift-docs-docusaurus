@@ -3,7 +3,7 @@ title: "ImageContentPolicy [config.openshift.io/v1]"
 sidebar_position: 14
 ---
 
-# ImageContentPolicy [config.openshift.io/v1] {#imagecontentpolicy-config-openshift-io-v1}
+# ImageContentPolicy \[config.openshift.io/v1\] {#imagecontentpolicy-config-openshift-io-v1}
 
 <a id="imagecontentpolicy-config-openshift-io-v1"></a>
 
@@ -60,7 +60,7 @@ Type
   `array`
   ```
 
-### .spec.repositoryDigestMirrors[] {#_specrepositorydigestmirrors}
+### .spec.repositoryDigestMirrors\[\] {#_specrepositorydigestmirrors}
 
 Description
 : RepositoryDigestMirrors holds cluster-wide information about how to handle mirrors in the registries config.
@@ -165,7 +165,7 @@ Description
 | 202 - Accepted | [`ImageContentPolicy`](/docs/rest_api/config_apis/imagecontentpolicy-config-openshift-io-v1#imagecontentpolicy-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/imagecontentpolicies/{name} {#_apisconfigopenshiftiov1imagecontentpolicies_name}
+### /apis/config.openshift.io/v1/imagecontentpolicies/&#123;name&#125; {#_apisconfigopenshiftiov1imagecontentpolicies_name}
 
 **Global path parameters**
 
@@ -269,7 +269,7 @@ Description
 | 201 - Created | [`ImageContentPolicy`](/docs/rest_api/config_apis/imagecontentpolicy-config-openshift-io-v1#imagecontentpolicy-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/imagecontentpolicies/{name}/status {#_apisconfigopenshiftiov1imagecontentpolicies_name_status}
+### /apis/config.openshift.io/v1/imagecontentpolicies/&#123;name&#125;/status {#_apisconfigopenshiftiov1imagecontentpolicies_name_status}
 
 **Global path parameters**
 

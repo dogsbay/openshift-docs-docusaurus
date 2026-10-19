@@ -11,7 +11,7 @@ Back up Red Hat 3scale API Management components, including the 3scale Operator
 
 For more information about installing and configuring Red Hat 3scale API Management, see *Installing 3scale API Management on OpenShift* and *Red Hat 3scale API Management*.
 
-## Creating the Data Protection Application {#creating-the-data-protection-application_backing-up-3scale-api-management-by-using-oadp}
+## Create the Data Protection Application {#creating-the-data-protection-application_backing-up-3scale-api-management-by-using-oadp}
 
 Create a Data Protection Application (DPA) custom resource (CR) to configure backup storage and Velero settings for Red Hat 3scale API Management. This helps you set up the backup infrastructure required for protecting your 3scale components.
 
@@ -70,7 +70,7 @@ Create a Data Protection Application (DPA) custom resource (CR) to configure bac
    $ oc create -f dpa.yaml
    ```
 
-## Backing up the 3scale API Management operator, secret, and APIManager {#backing-up-the-3scale-operator-secret-apimanager_backing-up-3scale-api-management-by-using-oadp}
+## Back up the 3scale API Management operator, secret, and APIManager {#backing-up-the-3scale-operator-secret-apimanager_backing-up-3scale-api-management-by-using-oadp}
 
 Back up the Red Hat 3scale API Management operator resources, including the `Secret` and APIManager custom resources (CRs), by creating backup CRs. This helps you preserve your 3scale operator configuration for recovery scenarios.
 
@@ -194,7 +194,7 @@ Back up the Red Hat 3scale API Management operator resources, including the `Se
    backup.velero.io/operator-resources-apim created
    ```
 
-## Backing up a MySQL database {#backing-up-the-mysql-database_backing-up-3scale-api-management-by-using-oadp}
+## Back up a MySQL database {#backing-up-the-mysql-database_backing-up-3scale-api-management-by-using-oadp}
 
 Back up a MySQL database by creating a persistent volume claim (PVC) to store the database dump. This helps you preserve your 3scale system database data for recovery scenarios.
 
@@ -331,7 +331,7 @@ Back up a MySQL database by creating a persistent volume claim (PVC) to store th
   version: 1
   ```
 
-## Backing up the back-end Redis database {#backing-up-the-backend-redis-database_backing-up-3scale-api-management-by-using-oadp}
+## Back up the back-end Redis database {#backing-up-the-backend-redis-database_backing-up-3scale-api-management-by-using-oadp}
 
 Back up the back-end Redis database by configuring Velero annotations and creating a backup CR with the required resources. This helps you preserve your 3scale back-end Redis data for recovery scenarios.
 

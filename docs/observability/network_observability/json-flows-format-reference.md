@@ -42,16 +42,16 @@ The "Cardinality" column gives information about the implied metric cardinality 
 | `DstMac` | string | Destination MAC address | `dst_mac` | no | avoid | destination.mac |
 | `DstPort` | number | Destination port | `dst_port` | no | careful | destination.port |
 | `DstSubnetLabel` | string | Destination subnet label | `dst_subnet_label` | no | fine | destination.subnet.label |
-| `Flags` | string[] | List of TCP flags comprised in the flow, according to RFC-9293, with additional custom flags to represent the following per-packet combinations:<br> - SYN_ACK<br> - FIN_ACK<br> - RST_ACK | `tcp_flags` | no | careful | tcp.flags |
+| `Flags` | string\[\] | List of TCP flags comprised in the flow, according to RFC-9293, with additional custom flags to represent the following per-packet combinations:<br> - SYN_ACK<br> - FIN_ACK<br> - RST_ACK | `tcp_flags` | no | careful | tcp.flags |
 | `FlowDirection` | number | Flow interpreted direction from the node observation point. Can be one of:<br> - 0: Ingress (incoming traffic, from the node observation point)<br> - 1: Egress (outgoing traffic, from the node observation point)<br> - 2: Inner (with the same source and destination node) | `node_direction` | yes | fine | host.direction |
 | `IPSecStatus` | string | Status of the IPsec encryption (on egress, given by the kernel xfrm_output function) or decryption (on ingress, via xfrm_input) | `ipsec_status` | no | fine | ipsec.status |
 | `IcmpCode` | number | ICMP code | `icmp_code` | no | fine | icmp.code |
 | `IcmpType` | number | ICMP type | `icmp_type` | no | fine | icmp.type |
-| `IfDirections` | number[] | Flow directions from the network interface observation point. Can be one of:<br> - 0: Ingress (interface incoming traffic)<br> - 1: Egress (interface outgoing traffic) | `ifdirections` | no | fine | interface.directions |
-| `Interfaces` | string[] | Network interfaces | `interfaces` | no | careful | interface.names |
+| `IfDirections` | number\[\] | Flow directions from the network interface observation point. Can be one of:<br> - 0: Ingress (interface incoming traffic)<br> - 1: Egress (interface outgoing traffic) | `ifdirections` | no | fine | interface.directions |
+| `Interfaces` | string\[\] | Network interfaces | `interfaces` | no | careful | interface.names |
 | `K8S_ClusterName` | string | Cluster name or identifier | `cluster_name` | yes | fine | k8s.cluster.name |
 | `K8S_FlowLayer` | string | Flow layer: 'app' or 'infra' | `flow_layer` | yes | fine | k8s.layer |
-| `NetworkEvents` | object[] | Network events, such as network policy actions, composed of nested fields:<br> - Feature (such as "acl" for network policies)<br> - Type (such as an "AdminNetworkPolicy")<br> - Namespace (namespace where the event applies, if any)<br> - Name (name of the resource that triggered the event)<br> - Action (such as "allow" or "drop")<br> - Direction (Ingress or Egress) | `network_events` | no | avoid | n/a |
+| `NetworkEvents` | object\[\] | Network events, such as network policy actions, composed of nested fields:<br> - Feature (such as "acl" for network policies)<br> - Type (such as an "AdminNetworkPolicy")<br> - Namespace (namespace where the event applies, if any)<br> - Name (name of the resource that triggered the event)<br> - Action (such as "allow" or "drop")<br> - Direction (Ingress or Egress) | `network_events` | no | avoid | n/a |
 | `Packets` | number | Number of packets | n/a | no | avoid | packets |
 | `PktDropBytes` | number | Number of bytes dropped by the kernel | n/a | no | avoid | drops.bytes |
 | `PktDropLatestDropCause` | string | Latest drop cause | `pkt_drop_cause` | no | fine | drops.latestcause |
@@ -75,13 +75,13 @@ The "Cardinality" column gives information about the implied metric cardinality 
 | `SrcSubnetLabel` | string | Source subnet label | `src_subnet_label` | no | fine | source.subnet.label |
 | `TLSCipherSuite` | string | TLS cipher suite | `tls_cipher_suite` | no | fine | tls.ciphersuite |
 | `TLSGroup` | string | TLS group name | `tls_group` | no | fine | tls.group |
-| `TLSTypes` | string[] | TLS message types (bitfield) | `tls_types` | no | careful | tls.types |
+| `TLSTypes` | string\[\] | TLS message types (bitfield) | `tls_types` | no | careful | tls.types |
 | `TLSVersion` | string | TLS version | `tls_version` | no | fine | tls.version |
 | `TimeFlowEndMs` | number | End timestamp of this flow, in milliseconds | n/a | no | avoid | timeflowend |
 | `TimeFlowRttNs` | number | TCP Smoothed Round Trip Time (SRTT), in nanoseconds | `time_flow_rtt` | no | avoid | tcp.rtt |
 | `TimeFlowStartMs` | number | Start timestamp of this flow, in milliseconds | n/a | no | avoid | timeflowstart |
 | `TimeReceived` | number | Timestamp when this flow was received and processed by the flow collector, in seconds | n/a | no | avoid | timereceived |
-| `Udns` | string[] | List of User Defined Networks | `udns` | no | careful | n/a |
+| `Udns` | string\[\] | List of User Defined Networks | `udns` | no | careful | n/a |
 | `XlatDstAddr` | string | packet translation destination address | `xlat_dst_address` | no | avoid | n/a |
 | `XlatDstPort` | number | packet translation destination port | `xlat_dst_port` | no | careful | n/a |
 | `XlatSrcAddr` | string | packet translation source address | `xlat_src_address` | no | avoid | n/a |

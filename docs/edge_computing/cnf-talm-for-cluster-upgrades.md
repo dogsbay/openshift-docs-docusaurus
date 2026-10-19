@@ -71,7 +71,7 @@ You can use the OpenShift Container Platform web console to install the Topology
 
 1. In the OpenShift Container Platform web console, navigate to **Ecosystem** → **Software Catalog**.
 2. Search for the **Topology Aware Lifecycle Manager** from the list of available Operators, and then click **Install**.
-3. Keep the default selection of **Installation mode** ["All namespaces on the cluster (default)"] and **Installed Namespace** ("openshift-operators") to ensure that the Operator is installed properly.
+3. Keep the default selection of **Installation mode** \["All namespaces on the cluster (default)"\] and **Installed Namespace** ("openshift-operators") to ensure that the Operator is installed properly.
 4. Click **Install**.
 
 **Verification**

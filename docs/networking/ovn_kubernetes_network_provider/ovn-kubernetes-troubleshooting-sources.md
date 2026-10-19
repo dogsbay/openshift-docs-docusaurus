@@ -481,7 +481,7 @@ After you have opened a bash shell inside of the `ovnkube-node` pod, the followi
 
 | Flag | Description |
 | --- | --- |
-| `-h` | Returns a complete list flags that can be used with the `usr/bin/ovnkube-observ` command. ` |
+| `-h` | Returns a complete list flags that can be used with the `usr/bin/ovnkube-observ` command. &#96; |
 | `-add-ovs-collector` | Add OVS collector to enable sampling. Use with caution. Make sure no one else is using observability. |
 | `-enable-enrichment` | Enrich samples with NBDB data. Defaults to `true`. |
 | `-filter-dst-ip` | Filter only packets to a given destination IP. |

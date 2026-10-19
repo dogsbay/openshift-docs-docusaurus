@@ -3,7 +3,7 @@ title: "CloudPrivateIPConfig [cloud.network.openshift.io/v1]"
 sidebar_position: 7
 ---
 
-# CloudPrivateIPConfig [cloud.network.openshift.io/v1] {#cloudprivateipconfig-cloud-network-openshift-io-v1}
+# CloudPrivateIPConfig \[cloud.network.openshift.io/v1\] {#cloudprivateipconfig-cloud-network-openshift-io-v1}
 
 <a id="cloudprivateipconfig-cloud-network-openshift-io-v1"></a>
 
@@ -73,7 +73,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -94,7 +94,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -185,7 +185,7 @@ Description
 | 202 - Accepted | [`CloudPrivateIPConfig`](/docs/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{name} {#_apiscloudnetworkopenshiftiov1cloudprivateipconfigs_name}
+### /apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/&#123;name&#125; {#_apiscloudnetworkopenshiftiov1cloudprivateipconfigs_name}
 
 **Global path parameters**
 
@@ -289,7 +289,7 @@ Description
 | 201 - Created | [`CloudPrivateIPConfig`](/docs/rest_api/network_apis/cloudprivateipconfig-cloud-network-openshift-io-v1#cloudprivateipconfig-cloud-network-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/{name}/status {#_apiscloudnetworkopenshiftiov1cloudprivateipconfigs_name_status}
+### /apis/cloud.network.openshift.io/v1/cloudprivateipconfigs/&#123;name&#125;/status {#_apiscloudnetworkopenshiftiov1cloudprivateipconfigs_name_status}
 
 **Global path parameters**
 

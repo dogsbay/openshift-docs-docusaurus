@@ -3,7 +3,7 @@ title: "ImageStreamImport [image.openshift.io/v1]"
 sidebar_position: 5
 ---
 
-# ImageStreamImport [image.openshift.io/v1] {#imagestreamimport-image-openshift-io-v1}
+# ImageStreamImport \[image.openshift.io/v1\] {#imagestreamimport-image-openshift-io-v1}
 
 <a id="imagestreamimport-image-openshift-io-v1"></a>
 
@@ -63,7 +63,7 @@ Type
   `array`
   ```
 
-### .spec.images[] {#_specimages}
+### .spec.images\[\] {#_specimages}
 
 Description
 : ImageImportSpec describes a request to import a specific image.
@@ -84,7 +84,7 @@ Required
 | `referencePolicy` | `object` | TagReferencePolicy describes how pull-specs for images in this image stream tag are generated when image change triggers in deployment configs or builds are resolved. This allows the image stream author to control how images are accessed. |
 | `to` | `LocalObjectReference` | To is a tag in the current image stream to assign the imported image to, if name is not specified the default tag from from.name will be used |
 
-### .spec.images[].importPolicy {#_specimagesimportpolicy}
+### .spec.images\[\].importPolicy {#_specimagesimportpolicy}
 
 Description
 : TagImportPolicy controls how images related to this tag will be imported.
@@ -100,7 +100,7 @@ Type
 | `insecure` | `boolean` | insecure is true if the server may bypass certificate verification or connect directly over HTTP during image import. |
 | `scheduled` | `boolean` | scheduled indicates to the server that this tag should be periodically checked to ensure it is up to date, and imported |
 
-### .spec.images[].referencePolicy {#_specimagesreferencepolicy}
+### .spec.images\[\].referencePolicy {#_specimagesreferencepolicy}
 
 Description
 : TagReferencePolicy describes how pull-specs for images in this image stream tag are generated when image change triggers in deployment configs or builds are resolved. This allows the image stream author to control how images are accessed.
@@ -197,7 +197,7 @@ Type
   `array`
   ```
 
-### .status.images[] {#_statusimages}
+### .status.images\[\] {#_statusimages}
 
 Description
 : ImageImportStatus describes the result of an image import.
@@ -218,7 +218,7 @@ Required
 | `status` | [`Status_v2`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) | status is the status of the image import, including errors encountered while retrieving the image |
 | `tag` | `string` | tag is the tag this image was located under, if any |
 
-### .status.images[].image {#_statusimagesimage}
+### .status.images\[\].image {#_statusimagesimage}
 
 Description
 : Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents.
@@ -249,7 +249,7 @@ Type
 | `signatures` | `array` | signatures holds all signatures of the image. |
 | `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 
-### .status.images[].image.dockerImageLayers {#_statusimagesimagedockerimagelayers}
+### .status.images\[\].image.dockerImageLayers {#_statusimagesimagedockerimagelayers}
 
 Description
 : dockerImageLayers represents the layers in the image. May not be set if the image does not define that data or if the image represents a manifest list.
@@ -259,7 +259,7 @@ Type
   `array`
   ```
 
-### .status.images[].image.dockerImageLayers[] {#_statusimagesimagedockerimagelayers}
+### .status.images\[\].image.dockerImageLayers\[\] {#_statusimagesimagedockerimagelayers}
 
 Description
 : ImageLayer represents a single layer of the image. Some images may have multiple layers. Some may have none.
@@ -280,7 +280,7 @@ Required
 | `name` | `string` | name of the layer as defined by the underlying store. |
 | `size` | `integer` | size of the layer in bytes as defined by the underlying store. |
 
-### .status.images[].image.dockerImageManifests {#_statusimagesimagedockerimagemanifests}
+### .status.images\[\].image.dockerImageManifests {#_statusimagesimagedockerimagemanifests}
 
 Description
 : dockerImageManifests holds information about sub-manifests when the image represents a manifest list. When this field is present, no DockerImageLayers should be specified.
@@ -290,7 +290,7 @@ Type
   `array`
   ```
 
-### .status.images[].image.dockerImageManifests[] {#_statusimagesimagedockerimagemanifests}
+### .status.images\[\].image.dockerImageManifests\[\] {#_statusimagesimagedockerimagemanifests}
 
 Description
 : ImageManifest represents sub-manifests of a manifest list. The Digest field points to a regular Image object.
@@ -316,7 +316,7 @@ Required
 | `os` | `string` | os specifies the operating system, for example `linux`. |
 | `variant` | `string` | variant is an optional field repreenting a variant of the CPU, for example v6 to specify a particular CPU variant of the ARM CPU. |
 
-### .status.images[].image.signatures {#_statusimagesimagesignatures}
+### .status.images\[\].image.signatures {#_statusimagesimagesignatures}
 
 Description
 : signatures holds all signatures of the image.
@@ -326,7 +326,7 @@ Type
   `array`
   ```
 
-### .status.images[].image.signatures[] {#_statusimagesimagesignatures}
+### .status.images\[\].image.signatures\[\] {#_statusimagesimagesignatures}
 
 Description
 : ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.
@@ -357,7 +357,7 @@ Required
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
 
-### .status.images[].image.signatures[].conditions {#_statusimagesimagesignaturesconditions}
+### .status.images\[\].image.signatures\[\].conditions {#_statusimagesimagesignaturesconditions}
 
 Description
 : conditions represent the latest available observations of a signature’s current state.
@@ -367,7 +367,7 @@ Type
   `array`
   ```
 
-### .status.images[].image.signatures[].conditions[] {#_statusimagesimagesignaturesconditions}
+### .status.images\[\].image.signatures\[\].conditions\[\] {#_statusimagesimagesignaturesconditions}
 
 Description
 : SignatureCondition describes an image signature condition of particular kind at particular probe time.
@@ -390,7 +390,7 @@ Required
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
 
-### .status.images[].image.signatures[].issuedBy {#_statusimagesimagesignaturesissuedby}
+### .status.images\[\].image.signatures\[\].issuedBy {#_statusimagesimagesignaturesissuedby}
 
 Description
 : SignatureIssuer holds information about an issuer of signing certificate or key.
@@ -405,7 +405,7 @@ Type
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
 
-### .status.images[].image.signatures[].issuedTo {#_statusimagesimagesignaturesissuedto}
+### .status.images\[\].image.signatures\[\].issuedTo {#_statusimagesimagesignaturesissuedto}
 
 Description
 : SignatureSubject holds information about a person or entity who created the signature.
@@ -424,7 +424,7 @@ Required
 | `organization` | `string` | organization name. |
 | `publicKeyID` | `string` | If present, it is a human readable key id of public key belonging to the subject used to verify image signature. It should contain at least 64 lowest bits of public key’s fingerprint (e.g. 0x685ebe62bf278440). |
 
-### .status.images[].manifests {#_statusimagesmanifests}
+### .status.images\[\].manifests {#_statusimagesmanifests}
 
 Description
 : manifests holds sub-manifests metadata when importing a manifest list
@@ -434,7 +434,7 @@ Type
   `array`
   ```
 
-### .status.images[].manifests[] {#_statusimagesmanifests}
+### .status.images\[\].manifests\[\] {#_statusimagesmanifests}
 
 Description
 : Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents.
@@ -465,7 +465,7 @@ Type
 | `signatures` | `array` | signatures holds all signatures of the image. |
 | `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 
-### .status.images[].manifests[].dockerImageLayers {#_statusimagesmanifestsdockerimagelayers}
+### .status.images\[\].manifests\[\].dockerImageLayers {#_statusimagesmanifestsdockerimagelayers}
 
 Description
 : dockerImageLayers represents the layers in the image. May not be set if the image does not define that data or if the image represents a manifest list.
@@ -475,7 +475,7 @@ Type
   `array`
   ```
 
-### .status.images[].manifests[].dockerImageLayers[] {#_statusimagesmanifestsdockerimagelayers}
+### .status.images\[\].manifests\[\].dockerImageLayers\[\] {#_statusimagesmanifestsdockerimagelayers}
 
 Description
 : ImageLayer represents a single layer of the image. Some images may have multiple layers. Some may have none.
@@ -496,7 +496,7 @@ Required
 | `name` | `string` | name of the layer as defined by the underlying store. |
 | `size` | `integer` | size of the layer in bytes as defined by the underlying store. |
 
-### .status.images[].manifests[].dockerImageManifests {#_statusimagesmanifestsdockerimagemanifests}
+### .status.images\[\].manifests\[\].dockerImageManifests {#_statusimagesmanifestsdockerimagemanifests}
 
 Description
 : dockerImageManifests holds information about sub-manifests when the image represents a manifest list. When this field is present, no DockerImageLayers should be specified.
@@ -506,7 +506,7 @@ Type
   `array`
   ```
 
-### .status.images[].manifests[].dockerImageManifests[] {#_statusimagesmanifestsdockerimagemanifests}
+### .status.images\[\].manifests\[\].dockerImageManifests\[\] {#_statusimagesmanifestsdockerimagemanifests}
 
 Description
 : ImageManifest represents sub-manifests of a manifest list. The Digest field points to a regular Image object.
@@ -532,7 +532,7 @@ Required
 | `os` | `string` | os specifies the operating system, for example `linux`. |
 | `variant` | `string` | variant is an optional field repreenting a variant of the CPU, for example v6 to specify a particular CPU variant of the ARM CPU. |
 
-### .status.images[].manifests[].signatures {#_statusimagesmanifestssignatures}
+### .status.images\[\].manifests\[\].signatures {#_statusimagesmanifestssignatures}
 
 Description
 : signatures holds all signatures of the image.
@@ -542,7 +542,7 @@ Type
   `array`
   ```
 
-### .status.images[].manifests[].signatures[] {#_statusimagesmanifestssignatures}
+### .status.images\[\].manifests\[\].signatures\[\] {#_statusimagesmanifestssignatures}
 
 Description
 : ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.
@@ -573,7 +573,7 @@ Required
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
 
-### .status.images[].manifests[].signatures[].conditions {#_statusimagesmanifestssignaturesconditions}
+### .status.images\[\].manifests\[\].signatures\[\].conditions {#_statusimagesmanifestssignaturesconditions}
 
 Description
 : conditions represent the latest available observations of a signature’s current state.
@@ -583,7 +583,7 @@ Type
   `array`
   ```
 
-### .status.images[].manifests[].signatures[].conditions[] {#_statusimagesmanifestssignaturesconditions}
+### .status.images\[\].manifests\[\].signatures\[\].conditions\[\] {#_statusimagesmanifestssignaturesconditions}
 
 Description
 : SignatureCondition describes an image signature condition of particular kind at particular probe time.
@@ -606,7 +606,7 @@ Required
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
 
-### .status.images[].manifests[].signatures[].issuedBy {#_statusimagesmanifestssignaturesissuedby}
+### .status.images\[\].manifests\[\].signatures\[\].issuedBy {#_statusimagesmanifestssignaturesissuedby}
 
 Description
 : SignatureIssuer holds information about an issuer of signing certificate or key.
@@ -621,7 +621,7 @@ Type
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
 
-### .status.images[].manifests[].signatures[].issuedTo {#_statusimagesmanifestssignaturesissuedto}
+### .status.images\[\].manifests\[\].signatures\[\].issuedTo {#_statusimagesmanifestssignaturesissuedto}
 
 Description
 : SignatureSubject holds information about a person or entity who created the signature.
@@ -704,7 +704,7 @@ Type
   `array`
   ```
 
-### .status.import.spec.tags[] {#_statusimportspectags}
+### .status.import.spec.tags\[\] {#_statusimportspectags}
 
 Description
 : TagReference specifies optional annotations for images using this tag and an optional reference to an ImageStreamTag, ImageStreamImage, or DockerImage this tag should track.
@@ -727,7 +727,7 @@ Required
 | `reference` | `boolean` | reference states if the tag will be imported. Default value is false, which means the tag will be imported. |
 | `referencePolicy` | `object` | TagReferencePolicy describes how pull-specs for images in this image stream tag are generated when image change triggers in deployment configs or builds are resolved. This allows the image stream author to control how images are accessed. |
 
-### .status.import.spec.tags[].importPolicy {#_statusimportspectagsimportpolicy}
+### .status.import.spec.tags\[\].importPolicy {#_statusimportspectagsimportpolicy}
 
 Description
 : TagImportPolicy controls how images related to this tag will be imported.
@@ -743,7 +743,7 @@ Type
 | `insecure` | `boolean` | insecure is true if the server may bypass certificate verification or connect directly over HTTP during image import. |
 | `scheduled` | `boolean` | scheduled indicates to the server that this tag should be periodically checked to ensure it is up to date, and imported |
 
-### .status.import.spec.tags[].referencePolicy {#_statusimportspectagsreferencepolicy}
+### .status.import.spec.tags\[\].referencePolicy {#_statusimportspectagsreferencepolicy}
 
 Description
 : TagReferencePolicy describes how pull-specs for images in this image stream tag are generated when image change triggers in deployment configs or builds are resolved. This allows the image stream author to control how images are accessed.
@@ -787,7 +787,7 @@ Type
   `array`
   ```
 
-### .status.import.status.tags[] {#_statusimportstatustags}
+### .status.import.status.tags\[\] {#_statusimportstatustags}
 
 Description
 : NamedTagEventList relates a tag to its image history.
@@ -809,7 +809,7 @@ Required
 | `items[]` | `object` | TagEvent is used by ImageStreamStatus to keep a historical record of images associated with a tag. |
 | `tag` | `string` | tag is the tag for which the history is recorded |
 
-### .status.import.status.tags[].conditions {#_statusimportstatustagsconditions}
+### .status.import.status.tags\[\].conditions {#_statusimportstatustagsconditions}
 
 Description
 : conditions is an array of conditions that apply to the tag event list.
@@ -819,7 +819,7 @@ Type
   `array`
   ```
 
-### .status.import.status.tags[].conditions[] {#_statusimportstatustagsconditions}
+### .status.import.status.tags\[\].conditions\[\] {#_statusimportstatustagsconditions}
 
 Description
 : TagEventCondition contains condition information for a tag event.
@@ -843,7 +843,7 @@ Required
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of tag event condition, currently only ImportSuccess |
 
-### .status.import.status.tags[].items {#_statusimportstatustagsitems}
+### .status.import.status.tags\[\].items {#_statusimportstatustagsitems}
 
 Description
 : Standard object’s metadata.
@@ -853,7 +853,7 @@ Type
   `array`
   ```
 
-### .status.import.status.tags[].items[] {#_statusimportstatustagsitems}
+### .status.import.status.tags\[\].items\[\] {#_statusimportstatustagsitems}
 
 Description
 : TagEvent is used by ImageStreamStatus to keep a historical record of images associated with a tag.
@@ -903,7 +903,7 @@ Type
   `array`
   ```
 
-### .status.repository.images[] {#_statusrepositoryimages}
+### .status.repository.images\[\] {#_statusrepositoryimages}
 
 Description
 : ImageImportStatus describes the result of an image import.
@@ -924,7 +924,7 @@ Required
 | `status` | [`Status_v2`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-Status_v2) | status is the status of the image import, including errors encountered while retrieving the image |
 | `tag` | `string` | tag is the tag this image was located under, if any |
 
-### .status.repository.images[].image {#_statusrepositoryimagesimage}
+### .status.repository.images\[\].image {#_statusrepositoryimagesimage}
 
 Description
 : Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents.
@@ -955,7 +955,7 @@ Type
 | `signatures` | `array` | signatures holds all signatures of the image. |
 | `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 
-### .status.repository.images[].image.dockerImageLayers {#_statusrepositoryimagesimagedockerimagelayers}
+### .status.repository.images\[\].image.dockerImageLayers {#_statusrepositoryimagesimagedockerimagelayers}
 
 Description
 : dockerImageLayers represents the layers in the image. May not be set if the image does not define that data or if the image represents a manifest list.
@@ -965,7 +965,7 @@ Type
   `array`
   ```
 
-### .status.repository.images[].image.dockerImageLayers[] {#_statusrepositoryimagesimagedockerimagelayers}
+### .status.repository.images\[\].image.dockerImageLayers\[\] {#_statusrepositoryimagesimagedockerimagelayers}
 
 Description
 : ImageLayer represents a single layer of the image. Some images may have multiple layers. Some may have none.
@@ -986,7 +986,7 @@ Required
 | `name` | `string` | name of the layer as defined by the underlying store. |
 | `size` | `integer` | size of the layer in bytes as defined by the underlying store. |
 
-### .status.repository.images[].image.dockerImageManifests {#_statusrepositoryimagesimagedockerimagemanifests}
+### .status.repository.images\[\].image.dockerImageManifests {#_statusrepositoryimagesimagedockerimagemanifests}
 
 Description
 : dockerImageManifests holds information about sub-manifests when the image represents a manifest list. When this field is present, no DockerImageLayers should be specified.
@@ -996,7 +996,7 @@ Type
   `array`
   ```
 
-### .status.repository.images[].image.dockerImageManifests[] {#_statusrepositoryimagesimagedockerimagemanifests}
+### .status.repository.images\[\].image.dockerImageManifests\[\] {#_statusrepositoryimagesimagedockerimagemanifests}
 
 Description
 : ImageManifest represents sub-manifests of a manifest list. The Digest field points to a regular Image object.
@@ -1022,7 +1022,7 @@ Required
 | `os` | `string` | os specifies the operating system, for example `linux`. |
 | `variant` | `string` | variant is an optional field repreenting a variant of the CPU, for example v6 to specify a particular CPU variant of the ARM CPU. |
 
-### .status.repository.images[].image.signatures {#_statusrepositoryimagesimagesignatures}
+### .status.repository.images\[\].image.signatures {#_statusrepositoryimagesimagesignatures}
 
 Description
 : signatures holds all signatures of the image.
@@ -1032,7 +1032,7 @@ Type
   `array`
   ```
 
-### .status.repository.images[].image.signatures[] {#_statusrepositoryimagesimagesignatures}
+### .status.repository.images\[\].image.signatures\[\] {#_statusrepositoryimagesimagesignatures}
 
 Description
 : ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.
@@ -1063,7 +1063,7 @@ Required
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
 
-### .status.repository.images[].image.signatures[].conditions {#_statusrepositoryimagesimagesignaturesconditions}
+### .status.repository.images\[\].image.signatures\[\].conditions {#_statusrepositoryimagesimagesignaturesconditions}
 
 Description
 : conditions represent the latest available observations of a signature’s current state.
@@ -1073,7 +1073,7 @@ Type
   `array`
   ```
 
-### .status.repository.images[].image.signatures[].conditions[] {#_statusrepositoryimagesimagesignaturesconditions}
+### .status.repository.images\[\].image.signatures\[\].conditions\[\] {#_statusrepositoryimagesimagesignaturesconditions}
 
 Description
 : SignatureCondition describes an image signature condition of particular kind at particular probe time.
@@ -1096,7 +1096,7 @@ Required
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
 
-### .status.repository.images[].image.signatures[].issuedBy {#_statusrepositoryimagesimagesignaturesissuedby}
+### .status.repository.images\[\].image.signatures\[\].issuedBy {#_statusrepositoryimagesimagesignaturesissuedby}
 
 Description
 : SignatureIssuer holds information about an issuer of signing certificate or key.
@@ -1111,7 +1111,7 @@ Type
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
 
-### .status.repository.images[].image.signatures[].issuedTo {#_statusrepositoryimagesimagesignaturesissuedto}
+### .status.repository.images\[\].image.signatures\[\].issuedTo {#_statusrepositoryimagesimagesignaturesissuedto}
 
 Description
 : SignatureSubject holds information about a person or entity who created the signature.
@@ -1130,7 +1130,7 @@ Required
 | `organization` | `string` | organization name. |
 | `publicKeyID` | `string` | If present, it is a human readable key id of public key belonging to the subject used to verify image signature. It should contain at least 64 lowest bits of public key’s fingerprint (e.g. 0x685ebe62bf278440). |
 
-### .status.repository.images[].manifests {#_statusrepositoryimagesmanifests}
+### .status.repository.images\[\].manifests {#_statusrepositoryimagesmanifests}
 
 Description
 : manifests holds sub-manifests metadata when importing a manifest list
@@ -1140,7 +1140,7 @@ Type
   `array`
   ```
 
-### .status.repository.images[].manifests[] {#_statusrepositoryimagesmanifests}
+### .status.repository.images\[\].manifests\[\] {#_statusrepositoryimagesmanifests}
 
 Description
 : Image is an immutable representation of a container image and its metadata at a point in time. Images are named by taking a hash of their contents (metadata and content) and any change in format, content, or metadata results in a new name. The images resource is primarily for use by cluster administrators and integrations like the cluster image registry - end users, instead, access images via the imagestreamtags or imagestreamimages resources. While image metadata is stored in the API, any integration that implements the container image registry API must provide its own storage for the raw manifest data, image config, and layer contents.
@@ -1171,7 +1171,7 @@ Type
 | `signatures` | `array` | signatures holds all signatures of the image. |
 | `signatures[]` | `object` | ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.<br>Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer). |
 
-### .status.repository.images[].manifests[].dockerImageLayers {#_statusrepositoryimagesmanifestsdockerimagelayers}
+### .status.repository.images\[\].manifests\[\].dockerImageLayers {#_statusrepositoryimagesmanifestsdockerimagelayers}
 
 Description
 : dockerImageLayers represents the layers in the image. May not be set if the image does not define that data or if the image represents a manifest list.
@@ -1181,7 +1181,7 @@ Type
   `array`
   ```
 
-### .status.repository.images[].manifests[].dockerImageLayers[] {#_statusrepositoryimagesmanifestsdockerimagelayers}
+### .status.repository.images\[\].manifests\[\].dockerImageLayers\[\] {#_statusrepositoryimagesmanifestsdockerimagelayers}
 
 Description
 : ImageLayer represents a single layer of the image. Some images may have multiple layers. Some may have none.
@@ -1202,7 +1202,7 @@ Required
 | `name` | `string` | name of the layer as defined by the underlying store. |
 | `size` | `integer` | size of the layer in bytes as defined by the underlying store. |
 
-### .status.repository.images[].manifests[].dockerImageManifests {#_statusrepositoryimagesmanifestsdockerimagemanifests}
+### .status.repository.images\[\].manifests\[\].dockerImageManifests {#_statusrepositoryimagesmanifestsdockerimagemanifests}
 
 Description
 : dockerImageManifests holds information about sub-manifests when the image represents a manifest list. When this field is present, no DockerImageLayers should be specified.
@@ -1212,7 +1212,7 @@ Type
   `array`
   ```
 
-### .status.repository.images[].manifests[].dockerImageManifests[] {#_statusrepositoryimagesmanifestsdockerimagemanifests}
+### .status.repository.images\[\].manifests\[\].dockerImageManifests\[\] {#_statusrepositoryimagesmanifestsdockerimagemanifests}
 
 Description
 : ImageManifest represents sub-manifests of a manifest list. The Digest field points to a regular Image object.
@@ -1238,7 +1238,7 @@ Required
 | `os` | `string` | os specifies the operating system, for example `linux`. |
 | `variant` | `string` | variant is an optional field repreenting a variant of the CPU, for example v6 to specify a particular CPU variant of the ARM CPU. |
 
-### .status.repository.images[].manifests[].signatures {#_statusrepositoryimagesmanifestssignatures}
+### .status.repository.images\[\].manifests\[\].signatures {#_statusrepositoryimagesmanifestssignatures}
 
 Description
 : signatures holds all signatures of the image.
@@ -1248,7 +1248,7 @@ Type
   `array`
   ```
 
-### .status.repository.images[].manifests[].signatures[] {#_statusrepositoryimagesmanifestssignatures}
+### .status.repository.images\[\].manifests\[\].signatures\[\] {#_statusrepositoryimagesmanifestssignatures}
 
 Description
 : ImageSignature holds a signature of an image. It allows to verify image identity and possibly other claims as long as the signature is trusted. Based on this information it is possible to restrict runnable images to those matching cluster-wide policy. Mandatory fields should be parsed by clients doing image verification. The others are parsed from signature’s content by the server. They serve just an informative purpose.
@@ -1279,7 +1279,7 @@ Required
 | `signedClaims` | `object (string)` | Contains claims from the signature. |
 | `type` | `string` | Required: Describes a type of stored blob. |
 
-### .status.repository.images[].manifests[].signatures[].conditions {#_statusrepositoryimagesmanifestssignaturesconditions}
+### .status.repository.images\[\].manifests\[\].signatures\[\].conditions {#_statusrepositoryimagesmanifestssignaturesconditions}
 
 Description
 : conditions represent the latest available observations of a signature’s current state.
@@ -1289,7 +1289,7 @@ Type
   `array`
   ```
 
-### .status.repository.images[].manifests[].signatures[].conditions[] {#_statusrepositoryimagesmanifestssignaturesconditions}
+### .status.repository.images\[\].manifests\[\].signatures\[\].conditions\[\] {#_statusrepositoryimagesmanifestssignaturesconditions}
 
 Description
 : SignatureCondition describes an image signature condition of particular kind at particular probe time.
@@ -1312,7 +1312,7 @@ Required
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of signature condition, Complete or Failed. |
 
-### .status.repository.images[].manifests[].signatures[].issuedBy {#_statusrepositoryimagesmanifestssignaturesissuedby}
+### .status.repository.images\[\].manifests\[\].signatures\[\].issuedBy {#_statusrepositoryimagesmanifestssignaturesissuedby}
 
 Description
 : SignatureIssuer holds information about an issuer of signing certificate or key.
@@ -1327,7 +1327,7 @@ Type
 | `commonName` | `string` | Common name (e.g. openshift-signing-service). |
 | `organization` | `string` | organization name. |
 
-### .status.repository.images[].manifests[].signatures[].issuedTo {#_statusrepositoryimagesmanifestssignaturesissuedto}
+### .status.repository.images\[\].manifests\[\].signatures\[\].issuedTo {#_statusrepositoryimagesmanifestssignaturesissuedto}
 
 Description
 : SignatureSubject holds information about a person or entity who created the signature.
@@ -1353,7 +1353,7 @@ The following API endpoints are available:
 - `/apis/image.openshift.io/v1/namespaces/{namespace}/imagestreamimports`
   - `POST`: create an ImageStreamImport
 
-### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreamimports {#_apisimageopenshiftiov1namespaces_namespace_imagestreamimports}
+### /apis/image.openshift.io/v1/namespaces/&#123;namespace&#125;/imagestreamimports {#_apisimageopenshiftiov1namespaces_namespace_imagestreamimports}
 
 **Global query parameters**
 

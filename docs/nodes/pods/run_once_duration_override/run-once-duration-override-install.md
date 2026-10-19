@@ -84,7 +84,7 @@ Enable the run-once duration override on a namespace by adding the `runoncedurat
        runoncedurationoverrides.admission.runoncedurationoverride.openshift.io/enabled=true
    ```
 
-   Replace <namespace> with the namespace to enable the run-once duration override on.
+   Replace &lt;namespace> with the namespace to enable the run-once duration override on.
 
    After you enable the run-once duration override on this namespace, future run-once pods that are created in this namespace will have their `activeDeadlineSeconds` field set to the override value from the Run Once Duration Override Operator. Existing pods in this namespace will also have their `activeDeadlineSeconds` value set when they are updated next.
 

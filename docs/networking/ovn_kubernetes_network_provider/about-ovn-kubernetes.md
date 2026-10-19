@@ -37,7 +37,9 @@ OVN-Kubernetes runs a daemon on each node. There are daemon sets for the databas
 
 ## OVN-Kubernetes purpose {#nw-ovn-kubernetes-purpose_about-ovn-kubernetes}
 
-The OVN-Kubernetes network plugin is an open-source, fully-featured Kubernetes CNI plugin that uses Open Virtual Network (OVN) to manage network traffic flows. OVN is a community developed, vendor-agnostic network virtualization solution. The OVN-Kubernetes network plugin uses the following technologies:
+The OVN-Kubernetes network plugin is an open-source, fully-featured Kubernetes CNI plugin that uses Open Virtual Network (OVN) to manage network traffic flows.
+
+OVN is a community developed, vendor-agnostic network virtualization solution. The OVN-Kubernetes network plugin uses the following technologies:
 
 - OVN to manage network traffic flows.
 - Kubernetes network policy support and logs, including ingress and egress rules.
@@ -98,7 +100,7 @@ The OVN-Kubernetes network plugin has specific IPv6 and dual-stack networking co
 
 ## Session affinity {#nw-ovn-kubernetes-session-affinity_about-ovn-kubernetes}
 
-You can use *session affinity* if you want to ensure that each time you connect to a <service_VIP>:<Port>, the traffic is always load balanced to the same back end. For more information, including how to set session affinity based on a client’s IP address, see "Session affinity in Kubernetes".
+You can use *session affinity* if you want to ensure that each time you connect to a &lt;service_VIP>:&lt;Port>, the traffic is always load balanced to the same back end. For more information, including how to set session affinity based on a client’s IP address, see "Session affinity in Kubernetes".
 
 ### Stickiness timeout for session affinity {#nw-ovn-kubernetes-session-affinity-stickyness-timeout_about-ovn-kubernetes}
 
@@ -121,4 +123,4 @@ As a result, if the client is continuously contacting the service, then the sess
 - [Logging network policy events](/docs/networking/network_security/logging-network-security#logging-network-security)
 - [Enabling multicast for a project](/docs/networking/ovn_kubernetes_network_provider/enabling-multicast#nw-ovn-kubernetes-enabling-multicast)
 - [Configuring IPsec encryption](/docs/networking/network_security/configuring-ipsec-ovn#configuring-ipsec-ovn)
-- [Network [operator.openshift.io/v1]](/docs/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1)
+- \[Network [operator.openshift.io/v1\]](/docs/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1)

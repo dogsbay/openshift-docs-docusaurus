@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="config-apis"></a>
 
-## APIServer [config.openshift.io/v1] {#_apiserver_configopenshiftiov1}
+## APIServer \[config.openshift.io/v1\] {#_apiserver_configopenshiftiov1}
 
 Description
 : APIServer holds configuration (like serving certificates, client CA and CORS domains) shared by all API servers in the system, among them especially kube-apiserver and openshift-apiserver. The canonical name of an instance is 'cluster'.
@@ -19,7 +19,7 @@ Type
   `object`
   ```
 
-## Authentication [config.openshift.io/v1] {#_authentication_configopenshiftiov1}
+## Authentication \[config.openshift.io/v1\] {#_authentication_configopenshiftiov1}
 
 Description
 : Authentication specifies cluster-wide settings for authentication (like OAuth and webhook token authenticators). The canonical name of an instance is `cluster`.
@@ -31,7 +31,7 @@ Type
   `object`
   ```
 
-## Build [config.openshift.io/v1] {#_build_configopenshiftiov1}
+## Build \[config.openshift.io/v1\] {#_build_configopenshiftiov1}
 
 Description
 : Build configures the behavior of OpenShift builds for the entire cluster. This includes default settings that can be overridden in BuildConfig objects, and overrides which are applied to all builds.
@@ -45,7 +45,7 @@ Type
   `object`
   ```
 
-## ClusterImagePolicy [config.openshift.io/v1] {#_clusterimagepolicy_configopenshiftiov1}
+## ClusterImagePolicy \[config.openshift.io/v1\] {#_clusterimagepolicy_configopenshiftiov1}
 
 Description
 : ClusterImagePolicy holds cluster-wide configuration for image signature verification
@@ -57,7 +57,7 @@ Type
   `object`
   ```
 
-## ClusterOperator [config.openshift.io/v1] {#_clusteroperator_configopenshiftiov1}
+## ClusterOperator \[config.openshift.io/v1\] {#_clusteroperator_configopenshiftiov1}
 
 Description
 : ClusterOperator holds the status of a core or optional OpenShift component managed by the Cluster Version Operator (CVO). This object is used by operators to convey their state to the rest of the cluster. Compatibility level 1: Stable within a major release for a minimum of 12 months or 3 minor releases (whichever is longer).
@@ -67,7 +67,7 @@ Type
   `object`
   ```
 
-## ClusterVersion [config.openshift.io/v1] {#_clusterversion_configopenshiftiov1}
+## ClusterVersion \[config.openshift.io/v1\] {#_clusterversion_configopenshiftiov1}
 
 Description
 : ClusterVersion is the configuration for the ClusterVersionOperator. This is where parameters related to automatic updates can be set.
@@ -79,7 +79,7 @@ Type
   `object`
   ```
 
-## Console [config.openshift.io/v1] {#_console_configopenshiftiov1}
+## Console \[config.openshift.io/v1\] {#_console_configopenshiftiov1}
 
 Description
 : Console holds cluster-wide configuration for the web console, including the logout URL, and reports the public URL of the console. The canonical name is `cluster`.
@@ -91,7 +91,7 @@ Type
   `object`
   ```
 
-## DNS [config.openshift.io/v1] {#_dns_configopenshiftiov1}
+## DNS \[config.openshift.io/v1\] {#_dns_configopenshiftiov1}
 
 Description
 : DNS holds cluster-wide information about DNS. The canonical name is `cluster`
@@ -103,7 +103,7 @@ Type
   `object`
   ```
 
-## FeatureGate [config.openshift.io/v1] {#_featuregate_configopenshiftiov1}
+## FeatureGate \[config.openshift.io/v1\] {#_featuregate_configopenshiftiov1}
 
 Description
 : Feature holds cluster-wide information about feature gates.  The canonical name is `cluster`
@@ -115,7 +115,7 @@ Type
   `object`
   ```
 
-## HelmChartRepository [helm.openshift.io/v1beta1] {#_helmchartrepository_helmopenshiftiov1beta1}
+## HelmChartRepository \[helm.openshift.io/v1beta1\] {#_helmchartrepository_helmopenshiftiov1beta1}
 
 Description
 : HelmChartRepository holds cluster-wide configuration for proxied Helm chart repository
@@ -127,7 +127,7 @@ Type
   `object`
   ```
 
-## Image [config.openshift.io/v1] {#_image_configopenshiftiov1}
+## Image \[config.openshift.io/v1\] {#_image_configopenshiftiov1}
 
 Description
 : Image governs policies related to imagestream imports and runtime configuration for external registries. It allows cluster admins to configure which registries OpenShift is allowed to import images from, extra CA trust bundles for external registries, and policies to block or allow registry hostnames. When exposing OpenShift’s image registry to the public, this also lets cluster admins specify the external hostname.
@@ -139,7 +139,7 @@ Type
   `object`
   ```
 
-## ImageDigestMirrorSet [config.openshift.io/v1] {#_imagedigestmirrorset_configopenshiftiov1}
+## ImageDigestMirrorSet \[config.openshift.io/v1\] {#_imagedigestmirrorset_configopenshiftiov1}
 
 Description
 : ImageDigestMirrorSet holds cluster-wide information about how to handle registry mirror rules on using digest pull specification. When multiple policies are defined, the outcome of the behavior is defined on each field.
@@ -151,7 +151,7 @@ Type
   `object`
   ```
 
-## ImageContentPolicy [config.openshift.io/v1] {#_imagecontentpolicy_configopenshiftiov1}
+## ImageContentPolicy \[config.openshift.io/v1\] {#_imagecontentpolicy_configopenshiftiov1}
 
 Description
 : ImageContentPolicy holds cluster-wide information about how to handle registry mirror rules. When multiple policies are defined, the outcome of the behavior is defined on each field.
@@ -163,7 +163,7 @@ Type
   `object`
   ```
 
-## ImagePolicy [config.openshift.io/v1] {#_imagepolicy_configopenshiftiov1}
+## ImagePolicy \[config.openshift.io/v1\] {#_imagepolicy_configopenshiftiov1}
 
 Description
 : ImagePolicy holds namespace-wide configuration for image signature verification
@@ -175,7 +175,7 @@ Type
   `object`
   ```
 
-## ImageTagMirrorSet [config.openshift.io/v1] {#_imagetagmirrorset_configopenshiftiov1}
+## ImageTagMirrorSet \[config.openshift.io/v1\] {#_imagetagmirrorset_configopenshiftiov1}
 
 Description
 : ImageTagMirrorSet holds cluster-wide information about how to handle registry mirror rules on using tag pull specification. When multiple policies are defined, the outcome of the behavior is defined on each field.
@@ -187,7 +187,7 @@ Type
   `object`
   ```
 
-## InsightsDataGather [config.openshift.io/v1] {#_insightsdatagather_configopenshiftiov1}
+## InsightsDataGather \[config.openshift.io/v1\] {#_insightsdatagather_configopenshiftiov1}
 
 Description
 : InsightsDataGather provides data gather configuration options for the Insights Operator.
@@ -199,7 +199,7 @@ Type
   `object`
   ```
 
-## Infrastructure [config.openshift.io/v1] {#_infrastructure_configopenshiftiov1}
+## Infrastructure \[config.openshift.io/v1\] {#_infrastructure_configopenshiftiov1}
 
 Description
 : Infrastructure holds cluster-wide information about Infrastructure.  The canonical name is `cluster`
@@ -211,7 +211,7 @@ Type
   `object`
   ```
 
-## Ingress [config.openshift.io/v1] {#_ingress_configopenshiftiov1}
+## Ingress \[config.openshift.io/v1\] {#_ingress_configopenshiftiov1}
 
 Description
 : Ingress holds cluster-wide information about ingress, including the default ingress domain used for routes. The canonical name is `cluster`.
@@ -223,7 +223,7 @@ Type
   `object`
   ```
 
-## Network [config.openshift.io/v1] {#_network_configopenshiftiov1}
+## Network \[config.openshift.io/v1\] {#_network_configopenshiftiov1}
 
 Description
 : Network holds cluster-wide information about Network. The canonical name is `cluster`. It is used to configure the desired network configuration, such as: IP address pools for services/pod IPs, network plugin, etc. Please view network.spec for an explanation on what applies when configuring this resource.
@@ -235,7 +235,7 @@ Type
   `object`
   ```
 
-## Node [config.openshift.io/v1] {#_node_configopenshiftiov1}
+## Node \[config.openshift.io/v1\] {#_node_configopenshiftiov1}
 
 Description
 : Node holds cluster-wide information about node specific features.
@@ -247,7 +247,7 @@ Type
   `object`
   ```
 
-## OAuth [config.openshift.io/v1] {#_oauth_configopenshiftiov1}
+## OAuth \[config.openshift.io/v1\] {#_oauth_configopenshiftiov1}
 
 Description
 : OAuth holds cluster-wide information about OAuth.  The canonical name is `cluster`. It is used to configure the integrated OAuth server. This configuration is only honored when the top level Authentication config has type set to IntegratedOAuth.
@@ -259,7 +259,7 @@ Type
   `object`
   ```
 
-## OperatorHub [config.openshift.io/v1] {#_operatorhub_configopenshiftiov1}
+## OperatorHub \[config.openshift.io/v1\] {#_operatorhub_configopenshiftiov1}
 
 Description
 : OperatorHub is the Schema for the operatorhubs API. It can be used to change the state of the default hub sources for OperatorHub on the cluster from enabled to disabled and vice versa.
@@ -271,7 +271,7 @@ Type
   `object`
   ```
 
-## Project [config.openshift.io/v1] {#_project_configopenshiftiov1}
+## Project \[config.openshift.io/v1\] {#_project_configopenshiftiov1}
 
 Description
 : Project holds cluster-wide information about Project.  The canonical name is `cluster`
@@ -283,7 +283,7 @@ Type
   `object`
   ```
 
-## ProjectHelmChartRepository [helm.openshift.io/v1beta1] {#_projecthelmchartrepository_helmopenshiftiov1beta1}
+## ProjectHelmChartRepository \[helm.openshift.io/v1beta1\] {#_projecthelmchartrepository_helmopenshiftiov1beta1}
 
 Description
 : ProjectHelmChartRepository holds namespace-wide configuration for proxied Helm chart repository
@@ -295,7 +295,7 @@ Type
   `object`
   ```
 
-## Proxy [config.openshift.io/v1] {#_proxy_configopenshiftiov1}
+## Proxy \[config.openshift.io/v1\] {#_proxy_configopenshiftiov1}
 
 Description
 : Proxy holds cluster-wide information on how to configure default proxies for the cluster. The canonical name is `cluster`
@@ -307,7 +307,7 @@ Type
   `object`
   ```
 
-## Scheduler [config.openshift.io/v1] {#_scheduler_configopenshiftiov1}
+## Scheduler \[config.openshift.io/v1\] {#_scheduler_configopenshiftiov1}
 
 Description
 : Scheduler holds cluster-wide config information to run the Kubernetes Scheduler and influence its placement decisions. The canonical name for this config is `cluster`.

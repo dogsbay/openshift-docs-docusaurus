@@ -11,7 +11,7 @@ Restore Red Hat 3scale API Management components by restoring the backed up 3sc
 
 After the data has been restored, you can scale up the 3scale operator and deployment.
 
-## Restoring the 3scale API Management operator, secrets, and APIManager {#restoring-the-3scale-api-management-operator-secrets-and-apimanager_restoring-3scale-api-management-by-using-oadp}
+## Restore the 3scale API Management operator, secrets, and APIManager {#restoring-the-3scale-api-management-operator-secrets-and-apimanager_restoring-3scale-api-management-by-using-oadp}
 
 Restore the Red Hat 3scale API Management operator resources, including the `Secret` and APIManager custom resources (CRs). This helps you to recover your 3scale operator configuration on the same or a different cluster.
 
@@ -189,7 +189,7 @@ Restore the Red Hat 3scale API Management operator resources, including the `Se
     deployment.apps/threescale-operator-controller-manager-v2 scaled
     ```
 
-## Restoring a MySQL database {#restoring-the-mysql-database_restoring-3scale-api-management-by-using-oadp}
+## Restore a MySQL database {#restoring-the-mysql-database_restoring-3scale-api-management-by-using-oadp}
 
 Restore a MySQL database by scaling down Red Hat 3scale API Management components and creating a Velero `Restore` custom resource (CR). This helps you to recover your 3scale MySQL data, persistent volumes, and associated resources.
 
@@ -338,7 +338,7 @@ Do not delete the default PV and PVC associated with the database. If you do, yo
    system-searchd          Bound    pvc-afbf606c-d4a8-4041-8ec6-54c5baf1a3b9   1Gi        RWO            gp3-csi        <unset>                 68m
    ```
 
-## Restoring the back-end Redis database {#restoring-the-backend-redis-database_restoring-3scale-api-management-by-using-oadp}
+## Restore the back-end Redis database {#restoring-the-backend-redis-database_restoring-3scale-api-management-by-using-oadp}
 
 Restore the back-end Redis database by creating a `Restore` custom resource (CR) that excludes non-essential cluster resources. This helps you to recover the Redis data store as part of the Red Hat 3scale API Management restoration process.
 
@@ -409,7 +409,7 @@ Restore the back-end Redis database by creating a `Restore` custom resource (CR)
   restore-backend-jmrwx   threescale   backend-redis-1-bsfmv   kopia           backend-redis-storage   Completed   76123        76123       21m
   ```
 
-## Scaling up the 3scale API Management operator and deployment {#scaling-up-the-3scale-api-management-operator-and-deployment_restoring-3scale-api-management-by-using-oadp}
+## Scale up the 3scale API Management operator and deployment {#scaling-up-the-3scale-api-management-operator-and-deployment_restoring-3scale-api-management-by-using-oadp}
 
 Scale up the Red Hat 3scale API Management operator and any deployment that was manually scaled down during the restore process. This helps you to bring your 3scale installation back to a fully functional state matching the backed-up configuration.
 

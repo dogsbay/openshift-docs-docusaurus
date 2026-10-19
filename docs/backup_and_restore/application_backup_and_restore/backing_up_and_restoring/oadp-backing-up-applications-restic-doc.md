@@ -41,7 +41,7 @@ Do not give Velero write access to the `.snapshot` directory, and disable client
 
 :::
 
-## Backing up applications with File System Backup {#oadp-backingup-file-system-backup_backing-up-applications}
+## Back up applications with File System Backup {#oadp-backingup-file-system-backup_backing-up-applications}
 
 Create a `Backup` custom resource (CR) to back up applications by using File System Backup (FSB) with Kopia as the uploader. This helps you to protect Kubernetes volumes attached to pods when snapshots are not available or when using NFS data volumes.
 

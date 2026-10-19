@@ -3,7 +3,7 @@ title: "Route [route.openshift.io/v1]"
 sidebar_position: 31
 ---
 
-# Route [route.openshift.io/v1] {#route-route-openshift-io-v1}
+# Route \[route.openshift.io/v1\] {#route-route-openshift-io-v1}
 
 <a id="route-route-openshift-io-v1"></a>
 
@@ -76,7 +76,7 @@ Type
   `array`
   ```
 
-### .spec.alternateBackends[] {#_specalternatebackends}
+### .spec.alternateBackends\[\] {#_specalternatebackends}
 
 Description
 : RouteTargetReference specifies the target that resolve into endpoints. Only the 'Service' kind is allowed. Use 'weight' field to emphasize one over others.
@@ -122,22 +122,22 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `request` | `array` | request is a list of HTTP request headers to modify. Currently, actions may define to either `Set` or `Delete` headers values. Actions defined here will modify the request headers of all requests made through a route. These actions are applied to a specific Route defined within a cluster i.e. connections made through a route. Currently, actions may define to either `Set` or `Delete` headers values. Route actions will be executed after IngressController actions for request headers. Actions are applied in sequence as defined in this list. A maximum of 20 request header actions may be configured. You can use this field to specify HTTP request headers that should be set or deleted when forwarding connections from the client to your application. Sample fetchers allowed are "req.hdr" and "ssl_c_der". Converters allowed are "lower" and "base64". Example header values: "%[req.hdr(X-target),lower]", "%{+Q}[ssl_c_der,base64]". Any request header configuration applied directly via a Route resource using this API will override header configuration for a header of the same name applied via spec.httpHeaders.actions on the IngressController or route annotation. Note: This field cannot be used if your route uses TLS passthrough. |
+| `request` | `array` | request is a list of HTTP request headers to modify. Currently, actions may define to either `Set` or `Delete` headers values. Actions defined here will modify the request headers of all requests made through a route. These actions are applied to a specific Route defined within a cluster i.e. connections made through a route. Currently, actions may define to either `Set` or `Delete` headers values. Route actions will be executed after IngressController actions for request headers. Actions are applied in sequence as defined in this list. A maximum of 20 request header actions may be configured. You can use this field to specify HTTP request headers that should be set or deleted when forwarding connections from the client to your application. Sample fetchers allowed are "req.hdr" and "ssl_c_der". Converters allowed are "lower" and "base64". Example header values: "%\[req.hdr(X-target),lower\]", "%&#123;+Q&#125;\[ssl_c_der,base64\]". Any request header configuration applied directly via a Route resource using this API will override header configuration for a header of the same name applied via spec.httpHeaders.actions on the IngressController or route annotation. Note: This field cannot be used if your route uses TLS passthrough. |
 | `request[]` | `object` | RouteHTTPHeader specifies configuration for setting or deleting an HTTP header. |
-| `response` | `array` | response is a list of HTTP response headers to modify. Currently, actions may define to either `Set` or `Delete` headers values. Actions defined here will modify the response headers of all requests made through a route. These actions are applied to a specific Route defined within a cluster i.e. connections made through a route. Route actions will be executed before IngressController actions for response headers. Actions are applied in sequence as defined in this list. A maximum of 20 response header actions may be configured. You can use this field to specify HTTP response headers that should be set or deleted when forwarding responses from your application to the client. Sample fetchers allowed are "res.hdr" and "ssl_c_der". Converters allowed are "lower" and "base64". Example header values: "%[res.hdr(X-target),lower]", "%{+Q}[ssl_c_der,base64]". Note: This field cannot be used if your route uses TLS passthrough. |
+| `response` | `array` | response is a list of HTTP response headers to modify. Currently, actions may define to either `Set` or `Delete` headers values. Actions defined here will modify the response headers of all requests made through a route. These actions are applied to a specific Route defined within a cluster i.e. connections made through a route. Route actions will be executed before IngressController actions for response headers. Actions are applied in sequence as defined in this list. A maximum of 20 response header actions may be configured. You can use this field to specify HTTP response headers that should be set or deleted when forwarding responses from your application to the client. Sample fetchers allowed are "res.hdr" and "ssl_c_der". Converters allowed are "lower" and "base64". Example header values: "%\[res.hdr(X-target),lower\]", "%&#123;+Q&#125;\[ssl_c_der,base64\]". Note: This field cannot be used if your route uses TLS passthrough. |
 | `response[]` | `object` | RouteHTTPHeader specifies configuration for setting or deleting an HTTP header. |
 
 ### .spec.httpHeaders.actions.request {#_spechttpheadersactionsrequest}
 
 Description
-: request is a list of HTTP request headers to modify. Currently, actions may define to either `Set` or `Delete` headers values. Actions defined here will modify the request headers of all requests made through a route. These actions are applied to a specific Route defined within a cluster i.e. connections made through a route. Currently, actions may define to either `Set` or `Delete` headers values. Route actions will be executed after IngressController actions for request headers. Actions are applied in sequence as defined in this list. A maximum of 20 request header actions may be configured. You can use this field to specify HTTP request headers that should be set or deleted when forwarding connections from the client to your application. Sample fetchers allowed are "req.hdr" and "ssl_c_der". Converters allowed are "lower" and "base64". Example header values: "%[req.hdr(X-target),lower]", "%{+Q}[ssl_c_der,base64]". Any request header configuration applied directly via a Route resource using this API will override header configuration for a header of the same name applied via spec.httpHeaders.actions on the IngressController or route annotation. Note: This field cannot be used if your route uses TLS passthrough.
+: request is a list of HTTP request headers to modify. Currently, actions may define to either `Set` or `Delete` headers values. Actions defined here will modify the request headers of all requests made through a route. These actions are applied to a specific Route defined within a cluster i.e. connections made through a route. Currently, actions may define to either `Set` or `Delete` headers values. Route actions will be executed after IngressController actions for request headers. Actions are applied in sequence as defined in this list. A maximum of 20 request header actions may be configured. You can use this field to specify HTTP request headers that should be set or deleted when forwarding connections from the client to your application. Sample fetchers allowed are "req.hdr" and "ssl_c_der". Converters allowed are "lower" and "base64". Example header values: "%\[req.hdr(X-target),lower\]", "%&#123;+Q&#125;\[ssl_c_der,base64\]". Any request header configuration applied directly via a Route resource using this API will override header configuration for a header of the same name applied via spec.httpHeaders.actions on the IngressController or route annotation. Note: This field cannot be used if your route uses TLS passthrough.
 
 Type
 : ```
   `array`
   ```
 
-### .spec.httpHeaders.actions.request[] {#_spechttpheadersactionsrequest}
+### .spec.httpHeaders.actions.request\[\] {#_spechttpheadersactionsrequest}
 
 Description
 : RouteHTTPHeader specifies configuration for setting or deleting an HTTP header.
@@ -154,9 +154,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `action` | `object` | RouteHTTPHeaderActionUnion specifies an action to take on an HTTP header. |
-| `name` | `string` | name specifies the name of a header on which to perform an action. Its value must be a valid HTTP header name as defined in RFC 2616 section 4.2. The name must consist only of alphanumeric and the following special characters, "-!#$%&'*+.^_`". The following header names are reserved and may not be modified via this API: Strict-Transport-Security, Proxy, Cookie, Set-Cookie. It must be no more than 255 characters in length. Header name must be unique. |
+| `name` | `string` | name specifies the name of a header on which to perform an action. Its value must be a valid HTTP header name as defined in RFC 2616 section 4.2. The name must consist only of alphanumeric and the following special characters, "-!#&#36;%&'\*+.^\_&#96;". The following header names are reserved and may not be modified via this API: Strict-Transport-Security, Proxy, Cookie, Set-Cookie. It must be no more than 255 characters in length. Header name must be unique. |
 
-### .spec.httpHeaders.actions.request[].action {#_spechttpheadersactionsrequestaction}
+### .spec.httpHeaders.actions.request\[\].action {#_spechttpheadersactionsrequestaction}
 
 Description
 : RouteHTTPHeaderActionUnion specifies an action to take on an HTTP header.
@@ -174,7 +174,7 @@ Required
 | `set` | `object` | RouteSetHTTPHeader specifies what value needs to be set on an HTTP header. |
 | `type` | `string` | type defines the type of the action to be applied on the header. Possible values are Set or Delete. Set allows you to set HTTP request and response headers. Delete allows you to delete HTTP request and response headers. |
 
-### .spec.httpHeaders.actions.request[].action.set {#_spechttpheadersactionsrequestactionset}
+### .spec.httpHeaders.actions.request\[\].action.set {#_spechttpheadersactionsrequestactionset}
 
 Description
 : RouteSetHTTPHeader specifies what value needs to be set on an HTTP header.
@@ -189,19 +189,19 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `value` | `string` | value specifies a header value. Dynamic values can be added. The value will be interpreted as an HAProxy format string as defined in http://cbonte.github.io/haproxy-dconv/2.6/configuration.html#8.2.6 and may use HAProxy’s %[] syntax and otherwise must be a valid HTTP header value as defined in https://datatracker.ietf.org/doc/html/rfc7230#section-3.2. The value of this field must be no more than 16384 characters in length. Note that the total size of all net added headers **after** interpolating dynamic values must not exceed the value of spec.tuningOptions.headerBufferMaxRewriteBytes on the IngressController. |
+| `value` | `string` | value specifies a header value. Dynamic values can be added. The value will be interpreted as an HAProxy format string as defined in http://cbonte.github.io/haproxy-dconv/2.6/configuration.html#8.2.6 and may use HAProxy’s %\[\] syntax and otherwise must be a valid HTTP header value as defined in https://datatracker.ietf.org/doc/html/rfc7230#section-3.2. The value of this field must be no more than 16384 characters in length. Note that the total size of all net added headers **after** interpolating dynamic values must not exceed the value of spec.tuningOptions.headerBufferMaxRewriteBytes on the IngressController. |
 
 ### .spec.httpHeaders.actions.response {#_spechttpheadersactionsresponse}
 
 Description
-: response is a list of HTTP response headers to modify. Currently, actions may define to either `Set` or `Delete` headers values. Actions defined here will modify the response headers of all requests made through a route. These actions are applied to a specific Route defined within a cluster i.e. connections made through a route. Route actions will be executed before IngressController actions for response headers. Actions are applied in sequence as defined in this list. A maximum of 20 response header actions may be configured. You can use this field to specify HTTP response headers that should be set or deleted when forwarding responses from your application to the client. Sample fetchers allowed are "res.hdr" and "ssl_c_der". Converters allowed are "lower" and "base64". Example header values: "%[res.hdr(X-target),lower]", "%{+Q}[ssl_c_der,base64]". Note: This field cannot be used if your route uses TLS passthrough.
+: response is a list of HTTP response headers to modify. Currently, actions may define to either `Set` or `Delete` headers values. Actions defined here will modify the response headers of all requests made through a route. These actions are applied to a specific Route defined within a cluster i.e. connections made through a route. Route actions will be executed before IngressController actions for response headers. Actions are applied in sequence as defined in this list. A maximum of 20 response header actions may be configured. You can use this field to specify HTTP response headers that should be set or deleted when forwarding responses from your application to the client. Sample fetchers allowed are "res.hdr" and "ssl_c_der". Converters allowed are "lower" and "base64". Example header values: "%\[res.hdr(X-target),lower\]", "%&#123;+Q&#125;\[ssl_c_der,base64\]". Note: This field cannot be used if your route uses TLS passthrough.
 
 Type
 : ```
   `array`
   ```
 
-### .spec.httpHeaders.actions.response[] {#_spechttpheadersactionsresponse}
+### .spec.httpHeaders.actions.response\[\] {#_spechttpheadersactionsresponse}
 
 Description
 : RouteHTTPHeader specifies configuration for setting or deleting an HTTP header.
@@ -218,9 +218,9 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `action` | `object` | RouteHTTPHeaderActionUnion specifies an action to take on an HTTP header. |
-| `name` | `string` | name specifies the name of a header on which to perform an action. Its value must be a valid HTTP header name as defined in RFC 2616 section 4.2. The name must consist only of alphanumeric and the following special characters, "-!#$%&'*+.^_`". The following header names are reserved and may not be modified via this API: Strict-Transport-Security, Proxy, Cookie, Set-Cookie. It must be no more than 255 characters in length. Header name must be unique. |
+| `name` | `string` | name specifies the name of a header on which to perform an action. Its value must be a valid HTTP header name as defined in RFC 2616 section 4.2. The name must consist only of alphanumeric and the following special characters, "-!#&#36;%&'\*+.^\_&#96;". The following header names are reserved and may not be modified via this API: Strict-Transport-Security, Proxy, Cookie, Set-Cookie. It must be no more than 255 characters in length. Header name must be unique. |
 
-### .spec.httpHeaders.actions.response[].action {#_spechttpheadersactionsresponseaction}
+### .spec.httpHeaders.actions.response\[\].action {#_spechttpheadersactionsresponseaction}
 
 Description
 : RouteHTTPHeaderActionUnion specifies an action to take on an HTTP header.
@@ -238,7 +238,7 @@ Required
 | `set` | `object` | RouteSetHTTPHeader specifies what value needs to be set on an HTTP header. |
 | `type` | `string` | type defines the type of the action to be applied on the header. Possible values are Set or Delete. Set allows you to set HTTP request and response headers. Delete allows you to delete HTTP request and response headers. |
 
-### .spec.httpHeaders.actions.response[].action.set {#_spechttpheadersactionsresponseactionset}
+### .spec.httpHeaders.actions.response\[\].action.set {#_spechttpheadersactionsresponseactionset}
 
 Description
 : RouteSetHTTPHeader specifies what value needs to be set on an HTTP header.
@@ -253,7 +253,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `value` | `string` | value specifies a header value. Dynamic values can be added. The value will be interpreted as an HAProxy format string as defined in http://cbonte.github.io/haproxy-dconv/2.6/configuration.html#8.2.6 and may use HAProxy’s %[] syntax and otherwise must be a valid HTTP header value as defined in https://datatracker.ietf.org/doc/html/rfc7230#section-3.2. The value of this field must be no more than 16384 characters in length. Note that the total size of all net added headers **after** interpolating dynamic values must not exceed the value of spec.tuningOptions.headerBufferMaxRewriteBytes on the IngressController. |
+| `value` | `string` | value specifies a header value. Dynamic values can be added. The value will be interpreted as an HAProxy format string as defined in http://cbonte.github.io/haproxy-dconv/2.6/configuration.html#8.2.6 and may use HAProxy’s %\[\] syntax and otherwise must be a valid HTTP header value as defined in https://datatracker.ietf.org/doc/html/rfc7230#section-3.2. The value of this field must be no more than 16384 characters in length. Note that the total size of all net added headers **after** interpolating dynamic values must not exceed the value of spec.tuningOptions.headerBufferMaxRewriteBytes on the IngressController. |
 
 ### .spec.port {#_specport}
 
@@ -291,9 +291,9 @@ Required
 | `certificate` | `string` | certificate provides certificate contents. This should be a single serving certificate, not a certificate chain. Do not include a CA certificate. |
 | `destinationCACertificate` | `string` | destinationCACertificate provides the contents of the ca certificate of the final destination.  When using reencrypt termination this file should be provided in order to have routers use it for health checks on the secure connection. If this field is not specified, the router may provide its own destination CA and perform hostname validation using the short service name (service.namespace.svc), which allows infrastructure generated certificates to automatically verify. |
 | `externalCertificate` | `object` | LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace. |
-| `insecureEdgeTerminationPolicy` | `string` | insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80.<br>If a route does not specify insecureEdgeTerminationPolicy, then the default behavior is "None".<br>* Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only).<br>* None - no traffic is allowed on the insecure port (default).<br>* Redirect - clients are redirected to the secure port. |
+| `insecureEdgeTerminationPolicy` | `string` | insecureEdgeTerminationPolicy indicates the desired behavior for insecure connections to a route. While each router may make its own decisions on which ports to expose, this is normally port 80.<br>If a route does not specify insecureEdgeTerminationPolicy, then the default behavior is "None".<br>\* Allow - traffic is sent to the server on the insecure port (edge/reencrypt terminations only).<br>\* None - no traffic is allowed on the insecure port (default).<br>\* Redirect - clients are redirected to the secure port. |
 | `key` | `string` | key provides key file contents |
-| `termination` | `string` | termination indicates the TLS termination type.<br>* edge - TLS termination is done by the router and http is used to communicate with the backend (default)<br>* passthrough - Traffic is sent straight to the destination without the router providing TLS termination<br>* reencrypt - TLS termination is done by the router and https is used to communicate with the backend<br>Note: passthrough termination is incompatible with httpHeader actions |
+| `termination` | `string` | termination indicates the TLS termination type.<br>\* edge - TLS termination is done by the router and http is used to communicate with the backend (default)<br>\* passthrough - Traffic is sent straight to the destination without the router providing TLS termination<br>\* reencrypt - TLS termination is done by the router and https is used to communicate with the backend<br>Note: passthrough termination is incompatible with httpHeader actions |
 
 ### .spec.tls.externalCertificate {#_spectlsexternalcertificate}
 
@@ -354,7 +354,7 @@ Type
   `array`
   ```
 
-### .status.ingress[] {#_statusingress}
+### .status.ingress\[\] {#_statusingress}
 
 Description
 : RouteIngress holds information about the places where a route is exposed.
@@ -373,7 +373,7 @@ Type
 | `routerName` | `string` | Name is a name chosen by the router to identify itself; this value is required |
 | `wildcardPolicy` | `string` | Wildcard policy is the wildcard policy that was allowed where this route is exposed. |
 
-### .status.ingress[].conditions {#_statusingressconditions}
+### .status.ingress\[\].conditions {#_statusingressconditions}
 
 Description
 : conditions is the state of the route, may be empty.
@@ -383,7 +383,7 @@ Type
   `array`
   ```
 
-### .status.ingress[].conditions[] {#_statusingressconditions}
+### .status.ingress\[\].conditions\[\] {#_statusingressconditions}
 
 Description
 : RouteIngressCondition contains details for the current condition of this route on a particular router.
@@ -469,7 +469,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/route.openshift.io/v1/namespaces/{namespace}/routes {#_apisrouteopenshiftiov1namespaces_namespace_routes}
+### /apis/route.openshift.io/v1/namespaces/&#123;namespace&#125;/routes {#_apisrouteopenshiftiov1namespaces_namespace_routes}
 
 HTTP method
 : ```
@@ -543,7 +543,7 @@ Description
 | 202 - Accepted | [`Route`](/docs/rest_api/network_apis/route-route-openshift-io-v1#route-route-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/route.openshift.io/v1/watch/namespaces/{namespace}/routes {#_apisrouteopenshiftiov1watchnamespaces_namespace_routes}
+### /apis/route.openshift.io/v1/watch/namespaces/&#123;namespace&#125;/routes {#_apisrouteopenshiftiov1watchnamespaces_namespace_routes}
 
 HTTP method
 : ```
@@ -562,7 +562,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/route.openshift.io/v1/namespaces/{namespace}/routes/{name} {#_apisrouteopenshiftiov1namespaces_namespace_routes_name}
+### /apis/route.openshift.io/v1/namespaces/&#123;namespace&#125;/routes/&#123;name&#125; {#_apisrouteopenshiftiov1namespaces_namespace_routes_name}
 
 **Global path parameters**
 
@@ -667,7 +667,7 @@ Description
 | 201 - Created | [`Route`](/docs/rest_api/network_apis/route-route-openshift-io-v1#route-route-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/route.openshift.io/v1/watch/namespaces/{namespace}/routes/{name} {#_apisrouteopenshiftiov1watchnamespaces_namespace_routes_name}
+### /apis/route.openshift.io/v1/watch/namespaces/&#123;namespace&#125;/routes/&#123;name&#125; {#_apisrouteopenshiftiov1watchnamespaces_namespace_routes_name}
 
 **Global path parameters**
 
@@ -692,7 +692,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/route.openshift.io/v1/namespaces/{namespace}/routes/{name}/status {#_apisrouteopenshiftiov1namespaces_namespace_routes_name_status}
+### /apis/route.openshift.io/v1/namespaces/&#123;namespace&#125;/routes/&#123;name&#125;/status {#_apisrouteopenshiftiov1namespaces_namespace_routes_name_status}
 
 **Global path parameters**
 

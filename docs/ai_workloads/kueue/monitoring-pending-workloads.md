@@ -15,7 +15,9 @@ You can regulate inbound requests and high request volumes, and provide user per
 
 ## API Priority and Fairness {#configuring-api-priority-and-fairness_monitoring-pending-workloads}
 
-Red Hat build of Kueue uses Kubernetes API Priority and Fairness (APF) To help manage pending workloads. APF is a flow control mechanism that allows you to define API-level policies to regulate inbound requests to the API server. It protects the API server from being overwhelmed by unexpectedly high request volume, while protecting critical traffic from the throttling effect on best-effort workloads.
+Red Hat build of Kueue uses Kubernetes API Priority and Fairness (APF) To help manage pending workloads.
+
+APF is a flow control mechanism that allows you to define API-level policies to regulate inbound requests to the API server. It protects the API server from being overwhelmed by unexpectedly high request volume, while protecting critical traffic from the throttling effect on best-effort workloads.
 
 **Additional resources**
 
@@ -36,7 +38,9 @@ You need to provide permissions to the users that require access to the specific
 
 ## Monitoring pending workloads on demand {#monitoring-pending-workloads-on-demand_monitoring-pending-workloads}
 
-To test the monitoring of pending workloads, you must correctly configure both the `ClusterQueue` and the `LocalQueue` resources. After that, you can create jobs on that `LocalQueue`. Kueue manages the workload object created from the job so, when a job is submitted and saturates the `ClusterQueue`, its corresponding workloads can be seen in the list of pending workloads.
+To test the monitoring of pending workloads, you must correctly configure both the `ClusterQueue` and the `LocalQueue` resources. After that, you can create jobs on that `LocalQueue`.
+
+Kueue manages the workload object created from the job so, when a job is submitted and saturates the `ClusterQueue`, its corresponding workloads can be seen in the list of pending workloads.
 
 **Prerequisites**
 

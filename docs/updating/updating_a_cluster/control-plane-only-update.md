@@ -9,7 +9,7 @@ sidebar_position: 3
 
 To reduce the rebooting of non-control plane hosts during cluster updates, you can perform a Control Plane Only update for your cluster.
 
-Due to fundamental Kubernetes design, all OpenShift Container Platform updates between minor versions must be serialized. You must update from OpenShift Container Platform <4.y> to <4.y+1>, and then to <4.y+2>. You cannot update from OpenShift Container Platform <4.y> to <4.y+2> directly. However, administrators who want to update between two even-numbered minor versions can do so incurring only a single reboot of non-control plane hosts.
+Due to fundamental Kubernetes design, all OpenShift Container Platform updates between minor versions must be serialized. You must update from OpenShift Container Platform &lt;4.y> to &lt;4.y+1>, and then to &lt;4.y+2>. You cannot update from OpenShift Container Platform &lt;4.y> to &lt;4.y+2> directly. However, administrators who want to update between two even-numbered minor versions can do so incurring only a single reboot of non-control plane hosts.
 
 :::warning
 
@@ -22,20 +22,20 @@ There are several caveats to consider when attempting a Control Plane Only updat
 - Control Plane Only updates are only offered after updates between all versions involved have been made available in `stable` channels.
 - If you encounter issues during or after updating to the odd-numbered minor version but before updating to the next even-numbered version, then remediation of those issues may require that non-control plane hosts complete the update to the odd-numbered version before moving forward.
 - You can do a partial update by updating the worker or custom pool nodes to accommodate the time it takes for maintenance.
-- Until the machine config pools are unpaused and the update is complete, some features and bugs fixes in <4.y+1> and <4.y+2> of OpenShift Container Platform are not available.
+- Until the machine config pools are unpaused and the update is complete, some features and bugs fixes in &lt;4.y+1> and &lt;4.y+2> of OpenShift Container Platform are not available.
 - All the clusters might update using EUS channels for a conventional update without pools paused, but only clusters with non control-plane `MachineConfigPools` objects can do Control Plane Only updates with pools paused.
 
 ## Performing Control Plane Only updates {#updating-control-plane-only-update_control-plane-only-update}
 
-You can perform a Control Plane Only update by pausing all non-`master` machine config pools, performing updates from OpenShift Container Platform <4.y> to <4.y+1> to <4.y+2>, then unpausing the machine config pools.
+You can perform a Control Plane Only update by pausing all non-`master` machine config pools, performing updates from OpenShift Container Platform &lt;4.y> to &lt;4.y+1> to &lt;4.y+2>, then unpausing the machine config pools.
 
 Following these procedures reduces the total update duration and the number of times worker nodes are restarted.
 
 Before performing a Control Plane Only update, ensure that you meet the following prerequisites:
 
-- You reviewed the release notes for OpenShift Container Platform <4.y+1> and <4.y+2>.
+- You reviewed the release notes for OpenShift Container Platform &lt;4.y+1> and &lt;4.y+2>.
 - You reviewed the release notes and product lifecycles for any layered products and Operator Lifecycle Manager (OLM) Operators. Some products and OLM Operators might require updates either before or during a Control Plane Only update.
-- You are familiar with version-specific prerequisites, such as the removal of deprecated APIs, that are required before updating from OpenShift Container Platform <4.y+1> to <4.y+2>.
+- You are familiar with version-specific prerequisites, such as the removal of deprecated APIs, that are required before updating from OpenShift Container Platform &lt;4.y+1> to &lt;4.y+2>.
 - If your cluster uses in-tree vSphere volumes, you updated vSphere to version 7.0u3L+ or 8.0u2+.
   :::warning
 
@@ -70,18 +70,18 @@ You can perform a Control Plane Only update by using the web console.
 3. Set your channel to `eus-<4.y+2>`.
    To set your channel, click **Administration** → **Cluster Settings** → **Channel**. You can edit your channel by clicking on the current hyperlinked channel.
 4. Pause all worker machine pools except for the master pool. You can perform this action on the **MachineConfigPools** tab under the **Compute** page. Select the vertical ellipses next to the machine config pool you’d like to pause and click **Pause updates**.
-5. Update to version <4.y+1> and complete up to the **Save** step. For more information, see "Updating a cluster by using the web console".
-6. Ensure that the <4.y+1> updates are complete by viewing the **Last completed version** of your cluster. You can find this information on the **Cluster Settings** page under the **Details** tab.
+5. Update to version &lt;4.y+1> and complete up to the **Save** step. For more information, see "Updating a cluster by using the web console".
+6. Ensure that the &lt;4.y+1> updates are complete by viewing the **Last completed version** of your cluster. You can find this information on the **Cluster Settings** page under the **Details** tab.
 7. If necessary, update your OLM Operators by using the Administrator perspective on the web console. For more information, see "Updating installed Operators".
-8. Update to version <4.y+2> and complete up to the **Save** step. For more information, see "Updating a cluster by using the web console".
-9. Ensure that the <4.y+2> update is complete by viewing the **Last completed version** of your cluster. You can find this information on the **Cluster Settings** page under the **Details** tab.
+8. Update to version &lt;4.y+2> and complete up to the **Save** step. For more information, see "Updating a cluster by using the web console".
+9. Ensure that the &lt;4.y+2> update is complete by viewing the **Last completed version** of your cluster. You can find this information on the **Cluster Settings** page under the **Details** tab.
 10. Unpause all previously paused machine config pools. You can perform this action on the **MachineConfigPools** tab under the **Compute** page. Select the vertical ellipses next to the machine config pool you’d like to unpause and click **Unpause updates**.
     :::warning
 
     If pools are paused, the cluster is not permitted to upgrade to any future minor versions, and some maintenance tasks are inhibited. This puts the cluster at risk for future degradation.
 
     :::
-11. Verify that your previously paused pools are updated and that your cluster has completed the update to version <4.y+2>.
+11. Verify that your previously paused pools are updated and that your cluster has completed the update to version &lt;4.y+2>.
     You can verify that your pools have updated on the **MachineConfigPools** tab under the **Compute** page by confirming that the **Update status** has a value of **Up to date**.
 
     :::warning
@@ -125,7 +125,7 @@ You can perform a Control Plane Only update by using the OpenShift CLI (`oc`).
    master   rendered-master-ecbb9582781c1091e1c9f19d50cf836c       True  	  False
    worker   rendered-worker-00a3f0c68ae94e747193156b491553d5       True  	  False
    ```
-3. Your current version is <4.y>, and your intended version to update is <4.y+2>. Change to the `eus-<4.y+2>` channel by running the following command:
+3. Your current version is &lt;4.y>, and your intended version to update is &lt;4.y+2>. Change to the `eus-<4.y+2>` channel by running the following command:
    ```terminal
    $ oc adm upgrade channel eus-<4.y+2>
    ```
@@ -162,11 +162,11 @@ You can perform a Control Plane Only update by using the OpenShift CLI (`oc`).
    Cluster version is <4.y+1.z>
    ...
    ```
-7. Update to version <4.y+2> by running the following command:
+7. Update to version &lt;4.y+2> by running the following command:
    ```terminal
    $ oc adm upgrade --to-latest
    ```
-8. Retrieve the cluster version to ensure that the <4.y+2> updates are complete by running the following command:
+8. Retrieve the cluster version to ensure that the &lt;4.y+2> updates are complete by running the following command:
    ```terminal
    $ oc adm upgrade
    ```
@@ -175,7 +175,7 @@ You can perform a Control Plane Only update by using the OpenShift CLI (`oc`).
    Cluster version is <4.y+2.z>
    ...
    ```
-9. To update your worker nodes to <4.y+2>, unpause all previously paused machine config pools by running the following command:
+9. To update your worker nodes to &lt;4.y+2>, unpause all previously paused machine config pools by running the following command:
    ```terminal
    $ oc patch mcp/worker --type merge --patch '{"spec":{"paused":false}}'
    ```
@@ -185,7 +185,7 @@ You can perform a Control Plane Only update by using the OpenShift CLI (`oc`).
    If pools are not unpaused, the cluster is not permitted to update to any future minor versions, and some maintenance tasks are inhibited. This puts the cluster at risk for future degradation.
 
    :::
-10. Verify that your previously paused pools are updated and that the update to version <4.y+2> is complete by running the following command:
+10. Verify that your previously paused pools are updated and that the update to version &lt;4.y+2> is complete by running the following command:
     ```terminal
     $ oc get mcp
     ```
@@ -217,18 +217,18 @@ As you perform a Control Plane Only update for the clusters of layered products 
 1. You have updated all Operators previously installed through Operator Lifecycle Manager (OLM) to a version that is compatible with your target release. Updating the Operators ensures they have a valid update path when the default software catalogs switch from the current minor version to the next during a cluster update. See "Updating installed Operators" for more information on how to check compatibility and, if necessary, update the installed Operators.
 2. Confirm the cluster version compatibility between the current and intended Operator versions. To verify which versions your OLM Operators are compatible with, see "Red Hat OpenShift Container Platform Operator Update Information Checker".
 
-For example, the following high level steps describe how to perform a Control Plane Only update from <4.y> to <4.y+2> for OpenShift Data Foundation (ODF). This can be done through the CLI or web console. For information about how to update clusters through your desired interface, see "Control Plane Only update using the web console" and "Control Plane Only update using the CLI".
+For example, the following high level steps describe how to perform a Control Plane Only update from &lt;4.y> to &lt;4.y+2> for OpenShift Data Foundation (ODF). This can be done through the CLI or web console. For information about how to update clusters through your desired interface, see "Control Plane Only update using the web console" and "Control Plane Only update using the CLI".
 
 1. Pause the worker machine pools.
-2. Update OpenShift Container Platform from <4.y> to <4.y+1>.
-3. Update ODF from <4.y> to <4.y+1>.
-4. Update OpenShift Container Platform from <4.y+1> to <4.y+2>.
-5. Update ODF to <4.y+2>.
+2. Update OpenShift Container Platform from &lt;4.y> to &lt;4.y+1>.
+3. Update ODF from &lt;4.y> to &lt;4.y+1>.
+4. Update OpenShift Container Platform from &lt;4.y+1> to &lt;4.y+2>.
+5. Update ODF to &lt;4.y+2>.
 6. Unpause the worker machine pools.
 
 :::note
 
-The update to ODF <4.y+2> can happen before or after worker machine pools have been unpaused.
+The update to ODF &lt;4.y+2> can happen before or after worker machine pools have been unpaused.
 
 :::
 

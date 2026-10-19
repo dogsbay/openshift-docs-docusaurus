@@ -3,7 +3,7 @@ title: "StorageVersionMigration [migration.k8s.io/v1alpha1]"
 sidebar_position: 9
 ---
 
-# StorageVersionMigration [migration.k8s.io/v1alpha1] {#storageversionmigration-migration-k8s-io-v1alpha1}
+# StorageVersionMigration \[migration.k8s.io/v1alpha1\] {#storageversionmigration-migration-k8s-io-v1alpha1}
 
 <a id="storageversionmigration-migration-k8s-io-v1alpha1"></a>
 
@@ -84,7 +84,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Describes the state of a migration at a certain point.
@@ -192,7 +192,7 @@ Description
 | 202 - Accepted | [`StorageVersionMigration`](/docs/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/migration.k8s.io/v1alpha1/storageversionmigrations/{name} {#_apismigrationk8siov1alpha1storageversionmigrations_name}
+### /apis/migration.k8s.io/v1alpha1/storageversionmigrations/&#123;name&#125; {#_apismigrationk8siov1alpha1storageversionmigrations_name}
 
 **Global path parameters**
 
@@ -296,7 +296,7 @@ Description
 | 201 - Created | [`StorageVersionMigration`](/docs/rest_api/storage_apis/storageversionmigration-migration-k8s-io-v1alpha1#storageversionmigration-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/migration.k8s.io/v1alpha1/storageversionmigrations/{name}/status {#_apismigrationk8siov1alpha1storageversionmigrations_name_status}
+### /apis/migration.k8s.io/v1alpha1/storageversionmigrations/&#123;name&#125;/status {#_apismigrationk8siov1alpha1storageversionmigrations_name_status}
 
 **Global path parameters**
 

@@ -3,9 +3,9 @@ title: Network observability DNS resolution analysis
 sidebar_position: 9
 ---
 
-# Network observability DNS resolution analysis {#network-observability-dns-resolution-analysis_{context}}
+# Network observability DNS resolution analysis {#network-observability-dns-resolution-analysis_-context-}
 
-<a id="network-observability-dns-resolution-analysis_{context}"></a>
+<a id="network-observability-dns-resolution-analysis_-context-"></a>
 
 Learn how DNS resolution analysis uses eBPF-based decoding to identify service discovery issues and follow the steps to enable DNS tracking in the FlowCollector resource to enrich network flow records with domain names.
 

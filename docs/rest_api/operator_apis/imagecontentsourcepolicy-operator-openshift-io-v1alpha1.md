@@ -3,7 +3,7 @@ title: "ImageContentSourcePolicy [operator.openshift.io/v1alpha1]"
 sidebar_position: 13
 ---
 
-# ImageContentSourcePolicy [operator.openshift.io/v1alpha1] {#imagecontentsourcepolicy-operator-openshift-io-v1alpha1}
+# ImageContentSourcePolicy \[operator.openshift.io/v1alpha1\] {#imagecontentsourcepolicy-operator-openshift-io-v1alpha1}
 
 <a id="imagecontentsourcepolicy-operator-openshift-io-v1alpha1"></a>
 
@@ -58,7 +58,7 @@ Type
   `array`
   ```
 
-### .spec.repositoryDigestMirrors[] {#_specrepositorydigestmirrors}
+### .spec.repositoryDigestMirrors\[\] {#_specrepositorydigestmirrors}
 
 Description
 : RepositoryDigestMirrors holds cluster-wide information about how to handle mirros in the registries config. Note: the mirrors only work when pulling the images that are referenced by their digests.
@@ -162,7 +162,7 @@ Description
 | 202 - Accepted | [`ImageContentSourcePolicy`](/docs/rest_api/operator_apis/imagecontentsourcepolicy-operator-openshift-io-v1alpha1#imagecontentsourcepolicy-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1alpha1/imagecontentsourcepolicies/{name} {#_apisoperatoropenshiftiov1alpha1imagecontentsourcepolicies_name}
+### /apis/operator.openshift.io/v1alpha1/imagecontentsourcepolicies/&#123;name&#125; {#_apisoperatoropenshiftiov1alpha1imagecontentsourcepolicies_name}
 
 **Global path parameters**
 
@@ -266,7 +266,7 @@ Description
 | 201 - Created | [`ImageContentSourcePolicy`](/docs/rest_api/operator_apis/imagecontentsourcepolicy-operator-openshift-io-v1alpha1#imagecontentsourcepolicy-operator-openshift-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1alpha1/imagecontentsourcepolicies/{name}/status {#_apisoperatoropenshiftiov1alpha1imagecontentsourcepolicies_name_status}
+### /apis/operator.openshift.io/v1alpha1/imagecontentsourcepolicies/&#123;name&#125;/status {#_apisoperatoropenshiftiov1alpha1imagecontentsourcepolicies_name_status}
 
 **Global path parameters**
 

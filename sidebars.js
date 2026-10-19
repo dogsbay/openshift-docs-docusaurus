@@ -1333,6 +1333,7 @@ module.exports = {
                 "networking/ingress_load_balancing/configuring_gateway_api/enable-gateway-api",
                 "networking/ingress_load_balancing/configuring_gateway_api/controlling-incoming-traffic-gateway-listeners",
                 "networking/ingress_load_balancing/configuring_gateway_api/assigning-network-addresses-gateways",
+                "networking/ingress_load_balancing/configuring_gateway_api/configure-dns-for-gateways",
                 "networking/ingress_load_balancing/configuring_gateway_api/routing-http-requests-to-services",
                 "networking/ingress_load_balancing/configuring_gateway_api/routing-grpc-requests-to-services",
                 "networking/ingress_load_balancing/configuring_gateway_api/securing-httproutes",

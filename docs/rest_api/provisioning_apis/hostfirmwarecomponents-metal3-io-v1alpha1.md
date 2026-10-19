@@ -3,7 +3,7 @@ title: "HostFirmwareComponents [metal3.io/v1alpha1]"
 sidebar_position: 7
 ---
 
-# HostFirmwareComponents [metal3.io/v1alpha1] {#hostfirmwarecomponents-metal3-io-v1alpha1}
+# HostFirmwareComponents \[metal3.io/v1alpha1\] {#hostfirmwarecomponents-metal3-io-v1alpha1}
 
 <a id="hostfirmwarecomponents-metal3-io-v1alpha1"></a>
 
@@ -52,7 +52,7 @@ Type
   `array`
   ```
 
-### .spec.updates[] {#_specupdates}
+### .spec.updates\[\] {#_specupdates}
 
 Description
 : FirmwareUpdate defines a firmware update specification.
@@ -101,7 +101,7 @@ Type
   `array`
   ```
 
-### .status.components[] {#_statuscomponents}
+### .status.components\[\] {#_statuscomponents}
 
 Description
 : FirmwareComponentStatus defines the status of a firmware component.
@@ -133,7 +133,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -154,7 +154,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -169,7 +169,7 @@ Type
   `array`
   ```
 
-### .status.updates[] {#_statusupdates}
+### .status.updates\[\] {#_statusupdates}
 
 Description
 : FirmwareUpdate defines a firmware update specification.
@@ -227,7 +227,7 @@ Description
 | 200 - OK | [`HostFirmwareComponentsList`](/docs/rest_api/objects#io-metal3-v1alpha1-HostFirmwareComponentsList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwarecomponents {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwarecomponents}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/hostfirmwarecomponents {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwarecomponents}
 
 HTTP method
 : ```
@@ -295,7 +295,7 @@ Description
 | 202 - Accepted | [`HostFirmwareComponents`](/docs/rest_api/provisioning_apis/hostfirmwarecomponents-metal3-io-v1alpha1#hostfirmwarecomponents-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwarecomponents/{name} {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwarecomponents_name}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/hostfirmwarecomponents/&#123;name&#125; {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwarecomponents_name}
 
 **Global path parameters**
 
@@ -399,7 +399,7 @@ Description
 | 201 - Created | [`HostFirmwareComponents`](/docs/rest_api/provisioning_apis/hostfirmwarecomponents-metal3-io-v1alpha1#hostfirmwarecomponents-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostfirmwarecomponents/{name}/status {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwarecomponents_name_status}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/hostfirmwarecomponents/&#123;name&#125;/status {#_apismetal3iov1alpha1namespaces_namespace_hostfirmwarecomponents_name_status}
 
 **Global path parameters**
 

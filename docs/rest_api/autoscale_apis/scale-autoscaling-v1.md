@@ -3,7 +3,7 @@ title: "Scale [autoscaling/v1]"
 sidebar_position: 5
 ---
 
-# Scale [autoscaling/v1] {#scale-autoscaling-v1}
+# Scale \[autoscaling/v1\] {#scale-autoscaling-v1}
 
 <a id="scale-autoscaling-v1"></a>
 
@@ -78,7 +78,7 @@ The following API endpoints are available:
   - `PATCH`: partially update scale of the specified ReplicationController
   - `PUT`: replace scale of the specified ReplicationController
 
-### /apis/apps/v1/namespaces/{namespace}/deployments/{name}/scale {#_apisappsv1namespaces_namespace_deployments_name_scale}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/deployments/&#123;name&#125;/scale {#_apisappsv1namespaces_namespace_deployments_name_scale}
 
 **Global path parameters**
 
@@ -159,7 +159,7 @@ Description
 | 201 - Created | [`Scale`](/docs/rest_api/autoscale_apis/scale-autoscaling-v1#scale-autoscaling-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/replicasets/{name}/scale {#_apisappsv1namespaces_namespace_replicasets_name_scale}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/replicasets/&#123;name&#125;/scale {#_apisappsv1namespaces_namespace_replicasets_name_scale}
 
 **Global path parameters**
 
@@ -240,7 +240,7 @@ Description
 | 201 - Created | [`Scale`](/docs/rest_api/autoscale_apis/scale-autoscaling-v1#scale-autoscaling-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/scale {#_apisappsv1namespaces_namespace_statefulsets_name_scale}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/statefulsets/&#123;name&#125;/scale {#_apisappsv1namespaces_namespace_statefulsets_name_scale}
 
 **Global path parameters**
 
@@ -321,7 +321,7 @@ Description
 | 201 - Created | [`Scale`](/docs/rest_api/autoscale_apis/scale-autoscaling-v1#scale-autoscaling-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/replicationcontrollers/{name}/scale {#_apiv1namespaces_namespace_replicationcontrollers_name_scale}
+### /api/v1/namespaces/&#123;namespace&#125;/replicationcontrollers/&#123;name&#125;/scale {#_apiv1namespaces_namespace_replicationcontrollers_name_scale}
 
 **Global path parameters**
 

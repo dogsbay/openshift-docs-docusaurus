@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="cnf-understanding-image-based-upgrade"></a>
 
-From OpenShift Container Platform 4.14.13, the Lifecycle Agent provides you with an alternative way to upgrade the platform version of a single-node OpenShift cluster. The image-based upgrade is faster than the standard upgrade method and allows you to directly upgrade from OpenShift Container Platform <4.y> to <4.y+2>, and <4.y.z> to <4.y.z+n>.
+From OpenShift Container Platform 4.14.13, the Lifecycle Agent provides you with an alternative way to upgrade the platform version of a single-node OpenShift cluster. The image-based upgrade is faster than the standard upgrade method and allows you to directly upgrade from OpenShift Container Platform &lt;4.y> to &lt;4.y+2>, and &lt;4.y.z> to &lt;4.y.z+n>.
 
 This upgrade method utilizes a generated OCI image from a dedicated seed cluster that is installed on the target single-node OpenShift cluster as a new `ostree` stateroot. A seed cluster is a single-node OpenShift cluster deployed with the target OpenShift Container Platform version, Day 2 Operators, and configurations that are common to all target clusters.
 
@@ -223,8 +223,8 @@ Depending on your deployment method, the image-based upgrade requires the follow
 | GitOps ZTP plugin | 4.16 | Only for GitOps ZTP deployment method |
 | Red Hat OpenShift GitOps | 1.12 | Only for GitOps ZTP deployment method |
 | Topology Aware Lifecycle Manager (TALM) | 4.16 | Only for GitOps ZTP deployment method |
-| Local Storage Operator <sup>[1]</sup> | 4.14 | Yes |
-| Logical Volume Manager (LVM) Storage <sup>[1]</sup> | 4.14.2 | Yes |
+| Local Storage Operator <sup>\[1\]</sup> | 4.14 | Yes |
+| Logical Volume Manager (LVM) Storage <sup>\[1\]</sup> | 4.14.2 | Yes |
 
 1. The persistent storage must be provided by either the LVM Storage or the Local Storage Operator, not both.
 

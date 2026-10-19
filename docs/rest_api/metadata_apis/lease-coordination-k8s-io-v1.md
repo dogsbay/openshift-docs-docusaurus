@@ -3,7 +3,7 @@ title: "Lease [coordination.k8s.io/v1]"
 sidebar_position: 9
 ---
 
-# Lease [coordination.k8s.io/v1] {#lease-coordination-k8s-io-v1}
+# Lease \[coordination.k8s.io/v1\] {#lease-coordination-k8s-io-v1}
 
 <a id="lease-coordination-k8s-io-v1"></a>
 
@@ -104,7 +104,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/coordination.k8s.io/v1/namespaces/{namespace}/leases {#_apiscoordinationk8siov1namespaces_namespace_leases}
+### /apis/coordination.k8s.io/v1/namespaces/&#123;namespace&#125;/leases {#_apiscoordinationk8siov1namespaces_namespace_leases}
 
 HTTP method
 : ```
@@ -178,7 +178,7 @@ Description
 | 202 - Accepted | [`Lease`](/docs/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/coordination.k8s.io/v1/watch/namespaces/{namespace}/leases {#_apiscoordinationk8siov1watchnamespaces_namespace_leases}
+### /apis/coordination.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/leases {#_apiscoordinationk8siov1watchnamespaces_namespace_leases}
 
 HTTP method
 : ```
@@ -197,7 +197,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/coordination.k8s.io/v1/namespaces/{namespace}/leases/{name} {#_apiscoordinationk8siov1namespaces_namespace_leases_name}
+### /apis/coordination.k8s.io/v1/namespaces/&#123;namespace&#125;/leases/&#123;name&#125; {#_apiscoordinationk8siov1namespaces_namespace_leases_name}
 
 **Global path parameters**
 
@@ -302,7 +302,7 @@ Description
 | 201 - Created | [`Lease`](/docs/rest_api/metadata_apis/lease-coordination-k8s-io-v1#lease-coordination-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/coordination.k8s.io/v1/watch/namespaces/{namespace}/leases/{name} {#_apiscoordinationk8siov1watchnamespaces_namespace_leases_name}
+### /apis/coordination.k8s.io/v1/watch/namespaces/&#123;namespace&#125;/leases/&#123;name&#125; {#_apiscoordinationk8siov1watchnamespaces_namespace_leases_name}
 
 **Global path parameters**
 

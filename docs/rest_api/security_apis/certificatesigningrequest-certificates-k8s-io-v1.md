@@ -3,7 +3,7 @@ title: "CertificateSigningRequest [certificates.k8s.io/v1]"
 sidebar_position: 2
 ---
 
-# CertificateSigningRequest [certificates.k8s.io/v1] {#certificatesigningrequest-certificates-k8s-io-v1}
+# CertificateSigningRequest \[certificates.k8s.io/v1\] {#certificatesigningrequest-certificates-k8s-io-v1}
 
 <a id="certificatesigningrequest-certificates-k8s-io-v1"></a>
 
@@ -97,7 +97,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : CertificateSigningRequestCondition describes a condition of a CertificateSigningRequest object
@@ -239,7 +239,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/certificates.k8s.io/v1/certificatesigningrequests/{name} {#_apiscertificatesk8siov1certificatesigningrequests_name}
+### /apis/certificates.k8s.io/v1/certificatesigningrequests/&#123;name&#125; {#_apiscertificatesk8siov1certificatesigningrequests_name}
 
 **Global path parameters**
 
@@ -344,7 +344,7 @@ Description
 | 201 - Created | [`CertificateSigningRequest`](/docs/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/certificates.k8s.io/v1/watch/certificatesigningrequests/{name} {#_apiscertificatesk8siov1watchcertificatesigningrequests_name}
+### /apis/certificates.k8s.io/v1/watch/certificatesigningrequests/&#123;name&#125; {#_apiscertificatesk8siov1watchcertificatesigningrequests_name}
 
 **Global path parameters**
 
@@ -369,7 +369,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/certificates.k8s.io/v1/certificatesigningrequests/{name}/status {#_apiscertificatesk8siov1certificatesigningrequests_name_status}
+### /apis/certificates.k8s.io/v1/certificatesigningrequests/&#123;name&#125;/status {#_apiscertificatesk8siov1certificatesigningrequests_name_status}
 
 **Global path parameters**
 
@@ -450,7 +450,7 @@ Description
 | 201 - Created | [`CertificateSigningRequest`](/docs/rest_api/security_apis/certificatesigningrequest-certificates-k8s-io-v1#certificatesigningrequest-certificates-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/certificates.k8s.io/v1/certificatesigningrequests/{name}/approval {#_apiscertificatesk8siov1certificatesigningrequests_name_approval}
+### /apis/certificates.k8s.io/v1/certificatesigningrequests/&#123;name&#125;/approval {#_apiscertificatesk8siov1certificatesigningrequests_name_approval}
 
 **Global path parameters**
 

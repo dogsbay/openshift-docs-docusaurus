@@ -3,7 +3,7 @@ title: "PackageManifest [packages.operators.coreos.com/v1]"
 sidebar_position: 12
 ---
 
-# PackageManifest [packages.operators.coreos.com/v1] {#packagemanifest-packages-operators-coreos-com-v1}
+# PackageManifest \[packages.operators.coreos.com/v1\] {#packagemanifest-packages-operators-coreos-com-v1}
 
 <a id="packagemanifest-packages-operators-coreos-com-v1"></a>
 
@@ -77,7 +77,7 @@ Type
   `array`
   ```
 
-### .status.channels[] {#_statuschannels}
+### .status.channels\[\] {#_statuschannels}
 
 Description
 : PackageChannel defines a single channel under a package, pointing to a version of that package.
@@ -101,7 +101,7 @@ Required
 | `entries[]` | `object` | ChannelEntry defines a member of a package channel. |
 | `name` | `string` | Name is the name of the channel, e.g. `alpha` or `stable` |
 
-### .status.channels[].currentCSVDesc {#_statuschannelscurrentcsvdesc}
+### .status.channels\[\].currentCSVDesc {#_statuschannelscurrentcsvdesc}
 
 Description
 : CSVDescription defines a description of a CSV
@@ -133,7 +133,7 @@ Type
 | `relatedImages` | `array (string)` | List of related images |
 | `version` | [`OperatorVersion`](/docs/rest_api/objects#com-github-operator-framework-api-pkg-operators-lib-version-OperatorVersion) | Version is the CSV’s semantic version |
 
-### .status.channels[].currentCSVDesc.icon {#_statuschannelscurrentcsvdescicon}
+### .status.channels\[\].currentCSVDesc.icon {#_statuschannelscurrentcsvdescicon}
 
 Description
 : Icon is the CSV’s base64 encoded icon
@@ -143,7 +143,7 @@ Type
   `array`
   ```
 
-### .status.channels[].currentCSVDesc.icon[] {#_statuschannelscurrentcsvdescicon}
+### .status.channels\[\].currentCSVDesc.icon\[\] {#_statuschannelscurrentcsvdescicon}
 
 Description
 : Icon defines a base64 encoded icon and media type
@@ -158,7 +158,7 @@ Type
 | `base64data` | `string` |  |
 | `mediatype` | `string` |  |
 
-### .status.channels[].currentCSVDesc.links {#_statuschannelscurrentcsvdesclinks}
+### .status.channels\[\].currentCSVDesc.links {#_statuschannelscurrentcsvdesclinks}
 
 Description
 
@@ -167,7 +167,7 @@ Type
   `array`
   ```
 
-### .status.channels[].currentCSVDesc.links[] {#_statuschannelscurrentcsvdesclinks}
+### .status.channels\[\].currentCSVDesc.links\[\] {#_statuschannelscurrentcsvdesclinks}
 
 Description
 : AppLink defines a link to an application
@@ -182,7 +182,7 @@ Type
 | `name` | `string` |  |
 | `url` | `string` |  |
 
-### .status.channels[].currentCSVDesc.maintainers {#_statuschannelscurrentcsvdescmaintainers}
+### .status.channels\[\].currentCSVDesc.maintainers {#_statuschannelscurrentcsvdescmaintainers}
 
 Description
 
@@ -191,7 +191,7 @@ Type
   `array`
   ```
 
-### .status.channels[].currentCSVDesc.maintainers[] {#_statuschannelscurrentcsvdescmaintainers}
+### .status.channels\[\].currentCSVDesc.maintainers\[\] {#_statuschannelscurrentcsvdescmaintainers}
 
 Description
 : Maintainer defines a project maintainer
@@ -206,7 +206,7 @@ Type
 | `email` | `string` |  |
 | `name` | `string` |  |
 
-### .status.channels[].currentCSVDesc.provider {#_statuschannelscurrentcsvdescprovider}
+### .status.channels\[\].currentCSVDesc.provider {#_statuschannelscurrentcsvdescprovider}
 
 Description
 : AppLink defines a link to an application
@@ -221,7 +221,7 @@ Type
 | `name` | `string` |  |
 | `url` | `string` |  |
 
-### .status.channels[].deprecation {#_statuschannelsdeprecation}
+### .status.channels\[\].deprecation {#_statuschannelsdeprecation}
 
 Description
 : Deprecation conveys information regarding a deprecated resource.
@@ -238,7 +238,7 @@ Required
 | --- | --- | --- |
 | `message` | `string` | Message is a human readable message describing the deprecation. |
 
-### .status.channels[].entries {#_statuschannelsentries}
+### .status.channels\[\].entries {#_statuschannelsentries}
 
 Description
 : Entries lists all CSVs in the channel, with their upgrade edges.
@@ -248,7 +248,7 @@ Type
   `array`
   ```
 
-### .status.channels[].entries[] {#_statuschannelsentries}
+### .status.channels\[\].entries\[\] {#_statuschannelsentries}
 
 Description
 : ChannelEntry defines a member of a package channel.
@@ -267,7 +267,7 @@ Required
 | `name` | `string` | Name is the name of the bundle for this entry. |
 | `version` | `string` | Version is the version of the bundle for this entry. |
 
-### .status.channels[].entries[].deprecation {#_statuschannelsentriesdeprecation}
+### .status.channels\[\].entries\[\].deprecation {#_statuschannelsentriesdeprecation}
 
 Description
 : Deprecation conveys information regarding a deprecated resource.
@@ -347,7 +347,7 @@ Description
 | --- | --- |
 | 200 - OK | [`PackageManifestList`](/docs/rest_api/objects#com-github-operator-framework-operator-lifecycle-manager-pkg-package-server-apis-operators-v1-PackageManifestList) schema |
 
-### /apis/packages.operators.coreos.com/v1/namespaces/{namespace}/packagemanifests {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests}
+### /apis/packages.operators.coreos.com/v1/namespaces/&#123;namespace&#125;/packagemanifests {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests}
 
 HTTP method
 : ```
@@ -365,7 +365,7 @@ Description
 | --- | --- |
 | 200 - OK | [`PackageManifestList`](/docs/rest_api/objects#com-github-operator-framework-operator-lifecycle-manager-pkg-package-server-apis-operators-v1-PackageManifestList) schema |
 
-### /apis/packages.operators.coreos.com/v1/namespaces/{namespace}/packagemanifests/{name} {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests_name}
+### /apis/packages.operators.coreos.com/v1/namespaces/&#123;namespace&#125;/packagemanifests/&#123;name&#125; {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests_name}
 
 **Global path parameters**
 
@@ -389,7 +389,7 @@ Description
 | --- | --- |
 | 200 - OK | [`PackageManifest`](/docs/rest_api/operatorhub_apis/packagemanifest-packages-operators-coreos-com-v1#packagemanifest-packages-operators-coreos-com-v1) schema |
 
-### /apis/packages.operators.coreos.com/v1/namespaces/{namespace}/packagemanifests/{name}/icon {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests_name_icon}
+### /apis/packages.operators.coreos.com/v1/namespaces/&#123;namespace&#125;/packagemanifests/&#123;name&#125;/icon {#_apispackagesoperatorscoreoscomv1namespaces_namespace_packagemanifests_name_icon}
 
 **Global path parameters**
 

@@ -23,9 +23,9 @@ This early access program exists so that customers can provide feedback on the u
 
 Red Hat OpenShift Pipelines is a cloud-native, continuous integration and continuous delivery (CI/CD) solution based on Kubernetes resources. After installing the Red Hat OpenShift Pipelines Operator, you can create and modify pipeline objects on the **Pipelines** page.
 
-## Red Hat {serverlessproductname} in the web console {#using-serverless-with-openshift_capabilities-web-console}
+## Red Hat &#123;serverlessproductname&#125; in the web console {#using-serverless-with-openshift_capabilities-web-console}
 
-Red Hat {serverlessproductname} enables developers to create and deploy serverless, event-driven applications on OpenShift Container Platform. You can use the OpenShift Container Platform web console software catalog to install the {serverlessproductname} Operator.
+Red Hat &#123;serverlessproductname&#125; enables developers to create and deploy serverless, event-driven applications on OpenShift Container Platform. You can use the OpenShift Container Platform web console software catalog to install the &#123;serverlessproductname&#125; Operator.
 
 ## Red Hat Developer Hub in the OpenShift Container Platform web console {#rhdh-web-console_capabilities-web-console}
 

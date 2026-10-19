@@ -19,7 +19,7 @@ Velero plugins are started as separate processes. After a Velero operation has c
 
 :::
 
-## Restoring Knative resources {#migration-debugging-velero-admission-webhooks-knative_restoring-workarounds-for-velero-backups-that-use-admission-webhooks}
+## Restore Knative resources {#migration-debugging-velero-admission-webhooks-knative_restoring-workarounds-for-velero-backups-that-use-admission-webhooks}
 
 Resolve issues with restoring Knative resources that use admission webhooks by restoring the top-level `service.serving.knative.dev` service resource with Velero. This helps you to ensure that Knative resources are restored successfully without admission webhook errors.
 
@@ -32,7 +32,7 @@ Resolve issues with restoring Knative resources that use admission webhooks by r
     service.serving.knative.dev
   ```
 
-## Restoring IBM AppConnect resources {#migration-debugging-velero-admission-webhooks-ibm-appconnect_restoring-workarounds-for-velero-backups-that-use-admission-webhooks}
+## Restore IBM AppConnect resources {#migration-debugging-velero-admission-webhooks-ibm-appconnect_restoring-workarounds-for-velero-backups-that-use-admission-webhooks}
 
 Troubleshoot Velero restore failures for IBM(R) AppConnect resources that use admission webhooks. Verify your webhook rules and check that the installed Operator supports the backup’s version to successfully complete the restore.
 
@@ -45,7 +45,7 @@ Troubleshoot Velero restore failures for IBM(R) AppConnect resources that use ad
 2. Examine the YAML file of each `kind: MutatingWebhookConfiguration` to ensure that none of its rules block creation of the objects that are experiencing issues. For more information, see [the official Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#rulewithoperations-v1-admissionregistration-k8s-io).
 3. Check that any `spec.version` in `type: Configuration.appconnect.ibm.com/v1beta1` used at backup time is supported by the installed Operator.
 
-## Avoiding the Velero plugin panic error {#avoiding-the-velero-plugin-panic-error_restoring-workarounds-for-velero-backups-that-use-admission-webhooks}
+## Avoid the Velero plugin panic error {#avoiding-the-velero-plugin-panic-error_restoring-workarounds-for-velero-backups-that-use-admission-webhooks}
 
 Label a custom Backup Storage Location (BSL) to resolve Velero plugin panic errors during `imagestream` backups. This helps you to ensure the OADP controller creates the required registry secret when you manage the BSL outside the `DataProtectionApplication` (DPA) CR.
 

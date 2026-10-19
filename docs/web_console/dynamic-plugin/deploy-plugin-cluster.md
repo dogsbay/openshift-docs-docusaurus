@@ -3,9 +3,9 @@ title: Deploy your plugin on a cluster
 sidebar_position: 3
 ---
 
-# Deploy your plugin on a cluster {#deploy-plugin-cluster_{context}}
+# Deploy your plugin on a cluster {#deploy-plugin-cluster_-context-}
 
-<a id="deploy-plugin-cluster_{context}"></a>
+<a id="deploy-plugin-cluster_-context-"></a>
 
 You can deploy the plugin to an OpenShift Container Platform cluster.
 

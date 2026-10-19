@@ -9,7 +9,7 @@ sidebar_position: 1
 
 Manage different Kubernetes API versions on your cluster during backup and restore operations. Enabling Velero to back up all supported API group versions helps you maintain compatibility when moving resources to a new destination cluster.
 
-## Listing the Kubernetes API group versions on a cluster {#oadp-checking-api-group-versions_oadp-different-kubernetes-api-versions}
+## List the Kubernetes API group versions on a cluster {#oadp-checking-api-group-versions_oadp-different-kubernetes-api-versions}
 
 Identify the preferred Kubernetes API group versions on your source cluster. This helps you select the correct API version when multiple API versions are available for a single API.
 
@@ -49,14 +49,14 @@ Enable API Group Versions is still in beta.
 Velero uses the following algorithm to assign priorities to API versions, with `1` as the top priority:
 
 1. Preferred version of the *destination* cluster
-2. Preferred version of the source_ cluster
+2. Preferred version of the source\_ cluster
 3. Common non-preferred supported version with the highest Kubernetes version priority
 
 **Additional resources**
 
 - [Enable API Group Versions Feature](https://velero.io/docs/v1.9/enable-api-group-versions-feature/)
 
-## Using Enable API Group Versions {#oadp-using-enable-api-group-versions_oadp-different-kubernetes-api-versions}
+## Use Enable API Group Versions {#oadp-using-enable-api-group-versions_oadp-different-kubernetes-api-versions}
 
 Configure the `EnableAPIGroupVersions` feature flag to back up all Kubernetes API group versions that are supported on a cluster, not only the preferred one. This helps you maintain compatibility across different API groups in your cluster.
 

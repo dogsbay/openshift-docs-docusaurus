@@ -120,7 +120,7 @@ You can find information about available OpenShift Container Platform advisories
 
    **Select channel** indicates the cluster version that your cluster is running or is updating to.
 3. Select a version to update to, and click **Save**.
-   The Input channel **Update status** changes to **Update to <product-version> in progress**, and you can review the progress of the cluster update by watching the progress bars for the Operators and nodes.
+   The Input channel **Update status** changes to **Update to &lt;product-version> in progress**, and you can review the progress of the cluster update by watching the progress bars for the Operators and nodes.
 
    :::note
 

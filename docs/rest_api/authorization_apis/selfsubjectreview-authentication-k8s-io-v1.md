@@ -3,7 +3,7 @@ title: "SelfSubjectReview [authentication.k8s.io/v1]"
 sidebar_position: 8
 ---
 
-# SelfSubjectReview [authentication.k8s.io/v1] {#selfsubjectreview-authentication-k8s-io-v1}
+# SelfSubjectReview \[authentication.k8s.io/v1\] {#selfsubjectreview-authentication-k8s-io-v1}
 
 <a id="selfsubjectreview-authentication-k8s-io-v1"></a>
 

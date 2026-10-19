@@ -3,7 +3,7 @@ title: "ClusterRole [rbac.authorization.k8s.io/v1]"
 sidebar_position: 3
 ---
 
-# ClusterRole [rbac.authorization.k8s.io/v1] {#clusterrole-rbac-authorization-k8s-io-v1}
+# ClusterRole \[rbac.authorization.k8s.io/v1\] {#clusterrole-rbac-authorization-k8s-io-v1}
 
 <a id="clusterrole-rbac-authorization-k8s-io-v1"></a>
 
@@ -50,7 +50,7 @@ Type
   `array`
   ```
 
-### .rules[] {#_rules}
+### .rules\[\] {#_rules}
 
 Description
 : PolicyRule holds information that describes a policy rule, but does not contain information about who the rule applies to or which namespace the rule applies to.
@@ -65,11 +65,11 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiGroups` | `array (string)` | APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. "" represents the core API group and "*" represents all API groups. |
-| `nonResourceURLs` | `array (string)` | NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as "pods" or "secrets") or non-resource URL paths (such as "/api"),  but not both. |
+| `apiGroups` | `array (string)` | APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. "" represents the core API group and "\*" represents all API groups. |
+| `nonResourceURLs` | `array (string)` | NonResourceURLs is a set of partial urls that a user should have access to.  \*s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as "pods" or "secrets") or non-resource URL paths (such as "/api"),  but not both. |
 | `resourceNames` | `array (string)` | ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed. |
-| `resources` | `array (string)` | Resources is a list of resources this rule applies to. '*' represents all resources. |
-| `verbs` | `array (string)` | Verbs is a list of Verbs that apply to ALL the ResourceKinds contained in this rule. '*' represents all verbs. |
+| `resources` | `array (string)` | Resources is a list of resources this rule applies to. '\*' represents all resources. |
+| `verbs` | `array (string)` | Verbs is a list of Verbs that apply to ALL the ResourceKinds contained in this rule. '\*' represents all verbs. |
 
 ## API endpoints {#_api_endpoints}
 
@@ -182,7 +182,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/clusterroles/{name} {#_apisrbacauthorizationk8siov1clusterroles_name}
+### /apis/rbac.authorization.k8s.io/v1/clusterroles/&#123;name&#125; {#_apisrbacauthorizationk8siov1clusterroles_name}
 
 **Global path parameters**
 
@@ -287,7 +287,7 @@ Description
 | 201 - Created | [`ClusterRole`](/docs/rest_api/rbac_apis/clusterrole-rbac-authorization-k8s-io-v1#clusterrole-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/watch/clusterroles/{name} {#_apisrbacauthorizationk8siov1watchclusterroles_name}
+### /apis/rbac.authorization.k8s.io/v1/watch/clusterroles/&#123;name&#125; {#_apisrbacauthorizationk8siov1watchclusterroles_name}
 
 **Global path parameters**
 

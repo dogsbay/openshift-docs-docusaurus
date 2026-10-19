@@ -3,7 +3,7 @@ title: "InsightsOperator [operator.openshift.io/v1]"
 sidebar_position: 16
 ---
 
-# InsightsOperator [operator.openshift.io/v1] {#insightsoperator-operator-openshift-io-v1}
+# InsightsOperator \[operator.openshift.io/v1\] {#insightsoperator-operator-openshift-io-v1}
 
 <a id="insightsoperator-operator-openshift-io-v1"></a>
 
@@ -42,9 +42,9 @@ Type
 | --- | --- | --- |
 | `logLevel` | `string` | logLevel is an intent based logging for an overall component.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for their operands.  Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
 | `managementState` | `string` | managementState indicates whether and how the operator should manage the component |
-| `observedConfig` | `` | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
+| `observedConfig` | &#96;&#96; | observedConfig holds a sparse config that controller has observed from the cluster state.  It exists in spec because it is an input to the level for the operator |
 | `operatorLogLevel` | `string` | operatorLogLevel is an intent based logging for the operator itself.  It does not give fine grained control, but it is a simple way to manage coarse grained logging choices that operators have to interpret for themselves.  Valid values are: "Normal", "Debug", "Trace", "TraceAll". Defaults to "Normal". |
-| `unsupportedConfigOverrides` | `` | unsupportedConfigOverrides holds a sparse config that will override any previously set options.  It only needs to be the fields to override it will end up overlaying in the following order: 1. hardcoded defaults 2. observedConfig 3. unsupportedConfigOverrides |
+| `unsupportedConfigOverrides` | &#96;&#96; | unsupportedConfigOverrides holds a sparse config that will override any previously set options.  It only needs to be the fields to override it will end up overlaying in the following order: 1. hardcoded defaults 2. observedConfig 3. unsupportedConfigOverrides |
 
 ### .status {#_status}
 
@@ -78,7 +78,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : OperatorCondition is just the standard condition fields.
@@ -123,7 +123,7 @@ Type
   `array`
   ```
 
-### .status.gatherStatus.gatherers[] {#_statusgatherstatusgatherers}
+### .status.gatherStatus.gatherers\[\] {#_statusgatherstatusgatherers}
 
 Description
 : gathererStatus represents information about a particular data gatherer.
@@ -141,11 +141,11 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `conditions` | `array` | conditions provide details on the status of each gatherer. |
-| `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct{     // Represents the observations of a foo’s current state.     // Known .status.conditions.type are: "Available", "Progressing", and "Degraded"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`      // other fields } |
+| `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct&#123;     // Represents the observations of a foo’s current state.     // Known .status.conditions.type are: "Available", "Progressing", and "Degraded"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions \[\]metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`      // other fields &#125; |
 | `lastGatherDuration` | `string` | lastGatherDuration represents the time spent gathering. |
 | `name` | `string` | name is the name of the gatherer. |
 
-### .status.gatherStatus.gatherers[].conditions {#_statusgatherstatusgatherersconditions}
+### .status.gatherStatus.gatherers\[\].conditions {#_statusgatherstatusgatherersconditions}
 
 Description
 : conditions provide details on the status of each gatherer.
@@ -155,10 +155,10 @@ Type
   `array`
   ```
 
-### .status.gatherStatus.gatherers[].conditions[] {#_statusgatherstatusgatherersconditions}
+### .status.gatherStatus.gatherers\[\].conditions\[\] {#_statusgatherstatusgatherersconditions}
 
 Description
-: Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct{     // Represents the observations of a foo’s current state.     // Known .status.conditions.type are: "Available", "Progressing", and "Degraded"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` // other fields }
+: Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example, type FooStatus struct&#123;     // Represents the observations of a foo’s current state.     // Known .status.conditions.type are: "Available", "Progressing", and "Degraded"     // +patchMergeKey=type     // +patchStrategy=merge     // +listType=map     // +listMapKey=type     Conditions \[\]metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` // other fields &#125;
 
 Type
 : ```
@@ -176,7 +176,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt) |
@@ -191,7 +191,7 @@ Type
   `array`
   ```
 
-### .status.generations[] {#_statusgenerations}
+### .status.generations\[\] {#_statusgenerations}
 
 Description
 : GenerationStatus keeps track of the generation for a given resource so that decisions about forced updates can be made.
@@ -236,7 +236,7 @@ Type
   `array`
   ```
 
-### .status.insightsReport.healthChecks[] {#_statusinsightsreporthealthchecks}
+### .status.insightsReport.healthChecks\[\] {#_statusinsightsreporthealthchecks}
 
 Description
 : healthCheck represents an Insights health check attributes.
@@ -349,7 +349,7 @@ Description
 | 202 - Accepted | [`InsightsOperator`](/docs/rest_api/operator_apis/insightsoperator-operator-openshift-io-v1#insightsoperator-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/insightsoperators/{name} {#_apisoperatoropenshiftiov1insightsoperators_name}
+### /apis/operator.openshift.io/v1/insightsoperators/&#123;name&#125; {#_apisoperatoropenshiftiov1insightsoperators_name}
 
 **Global path parameters**
 
@@ -453,7 +453,7 @@ Description
 | 201 - Created | [`InsightsOperator`](/docs/rest_api/operator_apis/insightsoperator-operator-openshift-io-v1#insightsoperator-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/insightsoperators/{name}/scale {#_apisoperatoropenshiftiov1insightsoperators_name_scale}
+### /apis/operator.openshift.io/v1/insightsoperators/&#123;name&#125;/scale {#_apisoperatoropenshiftiov1insightsoperators_name_scale}
 
 **Global path parameters**
 
@@ -533,7 +533,7 @@ Description
 | 201 - Created | [`Scale`](/docs/rest_api/autoscale_apis/scale-autoscaling-v1#scale-autoscaling-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operator.openshift.io/v1/insightsoperators/{name}/status {#_apisoperatoropenshiftiov1insightsoperators_name_status}
+### /apis/operator.openshift.io/v1/insightsoperators/&#123;name&#125;/status {#_apisoperatoropenshiftiov1insightsoperators_name_status}
 
 **Global path parameters**
 

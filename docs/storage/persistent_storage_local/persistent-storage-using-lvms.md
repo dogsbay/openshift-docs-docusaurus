@@ -1604,7 +1604,7 @@ No user action is required after upgrading. The `storageClassOptions` field is o
 
 You can configure custom StorageClass behaviors for each device class, including reclaim policy, volume binding mode, and custom parameters and labels, by defining the storageClassOptions field in the LVMCluster custom resource.
 
-If you set an empty configuration (storageClassOptions: {}) or omit the field entirely, the Operator uses the following default settings:
+If you set an empty configuration (storageClassOptions: &#123;&#125;) or omit the field entirely, the Operator uses the following default settings:
 
 **StorageClass Options Reference**
 
@@ -2486,8 +2486,8 @@ openshift.io/cluster-monitoring=true
 
 **Additional resources**
 
-- https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/observability/index[Observability]
-- https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/observability/index#adding-custom-metrics[Adding custom metrics]
+- https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/observability/index\[Observability\]
+- https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.17/html-single/observability/index#adding-custom-metrics\[Adding custom metrics\]
 
 ## Metrics and alerts overview {#lvms-about-volume-metrics-alerts_logical-volume-manager-storage}
 

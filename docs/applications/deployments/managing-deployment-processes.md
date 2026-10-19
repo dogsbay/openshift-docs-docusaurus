@@ -280,8 +280,8 @@ You can also limit resource use by specifying resource limits as part of the dep
          ephemeral-storage: "1Gi"
    ```
 
-   - `spec.resources.limits.cpu` specifies the CPU units: `100m` represents 0.1 CPU units (100 * 1e-3).
-   - `spec.resources.limits.memory` specifies the bytes for memory: `256Mi` represents 268435456 bytes (256 * 2 ^ 20).
+   - `spec.resources.limits.cpu` specifies the CPU units: `100m` represents 0.1 CPU units (100 \* 1e-3).
+   - `spec.resources.limits.memory` specifies the bytes for memory: `256Mi` represents 268435456 bytes (256 \* 2 ^ 20).
    - `spec.resources.limits.ephemeral-storage` specifies the bytes for ephemeral-storage: `1Gi` represents 1073741824 bytes (2 ^ 30).
      However, if a quota has been defined for your project, one of the following two items is required:
 

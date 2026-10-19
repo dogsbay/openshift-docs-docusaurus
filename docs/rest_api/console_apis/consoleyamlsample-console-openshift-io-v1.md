@@ -3,7 +3,7 @@ title: "ConsoleYAMLSample [console.openshift.io/v1]"
 sidebar_position: 9
 ---
 
-# ConsoleYAMLSample [console.openshift.io/v1] {#consoleyamlsample-console-openshift-io-v1}
+# ConsoleYAMLSample \[console.openshift.io/v1\] {#consoleyamlsample-console-openshift-io-v1}
 
 <a id="consoleyamlsample-console-openshift-io-v1"></a>
 
@@ -151,7 +151,7 @@ Description
 | 202 - Accepted | [`ConsoleYAMLSample`](/docs/rest_api/console_apis/consoleyamlsample-console-openshift-io-v1#consoleyamlsample-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consoleyamlsamples/{name} {#_apisconsoleopenshiftiov1consoleyamlsamples_name}
+### /apis/console.openshift.io/v1/consoleyamlsamples/&#123;name&#125; {#_apisconsoleopenshiftiov1consoleyamlsamples_name}
 
 **Global path parameters**
 

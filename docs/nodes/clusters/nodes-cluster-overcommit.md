@@ -824,7 +824,7 @@ Alternatively, you can disable overcommitment for specific projects.
 
 ### Disable overcommitment for a project {#nodes-cluster-overcommit-project-disable_nodes-cluster-overcommit}
 
-If overcommitment is enabled on a project, you can disable overcommitment for that projects. This allows infrastructure components to be configured independently of overcommitment.
+If overcommitment is enabled on a project, you can disable overcommitment for that project. This allows infrastructure components to be configured independently of overcommitment.
 
 **Procedure**
 

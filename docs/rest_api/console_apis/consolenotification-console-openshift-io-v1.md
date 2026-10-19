@@ -3,7 +3,7 @@ title: "ConsoleNotification [console.openshift.io/v1]"
 sidebar_position: 5
 ---
 
-# ConsoleNotification [console.openshift.io/v1] {#consolenotification-console-openshift-io-v1}
+# ConsoleNotification \[console.openshift.io/v1\] {#consolenotification-console-openshift-io-v1}
 
 <a id="consolenotification-console-openshift-io-v1"></a>
 
@@ -155,7 +155,7 @@ Description
 | 202 - Accepted | [`ConsoleNotification`](/docs/rest_api/console_apis/consolenotification-console-openshift-io-v1#consolenotification-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consolenotifications/{name} {#_apisconsoleopenshiftiov1consolenotifications_name}
+### /apis/console.openshift.io/v1/consolenotifications/&#123;name&#125; {#_apisconsoleopenshiftiov1consolenotifications_name}
 
 **Global path parameters**
 
@@ -259,7 +259,7 @@ Description
 | 201 - Created | [`ConsoleNotification`](/docs/rest_api/console_apis/consolenotification-console-openshift-io-v1#consolenotification-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consolenotifications/{name}/status {#_apisconsoleopenshiftiov1consolenotifications_name_status}
+### /apis/console.openshift.io/v1/consolenotifications/&#123;name&#125;/status {#_apisconsoleopenshiftiov1consolenotifications_name_status}
 
 **Global path parameters**
 

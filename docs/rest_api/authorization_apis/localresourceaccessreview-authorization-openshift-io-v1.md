@@ -3,7 +3,7 @@ title: "LocalResourceAccessReview [authorization.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# LocalResourceAccessReview [authorization.openshift.io/v1] {#localresourceaccessreview-authorization-openshift-io-v1}
+# LocalResourceAccessReview \[authorization.openshift.io/v1\] {#localresourceaccessreview-authorization-openshift-io-v1}
 
 <a id="localresourceaccessreview-authorization-openshift-io-v1"></a>
 
@@ -51,7 +51,7 @@ The following API endpoints are available:
 - `/apis/authorization.openshift.io/v1/namespaces/{namespace}/localresourceaccessreviews`
   - `POST`: create a LocalResourceAccessReview
 
-### /apis/authorization.openshift.io/v1/namespaces/{namespace}/localresourceaccessreviews {#_apisauthorizationopenshiftiov1namespaces_namespace_localresourceaccessreviews}
+### /apis/authorization.openshift.io/v1/namespaces/&#123;namespace&#125;/localresourceaccessreviews {#_apisauthorizationopenshiftiov1namespaces_namespace_localresourceaccessreviews}
 
 **Global query parameters**
 

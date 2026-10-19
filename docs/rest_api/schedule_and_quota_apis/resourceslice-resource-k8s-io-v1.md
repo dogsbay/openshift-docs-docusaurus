@@ -3,14 +3,14 @@ title: "ResourceSlice [resource.k8s.io/v1]"
 sidebar_position: 12
 ---
 
-# ResourceSlice [resource.k8s.io/v1] {#resourceslice-resource-k8s-io-v1}
+# ResourceSlice \[resource.k8s.io/v1\] {#resourceslice-resource-k8s-io-v1}
 
 <a id="resourceslice-resource-k8s-io-v1"></a>
 
 Description
 : ResourceSlice represents one or more resources in a pool of similar resources, managed by a common driver. A pool may span more than one ResourceSlice, and exactly how many ResourceSlices comprise a pool is determined by the driver.
 
-  At the moment, the only supported resources are devices with attributes and capacities. Each device in a given pool, regardless of how many ResourceSlices, must have a unique name. The ResourceSlice in which a device gets published may change over time. The unique identifier for a device is the tuple <driver name>, <pool name>, <device name>.
+  At the moment, the only supported resources are devices with attributes and capacities. Each device in a given pool, regardless of how many ResourceSlices, must have a unique name. The ResourceSlice in which a device gets published may change over time. The unique identifier for a device is the tuple &lt;driver name>, &lt;pool name>, &lt;device name>.
 
   Whenever a driver needs to update a pool, it increments the pool.Spec.Pool.Generation number and updates all ResourceSlices with that new number and new resource definitions. A consumer must only use ResourceSlices with the highest generation number and ignore all others.
 
@@ -78,7 +78,7 @@ Type
   `array`
   ```
 
-### .spec.devices[] {#_specdevices}
+### .spec.devices\[\] {#_specdevices}
 
 Description
 : Device represents one individual hardware instance that can be selected based on its attributes. Besides the name, exactly one field must be set.
@@ -110,7 +110,7 @@ Required
 | `taints` | `array` | If specified, these are the driver-defined taints.<br>The maximum number of taints is 16. If taints are set for any device in a ResourceSlice, then the maximum number of allowed devices per ResourceSlice is 64 instead of 128.<br>This is an alpha field and requires enabling the DRADeviceTaints feature gate. |
 | `taints[]` | `object` | The device this taint is attached to has the "effect" on any claim which does not tolerate the taint and, through the claim, to pods using the claim. |
 
-### .spec.devices[].attributes {#_specdevicesattributes}
+### .spec.devices\[\].attributes {#_specdevicesattributes}
 
 Description
 : Attributes defines the set of attributes for this device. The name of each attribute must be unique in that set.
@@ -122,7 +122,7 @@ Type
   `object`
   ```
 
-### .spec.devices[].attributes{} {#_specdevicesattributes}
+### .spec.devices\[\].attributes&#123;&#125; {#_specdevicesattributes}
 
 Description
 : DeviceAttribute must have exactly one field set.
@@ -139,7 +139,7 @@ Type
 | `string` | `string` | StringValue is a string. Must not be longer than 64 characters. |
 | `version` | `string` | VersionValue is a semantic version according to semver.org spec 2.0.0. Must not be longer than 64 characters. |
 
-### .spec.devices[].capacity {#_specdevicescapacity}
+### .spec.devices\[\].capacity {#_specdevicescapacity}
 
 Description
 : Capacity defines the set of capacities for this device. The name of each capacity must be unique in that set.
@@ -151,7 +151,7 @@ Type
   `object`
   ```
 
-### .spec.devices[].capacity{} {#_specdevicescapacity}
+### .spec.devices\[\].capacity&#123;&#125; {#_specdevicescapacity}
 
 Description
 : DeviceCapacity describes a quantity associated with a device.
@@ -169,7 +169,7 @@ Required
 | `requestPolicy` | `object` | CapacityRequestPolicy defines how requests consume device capacity.<br>Must not set more than one ValidRequestValues. |
 | `value` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | Value defines how much of a certain capacity that device has.<br>This field reflects the fixed total capacity and does not change. The consumed amount is tracked separately by scheduler and does not affect this value. |
 
-### .spec.devices[].capacity{}.requestPolicy {#_specdevicescapacityrequestpolicy}
+### .spec.devices\[\].capacity&#123;&#125;.requestPolicy {#_specdevicescapacityrequestpolicy}
 
 Description
 : CapacityRequestPolicy defines how requests consume device capacity.
@@ -184,16 +184,16 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `default` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | Default specifies how much of this capacity is consumed by a request that does not contain an entry for it in DeviceRequest’s Capacity. |
-| `validRange` | `object` | CapacityRequestPolicyRange defines a valid range for consumable capacity values.<br>  - If the requested amount is less than Min, it is rounded up to the Min value.   - If Step is set and the requested amount is between Min and Max but not aligned with Step,     it will be rounded up to the next value equal to Min + (n * Step).   - If Step is not set, the requested amount is used as-is if it falls within the range Min to Max (if set).   - If the requested or rounded amount exceeds Max (if set), the request does not satisfy the policy,     and the device cannot be allocated. |
+| `validRange` | `object` | CapacityRequestPolicyRange defines a valid range for consumable capacity values.<br>  - If the requested amount is less than Min, it is rounded up to the Min value.   - If Step is set and the requested amount is between Min and Max but not aligned with Step,     it will be rounded up to the next value equal to Min + (n \* Step).   - If Step is not set, the requested amount is used as-is if it falls within the range Min to Max (if set).   - If the requested or rounded amount exceeds Max (if set), the request does not satisfy the policy,     and the device cannot be allocated. |
 | `validValues` | [`array (Quantity)`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | ValidValues defines a set of acceptable quantity values in consuming requests.<br>Must not contain more than 10 entries. Must be sorted in ascending order.<br>If this field is set, Default must be defined and it must be included in ValidValues list.<br>If the requested amount does not match any valid value but smaller than some valid values, the scheduler calculates the smallest valid value that is greater than or equal to the request. That is: min(ceil(requestedValue) ∈ validValues), where requestedValue ≤ max(validValues).<br>If the requested amount exceeds all valid values, the request violates the policy, and this device cannot be allocated. |
 
-### .spec.devices[].capacity{}.requestPolicy.validRange {#_specdevicescapacityrequestpolicyvalidrange}
+### .spec.devices\[\].capacity&#123;&#125;.requestPolicy.validRange {#_specdevicescapacityrequestpolicyvalidrange}
 
 Description
 : CapacityRequestPolicyRange defines a valid range for consumable capacity values.
 
   - If the requested amount is less than Min, it is rounded up to the Min value.
-  - If Step is set and the requested amount is between Min and Max but not aligned with Step, it will be rounded up to the next value equal to Min + (n * Step).
+  - If Step is set and the requested amount is between Min and Max but not aligned with Step, it will be rounded up to the next value equal to Min + (n \* Step).
   - If Step is not set, the requested amount is used as-is if it falls within the range Min to Max (if set).
   - If the requested or rounded amount exceeds Max (if set), the request does not satisfy the policy, and the device cannot be allocated.
 
@@ -211,7 +211,7 @@ Required
 | `min` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | Min specifies the minimum capacity allowed for a consumption request.<br>Min must be greater than or equal to zero, and less than or equal to the capacity value. requestPolicy.default must be more than or equal to the minimum. |
 | `step` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | Step defines the step size between valid capacity amounts within the range.<br>Max (if set) and requestPolicy.default must be a multiple of Step. Min + Step must be less than or equal to the capacity value. |
 
-### .spec.devices[].consumesCounters {#_specdevicesconsumescounters}
+### .spec.devices\[\].consumesCounters {#_specdevicesconsumescounters}
 
 Description
 : ConsumesCounters defines a list of references to sharedCounters and the set of counters that the device will consume from those counter sets.
@@ -225,7 +225,7 @@ Type
   `array`
   ```
 
-### .spec.devices[].consumesCounters[] {#_specdevicesconsumescounters}
+### .spec.devices\[\].consumesCounters\[\] {#_specdevicesconsumescounters}
 
 Description
 : DeviceCounterConsumption defines a set of counters that a device will consume from a CounterSet.
@@ -245,7 +245,7 @@ Required
 | `counters` | `object` | Counters defines the counters that will be consumed by the device.<br>The maximum number of counters is 32. |
 | `counters{}` | `object` | Counter describes a quantity associated with a device. |
 
-### .spec.devices[].consumesCounters[].counters {#_specdevicesconsumescounterscounters}
+### .spec.devices\[\].consumesCounters\[\].counters {#_specdevicesconsumescounterscounters}
 
 Description
 : Counters defines the counters that will be consumed by the device.
@@ -257,7 +257,7 @@ Type
   `object`
   ```
 
-### .spec.devices[].consumesCounters[].counters{} {#_specdevicesconsumescounterscounters}
+### .spec.devices\[\].consumesCounters\[\].counters&#123;&#125; {#_specdevicesconsumescounterscounters}
 
 Description
 : Counter describes a quantity associated with a device.
@@ -274,7 +274,7 @@ Required
 | --- | --- | --- |
 | `value` | [`Quantity`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | Value defines how much of a certain device counter is available. |
 
-### .spec.devices[].taints {#_specdevicestaints}
+### .spec.devices\[\].taints {#_specdevicestaints}
 
 Description
 : If specified, these are the driver-defined taints.
@@ -288,7 +288,7 @@ Type
   `array`
   ```
 
-### .spec.devices[].taints[] {#_specdevicestaints}
+### .spec.devices\[\].taints\[\] {#_specdevicestaints}
 
 Description
 : The device this taint is attached to has the "effect" on any claim which does not tolerate the taint and, through the claim, to pods using the claim.
@@ -346,7 +346,7 @@ Type
   `array`
   ```
 
-### .spec.sharedCounters[] {#_specsharedcounters}
+### .spec.sharedCounters\[\] {#_specsharedcounters}
 
 Description
 : CounterSet defines a named set of counters that are available to be used by devices defined in the ResourcePool.
@@ -368,7 +368,7 @@ Required
 | `counters{}` | `object` | Counter describes a quantity associated with a device. |
 | `name` | `string` | Name defines the name of the counter set. It must be a DNS label. |
 
-### .spec.sharedCounters[].counters {#_specsharedcounterscounters}
+### .spec.sharedCounters\[\].counters {#_specsharedcounterscounters}
 
 Description
 : Counters defines the set of counters for this CounterSet The name of each counter must be unique in that set and must be a DNS label.
@@ -380,7 +380,7 @@ Type
   `object`
   ```
 
-### .spec.sharedCounters[].counters{} {#_specsharedcounterscounters}
+### .spec.sharedCounters\[\].counters&#123;&#125; {#_specsharedcounterscounters}
 
 Description
 : Counter describes a quantity associated with a device.
@@ -508,7 +508,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/resource.k8s.io/v1/resourceslices/{name} {#_apisresourcek8siov1resourceslices_name}
+### /apis/resource.k8s.io/v1/resourceslices/&#123;name&#125; {#_apisresourcek8siov1resourceslices_name}
 
 **Global path parameters**
 
@@ -613,7 +613,7 @@ Description
 | 201 - Created | [`ResourceSlice`](/docs/rest_api/schedule_and_quota_apis/resourceslice-resource-k8s-io-v1#resourceslice-resource-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/resource.k8s.io/v1/watch/resourceslices/{name} {#_apisresourcek8siov1watchresourceslices_name}
+### /apis/resource.k8s.io/v1/watch/resourceslices/&#123;name&#125; {#_apisresourcek8siov1watchresourceslices_name}
 
 **Global path parameters**
 

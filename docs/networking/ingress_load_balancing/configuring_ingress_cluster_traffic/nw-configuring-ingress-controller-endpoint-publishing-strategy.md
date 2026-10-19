@@ -45,7 +45,7 @@ By default, ports are allocated automatically and you can access the port alloca
 
 For more information, see the "Kubernetes Services documentation on `NodePort`".
 
-`HostNetwork` endpoint publishing strategy*
+`HostNetwork` endpoint publishing strategy\*
 : The `HostNetwork` endpoint publishing strategy publishes the Ingress Controller on node ports where the Ingress Controller is deployed.
 
 An Ingress Controller with the `HostNetwork` endpoint publishing strategy can have only one pod replica per node. If you want *n* replicas, you must use at least *n* nodes where those replicas can be scheduled. Because each pod replica requests ports `80` and `443` on the node host where it is scheduled, a replica cannot be scheduled to a node if another pod on the same node is using those ports.

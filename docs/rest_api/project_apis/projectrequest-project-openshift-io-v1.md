@@ -3,7 +3,7 @@ title: "ProjectRequest [project.openshift.io/v1]"
 sidebar_position: 3
 ---
 
-# ProjectRequest [project.openshift.io/v1] {#projectrequest-project-openshift-io-v1}
+# ProjectRequest \[project.openshift.io/v1\] {#projectrequest-project-openshift-io-v1}
 
 <a id="projectrequest-project-openshift-io-v1"></a>
 

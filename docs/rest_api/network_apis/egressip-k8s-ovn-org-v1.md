@@ -3,7 +3,7 @@ title: "EgressIP [k8s.ovn.org/v1]"
 sidebar_position: 9
 ---
 
-# EgressIP [k8s.ovn.org/v1] {#egressip-k8s-ovn-org-v1}
+# EgressIP \[k8s.ovn.org/v1\] {#egressip-k8s-ovn-org-v1}
 
 <a id="egressip-k8s-ovn-org-v1"></a>
 
@@ -62,7 +62,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.namespaceSelector.matchExpressions {#_specnamespaceselectormatchexpressions}
 
@@ -74,7 +74,7 @@ Type
   `array`
   ```
 
-### .spec.namespaceSelector.matchExpressions[] {#_specnamespaceselectormatchexpressions}
+### .spec.namespaceSelector.matchExpressions\[\] {#_specnamespaceselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -108,7 +108,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.podSelector.matchExpressions {#_specpodselectormatchexpressions}
 
@@ -120,7 +120,7 @@ Type
   `array`
   ```
 
-### .spec.podSelector.matchExpressions[] {#_specpodselectormatchexpressions}
+### .spec.podSelector.matchExpressions\[\] {#_specpodselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -168,7 +168,7 @@ Type
   `array`
   ```
 
-### .status.items[] {#_statusitems}
+### .status.items\[\] {#_statusitems}
 
 Description
 : The per node status, for those egress IPs who have been assigned.
@@ -269,7 +269,7 @@ Description
 | 202 - Accepted | [`EgressIP`](/docs/rest_api/network_apis/egressip-k8s-ovn-org-v1#egressip-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/egressips/{name} {#_apisk8sovnorgv1egressips_name}
+### /apis/k8s.ovn.org/v1/egressips/&#123;name&#125; {#_apisk8sovnorgv1egressips_name}
 
 **Global path parameters**
 

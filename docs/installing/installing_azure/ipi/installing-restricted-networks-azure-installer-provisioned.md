@@ -75,7 +75,7 @@ If you use Azure Firewall to restrict internet access, you must set the `publish
 **Additional resources**
 
 - [Providing user-defined routing with Azure Firewall](https://learn.microsoft.com/en-us/azure/aks/egress-outboundtype#deploy-a-cluster-with-outbound-type-of-udr-and-azure-firewall)
-- [Azure Firewall does not work properly with Azure public load balancers](https://learn.microsoft.com/en-us/azure/firewall/integrate-lb)
+- [Azure Firewall does not work properly with Azure public load balancers](https://learn.microsoft.com/en-us/azure/firewall/integrate-lb) &#123;.\_additional-resources&#125;
 
 ## About reusing a VNet for your OpenShift Container Platform cluster {#installation-about-custom-azure-vnet_installing-restricted-networks-azure-installer-provisioned}
 

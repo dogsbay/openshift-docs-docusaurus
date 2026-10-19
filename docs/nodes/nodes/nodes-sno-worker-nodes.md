@@ -356,7 +356,7 @@ You can add worker nodes to clusters by writing command-line commands against th
       }
     }
     ```
-11. When the previous command shows that the host is ready, start the installation using the [/v2/infra-envs/{infra_env_id}/hosts/{host_id}/actions/install](https://api.openshift.com/?urls.primaryName=assisted-service%20service#/installer/v2InstallHost) API by running the following command:
+11. When the previous command shows that the host is ready, start the installation using the [/v2/infra-envs/&#123;infra_env_id&#125;/hosts/&#123;host_id&#125;/actions/install](https://api.openshift.com/?urls.primaryName=assisted-service%20service#/installer/v2InstallHost) API by running the following command:
     ```terminal
     $ curl -X POST -s "$API_URL/api/assisted-install/v2/infra-envs/$INFRA_ENV_ID/hosts/$HOST_ID/actions/install"  -H "Authorization: Bearer ${JWT_TOKEN}"
     ```

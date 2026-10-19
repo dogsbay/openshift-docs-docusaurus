@@ -41,16 +41,16 @@ The output examples in this procedure use the values for an AWS cluster.
 
 **Prerequisites**
 
-tag:CAPI[][]
+tag::CAPI\[\]
 
-- Your OpenShift Container Platform cluster uses the Cluster API. end:CAPI[][] tag:MAPI[][]
-- Your OpenShift Container Platform cluster uses the Machine API. end:MAPI[][]
+- Your OpenShift Container Platform cluster uses the Cluster API. end::CAPI\[\] tag::MAPI\[\]
+- Your OpenShift Container Platform cluster uses the Machine API. end::MAPI\[\]
 - You are logged in to the cluster as an administrator by using the OpenShift CLI (`oc`).
 
 **Procedure**
 
 1. List the compute machine sets in your cluster by running the following command:
-   tag:CAPI[][]
+   tag::CAPI\[\]
 
    ```terminal
    $ oc get machinesets.cluster.x-k8s.io -n openshift-cluster-api
@@ -62,7 +62,7 @@ tag:CAPI[][]
    <compute_machine_set_name_2>  <cluster_name>      1          1       1           26m
    ```
 
-   end:CAPI[][] tag:MAPI[][]
+   end::CAPI\[\] tag::MAPI\[\]
 
    ```terminal
    $ oc get machinesets.machine.openshift.io -n openshift-machine-api
@@ -74,23 +74,23 @@ tag:CAPI[][]
    <compute_machine_set_name_2>   1         1         1       1           55m
    ```
 
-   end:MAPI[][]
+   end::MAPI\[\]
 2. Edit a compute machine set by running the following command:
-   tag:CAPI[][]
+   tag::CAPI\[\]
 
    ```terminal
    $ oc edit machinesets.cluster.x-k8s.io <machine_set_name> \
      -n openshift-cluster-api
    ```
 
-   end:CAPI[][] tag:MAPI[][]
+   end::CAPI\[\] tag::MAPI\[\]
 
    ```terminal
    $ oc edit machinesets.machine.openshift.io <machine_set_name> \
      -n openshift-machine-api
    ```
 
-   end:MAPI[][]
+   end::MAPI\[\]
 3. Note the value of the `spec.replicas` field, because you need it when scaling the machine set to apply the changes.
    ```yaml
    #tag::CAPI[]
@@ -116,7 +116,7 @@ tag:CAPI[][]
    The examples in this procedure show a compute machine set that has a `replicas` value of `2`.
 4. Update the compute machine set CR with the configuration options that you want and save your changes.
 5. List the machines that are managed by the updated compute machine set by running the following command:
-   tag:CAPI[][]
+   tag::CAPI\[\]
 
    ```terminal
    $ oc get machines.cluster.x-k8s.io \
@@ -130,7 +130,7 @@ tag:CAPI[][]
    <machine_name_original_2>   <cluster_name>   <original_2_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h
    ```
 
-   end:CAPI[][] tag:MAPI[][]
+   end::CAPI\[\] tag::MAPI\[\]
 
    ```terminal
    $ oc get machines.machine.openshift.io \
@@ -144,9 +144,9 @@ tag:CAPI[][]
    <machine_name_original_2>   Running   m6i.xlarge   us-west-1   us-west-1a   4h
    ```
 
-   end:MAPI[][]
+   end::MAPI\[\]
 6. For each machine that is managed by the updated compute machine set, set the `delete` annotation by running the following command:
-   tag:CAPI[][]
+   tag::CAPI\[\]
 
    ```terminal
    $ oc annotate machines.cluster.x-k8s.io/<machine_name_original_1> \
@@ -154,7 +154,7 @@ tag:CAPI[][]
      cluster.x-k8s.io/delete-machine="true"
    ```
 
-   end:CAPI[][] tag:MAPI[][]
+   end::CAPI\[\] tag::MAPI\[\]
 
    ```terminal
    $ oc annotate machine.machine.openshift.io/<machine_name_original_1> \
@@ -162,9 +162,9 @@ tag:CAPI[][]
      machine.openshift.io/delete-machine="true"
    ```
 
-   end:MAPI[][]
+   end::MAPI\[\]
 7. To create replacement machines with the new configuration, scale the compute machine set to twice the number of replicas by running the following command:
-   tag:CAPI[][]
+   tag::CAPI\[\]
 
    ```terminal
    $ oc scale --replicas=4 \
@@ -172,7 +172,7 @@ tag:CAPI[][]
      -n openshift-cluster-api
    ```
 
-   end:CAPI[][] tag:MAPI[][]
+   end::CAPI\[\] tag::MAPI\[\]
 
    ```terminal
    $ oc scale --replicas=4 \
@@ -180,11 +180,11 @@ tag:CAPI[][]
      -n openshift-machine-api
    ```
 
-   end:MAPI[][]
+   end::MAPI\[\]
 
    The original example value of `2` is doubled to `4`.
 8. List the machines that are managed by the updated compute machine set by running the following command:
-   tag:CAPI[][]
+   tag::CAPI\[\]
 
    ```terminal
    $ oc get machines.cluster.x-k8s.io \
@@ -200,7 +200,7 @@ tag:CAPI[][]
    <machine_name_updated_2>    <cluster_name>   <updated_2_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Provisioning    55s
    ```
 
-   end:CAPI[][] tag:MAPI[][]
+   end::CAPI\[\] tag::MAPI\[\]
 
    ```terminal
    $ oc get machines.machine.openshift.io \
@@ -216,11 +216,11 @@ tag:CAPI[][]
    <machine_name_updated_2>    Provisioning   m6i.xlarge   us-west-1   us-west-1a   55s
    ```
 
-   end:MAPI[][]
+   end::MAPI\[\]
 
    When the new machines are in the `Running` phase, you can scale the compute machine set to the original number of replicas.
 9. To remove the machines that were created with the old configuration, scale the compute machine set to the original number of replicas by running the following command:
-   tag:CAPI[][]
+   tag::CAPI\[\]
 
    ```terminal
    $ oc scale --replicas=2 \
@@ -228,7 +228,7 @@ tag:CAPI[][]
      -n openshift-cluster-api
    ```
 
-   end:CAPI[][] tag:MAPI[][]
+   end::CAPI\[\] tag::MAPI\[\]
 
    ```terminal
    $ oc scale --replicas=2 \
@@ -236,30 +236,30 @@ tag:CAPI[][]
      -n openshift-machine-api
    ```
 
-   end:MAPI[][]
+   end::MAPI\[\]
 
    The `replicas` parameter is set to the original example value of `2`.
 
 **Verification**
 
 - To verify that a machine created by the updated machine set has the correct configuration, examine the relevant fields in the CR for one of the new machines by running the following command:
-  tag:CAPI[][]
+  tag::CAPI\[\]
 
   ```terminal
   $ oc describe machines.cluster.x-k8s.io <machine_name_updated_1> \
     -n openshift-cluster-api
   ```
 
-  end:CAPI[][] tag:MAPI[][]
+  end::CAPI\[\] tag::MAPI\[\]
 
   ```terminal
   $ oc describe machine.machine.openshift.io <machine_name_updated_1> \
     -n openshift-machine-api
   ```
 
-  end:MAPI[][]
+  end::MAPI\[\]
 - To verify that the compute machines without the updated configuration are deleted, list the machines that are managed by the updated compute machine set by running the following command:
-  tag:CAPI[][]
+  tag::CAPI\[\]
 
   ```terminal
   $ oc get machines.cluster.x-k8s.io \
@@ -281,7 +281,7 @@ tag:CAPI[][]
   <machine_name_updated_2>    <cluster_name>   <updated_2_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m
   ```
 
-  end:CAPI[][] tag:MAPI[][]
+  end::CAPI\[\] tag::MAPI\[\]
 
   ```terminal
   $ oc get machines.machine.openshift.io \
@@ -303,7 +303,7 @@ tag:CAPI[][]
   <machine_name_updated_2>    Running         m6i.xlarge   us-west-1   us-west-1a   6m30s
   ```
 
-  end:MAPI[][]
+  end::MAPI\[\]
 
 **Additional resources**
 

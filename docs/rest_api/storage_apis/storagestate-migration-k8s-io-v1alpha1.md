@@ -3,7 +3,7 @@ title: "StorageState [migration.k8s.io/v1alpha1]"
 sidebar_position: 8
 ---
 
-# StorageState [migration.k8s.io/v1alpha1] {#storagestate-migration-k8s-io-v1alpha1}
+# StorageState \[migration.k8s.io/v1alpha1\] {#storagestate-migration-k8s-io-v1alpha1}
 
 <a id="storagestate-migration-k8s-io-v1alpha1"></a>
 
@@ -156,7 +156,7 @@ Description
 | 202 - Accepted | [`StorageState`](/docs/rest_api/storage_apis/storagestate-migration-k8s-io-v1alpha1#storagestate-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/migration.k8s.io/v1alpha1/storagestates/{name} {#_apismigrationk8siov1alpha1storagestates_name}
+### /apis/migration.k8s.io/v1alpha1/storagestates/&#123;name&#125; {#_apismigrationk8siov1alpha1storagestates_name}
 
 **Global path parameters**
 
@@ -260,7 +260,7 @@ Description
 | 201 - Created | [`StorageState`](/docs/rest_api/storage_apis/storagestate-migration-k8s-io-v1alpha1#storagestate-migration-k8s-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/migration.k8s.io/v1alpha1/storagestates/{name}/status {#_apismigrationk8siov1alpha1storagestates_name_status}
+### /apis/migration.k8s.io/v1alpha1/storagestates/&#123;name&#125;/status {#_apismigrationk8siov1alpha1storagestates_name_status}
 
 **Global path parameters**
 

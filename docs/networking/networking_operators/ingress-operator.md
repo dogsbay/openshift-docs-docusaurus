@@ -263,7 +263,9 @@ The Ingress Operator also converts the TLS `1.0` of an `Old` or `Custom` profile
 
 #### Configuring mutual TLS authentication {#nw-mutual-tls-auth_configuring-ingress}
 
-You can configure the Ingress Controller to enable mutual TLS (mTLS) authentication by setting a `spec.clientTLS` value. The `clientTLS` value configures the Ingress Controller to verify client certificates. This configuration includes setting a `clientCA` value, which is a reference to a config map. The config map contains the PEM-encoded CA certificate bundle that is used to verify a client’s certificate. Optionally, you can also configure a list of certificate subject filters.
+You can configure the Ingress Controller to enable mutual TLS (mTLS) authentication by setting a `spec.clientTLS` value.
+
+The `clientTLS` value configures the Ingress Controller to verify client certificates. This configuration includes setting a `clientCA` value, which is a reference to a config map. The config map contains the PEM-encoded CA certificate bundle that is used to verify a client’s certificate. Optionally, you can also configure a list of certificate subject filters.
 
 If the `clientCA` value specifies an X509v3 certificate revocation list (CRL) distribution point, the Ingress Operator downloads and manages a CRL config map based on the HTTP URI X509v3 `CRL Distribution Point` specified in each provided certificate. The Ingress Controller uses this config map during mTLS/TLS negotiation. Requests that do not provide valid certificates are rejected.
 
@@ -723,8 +725,127 @@ The following procedure provides an example for scaling up the default Ingress C
     router-default-7b5df44ff-wwsth   2/2     Running   0          66s
     ```
 
+### Ingress Controller router timeout variables {#ingress-controller-router-timeout_configuring-ingress}
+
+Reference the router timeout configurations on the Ingress Controller. These settings control how long the router waits for client, server, and tunnel connections during normal traffic.
+
+:::note
+
+Do not modify environment variables directly on the router deployment. Instead, configure timeouts through the `IngressController` custom resource (CR) or through annotations on individual `Route` resources. The Ingress Operator automatically sets the corresponding environment variables on the Ingress Controller deployment.
+
+:::
+
+A `TimeUnits` value uses a number and a unit: `us` (microseconds), `ms` (milliseconds, default), `s` (seconds), `m` (minutes), `h` (hours), `d` (days).
+
+The regular expression is: \[1-9\]\[0-9\]\*(`us`|`ms`|`s`|`m`|`h`|`d`).
+
+The following table lists `IngressController` CR fields and router environment variables:
+
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Environment variable</th>
+  <th>Default</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>spec.tuningOptions.backendCheckInterval</code></td>
+  <td><code>ROUTER_BACKEND_CHECK_INTERVAL</code></td>
+  <td><code>5000ms</code></td>
+  <td>Length of time from one liveness check to the next on backends. The <code>healthCheckInterval</code> field can override the <code>backendCheckInterval</code> field.</td>
+</tr>
+<tr>
+  <td><code>spec.tuningOptions.clientFinTimeout</code></td>
+  <td><code>ROUTER_CLIENT_FIN_TIMEOUT</code></td>
+  <td><code>1s</code></td>
+  <td>Controls the TCP finish (FIN) timeout period for the client connecting to the route. If the FIN sent to close the connection does not answer within the given time, HAProxy closes the connection.</td>
+</tr>
+<tr>
+  <td><code>spec.tuningOptions.clientTimeout</code></td>
+  <td><code>ROUTER_DEFAULT_CLIENT_TIMEOUT</code></td>
+  <td><code>30s</code></td>
+  <td>Length of time that a client has to acknowledge or send data.</td>
+</tr>
+<tr>
+  <td><code>spec.tuningOptions.connectTimeout</code></td>
+  <td><code>ROUTER_DEFAULT_CONNECT_TIMEOUT</code></td>
+  <td><code>5s</code></td>
+  <td>The maximum connection time allowed to establish a connection to the backend pool.</td>
+</tr>
+<tr>
+  <td><code>spec.tuningOptions.serverFinTimeout</code></td>
+  <td><code>ROUTER_DEFAULT_SERVER_FIN_TIMEOUT</code></td>
+  <td><code>1s</code></td>
+  <td>Controls the TCP finish (FIN) timeout from the router to the pod backing the route.</td>
+</tr>
+<tr>
+  <td><code>spec.tuningOptions.serverTimeout</code></td>
+  <td><code>ROUTER_DEFAULT_SERVER_TIMEOUT</code></td>
+  <td><code>30s</code></td>
+  <td>Length of time that a server has to acknowledge or send data.</td>
+</tr>
+<tr>
+  <td><code>spec.tuningOptions.tunnelTimeout</code></td>
+  <td><code>ROUTER_DEFAULT_TUNNEL_TIMEOUT</code></td>
+  <td><code>1h</code></td>
+  <td>Maximum time that idle TCP or WebSocket tunnel connections can remain open. Router reloads start a new HAProxy process for new connections while the prior process drains existing ones.</td>
+</tr>
+<tr>
+  <td><code>spec.tuningOptions.headerBufferMaxRewriteBytes</code></td>
+  <td><code>ROUTER_SLOWLORIS_HTTP_KEEPALIVE</code></td>
+  <td><code>300s</code></td>
+  <td>Sets the maximum time to wait for a new HTTP request on an idle connection. If a timeout occurs, HAProxy closes the connection by sending a TCP finish (FIN) to both the client and server. Standard browsers and applications handle this closure transparently by opening a new connection as needed.</td>
+</tr>
+<tr>
+  <td><code>spec.tuningOptions.slowlorisTimeout</code></td>
+  <td><code>ROUTER_SLOWLORIS_TIMEOUT</code></td>
+  <td><code>10s</code></td>
+  <td>Length of time the transmission of an HTTP request can take.</td>
+</tr>
+<tr>
+  <td><code>spec.tuningOptions.reloadInterval</code></td>
+  <td><code>RELOAD_INTERVAL</code></td>
+  <td><code>5s</code></td>
+  <td>Minimum frequency for the router to reload and apply configuration changes that require a reload.</td>
+</tr>
+<tr>
+  <td><code>spec.tuningOptions.healthCheckInterval</code></td>
+  <td><code>ROUTER_METRICS_HAPROXY_TIMEOUT</code></td>
+  <td><code>5s</code></td>
+  <td>Timeout for the gathering of HAProxy metrics.</td>
+</tr>
+</tbody>
+</table>
+
+:::note
+
+Different timeout settings govern distinct phases of a connection rather than accumulating together. On SSL passthrough routes, `tcp-request inspect-delay` is the maximum time a new connection has to provide the payload HAProxy requires to select a backend. If a client fails to send this payload within that limit, HAProxy closes the connection immediately. This initial connection limit operates independently from HTTP keep-alive timers controlled by `ROUTER_SLOWLORIS_HTTP_KEEPALIVE` (`timeout http-keep-alive`).
+
+:::
+
+<a name="ingress-controller-router-timeout-example_configuring-ingress"></a>
+
+```yaml title="Example of a route setting custom timeout"
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    haproxy.router.openshift.io/timeout: 5500ms
+...
+```
+
+:::note
+
+Setting a server-side timeout value for passthrough routes too low can cause WebSocket connections to time out often on that route.
+
+:::
+
 **Additional resources**
 
+- [Configuring the HAProxy reload interval](/docs/scalability_and_performance/optimization/routing-optimization#configuring-haproxy-interval_routing-optimization)
 - [Installing the custom metrics autoscaler](/docs/nodes/cma/nodes-cma-autoscaling-custom-install#nodes-cma-autoscaling-custom-install_nodes-cma-autoscaling-custom-install)
 - [Enabling monitoring for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)
 - [Understanding custom metrics autoscaler trigger authentications](/docs/nodes/cma/nodes-cma-autoscaling-custom-trigger-auth#nodes-cma-autoscaling-custom-trigger-auth)
@@ -974,19 +1095,17 @@ For more information, see the Google Cloud documentation for [global access](htt
       $ oc -n openshift-ingress-operator edit ingresscontroller/default
       ```
    2. Edit the YAML file:
-      ```yaml title="Sample clientAccess configuration to Global"
+      ```yaml title="Sample clientAccess configuration set to Global"
         spec:
           endpointPublishingStrategy:
             loadBalancer:
               providerParameters:
                 gcp:
-                  clientAccess: Global (1)
+                  clientAccess: Global
                 type: GCP
               scope: Internal
             type: LoadBalancerService
       ```
-
-      1. Set `gcp.clientAccess` to `Global`.
    3. Save the file to apply the changes.
 2. Run the following command to verify that the service allows global access:
    ```terminal
@@ -1267,23 +1386,32 @@ The following procedure modifies the Ingress Controller to set the X-Forwarded-C
      namespace: openshift-ingress-operator
    spec:
      httpHeaders:
-       actions: (1)
-         request: (2)
-         - name: X-Forwarded-Client-Cert (3)
+       actions:
+         request:
+         - name: X-Forwarded-Client-Cert
            action:
-             type: Set (4)
+             type: Set
              set:
-              value: "%{+Q}[ssl_c_der,base64]" (5)
+              value: "%{+Q}[ssl_c_der,base64]"
          - name: X-SSL-Client-Der
            action:
              type: Delete
    ```
 
-   1. The list of actions you want to perform on the HTTP headers.
-   2. The type of header you want to change. In this case, a request header.
-   3. The name of the header you want to change. For a list of available headers you can set or delete, see *HTTP header configuration*.
-   4. The type of action being taken on the header. This field can have the value `Set` or `Delete`.
-   5. When setting HTTP headers, you must provide a `value`. The value can be a string from a list of available directives for that header, for example `DENY`, or it can be a dynamic value that will be interpreted using HAProxy’s dynamic value syntax. In this case, a dynamic value is added.
+   where:
+
+   <dl>
+   <dt><code>spec.httpHeaders.actions</code></dt>
+   <dd>Specifies the list of actions you want to perform on the HTTP headers.</dd>
+   <dt><code>spec.httpHeaders.actions.request</code></dt>
+   <dd>Specifies the type of header you want to change. In this case, a request header.</dd>
+   <dt><code>spec.httpHeaders.actions.request.name</code></dt>
+   <dd>Specifies the name of the header you want to change. For a list of available headers you can set or delete, see <em>HTTP header configuration</em>.</dd>
+   <dt><code>spec.httpHeaders.actions.request.action.type</code></dt>
+   <dd>Specifies the type of action being taken on the header. This field can have the value <code>Set</code> or <code>Delete</code>.</dd>
+   <dt><code>spec.httpHeaders.actions.request.action.set.value</code></dt>
+   <dd>Specifies a <code>value</code> when setting HTTP headers. The value can be a string from a list of available directives for that header, for example <code>DENY</code>, or it can be a dynamic value that will be interpreted using HAProxy’s dynamic value syntax. In this case, a dynamic value is added.</dd>
+   </dl>
 
    :::note
 
@@ -1374,10 +1502,10 @@ To enable HTTP/2 for Ingress Controllers in OpenShift Container Platform, you ca
 
 - To enable HTTP/2 on a specific Ingress Controller, enter the `oc annotate` command:
   ```terminal
-  $ oc -n openshift-ingress-operator annotate ingresscontrollers/<ingresscontroller_name> ingress.operator.openshift.io/default-enable-http2=true (1)
+  $ oc -n openshift-ingress-operator annotate ingresscontrollers/<ingresscontroller_name> ingress.operator.openshift.io/default-enable-http2=true
   ```
 
-  1. Replace `<ingresscontroller_name>` with the name of an Ingress Controller to enable HTTP/2.
+  Replace `<ingresscontroller_name>` with the name of an Ingress Controller to enable HTTP/2.
 - To enable HTTP/2 for the entire cluster, enter the `oc annotate` command:
   ```terminal
   $ oc annotate ingresses.config/cluster ingress.operator.openshift.io/default-enable-http2=true
@@ -1400,10 +1528,10 @@ To disable HTTP/2 for Ingress Controllers in OpenShift Container Platform, you c
 
 - To disable HTTP/2 on a specific Ingress Controller, enter the `oc annotate` command:
   ```terminal
-  $ oc -n openshift-ingress-operator annotate ingresscontrollers/<ingresscontroller_name> ingress.operator.openshift.io/default-enable-http2=false (1)
+  $ oc -n openshift-ingress-operator annotate ingresscontrollers/<ingresscontroller_name> ingress.operator.openshift.io/default-enable-http2=false
   ```
 
-  1. Replace `<ingresscontroller_name>` with the name of an Ingress Controller to disable HTTP/2.
+  Replace `<ingresscontroller_name>` with the name of an Ingress Controller to disable HTTP/2.
 - To disable HTTP/2 for the entire cluster, enter the `oc annotate` command:
   ```terminal
   $ oc annotate ingresses.config/cluster ingress.operator.openshift.io/default-enable-http2=false
@@ -1595,13 +1723,13 @@ As a cluster administrator, you can convert the HTTP header case by entering the
      kind: Route
      metadata:
        annotations:
-         haproxy.router.openshift.io/h1-adjust-case: true (1)
+         haproxy.router.openshift.io/h1-adjust-case: true
        name: <application_name>
        namespace: <application_name>
      # ...
      ```
 
-     1. Set `haproxy.router.openshift.io/h1-adjust-case` so that the Ingress Controller can adjust the `host` request header as specified.
+     You must set `haproxy.router.openshift.io/h1-adjust-case` to `true` so that the Ingress Controller can adjust the `host` request header as specified.
 - Specify adjustments by configuring the `HeaderNameCaseAdjustments` field in the Ingress Controller YAML configuration file.
   1. The following example Ingress Controller YAML file adjusts the `host` header to `Host` for HTTP/1 requests to appropriately annotated routes:
      ```yaml title="Example Ingress Controller YAML"
@@ -1621,7 +1749,7 @@ As a cluster administrator, you can convert the HTTP header case by entering the
      kind: Route
      metadata:
        annotations:
-         haproxy.router.openshift.io/h1-adjust-case: true (1)
+         haproxy.router.openshift.io/h1-adjust-case: true
        name: my-application
        namespace: my-application
      spec:
@@ -1630,7 +1758,7 @@ As a cluster administrator, you can convert the HTTP header case by entering the
          name: my-application
      ```
 
-     1. Set `haproxy.router.openshift.io/h1-adjust-case` to true.
+     Set `haproxy.router.openshift.io/h1-adjust-case` to `true`.
 
 ### Use router compression {#nw-configuring-router-compression_configuring-ingress}
 
@@ -1775,10 +1903,10 @@ If you use the OpenShift Container Platform default 503 error code page as a tem
 
    ```text title="Example output"
    NAME                       DATA   AGE
-   default-errorpages         2      25s  (1)
+   default-errorpages         2      25s
    ```
 
-   1. The example config map name is `default-errorpages` because the `default` Ingress Controller custom resource (CR) was patched.
+   The example config map name is `default-errorpages` because the `default` Ingress Controller custom resource (CR) was patched.
 4. Confirm that the config map containing the custom error response page mounts on the router volume where the config map key is the filename that has the custom HTTP error code response:
    - For 503 custom HTTP custom error code response:
      ```terminal

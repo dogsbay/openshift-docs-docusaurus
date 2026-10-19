@@ -9,7 +9,7 @@ sidebar_position: 5
 
 You can write and install plugins to build on the default `oc` commands, allowing you to perform new and more complex tasks with the OpenShift CLI (`oc`).
 
-## Writing CLI plugins {#cli-writing-plugins_cli-extend-plugins}
+## Write a CLI plugin {#cli-writing-plugins_cli-extend-plugins}
 
 You can write a plugin for the OpenShift CLI (`oc`) in any programming language or script that allows you to write command-line commands. Note that you cannot use a plugin to overwrite an existing `oc` command.
 
@@ -50,7 +50,7 @@ This procedure creates a simple Bash plugin that prints a message to the termina
 - [Sample plugin repository](https://github.com/kubernetes/sample-cli-plugin)
 - [CLI runtime repository](https://github.com/kubernetes/cli-runtime/)
 
-## Installing and using CLI plugins {#cli-installing-plugins_cli-extend-plugins}
+## Install and use a CLI plugin {#cli-installing-plugins_cli-extend-plugins}
 
 After you write a custom plugin for the OpenShift CLI (`oc`), you must install the plugin before you can use it.
 

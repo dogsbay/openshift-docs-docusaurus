@@ -3,7 +3,7 @@ title: "Tuned [tuned.openshift.io/v1]"
 sidebar_position: 6
 ---
 
-# Tuned [tuned.openshift.io/v1] {#tuned-tuned-openshift-io-v1}
+# Tuned \[tuned.openshift.io/v1\] {#tuned-tuned-openshift-io-v1}
 
 <a id="tuned-tuned-openshift-io-v1"></a>
 
@@ -53,7 +53,7 @@ Type
   `array`
   ```
 
-### .spec.profile[] {#_specprofile}
+### .spec.profile\[\] {#_specprofile}
 
 Description
 : A Tuned profile.
@@ -82,7 +82,7 @@ Type
   `array`
   ```
 
-### .spec.recommend[] {#_specrecommend}
+### .spec.recommend\[\] {#_specrecommend}
 
 Description
 : Selection logic for a single Tuned profile.
@@ -105,7 +105,7 @@ Required
 | `priority` | `integer` | Tuned profile priority. Highest priority is 0. |
 | `profile` | `string` | Name of the Tuned profile to recommend. |
 
-### .spec.recommend[].match {#_specrecommendmatch}
+### .spec.recommend\[\].match {#_specrecommendmatch}
 
 Description
 : Rules governing application of a Tuned profile connected by logical OR operator.
@@ -115,7 +115,7 @@ Type
   `array`
   ```
 
-### .spec.recommend[].match[] {#_specrecommendmatch}
+### .spec.recommend\[\].match\[\] {#_specrecommendmatch}
 
 Description
 : Rules governing application of a Tuned profile.
@@ -132,10 +132,10 @@ Required
 | --- | --- | --- |
 | `label` | `string` | Node or Pod label name. |
 | `match` | `array (undefined)` | Additional rules governing application of the tuned profile connected by logical AND operator. |
-| `type` | `string` | Match type: [node/pod]. If omitted, "node" is assumed. |
+| `type` | `string` | Match type: \[node/pod\]. If omitted, "node" is assumed. |
 | `value` | `string` | Node or Pod label value. If omitted, the presence of label name is enough to match. |
 
-### .spec.recommend[].operand {#_specrecommendoperand}
+### .spec.recommend\[\].operand {#_specrecommendoperand}
 
 Description
 : Optional operand configuration.
@@ -151,7 +151,7 @@ Type
 | `tunedConfig` | `object` | Global configuration for the TuneD daemon as defined in tuned-main.conf |
 | `verbosity` | `integer` | klog logging verbosity |
 
-### .spec.recommend[].operand.tunedConfig {#_specrecommendoperandtunedconfig}
+### .spec.recommend\[\].operand.tunedConfig {#_specrecommendoperandtunedconfig}
 
 Description
 : Global configuration for the TuneD daemon as defined in tuned-main.conf
@@ -190,7 +190,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : StatusCondition represents a partial state of the per-node Profile application.
@@ -252,7 +252,7 @@ Description
 | 200 - OK | [`TunedList`](/docs/rest_api/objects#io-openshift-tuned-v1-TunedList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/tuned.openshift.io/v1/namespaces/{namespace}/tuneds {#_apistunedopenshiftiov1namespaces_namespace_tuneds}
+### /apis/tuned.openshift.io/v1/namespaces/&#123;namespace&#125;/tuneds {#_apistunedopenshiftiov1namespaces_namespace_tuneds}
 
 HTTP method
 : ```
@@ -320,7 +320,7 @@ Description
 | 202 - Accepted | [`Tuned`](/docs/rest_api/node_apis/tuned-tuned-openshift-io-v1#tuned-tuned-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/tuned.openshift.io/v1/namespaces/{namespace}/tuneds/{name} {#_apistunedopenshiftiov1namespaces_namespace_tuneds_name}
+### /apis/tuned.openshift.io/v1/namespaces/&#123;namespace&#125;/tuneds/&#123;name&#125; {#_apistunedopenshiftiov1namespaces_namespace_tuneds_name}
 
 **Global path parameters**
 
@@ -424,7 +424,7 @@ Description
 | 201 - Created | [`Tuned`](/docs/rest_api/node_apis/tuned-tuned-openshift-io-v1#tuned-tuned-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/tuned.openshift.io/v1/namespaces/{namespace}/tuneds/{name}/status {#_apistunedopenshiftiov1namespaces_namespace_tuneds_name_status}
+### /apis/tuned.openshift.io/v1/namespaces/&#123;namespace&#125;/tuneds/&#123;name&#125;/status {#_apistunedopenshiftiov1namespaces_namespace_tuneds_name_status}
 
 **Global path parameters**
 

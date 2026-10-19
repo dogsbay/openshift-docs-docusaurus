@@ -3,7 +3,7 @@ title: "ControllerConfig [machineconfiguration.openshift.io/v1]"
 sidebar_position: 3
 ---
 
-# ControllerConfig [machineconfiguration.openshift.io/v1] {#controllerconfig-machineconfiguration-openshift-io-v1}
+# ControllerConfig \[machineconfiguration.openshift.io/v1\] {#controllerconfig-machineconfiguration-openshift-io-v1}
 
 <a id="controllerconfig-machineconfiguration-openshift-io-v1"></a>
 
@@ -52,10 +52,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `additionalTrustBundle` | `` | additionalTrustBundle is a certificate bundle that will be added to the nodes trusted certificate store. |
+| `additionalTrustBundle` | &#96;&#96; | additionalTrustBundle is a certificate bundle that will be added to the nodes trusted certificate store. |
 | `baseOSContainerImage` | `string` | baseOSContainerImage is the new-format container image for operating system updates. |
 | `baseOSExtensionsContainerImage` | `string` | baseOSExtensionsContainerImage is the matching extensions container for the new-format container |
-| `cloudProviderCAData` | `` | cloudProviderCAData specifies the cloud provider CA data |
+| `cloudProviderCAData` | &#96;&#96; | cloudProviderCAData specifies the cloud provider CA data |
 | `cloudProviderConfig` | `string` | cloudProviderConfig is the configuration for the given cloud provider |
 | `clusterDNSIP` | `string` | clusterDNSIP is the cluster DNS IP address |
 | `dns` | `object` | dns holds the cluster dns details |
@@ -66,14 +66,14 @@ Required
 | `imageRegistryBundleUserData[]` | `object` | ImageRegistryBundle contains information for writing image registry certificates |
 | `images` | `object (string)` | images is map of images that are used by the controller to render templates under ./templates/ |
 | `infra` | `object` | infra holds the infrastructure details |
-| `internalRegistryPullSecret` | `` | internalRegistryPullSecret is the pull secret for the internal registry, used by rpm-ostree to pull images from the internal registry if present |
+| `internalRegistryPullSecret` | &#96;&#96; | internalRegistryPullSecret is the pull secret for the internal registry, used by rpm-ostree to pull images from the internal registry if present |
 | `ipFamilies` | `string` | ipFamilies indicates the IP families in use by the cluster network |
 | `kubeAPIServerServingCAData` | `string` | kubeAPIServerServingCAData managed Kubelet to API Server Cert... Rotated automatically |
-| `network` | `` | network contains additional network related information |
+| `network` | &#96;&#96; | network contains additional network related information |
 | `networkType` | `string` | networkType holds the type of network the cluster is using XXX: this is temporary and will be dropped as soon as possible in favor of a better support to start network related services the proper way. Nobody is also changing this once the cluster is up and running the first time, so, disallow regeneration if this changes. |
 | `osImageURL` | `string` | osImageURL is the old-format container image that contains the OS update payload. |
 | `platform` | `string` | platform is deprecated, use Infra.Status.PlatformStatus.Type instead |
-| `proxy` | `` | proxy holds the current proxy configuration for the nodes |
+| `proxy` | &#96;&#96; | proxy holds the current proxy configuration for the nodes |
 | `pullSecret` | `object` | pullSecret is the default pull secret that needs to be installed on all machines. |
 | `releaseImage` | `string` | releaseImage is the image used when installing the cluster |
 | `rootCAData` | `string` | rootCAData specifies the root CA data |
@@ -109,7 +109,7 @@ Type
   `array`
   ```
 
-### .spec.imageRegistryBundleData[] {#_specimageregistrybundledata}
+### .spec.imageRegistryBundleData\[\] {#_specimageregistrybundledata}
 
 Description
 : ImageRegistryBundle contains information for writing image registry certificates
@@ -138,7 +138,7 @@ Type
   `array`
   ```
 
-### .spec.imageRegistryBundleUserData[] {#_specimageregistrybundleuserdata}
+### .spec.imageRegistryBundleUserData\[\] {#_specimageregistrybundleuserdata}
 
 Description
 : ImageRegistryBundle contains information for writing image registry certificates
@@ -191,7 +191,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -226,7 +226,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : ControllerConfigStatusCondition contains condition information for ControllerConfigStatus
@@ -242,7 +242,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `lastTransitionTime` | `` | lastTransitionTime is the time of the last update to the current status object. |
+| `lastTransitionTime` | &#96;&#96; | lastTransitionTime is the time of the last update to the current status object. |
 | `message` | `string` | message provides additional information about the current condition. This is only to be consumed by humans. |
 | `reason` | `string` | reason is the reason for the condition’s last transition.  Reasons are PascalCase |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
@@ -258,7 +258,7 @@ Type
   `array`
   ```
 
-### .status.controllerCertificates[] {#_statuscontrollercertificates}
+### .status.controllerCertificates\[\] {#_statuscontrollercertificates}
 
 Description
 : ControllerCertificate contains info about a specific cert.
@@ -367,7 +367,7 @@ Description
 | 202 - Accepted | [`ControllerConfig`](/docs/rest_api/machine_apis/controllerconfig-machineconfiguration-openshift-io-v1#controllerconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/controllerconfigs/{name} {#_apismachineconfigurationopenshiftiov1controllerconfigs_name}
+### /apis/machineconfiguration.openshift.io/v1/controllerconfigs/&#123;name&#125; {#_apismachineconfigurationopenshiftiov1controllerconfigs_name}
 
 **Global path parameters**
 
@@ -471,7 +471,7 @@ Description
 | 201 - Created | [`ControllerConfig`](/docs/rest_api/machine_apis/controllerconfig-machineconfiguration-openshift-io-v1#controllerconfig-machineconfiguration-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machineconfiguration.openshift.io/v1/controllerconfigs/{name}/status {#_apismachineconfigurationopenshiftiov1controllerconfigs_name_status}
+### /apis/machineconfiguration.openshift.io/v1/controllerconfigs/&#123;name&#125;/status {#_apismachineconfigurationopenshiftiov1controllerconfigs_name_status}
 
 **Global path parameters**
 

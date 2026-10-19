@@ -3,7 +3,7 @@ title: "LimitRange [v1]"
 sidebar_position: 6
 ---
 
-# LimitRange [v1]
+# LimitRange \[v1\]
 
 <a id="limitrange-v1"></a>
 
@@ -52,7 +52,7 @@ Type
   `array`
   ```
 
-### .spec.limits[] {#_speclimits}
+### .spec.limits\[\] {#_speclimits}
 
 Description
 : LimitRangeItem defines a min/max usage limit for any resource that matches on kind.
@@ -134,7 +134,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/limitranges {#_apiv1namespaces_namespace_limitranges}
+### /api/v1/namespaces/&#123;namespace&#125;/limitranges {#_apiv1namespaces_namespace_limitranges}
 
 HTTP method
 : ```
@@ -208,7 +208,7 @@ Description
 | 202 - Accepted | [`LimitRange`](/docs/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{namespace}/limitranges {#_apiv1watchnamespaces_namespace_limitranges}
+### /api/v1/watch/namespaces/&#123;namespace&#125;/limitranges {#_apiv1watchnamespaces_namespace_limitranges}
 
 HTTP method
 : ```
@@ -227,7 +227,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/limitranges/{name} {#_apiv1namespaces_namespace_limitranges_name}
+### /api/v1/namespaces/&#123;namespace&#125;/limitranges/&#123;name&#125; {#_apiv1namespaces_namespace_limitranges_name}
 
 **Global path parameters**
 
@@ -332,7 +332,7 @@ Description
 | 201 - Created | [`LimitRange`](/docs/rest_api/schedule_and_quota_apis/limitrange-v1#limitrange-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{namespace}/limitranges/{name} {#_apiv1watchnamespaces_namespace_limitranges_name}
+### /api/v1/watch/namespaces/&#123;namespace&#125;/limitranges/&#123;name&#125; {#_apiv1watchnamespaces_namespace_limitranges_name}
 
 **Global path parameters**
 

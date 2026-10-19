@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="extension-apis"></a>
 
-## APIService [apiregistration.k8s.io/v1] {#_apiservice_apiregistrationk8siov1}
+## APIService \[apiregistration.k8s.io/v1\] {#_apiservice_apiregistrationk8siov1}
 
 Description
 : APIService represents a server for a particular GroupVersion. Name must be "version.group".
@@ -17,17 +17,17 @@ Type
   `object`
   ```
 
-## CustomResourceDefinition [apiextensions.k8s.io/v1] {#_customresourcedefinition_apiextensionsk8siov1}
+## CustomResourceDefinition \[apiextensions.k8s.io/v1\] {#_customresourcedefinition_apiextensionsk8siov1}
 
 Description
-: CustomResourceDefinition represents a resource that should be exposed on the API server.  Its name MUST be in the format <.spec.name>.<.spec.group>.
+: CustomResourceDefinition represents a resource that should be exposed on the API server.  Its name MUST be in the format &lt;.spec.name>.&lt;.spec.group>.
 
 Type
 : ```
   `object`
   ```
 
-## MutatingWebhookConfiguration [admissionregistration.k8s.io/v1] {#_mutatingwebhookconfiguration_admissionregistrationk8siov1}
+## MutatingWebhookConfiguration \[admissionregistration.k8s.io/v1\] {#_mutatingwebhookconfiguration_admissionregistrationk8siov1}
 
 Description
 : MutatingWebhookConfiguration describes the configuration of and admission webhook that accept or reject and may change the object.
@@ -37,7 +37,7 @@ Type
   `object`
   ```
 
-## TestExtensionAdmission [testextension.redhat.io/v1] {#_testextensionadmission_testextensionredhatiov1}
+## TestExtensionAdmission \[testextension.redhat.io/v1\] {#_testextensionadmission_testextensionredhatiov1}
 
 Description
 : TestExtensionAdmission controls which ImageStreams are permitted to provide extension test binaries
@@ -47,7 +47,7 @@ Type
   `object`
   ```
 
-## ValidatingAdmissionPolicy [admissionregistration.k8s.io/v1] {#_validatingadmissionpolicy_admissionregistrationk8siov1}
+## ValidatingAdmissionPolicy \[admissionregistration.k8s.io/v1\] {#_validatingadmissionpolicy_admissionregistrationk8siov1}
 
 Description
 : ValidatingAdmissionPolicy describes the definition of an admission validation policy that accepts or rejects an object without changing it.
@@ -57,7 +57,7 @@ Type
   `object`
   ```
 
-## ValidatingAdmissionPolicyBinding [admissionregistration.k8s.io/v1] {#_validatingadmissionpolicybinding_admissionregistrationk8siov1}
+## ValidatingAdmissionPolicyBinding \[admissionregistration.k8s.io/v1\] {#_validatingadmissionpolicybinding_admissionregistrationk8siov1}
 
 Description
 : ValidatingAdmissionPolicyBinding binds the ValidatingAdmissionPolicy with paramerized resources. ValidatingAdmissionPolicyBinding and parameter CRDs together define how cluster administrators configure policies for clusters.
@@ -71,7 +71,7 @@ Type
   `object`
   ```
 
-## ValidatingWebhookConfiguration [admissionregistration.k8s.io/v1] {#_validatingwebhookconfiguration_admissionregistrationk8siov1}
+## ValidatingWebhookConfiguration \[admissionregistration.k8s.io/v1\] {#_validatingwebhookconfiguration_admissionregistrationk8siov1}
 
 Description
 : ValidatingWebhookConfiguration describes the configuration of and admission webhook that accept or reject and object without changing it.

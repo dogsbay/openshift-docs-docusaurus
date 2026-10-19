@@ -3,7 +3,7 @@ title: "APIServer [config.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# APIServer [config.openshift.io/v1] {#apiserver-config-openshift-io-v1}
+# APIServer \[config.openshift.io/v1\] {#apiserver-config-openshift-io-v1}
 
 <a id="apiserver-config-openshift-io-v1"></a>
 
@@ -44,7 +44,7 @@ Type
 | --- | --- | --- |
 | `additionalCORSAllowedOrigins` | `array (string)` | additionalCORSAllowedOrigins lists additional, user-defined regular expressions describing hosts for which the API server allows access using the CORS headers. This may be needed to access the API and the integrated OAuth server from JavaScript applications. The values are regular expressions that correspond to the Golang regular expression language. |
 | `audit` | `object` | audit specifies the settings for audit configuration to be applied to all OpenShift-provided API servers in the cluster. |
-| `clientCA` | `object` | clientCA references a ConfigMap containing a certificate bundle for the signers that will be recognized for incoming client certificates in addition to the operator managed signers. If this is empty, then only operator managed signers are valid. You usually only have to set this if you have your own PKI you wish to honor client certificates from. The ConfigMap must exist in the openshift-config namespace and contain the following required fields: - ConfigMap.Data["ca-bundle.crt"] - CA bundle. |
+| `clientCA` | `object` | clientCA references a ConfigMap containing a certificate bundle for the signers that will be recognized for incoming client certificates in addition to the operator managed signers. If this is empty, then only operator managed signers are valid. You usually only have to set this if you have your own PKI you wish to honor client certificates from. The ConfigMap must exist in the openshift-config namespace and contain the following required fields: - ConfigMap.Data\["ca-bundle.crt"\] - CA bundle. |
 | `encryption` | `object` | encryption allows the configuration of encryption of resources at the datastore layer. |
 | `servingCerts` | `object` | servingCert is the TLS cert info for serving secure traffic. If not specified, operator managed certificates will be used for serving secure traffic. |
 | `tlsSecurityProfile` | `object` | tlsSecurityProfile specifies settings for TLS connections for externally exposed servers.<br>When omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time. The current default is the Intermediate profile. |
@@ -75,7 +75,7 @@ Type
   `array`
   ```
 
-### .spec.audit.customRules[] {#_specauditcustomrules}
+### .spec.audit.customRules\[\] {#_specauditcustomrules}
 
 Description
 : AuditCustomRule describes a custom rule for an audit profile that takes precedence over the top-level profile.
@@ -99,7 +99,7 @@ Required
 Description
 : clientCA references a ConfigMap containing a certificate bundle for the signers that will be recognized for incoming client certificates in addition to the operator managed signers. If this is empty, then only operator managed signers are valid. You usually only have to set this if you have your own PKI you wish to honor client certificates from. The ConfigMap must exist in the openshift-config namespace and contain the following required fields:
 
-  - ConfigMap.Data["ca-bundle.crt"] - CA bundle.
+  - ConfigMap.Data\["ca-bundle.crt"\] - CA bundle.
 
 Type
 : ```
@@ -152,7 +152,7 @@ Type
   `array`
   ```
 
-### .spec.servingCerts.namedCertificates[] {#_specservingcertsnamedcertificates}
+### .spec.servingCerts.namedCertificates\[\] {#_specservingcertsnamedcertificates}
 
 Description
 : APIServerNamedServingCert maps a server DNS name, as understood by a client, to a certificate.
@@ -165,15 +165,15 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `names` | `array (string)` | names is a optional list of explicit DNS names (leading wildcards allowed) that should use this certificate to serve secure traffic. If no names are provided, the implicit names will be extracted from the certificates. Exact names trump over wildcard names. Explicit names defined here trump over extracted implicit names. |
-| `servingCertificate` | `object` | servingCertificate references a kubernetes.io/tls type secret containing the TLS cert info for serving secure traffic. The secret must exist in the openshift-config namespace and contain the following required fields: - Secret.Data["tls.key"] - TLS private key. - Secret.Data["tls.crt"] - TLS certificate. |
+| `servingCertificate` | `object` | servingCertificate references a kubernetes.io/tls type secret containing the TLS cert info for serving secure traffic. The secret must exist in the openshift-config namespace and contain the following required fields: - Secret.Data\["tls.key"\] - TLS private key. - Secret.Data\["tls.crt"\] - TLS certificate. |
 
-### .spec.servingCerts.namedCertificates[].servingCertificate {#_specservingcertsnamedcertificatesservingcertificate}
+### .spec.servingCerts.namedCertificates\[\].servingCertificate {#_specservingcertsnamedcertificatesservingcertificate}
 
 Description
 : servingCertificate references a kubernetes.io/tls type secret containing the TLS cert info for serving secure traffic. The secret must exist in the openshift-config namespace and contain the following required fields:
 
-  - Secret.Data["tls.key"] - TLS private key.
-  - Secret.Data["tls.crt"] - TLS certificate.
+  - Secret.Data\["tls.key"\] - TLS private key.
+  - Secret.Data\["tls.crt"\] - TLS certificate.
 
 Type
 : ```
@@ -201,10 +201,10 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `custom` | `` | custom is a user-defined TLS security profile. Be extremely careful using a custom profile as invalid configurations can be catastrophic. An example custom profile looks like this:<br>  minTLSVersion: VersionTLS11   ciphers:     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256 |
-| `intermediate` | `` | intermediate is a TLS profile for use when you do not need compatibility with legacy clients and want to remain highly secure while being compatible with most clients currently in use.<br>This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS12   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES256-GCM-SHA384     - ECDHE-RSA-AES256-GCM-SHA384     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305 |
-| `modern` | `` | modern is a TLS security profile for use with clients that support TLS 1.3 and do not need backward compatibility for older clients.<br>This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS13   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256 |
-| `old` | `` | old is a TLS profile for use when services need to be accessed by very old clients or libraries and should be used only as a last resort.<br>This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS10   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES256-GCM-SHA384     - ECDHE-RSA-AES256-GCM-SHA384     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305     - ECDHE-ECDSA-AES128-SHA256     - ECDHE-RSA-AES128-SHA256     - ECDHE-ECDSA-AES128-SHA     - ECDHE-RSA-AES128-SHA     - ECDHE-ECDSA-AES256-SHA     - ECDHE-RSA-AES256-SHA     - AES128-GCM-SHA256     - AES256-GCM-SHA384     - AES128-SHA256     - AES128-SHA     - AES256-SHA     - DES-CBC3-SHA |
+| `custom` | &#96;&#96; | custom is a user-defined TLS security profile. Be extremely careful using a custom profile as invalid configurations can be catastrophic. An example custom profile looks like this:<br>  minTLSVersion: VersionTLS11   ciphers:     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256 |
+| `intermediate` | &#96;&#96; | intermediate is a TLS profile for use when you do not need compatibility with legacy clients and want to remain highly secure while being compatible with most clients currently in use.<br>This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS12   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES256-GCM-SHA384     - ECDHE-RSA-AES256-GCM-SHA384     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305 |
+| `modern` | &#96;&#96; | modern is a TLS security profile for use with clients that support TLS 1.3 and do not need backward compatibility for older clients.<br>This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS13   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256 |
+| `old` | &#96;&#96; | old is a TLS profile for use when services need to be accessed by very old clients or libraries and should be used only as a last resort.<br>This profile is equivalent to a Custom profile specified as:   minTLSVersion: VersionTLS10   ciphers:     - TLS_AES_128_GCM_SHA256     - TLS_AES_256_GCM_SHA384     - TLS_CHACHA20_POLY1305_SHA256     - ECDHE-ECDSA-AES128-GCM-SHA256     - ECDHE-RSA-AES128-GCM-SHA256     - ECDHE-ECDSA-AES256-GCM-SHA384     - ECDHE-RSA-AES256-GCM-SHA384     - ECDHE-ECDSA-CHACHA20-POLY1305     - ECDHE-RSA-CHACHA20-POLY1305     - ECDHE-ECDSA-AES128-SHA256     - ECDHE-RSA-AES128-SHA256     - ECDHE-ECDSA-AES128-SHA     - ECDHE-RSA-AES128-SHA     - ECDHE-ECDSA-AES256-SHA     - ECDHE-RSA-AES256-SHA     - AES128-GCM-SHA256     - AES256-GCM-SHA384     - AES128-SHA256     - AES128-SHA     - AES256-SHA     - DES-CBC3-SHA |
 | `type` | `string` | type is one of Old, Intermediate, Modern or Custom. Custom provides the ability to specify individual TLS security profile parameters.<br>The profiles are based on version 5.7 of the Mozilla Server Side TLS configuration guidelines. The cipher lists consist of the configuration’s "ciphersuites" followed by the Go-specific "ciphers" from the guidelines. See: https://ssl-config.mozilla.org/guidelines/5.7.json<br>The profiles are intent based, so they may change over time as new ciphers are developed and existing ciphers are found to be insecure. Depending on precisely which ciphers are available to a process, the list may be reduced. |
 
 ### .status {#_status}
@@ -303,7 +303,7 @@ Description
 | 202 - Accepted | [`APIServer`](/docs/rest_api/config_apis/apiserver-config-openshift-io-v1#apiserver-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/apiservers/{name} {#_apisconfigopenshiftiov1apiservers_name}
+### /apis/config.openshift.io/v1/apiservers/&#123;name&#125; {#_apisconfigopenshiftiov1apiservers_name}
 
 **Global path parameters**
 
@@ -407,7 +407,7 @@ Description
 | 201 - Created | [`APIServer`](/docs/rest_api/config_apis/apiserver-config-openshift-io-v1#apiserver-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/apiservers/{name}/status {#_apisconfigopenshiftiov1apiservers_name_status}
+### /apis/config.openshift.io/v1/apiservers/&#123;name&#125;/status {#_apisconfigopenshiftiov1apiservers_name_status}
 
 **Global path parameters**
 

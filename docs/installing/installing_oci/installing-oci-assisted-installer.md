@@ -157,7 +157,7 @@ To begin creating the cluster, set the cluster details.
    | --- | --- |
    | **Cluster name** | Specify the name of your cluster, such as `oci`. This is the same value as the cluster name in Oracle Distributed Cloud. |
    | **Base domain** | Specify the base domain of the cluster, such as `openshift-demo.devcluster.openshift.com`.<br>This must be the same value as the zone DNS server in Oracle Distributed Cloud. |
-   | **OpenShift version** | * For installations on virtual machines only, specify `OpenShift 4.14` or a later version.<br>* For installations that include bare metal machines, specify `OpenShift 4.16` or a later version. |
+   | **OpenShift version** | \* For installations on virtual machines only, specify `OpenShift 4.14` or a later version.<br>\* For installations that include bare metal machines, specify `OpenShift 4.16` or a later version. |
    | **CPU architecture** | Specify `x86_64` or `Arm64`. |
    | **Integrate with external partner platforms** | Specify `Oracle Cloud Infrastructure`.<br>After you specify this value, the **Include custom manifests** checkbox is selected by default and the **Custom manifests** page is added to the wizard. |
 7. Leave the default settings for the remaining fields, and click **Next**.

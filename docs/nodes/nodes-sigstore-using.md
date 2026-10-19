@@ -82,7 +82,7 @@ The following parameters apply to cluster and image policies. For information on
 
     The `prefix` and `signedPrefix` can be either `host[:port]` values that match the exact `host[:port]` string, repository namespaces, or repositories. The `prefix` and `signedPrefix` must not contain tags or digests. For example, to specify a single repository, use `example.com/library/busybox` and not `busybox`. To specify the parent namespace of `example.com/library/busybox`, you can use `example.com/library`.
 
-    You must specify the following parameters: *   `prefix`: Specifies the image prefix to be matched. *   `signedPrefix`: Specifies the image prefix to be remapped, if needed.
+    You must specify the following parameters: \*   `prefix`: Specifies the image prefix to be matched. \*   `signedPrefix`: Specifies the image prefix to be remapped, if needed.
 
 ### About modifying or removing image policies {#nodes-sigstore-configure-parameters-modify_nodes-sigstore-using}
 

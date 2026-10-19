@@ -3,7 +3,7 @@ title: "MachineHealthCheck [machine.openshift.io/v1beta1]"
 sidebar_position: 8
 ---
 
-# MachineHealthCheck [machine.openshift.io/v1beta1] {#machinehealthcheck-machine-openshift-io-v1beta1}
+# MachineHealthCheck \[machine.openshift.io/v1beta1\] {#machinehealthcheck-machine-openshift-io-v1beta1}
 
 <a id="machinehealthcheck-machine-openshift-io-v1beta1"></a>
 
@@ -59,7 +59,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -80,7 +80,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.selector.matchExpressions {#_specselectormatchexpressions}
 
@@ -92,7 +92,7 @@ Type
   `array`
   ```
 
-### .spec.selector.matchExpressions[] {#_specselectormatchexpressions}
+### .spec.selector.matchExpressions\[\] {#_specselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -122,7 +122,7 @@ Type
   `array`
   ```
 
-### .spec.unhealthyConditions[] {#_specunhealthyconditions}
+### .spec.unhealthyConditions\[\] {#_specunhealthyconditions}
 
 Description
 : UnhealthyCondition represents a Node condition type and value with a timeout specified as a duration.  When the named condition has been in the given status for at least the timeout value, a node is considered unhealthy.
@@ -166,7 +166,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition defines an observation of a Machine API resource operational state.
@@ -229,7 +229,7 @@ Description
 | 200 - OK | [`MachineHealthCheckList`](/docs/rest_api/objects#io-openshift-machine-v1beta1-MachineHealthCheckList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinehealthchecks {#_apismachineopenshiftiov1beta1namespaces_namespace_machinehealthchecks}
+### /apis/machine.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machinehealthchecks {#_apismachineopenshiftiov1beta1namespaces_namespace_machinehealthchecks}
 
 HTTP method
 : ```
@@ -297,7 +297,7 @@ Description
 | 202 - Accepted | [`MachineHealthCheck`](/docs/rest_api/machine_apis/machinehealthcheck-machine-openshift-io-v1beta1#machinehealthcheck-machine-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinehealthchecks/{name} {#_apismachineopenshiftiov1beta1namespaces_namespace_machinehealthchecks_name}
+### /apis/machine.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machinehealthchecks/&#123;name&#125; {#_apismachineopenshiftiov1beta1namespaces_namespace_machinehealthchecks_name}
 
 **Global path parameters**
 
@@ -401,7 +401,7 @@ Description
 | 201 - Created | [`MachineHealthCheck`](/docs/rest_api/machine_apis/machinehealthcheck-machine-openshift-io-v1beta1#machinehealthcheck-machine-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machinehealthchecks/{name}/status {#_apismachineopenshiftiov1beta1namespaces_namespace_machinehealthchecks_name_status}
+### /apis/machine.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machinehealthchecks/&#123;name&#125;/status {#_apismachineopenshiftiov1beta1namespaces_namespace_machinehealthchecks_name_status}
 
 **Global path parameters**
 

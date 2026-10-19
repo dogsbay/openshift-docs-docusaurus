@@ -3,7 +3,7 @@ title: "IPAddress [networking.k8s.io/v1]"
 sidebar_position: 21
 ---
 
-# IPAddress [networking.k8s.io/v1] {#ipaddress-networking-k8s-io-v1}
+# IPAddress \[networking.k8s.io/v1\] {#ipaddress-networking-k8s-io-v1}
 
 <a id="ipaddress-networking-k8s-io-v1"></a>
 
@@ -173,7 +173,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/ipaddresses/{name} {#_apisnetworkingk8siov1ipaddresses_name}
+### /apis/networking.k8s.io/v1/ipaddresses/&#123;name&#125; {#_apisnetworkingk8siov1ipaddresses_name}
 
 **Global path parameters**
 
@@ -278,7 +278,7 @@ Description
 | 201 - Created | [`IPAddress`](/docs/rest_api/network_apis/ipaddress-networking-k8s-io-v1#ipaddress-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/networking.k8s.io/v1/watch/ipaddresses/{name} {#_apisnetworkingk8siov1watchipaddresses_name}
+### /apis/networking.k8s.io/v1/watch/ipaddresses/&#123;name&#125; {#_apisnetworkingk8siov1watchipaddresses_name}
 
 **Global path parameters**
 

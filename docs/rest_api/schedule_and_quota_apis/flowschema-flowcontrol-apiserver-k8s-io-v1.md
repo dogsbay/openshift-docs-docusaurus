@@ -3,7 +3,7 @@ title: "FlowSchema [flowcontrol.apiserver.k8s.io/v1]"
 sidebar_position: 5
 ---
 
-# FlowSchema [flowcontrol.apiserver.k8s.io/v1] {#flowschema-flowcontrol-apiserver-k8s-io-v1}
+# FlowSchema \[flowcontrol.apiserver.k8s.io/v1\] {#flowschema-flowcontrol-apiserver-k8s-io-v1}
 
 <a id="flowschema-flowcontrol-apiserver-k8s-io-v1"></a>
 
@@ -41,7 +41,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `distinguisherMethod` | `object` | FlowDistinguisherMethod specifies the method of a flow distinguisher. |
-| `matchingPrecedence` | `integer` | `matchingPrecedence` is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default. |
+| `matchingPrecedence` | `integer` | `matchingPrecedence` is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in \[1,10000\]. Note that if the precedence is not specified, it will be set to 1000 as default. |
 | `priorityLevelConfiguration` | `object` | PriorityLevelConfigurationReference contains information that points to the "request-priority" being used. |
 | `rules` | `array` | `rules` describes which requests will match this flow schema. This FlowSchema matches a request if and only if at least one member of rules matches the request. if it is an empty slice, there will be no requests matching the FlowSchema. |
 | `rules[]` | `object` | PolicyRulesWithSubjects prescribes a test that applies to a request to an apiserver. The test considers the subject making the request, the verb being requested, and the resource to be acted upon. This PolicyRulesWithSubjects matches a request if and only if both (a) at least one member of subjects matches the request and (b) at least one member of resourceRules or nonResourceRules matches the request. |
@@ -90,7 +90,7 @@ Type
   `array`
   ```
 
-### .spec.rules[] {#_specrules}
+### .spec.rules\[\] {#_specrules}
 
 Description
 : PolicyRulesWithSubjects prescribes a test that applies to a request to an apiserver. The test considers the subject making the request, the verb being requested, and the resource to be acted upon. This PolicyRulesWithSubjects matches a request if and only if both (a) at least one member of subjects matches the request and (b) at least one member of resourceRules or nonResourceRules matches the request.
@@ -112,7 +112,7 @@ Required
 | `subjects` | `array` | subjects is the list of normal user, serviceaccount, or group that this rule cares about. There must be at least one member in this slice. A slice that includes both the system:authenticated and system:unauthenticated user groups matches every request. Required. |
 | `subjects[]` | `object` | Subject matches the originator of a request, as identified by the request authentication system. There are three ways of matching an originator; by user, group, or service account. |
 
-### .spec.rules[].nonResourceRules {#_specrulesnonresourcerules}
+### .spec.rules\[\].nonResourceRules {#_specrulesnonresourcerules}
 
 Description
 : `nonResourceRules` is a list of NonResourcePolicyRules that identify matching requests according to their verb and the target non-resource URL.
@@ -122,7 +122,7 @@ Type
   `array`
   ```
 
-### .spec.rules[].nonResourceRules[] {#_specrulesnonresourcerules}
+### .spec.rules\[\].nonResourceRules\[\] {#_specrulesnonresourcerules}
 
 Description
 : NonResourcePolicyRule is a predicate that matches non-resource requests according to their verb and the target non-resource URL. A NonResourcePolicyRule matches a request if and only if both (a) at least one member of verbs matches the request and (b) at least one member of nonResourceURLs matches the request.
@@ -138,10 +138,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `nonResourceURLs` | `array (string)` | `nonResourceURLs` is a set of url prefixes that a user should have access to and may not be empty. For example:   - "/healthz" is legal   - "/hea*" is illegal   - "/hea" is legal but matches nothing   - "/hea/*" also matches nothing   - "/healthz/*" matches all per-component health checks. "*" matches all non-resource urls. if it is present, it must be the only entry. Required. |
-| `verbs` | `array (string)` | `verbs` is a list of matching verbs and may not be empty. "*" matches all verbs. If it is present, it must be the only entry. Required. |
+| `nonResourceURLs` | `array (string)` | `nonResourceURLs` is a set of url prefixes that a user should have access to and may not be empty. For example:   - "/healthz" is legal   - "/hea\*" is illegal   - "/hea" is legal but matches nothing   - "/hea/*" also matches nothing   - "/healthz/*" matches all per-component health checks. "\*" matches all non-resource urls. if it is present, it must be the only entry. Required. |
+| `verbs` | `array (string)` | `verbs` is a list of matching verbs and may not be empty. "\*" matches all verbs. If it is present, it must be the only entry. Required. |
 
-### .spec.rules[].resourceRules {#_specrulesresourcerules}
+### .spec.rules\[\].resourceRules {#_specrulesresourcerules}
 
 Description
 : `resourceRules` is a slice of ResourcePolicyRules that identify matching requests according to their verb and the target resource. At least one of `resourceRules` and `nonResourceRules` has to be non-empty.
@@ -151,7 +151,7 @@ Type
   `array`
   ```
 
-### .spec.rules[].resourceRules[] {#_specrulesresourcerules}
+### .spec.rules\[\].resourceRules\[\] {#_specrulesresourcerules}
 
 Description
 : ResourcePolicyRule is a predicate that matches some resource requests, testing the request’s verb and the target resource. A ResourcePolicyRule matches a resource request if and only if: (a) at least one member of verbs matches the request, (b) at least one member of apiGroups matches the request, (c) at least one member of resources matches the request, and (d) either (d1) the request does not specify a namespace (i.e., `Namespace==""`) and clusterScope is true or (d2) the request specifies a namespace and least one member of namespaces matches the request’s namespace.
@@ -168,13 +168,13 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `apiGroups` | `array (string)` | `apiGroups` is a list of matching API groups and may not be empty. "*" matches all API groups and, if present, must be the only entry. Required. |
+| `apiGroups` | `array (string)` | `apiGroups` is a list of matching API groups and may not be empty. "\*" matches all API groups and, if present, must be the only entry. Required. |
 | `clusterScope` | `boolean` | `clusterScope` indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces). If this field is omitted or false then the `namespaces` field must contain a non-empty list. |
 | `namespaces` | `array (string)` | `namespaces` is a list of target namespaces that restricts matches.  A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "**".  Note that "**" matches any specified namespace but does not match a request that *does not specify* a namespace (see the `clusterScope` field for that). This list may be empty, but only if `clusterScope` is true. |
-| `resources` | `array (string)` | `resources` is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource.  For example, [ "services", "nodes/status" ].  This list may not be empty. "*" matches all resources and, if present, must be the only entry. Required. |
-| `verbs` | `array (string)` | `verbs` is a list of matching verbs and may not be empty. "*" matches all verbs and, if present, must be the only entry. Required. |
+| `resources` | `array (string)` | `resources` is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource.  For example, \[ "services", "nodes/status" \].  This list may not be empty. "\*" matches all resources and, if present, must be the only entry. Required. |
+| `verbs` | `array (string)` | `verbs` is a list of matching verbs and may not be empty. "\*" matches all verbs and, if present, must be the only entry. Required. |
 
-### .spec.rules[].subjects {#_specrulessubjects}
+### .spec.rules\[\].subjects {#_specrulessubjects}
 
 Description
 : subjects is the list of normal user, serviceaccount, or group that this rule cares about. There must be at least one member in this slice. A slice that includes both the system:authenticated and system:unauthenticated user groups matches every request. Required.
@@ -184,7 +184,7 @@ Type
   `array`
   ```
 
-### .spec.rules[].subjects[] {#_specrulessubjects}
+### .spec.rules\[\].subjects\[\] {#_specrulessubjects}
 
 Description
 : Subject matches the originator of a request, as identified by the request authentication system. There are three ways of matching an originator; by user, group, or service account.
@@ -204,7 +204,7 @@ Required
 | `serviceAccount` | `object` | ServiceAccountSubject holds detailed information for service-account-kind subject. |
 | `user` | `object` | UserSubject holds detailed information for user-kind subject. |
 
-### .spec.rules[].subjects[].group {#_specrulessubjectsgroup}
+### .spec.rules\[\].subjects\[\].group {#_specrulessubjectsgroup}
 
 Description
 : GroupSubject holds detailed information for group-kind subject.
@@ -219,9 +219,9 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | name is the user group that matches, or "*" to match all user groups. See https://github.com/kubernetes/apiserver/blob/master/pkg/authentication/user/user.go for some well-known group names. Required. |
+| `name` | `string` | name is the user group that matches, or "\*" to match all user groups. See https://github.com/kubernetes/apiserver/blob/master/pkg/authentication/user/user.go for some well-known group names. Required. |
 
-### .spec.rules[].subjects[].serviceAccount {#_specrulessubjectsserviceaccount}
+### .spec.rules\[\].subjects\[\].serviceAccount {#_specrulessubjectsserviceaccount}
 
 Description
 : ServiceAccountSubject holds detailed information for service-account-kind subject.
@@ -237,10 +237,10 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | `name` is the name of matching ServiceAccount objects, or "*" to match regardless of name. Required. |
+| `name` | `string` | `name` is the name of matching ServiceAccount objects, or "\*" to match regardless of name. Required. |
 | `namespace` | `string` | `namespace` is the namespace of matching ServiceAccount objects. Required. |
 
-### .spec.rules[].subjects[].user {#_specrulessubjectsuser}
+### .spec.rules\[\].subjects\[\].user {#_specrulessubjectsuser}
 
 Description
 : UserSubject holds detailed information for user-kind subject.
@@ -255,7 +255,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | `name` is the username that matches, or "*" to match all usernames. Required. |
+| `name` | `string` | `name` is the username that matches, or "\*" to match all usernames. Required. |
 
 ### .status {#_status}
 
@@ -282,7 +282,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : FlowSchemaCondition describes conditions for a FlowSchema.
@@ -415,7 +415,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{name} {#_apisflowcontrolapiserverk8siov1flowschemas_name}
+### /apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/&#123;name&#125; {#_apisflowcontrolapiserverk8siov1flowschemas_name}
 
 **Global path parameters**
 
@@ -520,7 +520,7 @@ Description
 | 201 - Created | [`FlowSchema`](/docs/rest_api/schedule_and_quota_apis/flowschema-flowcontrol-apiserver-k8s-io-v1#flowschema-flowcontrol-apiserver-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/flowcontrol.apiserver.k8s.io/v1/watch/flowschemas/{name} {#_apisflowcontrolapiserverk8siov1watchflowschemas_name}
+### /apis/flowcontrol.apiserver.k8s.io/v1/watch/flowschemas/&#123;name&#125; {#_apisflowcontrolapiserverk8siov1watchflowschemas_name}
 
 **Global path parameters**
 
@@ -545,7 +545,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/{name}/status {#_apisflowcontrolapiserverk8siov1flowschemas_name_status}
+### /apis/flowcontrol.apiserver.k8s.io/v1/flowschemas/&#123;name&#125;/status {#_apisflowcontrolapiserverk8siov1flowschemas_name_status}
 
 **Global path parameters**
 

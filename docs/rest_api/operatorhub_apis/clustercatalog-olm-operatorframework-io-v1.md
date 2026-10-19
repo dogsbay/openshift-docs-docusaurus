@@ -3,7 +3,7 @@ title: "ClusterCatalog [olm.operatorframework.io/v1]"
 sidebar_position: 3
 ---
 
-# ClusterCatalog [olm.operatorframework.io/v1] {#clustercatalog-olm-operatorframework-io-v1}
+# ClusterCatalog \[olm.operatorframework.io/v1\] {#clustercatalog-olm-operatorframework-io-v1}
 
 <a id="clustercatalog-olm-operatorframework-io-v1"></a>
 
@@ -91,7 +91,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `pollIntervalMinutes` | `integer` | pollIntervalMinutes is an optional field that sets the interval, in minutes, at which the image source is polled for new content. You cannot specify pollIntervalMinutes when ref is a digest-based reference.<br>When omitted, the image is not polled for new content. |
-| `ref` | `string` | ref is a required field that defines the reference to a container image containing catalog contents. It cannot be more than 1000 characters.<br>A reference has 3 parts: the domain, name, and identifier.<br>The domain is typically the registry where an image is located. It must be alphanumeric characters (lowercase and uppercase) separated by the "." character. Hyphenation is allowed, but the domain must start and end with alphanumeric characters. Specifying a port to use is also allowed by adding the ":" character followed by numeric values. The port must be the last value in the domain. Some examples of valid domain values are "registry.mydomain.io", "quay.io", "my-registry.io:8080".<br>The name is typically the repository in the registry where an image is located. It must contain lowercase alphanumeric characters separated only by the ".", "_", "__", "-" characters. Multiple names can be concatenated with the "/" character. The domain and name are combined using the "/" character. Some examples of valid name values are "operatorhubio/catalog", "catalog", "my-catalog.prod". An example of the domain and name parts of a reference being combined is "quay.io/operatorhubio/catalog".<br>The identifier is typically the tag or digest for an image reference and is present at the end of the reference. It starts with a separator character used to distinguish the end of the name and beginning of the identifier. For a digest-based reference, the "@" character is the separator. For a tag-based reference, the ":" character is the separator. An identifier is required in the reference.<br>Digest-based references must contain an algorithm reference immediately after the "@" separator. The algorithm reference must be followed by the ":" character and an encoded string. The algorithm must start with an uppercase or lowercase alpha character followed by alphanumeric characters and may contain the "-", "_", "+", and "." characters. Some examples of valid algorithm values are "sha256", "sha256+b64u", "multihash+base58". The encoded string following the algorithm must be hex digits (a-f, A-F, 0-9) and must be a minimum of 32 characters.<br>Tag-based references must begin with a word character (alphanumeric + "_") followed by word characters or ".", and "-" characters. The tag must not be longer than 127 characters.<br>An example of a valid digest-based image reference is "quay.io/operatorhubio/catalog@sha256:200d4ddb2a73594b91358fe6397424e975205bfbe44614f5846033cad64b3f05" An example of a valid tag-based image reference is "quay.io/operatorhubio/catalog:latest" |
+| `ref` | `string` | ref is a required field that defines the reference to a container image containing catalog contents. It cannot be more than 1000 characters.<br>A reference has 3 parts: the domain, name, and identifier.<br>The domain is typically the registry where an image is located. It must be alphanumeric characters (lowercase and uppercase) separated by the "." character. Hyphenation is allowed, but the domain must start and end with alphanumeric characters. Specifying a port to use is also allowed by adding the ":" character followed by numeric values. The port must be the last value in the domain. Some examples of valid domain values are "registry.mydomain.io", "quay.io", "my-registry.io:8080".<br>The name is typically the repository in the registry where an image is located. It must contain lowercase alphanumeric characters separated only by the ".", "\_", "\_\_", "-" characters. Multiple names can be concatenated with the "/" character. The domain and name are combined using the "/" character. Some examples of valid name values are "operatorhubio/catalog", "catalog", "my-catalog.prod". An example of the domain and name parts of a reference being combined is "quay.io/operatorhubio/catalog".<br>The identifier is typically the tag or digest for an image reference and is present at the end of the reference. It starts with a separator character used to distinguish the end of the name and beginning of the identifier. For a digest-based reference, the "@" character is the separator. For a tag-based reference, the ":" character is the separator. An identifier is required in the reference.<br>Digest-based references must contain an algorithm reference immediately after the "@" separator. The algorithm reference must be followed by the ":" character and an encoded string. The algorithm must start with an uppercase or lowercase alpha character followed by alphanumeric characters and may contain the "-", "\_", "+", and "." characters. Some examples of valid algorithm values are "sha256", "sha256+b64u", "multihash+base58". The encoded string following the algorithm must be hex digits (a-f, A-F, 0-9) and must be a minimum of 32 characters.<br>Tag-based references must begin with a word character (alphanumeric + "\_") followed by word characters or ".", and "-" characters. The tag must not be longer than 127 characters.<br>An example of a valid digest-based image reference is "quay.io/operatorhubio/catalog@sha256:200d4ddb2a73594b91358fe6397424e975205bfbe44614f5846033cad64b3f05" An example of a valid tag-based image reference is "quay.io/operatorhubio/catalog:latest" |
 
 ### .status {#_status}
 
@@ -144,7 +144,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -165,7 +165,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -309,7 +309,7 @@ Description
 | 202 - Accepted | [`ClusterCatalog`](/docs/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/olm.operatorframework.io/v1/clustercatalogs/{name} {#_apisolmoperatorframeworkiov1clustercatalogs_name}
+### /apis/olm.operatorframework.io/v1/clustercatalogs/&#123;name&#125; {#_apisolmoperatorframeworkiov1clustercatalogs_name}
 
 **Global path parameters**
 
@@ -413,7 +413,7 @@ Description
 | 201 - Created | [`ClusterCatalog`](/docs/rest_api/operatorhub_apis/clustercatalog-olm-operatorframework-io-v1#clustercatalog-olm-operatorframework-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/olm.operatorframework.io/v1/clustercatalogs/{name}/status {#_apisolmoperatorframeworkiov1clustercatalogs_name_status}
+### /apis/olm.operatorframework.io/v1/clustercatalogs/&#123;name&#125;/status {#_apisolmoperatorframeworkiov1clustercatalogs_name_status}
 
 **Global path parameters**
 

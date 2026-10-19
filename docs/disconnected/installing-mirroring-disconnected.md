@@ -118,7 +118,7 @@ The following prerequisites must be met:
 
 Before you can use the oc-mirror plugin to mirror images, you must install the plugin and create a container image registry credentials file to allow the mirroring from Red Hat to your mirror.
 
-### Installing the oc-mirror OpenShift CLI plugin {#installation-oc-mirror-installing-plugin_installing-mirroring-disconnected}
+### Install the oc-mirror OpenShift CLI plugin {#installation-oc-mirror-installing-plugin_installing-mirroring-disconnected}
 
 You can install the oc-mirror OpenShift CLI plugin to manage image sets in disconnected environments.
 
@@ -166,7 +166,7 @@ You can install the oc-mirror OpenShift CLI plugin to manage image sets in disco
 
 - [Installing and using CLI plugins](/docs/cli_reference/openshift_cli/extending-cli-plugins#cli-installing-plugins_cli-extend-plugins)
 
-### Configuring credentials that allow images to be mirrored {#installation-adding-registry-pull-secret_installing-mirroring-disconnected}
+### Configure credentials that allow images to be mirrored {#installation-adding-registry-pull-secret_installing-mirroring-disconnected}
 
 Create a container image registry credentials file so that you can mirror images from Red Hat to your mirror. Complete the following steps on the installation host.
 

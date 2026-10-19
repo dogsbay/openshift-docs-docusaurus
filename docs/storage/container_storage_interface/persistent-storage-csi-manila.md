@@ -13,7 +13,7 @@ You can provision and manage OpenStack Manila storage in OpenShift Container Pla
 
 OpenShift Container Platform is capable of provisioning persistent volumes (PVs) using the Container Storage Interface (CSI) driver for the OpenStack Manila shared file system service.
 
-Familiarity with persistent storage] and configuring CSI volumes is recommended when working with CSI Operator and driver. For more information, see "Understanding persistent storage" and "Configuring CSI volumes".
+Familiarity with persistent storage\] and configuring CSI volumes is recommended when working with CSI Operator and driver. For more information, see "Understanding persistent storage" and "Configuring CSI volumes".
 
 To create CSI-provisioned PVs that mount to Manila storage assets, OpenShift Container Platform installs the Manila CSI Driver Operator and the Manila CSI driver by default on any OpenStack cluster that has the Manila service enabled.
 

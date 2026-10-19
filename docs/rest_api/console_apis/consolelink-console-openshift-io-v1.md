@@ -3,7 +3,7 @@ title: "ConsoleLink [console.openshift.io/v1]"
 sidebar_position: 4
 ---
 
-# ConsoleLink [console.openshift.io/v1] {#consolelink-console-openshift-io-v1}
+# ConsoleLink \[console.openshift.io/v1\] {#consolelink-console-openshift-io-v1}
 
 <a id="consolelink-console-openshift-io-v1"></a>
 
@@ -99,7 +99,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.namespaceDashboard.namespaceSelector.matchExpressions {#_specnamespacedashboardnamespaceselectormatchexpressions}
 
@@ -111,7 +111,7 @@ Type
   `array`
   ```
 
-### .spec.namespaceDashboard.namespaceSelector.matchExpressions[] {#_specnamespacedashboardnamespaceselectormatchexpressions}
+### .spec.namespaceDashboard.namespaceSelector.matchExpressions\[\] {#_specnamespacedashboardnamespaceselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -217,7 +217,7 @@ Description
 | 202 - Accepted | [`ConsoleLink`](/docs/rest_api/console_apis/consolelink-console-openshift-io-v1#consolelink-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consolelinks/{name} {#_apisconsoleopenshiftiov1consolelinks_name}
+### /apis/console.openshift.io/v1/consolelinks/&#123;name&#125; {#_apisconsoleopenshiftiov1consolelinks_name}
 
 **Global path parameters**
 
@@ -321,7 +321,7 @@ Description
 | 201 - Created | [`ConsoleLink`](/docs/rest_api/console_apis/consolelink-console-openshift-io-v1#consolelink-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consolelinks/{name}/status {#_apisconsoleopenshiftiov1consolelinks_name_status}
+### /apis/console.openshift.io/v1/consolelinks/&#123;name&#125;/status {#_apisconsoleopenshiftiov1consolelinks_name_status}
 
 **Global path parameters**
 

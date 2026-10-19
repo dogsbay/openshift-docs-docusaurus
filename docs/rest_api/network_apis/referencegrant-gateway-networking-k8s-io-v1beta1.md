@@ -3,7 +3,7 @@ title: "ReferenceGrant [gateway.networking.k8s.io/v1beta1]"
 sidebar_position: 30
 ---
 
-# ReferenceGrant [gateway.networking.k8s.io/v1beta1] {#referencegrant-gateway-networking-k8s-io-v1beta1}
+# ReferenceGrant \[gateway.networking.k8s.io/v1beta1\] {#referencegrant-gateway-networking-k8s-io-v1beta1}
 
 <a id="referencegrant-gateway-networking-k8s-io-v1beta1"></a>
 
@@ -63,7 +63,7 @@ Type
   `array`
   ```
 
-### .spec.from[] {#_specfrom}
+### .spec.from\[\] {#_specfrom}
 
 Description
 : ReferenceGrantFrom describes trusted namespaces and kinds.
@@ -81,7 +81,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `group` | `string` | Group is the group of the referent. When empty, the Kubernetes core API group is inferred.<br>Support: Core |
-| `kind` | `string` | Kind is the kind of the referent. Although implementations may support additional resources, the following types are part of the "Core" support level for this field.<br>When used to permit a SecretObjectReference:<br>* Gateway<br>When used to permit a BackendObjectReference:<br>* GRPCRoute * HTTPRoute * TCPRoute * TLSRoute * UDPRoute |
+| `kind` | `string` | Kind is the kind of the referent. Although implementations may support additional resources, the following types are part of the "Core" support level for this field.<br>When used to permit a SecretObjectReference:<br>\* Gateway<br>When used to permit a BackendObjectReference:<br>\* GRPCRoute \* HTTPRoute \* TCPRoute \* TLSRoute \* UDPRoute |
 | `namespace` | `string` | Namespace is the namespace of the referent.<br>Support: Core |
 
 ### .spec.to {#_specto}
@@ -96,7 +96,7 @@ Type
   `array`
   ```
 
-### .spec.to[] {#_specto}
+### .spec.to\[\] {#_specto}
 
 Description
 : ReferenceGrantTo describes what Kinds are allowed as targets of the references.
@@ -113,7 +113,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `group` | `string` | Group is the group of the referent. When empty, the Kubernetes core API group is inferred.<br>Support: Core |
-| `kind` | `string` | Kind is the kind of the referent. Although implementations may support additional resources, the following types are part of the "Core" support level for this field:<br>* Secret when used to permit a SecretObjectReference * Service when used to permit a BackendObjectReference |
+| `kind` | `string` | Kind is the kind of the referent. Although implementations may support additional resources, the following types are part of the "Core" support level for this field:<br>\* Secret when used to permit a SecretObjectReference \* Service when used to permit a BackendObjectReference |
 | `name` | `string` | Name is the name of the referent. When unspecified, this policy refers to all resources of the specified Group and Kind in the local namespace. |
 
 ## API endpoints {#_api_endpoints}
@@ -151,7 +151,7 @@ Description
 | 200 - OK | [`ReferenceGrantList`](/docs/rest_api/objects#io-k8s-networking-gateway-v1beta1-ReferenceGrantList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/gateway.networking.k8s.io/v1beta1/namespaces/{namespace}/referencegrants {#_apisgatewaynetworkingk8siov1beta1namespaces_namespace_referencegrants}
+### /apis/gateway.networking.k8s.io/v1beta1/namespaces/&#123;namespace&#125;/referencegrants {#_apisgatewaynetworkingk8siov1beta1namespaces_namespace_referencegrants}
 
 HTTP method
 : ```
@@ -219,7 +219,7 @@ Description
 | 202 - Accepted | [`ReferenceGrant`](/docs/rest_api/network_apis/referencegrant-gateway-networking-k8s-io-v1beta1#referencegrant-gateway-networking-k8s-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/gateway.networking.k8s.io/v1beta1/namespaces/{namespace}/referencegrants/{name} {#_apisgatewaynetworkingk8siov1beta1namespaces_namespace_referencegrants_name}
+### /apis/gateway.networking.k8s.io/v1beta1/namespaces/&#123;namespace&#125;/referencegrants/&#123;name&#125; {#_apisgatewaynetworkingk8siov1beta1namespaces_namespace_referencegrants_name}
 
 **Global path parameters**
 

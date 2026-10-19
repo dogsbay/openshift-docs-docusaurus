@@ -230,7 +230,7 @@ To enable dynamic provisioning of AWS Elastic File System (EFS) volumes by using
 - `parameters.fileSystemId`: Must be the ID of the EFS volume created manually.
 - `parameters.directoryPerms`: Is the default permission of the root directory of the volume. In this example, the volume is accessible only by the owner.
 - `parameters.gidRangeStart` and `parameters.gidRangeEnd`: Set the range of POSIX Group IDs (GIDs) that are used to set the GID of the AWS access point. If not specified, the default range is 50000-7000000. Each provisioned volume, and thus AWS access point, is assigned a unique GID from this range.
-- `parameters.basePath`: Is the directory on the EFS volume that is used to create dynamically provisioned volumes. In this case, a PV is provisioned as “/dynamic_provisioning/<random uuid>” on the EFS volume. Only the subdirectory is mounted to pods that use the PV.
+- `parameters.basePath`: Is the directory on the EFS volume that is used to create dynamically provisioned volumes. In this case, a PV is provisioned as “/dynamic_provisioning/&lt;random uuid>” on the EFS volume. Only the subdirectory is mounted to pods that use the PV.
   :::note
 
   A cluster admin can create several `StorageClass` objects, each using a different EFS volume.
@@ -817,7 +817,7 @@ To monitor Elastic File System (EFS) volume space consumption through the web co
 3. Click **CRD ClusterCSIDriver**.
 4. Click the **YAML** tab.
 5. Under `spec.aws.efsVolumeMetrics.state`:
-   - **Enable** metrics: Set the value to `RecursiveWalk`. RecursiveWalk` indicates that volume metrics collection in the AWS EFS CSI Driver is performed by recursively walking through the files in the volume.
+   - **Enable** metrics: Set the value to `RecursiveWalk`. RecursiveWalk&#96; indicates that volume metrics collection in the AWS EFS CSI Driver is performed by recursively walking through the files in the volume.
    - **Disable** metrics: set the value to `Disabled`.
      ```yaml title="Example ClusterCSIDriver efs.csi.aws.com YAML file"
      spec:
@@ -941,7 +941,7 @@ Before you can destroy a cluster (`openshift-install destroy cluster`), you must
    :::
 
    1. Click **Administration** → **CustomResourceDefinitions** → **ClusterCSIDriver**.
-   2. On the **Instances** tab, for **{provisioner}**, on the far left side, click the drop-down menu, and then click **Delete ClusterCSIDriver**.
+   2. On the **Instances** tab, for **&#123;provisioner&#125;**, on the far left side, click the drop-down menu, and then click **Delete ClusterCSIDriver**.
    3. When prompted, click **Delete**.
 5. Uninstall the AWS EFS CSI Operator:
    1. Click **Ecosystem** → **Installed Operators**.

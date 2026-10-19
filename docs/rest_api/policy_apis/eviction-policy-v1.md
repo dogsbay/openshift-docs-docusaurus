@@ -3,12 +3,12 @@ title: "Eviction [policy/v1]"
 sidebar_position: 2
 ---
 
-# Eviction [policy/v1] {#eviction-policy-v1}
+# Eviction \[policy/v1\] {#eviction-policy-v1}
 
 <a id="eviction-policy-v1"></a>
 
 Description
-: Eviction evicts a pod from its node subject to certain policies and safety constraints. This is a subresource of Pod.  A request to cause such an eviction is created by POSTing to .../pods/<pod name>/evictions.
+: Eviction evicts a pod from its node subject to certain policies and safety constraints. This is a subresource of Pod.  A request to cause such an eviction is created by POSTing to .../pods/&lt;pod name>/evictions.
 
 Type
 : ```
@@ -31,7 +31,7 @@ The following API endpoints are available:
 - `/api/v1/namespaces/{namespace}/pods/{name}/eviction`
   - `POST`: create eviction of a Pod
 
-### /api/v1/namespaces/{namespace}/pods/{name}/eviction {#_apiv1namespaces_namespace_pods_name_eviction}
+### /api/v1/namespaces/&#123;namespace&#125;/pods/&#123;name&#125;/eviction {#_apiv1namespaces_namespace_pods_name_eviction}
 
 **Global path parameters**
 

@@ -3,7 +3,7 @@ title: "SubjectRulesReview [authorization.openshift.io/v1]"
 sidebar_position: 7
 ---
 
-# SubjectRulesReview [authorization.openshift.io/v1] {#subjectrulesreview-authorization-openshift-io-v1}
+# SubjectRulesReview \[authorization.openshift.io/v1\] {#subjectrulesreview-authorization-openshift-io-v1}
 
 <a id="subjectrulesreview-authorization-openshift-io-v1"></a>
 
@@ -77,7 +77,7 @@ Type
   `array`
   ```
 
-### .status.rules[] {#_statusrules}
+### .status.rules\[\] {#_statusrules}
 
 Description
 : PolicyRule holds information that describes a policy rule, but does not contain information about who the rule applies to or which namespace the rule applies to.
@@ -95,7 +95,7 @@ Required
 | --- | --- | --- |
 | `apiGroups` | `array (string)` | apiGroups is the name of the APIGroup that contains the resources.  If this field is empty, then both kubernetes and origin API groups are assumed. That means that if an action is requested against one of the enumerated resources in either the kubernetes or the origin API group, the request will be allowed |
 | `attributeRestrictions` | [`RawExtension`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-runtime-RawExtension) | attributeRestrictions will vary depending on what the Authorizer/AuthorizationAttributeBuilder pair supports. If the Authorizer does not recognize how to handle the AttributeRestrictions, the Authorizer should report an error. |
-| `nonResourceURLs` | `array (string)` | NonResourceURLsSlice is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path This name is intentionally different than the internal type so that the DefaultConvert works nicely and because the ordering may be different. |
+| `nonResourceURLs` | `array (string)` | NonResourceURLsSlice is a set of partial urls that a user should have access to.  \*s are allowed, but only as the full, final step in the path This name is intentionally different than the internal type so that the DefaultConvert works nicely and because the ordering may be different. |
 | `resourceNames` | `array (string)` | resourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed. |
 | `resources` | `array (string)` | resources is a list of resources this rule applies to.  ResourceAll represents all resources. |
 | `verbs` | `array (string)` | verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule.  VerbAll represents all kinds. |
@@ -107,7 +107,7 @@ The following API endpoints are available:
 - `/apis/authorization.openshift.io/v1/namespaces/{namespace}/subjectrulesreviews`
   - `POST`: create a SubjectRulesReview
 
-### /apis/authorization.openshift.io/v1/namespaces/{namespace}/subjectrulesreviews {#_apisauthorizationopenshiftiov1namespaces_namespace_subjectrulesreviews}
+### /apis/authorization.openshift.io/v1/namespaces/&#123;namespace&#125;/subjectrulesreviews {#_apisauthorizationopenshiftiov1namespaces_namespace_subjectrulesreviews}
 
 **Global query parameters**
 

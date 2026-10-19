@@ -3,7 +3,7 @@ title: "ConsoleExternalLogLink [console.openshift.io/v1]"
 sidebar_position: 3
 ---
 
-# ConsoleExternalLogLink [console.openshift.io/v1] {#consoleexternalloglink-console-openshift-io-v1}
+# ConsoleExternalLogLink \[console.openshift.io/v1\] {#consoleexternalloglink-console-openshift-io-v1}
 
 <a id="consoleexternalloglink-console-openshift-io-v1"></a>
 
@@ -45,7 +45,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `hrefTemplate` | `string` | hrefTemplate is an absolute secure URL (must use https) for the log link including variables to be replaced. Variables are specified in the URL with the format ${variableName}, for instance, ${containerName} and will be replaced with the corresponding values from the resource. Resource is a pod. Supported variables are: - ${resourceName} - name of the resource which containes the logs - ${resourceUID} - UID of the resource which contains the logs               - e.g. `11111111-2222-3333-4444-555555555555` - ${containerName} - name of the resource’s container that contains the logs - ${resourceNamespace} - namespace of the resource that contains the logs - ${resourceNamespaceUID} - namespace UID of the resource that contains the logs - ${podLabels} - JSON representation of labels matching the pod with the logs             - e.g. `{"key1":"value1","key2":"value2"}`<br>e.g., https://example.com/logs?resourceName=${resourceName}&containerName=${containerName}&resourceNamespace=${resourceNamespace}&podLabels=$ |
+| `hrefTemplate` | `string` | hrefTemplate is an absolute secure URL (must use https) for the log link including variables to be replaced. Variables are specified in the URL with the format &#36;&#123;variableName&#125;, for instance, &#36;&#123;containerName&#125; and will be replaced with the corresponding values from the resource. Resource is a pod. Supported variables are: - &#36;&#123;resourceName&#125; - name of the resource which containes the logs - &#36;&#123;resourceUID&#125; - UID of the resource which contains the logs               - e.g. `11111111-2222-3333-4444-555555555555` - &#36;&#123;containerName&#125; - name of the resource’s container that contains the logs - &#36;&#123;resourceNamespace&#125; - namespace of the resource that contains the logs - &#36;&#123;resourceNamespaceUID&#125; - namespace UID of the resource that contains the logs - ${podLabels} - JSON representation of labels matching the pod with the logs             - e.g. `{"key1":"value1","key2":"value2"}`< br>e.g., https://example.com/logs?resourceName=$&#123;resourceName&#125;&containerName=${containerName}&resourceNamespace=$&#123;resourceNamespace&#125;&podLabels=&#36; |
 | `namespaceFilter` | `string` | namespaceFilter is a regular expression used to restrict a log link to a matching set of namespaces (e.g., `^openshift-`). The string is converted into a regular expression using the JavaScript RegExp constructor. If not specified, links will be displayed for all the namespaces. |
 | `text` | `string` | text is the display text for the link |
 
@@ -135,7 +135,7 @@ Description
 | 202 - Accepted | [`ConsoleExternalLogLink`](/docs/rest_api/console_apis/consoleexternalloglink-console-openshift-io-v1#consoleexternalloglink-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consoleexternalloglinks/{name} {#_apisconsoleopenshiftiov1consoleexternalloglinks_name}
+### /apis/console.openshift.io/v1/consoleexternalloglinks/&#123;name&#125; {#_apisconsoleopenshiftiov1consoleexternalloglinks_name}
 
 **Global path parameters**
 
@@ -239,7 +239,7 @@ Description
 | 201 - Created | [`ConsoleExternalLogLink`](/docs/rest_api/console_apis/consoleexternalloglink-console-openshift-io-v1#consoleexternalloglink-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consoleexternalloglinks/{name}/status {#_apisconsoleopenshiftiov1consoleexternalloglinks_name_status}
+### /apis/console.openshift.io/v1/consoleexternalloglinks/&#123;name&#125;/status {#_apisconsoleopenshiftiov1consoleexternalloglinks_name_status}
 
 **Global path parameters**
 

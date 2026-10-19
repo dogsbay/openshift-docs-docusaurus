@@ -3,7 +3,7 @@ title: "InstallPlan [operators.coreos.com/v1alpha1]"
 sidebar_position: 6
 ---
 
-# InstallPlan [operators.coreos.com/v1alpha1] {#installplan-operators-coreos-com-v1alpha1}
+# InstallPlan \[operators.coreos.com/v1alpha1\] {#installplan-operators-coreos-com-v1alpha1}
 
 <a id="installplan-operators-coreos-com-v1alpha1"></a>
 
@@ -96,7 +96,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -113,7 +113,7 @@ Type
   `array`
   ```
 
-### .status.bundleLookups[] {#_statusbundlelookups}
+### .status.bundleLookups\[\] {#_statusbundlelookups}
 
 Description
 : BundleLookup is a request to pull and unpackage the content of a bundle to the cluster.
@@ -139,7 +139,7 @@ Required
 | `properties` | `string` | The effective properties of the unpacked bundle. |
 | `replaces` | `string` | Replaces is the name of the bundle to replace with the one found at Path. |
 
-### .status.bundleLookups[].catalogSourceRef {#_statusbundlelookupscatalogsourceref}
+### .status.bundleLookups\[\].catalogSourceRef {#_statusbundlelookupscatalogsourceref}
 
 Description
 : CatalogSourceRef is a reference to the CatalogSource the bundle path was resolved from.
@@ -152,14 +152,14 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
 | `resourceVersion` | `string` | Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency |
 | `uid` | `string` | UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids |
 
-### .status.bundleLookups[].conditions {#_statusbundlelookupsconditions}
+### .status.bundleLookups\[\].conditions {#_statusbundlelookupsconditions}
 
 Description
 : Conditions represents the overall state of a BundleLookup.
@@ -169,7 +169,7 @@ Type
   `array`
   ```
 
-### .status.bundleLookups[].conditions[] {#_statusbundlelookupsconditions}
+### .status.bundleLookups\[\].conditions\[\] {#_statusbundlelookupsconditions}
 
 Description
 
@@ -200,7 +200,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : InstallPlanCondition represents the overall status of the execution of an InstallPlan.
@@ -228,7 +228,7 @@ Type
   `array`
   ```
 
-### .status.plan[] {#_statusplan}
+### .status.plan\[\] {#_statusplan}
 
 Description
 : Step represents the status of an individual step in an InstallPlan.
@@ -250,7 +250,7 @@ Required
 | `resource` | `object` | StepResource represents the status of a resource to be tracked by an InstallPlan. |
 | `status` | `string` | StepStatus is the current status of a particular resource an in InstallPlan |
 
-### .status.plan[].resource {#_statusplanresource}
+### .status.plan\[\].resource {#_statusplanresource}
 
 Description
 : StepResource represents the status of a resource to be tracked by an InstallPlan.
@@ -317,7 +317,7 @@ Description
 | 200 - OK | [`InstallPlanList`](/docs/rest_api/objects#com-coreos-operators-v1alpha1-InstallPlanList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/installplans {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans}
+### /apis/operators.coreos.com/v1alpha1/namespaces/&#123;namespace&#125;/installplans {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans}
 
 HTTP method
 : ```
@@ -385,7 +385,7 @@ Description
 | 202 - Accepted | [`InstallPlan`](/docs/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/installplans/{name} {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans_name}
+### /apis/operators.coreos.com/v1alpha1/namespaces/&#123;namespace&#125;/installplans/&#123;name&#125; {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans_name}
 
 **Global path parameters**
 
@@ -489,7 +489,7 @@ Description
 | 201 - Created | [`InstallPlan`](/docs/rest_api/operatorhub_apis/installplan-operators-coreos-com-v1alpha1#installplan-operators-coreos-com-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/operators.coreos.com/v1alpha1/namespaces/{namespace}/installplans/{name}/status {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans_name_status}
+### /apis/operators.coreos.com/v1alpha1/namespaces/&#123;namespace&#125;/installplans/&#123;name&#125;/status {#_apisoperatorscoreoscomv1alpha1namespaces_namespace_installplans_name_status}
 
 **Global path parameters**
 

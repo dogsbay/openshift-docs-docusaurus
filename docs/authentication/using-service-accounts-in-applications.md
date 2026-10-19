@@ -7,7 +7,7 @@ sidebar_position: 13
 
 <a id="using-service-accounts"></a>
 
-## Service accounts overview {#service-accounts-overview_using-service-accounts}
+## Service accounts {#service-accounts-overview_using-service-accounts}
 
 You can use OpenShift Container Platform service accounts to allow a OpenShift Container Platform component to directly access the API.
 
@@ -32,7 +32,7 @@ Every service account is also a member of two groups:
 | Group | Description |
 | --- | --- |
 | system:serviceaccounts | Includes all service accounts in the system. |
-| system:serviceaccounts:<project> | Includes all service accounts in the specified project. |
+| system:serviceaccounts:&lt;project> | Includes all service accounts in the specified project. |
 
 ## Default service accounts {#service-accounts-default_using-service-accounts}
 

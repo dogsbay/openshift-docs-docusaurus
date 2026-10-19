@@ -3,7 +3,7 @@ title: "ServiceMonitor [monitoring.coreos.com/v1]"
 sidebar_position: 11
 ---
 
-# ServiceMonitor [monitoring.coreos.com/v1] {#servicemonitor-monitoring-coreos-com-v1}
+# ServiceMonitor \[monitoring.coreos.com/v1\] {#servicemonitor-monitoring-coreos-com-v1}
 
 <a id="servicemonitor-monitoring-coreos-com-v1"></a>
 
@@ -103,7 +103,7 @@ Type
   `array`
   ```
 
-### .spec.endpoints[] {#_specendpoints}
+### .spec.endpoints\[\] {#_specendpoints}
 
 Description
 : Endpoint defines an endpoint serving Prometheus metrics to be scraped by Prometheus.
@@ -146,7 +146,7 @@ Type
 | `tlsConfig` | `object` | tlsConfig defines TLS configuration used by the client. |
 | `trackTimestampsStaleness` | `boolean` | trackTimestampsStaleness defines whether Prometheus tracks staleness of the metrics that have an explicit timestamp present in scraped data. Has no effect if `honorTimestamps` is false.<br>It requires Prometheus >= v2.48.0. |
 
-### .spec.endpoints[].authorization {#_specendpointsauthorization}
+### .spec.endpoints\[\].authorization {#_specendpointsauthorization}
 
 Description
 : authorization configures the Authorization header credentials used by the client.
@@ -163,7 +163,7 @@ Type
 | `credentials` | `object` | credentials defines a key of a Secret in the namespace that contains the credentials for authentication. |
 | `type` | `string` | type defines the authentication type. The value is case-insensitive.<br>"Basic" is not a supported value.<br>Default: "Bearer" |
 
-### .spec.endpoints[].authorization.credentials {#_specendpointsauthorizationcredentials}
+### .spec.endpoints\[\].authorization.credentials {#_specendpointsauthorizationcredentials}
 
 Description
 : credentials defines a key of a Secret in the namespace that contains the credentials for authentication.
@@ -182,7 +182,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].basicAuth {#_specendpointsbasicauth}
+### .spec.endpoints\[\].basicAuth {#_specendpointsbasicauth}
 
 Description
 : basicAuth defines the Basic Authentication credentials used by the client.
@@ -199,7 +199,7 @@ Type
 | `password` | `object` | password defines a key of a Secret containing the password for authentication. |
 | `username` | `object` | username defines a key of a Secret containing the username for authentication. |
 
-### .spec.endpoints[].basicAuth.password {#_specendpointsbasicauthpassword}
+### .spec.endpoints\[\].basicAuth.password {#_specendpointsbasicauthpassword}
 
 Description
 : password defines a key of a Secret containing the password for authentication.
@@ -218,7 +218,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].basicAuth.username {#_specendpointsbasicauthusername}
+### .spec.endpoints\[\].basicAuth.username {#_specendpointsbasicauthusername}
 
 Description
 : username defines a key of a Secret containing the username for authentication.
@@ -237,7 +237,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].bearerTokenSecret {#_specendpointsbearertokensecret}
+### .spec.endpoints\[\].bearerTokenSecret {#_specendpointsbearertokensecret}
 
 Description
 : bearerTokenSecret defines a key of a Secret containing the bearer token used by the client for authentication. The secret needs to be in the same namespace as the custom resource and readable by the Prometheus Operator.
@@ -260,7 +260,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].metricRelabelings {#_specendpointsmetricrelabelings}
+### .spec.endpoints\[\].metricRelabelings {#_specendpointsmetricrelabelings}
 
 Description
 : metricRelabelings defines the relabeling rules to apply to the samples before ingestion.
@@ -270,7 +270,7 @@ Type
   `array`
   ```
 
-### .spec.endpoints[].metricRelabelings[] {#_specendpointsmetricrelabelings}
+### .spec.endpoints\[\].metricRelabelings\[\] {#_specendpointsmetricrelabelings}
 
 Description
 : RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples.
@@ -292,7 +292,7 @@ Type
 | `sourceLabels` | `array (string)` | sourceLabels defines the source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression. |
 | `targetLabel` | `string` | targetLabel defines the label to which the resulting string is written in a replacement.<br>It is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`, `KeepEqual` and `DropEqual` actions.<br>Regex capture groups are available. |
 
-### .spec.endpoints[].oauth2 {#_specendpointsoauth2}
+### .spec.endpoints\[\].oauth2 {#_specendpointsoauth2}
 
 Description
 : oauth2 defines the OAuth2 settings used by the client.
@@ -326,7 +326,7 @@ Required
 | `tlsConfig` | `object` | tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0. |
 | `tokenUrl` | `string` | tokenUrl defines the URL to fetch the token from. |
 
-### .spec.endpoints[].oauth2.clientId {#_specendpointsoauth2clientid}
+### .spec.endpoints\[\].oauth2.clientId {#_specendpointsoauth2clientid}
 
 Description
 : clientId defines a key of a Secret or ConfigMap containing the OAuth2 client’s ID.
@@ -341,7 +341,7 @@ Type
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
 
-### .spec.endpoints[].oauth2.clientId.configMap {#_specendpointsoauth2clientidconfigmap}
+### .spec.endpoints\[\].oauth2.clientId.configMap {#_specendpointsoauth2clientidconfigmap}
 
 Description
 : configMap defines the ConfigMap containing data to use for the targets.
@@ -360,7 +360,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
 
-### .spec.endpoints[].oauth2.clientId.secret {#_specendpointsoauth2clientidsecret}
+### .spec.endpoints\[\].oauth2.clientId.secret {#_specendpointsoauth2clientidsecret}
 
 Description
 : secret defines the Secret containing data to use for the targets.
@@ -379,7 +379,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].oauth2.clientSecret {#_specendpointsoauth2clientsecret}
+### .spec.endpoints\[\].oauth2.clientSecret {#_specendpointsoauth2clientsecret}
 
 Description
 : clientSecret defines a key of a Secret containing the OAuth2 client’s secret.
@@ -398,7 +398,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].oauth2.proxyConnectHeader {#_specendpointsoauth2proxyconnectheader}
+### .spec.endpoints\[\].oauth2.proxyConnectHeader {#_specendpointsoauth2proxyconnectheader}
 
 Description
 : proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.
@@ -410,7 +410,7 @@ Type
   `object`
   ```
 
-### .spec.endpoints[].oauth2.proxyConnectHeader{} {#_specendpointsoauth2proxyconnectheader}
+### .spec.endpoints\[\].oauth2.proxyConnectHeader&#123;&#125; {#_specendpointsoauth2proxyconnectheader}
 
 Description
 
@@ -419,7 +419,7 @@ Type
   `array`
   ```
 
-### .spec.endpoints[].oauth2.proxyConnectHeader{}[] {#_specendpointsoauth2proxyconnectheader}
+### .spec.endpoints\[\].oauth2.proxyConnectHeader&#123;&#125;\[\] {#_specendpointsoauth2proxyconnectheader}
 
 Description
 : SecretKeySelector selects a key of a Secret.
@@ -438,7 +438,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].oauth2.tlsConfig {#_specendpointsoauth2tlsconfig}
+### .spec.endpoints\[\].oauth2.tlsConfig {#_specendpointsoauth2tlsconfig}
 
 Description
 : tlsConfig defines the TLS configuration to use when connecting to the OAuth2 server. It requires Prometheus >= v2.43.0.
@@ -458,7 +458,7 @@ Type
 | `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
-### .spec.endpoints[].oauth2.tlsConfig.ca {#_specendpointsoauth2tlsconfigca}
+### .spec.endpoints\[\].oauth2.tlsConfig.ca {#_specendpointsoauth2tlsconfigca}
 
 Description
 : ca defines the Certificate authority used when verifying server certificates.
@@ -473,7 +473,7 @@ Type
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
 
-### .spec.endpoints[].oauth2.tlsConfig.ca.configMap {#_specendpointsoauth2tlsconfigcaconfigmap}
+### .spec.endpoints\[\].oauth2.tlsConfig.ca.configMap {#_specendpointsoauth2tlsconfigcaconfigmap}
 
 Description
 : configMap defines the ConfigMap containing data to use for the targets.
@@ -492,7 +492,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
 
-### .spec.endpoints[].oauth2.tlsConfig.ca.secret {#_specendpointsoauth2tlsconfigcasecret}
+### .spec.endpoints\[\].oauth2.tlsConfig.ca.secret {#_specendpointsoauth2tlsconfigcasecret}
 
 Description
 : secret defines the Secret containing data to use for the targets.
@@ -511,7 +511,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].oauth2.tlsConfig.cert {#_specendpointsoauth2tlsconfigcert}
+### .spec.endpoints\[\].oauth2.tlsConfig.cert {#_specendpointsoauth2tlsconfigcert}
 
 Description
 : cert defines the Client certificate to present when doing client-authentication.
@@ -526,7 +526,7 @@ Type
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
 
-### .spec.endpoints[].oauth2.tlsConfig.cert.configMap {#_specendpointsoauth2tlsconfigcertconfigmap}
+### .spec.endpoints\[\].oauth2.tlsConfig.cert.configMap {#_specendpointsoauth2tlsconfigcertconfigmap}
 
 Description
 : configMap defines the ConfigMap containing data to use for the targets.
@@ -545,7 +545,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
 
-### .spec.endpoints[].oauth2.tlsConfig.cert.secret {#_specendpointsoauth2tlsconfigcertsecret}
+### .spec.endpoints\[\].oauth2.tlsConfig.cert.secret {#_specendpointsoauth2tlsconfigcertsecret}
 
 Description
 : secret defines the Secret containing data to use for the targets.
@@ -564,7 +564,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].oauth2.tlsConfig.keySecret {#_specendpointsoauth2tlsconfigkeysecret}
+### .spec.endpoints\[\].oauth2.tlsConfig.keySecret {#_specendpointsoauth2tlsconfigkeysecret}
 
 Description
 : keySecret defines the Secret containing the client key file for the targets.
@@ -583,7 +583,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].params {#_specendpointsparams}
+### .spec.endpoints\[\].params {#_specendpointsparams}
 
 Description
 : params define optional HTTP URL parameters.
@@ -593,7 +593,7 @@ Type
   `object`
   ```
 
-### .spec.endpoints[].proxyConnectHeader {#_specendpointsproxyconnectheader}
+### .spec.endpoints\[\].proxyConnectHeader {#_specendpointsproxyconnectheader}
 
 Description
 : proxyConnectHeader optionally specifies headers to send to proxies during CONNECT requests.
@@ -605,7 +605,7 @@ Type
   `object`
   ```
 
-### .spec.endpoints[].proxyConnectHeader{} {#_specendpointsproxyconnectheader}
+### .spec.endpoints\[\].proxyConnectHeader&#123;&#125; {#_specendpointsproxyconnectheader}
 
 Description
 
@@ -614,7 +614,7 @@ Type
   `array`
   ```
 
-### .spec.endpoints[].proxyConnectHeader{}[] {#_specendpointsproxyconnectheader}
+### .spec.endpoints\[\].proxyConnectHeader&#123;&#125;\[\] {#_specendpointsproxyconnectheader}
 
 Description
 : SecretKeySelector selects a key of a Secret.
@@ -633,7 +633,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].relabelings {#_specendpointsrelabelings}
+### .spec.endpoints\[\].relabelings {#_specendpointsrelabelings}
 
 Description
 : relabelings defines the relabeling rules to apply the target’s metadata labels.
@@ -649,7 +649,7 @@ Type
   `array`
   ```
 
-### .spec.endpoints[].relabelings[] {#_specendpointsrelabelings}
+### .spec.endpoints\[\].relabelings\[\] {#_specendpointsrelabelings}
 
 Description
 : RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples.
@@ -671,7 +671,7 @@ Type
 | `sourceLabels` | `array (string)` | sourceLabels defines the source labels select values from existing labels. Their content is concatenated using the configured Separator and matched against the configured regular expression. |
 | `targetLabel` | `string` | targetLabel defines the label to which the resulting string is written in a replacement.<br>It is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`, `KeepEqual` and `DropEqual` actions.<br>Regex capture groups are available. |
 
-### .spec.endpoints[].tlsConfig {#_specendpointstlsconfig}
+### .spec.endpoints\[\].tlsConfig {#_specendpointstlsconfig}
 
 Description
 : tlsConfig defines TLS configuration used by the client.
@@ -694,7 +694,7 @@ Type
 | `minVersion` | `string` | minVersion defines the minimum acceptable TLS version.<br>It requires Prometheus >= v2.35.0 or Thanos >= v0.28.0. |
 | `serverName` | `string` | serverName is used to verify the hostname for the targets. |
 
-### .spec.endpoints[].tlsConfig.ca {#_specendpointstlsconfigca}
+### .spec.endpoints\[\].tlsConfig.ca {#_specendpointstlsconfigca}
 
 Description
 : ca defines the Certificate authority used when verifying server certificates.
@@ -709,7 +709,7 @@ Type
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
 
-### .spec.endpoints[].tlsConfig.ca.configMap {#_specendpointstlsconfigcaconfigmap}
+### .spec.endpoints\[\].tlsConfig.ca.configMap {#_specendpointstlsconfigcaconfigmap}
 
 Description
 : configMap defines the ConfigMap containing data to use for the targets.
@@ -728,7 +728,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
 
-### .spec.endpoints[].tlsConfig.ca.secret {#_specendpointstlsconfigcasecret}
+### .spec.endpoints\[\].tlsConfig.ca.secret {#_specendpointstlsconfigcasecret}
 
 Description
 : secret defines the Secret containing data to use for the targets.
@@ -747,7 +747,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].tlsConfig.cert {#_specendpointstlsconfigcert}
+### .spec.endpoints\[\].tlsConfig.cert {#_specendpointstlsconfigcert}
 
 Description
 : cert defines the Client certificate to present when doing client-authentication.
@@ -762,7 +762,7 @@ Type
 | `configMap` | `object` | configMap defines the ConfigMap containing data to use for the targets. |
 | `secret` | `object` | secret defines the Secret containing data to use for the targets. |
 
-### .spec.endpoints[].tlsConfig.cert.configMap {#_specendpointstlsconfigcertconfigmap}
+### .spec.endpoints\[\].tlsConfig.cert.configMap {#_specendpointstlsconfigcertconfigmap}
 
 Description
 : configMap defines the ConfigMap containing data to use for the targets.
@@ -781,7 +781,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
 
-### .spec.endpoints[].tlsConfig.cert.secret {#_specendpointstlsconfigcertsecret}
+### .spec.endpoints\[\].tlsConfig.cert.secret {#_specendpointstlsconfigcertsecret}
 
 Description
 : secret defines the Secret containing data to use for the targets.
@@ -800,7 +800,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the Secret or its key must be defined |
 
-### .spec.endpoints[].tlsConfig.keySecret {#_specendpointstlsconfigkeysecret}
+### .spec.endpoints\[\].tlsConfig.keySecret {#_specendpointstlsconfigkeysecret}
 
 Description
 : keySecret defines the Secret containing the client key file for the targets.
@@ -848,7 +848,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.selector.matchExpressions {#_specselectormatchexpressions}
 
@@ -860,7 +860,7 @@ Type
   `array`
   ```
 
-### .spec.selector.matchExpressions[] {#_specselectormatchexpressions}
+### .spec.selector.matchExpressions\[\] {#_specselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -907,7 +907,7 @@ Type
   `array`
   ```
 
-### .status.bindings[] {#_statusbindings}
+### .status.bindings\[\] {#_statusbindings}
 
 Description
 : WorkloadBinding is a link between a configuration resource and a workload resource.
@@ -932,7 +932,7 @@ Required
 | `namespace` | `string` | namespace defines the namespace of the referenced object. |
 | `resource` | `string` | resource defines the type of resource being referenced (e.g. Prometheus, PrometheusAgent, ThanosRuler or Alertmanager). |
 
-### .status.bindings[].conditions {#_statusbindingsconditions}
+### .status.bindings\[\].conditions {#_statusbindingsconditions}
 
 Description
 : conditions defines the current state of the configuration resource when bound to the referenced Workload object.
@@ -942,7 +942,7 @@ Type
   `array`
   ```
 
-### .status.bindings[].conditions[] {#_statusbindingsconditions}
+### .status.bindings\[\].conditions\[\] {#_statusbindingsconditions}
 
 Description
 : ConfigResourceCondition describes the status of configuration resources linked to Prometheus, PrometheusAgent, Alertmanager or ThanosRuler.
@@ -1005,7 +1005,7 @@ Description
 | 200 - OK | [`ServiceMonitorList`](/docs/rest_api/objects#com-coreos-monitoring-v1-ServiceMonitorList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/servicemonitors {#_apismonitoringcoreoscomv1namespaces_namespace_servicemonitors}
+### /apis/monitoring.coreos.com/v1/namespaces/&#123;namespace&#125;/servicemonitors {#_apismonitoringcoreoscomv1namespaces_namespace_servicemonitors}
 
 HTTP method
 : ```
@@ -1073,7 +1073,7 @@ Description
 | 202 - Accepted | [`ServiceMonitor`](/docs/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1#servicemonitor-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/servicemonitors/{name} {#_apismonitoringcoreoscomv1namespaces_namespace_servicemonitors_name}
+### /apis/monitoring.coreos.com/v1/namespaces/&#123;namespace&#125;/servicemonitors/&#123;name&#125; {#_apismonitoringcoreoscomv1namespaces_namespace_servicemonitors_name}
 
 **Global path parameters**
 
@@ -1177,7 +1177,7 @@ Description
 | 201 - Created | [`ServiceMonitor`](/docs/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1#servicemonitor-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/servicemonitors/{name}/status {#_apismonitoringcoreoscomv1namespaces_namespace_servicemonitors_name_status}
+### /apis/monitoring.coreos.com/v1/namespaces/&#123;namespace&#125;/servicemonitors/&#123;name&#125;/status {#_apismonitoringcoreoscomv1namespaces_namespace_servicemonitors_name_status}
 
 **Global path parameters**
 

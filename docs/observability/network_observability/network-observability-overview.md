@@ -1,9 +1,9 @@
 ---
-title: About network observability
+title: Network observability overview
 sidebar_position: 2
 ---
 
-# About network observability {#network-observability-overview}
+# Network observability overview
 
 <a id="network-observability-overview"></a>
 

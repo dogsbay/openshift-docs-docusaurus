@@ -107,10 +107,10 @@ This matrix shows the supported CDI operations for content types against endpoin
 □
 : Unsupported operation
 
-$$*$$
+&#36;$*$&#36;
 : Requires scratch space
 
-$$**$$
+&#36;$**$&#36;
 : Requires scratch space if a custom certificate authority is required
 
 **Additional resources**

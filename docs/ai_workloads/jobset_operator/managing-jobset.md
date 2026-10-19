@@ -9,7 +9,7 @@ sidebar_position: 4
 
 Use the JobSet Operator on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. Features like multi-template job support and stable networking can help you recover quickly and use resources efficiently.
 
-## Deploying a JobSet {#js-config_js-managing}
+## Deploy a JobSet {#js-config_js-managing}
 
 You can use the JobSet Operator to deploy a JobSet to manage and run large-scale, coordinated workloads.
 
@@ -111,7 +111,7 @@ You can use the JobSet Operator to deploy a JobSet to manage and run large-scale
   pytorch-workers-0-2-dpljq   1/1     Running   0          2m17s
   ```
 
-## Specifying a JobSet coordinator {#js-coordinator_js-managing}
+## Specify a JobSet coordinator {#js-coordinator_js-managing}
 
 To manage communication between JobSet pods, you can assign a specific JobSet coordinator pod. This ensures that your distributed workloads can reference a stable network endpoint as a central point of coordination for task synchronization and data exchange.
 
@@ -299,7 +299,7 @@ The `InPlaceRestart` alpha feature is not currently supported on the JobSet Oper
 
 :::
 
-## Configuring volume claim policies for JobSet Operator {#js-volume-claim-policies_js-managing}
+## Configure volume claim policies for JobSet Operator {#js-volume-claim-policies_js-managing}
 
 You can configure a JobSet to automatically create and manage shared persistent volume claims (PVCs) across multiple replicated jobs. This is useful for workloads that require shared access to datasets, models, or checkpoints.
 

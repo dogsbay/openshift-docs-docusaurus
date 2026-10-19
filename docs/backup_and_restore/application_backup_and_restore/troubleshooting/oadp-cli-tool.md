@@ -52,7 +52,7 @@ Review the version relationship between OADP, Velero, and OpenShift Container Pl
 - [Velero 1.14 documentation](https://velero.io/docs/v1.14/)
 - [Velero 1.16 documentation](https://velero.io/docs/v1.16/)
 
-## Debugging Velero resources with the OpenShift CLI tool {#oadp-debugging-oc-cli_oadp-cli-tool}
+## Debug Velero resources with the OpenShift CLI tool {#oadp-debugging-oc-cli_oadp-cli-tool}
 
 Debug a failed backup or restore by checking Velero custom resources (CRs) and the `Velero` pod log with the OpenShift CLI tool.
 
@@ -95,7 +95,7 @@ Debug a failed backup or restore by checking Velero custom resources (CRs) and t
   - `panic`
     Use the `info` `logLevel` value for most logs.
 
-## Debugging backups and restores using the OADP CLI {#migration-debugging-velero-resources_oadp-cli-tool}
+## Debug backups and restores using the OADP CLI {#migration-debugging-velero-resources_oadp-cli-tool}
 
 Use the OADP CLI plugin to retrieve logs and descriptions of backup and restore custom resources (CRs). Use the following information to interpret the output.
 

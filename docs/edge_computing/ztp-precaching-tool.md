@@ -29,7 +29,7 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 ## Getting the factory-precaching-cli tool {#ztp-getting-tool_pre-caching}
 
-The factory-precaching-cli tool Go binary is publicly available in [the {rds_first} tools container image](https://quay.io/openshift-kni/telco-ran-tools:latest). The factory-precaching-cli tool Go binary in the container image is executed on the server running an RHCOS live image using `podman`. If you are working in a disconnected environment or have a private registry, you need to copy the image there so you can download the image to the server.
+The factory-precaching-cli tool Go binary is publicly available in [the &#123;rds_first&#125; tools container image](https://quay.io/openshift-kni/telco-ran-tools:latest). The factory-precaching-cli tool Go binary in the container image is executed on the server running an RHCOS live image using `podman`. If you are working in a disconnected environment or have a private registry, you need to copy the image there so you can download the image to the server.
 
 **Procedure**
 
@@ -821,7 +821,7 @@ The `spec.ignitionConfigOverride` field adds a configuration in Ignition format 
 `agent-fix-bz1964591`
 : The `agent-fix-bz1964591` script is a workaround for an AI issue. To prevent AI from removing the images, which can force the `agent.service` to pull the images again from the registry, the `agent-fix-bz1964591` script checks if the requested container images exist.
 
-### Understanding the spec.nodes[].installerArgs field {#ztp-pre-caching-config-spec-nodes-installerargs_pre-caching}
+### Understanding the spec.nodes\[\].installerArgs field {#ztp-pre-caching-config-spec-nodes-installerargs_pre-caching}
 
 The `spec.nodes[].installerArgs` field allows you to configure how the `coreos-installer` utility writes the RHCOS live ISO to disk. You need to indicate to save the disk partition labeled as `data` because the artifacts saved in the `data` partition are needed during the OpenShift Container Platform installation stage.
 
@@ -854,7 +854,7 @@ OPTIONS:
             Allow Ignition URL without HTTPS or hash
 ```
 
-### Understanding the spec.nodes[].ignitionConfigOverride field {#ztp-pre-caching-config-spec-nodes-ignitionconfigoverride_pre-caching}
+### Understanding the spec.nodes\[\].ignitionConfigOverride field {#ztp-pre-caching-config-spec-nodes-ignitionconfigoverride_pre-caching}
 
 Similarly to `spec.ignitionConfigOverride`, the `spec.nodes[].ignitionConfigOverride` field allows the addition of configurations in Ignition format to the `coreos-installer` utility, but at the OpenShift Container Platform installation stage. When the RHCOS is written to disk, the extra configuration included in the GitOps ZTP discovery ISO is no longer available. During the discovery stage, the extra configuration is stored in the memory of the live OS.
 

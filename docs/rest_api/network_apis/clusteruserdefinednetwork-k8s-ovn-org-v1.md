@@ -3,7 +3,7 @@ title: "ClusterUserDefinedNetwork [k8s.ovn.org/v1]"
 sidebar_position: 2
 ---
 
-# ClusterUserDefinedNetwork [k8s.ovn.org/v1] {#clusteruserdefinednetwork-k8s-ovn-org-v1}
+# ClusterUserDefinedNetwork \[k8s.ovn.org/v1\] {#clusteruserdefinednetwork-k8s-ovn-org-v1}
 
 <a id="clusteruserdefinednetwork-k8s-ovn-org-v1"></a>
 
@@ -61,7 +61,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.namespaceSelector.matchExpressions {#_specnamespaceselectormatchexpressions}
 
@@ -73,7 +73,7 @@ Type
   `array`
   ```
 
-### .spec.namespaceSelector.matchExpressions[] {#_specnamespaceselectormatchexpressions}
+### .spec.namespaceSelector.matchExpressions\[\] {#_specnamespaceselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -149,7 +149,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `routeTarget` | `string` | RouteTarget is the import/export route target for this VRF. If not specified, it will be auto-generated as "<AS (Autonomous System)>:<VNI (Virtual Network Identifier)>". Auto-generation will use 2-byte AS if VNI > 65535, since 4-byte AS/IPv4 only allows 2-byte local admin.<br>Follows FRR EVPN L3 Route-Target format (A.B.C.D:MN\|EF:OPQR\|GHJK:MN\|**:OPQR\|**:MN):   - EF:OPQR   = 2-byte AS (1-65535) : local admin (4 bytes, 1-4294967295)   - GHJK:MN   = 4-byte AS (65536-4294967295) : local admin (2 bytes, 1-65535)   - A.B.C.D:MN = IPv4 address : local admin (2 bytes, 1-65535)   - *:OPQR    = wildcard AS : local admin (4 bytes, 1-4294967295) - for import matching   - *:MN      = wildcard AS : local admin (2 bytes, 1-65535) - for import matching<br>The 6-byte value constraint (RFC 4360) means AS size + local admin size = 6 bytes. |
+| `routeTarget` | `string` | RouteTarget is the import/export route target for this VRF. If not specified, it will be auto-generated as "&lt;AS (Autonomous System)>:&lt;VNI (Virtual Network Identifier)>". Auto-generation will use 2-byte AS if VNI > 65535, since 4-byte AS/IPv4 only allows 2-byte local admin.<br>Follows FRR EVPN L3 Route-Target format (A.B.C.D:MN\|EF:OPQR\|GHJK:MN\|**:OPQR\|**:MN):   - EF:OPQR   = 2-byte AS (1-65535) : local admin (4 bytes, 1-4294967295)   - GHJK:MN   = 4-byte AS (65536-4294967295) : local admin (2 bytes, 1-65535)   - A.B.C.D:MN = IPv4 address : local admin (2 bytes, 1-65535)   - \*:OPQR    = wildcard AS : local admin (4 bytes, 1-4294967295) - for import matching   - \*:MN      = wildcard AS : local admin (2 bytes, 1-65535) - for import matching<br>The 6-byte value constraint (RFC 4360) means AS size + local admin size = 6 bytes. |
 | `vni` | `integer` | VNI is the Virtual Network Identifier for this VRF. VNI is a 24-bit field in the VXLAN header (RFC 7348), allowing values from 1 to 16777215. but in the future this could be having different limit for other dataplane implementations. Must be unique across all EVPN configurations in the cluster. |
 
 ### .spec.network.evpn.macVRF {#_specnetworkevpnmacvrf}
@@ -167,7 +167,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `routeTarget` | `string` | RouteTarget is the import/export route target for this VRF. If not specified, it will be auto-generated as "<AS (Autonomous System)>:<VNI (Virtual Network Identifier)>". Auto-generation will use 2-byte AS if VNI > 65535, since 4-byte AS/IPv4 only allows 2-byte local admin.<br>Follows FRR EVPN L3 Route-Target format (A.B.C.D:MN\|EF:OPQR\|GHJK:MN\|**:OPQR\|**:MN):   - EF:OPQR   = 2-byte AS (1-65535) : local admin (4 bytes, 1-4294967295)   - GHJK:MN   = 4-byte AS (65536-4294967295) : local admin (2 bytes, 1-65535)   - A.B.C.D:MN = IPv4 address : local admin (2 bytes, 1-65535)   - *:OPQR    = wildcard AS : local admin (4 bytes, 1-4294967295) - for import matching   - *:MN      = wildcard AS : local admin (2 bytes, 1-65535) - for import matching<br>The 6-byte value constraint (RFC 4360) means AS size + local admin size = 6 bytes. |
+| `routeTarget` | `string` | RouteTarget is the import/export route target for this VRF. If not specified, it will be auto-generated as "&lt;AS (Autonomous System)>:&lt;VNI (Virtual Network Identifier)>". Auto-generation will use 2-byte AS if VNI > 65535, since 4-byte AS/IPv4 only allows 2-byte local admin.<br>Follows FRR EVPN L3 Route-Target format (A.B.C.D:MN\|EF:OPQR\|GHJK:MN\|**:OPQR\|**:MN):   - EF:OPQR   = 2-byte AS (1-65535) : local admin (4 bytes, 1-4294967295)   - GHJK:MN   = 4-byte AS (65536-4294967295) : local admin (2 bytes, 1-65535)   - A.B.C.D:MN = IPv4 address : local admin (2 bytes, 1-65535)   - \*:OPQR    = wildcard AS : local admin (4 bytes, 1-4294967295) - for import matching   - \*:MN      = wildcard AS : local admin (2 bytes, 1-65535) - for import matching<br>The 6-byte value constraint (RFC 4360) means AS size + local admin size = 6 bytes. |
 | `vni` | `integer` | VNI is the Virtual Network Identifier for this VRF. VNI is a 24-bit field in the VXLAN header (RFC 7348), allowing values from 1 to 16777215. but in the future this could be having different limit for other dataplane implementations. Must be unique across all EVPN configurations in the cluster. |
 
 ### .spec.network.layer2 {#_specnetworklayer2}
@@ -243,7 +243,7 @@ Type
   `array`
   ```
 
-### .spec.network.layer3.subnets[] {#_specnetworklayer3subnets}
+### .spec.network.layer3.subnets\[\] {#_specnetworklayer3subnets}
 
 Description
 
@@ -276,7 +276,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `excludeSubnets` | `array (string)` | excludeSubnets is a list of CIDRs to be removed from the specified CIDRs in `subnets`. The CIDRs in this list must be in range of at least one subnet specified in `subnets`. excludeSubnets is optional. When omitted no IP address is excluded and all IP addresses specified in `subnets` are subject to assignment. The format should match standard CIDR notation (for example, "10.128.0.0/16"). This field must be omitted if `subnets` is unset or `ipam.mode` is `Disabled`. When `physicalNetworkName` points to OVS bridge mapping of a network with reserved IP addresses (which shouldn’t be assigned by OVN-Kubernetes), the specified CIDRs will not be assigned. For example: Given: `subnets: "10.0.0.0/24"`, ` excludeSubnets: "10.0.0.200/30", the following addresses will not be assigned to pods:  `10.0.0.201` ,  `10.0.0.202`. |
+| `excludeSubnets` | `array (string)` | excludeSubnets is a list of CIDRs to be removed from the specified CIDRs in `subnets`. The CIDRs in this list must be in range of at least one subnet specified in `subnets`. excludeSubnets is optional. When omitted no IP address is excluded and all IP addresses specified in `subnets` are subject to assignment. The format should match standard CIDR notation (for example, "10.128.0.0/16"). This field must be omitted if `subnets` is unset or `ipam.mode` is `Disabled`. When `physicalNetworkName` points to OVS bridge mapping of a network with reserved IP addresses (which shouldn’t be assigned by OVN-Kubernetes), the specified CIDRs will not be assigned. For example: Given: `subnets: "10.0.0.0/24"`, ` excludeSubnets: "10.0.0.200/30", the following addresses will not be assigned to pods:  `10.0.0.201` ,  `10.0.0.202&#96;. |
 | `ipam` | `object` | ipam configurations for the network. ipam is optional. When omitted, `subnets` must be specified. When `ipam.mode` is `Disabled`, `subnets` must be omitted. `ipam.mode` controls how much of the IP configuration will be managed by OVN.    When `Enabled`, OVN-Kubernetes will apply IP configuration to the SDN infra and assign IPs from the selected    subnet to the pods.    When `Disabled`, OVN-Kubernetes only assigns MAC addresses, and provides layer2 communication, and enables users    to configure IP addresses on the pods. `ipam.lifecycle` controls IP addresses management lifecycle.    When set to 'Persistent', the assigned IP addresses will be persisted in `ipamclaims.k8s.cni.cncf.io` object. 	  Useful for VMs, IP address will be persistent after restarts and migrations. Supported when `ipam.mode` is `Enabled`. |
 | `mtu` | `integer` | mtu is the maximum transmission unit for a network. mtu is optional. When omitted, the configured value in OVN-Kubernetes (defaults to 1500 for localnet topology) is used for the network. Minimum value for IPv4 subnet is 576, and for IPv6 subnet is 1280. Maximum value is 65536. In a scenario `physicalNetworkName` points to OVS bridge mapping of a network configured with certain MTU settings, this field enables configuring the same MTU on pod interface, having the pod MTU aligned with the network MTU. Misaligned MTU across the stack (e.g.: pod has MTU X, node NIC has MTU Y), could result in network disruptions and bad performance. |
 | `physicalNetworkName` | `string` | physicalNetworkName points to the OVS bridge-mapping’s network-name configured in the nodes, required. Min length is 1, max length is 253, cannot contain `,` or `:` characters. In case OVS bridge-mapping is defined by Kubernetes-nmstate with `NodeNetworkConfigurationPolicy` (NNCP), this field should point to the NNCP `spec.desiredState.ovn.bridge-mappings` item’s `localnet` value. |
@@ -359,7 +359,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -380,7 +380,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -471,7 +471,7 @@ Description
 | 202 - Accepted | [`ClusterUserDefinedNetwork`](/docs/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/clusteruserdefinednetworks/{name} {#_apisk8sovnorgv1clusteruserdefinednetworks_name}
+### /apis/k8s.ovn.org/v1/clusteruserdefinednetworks/&#123;name&#125; {#_apisk8sovnorgv1clusteruserdefinednetworks_name}
 
 **Global path parameters**
 
@@ -575,7 +575,7 @@ Description
 | 201 - Created | [`ClusterUserDefinedNetwork`](/docs/rest_api/network_apis/clusteruserdefinednetwork-k8s-ovn-org-v1#clusteruserdefinednetwork-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/clusteruserdefinednetworks/{name}/status {#_apisk8sovnorgv1clusteruserdefinednetworks_name_status}
+### /apis/k8s.ovn.org/v1/clusteruserdefinednetworks/&#123;name&#125;/status {#_apisk8sovnorgv1clusteruserdefinednetworks_name_status}
 
 **Global path parameters**
 

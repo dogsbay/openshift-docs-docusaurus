@@ -11,9 +11,9 @@ You can ensure your Windows nodes have the latest updates by updating the Window
 
 You can update the WMCO in any of the following scenarios:
 
-- Within the current version. for example, from <10.y.z> to <10.y.z+1>.
-- To a new, contiguous version. For example, from <10.y> to <10.y+1>.
-- From an EUS version to another EUS version by using a Control Plane Only update. For example, from <10.y> to <10.y+2>.
+- Within the current version. for example, from &lt;10.y.z> to &lt;10.y.z+1>.
+- To a new, contiguous version. For example, from &lt;10.y> to &lt;10.y+1>.
+- From an EUS version to another EUS version by using a Control Plane Only update. For example, from &lt;10.y> to &lt;10.y+2>.
 
 ## Windows Machine Config Operator updates {#wmco-upgrades_windows-node-upgrades}
 

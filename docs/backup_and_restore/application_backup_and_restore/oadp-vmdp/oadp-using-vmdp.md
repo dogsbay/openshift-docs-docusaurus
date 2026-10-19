@@ -9,7 +9,7 @@ sidebar_position: 2
 
 Install the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI), configure a backup storage location, and back up and restore data from within your VM. This helps you to manage your own VM backups independently.
 
-## Installing the OADP virtual machine data protection CLI {#oadp-vmdp-installing-cli_oadp-using-vmdp}
+## Install the OADP virtual machine data protection CLI {#oadp-vmdp-installing-cli_oadp-using-vmdp}
 
 Install the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI) inside your VM to back up and restore data. This helps you to download the correct binary for your VM guest operating system.
 
@@ -84,7 +84,7 @@ The OADP Operator deploys a download server in the cluster as the `openshift-adp
     PS> .\oadp-vmdp.exe --help
     ```
 
-## Creating a backup storage location with S3-compatible storage by using the VMDP CLI {#oadp-vmdp-creating-bsl-s3_oadp-using-vmdp}
+## Create a backup storage location with S3-compatible storage by using the VMDP CLI {#oadp-vmdp-creating-bsl-s3_oadp-using-vmdp}
 
 Create a backup storage location (BSL) with S3-compatible storage to set up an encrypted repository for storing your virtual machine (VM) backups. This helps you to configure remote S3-compatible storage for your data.
 
@@ -147,7 +147,7 @@ When you create a BSL, the virtual machine data protection (VMDP) command-line i
   $ oadp-vmdp bsl status
   ```
 
-## Creating a backup storage location with file system storage by using the VMDP CLI {#oadp-vmdp-creating-bsl-filesystem_oadp-using-vmdp}
+## Create a backup storage location with file system storage by using the VMDP CLI {#oadp-vmdp-creating-bsl-filesystem_oadp-using-vmdp}
 
 Create a backup storage location (BSL) with file system storage to set up an encrypted repository for storing your virtual machine (VM) backups. This helps you to configure local file system storage for your data.
 
@@ -176,7 +176,7 @@ When you create a BSL, the virtual machine data protection (VMDP) command-line i
   $ oadp-vmdp bsl status
   ```
 
-## Backing up data from a virtual machine by using the VMDP CLI {#oadp-vmdp-backing-up-data_oadp-using-vmdp}
+## Back up data from a virtual machine by using the VMDP CLI {#oadp-vmdp-backing-up-data_oadp-using-vmdp}
 
 Back up files and directories from within your virtual machine (VM) by using the OpenShift API for Data Protection VM data protection (VMDP) command-line interface (CLI). This helps you to protect user data, including data accessible over network file systems such as CIFS and NFS shares.
 
@@ -214,7 +214,7 @@ VMDP uses data deduplication to store data efficiently. If the same data exists 
 
    :::
 
-## Restoring data to a virtual machine by using the VMDP CLI {#oadp-vmdp-restoring-data_oadp-using-vmdp}
+## Restore data to a virtual machine by using the VMDP CLI {#oadp-vmdp-restoring-data_oadp-using-vmdp}
 
 Restore data from a backup to your virtual machine (VM) by using the OpenShift API for Data Protection VM data protection (VMDP) command-line interface (CLI). This helps you to recover files to the original location or to a different directory.
 
@@ -282,7 +282,7 @@ Review the available commands for managing backup storage locations (BSL) with t
 | `oadp-vmdp bsl status` | Show the current BSL connection status. |
 | `oadp-vmdp bsl change-password` | Change the BSL encryption password. |
 
-## Troubleshooting OADP virtual machine data protection {#oadp-vmdp-troubleshooting_oadp-using-vmdp}
+## Troubleshoot OADP virtual machine data protection {#oadp-vmdp-troubleshooting_oadp-using-vmdp}
 
 Troubleshoot common issues and solutions for the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI). This helps you to resolve connection and configuration problems.
 

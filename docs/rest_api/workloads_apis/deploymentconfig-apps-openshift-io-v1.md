@@ -3,7 +3,7 @@ title: "DeploymentConfig [apps.openshift.io/v1]"
 sidebar_position: 9
 ---
 
-# DeploymentConfig [apps.openshift.io/v1] {#deploymentconfig-apps-openshift-io-v1}
+# DeploymentConfig \[apps.openshift.io/v1\] {#deploymentconfig-apps-openshift-io-v1}
 
 <a id="deploymentconfig-apps-openshift-io-v1"></a>
 
@@ -160,7 +160,7 @@ Type
   `array`
   ```
 
-### .spec.strategy.recreateParams.mid.tagImages[] {#_specstrategyrecreateparamsmidtagimages}
+### .spec.strategy.recreateParams.mid.tagImages\[\] {#_specstrategyrecreateparamsmidtagimages}
 
 Description
 : TagImageHook is a request to tag the image in a particular container onto an ImageStreamTag.
@@ -230,7 +230,7 @@ Type
   `array`
   ```
 
-### .spec.strategy.recreateParams.post.tagImages[] {#_specstrategyrecreateparamsposttagimages}
+### .spec.strategy.recreateParams.post.tagImages\[\] {#_specstrategyrecreateparamsposttagimages}
 
 Description
 : TagImageHook is a request to tag the image in a particular container onto an ImageStreamTag.
@@ -300,7 +300,7 @@ Type
   `array`
   ```
 
-### .spec.strategy.recreateParams.pre.tagImages[] {#_specstrategyrecreateparamspretagimages}
+### .spec.strategy.recreateParams.pre.tagImages\[\] {#_specstrategyrecreateparamspretagimages}
 
 Description
 : TagImageHook is a request to tag the image in a particular container onto an ImageStreamTag.
@@ -390,7 +390,7 @@ Type
   `array`
   ```
 
-### .spec.strategy.rollingParams.post.tagImages[] {#_specstrategyrollingparamsposttagimages}
+### .spec.strategy.rollingParams.post.tagImages\[\] {#_specstrategyrollingparamsposttagimages}
 
 Description
 : TagImageHook is a request to tag the image in a particular container onto an ImageStreamTag.
@@ -460,7 +460,7 @@ Type
   `array`
   ```
 
-### .spec.strategy.rollingParams.pre.tagImages[] {#_specstrategyrollingparamspretagimages}
+### .spec.strategy.rollingParams.pre.tagImages\[\] {#_specstrategyrollingparamspretagimages}
 
 Description
 : TagImageHook is a request to tag the image in a particular container onto an ImageStreamTag.
@@ -489,7 +489,7 @@ Type
   `array`
   ```
 
-### .spec.triggers[] {#_spectriggers}
+### .spec.triggers\[\] {#_spectriggers}
 
 Description
 : DeploymentTriggerPolicy describes a policy for a single trigger that results in a new deployment.
@@ -504,7 +504,7 @@ Type
 | `imageChangeParams` | `object` | DeploymentTriggerImageChangeParams represents the parameters to the ImageChange trigger. |
 | `type` | `string` | type of the trigger |
 
-### .spec.triggers[].imageChangeParams {#_spectriggersimagechangeparams}
+### .spec.triggers\[\].imageChangeParams {#_spectriggersimagechangeparams}
 
 Description
 : DeploymentTriggerImageChangeParams represents the parameters to the ImageChange trigger.
@@ -557,7 +557,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : DeploymentCondition describes the state of a deployment config at a certain point.
@@ -609,7 +609,7 @@ Type
   `array`
   ```
 
-### .status.details.causes[] {#_statusdetailscauses}
+### .status.details.causes\[\] {#_statusdetailscauses}
 
 Description
 : DeploymentCause captures information about a particular cause of a deployment.
@@ -627,7 +627,7 @@ Required
 | `imageTrigger` | `object` | DeploymentCauseImageTrigger represents details about the cause of a deployment originating from an image change trigger |
 | `type` | `string` | type of the trigger that resulted in the creation of a new deployment |
 
-### .status.details.causes[].imageTrigger {#_statusdetailscausesimagetrigger}
+### .status.details.causes\[\].imageTrigger {#_statusdetailscausesimagetrigger}
 
 Description
 : DeploymentCauseImageTrigger represents details about the cause of a deployment originating from an image change trigger
@@ -708,7 +708,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs}
+### /apis/apps.openshift.io/v1/namespaces/&#123;namespace&#125;/deploymentconfigs {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs}
 
 HTTP method
 : ```
@@ -782,7 +782,7 @@ Description
 | 202 - Accepted | [`DeploymentConfig`](/docs/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps.openshift.io/v1/watch/namespaces/{namespace}/deploymentconfigs {#_apisappsopenshiftiov1watchnamespaces_namespace_deploymentconfigs}
+### /apis/apps.openshift.io/v1/watch/namespaces/&#123;namespace&#125;/deploymentconfigs {#_apisappsopenshiftiov1watchnamespaces_namespace_deploymentconfigs}
 
 HTTP method
 : ```
@@ -801,7 +801,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name} {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name}
+### /apis/apps.openshift.io/v1/namespaces/&#123;namespace&#125;/deploymentconfigs/&#123;name&#125; {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name}
 
 **Global path parameters**
 
@@ -906,7 +906,7 @@ Description
 | 201 - Created | [`DeploymentConfig`](/docs/rest_api/workloads_apis/deploymentconfig-apps-openshift-io-v1#deploymentconfig-apps-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps.openshift.io/v1/watch/namespaces/{namespace}/deploymentconfigs/{name} {#_apisappsopenshiftiov1watchnamespaces_namespace_deploymentconfigs_name}
+### /apis/apps.openshift.io/v1/watch/namespaces/&#123;namespace&#125;/deploymentconfigs/&#123;name&#125; {#_apisappsopenshiftiov1watchnamespaces_namespace_deploymentconfigs_name}
 
 **Global path parameters**
 
@@ -931,7 +931,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps.openshift.io/v1/namespaces/{namespace}/deploymentconfigs/{name}/status {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_status}
+### /apis/apps.openshift.io/v1/namespaces/&#123;namespace&#125;/deploymentconfigs/&#123;name&#125;/status {#_apisappsopenshiftiov1namespaces_namespace_deploymentconfigs_name_status}
 
 **Global path parameters**
 

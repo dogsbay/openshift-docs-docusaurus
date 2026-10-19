@@ -3,7 +3,7 @@ title: "Machine [machine.openshift.io/v1beta1]"
 sidebar_position: 9
 ---
 
-# Machine [machine.openshift.io/v1beta1] {#machine-machine-openshift-io-v1beta1}
+# Machine \[machine.openshift.io/v1beta1\] {#machine-machine-openshift-io-v1beta1}
 
 <a id="machine-machine-openshift-io-v1beta1"></a>
 
@@ -71,7 +71,7 @@ Type
   `array`
   ```
 
-### .spec.lifecycleHooks.preDrain[] {#_speclifecyclehookspredrain}
+### .spec.lifecycleHooks.preDrain\[\] {#_speclifecyclehookspredrain}
 
 Description
 : LifecycleHook represents a single instance of a lifecycle hook
@@ -100,7 +100,7 @@ Type
   `array`
   ```
 
-### .spec.lifecycleHooks.preTerminate[] {#_speclifecyclehookspreterminate}
+### .spec.lifecycleHooks.preTerminate\[\] {#_speclifecyclehookspreterminate}
 
 Description
 : LifecycleHook represents a single instance of a lifecycle hook
@@ -149,7 +149,7 @@ Type
   `array`
   ```
 
-### .spec.metadata.ownerReferences[] {#_specmetadataownerreferences}
+### .spec.metadata.ownerReferences\[\] {#_specmetadataownerreferences}
 
 Description
 : OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.
@@ -186,7 +186,7 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `value` | `` | value is an inlined, serialized representation of the resource configuration. It is recommended that providers maintain their own versioned API types that should be serialized/deserialized from this field, akin to component config. |
+| `value` | &#96;&#96; | value is an inlined, serialized representation of the resource configuration. It is recommended that providers maintain their own versioned API types that should be serialized/deserialized from this field, akin to component config. |
 
 ### .spec.taints {#_spectaints}
 
@@ -198,7 +198,7 @@ Type
   `array`
   ```
 
-### .spec.taints[] {#_spectaints}
+### .spec.taints\[\] {#_spectaints}
 
 Description
 : The node this Taint is attached to has the "effect" on any pod that does not tolerate the Taint.
@@ -241,7 +241,7 @@ Type
 | `lastUpdated` | `string` | lastUpdated identifies when this status was last observed. |
 | `nodeRef` | `object` | nodeRef will point to the corresponding Node if it exists. |
 | `phase` | `string` | phase represents the current phase of machine actuation. One of: Failed, Provisioning, Provisioned, Running, Deleting |
-| `providerStatus` | `` | providerStatus details a Provider-specific status. It is recommended that providers maintain their own versioned API types that should be serialized/deserialized from this field. |
+| `providerStatus` | &#96;&#96; | providerStatus details a Provider-specific status. It is recommended that providers maintain their own versioned API types that should be serialized/deserialized from this field. |
 
 ### .status.addresses {#_statusaddresses}
 
@@ -253,7 +253,7 @@ Type
   `array`
   ```
 
-### .status.addresses[] {#_statusaddresses}
+### .status.addresses\[\] {#_statusaddresses}
 
 Description
 : NodeAddress contains information for the node’s address.
@@ -282,7 +282,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition defines an observation of a Machine API resource operational state.
@@ -336,7 +336,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -382,7 +382,7 @@ Description
 | 200 - OK | [`MachineList`](/docs/rest_api/objects#io-openshift-machine-v1beta1-MachineList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machines {#_apismachineopenshiftiov1beta1namespaces_namespace_machines}
+### /apis/machine.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machines {#_apismachineopenshiftiov1beta1namespaces_namespace_machines}
 
 HTTP method
 : ```
@@ -450,7 +450,7 @@ Description
 | 202 - Accepted | [`Machine`](/docs/rest_api/machine_apis/machine-machine-openshift-io-v1beta1#machine-machine-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machines/{name} {#_apismachineopenshiftiov1beta1namespaces_namespace_machines_name}
+### /apis/machine.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machines/&#123;name&#125; {#_apismachineopenshiftiov1beta1namespaces_namespace_machines_name}
 
 **Global path parameters**
 
@@ -554,7 +554,7 @@ Description
 | 201 - Created | [`Machine`](/docs/rest_api/machine_apis/machine-machine-openshift-io-v1beta1#machine-machine-openshift-io-v1beta1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/machine.openshift.io/v1beta1/namespaces/{namespace}/machines/{name}/status {#_apismachineopenshiftiov1beta1namespaces_namespace_machines_name_status}
+### /apis/machine.openshift.io/v1beta1/namespaces/&#123;namespace&#125;/machines/&#123;name&#125;/status {#_apismachineopenshiftiov1beta1namespaces_namespace_machines_name_status}
 
 **Global path parameters**
 

@@ -3,7 +3,7 @@ title: "NetworkAttachmentDefinition [k8s.cni.cncf.io/v1]"
 sidebar_position: 25
 ---
 
-# NetworkAttachmentDefinition [k8s.cni.cncf.io/v1] {#networkattachmentdefinition-k8s-cni-cncf-io-v1}
+# NetworkAttachmentDefinition \[k8s.cni.cncf.io/v1\] {#networkattachmentdefinition-k8s-cni-cncf-io-v1}
 
 <a id="networkattachmentdefinition-k8s-cni-cncf-io-v1"></a>
 
@@ -73,7 +73,7 @@ Description
 | 200 - OK | [`NetworkAttachmentDefinitionList`](/docs/rest_api/objects#io-cncf-cni-k8s-v1-NetworkAttachmentDefinitionList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.cni.cncf.io/v1/namespaces/{namespace}/network-attachment-definitions {#_apisk8scnicncfiov1namespaces_namespace_network-attachment-definitions}
+### /apis/k8s.cni.cncf.io/v1/namespaces/&#123;namespace&#125;/network-attachment-definitions {#_apisk8scnicncfiov1namespaces_namespace_network-attachment-definitions}
 
 HTTP method
 : ```
@@ -141,7 +141,7 @@ Description
 | 202 - Accepted | [`NetworkAttachmentDefinition`](/docs/rest_api/network_apis/networkattachmentdefinition-k8s-cni-cncf-io-v1#networkattachmentdefinition-k8s-cni-cncf-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.cni.cncf.io/v1/namespaces/{namespace}/network-attachment-definitions/{name} {#_apisk8scnicncfiov1namespaces_namespace_network-attachment-definitions_name}
+### /apis/k8s.cni.cncf.io/v1/namespaces/&#123;namespace&#125;/network-attachment-definitions/&#123;name&#125; {#_apisk8scnicncfiov1namespaces_namespace_network-attachment-definitions_name}
 
 **Global path parameters**
 

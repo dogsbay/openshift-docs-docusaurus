@@ -476,7 +476,7 @@ The Fast IPAM feature uses `nodeslicepools`, which are managed by the Whereabout
    where:
 
    `inet`: Pod is attached to the `10.5.0.1` IP address on the `net1` interface as expected.
-3. Check that the node selector pool exists in the `openshift-multus` namespace by entering the following command. The expected output shows the name of the node selector pool, such as ` nodeslicepool, and the creation age in minutes, such as  `32m`.
+3. Check that the node selector pool exists in the `openshift-multus` namespace by entering the following command. The expected output shows the name of the node selector pool, such as ` nodeslicepool, and the creation age in minutes, such as  `32m&#96;.
    ```terminal
    $ oc get nodeslicepool -n openshift-multus
    ```

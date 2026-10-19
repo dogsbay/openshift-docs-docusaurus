@@ -15,7 +15,7 @@ There are no Kubernetes API removals in this release.
 
 ## Providing an administrator acknowledgment for Microsoft Azure or VMware vSphere clusters {#update-preparing-azure-vsphere-ack_updating-cluster-prepare}
 
-If you are updating a Microsoft Azure or VMware vSphere cluster from OpenShift Container Platform 4.21 to 4.22, and you have not configured the `managedBootImages` parameter, the update is blocked with a "*This cluster is Azure or vSphere but lacks a boot image configuration.*" message. {._abstract}
+If you are updating a Microsoft Azure or VMware vSphere cluster from OpenShift Container Platform 4.21 to 4.22, and you have not configured the `managedBootImages` parameter, the update is blocked with a "*This cluster is Azure or vSphere but lacks a boot image configuration.*" message. &#123;.\_abstract&#125;
 
 The update is blocked intentionally on Azure or vSphere clusters in order to alert you that the default updated boot image behavior is changing between version 4.21 and 4.22 to enable updated boot images by default on those platforms.
 

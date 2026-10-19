@@ -3,7 +3,7 @@ title: "RuntimeClass [node.k8s.io/v1]"
 sidebar_position: 5
 ---
 
-# RuntimeClass [node.k8s.io/v1] {#runtimeclass-node-k8s-io-v1}
+# RuntimeClass \[node.k8s.io/v1\] {#runtimeclass-node-k8s-io-v1}
 
 <a id="runtimeclass-node-k8s-io-v1"></a>
 
@@ -169,7 +169,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/node.k8s.io/v1/runtimeclasses/{name} {#_apisnodek8siov1runtimeclasses_name}
+### /apis/node.k8s.io/v1/runtimeclasses/&#123;name&#125; {#_apisnodek8siov1runtimeclasses_name}
 
 **Global path parameters**
 
@@ -274,7 +274,7 @@ Description
 | 201 - Created | [`RuntimeClass`](/docs/rest_api/node_apis/runtimeclass-node-k8s-io-v1#runtimeclass-node-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/node.k8s.io/v1/watch/runtimeclasses/{name} {#_apisnodek8siov1watchruntimeclasses_name}
+### /apis/node.k8s.io/v1/watch/runtimeclasses/&#123;name&#125; {#_apisnodek8siov1watchruntimeclasses_name}
 
 **Global path parameters**
 

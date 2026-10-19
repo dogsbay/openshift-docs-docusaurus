@@ -3,7 +3,7 @@ title: "PrometheusRule [monitoring.coreos.com/v1]"
 sidebar_position: 10
 ---
 
-# PrometheusRule [monitoring.coreos.com/v1] {#prometheusrule-monitoring-coreos-com-v1}
+# PrometheusRule \[monitoring.coreos.com/v1\] {#prometheusrule-monitoring-coreos-com-v1}
 
 <a id="prometheusrule-monitoring-coreos-com-v1"></a>
 
@@ -55,7 +55,7 @@ Type
   `array`
   ```
 
-### .spec.groups[] {#_specgroups}
+### .spec.groups\[\] {#_specgroups}
 
 Description
 : RuleGroup is a list of sequentially evaluated recording and alerting rules.
@@ -79,7 +79,7 @@ Required
 | `rules` | `array` | rules defines the list of alerting and recording rules. |
 | `rules[]` | `object` | Rule describes an alerting or recording rule See Prometheus documentation: [alerting](https://www.prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) or [recording](https://www.prometheus.io/docs/prometheus/latest/configuration/recording_rules/#recording-rules) rule |
 
-### .spec.groups[].rules {#_specgroupsrules}
+### .spec.groups\[\].rules {#_specgroupsrules}
 
 Description
 : rules defines the list of alerting and recording rules.
@@ -89,7 +89,7 @@ Type
   `array`
   ```
 
-### .spec.groups[].rules[] {#_specgroupsrules}
+### .spec.groups\[\].rules\[\] {#_specgroupsrules}
 
 Description
 : Rule describes an alerting or recording rule See Prometheus documentation: [alerting](https://www.prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) or [recording](https://www.prometheus.io/docs/prometheus/latest/configuration/recording_rules/#recording-rules) rule
@@ -139,7 +139,7 @@ Type
   `array`
   ```
 
-### .status.bindings[] {#_statusbindings}
+### .status.bindings\[\] {#_statusbindings}
 
 Description
 : WorkloadBinding is a link between a configuration resource and a workload resource.
@@ -164,7 +164,7 @@ Required
 | `namespace` | `string` | namespace defines the namespace of the referenced object. |
 | `resource` | `string` | resource defines the type of resource being referenced (e.g. Prometheus, PrometheusAgent, ThanosRuler or Alertmanager). |
 
-### .status.bindings[].conditions {#_statusbindingsconditions}
+### .status.bindings\[\].conditions {#_statusbindingsconditions}
 
 Description
 : conditions defines the current state of the configuration resource when bound to the referenced Workload object.
@@ -174,7 +174,7 @@ Type
   `array`
   ```
 
-### .status.bindings[].conditions[] {#_statusbindingsconditions}
+### .status.bindings\[\].conditions\[\] {#_statusbindingsconditions}
 
 Description
 : ConfigResourceCondition describes the status of configuration resources linked to Prometheus, PrometheusAgent, Alertmanager or ThanosRuler.
@@ -237,7 +237,7 @@ Description
 | 200 - OK | [`PrometheusRuleList`](/docs/rest_api/objects#com-coreos-monitoring-v1-PrometheusRuleList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/prometheusrules {#_apismonitoringcoreoscomv1namespaces_namespace_prometheusrules}
+### /apis/monitoring.coreos.com/v1/namespaces/&#123;namespace&#125;/prometheusrules {#_apismonitoringcoreoscomv1namespaces_namespace_prometheusrules}
 
 HTTP method
 : ```
@@ -305,7 +305,7 @@ Description
 | 202 - Accepted | [`PrometheusRule`](/docs/rest_api/monitoring_apis/prometheusrule-monitoring-coreos-com-v1#prometheusrule-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/prometheusrules/{name} {#_apismonitoringcoreoscomv1namespaces_namespace_prometheusrules_name}
+### /apis/monitoring.coreos.com/v1/namespaces/&#123;namespace&#125;/prometheusrules/&#123;name&#125; {#_apismonitoringcoreoscomv1namespaces_namespace_prometheusrules_name}
 
 **Global path parameters**
 
@@ -409,7 +409,7 @@ Description
 | 201 - Created | [`PrometheusRule`](/docs/rest_api/monitoring_apis/prometheusrule-monitoring-coreos-com-v1#prometheusrule-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/prometheusrules/{name}/status {#_apismonitoringcoreoscomv1namespaces_namespace_prometheusrules_name_status}
+### /apis/monitoring.coreos.com/v1/namespaces/&#123;namespace&#125;/prometheusrules/&#123;name&#125;/status {#_apismonitoringcoreoscomv1namespaces_namespace_prometheusrules_name_status}
 
 **Global path parameters**
 

@@ -3,7 +3,7 @@ title: "Probe [monitoring.coreos.com/v1]"
 sidebar_position: 8
 ---
 
-# Probe [monitoring.coreos.com/v1] {#probe-monitoring-coreos-com-v1}
+# Probe \[monitoring.coreos.com/v1\] {#probe-monitoring-coreos-com-v1}
 
 <a id="probe-monitoring-coreos-com-v1"></a>
 
@@ -203,7 +203,7 @@ Type
   `array`
   ```
 
-### .spec.metricRelabelings[] {#_specmetricrelabelings}
+### .spec.metricRelabelings\[\] {#_specmetricrelabelings}
 
 Description
 : RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples.
@@ -343,7 +343,7 @@ Type
   `object`
   ```
 
-### .spec.oauth2.proxyConnectHeader{} {#_specoauth2proxyconnectheader}
+### .spec.oauth2.proxyConnectHeader&#123;&#125; {#_specoauth2proxyconnectheader}
 
 Description
 
@@ -352,7 +352,7 @@ Type
   `array`
   ```
 
-### .spec.oauth2.proxyConnectHeader{}[] {#_specoauth2proxyconnectheader}
+### .spec.oauth2.proxyConnectHeader&#123;&#125;\[\] {#_specoauth2proxyconnectheader}
 
 Description
 : SecretKeySelector selects a key of a Secret.
@@ -526,7 +526,7 @@ Type
   `array`
   ```
 
-### .spec.params[] {#_specparams}
+### .spec.params\[\] {#_specparams}
 
 Description
 : ProbeParam defines specification of extra parameters for a Probe.
@@ -581,7 +581,7 @@ Type
   `object`
   ```
 
-### .spec.prober.proxyConnectHeader{} {#_specproberproxyconnectheader}
+### .spec.prober.proxyConnectHeader&#123;&#125; {#_specproberproxyconnectheader}
 
 Description
 
@@ -590,7 +590,7 @@ Type
   `array`
   ```
 
-### .spec.prober.proxyConnectHeader{}[] {#_specproberproxyconnectheader}
+### .spec.prober.proxyConnectHeader&#123;&#125;\[\] {#_specproberproxyconnectheader}
 
 Description
 : SecretKeySelector selects a key of a Secret.
@@ -666,7 +666,7 @@ Type
   `array`
   ```
 
-### .spec.targets.ingress.relabelingConfigs[] {#_spectargetsingressrelabelingconfigs}
+### .spec.targets.ingress.relabelingConfigs\[\] {#_spectargetsingressrelabelingconfigs}
 
 Description
 : RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples.
@@ -702,7 +702,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.targets.ingress.selector.matchExpressions {#_spectargetsingressselectormatchexpressions}
 
@@ -714,7 +714,7 @@ Type
   `array`
   ```
 
-### .spec.targets.ingress.selector.matchExpressions[] {#_spectargetsingressselectormatchexpressions}
+### .spec.targets.ingress.selector.matchExpressions\[\] {#_spectargetsingressselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -761,7 +761,7 @@ Type
   `array`
   ```
 
-### .spec.targets.staticConfig.relabelingConfigs[] {#_spectargetsstaticconfigrelabelingconfigs}
+### .spec.targets.staticConfig.relabelingConfigs\[\] {#_spectargetsstaticconfigrelabelingconfigs}
 
 Description
 : RelabelConfig allows dynamic rewriting of the label set for targets, alerts, scraped samples and remote write samples.
@@ -955,7 +955,7 @@ Type
   `array`
   ```
 
-### .status.bindings[] {#_statusbindings}
+### .status.bindings\[\] {#_statusbindings}
 
 Description
 : WorkloadBinding is a link between a configuration resource and a workload resource.
@@ -980,7 +980,7 @@ Required
 | `namespace` | `string` | namespace defines the namespace of the referenced object. |
 | `resource` | `string` | resource defines the type of resource being referenced (e.g. Prometheus, PrometheusAgent, ThanosRuler or Alertmanager). |
 
-### .status.bindings[].conditions {#_statusbindingsconditions}
+### .status.bindings\[\].conditions {#_statusbindingsconditions}
 
 Description
 : conditions defines the current state of the configuration resource when bound to the referenced Workload object.
@@ -990,7 +990,7 @@ Type
   `array`
   ```
 
-### .status.bindings[].conditions[] {#_statusbindingsconditions}
+### .status.bindings\[\].conditions\[\] {#_statusbindingsconditions}
 
 Description
 : ConfigResourceCondition describes the status of configuration resources linked to Prometheus, PrometheusAgent, Alertmanager or ThanosRuler.
@@ -1053,7 +1053,7 @@ Description
 | 200 - OK | [`ProbeList`](/docs/rest_api/objects#com-coreos-monitoring-v1-ProbeList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/probes {#_apismonitoringcoreoscomv1namespaces_namespace_probes}
+### /apis/monitoring.coreos.com/v1/namespaces/&#123;namespace&#125;/probes {#_apismonitoringcoreoscomv1namespaces_namespace_probes}
 
 HTTP method
 : ```
@@ -1121,7 +1121,7 @@ Description
 | 202 - Accepted | [`Probe`](/docs/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/probes/{name} {#_apismonitoringcoreoscomv1namespaces_namespace_probes_name}
+### /apis/monitoring.coreos.com/v1/namespaces/&#123;namespace&#125;/probes/&#123;name&#125; {#_apismonitoringcoreoscomv1namespaces_namespace_probes_name}
 
 **Global path parameters**
 
@@ -1225,7 +1225,7 @@ Description
 | 201 - Created | [`Probe`](/docs/rest_api/monitoring_apis/probe-monitoring-coreos-com-v1#probe-monitoring-coreos-com-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/monitoring.coreos.com/v1/namespaces/{namespace}/probes/{name}/status {#_apismonitoringcoreoscomv1namespaces_namespace_probes_name_status}
+### /apis/monitoring.coreos.com/v1/namespaces/&#123;namespace&#125;/probes/&#123;name&#125;/status {#_apismonitoringcoreoscomv1namespaces_namespace_probes_name_status}
 
 **Global path parameters**
 

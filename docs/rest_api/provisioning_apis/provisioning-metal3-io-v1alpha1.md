@@ -3,7 +3,7 @@ title: "Provisioning [metal3.io/v1alpha1]"
 sidebar_position: 13
 ---
 
-# Provisioning [metal3.io/v1alpha1] {#provisioning-metal3-io-v1alpha1}
+# Provisioning \[metal3.io/v1alpha1\] {#provisioning-metal3-io-v1alpha1}
 
 <a id="provisioning-metal3-io-v1alpha1"></a>
 
@@ -138,7 +138,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : OperatorCondition is just the standard condition fields.
@@ -171,7 +171,7 @@ Type
   `array`
   ```
 
-### .status.generations[] {#_statusgenerations}
+### .status.generations\[\] {#_statusgenerations}
 
 Description
 : GenerationStatus keeps track of the generation for a given resource so that decisions about forced updates can be made.
@@ -282,7 +282,7 @@ Description
 | 202 - Accepted | [`Provisioning`](/docs/rest_api/provisioning_apis/provisioning-metal3-io-v1alpha1#provisioning-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/provisionings/{name} {#_apismetal3iov1alpha1provisionings_name}
+### /apis/metal3.io/v1alpha1/provisionings/&#123;name&#125; {#_apismetal3iov1alpha1provisionings_name}
 
 **Global path parameters**
 
@@ -386,7 +386,7 @@ Description
 | 201 - Created | [`Provisioning`](/docs/rest_api/provisioning_apis/provisioning-metal3-io-v1alpha1#provisioning-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/provisionings/{name}/status {#_apismetal3iov1alpha1provisionings_name_status}
+### /apis/metal3.io/v1alpha1/provisionings/&#123;name&#125;/status {#_apismetal3iov1alpha1provisionings_name_status}
 
 **Global path parameters**
 

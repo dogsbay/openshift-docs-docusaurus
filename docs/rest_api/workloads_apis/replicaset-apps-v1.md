@@ -3,7 +3,7 @@ title: "ReplicaSet [apps/v1]"
 sidebar_position: 16
 ---
 
-# ReplicaSet [apps/v1] {#replicaset-apps-v1}
+# ReplicaSet \[apps/v1\] {#replicaset-apps-v1}
 
 <a id="replicaset-apps-v1"></a>
 
@@ -79,7 +79,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : ReplicaSetCondition describes the state of a replica set at a certain point.
@@ -165,7 +165,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/replicasets {#_apisappsv1namespaces_namespace_replicasets}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/replicasets {#_apisappsv1namespaces_namespace_replicasets}
 
 HTTP method
 : ```
@@ -239,7 +239,7 @@ Description
 | 202 - Accepted | [`ReplicaSet`](/docs/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{namespace}/replicasets {#_apisappsv1watchnamespaces_namespace_replicasets}
+### /apis/apps/v1/watch/namespaces/&#123;namespace&#125;/replicasets {#_apisappsv1watchnamespaces_namespace_replicasets}
 
 HTTP method
 : ```
@@ -258,7 +258,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/replicasets/{name} {#_apisappsv1namespaces_namespace_replicasets_name}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/replicasets/&#123;name&#125; {#_apisappsv1namespaces_namespace_replicasets_name}
 
 **Global path parameters**
 
@@ -363,7 +363,7 @@ Description
 | 201 - Created | [`ReplicaSet`](/docs/rest_api/workloads_apis/replicaset-apps-v1#replicaset-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{namespace}/replicasets/{name} {#_apisappsv1watchnamespaces_namespace_replicasets_name}
+### /apis/apps/v1/watch/namespaces/&#123;namespace&#125;/replicasets/&#123;name&#125; {#_apisappsv1watchnamespaces_namespace_replicasets_name}
 
 **Global path parameters**
 
@@ -388,7 +388,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/replicasets/{name}/status {#_apisappsv1namespaces_namespace_replicasets_name_status}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/replicasets/&#123;name&#125;/status {#_apisappsv1namespaces_namespace_replicasets_name_status}
 
 **Global path parameters**
 

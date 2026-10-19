@@ -3,7 +3,7 @@ title: "EgressFirewall [k8s.ovn.org/v1]"
 sidebar_position: 8
 ---
 
-# EgressFirewall [k8s.ovn.org/v1] {#egressfirewall-k8s-ovn-org-v1}
+# EgressFirewall \[k8s.ovn.org/v1\] {#egressfirewall-k8s-ovn-org-v1}
 
 <a id="egressfirewall-k8s-ovn-org-v1"></a>
 
@@ -56,7 +56,7 @@ Type
   `array`
   ```
 
-### .spec.egress[] {#_specegress}
+### .spec.egress\[\] {#_specegress}
 
 Description
 : EgressFirewallRule is a single egressfirewall rule object
@@ -77,7 +77,7 @@ Required
 | `to` | `object` | to is the target that traffic is allowed/denied to |
 | `type` | `string` | type marks this as an "Allow" or "Deny" rule |
 
-### .spec.egress[].ports {#_specegressports}
+### .spec.egress\[\].ports {#_specegressports}
 
 Description
 : ports specify what ports and protocols the rule applies to
@@ -87,7 +87,7 @@ Type
   `array`
   ```
 
-### .spec.egress[].ports[] {#_specegressports}
+### .spec.egress\[\].ports\[\] {#_specegressports}
 
 Description
 : EgressFirewallPort specifies the port to allow or deny traffic to
@@ -106,7 +106,7 @@ Required
 | `port` | `integer` | port that the traffic must match |
 | `protocol` | `string` | protocol (tcp, udp, sctp) that the traffic must match. |
 
-### .spec.egress[].to {#_specegressto}
+### .spec.egress\[\].to {#_specegressto}
 
 Description
 : to is the target that traffic is allowed/denied to
@@ -119,10 +119,10 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `cidrSelector` | `string` | cidrSelector is the CIDR range to allow/deny traffic to. If this is set, dnsName and nodeSelector must be unset. |
-| `dnsName` | `string` | dnsName is the domain name to allow/deny traffic to. If this is set, cidrSelector and nodeSelector must be unset. For a wildcard DNS name, the '**' will match only one label. Additionally, only a single '**' can be used at the beginning of the wildcard DNS name. For example, '*.example.com' will match 'sub1.example.com' but won’t match 'sub2.sub1.example.com'. |
+| `dnsName` | `string` | dnsName is the domain name to allow/deny traffic to. If this is set, cidrSelector and nodeSelector must be unset. For a wildcard DNS name, the '**' will match only one label. Additionally, only a single '**' can be used at the beginning of the wildcard DNS name. For example, '\*.example.com' will match 'sub1.example.com' but won’t match 'sub2.sub1.example.com'. |
 | `nodeSelector` | `object` | nodeSelector will allow/deny traffic to the Kubernetes node IP of selected nodes. If this is set, cidrSelector and DNSName must be unset. |
 
-### .spec.egress[].to.nodeSelector {#_specegresstonodeselector}
+### .spec.egress\[\].to.nodeSelector {#_specegresstonodeselector}
 
 Description
 : nodeSelector will allow/deny traffic to the Kubernetes node IP of selected nodes. If this is set, cidrSelector and DNSName must be unset.
@@ -136,9 +136,9 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
-### .spec.egress[].to.nodeSelector.matchExpressions {#_specegresstonodeselectormatchexpressions}
+### .spec.egress\[\].to.nodeSelector.matchExpressions {#_specegresstonodeselectormatchexpressions}
 
 Description
 : matchExpressions is a list of label selector requirements. The requirements are ANDed.
@@ -148,7 +148,7 @@ Type
   `array`
   ```
 
-### .spec.egress[].to.nodeSelector.matchExpressions[] {#_specegresstonodeselectormatchexpressions}
+### .spec.egress\[\].to.nodeSelector.matchExpressions\[\] {#_specegresstonodeselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -222,7 +222,7 @@ Description
 | 200 - OK | [`EgressFirewallList`](/docs/rest_api/objects#org-ovn-k8s-v1-EgressFirewallList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressfirewalls {#_apisk8sovnorgv1namespaces_namespace_egressfirewalls}
+### /apis/k8s.ovn.org/v1/namespaces/&#123;namespace&#125;/egressfirewalls {#_apisk8sovnorgv1namespaces_namespace_egressfirewalls}
 
 HTTP method
 : ```
@@ -290,7 +290,7 @@ Description
 | 202 - Accepted | [`EgressFirewall`](/docs/rest_api/network_apis/egressfirewall-k8s-ovn-org-v1#egressfirewall-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressfirewalls/{name} {#_apisk8sovnorgv1namespaces_namespace_egressfirewalls_name}
+### /apis/k8s.ovn.org/v1/namespaces/&#123;namespace&#125;/egressfirewalls/&#123;name&#125; {#_apisk8sovnorgv1namespaces_namespace_egressfirewalls_name}
 
 **Global path parameters**
 
@@ -394,7 +394,7 @@ Description
 | 201 - Created | [`EgressFirewall`](/docs/rest_api/network_apis/egressfirewall-k8s-ovn-org-v1#egressfirewall-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressfirewalls/{name}/status {#_apisk8sovnorgv1namespaces_namespace_egressfirewalls_name_status}
+### /apis/k8s.ovn.org/v1/namespaces/&#123;namespace&#125;/egressfirewalls/&#123;name&#125;/status {#_apisk8sovnorgv1namespaces_namespace_egressfirewalls_name_status}
 
 **Global path parameters**
 

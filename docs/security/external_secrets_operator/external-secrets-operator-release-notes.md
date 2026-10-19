@@ -28,7 +28,7 @@ The following advisories are available for the External Secrets Operator for Red
 
 :::note
 
-This release updates the NTLM library that is used by the webhook provider for `NTLM` and Neg` otiate authentication. This update modifies the initial handshake message, but the configuration settings, credentials, and secret synchronization behavior remain unchanged. Most NTLM servers are unaffected. However, webhook stores that use  `NTLM`or`Negotiate` authentication might encounter errors if a server rejects the new handshake format.
+This release updates the NTLM library that is used by the webhook provider for `NTLM` and Neg` otiate authentication. This update modifies the initial handshake message, but the configuration settings, credentials, and secret synchronization behavior remain unchanged. Most NTLM servers are unaffected. However, webhook stores that use  `NTLM`or`Negotiate&#96; authentication might encounter errors if a server rejects the new handshake format.
 
 :::
 

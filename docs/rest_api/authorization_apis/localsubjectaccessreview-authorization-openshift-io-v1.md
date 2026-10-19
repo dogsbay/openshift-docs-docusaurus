@@ -3,7 +3,7 @@ title: "LocalSubjectAccessReview [authorization.openshift.io/v1]"
 sidebar_position: 3
 ---
 
-# LocalSubjectAccessReview [authorization.openshift.io/v1] {#localsubjectaccessreview-authorization-openshift-io-v1}
+# LocalSubjectAccessReview \[authorization.openshift.io/v1\] {#localsubjectaccessreview-authorization-openshift-io-v1}
 
 <a id="localsubjectaccessreview-authorization-openshift-io-v1"></a>
 
@@ -57,7 +57,7 @@ The following API endpoints are available:
 - `/apis/authorization.openshift.io/v1/namespaces/{namespace}/localsubjectaccessreviews`
   - `POST`: create a LocalSubjectAccessReview
 
-### /apis/authorization.openshift.io/v1/namespaces/{namespace}/localsubjectaccessreviews {#_apisauthorizationopenshiftiov1namespaces_namespace_localsubjectaccessreviews}
+### /apis/authorization.openshift.io/v1/namespaces/&#123;namespace&#125;/localsubjectaccessreviews {#_apisauthorizationopenshiftiov1namespaces_namespace_localsubjectaccessreviews}
 
 **Global query parameters**
 

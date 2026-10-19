@@ -3,7 +3,7 @@ title: "OperatorPKI [network.operator.openshift.io/v1]"
 sidebar_position: 25
 ---
 
-# OperatorPKI [network.operator.openshift.io/v1] {#operatorpki-network-operator-openshift-io-v1}
+# OperatorPKI \[network.operator.openshift.io/v1\] {#operatorpki-network-operator-openshift-io-v1}
 
 <a id="operatorpki-network-operator-openshift-io-v1"></a>
 
@@ -14,18 +14,18 @@ Description
     More specifically, given an OperatorPKI with &lt;name>, the CNO will manage:
   ```
 
-  - A Secret called <name>-ca with two data keys:
+  - A Secret called &lt;name>-ca with two data keys:
   - tls.key - the private key
   - tls.crt - the CA certificate
-  - A ConfigMap called <name>-ca with a single data key:
+  - A ConfigMap called &lt;name>-ca with a single data key:
   - cabundle.crt - the CA certificate(s)
-  - A Secret called <name>-cert with two data keys:
+  - A Secret called &lt;name>-cert with two data keys:
   - tls.key - the private key
   - tls.crt - the certificate, signed by the CA
 
   The CA certificate will have a validity of 10 years, rotated after 9. The target certificate will have a validity of 6 months, rotated after 3
 
-  The CA certificate will have a CommonName of "<namespace>_<name>-ca@<timestamp>", where <timestamp> is the last rotation time.
+  The CA certificate will have a CommonName of "&lt;namespace>\_&lt;name>-ca@&lt;timestamp>", where &lt;timestamp> is the last rotation time.
 
 Type
 : ```
@@ -124,7 +124,7 @@ Description
 | 200 - OK | [`OperatorPKIList`](/docs/rest_api/objects#io-openshift-operator-network-v1-OperatorPKIList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/network.operator.openshift.io/v1/namespaces/{namespace}/operatorpkis {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_operatorpkis}
+### /apis/network.operator.openshift.io/v1/namespaces/&#123;namespace&#125;/operatorpkis {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_operatorpkis}
 
 HTTP method
 : ```
@@ -192,7 +192,7 @@ Description
 | 202 - Accepted | [`OperatorPKI`](/docs/rest_api/operator_apis/operatorpki-network-operator-openshift-io-v1#operatorpki-network-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/network.operator.openshift.io/v1/namespaces/{namespace}/operatorpkis/{name} {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_operatorpkis_name}
+### /apis/network.operator.openshift.io/v1/namespaces/&#123;namespace&#125;/operatorpkis/&#123;name&#125; {#_apisnetworkoperatoropenshiftiov1namespaces_namespace_operatorpkis_name}
 
 **Global path parameters**
 

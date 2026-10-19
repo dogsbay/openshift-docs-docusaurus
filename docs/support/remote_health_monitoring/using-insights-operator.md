@@ -229,7 +229,7 @@ Currently, Insights Operator sends the following alerts when the conditions are 
 
 - To view these alerts in the Alerting UI in the OpenShift Container Platform web console, choose one of the following methods:
   - In the **Administrator** perspective, click **Observe** → **Alerting**.
-  - In the **Developer** perspective, click **Observe** → <project_name> → **Alerts** tab.
+  - In the **Developer** perspective, click **Observe** → &lt;project_name> → **Alerts** tab.
 
 ### Disabling Insights Operator alerts {#disabling-insights-operator-alerts_using-insights-operator}
 

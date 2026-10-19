@@ -3,7 +3,7 @@ title: "PodSecurityPolicySelfSubjectReview [security.openshift.io/v1]"
 sidebar_position: 5
 ---
 
-# PodSecurityPolicySelfSubjectReview [security.openshift.io/v1] {#podsecuritypolicyselfsubjectreview-security-openshift-io-v1}
+# PodSecurityPolicySelfSubjectReview \[security.openshift.io/v1\] {#podsecuritypolicyselfsubjectreview-security-openshift-io-v1}
 
 <a id="podsecuritypolicyselfsubjectreview-security-openshift-io-v1"></a>
 
@@ -70,7 +70,7 @@ The following API endpoints are available:
 - `/apis/security.openshift.io/v1/namespaces/{namespace}/podsecuritypolicyselfsubjectreviews`
   - `POST`: create a PodSecurityPolicySelfSubjectReview
 
-### /apis/security.openshift.io/v1/namespaces/{namespace}/podsecuritypolicyselfsubjectreviews {#_apissecurityopenshiftiov1namespaces_namespace_podsecuritypolicyselfsubjectreviews}
+### /apis/security.openshift.io/v1/namespaces/&#123;namespace&#125;/podsecuritypolicyselfsubjectreviews {#_apissecurityopenshiftiov1namespaces_namespace_podsecuritypolicyselfsubjectreviews}
 
 **Global query parameters**
 

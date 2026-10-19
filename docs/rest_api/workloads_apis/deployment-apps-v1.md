@@ -3,7 +3,7 @@ title: "Deployment [apps/v1]"
 sidebar_position: 8
 ---
 
-# Deployment [apps/v1] {#deployment-apps-v1}
+# Deployment \[apps/v1\] {#deployment-apps-v1}
 
 <a id="deployment-apps-v1"></a>
 
@@ -113,7 +113,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : DeploymentCondition describes the state of a deployment at a certain point.
@@ -200,7 +200,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/deployments {#_apisappsv1namespaces_namespace_deployments}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/deployments {#_apisappsv1namespaces_namespace_deployments}
 
 HTTP method
 : ```
@@ -274,7 +274,7 @@ Description
 | 202 - Accepted | [`Deployment`](/docs/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{namespace}/deployments {#_apisappsv1watchnamespaces_namespace_deployments}
+### /apis/apps/v1/watch/namespaces/&#123;namespace&#125;/deployments {#_apisappsv1watchnamespaces_namespace_deployments}
 
 HTTP method
 : ```
@@ -293,7 +293,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/deployments/{name} {#_apisappsv1namespaces_namespace_deployments_name}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/deployments/&#123;name&#125; {#_apisappsv1namespaces_namespace_deployments_name}
 
 **Global path parameters**
 
@@ -398,7 +398,7 @@ Description
 | 201 - Created | [`Deployment`](/docs/rest_api/workloads_apis/deployment-apps-v1#deployment-apps-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/watch/namespaces/{namespace}/deployments/{name} {#_apisappsv1watchnamespaces_namespace_deployments_name}
+### /apis/apps/v1/watch/namespaces/&#123;namespace&#125;/deployments/&#123;name&#125; {#_apisappsv1watchnamespaces_namespace_deployments_name}
 
 **Global path parameters**
 
@@ -423,7 +423,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/apps/v1/namespaces/{namespace}/deployments/{name}/status {#_apisappsv1namespaces_namespace_deployments_name_status}
+### /apis/apps/v1/namespaces/&#123;namespace&#125;/deployments/&#123;name&#125;/status {#_apisappsv1namespaces_namespace_deployments_name_status}
 
 **Global path parameters**
 

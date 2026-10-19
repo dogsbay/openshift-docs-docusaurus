@@ -43,4 +43,4 @@ In RHOSP, flavors define the compute, memory, and storage capacity of computing 
 **Additional resources**
 
 - [Updating the control plane configuration](/docs/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-feat-config-update_cpmso-managing-machines)
-- [Control plane configuration options for {rh_openstack_full}](/docs/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-openstack#cpmso-config-options-openstack)
+- [Control plane configuration options for &#123;rh_openstack_full&#125;](/docs/machine_management/control_plane_machine_management/cpmso_provider_configurations/cpmso-config-options-openstack#cpmso-config-options-openstack)

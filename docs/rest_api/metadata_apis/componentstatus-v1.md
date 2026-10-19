@@ -3,7 +3,7 @@ title: "ComponentStatus [v1]"
 sidebar_position: 4
 ---
 
-# ComponentStatus [v1]
+# ComponentStatus \[v1\]
 
 <a id="componentstatus-v1"></a>
 
@@ -35,7 +35,7 @@ Type
   `array`
   ```
 
-### .conditions[] {#_conditions}
+### .conditions\[\] {#_conditions}
 
 Description
 : Information about the condition of a component.
@@ -84,7 +84,7 @@ Description
 | 200 - OK | [`ComponentStatusList`](/docs/rest_api/objects#io-k8s-api-core-v1-ComponentStatusList) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/componentstatuses/{name} {#_apiv1componentstatuses_name}
+### /api/v1/componentstatuses/&#123;name&#125; {#_apiv1componentstatuses_name}
 
 **Global path parameters**
 

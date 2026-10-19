@@ -3,7 +3,7 @@ title: "SecretList [image.openshift.io/v1]"
 sidebar_position: 11
 ---
 
-# SecretList [image.openshift.io/v1] {#secretlist-image-openshift-io-v1}
+# SecretList \[image.openshift.io/v1\] {#secretlist-image-openshift-io-v1}
 
 <a id="secretlist-image-openshift-io-v1"></a>
 
@@ -34,7 +34,7 @@ The following API endpoints are available:
 - `/apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name}/secrets`
   - `GET`: read secrets of the specified ImageStream
 
-### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name}/secrets {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_secrets}
+### /apis/image.openshift.io/v1/namespaces/&#123;namespace&#125;/imagestreams/&#123;name&#125;/secrets {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_secrets}
 
 **Global path parameters**
 

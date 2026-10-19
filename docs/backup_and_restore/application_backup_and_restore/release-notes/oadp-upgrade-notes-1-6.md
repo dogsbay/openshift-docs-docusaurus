@@ -48,7 +48,7 @@ Optimized Data Mover performance in containerized environments with new Go versi
 Changing PVC selected-node is removed
 : The Changing PVC selected-node feature, which allowed overriding the `volume.kubernetes.io/selected-node` annotation to change the node selected for a persistent volume claim (PVC) during restore, is removed and is no longer supported. You can ensure PVCs are scheduled to the correct node by using the native Kubernetes `WaitForFirstConsumer` volume binding mode instead.
 
-## Backing up the DPA configuration {#oadp-backing-up-dpa-configuration-1-6-0_oadp-upgrade-notes-1-6}
+## Back up the DPA configuration {#oadp-backing-up-dpa-configuration-1-6-0_oadp-upgrade-notes-1-6}
 
 You must back up your current `DataProtectionApplication` (DPA) configuration.
 
@@ -59,7 +59,7 @@ You must back up your current `DataProtectionApplication` (DPA) configuration.
   $ oc get dpa -n openshift-adp -o yaml > dpa.orig.backup
   ```
 
-## Upgrading the OADP Operator {#oadp-upgrading-dpa-operator-1-6-0_oadp-upgrade-notes-1-6}
+## Upgrade the OADP Operator {#oadp-upgrading-dpa-operator-1-6-0_oadp-upgrade-notes-1-6}
 
 You can upgrade the OpenShift API for Data Protection (OADP) Operator by using the following procedure.
 
@@ -80,7 +80,7 @@ Do not install OADP 1.6.0 on a OpenShift 4.21 cluster.
 2. Ensure your subscription channel for the OADP Operator is `stable`.
 3. Wait for the Operator and containers to update and restart.
 
-## Converting DPA to the new version for OADP 1.6.0 {#converting-dpa-to-the-new-version-for-oadp-1-6-0_oadp-upgrade-notes-1-6}
+## Convert DPA to the new version for OADP 1.6.0 {#converting-dpa-to-the-new-version-for-oadp-1-6-0_oadp-upgrade-notes-1-6}
 
 OpenShift API for Data Protection (OADP) 1.5 is not supported on OpenShift 4.22. You can convert OADP to the new 1.6 version by using the new `spec.configuration.nodeAgent` field and its sub-fields.
 
@@ -113,7 +113,7 @@ OpenShift API for Data Protection (OADP) 1.5 is not supported on OpenShift 4.22.
    ...
    ```
 
-## Verifying the upgrade {#verifying-upgrade-1-6-0_oadp-upgrade-notes-1-6}
+## Verify the upgrade {#verifying-upgrade-1-6-0_oadp-upgrade-notes-1-6}
 
 You can verify the OpenShift API for Data Protection (OADP) upgrade by using the following procedure.
 

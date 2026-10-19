@@ -3,7 +3,7 @@ title: "ConsoleCLIDownload [console.openshift.io/v1]"
 sidebar_position: 2
 ---
 
-# ConsoleCLIDownload [console.openshift.io/v1] {#consoleclidownload-console-openshift-io-v1}
+# ConsoleCLIDownload \[console.openshift.io/v1\] {#consoleclidownload-console-openshift-io-v1}
 
 <a id="consoleclidownload-console-openshift-io-v1"></a>
 
@@ -61,7 +61,7 @@ Type
   `array`
   ```
 
-### .spec.links[] {#_speclinks}
+### .spec.links\[\] {#_speclinks}
 
 Description
 
@@ -164,7 +164,7 @@ Description
 | 202 - Accepted | [`ConsoleCLIDownload`](/docs/rest_api/console_apis/consoleclidownload-console-openshift-io-v1#consoleclidownload-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consoleclidownloads/{name} {#_apisconsoleopenshiftiov1consoleclidownloads_name}
+### /apis/console.openshift.io/v1/consoleclidownloads/&#123;name&#125; {#_apisconsoleopenshiftiov1consoleclidownloads_name}
 
 **Global path parameters**
 
@@ -268,7 +268,7 @@ Description
 | 201 - Created | [`ConsoleCLIDownload`](/docs/rest_api/console_apis/consoleclidownload-console-openshift-io-v1#consoleclidownload-console-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/console.openshift.io/v1/consoleclidownloads/{name}/status {#_apisconsoleopenshiftiov1consoleclidownloads_name_status}
+### /apis/console.openshift.io/v1/consoleclidownloads/&#123;name&#125;/status {#_apisconsoleopenshiftiov1consoleclidownloads_name_status}
 
 **Global path parameters**
 

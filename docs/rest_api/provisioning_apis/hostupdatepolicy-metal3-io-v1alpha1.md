@@ -3,7 +3,7 @@ title: "HostUpdatePolicy [metal3.io/v1alpha1]"
 sidebar_position: 9
 ---
 
-# HostUpdatePolicy [metal3.io/v1alpha1] {#hostupdatepolicy-metal3-io-v1alpha1}
+# HostUpdatePolicy \[metal3.io/v1alpha1\] {#hostupdatepolicy-metal3-io-v1alpha1}
 
 <a id="hostupdatepolicy-metal3-io-v1alpha1"></a>
 
@@ -85,7 +85,7 @@ Description
 | 200 - OK | [`HostUpdatePolicyList`](/docs/rest_api/objects#io-metal3-v1alpha1-HostUpdatePolicyList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostupdatepolicies {#_apismetal3iov1alpha1namespaces_namespace_hostupdatepolicies}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/hostupdatepolicies {#_apismetal3iov1alpha1namespaces_namespace_hostupdatepolicies}
 
 HTTP method
 : ```
@@ -153,7 +153,7 @@ Description
 | 202 - Accepted | [`HostUpdatePolicy`](/docs/rest_api/provisioning_apis/hostupdatepolicy-metal3-io-v1alpha1#hostupdatepolicy-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/hostupdatepolicies/{name} {#_apismetal3iov1alpha1namespaces_namespace_hostupdatepolicies_name}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/hostupdatepolicies/&#123;name&#125; {#_apismetal3iov1alpha1namespaces_namespace_hostupdatepolicies_name}
 
 **Global path parameters**
 

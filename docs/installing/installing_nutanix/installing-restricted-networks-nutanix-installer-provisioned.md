@@ -260,7 +260,7 @@ You can customize the OpenShift Container Platform cluster you install on Nutani
 
    :::note
 
-   If you are installing a three-node cluster, be sure to set the `compute.replicas` parameter to `0`. This ensures that cluster’s control planes are schedulable. For more information, see "Installing a three-node cluster on {platform}".
+   If you are installing a three-node cluster, be sure to set the `compute.replicas` parameter to `0`. This ensures that cluster’s control planes are schedulable. For more information, see "Installing a three-node cluster on &#123;platform&#125;".
 
    :::
 5. Back up the `install-config.yaml` file so that you can use it to install multiple clusters.
@@ -601,7 +601,7 @@ Production environments can deny direct access to the internet and instead have 
 
    :::
 
-## Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-restricted-networks-nutanix-installer-provisioned}
+## Install the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-restricted-networks-nutanix-installer-provisioned}
 
 To manage your cluster and deploy applications from the command line on Linux, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -637,7 +637,7 @@ Download and install the new version of `oc`.
   $ oc <command>
   ```
 
-## Installing the OpenShift CLI on Windows {#cli-installing-cli-windows_installing-restricted-networks-nutanix-installer-provisioned}
+## Install the OpenShift CLI on Windows {#cli-installing-cli-windows_installing-restricted-networks-nutanix-installer-provisioned}
 
 To manage your cluster and deploy applications from the command line on Windows, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -669,7 +669,7 @@ Download and install the new version of `oc`.
   C:\> oc <command>
   ```
 
-## Installing the OpenShift CLI on macOS {#cli-installing-cli-macos_installing-restricted-networks-nutanix-installer-provisioned}
+## Install the OpenShift CLI on macOS {#cli-installing-cli-macos_installing-restricted-networks-nutanix-installer-provisioned}
 
 To manage your cluster and deploy applications from the command line on macOS, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 

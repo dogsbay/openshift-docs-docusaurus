@@ -15,7 +15,7 @@ The volume backup artifacts are deleted at different times depending on the back
 - Container Storage Interface (CSI): The artifacts are deleted immediately when the backup is deleted.
 - Kopia: The artifacts are deleted after three full maintenance cycles of the Kopia repository, after the backup is deleted.
 
-## Deleting a backup by creating a DeleteBackupRequest CR {#oadp-deleting-backups-using-oc_deleting-backups}
+## Delete a backup by creating a DeleteBackupRequest CR {#oadp-deleting-backups-using-oc_deleting-backups}
 
 Delete a backup by creating a `DeleteBackupRequest` custom resource (CR). This helps you to remove specific backups and their associated volume artifacts from storage.
 
@@ -42,7 +42,7 @@ Delete a backup by creating a `DeleteBackupRequest` custom resource (CR). This h
    $ oc apply -f <deletebackuprequest_cr_filename>
    ```
 
-## Deleting a backup by using the OADP CLI {#oadp-deleting-backups-using-velero_deleting-backups}
+## Delete a backup by using the OADP CLI {#oadp-deleting-backups-using-velero_deleting-backups}
 
 Delete a backup by using the OADP CLI to run the `oc oadp backup delete` command. This helps you to quickly remove backups and their associated volume artifacts from storage.
 
@@ -95,7 +95,7 @@ Three successful executions of a full maintenance cycle are required for the obj
 
 :::
 
-## Deleting a backup repository {#oadp-deleting-backup-repository_deleting-backups}
+## Delete a backup repository {#oadp-deleting-backup-repository_deleting-backups}
 
 Delete the `backuprepository` custom resource (CR) to complete the backup deletion process. This helps you to ensure that all backup metadata and artifacts are fully removed from storage.
 

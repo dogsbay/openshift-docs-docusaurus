@@ -40,7 +40,7 @@ If the cluster has any public subnets, load balancer services created by adminis
 To deploy a private cluster, you must:
 
 - Use existing networking that meets your requirements. Your cluster resources might be shared between other clusters on the network.
-- Deploy from a machine that has access to: ** The API services for the cloud to which you provision. ** The hosts on the network that you provision. ** The internet to obtain installation media.
+- Deploy from a machine that has access to: \*\* The API services for the cloud to which you provision. \*\* The hosts on the network that you provision. \*\* The internet to obtain installation media.
 
 ### Private clusters in AWS {#private-clusters-about-aws_installing-aws-private}
 

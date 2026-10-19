@@ -3,7 +3,7 @@ title: "Network [config.openshift.io/v1]"
 sidebar_position: 20
 ---
 
-# Network [config.openshift.io/v1] {#network-config-openshift-io-v1}
+# Network \[config.openshift.io/v1\] {#network-config-openshift-io-v1}
 
 <a id="network-config-openshift-io-v1"></a>
 
@@ -60,7 +60,7 @@ Type
   `array`
   ```
 
-### .spec.clusterNetwork[] {#_specclusternetwork}
+### .spec.clusterNetwork\[\] {#_specclusternetwork}
 
 Description
 : ClusterNetworkEntry is a contiguous block of IP addresses from which pod IPs are allocated.
@@ -139,7 +139,7 @@ Type
 | --- | --- | --- |
 | `nodeSelector` | `object (string)` | nodeSelector is the node selector applied to network diagnostics components<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `kubernetes.io/os: linux`. |
 | `tolerations` | `array` | tolerations is a list of tolerations applied to network diagnostics components<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is an empty list. |
-| `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>. |
+| `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>. |
 
 ### .spec.networkDiagnostics.sourcePlacement.tolerations {#_specnetworkdiagnosticssourceplacementtolerations}
 
@@ -153,10 +153,10 @@ Type
   `array`
   ```
 
-### .spec.networkDiagnostics.sourcePlacement.tolerations[] {#_specnetworkdiagnosticssourceplacementtolerations}
+### .spec.networkDiagnostics.sourcePlacement.tolerations\[\] {#_specnetworkdiagnosticssourceplacementtolerations}
 
 Description
-: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+: The pod this Toleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>.
 
 Type
 : ```
@@ -187,7 +187,7 @@ Type
 | --- | --- | --- |
 | `nodeSelector` | `object (string)` | nodeSelector is the node selector applied to network diagnostics components<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `kubernetes.io/os: linux`. |
 | `tolerations` | `array` | tolerations is a list of tolerations applied to network diagnostics components<br>When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults. These defaults are subject to change over time. The current default is `- operator: "Exists"` which means that all taints are tolerated. |
-| `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>. |
+| `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>. |
 
 ### .spec.networkDiagnostics.targetPlacement.tolerations {#_specnetworkdiagnosticstargetplacementtolerations}
 
@@ -201,10 +201,10 @@ Type
   `array`
   ```
 
-### .spec.networkDiagnostics.targetPlacement.tolerations[] {#_specnetworkdiagnosticstargetplacementtolerations}
+### .spec.networkDiagnostics.targetPlacement.tolerations\[\] {#_specnetworkdiagnosticstargetplacementtolerations}
 
 Description
-: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+: The pod this Toleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>.
 
 Type
 : ```
@@ -250,7 +250,7 @@ Type
   `array`
   ```
 
-### .status.clusterNetwork[] {#_statusclusternetwork}
+### .status.clusterNetwork\[\] {#_statusclusternetwork}
 
 Description
 : ClusterNetworkEntry is a contiguous block of IP addresses from which pod IPs are allocated.
@@ -275,7 +275,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -296,7 +296,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -443,7 +443,7 @@ Description
 | 202 - Accepted | [`Network`](/docs/rest_api/config_apis/network-config-openshift-io-v1#network-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/networks/{name} {#_apisconfigopenshiftiov1networks_name}
+### /apis/config.openshift.io/v1/networks/&#123;name&#125; {#_apisconfigopenshiftiov1networks_name}
 
 **Global path parameters**
 

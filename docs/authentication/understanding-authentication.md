@@ -73,7 +73,7 @@ The following OAuth clients are automatically created when starting the OpenShif
 
 | OAuth client | Usage |
 | --- | --- |
-| `openshift-browser-client` | Requests tokens at `<namespace_route>/oauth/token/request` with a user-agent that can handle interactive logins. <sup>[1]</sup> |
+| `openshift-browser-client` | Requests tokens at `<namespace_route>/oauth/token/request` with a user-agent that can handle interactive logins. <sup>\[1\]</sup> |
 | `openshift-challenging-client` | Requests tokens with a user-agent that can handle `WWW-Authenticate` challenges. |
 
 1. `<namespace_route>` refers to the namespace route. This is found by running the following command:

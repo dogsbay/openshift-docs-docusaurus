@@ -67,7 +67,7 @@ Using the OpenShift Container Platform console, you can explore the following qu
 
 :::note
 
-The URL for the console is https://<OpenShift Console FQDN>/monitoring/query-browser. You can get the Openshift Console FQDN by running the following command:
+The URL for the console is https://&lt;OpenShift Console FQDN>/monitoring/query-browser. You can get the Openshift Console FQDN by running the following command:
 
 ```terminal
 $ oc get routes -n openshift-console console -o jsonpath='{.status.ingress[0].host}'
@@ -422,6 +422,6 @@ By default, OpenShift Container Platform does not collect metrics for applicatio
 
 **Additional resources**
 
-- [ServiceMonitor[monitoring.coreos.com/v1](/docs/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1#servicemonitor-monitoring-coreos-com-v1)]
+- \[ServiceMonitor[monitoring.coreos.com/v1](/docs/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1#servicemonitor-monitoring-coreos-com-v1)\]
 - [Enabling monitoring for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)
 - [Managing alerting rules for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/managing-alerts-as-a-developer#managing-alerting-rules-for-user-defined-projects-uwm_managing-alerts-as-a-developer)

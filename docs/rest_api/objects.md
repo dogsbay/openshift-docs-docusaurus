@@ -1640,7 +1640,7 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the environment variable. May consist of any printable ASCII characters except '='. |
-| `value` | `string` | Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". |
+| `value` | `string` | Variable references &#36;(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double &#36;&#36; are reduced to a single &#36;, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". |
 | `valueFrom` | `EnvVarSource` | Source for the environment variable’s value. Cannot be used if value is not empty. |
 
 ## io.k8s.api.core.v1.EventList schema {#io-k8s-api-core-v1-EventList}
@@ -1822,7 +1822,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -1940,8 +1940,8 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `accessModes` | `array (string)` | accessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1 |
-| `allocatedResourceStatuses` | `object (string)` | allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: 	* Un-prefixed keys: 		- storage - the capacity of the volume. 	* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.<br>ClaimResourceStatus can be in any of following states: 	- ControllerResizeInProgress: 		State set when resize controller starts resizing the volume in control-plane. 	- ControllerResizeFailed: 		State set when resize has failed in resize controller with a terminal error. 	- NodeResizePending: 		State set when resize controller has finished resizing the volume but further resizing of 		volume is needed on the node. 	- NodeResizeInProgress: 		State set when kubelet starts resizing the volume. 	- NodeResizeFailed: 		State set when resizing has failed in kubelet with a terminal error. Transient errors don’t set 		NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: 	- pvc.status.allocatedResourceStatus['storage'] = "ControllerResizeInProgress"      - pvc.status.allocatedResourceStatus['storage'] = "ControllerResizeFailed"      - pvc.status.allocatedResourceStatus['storage'] = "NodeResizePending"      - pvc.status.allocatedResourceStatus['storage'] = "NodeResizeInProgress"      - pvc.status.allocatedResourceStatus['storage'] = "NodeResizeFailed" When this field is not set, it means that no resize operation is in progress for the given PVC.<br>A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
-| `allocatedResources` | [`object (Quantity)`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: 	* Un-prefixed keys: 		- storage - the capacity of the volume. 	* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.<br>Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.<br>A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
+| `allocatedResourceStatuses` | `object (string)` | allocatedResourceStatuses stores status of resource being resized for the given PVC. Key names follow standard Kubernetes label syntax. Valid values are either: 	\* Un-prefixed keys: 		- storage - the capacity of the volume. 	\* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.<br>ClaimResourceStatus can be in any of following states: 	- ControllerResizeInProgress: 		State set when resize controller starts resizing the volume in control-plane. 	- ControllerResizeFailed: 		State set when resize has failed in resize controller with a terminal error. 	- NodeResizePending: 		State set when resize controller has finished resizing the volume but further resizing of 		volume is needed on the node. 	- NodeResizeInProgress: 		State set when kubelet starts resizing the volume. 	- NodeResizeFailed: 		State set when resizing has failed in kubelet with a terminal error. Transient errors don’t set 		NodeResizeFailed. For example: if expanding a PVC for more capacity - this field can be one of the following states: 	- pvc.status.allocatedResourceStatus\['storage'\] = "ControllerResizeInProgress"      - pvc.status.allocatedResourceStatus\['storage'\] = "ControllerResizeFailed"      - pvc.status.allocatedResourceStatus\['storage'\] = "NodeResizePending"      - pvc.status.allocatedResourceStatus\['storage'\] = "NodeResizeInProgress"      - pvc.status.allocatedResourceStatus\['storage'\] = "NodeResizeFailed" When this field is not set, it means that no resize operation is in progress for the given PVC.<br>A controller that receives PVC update with previously unknown resourceName or ClaimResourceStatus should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
+| `allocatedResources` | [`object (Quantity)`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | allocatedResources tracks the resources allocated to a PVC including its capacity. Key names follow standard Kubernetes label syntax. Valid values are either: 	\* Un-prefixed keys: 		- storage - the capacity of the volume. 	\* Custom resources must use implementation-defined prefixed names such as "example.com/my-custom-resource" Apart from above values - keys that are unprefixed or have kubernetes.io prefix are considered reserved and hence may not be used.<br>Capacity reported here may be larger than the actual capacity when a volume expansion operation is requested. For storage quota, the larger value from allocatedResources and PVC.spec.resources is used. If allocatedResources is not set, PVC.spec.resources alone is used for quota calculation. If a volume expansion capacity request is lowered, allocatedResources is only lowered if there are no expansion operations in progress and if the actual volume capacity is equal or lower than the requested capacity.<br>A controller that receives PVC update with previously unknown resourceName should ignore the update for the purpose it was designed. For example - a controller that only is responsible for resizing capacity of the volume, should ignore PVC updates that change other valid resources associated with PVC. |
 | `capacity` | [`object (Quantity)`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-api-resource-Quantity) | capacity represents the actual resources of the underlying volume. |
 | `conditions` | `array` | conditions is the current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'Resizing'. |
 | `conditions[]` | `object` | PersistentVolumeClaimCondition contains details about state of pvc |
@@ -1961,7 +1961,7 @@ Type
 
 Description
 
-**.status.conditions[]**
+**.status.conditions\[\]**
 : PersistentVolumeClaimCondition contains details about state of pvc
 
 Type
@@ -2075,7 +2075,7 @@ Type
 | `hostPath` | `HostPathVolumeSource` | hostPath represents a directory on the host. Provisioned by a developer or tester. This is useful for single-node development and testing only! On-host storage is not supported in any way and WILL NOT WORK in a multi-node cluster. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath |
 | `iscsi` | `ISCSIPersistentVolumeSource` | iscsi represents an ISCSI Disk resource that is attached to a kubelet’s host machine and then exposed to the pod. Provisioned by an admin. |
 | `local` | `LocalVolumeSource` | local represents directly-attached storage with node affinity |
-| `mountOptions` | `array (string)` | mountOptions is the list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options |
+| `mountOptions` | `array (string)` | mountOptions is the list of mount options, e.g. \["ro", "soft"\]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options |
 | `nfs` | `NFSVolumeSource` | nfs represents an NFS mount on the host. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs |
 | `nodeAffinity` | `VolumeNodeAffinity` | nodeAffinity defines constraints that limit what nodes this volume can be accessed from. This field influences the scheduling of pods that use this volume. This field is mutable if MutablePVNodeAffinity feature gate is enabled. |
 | `persistentVolumeReclaimPolicy` | `string` | persistentVolumeReclaimPolicy defines what happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming<br>Possible enum values:  - `"Delete"` means the volume will be deleted from Kubernetes on release from its claim. The volume plugin must support Deletion.  - `"Recycle"` means the volume will be recycled back into the pool of unbound persistent volumes on release from its claim. The volume plugin must support Recycling.  - `"Retain"` means the volume will be left in its current phase (Released) for manual reclamation by the administrator. The default policy is Retain. |
@@ -2263,7 +2263,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |
-| `data` | `object (string)` | Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4 |
+| `data` | `object (string)` | Data contains the secret data. Each key must consist of alphanumeric characters, '-', '\_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4 |
 | `immutable` | `boolean` | Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil. |
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
@@ -2360,7 +2360,7 @@ Required
 ## io.k8s.api.core.v1.Toleration schema {#io-k8s-api-core-v1-Toleration}
 
 Description
-: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+: The pod this Toleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>.
 
 Type
 : ```
@@ -3041,8 +3041,8 @@ Type
 | --- | --- | --- |
 | `$ref` | `string` |  |
 | `$schema` | `string` |  |
-| `additionalItems` | `` |  |
-| `additionalProperties` | `` |  |
+| `additionalItems` | &#96;&#96; |  |
+| `additionalProperties` | &#96;&#96; |  |
 | `allOf` | [`array (undefined)`](/docs/rest_api/objects#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |  |
 | `anyOf` | [`array (undefined)`](/docs/rest_api/objects#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |  |
 | `default` | `JSON` | default is a default value for undefined object fields. Defaulting is a beta feature under the CustomResourceDefaulting feature gate. Defaulting requires spec.preserveUnknownFields to be false. |
@@ -3054,9 +3054,9 @@ Type
 | `exclusiveMaximum` | `boolean` |  |
 | `exclusiveMinimum` | `boolean` |  |
 | `externalDocs` | `ExternalDocumentation` |  |
-| `format` | `string` | format is an OpenAPI v3 format string. Unknown formats are ignored. The following formats are validated:<br>- bsonobjectid: a bson object ID, i.e. a 24 characters hex string - uri: an URI as parsed by Golang net/url.ParseRequestURI - email: an email address as parsed by Golang net/mail.ParseAddress - hostname: a valid representation for an Internet host name, as defined by RFC 1034, section 3.1 [RFC1034]. - ipv4: an IPv4 IP as parsed by Golang net.ParseIP - ipv6: an IPv6 IP as parsed by Golang net.ParseIP - cidr: a CIDR as parsed by Golang net.ParseCIDR - mac: a MAC address as parsed by Golang net.ParseMAC - uuid: an UUID that allows uppercase defined by the regex (?i)[^1]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}$ - uuid3: an UUID3 that allows uppercase defined by the regex (?i)[^2]{8}-?[0-9a-f]{4}-?3[0-9a-f]{3}-?[0-9a-f]{4}-?[0-9a-f]{12}$ - uuid4: an UUID4 that allows uppercase defined by the regex (?i)[^3]{8}-?[0-9a-f]{4}-?4[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$ - uuid5: an UUID5 that allows uppercase defined by the regex (?i)[^4]{8}-?[0-9a-f]{4}-?5[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$ - isbn: an ISBN10 or ISBN13 number string like "0321751043" or "978-0321751041" - isbn10: an ISBN10 number string like "0321751043" - isbn13: an ISBN13 number string like "978-0321751041" - creditcard: a credit card number defined by the regex ^(?:4[0-9]{12}(?:[0-9]{3})?\|5[1-5][0-9]{14}\|6(?:011\|5[0-9][0-9])[0-9]{12}\|3[47][0-9]{13}\|3(?:0[0-5]\|[68][0-9])[0-9]{11}\|(?:2131\|1800\|35\d{3})\d{11})$ with any non digit characters mixed in - ssn: a U.S. social security number following the regex ^\d{3}[- ]?\d{2}[- ]?\d{4}$ - hexcolor: an hexadecimal color code like "<mark>FFFFFF: following the regex ^</mark>?([0-9a-fA-F]{3}\|[0-9a-fA-F]{6})$ - rgbcolor: an RGB color code like rgb like "rgb(255,255,2559" - byte: base64 encoded binary data - password: any kind of string - date: a date string like "2006-01-02" as defined by full-date in RFC3339 - duration: a duration string like "22 ns" as parsed by Golang time.ParseDuration or compatible with Scala duration format - datetime: a date time string like "2014-12-15T19:30:20.000Z" as defined by date-time in RFC3339. |
+| `format` | `string` | format is an OpenAPI v3 format string. Unknown formats are ignored. The following formats are validated:<br>- bsonobjectid: a bson object ID, i.e. a 24 characters hex string - uri: an URI as parsed by Golang net/url.ParseRequestURI - email: an email address as parsed by Golang net/mail.ParseAddress - hostname: a valid representation for an Internet host name, as defined by RFC 1034, section 3.1 \[RFC1034\]. - ipv4: an IPv4 IP as parsed by Golang net.ParseIP - ipv6: an IPv6 IP as parsed by Golang net.ParseIP - cidr: a CIDR as parsed by Golang net.ParseCIDR - mac: a MAC address as parsed by Golang net.ParseMAC - uuid: an UUID that allows uppercase defined by the regex (?i)[^1]&#123;8&#125;-?\[0-9a-f\]&#123;4&#125;-?\[0-9a-f\]&#123;4&#125;-?\[0-9a-f\]&#123;4&#125;-?\[0-9a-f\]&#123;12&#125;&#36; - uuid3: an UUID3 that allows uppercase defined by the regex (?i)[^2]&#123;8&#125;-?\[0-9a-f\]&#123;4&#125;-?3\[0-9a-f\]&#123;3&#125;-?\[0-9a-f\]&#123;4&#125;-?\[0-9a-f\]&#123;12&#125;&#36; - uuid4: an UUID4 that allows uppercase defined by the regex (?i)[^3]&#123;8&#125;-?\[0-9a-f\]&#123;4&#125;-?4\[0-9a-f\]&#123;3&#125;-?\[89ab\]\[0-9a-f\]&#123;3&#125;-?\[0-9a-f\]&#123;12&#125;&#36; - uuid5: an UUID5 that allows uppercase defined by the regex (?i)[^4]&#123;8&#125;-?\[0-9a-f\]&#123;4&#125;-?5\[0-9a-f\]&#123;3&#125;-?\[89ab\]\[0-9a-f\]&#123;3&#125;-?\[0-9a-f\]&#123;12&#125;&#36; - isbn: an ISBN10 or ISBN13 number string like "0321751043" or "978-0321751041" - isbn10: an ISBN10 number string like "0321751043" - isbn13: an ISBN13 number string like "978-0321751041" - creditcard: a credit card number defined by the regex ^(?:4\[0-9\]&#123;12&#125;(?:\[0-9\]&#123;3&#125;)?\|5\[1-5\]\[0-9\]&#123;14&#125;\|6(?:011\|5\[0-9\]\[0-9\])\[0-9\]&#123;12&#125;\|3\[47\]\[0-9\]&#123;13&#125;\|3(?:0\[0-5\]\|\[68\]\[0-9\])\[0-9\]&#123;11&#125;\|(?:2131\|1800\|35\\d&#123;3&#125;)\\d&#123;11&#125;)&#36; with any non digit characters mixed in - ssn: a U.S. social security number following the regex ^\\d&#123;3&#125;\[- \]?\\d&#123;2&#125;\[- \]?\\d&#123;4&#125;&#36; - hexcolor: an hexadecimal color code like "<mark>FFFFFF: following the regex ^</mark>?(\[0-9a-fA-F\]&#123;3&#125;\|\[0-9a-fA-F\]&#123;6&#125;)&#36; - rgbcolor: an RGB color code like rgb like "rgb(255,255,2559" - byte: base64 encoded binary data - password: any kind of string - date: a date string like "2006-01-02" as defined by full-date in RFC3339 - duration: a duration string like "22 ns" as parsed by Golang time.ParseDuration or compatible with Scala duration format - datetime: a date time string like "2014-12-15T19:30:20.000Z" as defined by date-time in RFC3339. |
 | `id` | `string` |  |
-| `items` | `` |  |
+| `items` | &#96;&#96; |  |
 | `maxItems` | `integer` |  |
 | `maxLength` | `integer` |  |
 | `maxProperties` | `integer` |  |
@@ -3066,7 +3066,7 @@ Type
 | `minProperties` | `integer` |  |
 | `minimum` | `number` |  |
 | `multipleOf` | `number` |  |
-| `not` | [``](/docs/rest_api/objects#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |  |
+| `not` | [&#96;&#96;](/docs/rest_api/objects#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |  |
 | `nullable` | `boolean` |  |
 | `oneOf` | [`array (undefined)`](/docs/rest_api/objects#io-k8s-apiextensions-apiserver-pkg-apis-apiextensions-v1-JSONSchemaProps) |  |
 | `pattern` | `string` |  |
@@ -3097,19 +3097,19 @@ Description
     (Note that &lt;suffix> may be empty, from the "" case in &lt;decimalSI>.)
   ```
 
-  <digit>           ::= 0 | 1 | ... | 9 <digits>          ::= <digit> | <digit><digits> <number>          ::= <digits> | <digits>.<digits> | <digits>. | .<digits> <sign>            ::= "+" | "-" <signedNumber>    ::= <number> | <sign><number> <suffix>          ::= <binarySI> | <decimalExponent> | <decimalSI> <binarySI>        ::= Ki | Mi | Gi | Ti | Pi | Ei
+  &lt;digit>           ::= 0 | 1 | ... | 9 &lt;digits>          ::= &lt;digit> | &lt;digit>&lt;digits> &lt;number>          ::= &lt;digits> | &lt;digits>.&lt;digits> | &lt;digits>. | .&lt;digits> &lt;sign>            ::= "+" | "-" &lt;signedNumber>    ::= &lt;number> | &lt;sign>&lt;number> &lt;suffix>          ::= &lt;binarySI> | &lt;decimalExponent> | &lt;decimalSI> &lt;binarySI>        ::= Ki | Mi | Gi | Ti | Pi | Ei
 
   ```
     (International System of units; See: http://physics.nist.gov/cuu/Units/binary.html)
   ```
 
-  <decimalSI>       ::= m | "" | k | M | G | T | P | E
+  &lt;decimalSI>       ::= m | "" | k | M | G | T | P | E
 
   ```
     (Note that 1024 = 1Ki but 1000 = 1k; I didn’t choose the capitalization.)
   ```
 
-  <decimalExponent> ::= "e" <signedNumber> | "E" <signedNumber>
+  &lt;decimalExponent> ::= "e" &lt;signedNumber> | "E" &lt;signedNumber>
 
   No matter which of the three exponent forms is used, no quantity may represent a number greater than 2^63-1 in magnitude, nor may it have more than 3 decimal places. Numbers larger or more precise will be capped or rounded up. (E.g.: 0.1m will rounded up to 1m.) This may be extended in the future if we require larger or smaller quantities.
 
@@ -3159,7 +3159,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | [`Time`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-Time) | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -3257,7 +3257,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `matchExpressions` | [`array (LabelSelectorRequirement)`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelectorRequirement) | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ## io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelectorRequirement schema {#io-k8s-apimachinery-pkg-apis-meta-v1-LabelSelectorRequirement}
 
@@ -3284,7 +3284,7 @@ Required
 ## io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta schema {#io-k8s-apimachinery-pkg-apis-meta-v1-ListMeta}
 
 Description
-: ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.
+: ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of &#123;ObjectMeta, ListMeta&#125;.
 
 Type
 : ```
@@ -3414,7 +3414,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `object` | [`RawExtension`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-runtime-RawExtension) | Object is:  * If Type is Added or Modified: the new state of the object.  * If Type is Deleted: the state of the object immediately before deletion.  * If Type is Error: *Status is recommended; other types may make sense    depending on context. |
+| `object` | [`RawExtension`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-runtime-RawExtension) | Object is:  \* If Type is Added or Modified: the new state of the object.  \* If Type is Deleted: the state of the object immediately before deletion.  \* If Type is Error: \*Status is recommended; other types may make sense    depending on context. |
 | `type` | `string` |  |
 
 ## io.k8s.apimachinery.pkg.runtime.RawExtension schema {#io-k8s-apimachinery-pkg-runtime-RawExtension}

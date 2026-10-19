@@ -51,8 +51,8 @@ The following maximums apply to objects defined in OpenShift Virtualization.
 | --- | --- | --- |
 | Number of attached PVs per node | N/A | CSI storage provider dependent |
 | Maximum PV size | N/A | CSI storage provider dependent |
-| Hosts | 500 hosts (100 or fewer recommended) <sup>[1]</sup> | Same as OpenShift Container Platform |
-| Defined VMs | 10,000 VMs <sup>[2]</sup> | Same as OpenShift Container Platform |
+| Hosts | 500 hosts (100 or fewer recommended) <sup>\[1\]</sup> | Same as OpenShift Container Platform |
+| Defined VMs | 10,000 VMs <sup>\[2\]</sup> | Same as OpenShift Container Platform |
 
 1. If you use more than 100 nodes, consider using Red Hat Advanced Cluster Management (RHACM) to manage multiple clusters instead of scaling out a single control plane. Larger clusters add complexity, require longer updates, and depending on node size and total object density, they can increase control plane stress.
    Using multiple clusters can be beneficial in areas like per-cluster isolation and high availability.

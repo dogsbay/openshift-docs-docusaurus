@@ -91,7 +91,7 @@ To schedule a workload on specific nodes, use label selectors in the `Pod` custo
    <dt><code>spec.runtimeClassName</code></dt>
    <dd><code>runtimeClassName</code> must match the name of the performance profile configured in the cluster.</dd>
    </dl>
-2. Enter the pod `runtimeClassName` in the form performance-<profile_name>, where <profile_name> is the `name` from the `PerformanceProfile` YAML. In the previous YAML example, the `name` is `performance-dynamic-low-latency-profile`.
+2. Enter the pod `runtimeClassName` in the form performance-&lt;profile_name>, where &lt;profile_name> is the `name` from the `PerformanceProfile` YAML. In the previous YAML example, the `name` is `performance-dynamic-low-latency-profile`.
 3. Ensure the pod is running correctly. Status should be `running`, and the correct `cnf-worker` node should be set.
    ```terminal
    $ oc get pod -o wide

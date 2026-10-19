@@ -3,12 +3,12 @@ title: "ServiceAccount [v1]"
 sidebar_position: 10
 ---
 
-# ServiceAccount [v1]
+# ServiceAccount \[v1\]
 
 <a id="serviceaccount-v1"></a>
 
 Description
-: ServiceAccount binds together: * a name, understood by users, and perhaps by peripheral systems, for an identity * a principal that can be authenticated and authorized * a set of secrets
+: ServiceAccount binds together: \* a name, understood by users, and perhaps by peripheral systems, for an identity \* a principal that can be authenticated and authorized \* a set of secrets
 
 Type
 : ```
@@ -38,7 +38,7 @@ Type
   `array`
   ```
 
-### .imagePullSecrets[] {#_imagepullsecrets}
+### .imagePullSecrets\[\] {#_imagepullsecrets}
 
 Description
 : LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.
@@ -62,7 +62,7 @@ Type
   `array`
   ```
 
-### .secrets[] {#_secrets}
+### .secrets\[\] {#_secrets}
 
 Description
 : ObjectReference contains enough information to let you inspect or modify the referred object.
@@ -75,7 +75,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `apiVersion` | `string` | API version of the referent. |
-| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
+| `fieldPath` | `string` | If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers\[2\]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers&#123;name&#125;" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers\[2\]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object. |
 | `kind` | `string` | Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `name` | `string` | Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `namespace` | `string` | Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/ |
@@ -142,7 +142,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/serviceaccounts {#_apiv1namespaces_namespace_serviceaccounts}
+### /api/v1/namespaces/&#123;namespace&#125;/serviceaccounts {#_apiv1namespaces_namespace_serviceaccounts}
 
 HTTP method
 : ```
@@ -216,7 +216,7 @@ Description
 | 202 - Accepted | [`ServiceAccount`](/docs/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{namespace}/serviceaccounts {#_apiv1watchnamespaces_namespace_serviceaccounts}
+### /api/v1/watch/namespaces/&#123;namespace&#125;/serviceaccounts {#_apiv1watchnamespaces_namespace_serviceaccounts}
 
 HTTP method
 : ```
@@ -235,7 +235,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{namespace}/serviceaccounts/{name} {#_apiv1namespaces_namespace_serviceaccounts_name}
+### /api/v1/namespaces/&#123;namespace&#125;/serviceaccounts/&#123;name&#125; {#_apiv1namespaces_namespace_serviceaccounts_name}
 
 **Global path parameters**
 
@@ -340,7 +340,7 @@ Description
 | 201 - Created | [`ServiceAccount`](/docs/rest_api/security_apis/serviceaccount-v1#serviceaccount-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{namespace}/serviceaccounts/{name} {#_apiv1watchnamespaces_namespace_serviceaccounts_name}
+### /api/v1/watch/namespaces/&#123;namespace&#125;/serviceaccounts/&#123;name&#125; {#_apiv1watchnamespaces_namespace_serviceaccounts_name}
 
 **Global path parameters**
 

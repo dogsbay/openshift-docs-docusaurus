@@ -3,7 +3,7 @@ title: "Console [config.openshift.io/v1]"
 sidebar_position: 8
 ---
 
-# Console [config.openshift.io/v1] {#console-config-openshift-io-v1}
+# Console \[config.openshift.io/v1\] {#console-config-openshift-io-v1}
 
 <a id="console-config-openshift-io-v1"></a>
 
@@ -158,7 +158,7 @@ Description
 | 202 - Accepted | [`Console`](/docs/rest_api/config_apis/console-config-openshift-io-v1#console-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/consoles/{name} {#_apisconfigopenshiftiov1consoles_name}
+### /apis/config.openshift.io/v1/consoles/&#123;name&#125; {#_apisconfigopenshiftiov1consoles_name}
 
 **Global path parameters**
 
@@ -262,7 +262,7 @@ Description
 | 201 - Created | [`Console`](/docs/rest_api/config_apis/console-config-openshift-io-v1#console-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/consoles/{name}/status {#_apisconfigopenshiftiov1consoles_name_status}
+### /apis/config.openshift.io/v1/consoles/&#123;name&#125;/status {#_apisconfigopenshiftiov1consoles_name_status}
 
 **Global path parameters**
 

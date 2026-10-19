@@ -3,7 +3,7 @@ title: "TestExtensionAdmission [testextension.redhat.io/v1]"
 sidebar_position: 5
 ---
 
-# TestExtensionAdmission [testextension.redhat.io/v1] {#testextensionadmission-testextension-redhat-io-v1}
+# TestExtensionAdmission \[testextension.redhat.io/v1\] {#testextensionadmission-testextension-redhat-io-v1}
 
 <a id="testextensionadmission-testextension-redhat-io-v1"></a>
 
@@ -23,7 +23,7 @@ Type
 | `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |
 | `metadata` | [`ObjectMeta`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-ObjectMeta) | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |
 | `spec` | `object` | Specification of permitted ImageStreams |
-| `status` | `` | Status of the TestExtensionAdmission |
+| `status` | &#96;&#96; | Status of the TestExtensionAdmission |
 
 ### .spec {#_spec}
 
@@ -128,7 +128,7 @@ Description
 | 202 - Accepted | [`TestExtensionAdmission`](/docs/rest_api/extension_apis/testextensionadmission-testextension-redhat-io-v1#testextensionadmission-testextension-redhat-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/testextension.redhat.io/v1/testextensionadmissions/{name} {#_apistestextensionredhatiov1testextensionadmissions_name}
+### /apis/testextension.redhat.io/v1/testextensionadmissions/&#123;name&#125; {#_apistestextensionredhatiov1testextensionadmissions_name}
 
 **Global path parameters**
 
@@ -232,7 +232,7 @@ Description
 | 201 - Created | [`TestExtensionAdmission`](/docs/rest_api/extension_apis/testextensionadmission-testextension-redhat-io-v1#testextensionadmission-testextension-redhat-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/testextension.redhat.io/v1/testextensionadmissions/{name}/status {#_apistestextensionredhatiov1testextensionadmissions_name_status}
+### /apis/testextension.redhat.io/v1/testextensionadmissions/&#123;name&#125;/status {#_apistestextensionredhatiov1testextensionadmissions_name_status}
 
 **Global path parameters**
 

@@ -227,7 +227,9 @@ You can set the log level for the istio-csr component to control the verbosity a
 
 ## Configuring the namespace selector for CA bundle distribution {#cert-manager-istio-csr-config-namespace-sel_cert-manager-operator-integrating-istio}
 
-The Istio-CSR agent creates and updates the `istio-ca-root-cert` `ConfigMap`, which contains the CA bundle. Workloads in the service mesh use this CA bundle to validate connections to the Istio control plane. You can configure a namespace selector to specify the namespaces in which the Istio-CSR agent creates this `ConfigMap`. If you do not configure a selector, the Istio-CSR agent creates the `ConfigMap` in all namespaces.
+The Istio-CSR agent creates and updates the `istio-ca-root-cert` `ConfigMap`, which contains the CA bundle.
+
+Workloads in the service mesh use this CA bundle to validate connections to the Istio control plane. You can configure a namespace selector to specify the namespaces in which the Istio-CSR agent creates this `ConfigMap`. If you do not configure a selector, the Istio-CSR agent creates the `ConfigMap` in all namespaces.
 
 **Prerequisites**
 
@@ -273,7 +275,9 @@ The Istio-CSR agent creates and updates the `istio-ca-root-cert` `ConfigMap`, wh
 
 ## Configuring the CA certificate for the Istio server {#cert-manager-istio-csr-config-ca-cert_cert-manager-operator-integrating-istio}
 
-You can configure the `ConfigMap` that contains the CA bundle used by Istio workloads to verify the Istio server certificate. If not configured, the cert-manager Operator for Red Hat OpenShift looks for the CA certificate in the configured issuer and in the Kubernetes Secret that contains the Istio certificates.
+You can configure the `ConfigMap` that contains the CA bundle used by Istio workloads to verify the Istio server certificate.
+
+If not configured, the cert-manager Operator for Red Hat OpenShift looks for the CA certificate in the configured issuer and in the Kubernetes Secret that contains the Istio certificates.
 
 **Prerequisites**
 

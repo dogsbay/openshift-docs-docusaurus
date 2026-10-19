@@ -64,8 +64,8 @@ Control plane and node host compatibility
 
   | OpenShift Container Platform version | Supported `kubelet` skew |
   | --- | --- |
-  | Odd OpenShift Container Platform minor versions <sup>[1]</sup> | Up to one version older |
-  | Even OpenShift Container Platform minor versions <sup>[2]</sup> | Up to two versions older |
+  | Odd OpenShift Container Platform minor versions <sup>\[1\]</sup> | Up to one version older |
+  | Even OpenShift Container Platform minor versions <sup>\[2\]</sup> | Up to two versions older |
 
 1. For example, OpenShift Container Platform 4.11, 4.13.
 2. For example, OpenShift Container Platform 4.10, 4.12.

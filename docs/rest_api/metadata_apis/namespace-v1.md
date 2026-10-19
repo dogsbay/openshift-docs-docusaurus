@@ -3,7 +3,7 @@ title: "Namespace [v1]"
 sidebar_position: 10
 ---
 
-# Namespace [v1]
+# Namespace \[v1\]
 
 <a id="namespace-v1"></a>
 
@@ -65,7 +65,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : NamespaceCondition contains details about state of namespace.
@@ -180,7 +180,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{name} {#_apiv1namespaces_name}
+### /api/v1/namespaces/&#123;name&#125; {#_apiv1namespaces_name}
 
 **Global path parameters**
 
@@ -285,7 +285,7 @@ Description
 | 201 - Created | [`Namespace`](/docs/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/watch/namespaces/{name} {#_apiv1watchnamespaces_name}
+### /api/v1/watch/namespaces/&#123;name&#125; {#_apiv1watchnamespaces_name}
 
 **Global path parameters**
 
@@ -310,7 +310,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{name}/status {#_apiv1namespaces_name_status}
+### /api/v1/namespaces/&#123;name&#125;/status {#_apiv1namespaces_name_status}
 
 **Global path parameters**
 
@@ -391,7 +391,7 @@ Description
 | 201 - Created | [`Namespace`](/docs/rest_api/metadata_apis/namespace-v1#namespace-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /api/v1/namespaces/{name}/finalize {#_apiv1namespaces_name_finalize}
+### /api/v1/namespaces/&#123;name&#125;/finalize {#_apiv1namespaces_name_finalize}
 
 **Global path parameters**
 

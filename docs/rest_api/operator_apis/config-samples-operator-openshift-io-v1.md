@@ -3,7 +3,7 @@ title: "Config [samples.operator.openshift.io/v1]"
 sidebar_position: 8
 ---
 
-# Config [samples.operator.openshift.io/v1] {#config-samples-operator-openshift-io-v1}
+# Config \[samples.operator.openshift.io/v1\] {#config-samples-operator-openshift-io-v1}
 
 <a id="config-samples-operator-openshift-io-v1"></a>
 
@@ -81,7 +81,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : ConfigCondition captures various conditions of the Config as entries are processed.
@@ -190,7 +190,7 @@ Description
 | 202 - Accepted | [`Config`](/docs/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/samples.operator.openshift.io/v1/configs/{name} {#_apissamplesoperatoropenshiftiov1configs_name}
+### /apis/samples.operator.openshift.io/v1/configs/&#123;name&#125; {#_apissamplesoperatoropenshiftiov1configs_name}
 
 **Global path parameters**
 
@@ -294,7 +294,7 @@ Description
 | 201 - Created | [`Config`](/docs/rest_api/operator_apis/config-samples-operator-openshift-io-v1#config-samples-operator-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/samples.operator.openshift.io/v1/configs/{name}/status {#_apissamplesoperatoropenshiftiov1configs_name_status}
+### /apis/samples.operator.openshift.io/v1/configs/&#123;name&#125;/status {#_apissamplesoperatoropenshiftiov1configs_name_status}
 
 **Global path parameters**
 

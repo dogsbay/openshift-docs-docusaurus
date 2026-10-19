@@ -3,7 +3,7 @@ title: "ImageStreamLayers [image.openshift.io/v1]"
 sidebar_position: 6
 ---
 
-# ImageStreamLayers [image.openshift.io/v1] {#imagestreamlayers-image-openshift-io-v1}
+# ImageStreamLayers \[image.openshift.io/v1\] {#imagestreamlayers-image-openshift-io-v1}
 
 <a id="imagestreamlayers-image-openshift-io-v1"></a>
 
@@ -43,7 +43,7 @@ Type
   `object`
   ```
 
-### .blobs{} {#_blobs}
+### .blobs&#123;&#125; {#_blobs}
 
 Description
 : ImageLayerData contains metadata about an image layer.
@@ -72,7 +72,7 @@ Type
   `object`
   ```
 
-### .images{} {#_images}
+### .images&#123;&#125; {#_images}
 
 Description
 : ImageBlobReferences describes the blob references within an image.
@@ -96,7 +96,7 @@ The following API endpoints are available:
 - `/apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name}/layers`
   - `GET`: read layers of the specified ImageStream
 
-### /apis/image.openshift.io/v1/namespaces/{namespace}/imagestreams/{name}/layers {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_layers}
+### /apis/image.openshift.io/v1/namespaces/&#123;namespace&#125;/imagestreams/&#123;name&#125;/layers {#_apisimageopenshiftiov1namespaces_namespace_imagestreams_name_layers}
 
 **Global path parameters**
 

@@ -3,7 +3,7 @@ title: "Gateway [gateway.networking.k8s.io/v1]"
 sidebar_position: 16
 ---
 
-# Gateway [gateway.networking.k8s.io/v1] {#gateway-gateway-networking-k8s-io-v1}
+# Gateway \[gateway.networking.k8s.io/v1\] {#gateway-gateway-networking-k8s-io-v1}
 
 <a id="gateway-gateway-networking-k8s-io-v1"></a>
 
@@ -48,7 +48,7 @@ Required
 | `addresses[]` | `object` | GatewaySpecAddress describes an address that can be bound to a Gateway. |
 | `gatewayClassName` | `string` | GatewayClassName used for this Gateway. This is the name of a GatewayClass resource. |
 | `infrastructure` | `object` | Infrastructure defines infrastructure level attributes about this Gateway instance.<br>Support: Extended |
-| `listeners` | `array` | Listeners associated with this Gateway. Listeners define logical endpoints that are bound on this Gateway’s addresses. At least one Listener MUST be specified.<br>Distinct Listeners<br>Each Listener in a set of Listeners (for example, in a single Gateway) MUST be *distinct*, in that a traffic flow MUST be able to be assigned to exactly one listener. (This section uses "set of Listeners" rather than "Listeners in a single Gateway" because implementations MAY merge configuration from multiple Gateways onto a single data plane, and these rules *also* apply in that case).<br>Practically, this means that each listener in a set MUST have a unique combination of Port, Protocol, and, if supported by the protocol, Hostname.<br>Some combinations of port, protocol, and TLS settings are considered Core support and MUST be supported by implementations based on the objects they support:<br>HTTPRoute<br>1. HTTPRoute, Port: 80, Protocol: HTTP 2. HTTPRoute, Port: 443, Protocol: HTTPS, TLS Mode: Terminate, TLS keypair provided<br>TLSRoute<br>1. TLSRoute, Port: 443, Protocol: TLS, TLS Mode: Passthrough<br>"Distinct" Listeners have the following property:<br>**The implementation can match inbound requests to a single distinct Listener**.<br>When multiple Listeners share values for fields (for example, two Listeners with the same Port value), the implementation can match requests to only one of the Listeners using other Listener fields.<br>When multiple listeners have the same value for the Protocol field, then each of the Listeners with matching Protocol values MUST have different values for other fields.<br>The set of fields that MUST be different for a Listener differs per protocol. The following rules define the rules for what fields MUST be considered for Listeners to be distinct with each protocol currently defined in the Gateway API spec.<br>The set of listeners that all share a protocol value MUST have *different* values for *at least one* of these fields to be distinct:<br>* **HTTP, HTTPS, TLS**: Port, Hostname * **TCP, UDP**: Port<br>One **very** important rule to call out involves what happens when an implementation:<br>* Supports TCP protocol Listeners, as well as HTTP, HTTPS, or TLS protocol   Listeners, and * sees HTTP, HTTPS, or TLS protocols with the same `port` as one with TCP   Protocol.<br>In this case all the Listeners that share a port with the TCP Listener are not distinct and so MUST NOT be accepted.<br>If an implementation does not support TCP Protocol Listeners, then the previous rule does not apply, and the TCP Listeners SHOULD NOT be accepted.<br>Note that the `tls` field is not used for determining if a listener is distinct, because Listeners that *only* differ on TLS config will still conflict in all cases.<br><mark>#</mark> Listeners that are distinct only by Hostname<br>When the Listeners are distinct based only on Hostname, inbound request hostnames MUST match from the most specific to least specific Hostname values to choose the correct Listener and its associated set of Routes.<br>Exact matches MUST be processed before wildcard matches, and wildcard matches MUST be processed before fallback (empty Hostname value) matches. For example, `"foo.example.com"` takes precedence over `"\*.example.com"`, and `"\*.example.com"` takes precedence over `""`.<br>Additionally, if there are multiple wildcard entries, more specific wildcard entries must be processed before less specific wildcard entries. For example, `"\*.foo.example.com"` takes precedence over `"\*.example.com"`.<br>The precise definition here is that the higher the number of dots in the hostname to the right of the wildcard character, the higher the precedence.<br>The wildcard character will match any number of characters *and dots* to the left, however, so `"\*.example.com"` will match both `"foo.bar.example.com"` *and* `"bar.example.com"`.<br>Handling indistinct Listeners<br>If a set of Listeners contains Listeners that are not distinct, then those Listeners are *Conflicted*, and the implementation MUST set the "Conflicted" condition in the Listener Status to "True".<br>The words "indistinct" and "conflicted" are considered equivalent for the purpose of this documentation.<br>Implementations MAY choose to accept a Gateway with some Conflicted Listeners only if they only accept the partial Listener set that contains no Conflicted Listeners.<br>Specifically, an implementation MAY accept a partial Listener set subject to the following rules:<br>* The implementation MUST NOT pick one conflicting Listener as the winner.   ALL indistinct Listeners must not be accepted for processing. * At least one distinct Listener MUST be present, or else the Gateway effectively   contains *no* Listeners, and must be rejected from processing as a whole.<br>The implementation MUST set a "ListenersNotValid" condition on the Gateway Status when the Gateway contains Conflicted Listeners whether or not they accept the Gateway. That Condition SHOULD clearly indicate in the Message which Listeners are conflicted, and which are Accepted. Additionally, the Listener status for those listeners SHOULD indicate which Listeners are conflicted and not Accepted.<br>General Listener behavior<br>Note that, for all distinct Listeners, requests SHOULD match at most one Listener. For example, if Listeners are defined for "foo.example.com" and "*.example.com", a request to "foo.example.com" SHOULD only be routed using routes attached to the "foo.example.com" Listener (and not the "*.example.com" Listener).<br>This concept is known as "Listener Isolation", and it is an Extended feature of Gateway API. Implementations that do not support Listener Isolation MUST clearly document this, and MUST NOT claim support for the `GatewayHTTPListenerIsolation` feature.<br>Implementations that *do* support Listener Isolation SHOULD claim support for the Extended `GatewayHTTPListenerIsolation` feature and pass the associated conformance tests.<br>Compatible Listeners<br>A Gateway’s Listeners are considered *compatible* if:<br>1. They are distinct. 2. The implementation can serve them in compliance with the Addresses    requirement that all Listeners are available on all assigned    addresses.<br>Compatible combinations in Extended support are expected to vary across implementations. A combination that is compatible for one implementation may not be compatible for another.<br>For example, an implementation that cannot serve both TCP and UDP listeners on the same address, or cannot mix HTTPS and generic TLS listens on the same port would not consider those cases compatible, even though they are distinct.<br>Implementations MAY merge separate Gateways onto a single set of Addresses if all Listeners across all Gateways are compatible.<br>In a future release the MinItems=1 requirement MAY be dropped.<br>Support: Core |
+| `listeners` | `array` | Listeners associated with this Gateway. Listeners define logical endpoints that are bound on this Gateway’s addresses. At least one Listener MUST be specified.<br>Distinct Listeners<br>Each Listener in a set of Listeners (for example, in a single Gateway) MUST be *distinct*, in that a traffic flow MUST be able to be assigned to exactly one listener. (This section uses "set of Listeners" rather than "Listeners in a single Gateway" because implementations MAY merge configuration from multiple Gateways onto a single data plane, and these rules *also* apply in that case).<br>Practically, this means that each listener in a set MUST have a unique combination of Port, Protocol, and, if supported by the protocol, Hostname.<br>Some combinations of port, protocol, and TLS settings are considered Core support and MUST be supported by implementations based on the objects they support:<br>HTTPRoute<br>1. HTTPRoute, Port: 80, Protocol: HTTP 2. HTTPRoute, Port: 443, Protocol: HTTPS, TLS Mode: Terminate, TLS keypair provided<br>TLSRoute<br>1. TLSRoute, Port: 443, Protocol: TLS, TLS Mode: Passthrough<br>"Distinct" Listeners have the following property:<br>**The implementation can match inbound requests to a single distinct Listener**.<br>When multiple Listeners share values for fields (for example, two Listeners with the same Port value), the implementation can match requests to only one of the Listeners using other Listener fields.<br>When multiple listeners have the same value for the Protocol field, then each of the Listeners with matching Protocol values MUST have different values for other fields.<br>The set of fields that MUST be different for a Listener differs per protocol. The following rules define the rules for what fields MUST be considered for Listeners to be distinct with each protocol currently defined in the Gateway API spec.<br>The set of listeners that all share a protocol value MUST have *different* values for *at least one* of these fields to be distinct:<br>\* **HTTP, HTTPS, TLS**: Port, Hostname \* **TCP, UDP**: Port<br>One **very** important rule to call out involves what happens when an implementation:<br>\* Supports TCP protocol Listeners, as well as HTTP, HTTPS, or TLS protocol   Listeners, and \* sees HTTP, HTTPS, or TLS protocols with the same `port` as one with TCP   Protocol.<br>In this case all the Listeners that share a port with the TCP Listener are not distinct and so MUST NOT be accepted.<br>If an implementation does not support TCP Protocol Listeners, then the previous rule does not apply, and the TCP Listeners SHOULD NOT be accepted.<br>Note that the `tls` field is not used for determining if a listener is distinct, because Listeners that *only* differ on TLS config will still conflict in all cases.<br><mark>#</mark> Listeners that are distinct only by Hostname<br>When the Listeners are distinct based only on Hostname, inbound request hostnames MUST match from the most specific to least specific Hostname values to choose the correct Listener and its associated set of Routes.<br>Exact matches MUST be processed before wildcard matches, and wildcard matches MUST be processed before fallback (empty Hostname value) matches. For example, `"foo.example.com"` takes precedence over `"\*.example.com"`, and `"\*.example.com"` takes precedence over `""`.<br>Additionally, if there are multiple wildcard entries, more specific wildcard entries must be processed before less specific wildcard entries. For example, `"\*.foo.example.com"` takes precedence over `"\*.example.com"`.<br>The precise definition here is that the higher the number of dots in the hostname to the right of the wildcard character, the higher the precedence.<br>The wildcard character will match any number of characters *and dots* to the left, however, so `"\*.example.com"` will match both `"foo.bar.example.com"` *and* `"bar.example.com"`.<br>Handling indistinct Listeners<br>If a set of Listeners contains Listeners that are not distinct, then those Listeners are *Conflicted*, and the implementation MUST set the "Conflicted" condition in the Listener Status to "True".<br>The words "indistinct" and "conflicted" are considered equivalent for the purpose of this documentation.<br>Implementations MAY choose to accept a Gateway with some Conflicted Listeners only if they only accept the partial Listener set that contains no Conflicted Listeners.<br>Specifically, an implementation MAY accept a partial Listener set subject to the following rules:<br>\* The implementation MUST NOT pick one conflicting Listener as the winner.   ALL indistinct Listeners must not be accepted for processing. \* At least one distinct Listener MUST be present, or else the Gateway effectively   contains *no* Listeners, and must be rejected from processing as a whole.<br>The implementation MUST set a "ListenersNotValid" condition on the Gateway Status when the Gateway contains Conflicted Listeners whether or not they accept the Gateway. That Condition SHOULD clearly indicate in the Message which Listeners are conflicted, and which are Accepted. Additionally, the Listener status for those listeners SHOULD indicate which Listeners are conflicted and not Accepted.<br>General Listener behavior<br>Note that, for all distinct Listeners, requests SHOULD match at most one Listener. For example, if Listeners are defined for "foo.example.com" and "*.example.com", a request to "foo.example.com" SHOULD only be routed using routes attached to the "foo.example.com" Listener (and not the "*.example.com" Listener).<br>This concept is known as "Listener Isolation", and it is an Extended feature of Gateway API. Implementations that do not support Listener Isolation MUST clearly document this, and MUST NOT claim support for the `GatewayHTTPListenerIsolation` feature.<br>Implementations that *do* support Listener Isolation SHOULD claim support for the Extended `GatewayHTTPListenerIsolation` feature and pass the associated conformance tests.<br>Compatible Listeners<br>A Gateway’s Listeners are considered *compatible* if:<br>1. They are distinct. 2. The implementation can serve them in compliance with the Addresses    requirement that all Listeners are available on all assigned    addresses.<br>Compatible combinations in Extended support are expected to vary across implementations. A combination that is compatible for one implementation may not be compatible for another.<br>For example, an implementation that cannot serve both TCP and UDP listeners on the same address, or cannot mix HTTPS and generic TLS listens on the same port would not consider those cases compatible, even though they are distinct.<br>Implementations MAY merge separate Gateways onto a single set of Addresses if all Listeners across all Gateways are compatible.<br>In a future release the MinItems=1 requirement MAY be dropped.<br>Support: Core |
 | `listeners[]` | `object` | Listener embodies the concept of a logical endpoint where a Gateway accepts network connections. |
 
 ### .spec.addresses {#_specaddresses}
@@ -69,7 +69,7 @@ Type
   `array`
   ```
 
-### .spec.addresses[] {#_specaddresses}
+### .spec.addresses\[\] {#_specaddresses}
 
 Description
 : GatewaySpecAddress describes an address that can be bound to a Gateway.
@@ -236,7 +236,7 @@ Type
   `array`
   ```
 
-### .spec.listeners[] {#_speclisteners}
+### .spec.listeners\[\] {#_speclisteners}
 
 Description
 : Listener embodies the concept of a logical endpoint where a Gateway accepts network connections.
@@ -253,14 +253,14 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `allowedRoutes` | `object` | AllowedRoutes defines the types of routes that MAY be attached to a Listener and the trusted namespaces where those Route resources MAY be present.<br>Although a client request may match multiple route rules, only one rule may ultimately receive the request. Matching precedence MUST be determined in order of the following criteria:<br>* The most specific match as defined by the Route type. * The oldest Route based on creation timestamp. For example, a Route with   a creation timestamp of "2020-09-08 01:02:03" is given precedence over   a Route with a creation timestamp of "2020-09-08 01:02:04". * If everything else is equivalent, the Route appearing first in   alphabetical order (namespace/name) should be given precedence. For   example, foo/bar is given precedence over foo/baz.<br>All valid rules within a Route attached to this Listener should be implemented. Invalid Route rules can be ignored (sometimes that will mean the full Route). If a Route rule transitions from valid to invalid, support for that Route rule should be dropped to ensure consistency. For example, even if a filter specified by a Route rule is invalid, the rest of the rules within that Route should still be supported.<br>Support: Core |
-| `hostname` | `string` | Hostname specifies the virtual hostname to match for protocol types that define this concept. When unspecified, all hostnames are matched. This field is ignored for protocols that don’t require hostname based matching.<br>Implementations MUST apply Hostname matching appropriately for each of the following protocols:<br>* TLS: The Listener Hostname MUST match the SNI. * HTTP: The Listener Hostname MUST match the Host header of the request. * HTTPS: The Listener Hostname SHOULD match both the SNI and Host header.   Note that this does not require the SNI and Host header to be the same.   The semantics of this are described in more detail below.<br>To ensure security, Section 11.1 of RFC-6066 emphasizes that server implementations that rely on SNI hostname matching MUST also verify hostnames within the application protocol.<br>Section 9.1.2 of RFC-7540 provides a mechanism for servers to reject the reuse of a connection by responding with the HTTP 421 Misdirected Request status code. This indicates that the origin server has rejected the request because it appears to have been misdirected.<br>To detect misdirected requests, Gateways SHOULD match the authority of the requests with all the SNI hostname(s) configured across all the Gateway Listeners on the same port and protocol:<br>* If another Listener has an exact match or more specific wildcard entry,   the Gateway SHOULD return a 421. * If the current Listener (selected by SNI matching during ClientHello)   does not match the Host:     * If another Listener does match the Host the Gateway SHOULD return a       421.     * If no other Listener matches the Host, the Gateway MUST return a       404.<br>For HTTPRoute and TLSRoute resources, there is an interaction with the `spec.hostnames` array. When both listener and route specify hostnames, there MUST be an intersection between the values for a Route to be accepted. For more information, refer to the Route specific Hostnames documentation.<br>Hostnames that are prefixed with a wildcard label (`\*.`) are interpreted as a suffix match. That means that a match for `*.example.com` would match both `test.example.com`, and `foo.test.example.com`, but not `example.com`.<br>Support: Core |
+| `allowedRoutes` | `object` | AllowedRoutes defines the types of routes that MAY be attached to a Listener and the trusted namespaces where those Route resources MAY be present.<br>Although a client request may match multiple route rules, only one rule may ultimately receive the request. Matching precedence MUST be determined in order of the following criteria:<br>\* The most specific match as defined by the Route type. \* The oldest Route based on creation timestamp. For example, a Route with   a creation timestamp of "2020-09-08 01:02:03" is given precedence over   a Route with a creation timestamp of "2020-09-08 01:02:04". \* If everything else is equivalent, the Route appearing first in   alphabetical order (namespace/name) should be given precedence. For   example, foo/bar is given precedence over foo/baz.<br>All valid rules within a Route attached to this Listener should be implemented. Invalid Route rules can be ignored (sometimes that will mean the full Route). If a Route rule transitions from valid to invalid, support for that Route rule should be dropped to ensure consistency. For example, even if a filter specified by a Route rule is invalid, the rest of the rules within that Route should still be supported.<br>Support: Core |
+| `hostname` | `string` | Hostname specifies the virtual hostname to match for protocol types that define this concept. When unspecified, all hostnames are matched. This field is ignored for protocols that don’t require hostname based matching.<br>Implementations MUST apply Hostname matching appropriately for each of the following protocols:<br>\* TLS: The Listener Hostname MUST match the SNI. \* HTTP: The Listener Hostname MUST match the Host header of the request. \* HTTPS: The Listener Hostname SHOULD match both the SNI and Host header.   Note that this does not require the SNI and Host header to be the same.   The semantics of this are described in more detail below.<br>To ensure security, Section 11.1 of RFC-6066 emphasizes that server implementations that rely on SNI hostname matching MUST also verify hostnames within the application protocol.<br>Section 9.1.2 of RFC-7540 provides a mechanism for servers to reject the reuse of a connection by responding with the HTTP 421 Misdirected Request status code. This indicates that the origin server has rejected the request because it appears to have been misdirected.<br>To detect misdirected requests, Gateways SHOULD match the authority of the requests with all the SNI hostname(s) configured across all the Gateway Listeners on the same port and protocol:<br>\* If another Listener has an exact match or more specific wildcard entry,   the Gateway SHOULD return a 421. \* If the current Listener (selected by SNI matching during ClientHello)   does not match the Host:     \* If another Listener does match the Host the Gateway SHOULD return a       421.     \* If no other Listener matches the Host, the Gateway MUST return a       404.<br>For HTTPRoute and TLSRoute resources, there is an interaction with the `spec.hostnames` array. When both listener and route specify hostnames, there MUST be an intersection between the values for a Route to be accepted. For more information, refer to the Route specific Hostnames documentation.<br>Hostnames that are prefixed with a wildcard label (`\*.`) are interpreted as a suffix match. That means that a match for `*.example.com` would match both `test.example.com`, and `foo.test.example.com`, but not `example.com`.<br>Support: Core |
 | `name` | `string` | Name is the name of the Listener. This name MUST be unique within a Gateway.<br>Support: Core |
 | `port` | `integer` | Port is the network port. Multiple listeners may use the same port, subject to the Listener compatibility rules.<br>Support: Core |
 | `protocol` | `string` | Protocol specifies the network protocol this listener expects to receive.<br>Support: Core |
 | `tls` | `object` | TLS is the TLS configuration for the Listener. This field is required if the Protocol field is "HTTPS" or "TLS". It is invalid to set this field if the Protocol field is "HTTP", "TCP", or "UDP".<br>The association of SNIs to Certificate defined in ListenerTLSConfig is defined based on the Hostname field for this listener.<br>The GatewayClass MUST use the longest matching SNI out of all available certificates for any TLS handshake.<br>Support: Core |
 
-### .spec.listeners[].allowedRoutes {#_speclistenersallowedroutes}
+### .spec.listeners\[\].allowedRoutes {#_speclistenersallowedroutes}
 
 Description
 : AllowedRoutes defines the types of routes that MAY be attached to a Listener and the trusted namespaces where those Route resources MAY be present.
@@ -286,7 +286,7 @@ Type
 | `kinds[]` | `object` | RouteGroupKind indicates the group and kind of a Route resource. |
 | `namespaces` | `object` | Namespaces indicates namespaces from which Routes may be attached to this Listener. This is restricted to the namespace of this Gateway by default.<br>Support: Core |
 
-### .spec.listeners[].allowedRoutes.kinds {#_speclistenersallowedrouteskinds}
+### .spec.listeners\[\].allowedRoutes.kinds {#_speclistenersallowedrouteskinds}
 
 Description
 : Kinds specifies the groups and kinds of Routes that are allowed to bind to this Gateway Listener. When unspecified or empty, the kinds of Routes selected are determined using the Listener protocol.
@@ -300,7 +300,7 @@ Type
   `array`
   ```
 
-### .spec.listeners[].allowedRoutes.kinds[] {#_speclistenersallowedrouteskinds}
+### .spec.listeners\[\].allowedRoutes.kinds\[\] {#_speclistenersallowedrouteskinds}
 
 Description
 : RouteGroupKind indicates the group and kind of a Route resource.
@@ -318,7 +318,7 @@ Required
 | `group` | `string` | Group is the group of the Route. |
 | `kind` | `string` | Kind is the kind of the Route. |
 
-### .spec.listeners[].allowedRoutes.namespaces {#_speclistenersallowedroutesnamespaces}
+### .spec.listeners\[\].allowedRoutes.namespaces {#_speclistenersallowedroutesnamespaces}
 
 Description
 : Namespaces indicates namespaces from which Routes may be attached to this Listener. This is restricted to the namespace of this Gateway by default.
@@ -332,10 +332,10 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `from` | `string` | From indicates where Routes will be selected for this Gateway. Possible values are:<br>* All: Routes in all namespaces may be used by this Gateway. * Selector: Routes in namespaces selected by the selector may be used by   this Gateway. * Same: Only Routes in the same namespace may be used by this Gateway.<br>Support: Core |
+| `from` | `string` | From indicates where Routes will be selected for this Gateway. Possible values are:<br>\* All: Routes in all namespaces may be used by this Gateway. \* Selector: Routes in namespaces selected by the selector may be used by   this Gateway. \* Same: Only Routes in the same namespace may be used by this Gateway.<br>Support: Core |
 | `selector` | `object` | Selector must be specified when From is set to "Selector". In that case, only Routes in Namespaces matching this Selector will be selected by this Gateway. This field is ignored for other values of "From".<br>Support: Core |
 
-### .spec.listeners[].allowedRoutes.namespaces.selector {#_speclistenersallowedroutesnamespacesselector}
+### .spec.listeners\[\].allowedRoutes.namespaces.selector {#_speclistenersallowedroutesnamespacesselector}
 
 Description
 : Selector must be specified when From is set to "Selector". In that case, only Routes in Namespaces matching this Selector will be selected by this Gateway. This field is ignored for other values of "From".
@@ -351,9 +351,9 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
-### .spec.listeners[].allowedRoutes.namespaces.selector.matchExpressions {#_speclistenersallowedroutesnamespacesselectormatchexpressions}
+### .spec.listeners\[\].allowedRoutes.namespaces.selector.matchExpressions {#_speclistenersallowedroutesnamespacesselectormatchexpressions}
 
 Description
 : matchExpressions is a list of label selector requirements. The requirements are ANDed.
@@ -363,7 +363,7 @@ Type
   `array`
   ```
 
-### .spec.listeners[].allowedRoutes.namespaces.selector.matchExpressions[] {#_speclistenersallowedroutesnamespacesselectormatchexpressions}
+### .spec.listeners\[\].allowedRoutes.namespaces.selector.matchExpressions\[\] {#_speclistenersallowedroutesnamespacesselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -383,7 +383,7 @@ Required
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
 
-### .spec.listeners[].tls {#_speclistenerstls}
+### .spec.listeners\[\].tls {#_speclistenerstls}
 
 Description
 : TLS is the TLS configuration for the Listener. This field is required if the Protocol field is "HTTPS" or "TLS". It is invalid to set this field if the Protocol field is "HTTP", "TCP", or "UDP".
@@ -406,7 +406,7 @@ Type
 | `mode` | `string` | Mode defines the TLS behavior for the TLS session initiated by the client. There are two possible modes:<br>- Terminate: The TLS session between the downstream client and the   Gateway is terminated at the Gateway. This mode requires certificates   to be specified in some way, such as populating the certificateRefs   field. - Passthrough: The TLS session is NOT terminated by the Gateway. This   implies that the Gateway can’t decipher the TLS stream except for   the ClientHello message of the TLS protocol. The certificateRefs field   is ignored in this mode.<br>Support: Core |
 | `options` | `object (string)` | Options are a list of key/value pairs to enable extended TLS configuration for each implementation. For example, configuring the minimum TLS version or supported cipher suites.<br>A set of common keys MAY be defined by the API in the future. To avoid any ambiguity, implementation-specific definitions MUST use domain-prefixed names, such as `example.com/my-custom-option`. Un-prefixed names are reserved for key names defined by Gateway API.<br>Support: Implementation-specific |
 
-### .spec.listeners[].tls.certificateRefs {#_speclistenerstlscertificaterefs}
+### .spec.listeners\[\].tls.certificateRefs {#_speclistenerstlscertificaterefs}
 
 Description
 : CertificateRefs contains a series of references to Kubernetes objects that contains TLS certificates and private keys. These certificates are used to establish a TLS handshake for requests that match the hostname of the associated listener.
@@ -428,7 +428,7 @@ Type
   `array`
   ```
 
-### .spec.listeners[].tls.certificateRefs[] {#_speclistenerstlscertificaterefs}
+### .spec.listeners\[\].tls.certificateRefs\[\] {#_speclistenerstlscertificaterefs}
 
 Description
 : SecretObjectReference identifies an API object including its namespace, defaulting to Secret.
@@ -464,9 +464,9 @@ Type
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `addresses` | `array` | Addresses lists the network addresses that have been bound to the Gateway.<br>This list may differ from the addresses provided in the spec under some conditions:<br>  * no addresses are specified, all addresses are dynamically assigned   * a combination of specified and dynamic addresses are assigned   * a specified address was unusable (e.g. already in use) |
+| `addresses` | `array` | Addresses lists the network addresses that have been bound to the Gateway.<br>This list may differ from the addresses provided in the spec under some conditions:<br>  \* no addresses are specified, all addresses are dynamically assigned   \* a combination of specified and dynamic addresses are assigned   \* a specified address was unusable (e.g. already in use) |
 | `addresses[]` | `object` | GatewayStatusAddress describes a network address that is bound to a Gateway. |
-| `conditions` | `array` | Conditions describe the current conditions of the Gateway.<br>Implementations should prefer to express Gateway conditions using the `GatewayConditionType` and `GatewayConditionReason` constants so that operators and tools can converge on a common vocabulary to describe Gateway state.<br>Known condition types are:<br>* "Accepted" * "Programmed" * "Ready" |
+| `conditions` | `array` | Conditions describe the current conditions of the Gateway.<br>Implementations should prefer to express Gateway conditions using the `GatewayConditionType` and `GatewayConditionReason` constants so that operators and tools can converge on a common vocabulary to describe Gateway state.<br>Known condition types are:<br>\* "Accepted" \* "Programmed" \* "Ready" |
 | `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. |
 | `listeners` | `array` | Listeners provide status for each unique listener port defined in the Spec. |
 | `listeners[]` | `object` | ListenerStatus is the status associated with a Listener. |
@@ -487,7 +487,7 @@ Type
   `array`
   ```
 
-### .status.addresses[] {#_statusaddresses}
+### .status.addresses\[\] {#_statusaddresses}
 
 Description
 : GatewayStatusAddress describes a network address that is bound to a Gateway.
@@ -523,7 +523,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -544,7 +544,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
@@ -559,7 +559,7 @@ Type
   `array`
   ```
 
-### .status.listeners[] {#_statuslisteners}
+### .status.listeners\[\] {#_statuslisteners}
 
 Description
 : ListenerStatus is the status associated with a Listener.
@@ -584,7 +584,7 @@ Required
 | `supportedKinds` | `array` | SupportedKinds is the list indicating the Kinds supported by this listener. This MUST represent the kinds an implementation supports for that Listener configuration.<br>If kinds are specified in Spec that are not supported, they MUST NOT appear in this list and an implementation MUST set the "ResolvedRefs" condition to "False" with the "InvalidRouteKinds" reason. If both valid and invalid Route kinds are specified, the implementation MUST reference the valid Route kinds that have been specified. |
 | `supportedKinds[]` | `object` | RouteGroupKind indicates the group and kind of a Route resource. |
 
-### .status.listeners[].conditions {#_statuslistenersconditions}
+### .status.listeners\[\].conditions {#_statuslistenersconditions}
 
 Description
 : Conditions describe the current condition of this listener.
@@ -594,7 +594,7 @@ Type
   `array`
   ```
 
-### .status.listeners[].conditions[] {#_statuslistenersconditions}
+### .status.listeners\[\].conditions\[\] {#_statuslistenersconditions}
 
 Description
 : Condition contains details for one aspect of the current state of this API Resource.
@@ -615,12 +615,12 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. |
 
-### .status.listeners[].supportedKinds {#_statuslistenerssupportedkinds}
+### .status.listeners\[\].supportedKinds {#_statuslistenerssupportedkinds}
 
 Description
 : SupportedKinds is the list indicating the Kinds supported by this listener. This MUST represent the kinds an implementation supports for that Listener configuration.
@@ -632,7 +632,7 @@ Type
   `array`
   ```
 
-### .status.listeners[].supportedKinds[] {#_statuslistenerssupportedkinds}
+### .status.listeners\[\].supportedKinds\[\] {#_statuslistenerssupportedkinds}
 
 Description
 : RouteGroupKind indicates the group and kind of a Route resource.
@@ -689,7 +689,7 @@ Description
 | 200 - OK | [`GatewayList`](/docs/rest_api/objects#io-k8s-networking-gateway-v1-GatewayList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/gateway.networking.k8s.io/v1/namespaces/{namespace}/gateways {#_apisgatewaynetworkingk8siov1namespaces_namespace_gateways}
+### /apis/gateway.networking.k8s.io/v1/namespaces/&#123;namespace&#125;/gateways {#_apisgatewaynetworkingk8siov1namespaces_namespace_gateways}
 
 HTTP method
 : ```
@@ -757,7 +757,7 @@ Description
 | 202 - Accepted | [`Gateway`](/docs/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/gateway.networking.k8s.io/v1/namespaces/{namespace}/gateways/{name} {#_apisgatewaynetworkingk8siov1namespaces_namespace_gateways_name}
+### /apis/gateway.networking.k8s.io/v1/namespaces/&#123;namespace&#125;/gateways/&#123;name&#125; {#_apisgatewaynetworkingk8siov1namespaces_namespace_gateways_name}
 
 **Global path parameters**
 
@@ -861,7 +861,7 @@ Description
 | 201 - Created | [`Gateway`](/docs/rest_api/network_apis/gateway-gateway-networking-k8s-io-v1#gateway-gateway-networking-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/gateway.networking.k8s.io/v1/namespaces/{namespace}/gateways/{name}/status {#_apisgatewaynetworkingk8siov1namespaces_namespace_gateways_name_status}
+### /apis/gateway.networking.k8s.io/v1/namespaces/&#123;namespace&#125;/gateways/&#123;name&#125;/status {#_apisgatewaynetworkingk8siov1namespaces_namespace_gateways_name_status}
 
 **Global path parameters**
 

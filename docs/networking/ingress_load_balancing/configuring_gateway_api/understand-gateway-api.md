@@ -3,9 +3,9 @@ title: Understanding Gateway API
 sidebar_position: 1
 ---
 
-# Understanding Gateway API {#understand-gateway-api_{context}}
+# Understanding Gateway API {#understand-gateway-api_-context-}
 
-<a id="understand-gateway-api_{context}"></a>
+<a id="understand-gateway-api_-context-"></a>
 
 To optimize network traffic management and implement routing policies in OpenShift Container Platform, use Gateway API. By adopting this community-managed Kubernetes mechanism, you can configure advanced routing at both the transport (L4) and application (L7) layers while leveraging various vendor-supported implementations to meet your specific networking requirements.
 

@@ -26,7 +26,7 @@ Installing OpenShift Container Platform on IBM Power(R) Virtual Server using use
 
 ## Configuring the Cloud Credential Operator utility {#cco-ccoctl-configuring_preparing-to-install-on-ibm-power-vs}
 
-The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubernetes custom resource definitions (CRDs). To install a cluster on IBM Power(R) Virtual Server, you must set the CCO to `manual` mode as part of the installation process. {._abstract} To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
+The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubernetes custom resource definitions (CRDs). To install a cluster on IBM Power(R) Virtual Server, you must set the CCO to `manual` mode as part of the installation process. &#123;.\_abstract&#125; To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.
 
 :::note
 

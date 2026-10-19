@@ -3,7 +3,7 @@ title: "OAuthClientAuthorization [oauth.openshift.io/v1]"
 sidebar_position: 4
 ---
 
-# OAuthClientAuthorization [oauth.openshift.io/v1] {#oauthclientauthorization-oauth-openshift-io-v1}
+# OAuthClientAuthorization \[oauth.openshift.io/v1\] {#oauthclientauthorization-oauth-openshift-io-v1}
 
 <a id="oauthclientauthorization-oauth-openshift-io-v1"></a>
 
@@ -140,7 +140,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/oauthclientauthorizations/{name} {#_apisoauthopenshiftiov1oauthclientauthorizations_name}
+### /apis/oauth.openshift.io/v1/oauthclientauthorizations/&#123;name&#125; {#_apisoauthopenshiftiov1oauthclientauthorizations_name}
 
 **Global path parameters**
 
@@ -245,7 +245,7 @@ Description
 | 201 - Created | [`OAuthClientAuthorization`](/docs/rest_api/oauth_apis/oauthclientauthorization-oauth-openshift-io-v1#oauthclientauthorization-oauth-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/oauth.openshift.io/v1/watch/oauthclientauthorizations/{name} {#_apisoauthopenshiftiov1watchoauthclientauthorizations_name}
+### /apis/oauth.openshift.io/v1/watch/oauthclientauthorizations/&#123;name&#125; {#_apisoauthopenshiftiov1watchoauthclientauthorizations_name}
 
 **Global path parameters**
 

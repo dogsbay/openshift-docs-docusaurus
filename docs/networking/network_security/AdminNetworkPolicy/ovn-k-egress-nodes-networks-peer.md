@@ -91,7 +91,7 @@ The following example uses `networks` peer and combines ANP and BANP policies to
 
 :::warning
 
-Use the empty selector ({}) in the `namespace` field for ANP and BANP with caution. When using an empty selector, it also selects OpenShift namespaces.
+Use the empty selector (&#123;&#125;) in the `namespace` field for ANP and BANP with caution. When using an empty selector, it also selects OpenShift namespaces.
 
 If you use values of `0.0.0.0/0` in a ANP or BANP `Deny` rule, you must set a higher priority ANP `Allow` rule to necessary destinations before setting the `Deny` to `0.0.0.0/0`.
 

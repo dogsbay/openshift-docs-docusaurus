@@ -1,6 +1,6 @@
 ---
 title: Routing gRPC requests to services
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 # Routing gRPC requests to services

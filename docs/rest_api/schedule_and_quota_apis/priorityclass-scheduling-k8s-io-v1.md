@@ -3,7 +3,7 @@ title: "PriorityClass [scheduling.k8s.io/v1]"
 sidebar_position: 7
 ---
 
-# PriorityClass [scheduling.k8s.io/v1] {#priorityclass-scheduling-k8s-io-v1}
+# PriorityClass \[scheduling.k8s.io/v1\] {#priorityclass-scheduling-k8s-io-v1}
 
 <a id="priorityclass-scheduling-k8s-io-v1"></a>
 
@@ -141,7 +141,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/scheduling.k8s.io/v1/priorityclasses/{name} {#_apisschedulingk8siov1priorityclasses_name}
+### /apis/scheduling.k8s.io/v1/priorityclasses/&#123;name&#125; {#_apisschedulingk8siov1priorityclasses_name}
 
 **Global path parameters**
 
@@ -246,7 +246,7 @@ Description
 | 201 - Created | [`PriorityClass`](/docs/rest_api/schedule_and_quota_apis/priorityclass-scheduling-k8s-io-v1#priorityclass-scheduling-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/scheduling.k8s.io/v1/watch/priorityclasses/{name} {#_apisschedulingk8siov1watchpriorityclasses_name}
+### /apis/scheduling.k8s.io/v1/watch/priorityclasses/&#123;name&#125; {#_apisschedulingk8siov1watchpriorityclasses_name}
 
 **Global path parameters**
 

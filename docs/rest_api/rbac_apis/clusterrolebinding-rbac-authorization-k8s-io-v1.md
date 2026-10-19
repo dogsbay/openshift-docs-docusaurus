@@ -3,7 +3,7 @@ title: "ClusterRoleBinding [rbac.authorization.k8s.io/v1]"
 sidebar_position: 2
 ---
 
-# ClusterRoleBinding [rbac.authorization.k8s.io/v1] {#clusterrolebinding-rbac-authorization-k8s-io-v1}
+# ClusterRoleBinding \[rbac.authorization.k8s.io/v1\] {#clusterrolebinding-rbac-authorization-k8s-io-v1}
 
 <a id="clusterrolebinding-rbac-authorization-k8s-io-v1"></a>
 
@@ -60,7 +60,7 @@ Type
   `array`
   ```
 
-### .subjects[] {#_subjects}
+### .subjects\[\] {#_subjects}
 
 Description
 : Subject contains a reference to the object or user identities a role binding applies to.  This can either hold a direct API object reference, or a value for non-objects such as user and group names.
@@ -192,7 +192,7 @@ Description
 | 200 - OK | [`WatchEvent`](/docs/rest_api/objects#io-k8s-apimachinery-pkg-apis-meta-v1-WatchEvent) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/{name} {#_apisrbacauthorizationk8siov1clusterrolebindings_name}
+### /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/&#123;name&#125; {#_apisrbacauthorizationk8siov1clusterrolebindings_name}
 
 **Global path parameters**
 
@@ -297,7 +297,7 @@ Description
 | 201 - Created | [`ClusterRoleBinding`](/docs/rest_api/rbac_apis/clusterrolebinding-rbac-authorization-k8s-io-v1#clusterrolebinding-rbac-authorization-k8s-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings/{name} {#_apisrbacauthorizationk8siov1watchclusterrolebindings_name}
+### /apis/rbac.authorization.k8s.io/v1/watch/clusterrolebindings/&#123;name&#125; {#_apisrbacauthorizationk8siov1watchclusterrolebindings_name}
 
 **Global path parameters**
 

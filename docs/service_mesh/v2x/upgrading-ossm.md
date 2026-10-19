@@ -325,7 +325,7 @@ To upgrade Red Hat OpenShift Service Mesh, you must create an instance of Red 
    ```terminal
    $ oc project istio-system
    ```
-3. Enter the following command to retrieve the current configuration. Your <smcp_name> is specified in the metadata of your `ServiceMeshControlPlane` resource, for example `basic-install` or `full-install`.
+3. Enter the following command to retrieve the current configuration. Your &lt;smcp_name> is specified in the metadata of your `ServiceMeshControlPlane` resource, for example `basic-install` or `full-install`.
    ```terminal
    $ oc get servicemeshcontrolplanes.v1.maistra.io <smcp_name> -o yaml > <smcp_name>.v1.yaml
    ```
@@ -370,7 +370,7 @@ The following annotations are no longer supported in v2.0. If you are using one 
 - `sidecar.maistra.io/proxyCPULimit` has been replaced with `sidecar.istio.io/proxyCPULimit`. If you were using `sidecar.maistra.io` annotations on your workloads, you must modify those workloads to use `sidecar.istio.io` equivalents instead.
 - `sidecar.maistra.io/proxyMemoryLimit` has been replaced with `sidecar.istio.io/proxyMemoryLimit`
 - `sidecar.istio.io/discoveryAddress` is no longer supported. Also, the default discovery address has moved from `pilot.<control_plane_namespace>.svc:15010` (or port 15011, if mtls is enabled) to `istiod-<smcp_name>.<control_plane_namespace>.svc:15012`.
-- The health status port is no longer configurable and is hard-coded to 15021.  * If you were defining a custom status port, for example, `status.sidecar.istio.io/port`, you must remove the override before moving the workload to a v2.0 Service Mesh control plane. Readiness checks can still be disabled by setting the status port to `0`.
+- The health status port is no longer configurable and is hard-coded to 15021.  \* If you were defining a custom status port, for example, `status.sidecar.istio.io/port`, you must remove the override before moving the workload to a v2.0 Service Mesh control plane. Readiness checks can still be disabled by setting the status port to `0`.
 - Kubernetes Secret resources are no longer used to distribute client certificates for sidecars. Certificates are now distributed through Istiod’s SDS service. If you were relying on mounted secrets, they are longer available for workloads in v2.0 Service Mesh control planes.
 
 ##### Behavioral changes {#ossm-migrating-differences-behavior_ossm-upgrade}

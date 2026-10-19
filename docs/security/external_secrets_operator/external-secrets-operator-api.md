@@ -40,7 +40,7 @@ To enable the Bitwarden secrets manager provider and set up the additional servi
 
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |
-| `mode` | *string* | `mode` field enables the `bitwardenSecretManagerProvider` provider state, which can be set to `Enabled` or `Disabled`. If set to `Enabled`, the Operator ensures the plugin is deployed and synchronized. If set to `Disabled`, the Bitwarden provider plugin reconciliation is disabled. The plugin and resources remain in their current state, and are not managed by the Operator. | `Disabled` | enum: [Enabled Disabled]<br>Optional |
+| `mode` | *string* | `mode` field enables the `bitwardenSecretManagerProvider` provider state, which can be set to `Enabled` or `Disabled`. If set to `Enabled`, the Operator ensures the plugin is deployed and synchronized. If set to `Disabled`, the Bitwarden provider plugin reconciliation is disabled. The plugin and resources remain in their current state, and are not managed by the Operator. | `Disabled` | enum: \[Enabled Disabled\]<br>Optional |
 | `secretRef` | *SecretReference* | `SecretRef` specifies the Kubernetes secret that contains the TLS key pair for the Bitwarden server. If this reference is not provided and the `certManagerConfig` field is configured, the issuer defined in `certManagerConfig` generates the required certificate. The secret must use `tls.crt` for certificate, `tls.key` for the private key, and `ca.crt` for CA certificate. |  | Optional |
 
 ## certManagerConfig {#eso-cert-manager-config_external-secrets-operator-api}
@@ -49,8 +49,8 @@ You can integrate the External Secrets Operator for Red Hat OpenShift with cert-
 
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |
-| `mode` | *string* | `mode` specifies whether to use cert-manager for certificate management instead of the built-in `cert-controller` which can be indicated by setting either `Enabled` or `Disabled`. If set to `Enabled`, uses `cert-manager` for obtaining the certificates for the webhook server and other components. If set to `Disabled`, uses the `cert-controller` for obtaining the certificates for the webhook server. `Disabled` is the default behavior. |  | enum: [Enabled Disabled] |
-| `injectAnnotations` | *string* | `injectAnnotations` adds the `cert-manager.io/inject-ca-from` annotation to the webhooks and custom resource definitions (CRDs) to automatically configure the webhook with the `cert-manager` Operator certificate authority (CA). This requires CA Injector to be enabled in `cert-manager` Operator. Set this field to `true` or `false`. When set, this field cannot be changed. | false | enum: [true false] |
+| `mode` | *string* | `mode` specifies whether to use cert-manager for certificate management instead of the built-in `cert-controller` which can be indicated by setting either `Enabled` or `Disabled`. If set to `Enabled`, uses `cert-manager` for obtaining the certificates for the webhook server and other components. If set to `Disabled`, uses the `cert-controller` for obtaining the certificates for the webhook server. `Disabled` is the default behavior. |  | enum: \[Enabled Disabled\] |
+| `injectAnnotations` | *string* | `injectAnnotations` adds the `cert-manager.io/inject-ca-from` annotation to the webhooks and custom resource definitions (CRDs) to automatically configure the webhook with the `cert-manager` Operator certificate authority (CA). This requires CA Injector to be enabled in `cert-manager` Operator. Set this field to `true` or `false`. When set, this field cannot be changed. | false | enum: \[true false\] |
 | `issuerRef` | *ObjectReference* | `issuerRef` contains details of the referenced object used for obtaining certificates. The object must exist in the `external-secrets` namespace unless a cluster-scoped `cert-manager` Operator issuer is used. |  |  |
 | `certificateDuration` | [*Duration*](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#duration-v1-meta) | `certificateDuration` sets the validity period of the webhook certificate. | 8760h |  |
 | `certificateRenewBefore` | [*Duration*](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.31/#duration-v1-meta) | `certificateRenewBefore` sets the ahead time to renew the webhook certificate before expiry. | 30m |  |
@@ -175,7 +175,9 @@ The `componentName` field represents the different external-secrets components t
 
 ## condition {#eso-condition_external-secrets-operator-api}
 
-The `condition` object reports the current health and operational state of the External Secrets Operator for Red Hat OpenShift deployment. It provides a standardized status check by detailing the specific type of condition, its current status, and a message to verify deployment success or troubleshooting errors.
+The `condition` object reports the current health and operational state of the External Secrets Operator for Red Hat OpenShift deployment.
+
+It provides a standardized status check by detailing the specific type of condition, its current status, and a message to verify deployment success or troubleshooting errors.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -365,7 +367,9 @@ The `externalSecretsConfigStatus` field shows the most recently observed status 
 
 ## externalSecretsManager {#eso-external-secrets-manager_external-secrets-operator-api}
 
-The `externalSecretsManager` object defines the configuration and information of deployments managed by the External Secrets Operator. Set the name to `cluster` as this allows only one instance of `externalSecretsManager` per cluster. You can configure global options by using `externalSecretsManager`. This serves as a centralized configuration for managing multiple controllers of the Operator. The Operator automatically creates the `externalSecretsManager` object during installation.
+The `externalSecretsManager` object defines the configuration and information of deployments managed by the External Secrets Operator.
+
+Set the name to `cluster` as this allows only one instance of `externalSecretsManager` per cluster. You can configure global options by using `externalSecretsManager`. This serves as a centralized configuration for managing multiple controllers of the Operator. The Operator automatically creates the `externalSecretsManager` object during installation.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -445,7 +449,9 @@ The `featureName` field identifies an optional feature that can be configured on
 
 ## globalConfig {#eso-global-config_external-secrets-operator-api}
 
-The `globalConfig` field defines the baseline behavior and deployment parameters for the External Secrets Operator for Red Hat OpenShift. Use this section to apply labels to all managed resources and configure the logging verbosity. It also provides infrastructure-level controls to govern where and how the Operator is scheduled, alongside proxy settings for network compatibility.
+The `globalConfig` field defines the baseline behavior and deployment parameters for the External Secrets Operator for Red Hat OpenShift.
+
+Use this section to apply labels to all managed resources and configure the logging verbosity. It also provides infrastructure-level controls to govern where and how the Operator is scheduled, alongside proxy settings for network compatibility.
 
 | Field | Type | Description | Default | Validation |
 | --- | --- | --- | --- | --- |
@@ -541,7 +547,7 @@ The `proxyConfig` object defines the network proxy settings that the Operator in
 | `httpProxy` | *string* | The `httpProxy` field contains the URL of the proxy for HTTP requests. This field can have a maximum of 2048 characters. |  | The maximum length is 2048 characters.<br>The minimum length is 0 characters. |
 | `httpsProxy` | *string* | The `httpsProxy` field contains the URL of the proxy for HTTPS requests. This field can have a maximum of 2048 characters. |  | The maximum length is 2048 characters.<br>The minimum length is 0 characters. |
 | `noProxy` | *string* | The `noProxy` field is a comma-separated list of hostnames, classless inter-domain routings (CIDRs), and IP addresses or a combination of the three for which the proxy should not be used. This field can have a maximum of 4096 characters. |  | The maximum length is 4096 characters.<br>The minimum length is 0 characters. |
-| `networkPolicyProvisioning`<br>**ManagementState** | *string* | The `networkPolicyProvisioning` field defines the management strategy for the proxy egress rule. When set to `Managed`, the Operator automatically provisions and maintains a `NetworkPolicy` allowing traffic to the configured proxy. If no proxy is configured, a `NetworkPolicy` is not created regardless of this setting. | Managed | Enum:[`Managed` `Unmanaged`] |
+| `networkPolicyProvisioning`<br>**ManagementState** | *string* | The `networkPolicyProvisioning` field defines the management strategy for the proxy egress rule. When set to `Managed`, the Operator automatically provisions and maintains a `NetworkPolicy` allowing traffic to the configured proxy. If no proxy is configured, a `NetworkPolicy` is not created regardless of this setting. | Managed | Enum:\[`Managed` `Unmanaged`\] |
 
 ## secretReference {#eso-secret-reference_external-secrets-operator-api}
 

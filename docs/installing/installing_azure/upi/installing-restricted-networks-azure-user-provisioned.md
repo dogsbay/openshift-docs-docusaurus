@@ -3408,7 +3408,7 @@ Use the `06_workers.json` Azure Resource Manager (ARM) template to deploy worker
 
 </details>
 
-## Installing the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-restricted-networks-azure-user-provisioned}
+## Install the OpenShift CLI on Linux {#cli-installing-cli-linux_installing-restricted-networks-azure-user-provisioned}
 
 To manage your cluster and deploy applications from the command line on Linux, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -3444,7 +3444,7 @@ Download and install the new version of `oc`.
   $ oc <command>
   ```
 
-## Installing the OpenShift CLI on Windows {#cli-installing-cli-windows_installing-restricted-networks-azure-user-provisioned}
+## Install the OpenShift CLI on Windows {#cli-installing-cli-windows_installing-restricted-networks-azure-user-provisioned}
 
 To manage your cluster and deploy applications from the command line on Windows, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 
@@ -3476,7 +3476,7 @@ Download and install the new version of `oc`.
   C:\> oc <command>
   ```
 
-## Installing the OpenShift CLI on macOS {#cli-installing-cli-macos_installing-restricted-networks-azure-user-provisioned}
+## Install the OpenShift CLI on macOS {#cli-installing-cli-macos_installing-restricted-networks-azure-user-provisioned}
 
 To manage your cluster and deploy applications from the command line on macOS, install the OpenShift CLI (`oc`) binary. You can download the OpenShift CLI (`oc`) from the Red  Customer Portal.
 

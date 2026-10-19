@@ -1276,7 +1276,7 @@ Before installing single-node OpenShift on IBM Power(R), you must set up bastion
 Setting up a bastion server for single-node OpenShift on IBM Power(R) requires the configuration of the following services:
 
 - PXE is used for the single-node OpenShift cluster installation. PXE requires the following services to be configured and run:
-  - DNS to define api, api-int, and *.apps
+  - DNS to define api, api-int, and \*.apps
   - DHCP service to enable PXE and assign an IP address to single-node OpenShift node
   - HTTP to provide ignition and RHCOS rootfs image
   - TFTP to enable PXE

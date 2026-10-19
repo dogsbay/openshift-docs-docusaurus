@@ -3,7 +3,7 @@ title: "Scheduler [config.openshift.io/v1]"
 sidebar_position: 27
 ---
 
-# Scheduler [config.openshift.io/v1] {#scheduler-config-openshift-io-v1}
+# Scheduler \[config.openshift.io/v1\] {#scheduler-config-openshift-io-v1}
 
 <a id="scheduler-config-openshift-io-v1"></a>
 
@@ -160,7 +160,7 @@ Description
 | 202 - Accepted | [`Scheduler`](/docs/rest_api/config_apis/scheduler-config-openshift-io-v1#scheduler-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/schedulers/{name} {#_apisconfigopenshiftiov1schedulers_name}
+### /apis/config.openshift.io/v1/schedulers/&#123;name&#125; {#_apisconfigopenshiftiov1schedulers_name}
 
 **Global path parameters**
 
@@ -264,7 +264,7 @@ Description
 | 201 - Created | [`Scheduler`](/docs/rest_api/config_apis/scheduler-config-openshift-io-v1#scheduler-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/schedulers/{name}/status {#_apisconfigopenshiftiov1schedulers_name_status}
+### /apis/config.openshift.io/v1/schedulers/&#123;name&#125;/status {#_apisconfigopenshiftiov1schedulers_name_status}
 
 **Global path parameters**
 

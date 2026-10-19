@@ -3,9 +3,9 @@ title: Troubleshooting builds
 sidebar_position: 13
 ---
 
-# Troubleshooting builds {#troubleshooting-builds_{context}}
+# Troubleshooting builds {#troubleshooting-builds_-context-}
 
-<a id="troubleshooting-builds_{context}"></a>
+<a id="troubleshooting-builds_-context-"></a>
 
 Use the following to troubleshoot build issues.
 

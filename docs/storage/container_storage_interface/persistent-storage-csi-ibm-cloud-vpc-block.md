@@ -3,9 +3,9 @@ title: IBM Cloud(R) VPC Block CSI Driver Operator
 sidebar_position: 16
 ---
 
-# IBM Cloud(R) VPC Block CSI Driver Operator {#persistent-storage-csi-ibm-cloud-vpc-block_{context}}
+# IBM Cloud(R) VPC Block CSI Driver Operator {#persistent-storage-csi-ibm-cloud-vpc-block_-context-}
 
-<a id="persistent-storage-csi-ibm-cloud-vpc-block_{context}"></a>
+<a id="persistent-storage-csi-ibm-cloud-vpc-block_-context-"></a>
 
 You can provision and manage IBM Cloud(R) Virtual Private Cloud (VPC) Block Storage in OpenShift Container Platform using the IBM Cloud(R) VPC Block Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning.
 

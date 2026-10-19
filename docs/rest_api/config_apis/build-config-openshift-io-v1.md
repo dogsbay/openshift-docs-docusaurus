@@ -3,7 +3,7 @@ title: "Build [config.openshift.io/v1]"
 sidebar_position: 4
 ---
 
-# Build [config.openshift.io/v1] {#build-config-openshift-io-v1}
+# Build \[config.openshift.io/v1\] {#build-config-openshift-io-v1}
 
 <a id="build-config-openshift-io-v1"></a>
 
@@ -137,7 +137,7 @@ Type
   `array`
   ```
 
-### .spec.buildDefaults.env[] {#_specbuilddefaultsenv}
+### .spec.buildDefaults.env\[\] {#_specbuilddefaultsenv}
 
 Description
 : EnvVar represents an environment variable present in a Container.
@@ -153,10 +153,10 @@ Required
 | Property | Type | Description |
 | --- | --- | --- |
 | `name` | `string` | Name of the environment variable. May consist of any printable ASCII characters except '='. |
-| `value` | `string` | Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". |
+| `value` | `string` | Variable references &#36;(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double &#36;&#36; are reduced to a single &#36;, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". |
 | `valueFrom` | `object` | Source for the environment variable’s value. Cannot be used if value is not empty. |
 
-### .spec.buildDefaults.env[].valueFrom {#_specbuilddefaultsenvvaluefrom}
+### .spec.buildDefaults.env\[\].valueFrom {#_specbuilddefaultsenvvaluefrom}
 
 Description
 : Source for the environment variable’s value. Cannot be used if value is not empty.
@@ -174,7 +174,7 @@ Type
 | `resourceFieldRef` | `object` | Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported. |
 | `secretKeyRef` | `object` | Selects a key of a secret in the pod’s namespace |
 
-### .spec.buildDefaults.env[].valueFrom.configMapKeyRef {#_specbuilddefaultsenvvaluefromconfigmapkeyref}
+### .spec.buildDefaults.env\[\].valueFrom.configMapKeyRef {#_specbuilddefaultsenvvaluefromconfigmapkeyref}
 
 Description
 : Selects a key of a ConfigMap.
@@ -193,7 +193,7 @@ Required
 | `name` | `string` | Name of the referent. This field is effectively required, but due to backwards compatibility is allowed to be empty. Instances of this type with an empty value here are almost certainly wrong. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names |
 | `optional` | `boolean` | Specify whether the ConfigMap or its key must be defined |
 
-### .spec.buildDefaults.env[].valueFrom.fieldRef {#_specbuilddefaultsenvvaluefromfieldref}
+### .spec.buildDefaults.env\[\].valueFrom.fieldRef {#_specbuilddefaultsenvvaluefromfieldref}
 
 Description
 : Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.
@@ -211,7 +211,7 @@ Required
 | `apiVersion` | `string` | Version of the schema the FieldPath is written in terms of, defaults to "v1". |
 | `fieldPath` | `string` | Path of the field to select in the specified API version. |
 
-### .spec.buildDefaults.env[].valueFrom.fileKeyRef {#_specbuilddefaultsenvvaluefromfilekeyref}
+### .spec.buildDefaults.env\[\].valueFrom.fileKeyRef {#_specbuilddefaultsenvvaluefromfilekeyref}
 
 Description
 : FileKeyRef selects a key of the env file. Requires the EnvFiles feature gate to be enabled.
@@ -233,7 +233,7 @@ Required
 | `path` | `string` | The path within the volume from which to select the file. Must be relative and may not contain the '..' path or start with '..'. |
 | `volumeName` | `string` | The name of the volume mount containing the env file. |
 
-### .spec.buildDefaults.env[].valueFrom.resourceFieldRef {#_specbuilddefaultsenvvaluefromresourcefieldref}
+### .spec.buildDefaults.env\[\].valueFrom.resourceFieldRef {#_specbuilddefaultsenvvaluefromresourcefieldref}
 
 Description
 : Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.
@@ -252,7 +252,7 @@ Required
 | `divisor` | `integer-or-string` | Specifies the output format of the exposed resources, defaults to "1" |
 | `resource` | `string` | Required: resource to select |
 
-### .spec.buildDefaults.env[].valueFrom.secretKeyRef {#_specbuilddefaultsenvvaluefromsecretkeyref}
+### .spec.buildDefaults.env\[\].valueFrom.secretKeyRef {#_specbuilddefaultsenvvaluefromsecretkeyref}
 
 Description
 : Selects a key of a secret in the pod’s namespace
@@ -322,7 +322,7 @@ Type
   `array`
   ```
 
-### .spec.buildDefaults.imageLabels[] {#_specbuilddefaultsimagelabels}
+### .spec.buildDefaults.imageLabels\[\] {#_specbuilddefaultsimagelabels}
 
 Description
 
@@ -367,7 +367,7 @@ Type
   `array`
   ```
 
-### .spec.buildDefaults.resources.claims[] {#_specbuilddefaultsresourcesclaims}
+### .spec.buildDefaults.resources.claims\[\] {#_specbuilddefaultsresourcesclaims}
 
 Description
 : ResourceClaim references one entry in PodSpec.ResourceClaims.
@@ -402,7 +402,7 @@ Type
 | `imageLabels[]` | `object` |  |
 | `nodeSelector` | `object (string)` | nodeSelector is a selector which must be true for the build pod to fit on a node |
 | `tolerations` | `array` | tolerations is a list of Tolerations that will override any existing tolerations set on a build pod. |
-| `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>. |
+| `tolerations[]` | `object` | The pod this Toleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>. |
 
 ### .spec.buildOverrides.imageLabels {#_specbuildoverridesimagelabels}
 
@@ -414,7 +414,7 @@ Type
   `array`
   ```
 
-### .spec.buildOverrides.imageLabels[] {#_specbuildoverridesimagelabels}
+### .spec.buildOverrides.imageLabels\[\] {#_specbuildoverridesimagelabels}
 
 Description
 
@@ -438,10 +438,10 @@ Type
   `array`
   ```
 
-### .spec.buildOverrides.tolerations[] {#_specbuildoverridestolerations}
+### .spec.buildOverrides.tolerations\[\] {#_specbuildoverridestolerations}
 
 Description
-: The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+: The pod this Toleration is attached to tolerates any taint that matches the triple &lt;key,value,effect> using the matching operator &lt;operator>.
 
 Type
 : ```
@@ -542,7 +542,7 @@ Description
 | 202 - Accepted | [`Build`](/docs/rest_api/config_apis/build-config-openshift-io-v1#build-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/builds/{name} {#_apisconfigopenshiftiov1builds_name}
+### /apis/config.openshift.io/v1/builds/&#123;name&#125; {#_apisconfigopenshiftiov1builds_name}
 
 **Global path parameters**
 
@@ -646,7 +646,7 @@ Description
 | 201 - Created | [`Build`](/docs/rest_api/config_apis/build-config-openshift-io-v1#build-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/builds/{name}/status {#_apisconfigopenshiftiov1builds_name_status}
+### /apis/config.openshift.io/v1/builds/&#123;name&#125;/status {#_apisconfigopenshiftiov1builds_name_status}
 
 **Global path parameters**
 

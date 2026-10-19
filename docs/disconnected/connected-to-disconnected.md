@@ -65,7 +65,7 @@ The following prerequisites must be met:
 - [Deploying Red Hat Quay by using the Quay Operator](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html/deploying_the_red_hat_quay_operator_on_openshift_container_platform/index)
 - [Red Hat Quay documentation on organizations](https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/use_red_hat_quay/index#user-org-intro_use-quay)
 
-## Preparing the cluster for mirroring {#connected-to-disconnected-prepare-mirror_connected-to-disconnected}
+## Prepare the cluster for mirroring {#connected-to-disconnected-prepare-mirror_connected-to-disconnected}
 
 Before disconnecting your cluster, you must mirror, or copy, the images to a mirror registry that is reachable by every node in your disconnected cluster.
 
@@ -126,7 +126,7 @@ To mirror the images, you must prepare your cluster by:
       "registry.svc.ci.openshift.org":{"auth":"dXNlcjpyWjAwWVFjSEJiT2RKVW1pSmg4dW92dGp1SXRxQ3RGN1pwajJhN1ZXeTRV"},"my-registry:5000/my-namespace/":{"auth":"dXNlcm5hbWU6cGFzc3dvcmQ="}}}
       ```
 
-## Mirroring the images {#connected-to-disconnected-mirror-images_connected-to-disconnected}
+## Mirror the images {#connected-to-disconnected-mirror-images_connected-to-disconnected}
 
 After the cluster is properly configured, you can mirror the images from your external repositories to the mirror repository.
 
@@ -236,7 +236,7 @@ As an alternative, use the oc-mirror plugin v2.
 - [Mirroring an Operator catalog](/docs/disconnected/using-olm#olm-mirror-catalog_olm-restricted-networks)
 - [OpenShift CLI administrator command reference](/docs/cli_reference/openshift_cli/administrator-cli-commands#oc-adm-catalog-mirror)
 
-## Configuring the cluster for the mirror registry {#connected-to-disconnected-config-registry_connected-to-disconnected}
+## Configure the cluster for the mirror registry {#connected-to-disconnected-config-registry_connected-to-disconnected}
 
 After creating and mirroring the images to the mirror registry, you must modify your cluster so that pods can pull images from the mirror registry.
 

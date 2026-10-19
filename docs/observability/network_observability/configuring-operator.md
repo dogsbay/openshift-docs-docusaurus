@@ -446,8 +446,9 @@ The query language uses the following syntax:
 | Category | Operators |
 | --- | --- |
 | Logical boolean operators (not case-sensitive) | `and`, `or` |
-| Comparison operators | `=` (equals),<br>`!=` (not equals),<br>`=~` (matches regexp),<br>`!~` (not matches regexp),<br>`<` / `\<=` (less than or equal to),<br>`>` / `>=` (greater than or equal to) |
-| Unary operations | `with(field)` (field is present),<br>`without(field)` (field is absent) |
+| Comparison operators | `=` (equals), `!=` (not equals), `=~` (matches regexp), `!~` (not matches regexp), `<` / `\<=` (less than or equal to), `>` / `>=` (greater than or equal to) |
+| Unary operations | `with(field)` (field is present), `without(field)` (field is absent) |
+| Parenthesis-based priority | N/A |
 
 You can configure flowlogs-pipeline filters in the `spec.processor.filters` section of the `FlowCollector` resource. For example:
 

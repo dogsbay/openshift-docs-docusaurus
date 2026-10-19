@@ -120,7 +120,7 @@ Application failures can occur within running application pods. In these situati
       Root privileges are required to run some diagnostic binaries. In these situations you can start a debug pod with root access, based on a problematic pod’s `DeploymentConfig` object, by running `oc debug dc/<deployment_configuration> --as-root`. Then, you can run diagnostic binaries as root from within the debug pod.
 
       :::
-5. If diagnostic binaries are not available within a container, you can run a host’s diagnostic binaries within a container’s namespace by using `nsenter`. The following example runs `ip ad` within a container’s namespace, using the host` s  `ip` binary.
+5. If diagnostic binaries are not available within a container, you can run a host’s diagnostic binaries within a container’s namespace by using `nsenter`. The following example runs `ip ad` within a container’s namespace, using the host` s  `ip&#96; binary.
    1. Enter into a debug session on the target node. This step instantiates a debug pod called `<node_name>-debug`:
       ```terminal
       $ oc debug node/my-cluster-node

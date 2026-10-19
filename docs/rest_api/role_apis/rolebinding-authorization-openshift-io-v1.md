@@ -3,7 +3,7 @@ title: "RoleBinding [authorization.openshift.io/v1]"
 sidebar_position: 5
 ---
 
-# RoleBinding [authorization.openshift.io/v1] {#rolebinding-authorization-openshift-io-v1}
+# RoleBinding \[authorization.openshift.io/v1\] {#rolebinding-authorization-openshift-io-v1}
 
 <a id="rolebinding-authorization-openshift-io-v1"></a>
 
@@ -67,7 +67,7 @@ Description
 | 200 - OK | [`RoleBindingList`](/docs/rest_api/objects#com-github-openshift-api-authorization-v1-RoleBindingList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/authorization.openshift.io/v1/namespaces/{namespace}/rolebindings {#_apisauthorizationopenshiftiov1namespaces_namespace_rolebindings}
+### /apis/authorization.openshift.io/v1/namespaces/&#123;namespace&#125;/rolebindings {#_apisauthorizationopenshiftiov1namespaces_namespace_rolebindings}
 
 HTTP method
 : ```
@@ -118,7 +118,7 @@ Description
 | 202 - Accepted | [`RoleBinding`](/docs/rest_api/role_apis/rolebinding-authorization-openshift-io-v1#rolebinding-authorization-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/authorization.openshift.io/v1/namespaces/{namespace}/rolebindings/{name} {#_apisauthorizationopenshiftiov1namespaces_namespace_rolebindings_name}
+### /apis/authorization.openshift.io/v1/namespaces/&#123;namespace&#125;/rolebindings/&#123;name&#125; {#_apisauthorizationopenshiftiov1namespaces_namespace_rolebindings_name}
 
 **Global path parameters**
 

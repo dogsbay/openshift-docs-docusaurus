@@ -228,7 +228,7 @@ You can use static provisioning to create a persistent volume (PV) and persisten
 
 **Procedure**
 
-1. Create a Secret for access to the Samba server running the following command with the following example YAML file: $ oc create -f <file_name>.yaml
+1. Create a Secret for access to the Samba server running the following command with the following example YAML file: &#36; oc create -f &lt;file_name>.yaml
    ```yaml title="Example Secret YAML file"
    apiVersion: v1
    kind: Secret
@@ -280,7 +280,7 @@ You can use static provisioning to create a persistent volume (PV) and persisten
 
    - `metadata.name`: Specifies the name of the PV.
    - `spec.csi.volumeHandle` format: `{smb_server_address}<mark>{sub_dir_name}</mark>{share_name}`. Ensure that this value is unique for every share in the cluster.
-   - `spec.csi.volumeAttributes.source`: The Samba server must be installed somewhere that is reachable from the cluster with `<hostname>` being the hostname for the Samba server and <shares> the path the server is configured to have among the exported shares.
+   - `spec.csi.volumeAttributes.source`: The Samba server must be installed somewhere that is reachable from the cluster with `<hostname>` being the hostname for the Samba server and &lt;shares> the path the server is configured to have among the exported shares.
    - `spec.csi.nodeStageSecretRef.name`: Specifies the name of the Secret for the shares.
    - `spec.csi.nodeStageSecretRef.namespace`: Specifies the applicable namespace.
 3. Create a PVC:

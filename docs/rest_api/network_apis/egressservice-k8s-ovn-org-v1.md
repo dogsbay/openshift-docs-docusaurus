@@ -3,7 +3,7 @@ title: "EgressService [k8s.ovn.org/v1]"
 sidebar_position: 11
 ---
 
-# EgressService [k8s.ovn.org/v1] {#egressservice-k8s-ovn-org-v1}
+# EgressService \[k8s.ovn.org/v1\] {#egressservice-k8s-ovn-org-v1}
 
 <a id="egressservice-k8s-ovn-org-v1"></a>
 
@@ -55,7 +55,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.nodeSelector.matchExpressions {#_specnodeselectormatchexpressions}
 
@@ -67,7 +67,7 @@ Type
   `array`
   ```
 
-### .spec.nodeSelector.matchExpressions[] {#_specnodeselectormatchexpressions}
+### .spec.nodeSelector.matchExpressions\[\] {#_specnodeselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -143,7 +143,7 @@ Description
 | 200 - OK | [`EgressServiceList`](/docs/rest_api/objects#org-ovn-k8s-v1-EgressServiceList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressservices {#_apisk8sovnorgv1namespaces_namespace_egressservices}
+### /apis/k8s.ovn.org/v1/namespaces/&#123;namespace&#125;/egressservices {#_apisk8sovnorgv1namespaces_namespace_egressservices}
 
 HTTP method
 : ```
@@ -211,7 +211,7 @@ Description
 | 202 - Accepted | [`EgressService`](/docs/rest_api/network_apis/egressservice-k8s-ovn-org-v1#egressservice-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressservices/{name} {#_apisk8sovnorgv1namespaces_namespace_egressservices_name}
+### /apis/k8s.ovn.org/v1/namespaces/&#123;namespace&#125;/egressservices/&#123;name&#125; {#_apisk8sovnorgv1namespaces_namespace_egressservices_name}
 
 **Global path parameters**
 
@@ -315,7 +315,7 @@ Description
 | 201 - Created | [`EgressService`](/docs/rest_api/network_apis/egressservice-k8s-ovn-org-v1#egressservice-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressservices/{name}/status {#_apisk8sovnorgv1namespaces_namespace_egressservices_name_status}
+### /apis/k8s.ovn.org/v1/namespaces/&#123;namespace&#125;/egressservices/&#123;name&#125;/status {#_apisk8sovnorgv1namespaces_namespace_egressservices_name_status}
 
 **Global path parameters**
 

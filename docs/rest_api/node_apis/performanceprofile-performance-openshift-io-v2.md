@@ -3,7 +3,7 @@ title: "PerformanceProfile [performance.openshift.io/v2]"
 sidebar_position: 3
 ---
 
-# PerformanceProfile [performance.openshift.io/v2] {#performanceprofile-performance-openshift-io-v2}
+# PerformanceProfile \[performance.openshift.io/v2\] {#performanceprofile-performance-openshift-io-v2}
 
 <a id="performanceprofile-performance-openshift-io-v2"></a>
 
@@ -47,10 +47,10 @@ Required
 | `hardwareTuning` | `object` | HardwareTuning defines a set of CPU frequencies for isolated and reserved cpus. |
 | `hugepages` | `object` | HugePages defines a set of huge pages related parameters. It is possible to set huge pages with multiple size values at the same time. For example, hugepages can be set with 1G and 2M, both values will be set on the node by the Performance Profile Controller. It is important to notice that setting hugepages default size to 1G will remove all 2M related folders from the node and it will be impossible to configure 2M hugepages under the node. |
 | `kernelPageSize` | `string` | KernelPageSize defines the kernel page size. 4k is the default, 64k is only supported on aarch64 |
-| `machineConfigLabel` | `object (string)` | MachineConfigLabel defines the label to add to the MachineConfigs the operator creates. It has to be used in the MachineConfigSelector of the MachineConfigPool which targets this performance profile. Defaults to "machineconfiguration.openshift.io/role=<same role as in NodeSelector label key>" |
-| `machineConfigPoolSelector` | `object (string)` | MachineConfigPoolSelector defines the MachineConfigPool label to use in the MachineConfigPoolSelector of resources like KubeletConfigs created by the operator. Defaults to "machineconfiguration.openshift.io/role=<same role as in NodeSelector label key>" |
+| `machineConfigLabel` | `object (string)` | MachineConfigLabel defines the label to add to the MachineConfigs the operator creates. It has to be used in the MachineConfigSelector of the MachineConfigPool which targets this performance profile. Defaults to "machineconfiguration.openshift.io/role=&lt;same role as in NodeSelector label key>" |
+| `machineConfigPoolSelector` | `object (string)` | MachineConfigPoolSelector defines the MachineConfigPool label to use in the MachineConfigPoolSelector of resources like KubeletConfigs created by the operator. Defaults to "machineconfiguration.openshift.io/role=&lt;same role as in NodeSelector label key>" |
 | `net` | `object` | Net defines a set of network related features |
-| `nodeSelector` | `object (string)` | NodeSelector defines the Node label to use in the NodeSelectors of resources like Tuned created by the operator. It most likely should, but does not have to match the node label in the NodeSelector of the MachineConfigPool which targets this performance profile. In the case when machineConfigLabels or machineConfigPoolSelector are not set, we are expecting a certain NodeSelector format <domain>/<role>: "" in order to be able to calculate the default values for the former mentioned fields. |
+| `nodeSelector` | `object (string)` | NodeSelector defines the Node label to use in the NodeSelectors of resources like Tuned created by the operator. It most likely should, but does not have to match the node label in the NodeSelector of the MachineConfigPool which targets this performance profile. In the case when machineConfigLabels or machineConfigPoolSelector are not set, we are expecting a certain NodeSelector format &lt;domain>/&lt;role>: "" in order to be able to calculate the default values for the former mentioned fields. |
 | `numa` | `object` | NUMA defines options related to topology aware affinities |
 | `realTimeKernel` | `object` | RealTimeKernel defines a set of real time kernel related parameters. RT kernel won’t be installed when not set. |
 | `workloadHints` | `object` | WorkloadHints defines hints for different types of workloads. It will allow defining exact set of tuned and kernel arguments that should be applied on top of the node. |
@@ -118,7 +118,7 @@ Type
   `array`
   ```
 
-### .spec.hugepages.pages[] {#_spechugepagespages}
+### .spec.hugepages.pages\[\] {#_spechugepagespages}
 
 Description
 : HugePage defines the number of allocated huge pages of the specific size.
@@ -160,7 +160,7 @@ Type
   `array`
   ```
 
-### .spec.net.devices[] {#_specnetdevices}
+### .spec.net.devices\[\] {#_specnetdevices}
 
 Description
 : Device defines a way to represent a network device in several options: device name, vendor ID, model ID, PCI path and MAC address
@@ -248,7 +248,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : Condition represents the state of the operator’s reconciliation functionality.
@@ -357,7 +357,7 @@ Description
 | 202 - Accepted | [`PerformanceProfile`](/docs/rest_api/node_apis/performanceprofile-performance-openshift-io-v2#performanceprofile-performance-openshift-io-v2) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/performance.openshift.io/v2/performanceprofiles/{name} {#_apisperformanceopenshiftiov2performanceprofiles_name}
+### /apis/performance.openshift.io/v2/performanceprofiles/&#123;name&#125; {#_apisperformanceopenshiftiov2performanceprofiles_name}
 
 **Global path parameters**
 
@@ -461,7 +461,7 @@ Description
 | 201 - Created | [`PerformanceProfile`](/docs/rest_api/node_apis/performanceprofile-performance-openshift-io-v2#performanceprofile-performance-openshift-io-v2) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/performance.openshift.io/v2/performanceprofiles/{name}/status {#_apisperformanceopenshiftiov2performanceprofiles_name_status}
+### /apis/performance.openshift.io/v2/performanceprofiles/&#123;name&#125;/status {#_apisperformanceopenshiftiov2performanceprofiles_name_status}
 
 **Global path parameters**
 

@@ -3,7 +3,7 @@ title: "DataImage [metal3.io/v1alpha1]"
 sidebar_position: 4
 ---
 
-# DataImage [metal3.io/v1alpha1] {#dataimage-metal3-io-v1alpha1}
+# DataImage \[metal3.io/v1alpha1\] {#dataimage-metal3-io-v1alpha1}
 
 <a id="dataimage-metal3-io-v1alpha1"></a>
 
@@ -133,7 +133,7 @@ Description
 | 200 - OK | [`DataImageList`](/docs/rest_api/objects#io-metal3-v1alpha1-DataImageList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/dataimages {#_apismetal3iov1alpha1namespaces_namespace_dataimages}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/dataimages {#_apismetal3iov1alpha1namespaces_namespace_dataimages}
 
 HTTP method
 : ```
@@ -201,7 +201,7 @@ Description
 | 202 - Accepted | [`DataImage`](/docs/rest_api/provisioning_apis/dataimage-metal3-io-v1alpha1#dataimage-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/dataimages/{name} {#_apismetal3iov1alpha1namespaces_namespace_dataimages_name}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/dataimages/&#123;name&#125; {#_apismetal3iov1alpha1namespaces_namespace_dataimages_name}
 
 **Global path parameters**
 
@@ -305,7 +305,7 @@ Description
 | 201 - Created | [`DataImage`](/docs/rest_api/provisioning_apis/dataimage-metal3-io-v1alpha1#dataimage-metal3-io-v1alpha1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/metal3.io/v1alpha1/namespaces/{namespace}/dataimages/{name}/status {#_apismetal3iov1alpha1namespaces_namespace_dataimages_name_status}
+### /apis/metal3.io/v1alpha1/namespaces/&#123;namespace&#125;/dataimages/&#123;name&#125;/status {#_apismetal3iov1alpha1namespaces_namespace_dataimages_name_status}
 
 **Global path parameters**
 

@@ -3,7 +3,7 @@ title: "AdminPolicyBasedExternalRoute [k8s.ovn.org/v1]"
 sidebar_position: 4
 ---
 
-# AdminPolicyBasedExternalRoute [k8s.ovn.org/v1] {#adminpolicybasedexternalroute-k8s-ovn-org-v1}
+# AdminPolicyBasedExternalRoute \[k8s.ovn.org/v1\] {#adminpolicybasedexternalroute-k8s-ovn-org-v1}
 
 <a id="adminpolicybasedexternalroute-k8s-ovn-org-v1"></a>
 
@@ -78,7 +78,7 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
 ### .spec.from.namespaceSelector.matchExpressions {#_specfromnamespaceselectormatchexpressions}
 
@@ -90,7 +90,7 @@ Type
   `array`
   ```
 
-### .spec.from.namespaceSelector.matchExpressions[] {#_specfromnamespaceselectormatchexpressions}
+### .spec.from.namespaceSelector.matchExpressions\[\] {#_specfromnamespaceselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -137,7 +137,7 @@ Type
   `array`
   ```
 
-### .spec.nextHops.dynamic[] {#_specnexthopsdynamic}
+### .spec.nextHops.dynamic\[\] {#_specnexthopsdynamic}
 
 Description
 : DynamicHop defines the configuration for a dynamic external gateway interface. These interfaces are wrapped around a pod object that resides inside the cluster. The field NetworkAttachmentName captures the name of the multus network name to use when retrieving the gateway IP to use. The PodSelector and the NamespaceSelector are mandatory fields.
@@ -158,7 +158,7 @@ Required
 | `networkAttachmentName` | `string` | NetworkAttachmentName determines the multus network name to use when retrieving the pod IPs that will be used as the gateway IP. When this field is empty, the logic assumes that the pod is configured with HostNetwork and is using the node’s IP as gateway. |
 | `podSelector` | `object` | PodSelector defines the selector to filter the pods that are external gateways. |
 
-### .spec.nextHops.dynamic[].namespaceSelector {#_specnexthopsdynamicnamespaceselector}
+### .spec.nextHops.dynamic\[\].namespaceSelector {#_specnexthopsdynamicnamespaceselector}
 
 Description
 : NamespaceSelector defines a selector to filter the namespaces where the pod gateways are located.
@@ -172,9 +172,9 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
-### .spec.nextHops.dynamic[].namespaceSelector.matchExpressions {#_specnexthopsdynamicnamespaceselectormatchexpressions}
+### .spec.nextHops.dynamic\[\].namespaceSelector.matchExpressions {#_specnexthopsdynamicnamespaceselectormatchexpressions}
 
 Description
 : matchExpressions is a list of label selector requirements. The requirements are ANDed.
@@ -184,7 +184,7 @@ Type
   `array`
   ```
 
-### .spec.nextHops.dynamic[].namespaceSelector.matchExpressions[] {#_specnexthopsdynamicnamespaceselectormatchexpressions}
+### .spec.nextHops.dynamic\[\].namespaceSelector.matchExpressions\[\] {#_specnexthopsdynamicnamespaceselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -204,7 +204,7 @@ Required
 | `operator` | `string` | operator represents a key’s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist. |
 | `values` | `array (string)` | values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch. |
 
-### .spec.nextHops.dynamic[].podSelector {#_specnexthopsdynamicpodselector}
+### .spec.nextHops.dynamic\[\].podSelector {#_specnexthopsdynamicpodselector}
 
 Description
 : PodSelector defines the selector to filter the pods that are external gateways.
@@ -218,9 +218,9 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
-### .spec.nextHops.dynamic[].podSelector.matchExpressions {#_specnexthopsdynamicpodselectormatchexpressions}
+### .spec.nextHops.dynamic\[\].podSelector.matchExpressions {#_specnexthopsdynamicpodselectormatchexpressions}
 
 Description
 : matchExpressions is a list of label selector requirements. The requirements are ANDed.
@@ -230,7 +230,7 @@ Type
   `array`
   ```
 
-### .spec.nextHops.dynamic[].podSelector.matchExpressions[] {#_specnexthopsdynamicpodselectormatchexpressions}
+### .spec.nextHops.dynamic\[\].podSelector.matchExpressions\[\] {#_specnexthopsdynamicpodselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -260,7 +260,7 @@ Type
   `array`
   ```
 
-### .spec.nextHops.static[] {#_specnexthopsstatic}
+### .spec.nextHops.static\[\] {#_specnexthopsstatic}
 
 Description
 : StaticHop defines the configuration of a static IP that acts as an external Gateway Interface. IP field is mandatory.
@@ -380,7 +380,7 @@ Description
 | 202 - Accepted | [`AdminPolicyBasedExternalRoute`](/docs/rest_api/network_apis/adminpolicybasedexternalroute-k8s-ovn-org-v1#adminpolicybasedexternalroute-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{name} {#_apisk8sovnorgv1adminpolicybasedexternalroutes_name}
+### /apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/&#123;name&#125; {#_apisk8sovnorgv1adminpolicybasedexternalroutes_name}
 
 **Global path parameters**
 
@@ -484,7 +484,7 @@ Description
 | 201 - Created | [`AdminPolicyBasedExternalRoute`](/docs/rest_api/network_apis/adminpolicybasedexternalroute-k8s-ovn-org-v1#adminpolicybasedexternalroute-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/{name}/status {#_apisk8sovnorgv1adminpolicybasedexternalroutes_name_status}
+### /apis/k8s.ovn.org/v1/adminpolicybasedexternalroutes/&#123;name&#125;/status {#_apisk8sovnorgv1adminpolicybasedexternalroutes_name_status}
 
 **Global path parameters**
 

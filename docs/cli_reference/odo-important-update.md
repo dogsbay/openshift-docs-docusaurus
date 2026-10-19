@@ -3,9 +3,9 @@ title: "Important update on {odo_title}"
 sidebar_position: 4
 ---
 
-# Important update on `{{ odo_title }}` {#odo-important_update_{context}}
+# Important update on `{{ odo_title }}` {#odo-important_update_-context-}
 
-<a id="odo-important_update_{context}"></a>
+<a id="odo-important_update_-context-"></a>
 
 Red Hat does not provide information about `odo` on the OpenShift Container Platform documentation site. See the [documentation](https://odo.dev/docs/introduction) maintained by Red Hat and the upstream community for documentation information related to `odo`.
 

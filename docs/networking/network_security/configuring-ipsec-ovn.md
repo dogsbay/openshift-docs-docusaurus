@@ -568,4 +568,4 @@ To disable IPsec encryption in OpenShift Container Platform, you can patch the c
 - [Installing Butane](/docs/installing/install_config/installing-customizing#installation-special-config-butane-install_installing-customizing)
 - [About the OVN-Kubernetes Container Network Interface (CNI) network plugin](/docs/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 - [Changing the MTU for the cluster network](/docs/networking/advanced_networking/changing-cluster-network-mtu#changing-cluster-network-mtu)
-- [Network [operator.openshift.io/v1] API](/docs/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1)
+- \[Network [operator.openshift.io/v1\] API](/docs/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1)

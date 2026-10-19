@@ -3,7 +3,7 @@ title: "EgressQoS [k8s.ovn.org/v1]"
 sidebar_position: 10
 ---
 
-# EgressQoS [k8s.ovn.org/v1] {#egressqos-k8s-ovn-org-v1}
+# EgressQoS \[k8s.ovn.org/v1\] {#egressqos-k8s-ovn-org-v1}
 
 <a id="egressqos-k8s-ovn-org-v1"></a>
 
@@ -53,7 +53,7 @@ Type
   `array`
   ```
 
-### .spec.egress[] {#_specegress}
+### .spec.egress\[\] {#_specegress}
 
 Description
 
@@ -71,7 +71,7 @@ Required
 | `dstCIDR` | `string` | DstCIDR specifies the destination’s CIDR. Only traffic heading to this CIDR will be marked with the DSCP value. This field is optional, and in case it is not set the rule is applied to all egress traffic regardless of the destination. |
 | `podSelector` | `object` | PodSelector applies the QoS rule only to the pods in the namespace whose label matches this definition. This field is optional, and in case it is not set results in the rule being applied to all pods in the namespace. |
 
-### .spec.egress[].podSelector {#_specegresspodselector}
+### .spec.egress\[\].podSelector {#_specegresspodselector}
 
 Description
 : PodSelector applies the QoS rule only to the pods in the namespace whose label matches this definition. This field is optional, and in case it is not set results in the rule being applied to all pods in the namespace.
@@ -85,9 +85,9 @@ Type
 | --- | --- | --- |
 | `matchExpressions` | `array` | matchExpressions is a list of label selector requirements. The requirements are ANDed. |
 | `matchExpressions[]` | `object` | A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values. |
-| `matchLabels` | `object (string)` | matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
+| `matchLabels` | `object (string)` | matchLabels is a map of &#123;key,value&#125; pairs. A single &#123;key,value&#125; in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. |
 
-### .spec.egress[].podSelector.matchExpressions {#_specegresspodselectormatchexpressions}
+### .spec.egress\[\].podSelector.matchExpressions {#_specegresspodselectormatchexpressions}
 
 Description
 : matchExpressions is a list of label selector requirements. The requirements are ANDed.
@@ -97,7 +97,7 @@ Type
   `array`
   ```
 
-### .spec.egress[].podSelector.matchExpressions[] {#_specegresspodselectormatchexpressions}
+### .spec.egress\[\].podSelector.matchExpressions\[\] {#_specegresspodselectormatchexpressions}
 
 Description
 : A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
@@ -130,7 +130,7 @@ Type
 | Property | Type | Description |
 | --- | --- | --- |
 | `conditions` | `array` | An array of condition objects indicating details about status of EgressQoS object. |
-| `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example,<br>	type FooStatus struct{ 	    // Represents the observations of a foo’s current state. 	    // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" 	    // +patchMergeKey=type 	    // +patchStrategy=merge 	    // +listType=map 	    // +listMapKey=type 	    Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`<br>	    // other fields 	} |
+| `conditions[]` | `object` | Condition contains details for one aspect of the current state of this API Resource. --- This struct is intended for direct use as an array at the field path .status.conditions.  For example,<br>	type FooStatus struct&#123; 	    // Represents the observations of a foo’s current state. 	    // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" 	    // +patchMergeKey=type 	    // +patchStrategy=merge 	    // +listType=map 	    // +listMapKey=type 	    Conditions \[\]metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`<br>	    // other fields 	&#125; |
 | `status` | `string` | A concise indication of whether the EgressQoS resource is applied with success. |
 
 ### .status.conditions {#_statusconditions}
@@ -143,7 +143,7 @@ Type
   `array`
   ```
 
-### .status.conditions[] {#_statusconditions}
+### .status.conditions\[\] {#_statusconditions}
 
 Description
 : ## Condition contains details for one aspect of the current state of this API Resource.
@@ -180,7 +180,7 @@ Required
 | --- | --- | --- |
 | `lastTransitionTime` | `string` | lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable. |
 | `message` | `string` | message is a human readable message indicating details about the transition. This may be an empty string. |
-| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
+| `observedGeneration` | `integer` | observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions\[x\].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. |
 | `reason` | `string` | reason contains a programmatic identifier indicating the reason for the condition’s last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. |
 | `status` | `string` | status of the condition, one of True, False, Unknown. |
 | `type` | `string` | type of condition in CamelCase or in foo.example.com/CamelCase. --- Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be useful (see .node.status.conditions), the ability to deconflict is important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt) |
@@ -224,7 +224,7 @@ Description
 | 200 - OK | [`EgressQoSList`](/docs/rest_api/objects#org-ovn-k8s-v1-EgressQoSList) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressqoses {#_apisk8sovnorgv1namespaces_namespace_egressqoses}
+### /apis/k8s.ovn.org/v1/namespaces/&#123;namespace&#125;/egressqoses {#_apisk8sovnorgv1namespaces_namespace_egressqoses}
 
 HTTP method
 : ```
@@ -292,7 +292,7 @@ Description
 | 202 - Accepted | [`EgressQoS`](/docs/rest_api/network_apis/egressqos-k8s-ovn-org-v1#egressqos-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressqoses/{name} {#_apisk8sovnorgv1namespaces_namespace_egressqoses_name}
+### /apis/k8s.ovn.org/v1/namespaces/&#123;namespace&#125;/egressqoses/&#123;name&#125; {#_apisk8sovnorgv1namespaces_namespace_egressqoses_name}
 
 **Global path parameters**
 
@@ -396,7 +396,7 @@ Description
 | 201 - Created | [`EgressQoS`](/docs/rest_api/network_apis/egressqos-k8s-ovn-org-v1#egressqos-k8s-ovn-org-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/k8s.ovn.org/v1/namespaces/{namespace}/egressqoses/{name}/status {#_apisk8sovnorgv1namespaces_namespace_egressqoses_name_status}
+### /apis/k8s.ovn.org/v1/namespaces/&#123;namespace&#125;/egressqoses/&#123;name&#125;/status {#_apisk8sovnorgv1namespaces_namespace_egressqoses_name_status}
 
 **Global path parameters**
 

@@ -3,7 +3,7 @@ title: "InsightsDataGather [config.openshift.io/v1]"
 sidebar_position: 17
 ---
 
-# InsightsDataGather [config.openshift.io/v1] {#insightsdatagather-config-openshift-io-v1}
+# InsightsDataGather \[config.openshift.io/v1\] {#insightsdatagather-config-openshift-io-v1}
 
 <a id="insightsdatagather-config-openshift-io-v1"></a>
 
@@ -98,20 +98,20 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `configs` | `array` | configs is a required list of gatherers configurations that can be used to enable or disable specific gatherers. It may not exceed 100 items and each gatherer can be present only once. It is possible to disable an entire set of gatherers while allowing a specific function within that set. The particular gatherers IDs can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \| jq '.status.gatherStatus.gatherers[].name'" |
+| `configs` | `array` | configs is a required list of gatherers configurations that can be used to enable or disable specific gatherers. It may not exceed 100 items and each gatherer can be present only once. It is possible to disable an entire set of gatherers while allowing a specific function within that set. The particular gatherers IDs can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \| jq '.status.gatherStatus.gatherers\[\].name'" |
 | `configs[]` | `object` | GathererConfig allows to configure specific gatherers |
 
 ### .spec.gatherConfig.gatherers.custom.configs {#_specgatherconfiggathererscustomconfigs}
 
 Description
-: configs is a required list of gatherers configurations that can be used to enable or disable specific gatherers. It may not exceed 100 items and each gatherer can be present only once. It is possible to disable an entire set of gatherers while allowing a specific function within that set. The particular gatherers IDs can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json | jq '.status.gatherStatus.gatherers[].name'"
+: configs is a required list of gatherers configurations that can be used to enable or disable specific gatherers. It may not exceed 100 items and each gatherer can be present only once. It is possible to disable an entire set of gatherers while allowing a specific function within that set. The particular gatherers IDs can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json | jq '.status.gatherStatus.gatherers\[\].name'"
 
 Type
 : ```
   `array`
   ```
 
-### .spec.gatherConfig.gatherers.custom.configs[] {#_specgatherconfiggathererscustomconfigs}
+### .spec.gatherConfig.gatherers.custom.configs\[\] {#_specgatherconfiggathererscustomconfigs}
 
 Description
 : GathererConfig allows to configure specific gatherers
@@ -127,7 +127,7 @@ Required
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | name is the required name of a specific gatherer. It may not exceed 256 characters. The format for a gatherer name is: {gatherer}/{function} where the function is optional. Gatherer consists of a lowercase letters only that may include underscores (*). Function consists of a lowercase letters only that may include underscores (*) and is separated from the gatherer by a forward slash (/). The particular gatherers can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \| jq '.status.gatherStatus.gatherers[].name'" |
+| `name` | `string` | name is the required name of a specific gatherer. It may not exceed 256 characters. The format for a gatherer name is: &#123;gatherer&#125;/&#123;function&#125; where the function is optional. Gatherer consists of a lowercase letters only that may include underscores (*). Function consists of a lowercase letters only that may include underscores (*) and is separated from the gatherer by a forward slash (/). The particular gatherers can be found at https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md. Run the following command to get the names of last active gatherers: "oc get insightsoperators.operator.openshift.io cluster -o json \| jq '.status.gatherStatus.gatherers\[\].name'" |
 | `state` | `string` | state is a required field that allows you to configure specific gatherer. Valid values are "Enabled" and "Disabled". When set to Enabled the gatherer will run. When set to Disabled the gatherer will not run. |
 
 ### .spec.gatherConfig.storage {#_specgatherconfigstorage}
@@ -265,7 +265,7 @@ Description
 | 202 - Accepted | [`InsightsDataGather`](/docs/rest_api/config_apis/insightsdatagather-config-openshift-io-v1#insightsdatagather-config-openshift-io-v1) schema |
 | 401 - Unauthorized | Empty |
 
-### /apis/config.openshift.io/v1/insightsdatagathers/{name} {#_apisconfigopenshiftiov1insightsdatagathers_name}
+### /apis/config.openshift.io/v1/insightsdatagathers/&#123;name&#125; {#_apisconfigopenshiftiov1insightsdatagathers_name}
 
 **Global path parameters**
 
