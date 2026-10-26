@@ -9,7 +9,7 @@ sidebar_position: 5
 
 Monitor core platform components by using the OpenShift Container Platform monitoring stack based on the Prometheus monitoring system. Additionally, enable monitoring for user-defined projects by using the CLI and query custom metrics exposed for virtual machines through the `node-exporter` service.
 
-## Configuring the node exporter service {#virt-configuring-node-exporter-service_virt-exposing-custom-metrics-for-vms}
+## Configure the node exporter service {#virt-configuring-node-exporter-service_virt-exposing-custom-metrics-for-vms}
 
 The node-exporter agent is deployed on every virtual machine in the cluster from which you want to collect metrics. Configure the node-exporter agent as a service to expose internal metrics and processes that are associated with virtual machines.
 
@@ -54,7 +54,7 @@ The node-exporter agent is deployed on every virtual machine in the cluster from
    $ oc create -f node-exporter-service.yaml
    ```
 
-## Configuring a virtual machine with the node exporter service {#virt-configuring-vm-with-node-exporter-service_virt-exposing-custom-metrics-for-vms}
+## Configure a virtual machine with the node exporter service {#virt-configuring-vm-with-node-exporter-service_virt-exposing-custom-metrics-for-vms}
 
 Download the `node-exporter` file on to the virtual machine. Then, create a `systemd` service that runs the node-exporter service when the virtual machine boots.
 
@@ -116,7 +116,7 @@ Download the `node-exporter` file on to the virtual machine. Then, create a `sys
   go_gc_duration_seconds{quantile="0.5"} 3.7913e-05
   ```
 
-## Creating a custom monitoring label for virtual machines {#virt-creating-custom-monitoring-label-for-vms_virt-exposing-custom-metrics-for-vms}
+## Create a custom monitoring label for virtual machines {#virt-creating-custom-monitoring-label-for-vms_virt-exposing-custom-metrics-for-vms}
 
 To enable queries to multiple virtual machines from a single service, you can add a custom label in the virtual machine’s YAML file.
 
@@ -138,7 +138,7 @@ To enable queries to multiple virtual machines from a single service, you can ad
    ```
 2. Stop and restart the virtual machine to create a new pod with the label name given to the `monitor` label.
 
-### Querying the node-exporter service for metrics {#virt-querying-the-node-exporter-service-for-metrics-_virt-exposing-custom-metrics-for-vms}
+### Query the node-exporter service for metrics {#virt-querying-the-node-exporter-service-for-metrics-_virt-exposing-custom-metrics-for-vms}
 
 Metrics are exposed for virtual machines through an HTTP service endpoint under the `/metrics` canonical name. When you query for metrics, Prometheus directly scrapes the metrics from the metrics endpoint exposed by the virtual machines and presents these metrics for viewing.
 
@@ -211,7 +211,7 @@ Metrics are exposed for virtual machines through an HTTP service endpoint under 
    node_disk_written_bytes_total{device="vdb"} 0
    ```
 
-## Creating a ServiceMonitor resource for the node exporter service {#virt-creating-servicemonitor-resource-for-node-exporter_virt-exposing-custom-metrics-for-vms}
+## Create a ServiceMonitor resource for the node exporter service {#virt-creating-servicemonitor-resource-for-node-exporter_virt-exposing-custom-metrics-for-vms}
 
 You can use a Prometheus client library and scrape metrics from the `/metrics` endpoint to access and view the metrics exposed by the node-exporter service. Use a `ServiceMonitor` custom resource definition (CRD) to monitor the node exporter service.
 
@@ -251,7 +251,7 @@ You can use a Prometheus client library and scrape metrics from the `/metrics` e
    $ oc create -f node-exporter-metrics-monitor.yaml
    ```
 
-### Accessing the node exporter service outside the cluster {#virt-accessing-node-exporter-outside-cluster_virt-exposing-custom-metrics-for-vms}
+### Access the node exporter service outside the cluster {#virt-accessing-node-exporter-outside-cluster_virt-exposing-custom-metrics-for-vms}
 
 You can access the node-exporter service outside the cluster and view the exposed metrics.
 

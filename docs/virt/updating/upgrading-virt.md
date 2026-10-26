@@ -9,7 +9,7 @@ sidebar_position: 1
 
 Learn how to keep OpenShift Virtualization updated and compatible with OpenShift Container Platform.
 
-## About updating OpenShift Virtualization {#virt-about-upgrading-virt_upgrading-virt}
+## OpenShift Virtualization update behavior {#virt-about-upgrading-virt_upgrading-virt}
 
 When you install OpenShift Virtualization, you select an update channel and an approval strategy. Both settings affect supportability.
 
@@ -55,7 +55,7 @@ Learn how Operator Lifecycle Manager (OLM) updates the OpenShift Virtualization 
 - Operator Lifecycle Manager (OLM) manages the lifecycle of the OpenShift Virtualization Operator. The Marketplace Operator, deployed during OpenShift Container Platform installation, makes external Operators available to your cluster.
 - OLM provides z-stream and minor version updates for OpenShift Virtualization. Minor version updates become available when you update OpenShift Container Platform to the next minor version. You cannot update OpenShift Virtualization to the next minor version without first updating OpenShift Container Platform.
 
-### Changing update settings {#virt-changing-update-settings_upgrading-virt}
+### Change update settings {#virt-changing-update-settings_upgrading-virt}
 
 You can control how and when updates are installed by changing the update channel and approval strategy for the OpenShift Virtualization Operator subscription.
 
@@ -96,7 +96,7 @@ If an installed Operator has the approval strategy in its subscription set to **
 5. Review the resources that are listed as available for update. When satisfied, click **Approve**.
 6. Navigate back to the **Ecosystem** → **Installed Operators** page to monitor the progress of the update. When complete, the status changes to **Succeeded** and **Up to date**.
 
-## Remove unused Operators and resources {#virt-update-removing-unused_upgrading-virt}
+## Operator and resource cleanup {#virt-update-removing-unused_upgrading-virt}
 
 When updating OpenShift Virtualization to version 4.22, you can remove certain Operators and resources that are no longer required. This helps reclaim space and resources on your cluster.
 
@@ -116,7 +116,7 @@ Before you change a VM’s `machineType` value, you must shut down the VM.
 
 :::
 
-## Monitoring update status {#virt-monitoring-upgrade-status_upgrading-virt}
+## Monitor update status {#virt-monitoring-upgrade-status_upgrading-virt}
 
 To monitor the status of a OpenShift Virtualization Operator update, watch the cluster service version (CSV) `PHASE`. You can also monitor the CSV conditions in the web console or by using the CLI.
 
@@ -202,7 +202,7 @@ Each attempt corresponds to a migration object. Only the five most recent attemp
 
 :::
 
-### Configuring workload update methods {#virt-configuring-workload-update-methods_upgrading-virt}
+### Configure workload update methods {#virt-configuring-workload-update-methods_upgrading-virt}
 
 You can configure how virtual machine workloads are updated during cluster upgrades by editing the `HyperConverged` custom resource (CR).
 
@@ -250,7 +250,7 @@ You can configure how virtual machine workloads are updated during cluster upgra
      :::
 3. To apply your changes, save and exit the editor.
 
-### Viewing outdated VM workloads {#virt-viewing-outdated-workloads_upgrading-virt}
+### View outdated VM workloads {#virt-viewing-outdated-workloads_upgrading-virt}
 
 You can view a list of outdated virtual machine (VM) workloads by using the CLI.
 
@@ -287,7 +287,7 @@ You can update OpenShift Virtualization directly to the latest z-stream release 
 
 For more information about EUS versions, see the "OpenShift Container Platform Life Cycle Policy".
 
-### Preventing workload updates during a Control Plane Only update {#virt-preventing-workload-updates-during-control-plane-only-update_upgrading-virt}
+### Prevent workload updates during a Control Plane Only update {#virt-preventing-workload-updates-during-control-plane-only-update_upgrading-virt}
 
 When updating between Extended Update Support (EUS) versions, temporarily disable automatic workload updates. This prevents OpenShift Virtualization from migrating or evicting virtual machines during the upgrade.
 

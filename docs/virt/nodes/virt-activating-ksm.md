@@ -19,7 +19,7 @@ You must only use KSM with trusted workloads.
 
 - Ensure that an administrator has configured KSM support on any nodes where you want OpenShift Virtualization to activate KSM.
 
-## About using OpenShift Virtualization to activate KSM {#virt-about-ksm_virt-activating-ksm}
+## KSM activation for memory optimization {#virt-about-ksm_virt-activating-ksm}
 
 You can configure OpenShift Virtualization to activate kernel samepage merging (KSM) when nodes experience memory overload.
 
@@ -54,7 +54,7 @@ OpenShift Virtualization identifies nodes that are configured to support KSM and
 
 These labels are not applied to nodes that do not support KSM.
 
-## Configuring KSM activation by using the web console {#virt-configure-ksm-web_virt-activating-ksm}
+## Configure KSM activation with web console {#virt-configure-ksm-web_virt-activating-ksm}
 
 You can allow OpenShift Virtualization to activate kernel samepage merging (KSM) on all nodes in your cluster by using the OpenShift Container Platform web console.
 
@@ -65,7 +65,7 @@ You can allow OpenShift Virtualization to activate kernel samepage merging (KSM)
 3. Expand **Resource management**.
 4. Enable or disable the feature for all nodes using the **Kernel Samepage Merging (KSM)** toggle button.
 
-## Configuring KSM activation by using the CLI {#virt-configure-ksm-cli_virt-activating-ksm}
+## Configure KSM activation with CLI {#virt-configure-ksm-cli_virt-activating-ksm}
 
 You can enable or disable OpenShift Virtualization's kernel samepage merging (KSM) activation feature by editing the `HyperConverged` custom resource (CR). Use this method if you want OpenShift Virtualization to activate KSM on only a subset of nodes.
 

@@ -9,15 +9,17 @@ sidebar_position: 7
 
 To improve performance, you can dedicate node resources, such as CPU, to a virtual machine.
 
-## About dedicated resources {#virt-about-dedicated-resources_virt-dedicated-resources-vm}
+## Exclusive CPU use for predictable VM latency {#virt-about-dedicated-resources_virt-dedicated-resources-vm}
 
-When you enable dedicated resources for your virtual machine, your virtual machine’s workload is scheduled on CPUs that will not be used by other processes.
+Dedicated resources give a virtual machine (VM) workload exclusive use of its CPUs, which improves VM performance and the accuracy of latency predictions.
 
-By using dedicated resources, you can improve the performance of the virtual machine and the accuracy of latency predictions.
+When you enable dedicated resources, the VM’s workload is pinned to specific CPUs on the node, and no other process is scheduled on those CPUs. The node must have CPU Manager configured.
 
-## Enabling dedicated resources for a virtual machine {#virt-enabling-dedicated-resources_virt-dedicated-resources-vm}
+## Enable dedicated resources for a virtual machine {#virt-enabling-dedicated-resources_virt-dedicated-resources-vm}
 
-You can enable dedicated resources for a virtual machine in the **Details** tab. Virtual machines that were created from a Red Hat template can be configured with dedicated resources.
+Enable dedicated resources for a virtual machine in the OpenShift Container Platform web console so that its workload gets exclusive use of its CPUs.
+
+You can configure dedicated resources for virtual machines that were created from a Red Hat template.
 
 **Prerequisites**
 
@@ -28,6 +30,6 @@ You can enable dedicated resources for a virtual machine in the **Details** tab.
 
 1. In the OpenShift Container Platform console, click **Virtualization** → **VirtualMachines** from the side menu.
 2. Select a virtual machine to open the **VirtualMachine details** page.
-3. On the **Configuration -> Scheduling** tab, click the edit icon beside **Dedicated Resources**.
+3. On the **Configuration → Scheduling** tab, click the edit icon beside **Dedicated Resources**.
 4. Select **Schedule this workload with dedicated resources (guaranteed policy)**.
 5. Click **Save**.

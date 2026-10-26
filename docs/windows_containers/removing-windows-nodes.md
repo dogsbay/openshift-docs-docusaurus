@@ -9,7 +9,7 @@ sidebar_position: 10
 
 You can remove a Windows node by deleting its host Windows machine.
 
-## Deleting a specific machine {#machine-delete_removing-windows-nodes}
+## Delete a specific machine {#machine-delete_removing-windows-nodes}
 
 To remove a machine from your cluster, or restart a machine that is part of a machine set, you can use the OpenShift CLI (`oc`) to delete a specific machine.
 

@@ -690,6 +690,6 @@ The following Red Hat Bug Fix Advisory (RHBA) is available for the OpenShift Com
 
 **Additional resources**
 
-- [Understanding the Compliance Operator](/docs/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
+- [About the Compliance Operator](/docs/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
 - [Updating the Compliance Operator](/docs/security/compliance_operator/co-management/compliance-operator-updating#olm-preparing-upgrade_compliance-operator-updating)
 - [Product Compliance](https://access.redhat.com/compliance)

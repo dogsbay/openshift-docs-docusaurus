@@ -11,14 +11,16 @@ Manage and control virtual machine resource consumption to prevent overcommitmen
 
 Create and manage resource quotas for virtual machines.
 
-## Setting resource quota limits for virtual machines by using the CLI {#virt-setting-resource-quota-limits-for-vms_virt-working-with-resource-quotas-for-vms}
+## Set resource quota limits for VMs by using the CLI {#virt-setting-resource-quota-limits-for-vms_virt-working-with-resource-quotas-for-vms}
 
-By default, OpenShift Virtualization automatically manages CPU and memory limits for virtual machines (VMs) if a namespace enforces resource quotas that require limits to be set. The memory limit is automatically set to twice the requested memory and the CPU limit is set to one per vCPU.
+OpenShift Virtualization manages CPU and memory limits for virtual machines (VMs) automatically. If a namespace enforces a resource quota that requires limits, you can customize the memory limit ratio or set limits manually so that your VMs comply with the quota.
+
+By default, the memory limit is set to twice the requested memory and the CPU limit is set to one per vCPU.
 
 You can customize the memory limit ratio for a specific namespace by adding the `alpha.kubevirt.io/auto-memory-limits-ratio` label to the namespace. For example, the following command sets the memory limit ratio to 1.2:
 
 ```terminal
-$ oc label ns/my-virtualization-project  alpha.kubevirt.io/auto-memory-limits-ratio=1.2
+$ oc label ns/my-virtualization-project alpha.kubevirt.io/auto-memory-limits-ratio=1.2
 ```
 
 :::warning
@@ -59,17 +61,17 @@ Resource quotas that only use requests automatically work with VMs. If your reso
    </dl>
 2. Save the `VirtualMachine` manifest.
 
-## Understanding the Application Aware Quota Operator {#virt-understanding-aaq-operator_virt-working-with-resource-quotas-for-vms}
+## Accurate VM resource measurement with AAQ {#virt-understanding-aaq-operator_virt-working-with-resource-quotas-for-vms}
 
-The Application Aware Quota (AAQ) operator extends Kubernetes native `ResourceQuota` to measure virtual machine (VM) resource consumption in mixed pod and VM environments.
+The Application Aware Quota (AAQ) Operator measures the CPU and memory that your virtual machines (VMs) actually use. The `ResourceQuota` object counts the whole VM pod, including the resources that the hypervisor consumes, so it overstates VM consumption.
 
 AAQ provides quota enforcement designed for virtualization workloads:
 
 Kubernetes ResourceQuota
-: Measures and enforces resource limits at the pod level. When applied to VMs, it measures the entire VM pod’s resource consumption, including hypervisor overhead and pod infrastructure, which does not reflect actual VM resource allocation.
+: Measures and enforces resource limits at the pod level. When applied to VMs, it measures the entire VM pod’s resource consumption, including the resources consumed by the hypervisor and the pod infrastructure, which does not reflect actual VM resource allocation.
 
 Application Aware Quota (AAQ)
-: Extends ResourceQuota functionality to accurately measure and enforce VM resource consumption. AAQ understands the virtualization layer and can measure actual virtual CPU and memory allocated to VMs, separate from pod overhead.
+: Extends ResourceQuota functionality to accurately measure and enforce VM resource consumption. AAQ understands the virtualization layer and can measure actual virtual CPU and memory allocated to VMs, separate from what the pod itself consumes.
 
 AAQ supports two types of quotas:
 
@@ -82,17 +84,17 @@ Cluster-scoped quotas
 When you enable AAQ, you must configure a quota calculation method. This setting determines how AAQ measures VM resource consumption across your cluster:
 
 Virtual resources
-: Measures only the virtual CPU and memory allocated to virtual machines (VMs), excluding pod runtime overhead. This is the default option for virtualization workloads.
+: Measures only the virtual CPU and memory allocated to virtual machines (VMs), excluding the CPU and memory that the pod runtime consumes. This is the default option for virtualization workloads.
 
 Virtual Machine Instance (VMI) pod usage
-: Measures the total virtual CPU and memory consumption of the VM pod, including both the virtual machine and pod runtime overhead.
+: Measures the total virtual CPU and memory consumption of the VM pod, including both the virtual machine and the pod runtime.
 
 Dedicated virtual resources
 : Measures the virtual CPU and memory resources assigned to virtual machines and their associated pods, tracking quota usage separately for each type.
 
-## Enabling the Application Aware Quota Operator {#virt-enabling-aaq-operator_virt-working-with-resource-quotas-for-vms}
+## Enable the Application Aware Quota Operator {#virt-enabling-aaq-operator_virt-working-with-resource-quotas-for-vms}
 
-Enable the Application Aware Quota (AAQ) operator to manage resource quotas to extend native resource management capabilities. Enabling AAQ from the web console eliminates the need to manually edit the HyperConverged custom resource by using the CLI.
+Enable the Application Aware Quota (AAQ) Operator and choose a quota calculation method in the web console. Using the web console avoids editing the `HyperConverged` custom resource (CR) by hand.
 
 **Prerequisites**
 
@@ -107,8 +109,8 @@ Enable the Application Aware Quota (AAQ) operator to manage resource quotas to e
 3. Optional: Click the **Edit** icon next to the **Quota calculation method** field to change the calculation method.
    A modal dialog is displayed with the following options:
 
-   - **Virtual resources**: Measures only the virtual CPU and memory allocated to virtual machines (VMs), excluding pod runtime overhead. This is the default option for virtualization workloads.
-   - **Virtual Machine Instance (VMI) pod usage**: Measures the total virtual CPU and memory consumption of the VM pod, including both the virtual machine and pod runtime overhead.
+   - **Virtual resources**: Measures only the virtual CPU and memory allocated to virtual machines (VMs), excluding the CPU and memory that the pod runtime consumes. This is the default option for virtualization workloads.
+   - **Virtual Machine Instance (VMI) pod usage**: Measures the total virtual CPU and memory consumption of the VM pod, including both the virtual machine and the pod runtime.
    - **Dedicated virtual resources**: Measures the virtual CPU and memory resources assigned to virtual machines and their associated pods, tracking quota usage separately for each type.
 4. Select your preferred quota calculation method and click **Save**.
 
@@ -116,14 +118,14 @@ Enable the Application Aware Quota (AAQ) operator to manage resource quotas to e
 
 1. Verify that a new **Quotas** option is displayed in the left navigation menu under **Virtualization**. This indicates that AAQ is ready for quota creation and management.
 
-## Creating virtual machine quotas using the web console {#virt-creating-vm-quotas-web_virt-working-with-resource-quotas-for-vms}
+## Create VM quotas by using the web console {#virt-creating-vm-quotas-web_virt-working-with-resource-quotas-for-vms}
 
-You can create Application Aware Quota (AAQ) quotas that limit virtual machine resource consumption by using the guided form in the OpenShift Container Platform web console. The form is the recommended approach for simple virtualization quota use cases.
+Use the guided form in the OpenShift Container Platform web console to create an Application Aware Quota (AAQ) that limits virtual machine (VM) resource use in a project. The form is the simplest way to set quota limits without writing YAML.
 
 **Prerequisites**
 
 - You have cluster administrator privileges.
-- The Application Aware Quota operator is enabled in your cluster. See [Enabling the Application Aware Quota operator](#virt-enabling-aaq-operator_virt-working-with-resource-quotas-for-vms).
+- The Application Aware Quota Operator is enabled in your cluster. See [Enable the Application Aware Quota Operator](#virt-enabling-aaq-operator_virt-working-with-resource-quotas-for-vms).
 - The project where you want to create the quota exists.
 
 **Procedure**
@@ -145,17 +147,17 @@ You can create Application Aware Quota (AAQ) quotas that limit virtual machine r
 6. Configure CPU, memory, and VMI limits for the quota:
    The fields displayed vary based on the selected quota calculation method. For example:
 
-   - For the  `Virtual resources` or `Dedicated virtual resources` quota calculation method, the quotas exclude pod overhead:
-     - Use the **vCPU allocation** field to set the maximum number of virtual CPUs permitted for all VMs in the project, excluding infrastructure overhead.
-     - Use the **Virtual memory allocation** field to set the maximum memory capacity, in GiB, excluding infrastructure overhead.
+   - For the `Virtual resources` or `Dedicated virtual resources` quota calculation method, the quotas exclude the resources that the pod consumes:
+     - Use the **vCPU allocation** field to set the maximum number of virtual CPUs permitted for all VMs in the project, excluding the CPU that infrastructure consumes.
+     - Use the **Virtual memory allocation** field to set the maximum memory capacity, in GiB, excluding the memory that infrastructure consumes.
      - Use the **VMI limits** field to set the maximum number of virtual machine instances.
-   - For the `Virtual Machine Instance (VMI) pod usage` quota calculation method, the quotas include pod overhead:
+   - For the `Virtual Machine Instance (VMI) pod usage` quota calculation method, the quotas include the resources that the pod consumes:
      - Use the **CPU allocation** field to set the maximum number of CPU cores for pods that run VM workloads
      - Use the **Memory allocation** field to set the maximum memory capacity, in GiB, for pods that run VM workloads.
      - Use the **VMI limits** field to set the maximum number of virtual machine instances.
        :::note
 
-       Live migration overhead is excluded from the `Virtual Machine Instance (VMI) pod usage`  quota calculation method.
+       The resources consumed by live migration are excluded from the `Virtual Machine Instance (VMI) pod usage` quota calculation method.
 
        :::
 7. Review the configuration and click **Create**.
@@ -168,14 +170,14 @@ You can create Application Aware Quota (AAQ) quotas that limit virtual machine r
 3. Verify that the quota name is displayed in the list with the correct project and resource limits configured.
 4. Click the quota name to open its details page and confirm all settings are correct.
 
-## Managing virtual machine quotas using the list view {#virt-managing-quotas-list-web_virt-working-with-resource-quotas-for-vms}
+## Manage VM quotas by using the list view {#virt-managing-quotas-list-web_virt-working-with-resource-quotas-for-vms}
 
-The Application Aware Quota (AAQ) quotas page in the OpenShift Container Platform web console provides a centralized view of all quotas managed by the AAQ operator. From this page, you can view quota status, usage, and perform management actions such as editing and deleting quotas.
+You can use the **Quotas** page in the OpenShift Container Platform web console to view the status and usage of every Application Aware Quota (AAQ) in your cluster, and to create, edit, or delete a quota, without searching through individual projects.
 
 **Prerequisites**
 
 - You have cluster administrator privileges.
-- The Application Aware Quota operator is enabled in your cluster.
+- The Application Aware Quota Operator is enabled in your cluster.
 - At least one Application Aware Quota exists in a namespace that matches the label selector configured in the HyperConverged Operator (HCO).
 
 **Procedure**
@@ -212,9 +214,9 @@ The Application Aware Quota (AAQ) quotas page in the OpenShift Container Platfor
       - **With form**: Opens the form-based creation experience for simple VM quota use cases.
       - **With YAML**: Opens the YAML editor for advanced quota configurations that include pod limits or other resource types.
 
-## Managing virtual machine quota details using the web console {#virt-managing-quota-details-web_virt-working-with-resource-quotas-for-vms}
+## Manage VM quota details by using the web console {#virt-managing-quota-details-web_virt-working-with-resource-quotas-for-vms}
 
-The quota details page in the OpenShift Container Platform web console provides information about an Application Aware Quota (AAQ), including resource limits, current usage, and visualizations of how quota capacity is being consumed.
+You can use the **Quota details** page in the OpenShift Container Platform web console to review the resource limits, current usage, and utilization charts for an Application Aware Quota (AAQ), so you can tell how close a project is to its limits.
 
 :::note
 
@@ -225,7 +227,7 @@ Cluster scoped quotas show only the YAML definition due to the complexity that t
 **Prerequisites**
 
 - You have cluster administrator privileges.
-- The Application Aware Quota operator is enabled in your cluster.
+- The Application Aware Quota Operator is enabled in your cluster.
 - An Application Aware Quota exists in your cluster.
 
 **Procedure**

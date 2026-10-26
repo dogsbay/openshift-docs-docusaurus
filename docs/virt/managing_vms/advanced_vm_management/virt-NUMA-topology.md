@@ -17,19 +17,19 @@ A CPU processing a workload using memory that is outside its NUMA zone is slower
 
 Applications can achieve better performance by containing data and processing within the same NUMA zone. For high-performance workloads and applications, such as telecommunications workloads, the cluster must process pod workloads in a single NUMA zone so that the workload can operate to specification.
 
-## Using NUMA topology with OpenShift Virtualization {#virt-using-NUMA_virt-NUMA-topology}
+## NUMA topology with OpenShift Virtualization {#virt-using-NUMA_virt-NUMA-topology}
 
-You must enable the NUMA functionality for OpenShift Virtualization VMs to prevent performance degradation on nodes with multiple NUMA zones. This feature is vital for high-performance and latency-sensitive workloads.
+You must enable the NUMA functionality for OpenShift Virtualization VMs to prevent performance degradation on nodes with multiple NUMA zones. This matters most for high-performance and latency-sensitive workloads.
 
 Without NUMA awareness, a VM’s virtual CPUs might run on one physical NUMA zone, while its memory is allocated on another. This "cross-node" communication significantly increases latency and reduces memory bandwidth, and can cause the interconnect buses which link the NUMA zones to become a bottleneck.
 
-When you enable the NUMA functionality for OpenShift Virtualization VMs, you allow the host to pass its physical topology directly to the VM’s guest operating system (OS). The guest OS can then make intelligent, NUMA-aware decisions about scheduling and memory allocation. This ensures that process threads and memory are kept on the same physical NUMA node. By aligning the virtual topology with the physical one, you minimize latency and maximize performance.
+When you enable the NUMA functionality for OpenShift Virtualization VMs, you allow the host to pass its physical topology directly to the guest operating system of the VM. The guest operating system can then make intelligent, NUMA-aware decisions about scheduling and memory allocation. This ensures that process threads and memory are kept on the same physical NUMA node. By aligning the virtual topology with the physical one, you minimize latency and maximize performance.
 
-VM owners can enable NUMA with `ComputeExclusive` (CX) instance types, which are specifically designed for high-performance, compute-intensive workloads, and are configured to use NUMA features. For information about creating VMs using a CX instance type, see "Creating virtual machines from instance types".
+VM owners can enable NUMA with `ComputeExclusive` (CX) instance types, which are specifically designed for high-performance, compute-intensive workloads, and are configured to use NUMA features. For information about creating VMs by using a CX instance type, see "Creating virtual machines from instance types".
 
-## Prerequisites {#virt-NUMA-prereqs_virt-NUMA-topology}
+## Node requirements for NUMA topology {#virt-NUMA-prereqs_virt-NUMA-topology}
 
-Before you can enable NUMA functionality with OpenShift Virtualization VMs, you must ensure that your environment meets the following prerequisites.
+Before you can enable NUMA functionality for OpenShift Virtualization VMs, your worker nodes must have huge pages enabled and a static CPU Manager policy configured.
 
 - Worker nodes must have huge pages enabled.
 - The `KubeletConfig` object on worker nodes must be configured with the `cpuManagerPolicy: static` spec to guarantee dedicated CPU allocation, which is a prerequisite for NUMA pinning.
@@ -46,9 +46,9 @@ Before you can enable NUMA functionality with OpenShift Virtualization VMs, you 
   # ...
   ```
 
-## Verifying vNUMA status of a VM {#virt-numa-check-config_virt-NUMA-topology}
+## Check whether a VM is configured for vNUMA {#virt-numa-check-config_virt-NUMA-topology}
 
-VM administrators might need to confirm whether non-uniform memory access (NUMA) is configured for a VM, to verify the VM’s resource allocation setup for high-performance, latency-sensitive workloads that rely on memory locality.
+Check whether a virtual machine (VM) is configured for virtual non-uniform memory access (vNUMA), so you can confirm that a latency-sensitive workload is getting the memory locality it depends on.
 
 You can verify whether an already deployed VM is configured for vNUMA by checking the `spec.domain.cpu.numa` attribute. This is displayed as a **vNUMA** badge in the OpenShift Container Platform web console.
 
@@ -67,15 +67,15 @@ You can verify whether an already deployed VM is configured for vNUMA by checkin
   If any output other than an empty string is returned, vNUMA is enabled for the VM.
 - To verify vNUMA status in a GUI, check if the VM has a **vNUMA** badge in the OpenShift Container Platform web console. Go to **VirtualMachines** → **Virtual machines** → **VirtualMachine details**, and check either the **Overview** or the **Configuration** tabs.
 
-## Disabling the hot plug capability for VMs {#virt-NUMA-topology-disabling-hotplugs_virt-NUMA-topology}
+## Hot plug and NUMA resource alignment {#virt-NUMA-topology-disabling-hotplugs_virt-NUMA-topology}
 
-You can keep VM resource requests aligned with NUMA and optimize performance for resource-intensive workloads by disabling the VM’s default hot plug capability.
+Disable the default hot plug capability of a virtual machine (VM) to keep its resource requests aligned with NUMA. Default hot plug multipliers can inflate a VM’s socket request and cause deployment failures.
 
 *Hot plugging* is the ability to dynamically add resources such as memory or CPU to a VM while it is running. Default OpenShift Virtualization hot plug multipliers can cause VMs to request an excessive number of sockets. For example, if your VM requests 10 sockets, the default hot plug behavior multiplies this by 4, which means that the total request is 40 sockets. This can exceed the recommended CPUs supported by the Kernel-based Virtual Machine (KVM), which can cause deployment failures.
 
-### Disabling the CPU hot plug by instance type {#virt-disable-CPU-VM-hotplug-instancetype_virt-NUMA-topology}
+### Disable CPU hot plug for an instance type {#virt-disable-CPU-VM-hotplug-instancetype_virt-NUMA-topology}
 
-As a cluster administrator, you can disable the CPU hot plug by instance type. This is the recommended approach to standardize VM configurations and ensure NUMA-aware CPU allocation without hot plugs for specific instance types.
+You can disable the CPU hot plug for an instance type. Every VM created from that instance type inherits the setting, which standardizes VM configurations and keeps CPU allocation NUMA-aware.
 
 When a VM is created by using an instance type where the CPU hot plug is disabled, the VM inherits these settings and the CPU hot plug is disabled for that VM.
 
@@ -173,9 +173,9 @@ When a VM is created by using an instance type where the CPU hot plug is disable
    - The `sockets` value matches the `maxSockets` and `guest` values from the instance type, which ensures that no extra hot plug slots are configured.
    - The `dedicatedCPUPlacement` and `isolateEmulatorThread` fields are present and set to `true`.
 
-### Adjusting or disabling the CPU hot plug by VM {#virt-disable-CPU-VM-hotplug_virt-NUMA-topology}
+### Adjust or disable CPU hot plug for a VM {#virt-disable-CPU-VM-hotplug_virt-NUMA-topology}
 
-As a VM owner, you can adjust or disable the CPU hot plug for individual VMs. This is the simplest solution for large, performance-critical VMs where you want to ensure a fixed CPU allocation from the start.
+You can adjust or disable the CPU hot plug for an individual virtual machine (VM). This is the simplest option for large, performance-critical VMs that need a fixed CPU allocation from the start.
 
 **Prerequisites**
 
@@ -225,9 +225,9 @@ As a VM owner, you can adjust or disable the CPU hot plug for individual VMs. Th
    10
    ```
 
-### Disabling hot plugging for all VMs on a cluster {#virt-disable-kubervirt-hotplug-ratio_virt-NUMA-topology}
+### Disable CPU hot plug for all VMs in a cluster {#virt-disable-kubervirt-hotplug-ratio_virt-NUMA-topology}
 
-If you are a cluster administrator and want to disable hot plugging for an entire cluster, you must modify the `spec.configuration.kubevirtConfiguration.developerConfiguration.maxHotplugRatio` setting in the `HyperConverged` custom resource (CR).
+You can disable hot plugging for every virtual machine (VM) in a cluster to give each VM a fixed CPU allocation, without configuring VMs or instance types individually.
 
 **Prerequisites**
 
@@ -272,10 +272,10 @@ If you are a cluster administrator and want to disable hot plugging for an entir
 
 ## Limitations of NUMA for OpenShift Virtualization {#virt-NUMA-limitations_virt-NUMA-topology}
 
-When you use NUMA topology with OpenShift Virtualization VMs, certain limitations can impact performance and VM management.
+NUMA topology for OpenShift Virtualization VMs has limitations that affect rescheduling, live migration, and PCI devices such as GPUs. Review them before you enable NUMA for a workload.
 
 Asymmetrical topology
-: The host scheduler cannot guarantee assigning specific NUMA nodes to a VM. For example, if a VM is rescheduled to a different host machine because of a restart or maintenance, the new host might have a different physical NUMA layout. This means that the VM could be presented with an asymmetrical NUMA topology that reflects the new host’s configuration, rather than its original or desired layout. This change can have a negative impact on the VM’s performance.
+: The host scheduler cannot guarantee assigning specific NUMA nodes to a VM. For example, if a VM is rescheduled to a different host machine because of a restart or maintenance, the new host might have a different physical NUMA layout. This means that the VM could be presented with an asymmetrical NUMA topology that reflects the new host’s configuration, rather than its original or intended layout. This change can have a negative impact on the VM’s performance.
 
 Live migration challenges
 : Migrating a NUMA-enabled VM to a different host node can be challenging if the destination node’s NUMA topology differs significantly from the source node’s. A mismatch between the NUMA layouts of the source and destination can lead to a degradation of the VM’s performance after the migration is complete.
@@ -283,9 +283,11 @@ Live migration challenges
 No support for PCI NUMA nodes
 : There is no explicit support for passing GPU NUMA zone information to the VM. This means that the VM’s guest operating system is not aware of the NUMA locality of PCI devices such as GPUs. For workloads that heavily rely on these devices, this lack of awareness could potentially lead to reduced performance if the GPU’s memory is not local to the accessing CPU within the NUMA architecture.
 
-## Live migration outcomes using vNUMA {#virt-NUMA-live-migration_virt-NUMA-topology}
+## vNUMA live migration support by VM size and policy {#virt-NUMA-live-migration_virt-NUMA-topology}
 
-Migration outcomes for VMs are dependent on the configured Topology Manager policies. These policies determine how CPU and memory resources are allocated with respect to the physical NUMA nodes of the host. There are four available policies: `None`, `single-numa-node`, `best-effort`, and `restricted`.
+The Topology Manager policy configured on a node determines whether a virtual machine (VM) can live migrate. Check which combinations of VM size and policy are supported before you choose one.
+
+Topology Manager policies determine how CPU and memory resources are allocated with respect to the physical NUMA nodes of the host. There are four available policies: `None`, `single-numa-node`, `best-effort`, and `restricted`.
 
 The following table outlines which policies are supported for different VM configurations, and their effect on live migration.
 
@@ -295,7 +297,7 @@ The following table outlines which policies are supported for different VM confi
 
 | VM size | Topology Manager policy | Tested support status |
 | --- | --- | --- |
-| Any | single-numa-node | The VM fails to start because the pod requests more cpus than a single NUMA node on the host can provide. This triggers a topology affinity error during scheduling, which is expected behavior given the node’s hardware limits. |
+| Any | single-numa-node | The VM fails to start because the pod requests more CPUs than a single NUMA node on the host can provide. This triggers a topology affinity error during scheduling, which is expected behavior given the node’s hardware limits. |
 | Any | None | Live migration does not work. This is a known issue. The process ends with an incorrect memnode allocation error, and libvirt rejects the XML manifest generated by KubeVirt. See release notes for additional information. |
 | Small | None | Live migration works, as expected. |
 | Small | single-numa-node | Live migration works, as expected. |

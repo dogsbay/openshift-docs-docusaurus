@@ -311,4 +311,4 @@ When scans are finished running, `ComplianceCheckResult` objects are created for
 
 **Additional resources**
 
-- [Understanding the Compliance Operator](/docs/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
+- [About the Compliance Operator](/docs/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)

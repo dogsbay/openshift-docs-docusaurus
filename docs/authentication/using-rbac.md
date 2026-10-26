@@ -7,7 +7,7 @@ sidebar_position: 10
 
 <a id="using-rbac"></a>
 
-## RBAC overview {#authorization-overview_using-rbac}
+## Create and assign RBAC roles to users {#authorization-overview_using-rbac}
 
 You can use role-based access control to configure whether users and groups can perform specific actions on cluster or project resources by evaluating roles, rules, and bindings.
 

@@ -11,7 +11,7 @@ As a cluster administrator, you can customize the OpenShift Container Platform w
 
 ## Enable bulk operations for virtual machines {#virt-enable-bulk-operations-web-console_virt-customize-web-console}
 
-You can enable virtual machine (VM) owners to perform large-scale management tasks, such as backups and storage migrations, across many virtual machines simultaneously, by creating a dynamic plugin that enables bulk actions in the web console.
+Create a dynamic plugin to add custom bulk actions to the web console. VM owners can then run large-scale tasks, such as backups and storage migrations, across many virtual machines at once.
 
 This integration reduces manual tasks for multi-VM environments and ensures that custom actions are available as native, selectable bulk actions from within the **Virtualization** page.
 
@@ -106,7 +106,7 @@ This integration reduces manual tasks for multi-VM environments and ensures that
 
 ## Create custom tabs in the web console {#virt-create-custom-console-tabs_virt-customize-web-console}
 
-As a cluster administrator, you can customize the OpenShift Container Platform web console by adding customized tabs to the **Virtualization** page.
+You can add custom tabs to the **Virtualization** page of the OpenShift Container Platform web console by using a dynamic plugin. Control which pages display the tab so that it does not appear where it does not apply.
 
 **Prerequisites**
 

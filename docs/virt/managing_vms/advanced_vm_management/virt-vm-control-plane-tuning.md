@@ -9,9 +9,9 @@ sidebar_position: 13
 
 You can configure how the control plane handles concurrency when you create or migrate virtual machines (VMs). For example, set the `QPS` or `burst` rates to batch create virtual machines (VMs) in a batch, or tune migration settings in the `HyperConverged` custom resource (CR).
 
-## Configuring a highBurst profile {#virt-configuring-highburst-profile_virt-control-plane-tuning}
+## Configure a highBurst profile {#virt-configuring-highburst-profile_virt-control-plane-tuning}
 
-You can use the `highBurst` profile to create and maintain a large number of virtual machines (VMs) in one cluster.
+Use the `highBurst` profile to create and maintain a large number of virtual machines (VMs) in one cluster.
 
 **Prerequisites**
 

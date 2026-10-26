@@ -245,36 +245,13 @@ You can customize how the `oc new-app` command creates applications by setting n
 
 `new-app`** output objects**
 
-<table>
-<thead>
-<tr>
-  <th>Object</th>
-  <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>BuildConfig</code></td>
-  <td>A <code>BuildConfig</code> object is created for each source repository that is specified in the command line. The <code>BuildConfig</code> object specifies the strategy to use, the source location, and the build output location.</td>
-</tr>
-<tr>
-  <td><code>ImageStreams</code></td>
-  <td>For the <code>BuildConfig</code> object, two image streams are usually created. One represents the input image. With source builds, this is the builder image. With <code>Docker</code> builds, this is the <strong>FROM</strong> image. The second one represents the output image. If a container image was specified as input to <code>new-app</code>, then an image stream is created for that image as well.</td>
-</tr>
-<tr>
-  <td><code>DeploymentConfig</code></td>
-  <td>A <code>DeploymentConfig</code> object is created either to deploy the output of a build, or a specified image. The <code>new-app</code> command creates <code>emptyDir</code> volumes for all Docker volumes that are specified in containers included in the resulting <code>DeploymentConfig</code> object.</td>
-</tr>
-<tr>
-  <td><code>Service</code></td>
-  <td>The <code>new-app</code> command attempts to detect exposed ports in input images. It uses the lowest numeric exposed port to generate a service that exposes that port. To expose a different port, after <code>new-app</code> has completed, use the <code>oc expose</code> command to generate additional services.</td>
-</tr>
-<tr>
-  <td>Other</td>
-  <td>Other objects can be generated when creating applications from templates, according to the template.</td>
-</tr>
-</tbody>
-</table>
+| Object | Description |
+| --- | --- |
+| `BuildConfig` | A `BuildConfig` object is created for each source repository that is specified in the command line. The `BuildConfig` object specifies the strategy to use, the source location, and the build output location. |
+| `ImageStreams` | For the `BuildConfig` object, two image streams are usually created. One represents the input image. With source builds, this is the builder image. With `Docker` builds, this is the **FROM** image. The second one represents the output image. If a container image was specified as input to `new-app`, then an image stream is created for that image as well. |
+| `DeploymentConfig` | A `DeploymentConfig` object is created either to deploy the output of a build, or a specified image. The `new-app` command creates `emptyDir` volumes for all Docker volumes that are specified in containers included in the resulting `DeploymentConfig` object. |
+| `Service` | The `new-app` command attempts to detect exposed ports in input images. It uses the lowest numeric exposed port to generate a service that exposes that port. To expose a different port, after `new-app` has completed, use the `oc expose` command to generate additional services. |
+| Other | Other objects can be generated when creating applications from templates, according to the template. |
 
 ### Specifying environment variables {#specifying-environment-variables_creating-applications-using-cli}
 

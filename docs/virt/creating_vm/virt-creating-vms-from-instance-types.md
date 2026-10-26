@@ -261,4 +261,4 @@ To change the instance type of a VM, change the `name` field in the VM spec. Thi
 
 **Additional resources**
 
-- [Configuring a downward metrics device](/docs/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)
+- [Configure a downward metrics device](/docs/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)

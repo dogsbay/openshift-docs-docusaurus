@@ -9,7 +9,7 @@ sidebar_position: 9
 
 You can create Bring-Your-Own-Host (BYOH) Windows instances to bring existing Windows Server VMs into OpenShift Container Platform. By using BYOH Windows instances, you can mitigate major disruptions if a Windows server goes offline.
 
-## Configuring a BYOH Windows instance {#configuring-byoh-windows-instance}
+## Configure a bring-your-own-host Windows instance {#configuring-byoh-windows-instance_byoh-windows-instance}
 
 To create a Bring-Your-Own-Host (BYOH) Windows instance, you must create a config map in the Windows Machine Config Operator (WMCO) namespace.
 
@@ -65,7 +65,7 @@ Any Windows instances that are to be attached to the cluster as a node must fulf
 
    Also, specify the user name of the administrator user created in the prerequisites.
 
-## Removing BYOH Windows instances {#removing-byoh-windows-instance}
+## Bring-your-own-host Windows instance removal {#removing-byoh-windows-instance_byoh-windows-instance}
 
 You can remove a Bring-Your-Own-Host (BYOH) instance that is attached to the cluster by deleting the instance’s entry in the BYOH config map. Deleting an instance reverts that instance back to its previous state, before it was added to the cluster.
 

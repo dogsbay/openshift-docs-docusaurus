@@ -9,6 +9,24 @@ sidebar_position: 2
 
 If a cluster administrator has delegated Operator installation permissions to your account, you can install and subscribe an Operator to your namespace in a self-service manner.
 
+:::warning
+
+Do not install Operators that require cluster-scoped permissions in namespaces where non-administrator users have any of the following permissions:
+
+- Default `edit` cluster role
+- Service account token creation
+- Workload creation, for example:
+  - Pods
+  - Replica sets
+  - Deployments
+  - Jobs
+  - Cron jobs
+  - Daemon sets
+
+For more information, see [Audit and secure delegated Operator installations (Red Hat Knowledgebase)](https://access.redhat.com/articles/7149230).
+
+:::
+
 ## Prerequisites {#olm-installing-operators-in-namespace-prereqs}
 
 - A cluster administrator must add certain permissions to your OpenShift Container Platform user account to allow self-service Operator installation to a namespace.
@@ -16,6 +34,14 @@ If a cluster administrator has delegated Operator installation permissions to yo
 ## About Operator installation from the software catalog {#olm-installing-operators-from-software-catalog_olm-installing-operators-in-namespace}
 
 The software catalog in OpenShift Container Platform is the interface for discovering Operators that Operator Lifecycle Manager (OLM) installs and manages on your cluster. You can choose installation settings such as install mode, namespace, and approval strategy during subscription.
+
+:::warning
+
+Failed Operator installations do not automatically remove created permissions. Audit and remove remaining permissions to secure the namespace.
+
+For more information, see [Audit and secure delegated Operator installations (Red Hat Knowledgebase)](https://access.redhat.com/articles/7149230).
+
+:::
 
 As a user with the proper permissions, you can install an Operator from the software catalog by using the OpenShift Container Platform web console or CLI.
 
@@ -41,6 +67,14 @@ Approval Strategy
 ## Install from the software catalog by using the web console {#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace}
 
 To install and subscribe to an Operator from the software catalog, you can use the OpenShift Container Platform web console. The console guides you through selecting an install mode, namespace, and approval strategy.
+
+:::warning
+
+Failed Operator installations do not automatically remove created permissions. Audit and remove remaining permissions to secure the namespace.
+
+For more information, see [Audit and secure delegated Operator installations (Red Hat Knowledgebase)](https://access.redhat.com/articles/7149230).
+
+:::
 
 **Prerequisites**
 
@@ -115,9 +149,13 @@ To install an Operator from the software catalog without using the web console, 
 
 For `SingleNamespace` install mode, you must also ensure an appropriate Operator group exists in the related namespace. An Operator group, defined by an `OperatorGroup` object, selects target namespaces in which to generate required RBAC access for all Operators in the same namespace as the Operator group.
 
-:::tip
-
 In most cases, the web console method of this procedure is preferred because it automates tasks in the background, such as handling the creation of `OperatorGroup` and `Subscription` objects automatically when choosing `SingleNamespace` mode.
+
+:::warning
+
+Failed Operator installations do not automatically remove created permissions. Audit and remove remaining permissions to secure the namespace.
+
+For more information, see [Audit and secure delegated Operator installations (Red Hat Knowledgebase)](https://access.redhat.com/articles/7149230).
 
 :::
 

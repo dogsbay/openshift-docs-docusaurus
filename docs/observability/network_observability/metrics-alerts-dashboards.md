@@ -1,6 +1,6 @@
 ---
 title: Using metrics with dashboards and alerts
-sidebar_position: 13
+sidebar_position: 14
 ---
 
 # Using metrics with dashboards and alerts {#metrics-dashboards-alerts}
@@ -310,7 +310,7 @@ High cardinality can affect the memory usage of Prometheus. You can check if spe
 
 **Additional resources**
 
-- [Network Flows format reference](/docs/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)
+- [Network Flows format reference](/docs/observability/network_observability/network-observability-api-reference#network-flows-format_network_observability)
 
 ## Configure custom charts using FlowMetric API {#network-observability-custom-charts-flowmetrics_metrics-dashboards-alerts}
 

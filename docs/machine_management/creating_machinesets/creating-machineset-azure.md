@@ -798,7 +798,7 @@ failed to create vm <machine_name>: failure sending request for machine <machine
 
 If the deletion of ultra disks as data disks is not working as expected, the machines are deleted and the data disks are orphaned. You must delete the orphaned disks manually if desired.
 
-## Enable customer-managed encryption keys for a machine set {#machineset-enabling-customer-managed-encryption-azure_creating-machineset-azure}
+## Enable customer-managed encryption keys for a machine set on Azure {#machineset-enabling-customer-managed-encryption-azure_creating-machineset-azure}
 
 To enhance data security, enable customer-managed encryption on Microsoft Azure by adding the disk encryption set ID to your machine set.
 

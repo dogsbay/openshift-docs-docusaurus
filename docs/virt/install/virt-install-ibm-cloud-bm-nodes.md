@@ -15,7 +15,7 @@ Install OpenShift Virtualization on IBM Cloud bare-metal nodes using Assisted In
 - An IBM Cloud SSL VPN user, to access the SuperMicro IPMI interface of a node.
 - Install the OpenShift CLI (`oc`).
 
-## Configuring IBM Cloud for the new cluster {#virt-install-ibm-cloud-config-new-cluster_virt-install-ibm-cloud-bm-nodes}
+## Configure IBM Cloud for the new cluster {#virt-install-ibm-cloud-config-new-cluster_virt-install-ibm-cloud-bm-nodes}
 
 Configure and provision the IBM Cloud environment to establish the operational framework and nodes for your OpenShift Virtualization cluster.
 
@@ -121,7 +121,7 @@ Configure and provision the IBM Cloud environment to establish the operational f
     $ firewall-cmd --reload
     ```
 
-## Initializing the new cluster configuration {#virt-install-ibm-cloud-initialize-new-cluster_virt-install-ibm-cloud-bm-nodes}
+## Initialize the new cluster configuration {#virt-install-ibm-cloud-initialize-new-cluster_virt-install-ibm-cloud-bm-nodes}
 
 Initialize the new cluster configuration using the OpenShift Virtualization Assisted Installer service and Samba on the Bastion virtual server instance.
 
@@ -160,7 +160,7 @@ Initialize the new cluster configuration using the OpenShift Virtualization Assi
     Replace `<share_directory>` with the share directory name.
 12. Navigate to the share directory and download the Assisted Installer ISO file using the generated `wget` command.
 
-## Configuring cluster networking and access {#virt-install-ibm-cloud-cluster-network-access_virt-install-ibm-cloud-bm-nodes}
+## Configure cluster networking and access {#virt-install-ibm-cloud-cluster-network-access_virt-install-ibm-cloud-bm-nodes}
 
 Configure networking and access to allow for remote management of the cluster.
 
@@ -236,7 +236,7 @@ Configure networking and access to allow for remote management of the cluster.
 
       :::
 
-## Completing the cluster configuration {#virt-install-ibm-cloud-complete-cluster-config_virt-install-ibm-cloud-bm-nodes}
+## Complete the cluster configuration {#virt-install-ibm-cloud-complete-cluster-config_virt-install-ibm-cloud-bm-nodes}
 
 Complete the cluster configuration by installing software on the control plane and compute nodes and configuring DNS for external access.
 

@@ -20,7 +20,7 @@ Without the Node Health Check Operator and a remediation Operator such as Self N
 - Configure a remediation operator, such as SNR or FAR, to recover workloads from failed nodes.
 - Plan node capacity to ensure that enough resources are available to host VMs that migrate from failed nodes.
 
-### Configuring a VM run strategy by using the CLI {#virt-configuring-runstrategy-vm_virt-vm-recovery-from-node-failures}
+### Configure VM run strategy {#virt-configuring-runstrategy-vm_virt-vm-recovery-from-node-failures}
 
 You can configure a run strategy for a virtual machine (VM) by using the command line. The run strategy controls whether a VM automatically restarts after disruptions such as node failures or maintenance events.
 

@@ -37,7 +37,7 @@ A dedicated Multus network for live migration is highly recommended. For more in
 
 :::
 
-## About live migration permissions {#virt-about-live-migration-permissions_virt-about-live-migration}
+## Live migration permissions {#virt-about-live-migration-permissions_virt-about-live-migration}
 
 In OpenShift Virtualization 4.19 and later, live migration operations are restricted to users who are explicitly granted the `kubevirt.io:migrate` cluster role. Users with this role can create, delete, and update virtual machine (VM) live migration requests.
 
@@ -47,7 +47,7 @@ Before OpenShift Virtualization 4.19, namespace administrators had live migratio
 
 As a cluster administrator, you can preserve the old behavior by creating a temporary cluster role before updating. After assigning the new role to users, delete the temporary role to enforce the more restrictive permissions. If you have already updated, you can still revert to the old behavior by aggregating the `kubevirt.io:migrate` role into the `admin` cluster role.
 
-## Preserving pre-4.19 live migration permissions during update {#virt-preserving-lm-perms_virt-about-live-migration}
+## Preserve pre-4.19 live migration permissions during update {#virt-preserving-lm-perms_virt-about-live-migration}
 
 Before you update to OpenShift Virtualization 4.22, you can create a temporary cluster role to preserve the previous live migration permissions until you are ready for the more restrictive default permissions to take effect.
 
@@ -110,7 +110,7 @@ Before you update to OpenShift Virtualization 4.22, you can create a temporary c
 
    After you delete the temporary cluster role, only users with the `kubevirt.io:migrate` role can create, delete, and update live migration requests.
 
-## Granting live migration permissions {#virt-granting-live-migration-permissions_virt-about-live-migration}
+## Grant live migration permissions {#virt-granting-live-migration-permissions_virt-about-live-migration}
 
 You can grant trusted users or groups the ability to create, delete, and update live migration instances.
 

@@ -99,7 +99,7 @@ To rollback a release using the **Helm** view:
 **Procedure**
 
 1. In the **Topology** view, right-click the Helm release and select **Delete Helm Release**.
-2. In the confirmation prompt, enter the name of the chart and click **Delete**.
+2. In the confirmation prompt, enter the name of the release and click **Delete**.
 
 **Additional resources**
 

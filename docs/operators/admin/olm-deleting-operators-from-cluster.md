@@ -21,6 +21,14 @@ For more information, see "Reinstalling Operators after failed uninstallation".
 
 Cluster administrators can delete installed Operators from a selected namespace by using the web console.
 
+:::warning
+
+Failed Operator installations do not automatically remove created permissions. Audit and remove remaining permissions to secure the namespace.
+
+For more information, see [Audit and secure delegated Operator installations (Red Hat Knowledgebase)](https://access.redhat.com/articles/7149230).
+
+:::
+
 **Prerequisites**
 
 - You have access to the OpenShift Container Platform cluster web console using an account with `cluster-admin` permissions.
@@ -41,6 +49,14 @@ Cluster administrators can delete installed Operators from a selected namespace 
 ## Deleting Operators from a cluster using the CLI {#olm-deleting-operator-from-a-cluster-using-cli_olm-deleting-operators-from-a-cluster}
 
 To remove an installed Operator from a namespace, cluster administrators can delete its subscription and cluster service version (CSV) by using the CLI.
+
+:::warning
+
+Failed Operator installations do not automatically remove created permissions. Audit and remove remaining permissions to secure the namespace.
+
+For more information, see [Audit and secure delegated Operator installations (Red Hat Knowledgebase)](https://access.redhat.com/articles/7149230).
+
+:::
 
 **Prerequisites**
 

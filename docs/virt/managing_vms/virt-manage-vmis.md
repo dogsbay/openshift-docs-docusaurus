@@ -11,9 +11,9 @@ Manage standalone virtual machine instances (VMIs) that were created independent
 
 The `virtctl` command provides more virtualization options than the `oc` command. For example, you can use `virtctl` to pause a VM or expose a port.
 
-## About virtual machine instances {#virt-about-vmis_virt-manage-vmis}
+## Virtual machine instances {#virt-about-vmis_virt-manage-vmis}
 
-A virtual machine instance (VMI) is a representation of a running virtual machine (VM). When a VMI is owned by a VM or by another object, you manage it through its owner in the web console or by using the `oc` command-line interface (CLI).
+In OpenShift Virtualization, a virtual machine instance (VMI) is an active, powered-on virtual instance, as opposed to a virtual machine, which is the saved configuration. You can create standalone VMIs independently without a parent template, and you can manage them directly.
 
 A standalone VMI is created and started independently with a script, through automation, or by using other methods in the CLI. In your environment, you might have standalone VMIs that were developed and started outside of the OpenShift Virtualization environment. You can continue to manage those standalone VMIs by using the CLI. You can also use the web console for specific tasks associated with standalone VMIs:
 
@@ -31,9 +31,9 @@ Before you uninstall OpenShift Virtualization, list and view the standalone VMIs
 
 When you edit a VM, some settings might be applied to the VMIs dynamically and without the need for a restart. Any change made to a VM object that cannot be applied to the VMIs dynamically will trigger the `RestartRequired` VM condition. Changes are effective on the next reboot, and the condition is removed.
 
-## Listing all virtual machine instances using the CLI {#virt-listing-vmis-cli_virt-manage-vmis}
+## List all VMIs by using the CLI {#virt-listing-vmis-cli_virt-manage-vmis}
 
-You can list all virtual machine instances (VMIs) in your cluster, including standalone VMIs and those owned by virtual machines, by using the OpenShift CLI (`oc`).
+You can use the OpenShift CLI (`oc`) to list all virtual machine instances (VMIs) in your cluster. The list includes standalone VMIs and VMIs that are owned by virtual machines (VMs).
 
 **Prerequisites**
 
@@ -46,9 +46,9 @@ You can list all virtual machine instances (VMIs) in your cluster, including sta
   $ oc get vmis -A
   ```
 
-## Listing standalone virtual machine instances using the web console {#virt-listing-vmis-web_virt-manage-vmis}
+## List standalone VMIs by using the web console {#virt-listing-vmis-web_virt-manage-vmis}
 
-Using the web console, you can list and view standalone virtual machine instances (VMIs) in your cluster that are not owned by virtual machines (VMs).
+You can list the standalone virtual machine instances (VMIs) in your cluster by using the OpenShift Container Platform web console. The console does not show VMIs that are owned by a virtual machine (VM).
 
 :::note
 
@@ -61,9 +61,9 @@ VMIs that are owned by VMs or other objects are not displayed in the web console
 - Click **Virtualization** → **VirtualMachines** from the side menu.
   You can identify a standalone VMI by a dark colored badge next to its name.
 
-## Searching for standalone virtual machine instances by using the web console {#virt-searching-vmis-web_virt-manage-vmis}
+## Search for standalone VMIs by using the web console {#virt-searching-vmis-web_virt-manage-vmis}
 
-You can search for virtual machine instances (VMIs) by using the search bar on the **VirtualMachines** page. Use the advanced search to apply additional filters.
+You can search for standalone virtual machine instances (VMIs) from the search bar on the **VirtualMachines** page of the OpenShift Container Platform web console. Advanced search filters narrow the results by name, project, labels, and IP address.
 
 **Procedure**
 
@@ -79,9 +79,9 @@ You can search for virtual machine instances (VMIs) by using the search bar on t
 7. Optional: If Advanced Cluster Management (ACM) is installed, use the **Cluster** dropdown to search across multiple clusters.
 8. Optional: Click the **Save search** icon to store your search in the `kubevirt-user-settings` ConfigMap.
 
-## Editing a standalone virtual machine instance using the web console {#virt-editing-vmis-web_virt-manage-vmis}
+## Edit a standalone VMI by using the web console {#virt-editing-vmis-web_virt-manage-vmis}
 
-You can edit the annotations and labels of a standalone virtual machine instance (VMI) using the web console. Other fields are not editable.
+You can edit the annotations and labels of a standalone virtual machine instance (VMI) by using the OpenShift Container Platform web console. No other fields are editable.
 
 **Procedure**
 
@@ -90,9 +90,9 @@ You can edit the annotations and labels of a standalone virtual machine instance
 3. On the **Details** tab, click the pencil icon beside **Annotations** or **Labels**.
 4. Make the relevant changes and click **Save**.
 
-## Deleting a standalone virtual machine instance using the CLI {#virt-deleting-vmis-cli_virt-manage-vmis}
+## Delete a standalone VMI by using the CLI {#virt-deleting-vmis-cli_virt-manage-vmis}
 
-You can delete a standalone virtual machine instance (VMI) by using the `oc` command-line interface (CLI).
+You can delete a standalone virtual machine instance (VMI) by using the OpenShift CLI (`oc`). A standalone VMI has no owning VM, so no other object deletes it for you.
 
 **Prerequisites**
 
@@ -106,9 +106,9 @@ You can delete a standalone virtual machine instance (VMI) by using the `oc` com
   $ oc delete vmi <vmi_name>
   ```
 
-## Deleting a standalone virtual machine instance using the web console {#virt-deleting-vmis-web_virt-manage-vmis}
+## Delete a standalone VMI by using the web console {#virt-deleting-vmis-web_virt-manage-vmis}
 
-You can delete a standalone virtual machine instance (VMI) from the web console.
+You can delete a standalone virtual machine instance (VMI) by using the OpenShift Container Platform web console. The deletion is permanent and you cannot recover the VMI.
 
 **Procedure**
 

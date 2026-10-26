@@ -32,7 +32,7 @@ Submit a support case to resolve a cluster issue that is affecting the ability o
 
 You can submit a support case to Red Hat Support by using the Customer Support page. Include data that you collected about your issue with your support request.
 
-## Creating a Jira issue {#virt-creating-jira-issue_virt-support-overview}
+## Report a bug in OpenShift Virtualization {#virt-creating-jira-issue_virt-support-overview}
 
 To report a bug, use the Red Hat Issue Router (RHIR), which is available in the Customer Portal Labs.
 
@@ -87,7 +87,7 @@ The self-service TSR provides a solid baseline for cluster health. If you need a
 - [Technical Supportability Review with AI tool](https://access.redhat.com/support/cases/#/analyze)
 - [Red Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for OpenShift Container Platform](https://access.redhat.com/solutions/7141255)
 
-## Provide feedback on OpenShift Virtualization documentation {#virt-feedback-on-openshift-virtualization_virt-support-overview}
+## Report a OpenShift Virtualization documentation issue {#virt-feedback-on-openshift-virtualization_virt-support-overview}
 
 To report an error or request an enhancement in the documentation, log in to your Red Hat Jira account and submit an issue. If you do not have a Red Hat Jira account, you are prompted to create an account.
 
@@ -120,5 +120,5 @@ The OpenShift Container Platform web console displays resource usage, alerts, ev
 
 - [Submitting a support case](/docs/support/getting-support#support-submitting-a-case_getting-support)
 - [Collecting data about your environment](/docs/virt/support/virt-collecting-virt-data#virt-collecting-data-about-your-environment_virt-collecting-virt-data)
-- [Using the `must-gather` tool for OpenShift Virtualization](/docs/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data)
+- [Use the `must-gather` tool for OpenShift Virtualization](/docs/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data)
 - [Red Hat Jira account](https://redhat.atlassian.net/jira)

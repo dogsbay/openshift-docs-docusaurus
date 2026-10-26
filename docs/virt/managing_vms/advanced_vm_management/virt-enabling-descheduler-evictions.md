@@ -118,9 +118,9 @@ If you have enabled hosted control planes in your cluster, set a custom priority
 
          :::
 
-## Configuring descheduler evictions for virtual machines {#virt-configuring-descheduler-evictions_virt-enabling-descheduler-evictions}
+## Control which VMs the descheduler evicts {#virt-configuring-descheduler-evictions_virt-enabling-descheduler-evictions}
 
-After the descheduler is installed and configured, all migratable virtual machines (VMs) are eligible for eviction by default. You can configure the descheduler to manage VM evictions across the cluster and optionally exclude specific VMs from eviction.
+After the descheduler is installed, all migratable virtual machines (VMs) are eligible for eviction by default. You can exclude specific VMs from eviction, and limit how many VMs are evicted at once.
 
 **Prerequisites**
 

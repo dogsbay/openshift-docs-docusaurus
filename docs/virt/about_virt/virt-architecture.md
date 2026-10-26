@@ -26,7 +26,7 @@ The OLM deploys the Hostpath Provisioner (HPP) Operator, but it is not functiona
 
 ![Deployments](/images/cnv_components_main.png)
 
-## About the HyperConverged Operator (HCO) {#virt-about-hco-operator_virt-architecture}
+## HyperConverged Operator (HCO) {#virt-about-hco-operator_virt-architecture}
 
 The HCO, `hco-operator`, provides a single entry point for deploying and managing OpenShift Virtualization and several helper operators with opinionated defaults. It also creates custom resources (CRs) for those operators.
 
@@ -43,7 +43,7 @@ The HCO, `hco-operator`, provides a single entry point for deploying and managin
 | `CDI/cdi-kubevirt-hyperconverged` | A Containerized Data Importer (CDI) CR. This is automatically created by the HCO. |
 | `NetworkAddonsConfig/cluster` | A CR that instructs and is managed by the `cluster-network-addons-operator`. |
 
-## About the Containerized Data Importer (CDI) Operator {#virt-about-cdi-operator_virt-architecture}
+## Containerized Data Importer (CDI) Operator {#virt-about-cdi-operator_virt-architecture}
 
 The CDI Operator, `cdi-operator`, manages CDI and its related resources, which imports a virtual machine (VM) image into a persistent volume claim (PVC) by using a data volume.
 
@@ -57,7 +57,7 @@ The CDI Operator, `cdi-operator`, manages CDI and its related resources, which i
 | `deployment/cdi-uploadproxy` | Directs external disk upload traffic to the appropriate upload server pod so that it can be written to the correct PVC. Requires a valid upload token. |
 | `pod/cdi-importer` | Helper pod that imports a virtual machine image into a PVC when creating a data volume. |
 
-## About the Cluster Network Addons Operator {#virt-about-cluster-network-addons-operator_virt-architecture}
+## Cluster Network Addons Operator {#virt-about-cluster-network-addons-operator_virt-architecture}
 
 The Cluster Network Addons Operator, `cluster-network-addons-operator`, deploys networking components on a cluster and manages the related resources for extended network functionality.
 
@@ -72,7 +72,7 @@ The Cluster Network Addons Operator, `cluster-network-addons-operator`, deploys 
 | `daemonset/bridge-marker` | Marks network bridges available on nodes as node resources. |
 | `daemonset/kube-cni-linux-bridge-plugin` | Installs Container Network Interface (CNI) plugins on cluster nodes, enabling the attachment of VMs to Linux bridges through network attachment definitions. |
 
-## About the Hostpath Provisioner (HPP) Operator {#virt-about-hpp-operator_virt-architecture}
+## Hostpath Provisioner (HPP) Operator {#virt-about-hpp-operator_virt-architecture}
 
 The HPP Operator, `hostpath-provisioner-operator`, deploys and manages the multi-node HPP and related resources.
 
@@ -86,11 +86,11 @@ The HPP Operator, `hostpath-provisioner-operator`, deploys and manages the multi
 | `daemonset/hostpath-provisioner-csi` | Implements the Container Storage Interface (CSI) driver interface of the HPP. |
 | `daemonset/hostpath-provisioner` | Implements the legacy driver interface of the HPP. |
 
-## About the Scheduling, Scale, and Performance (SSP) Operator {#virt-about-ssp-operator_virt-architecture}
+## Scheduling, Scale, and Performance (SSP) Operator {#virt-about-ssp-operator_virt-architecture}
 
 The SSP Operator, `ssp-operator`, deploys the common templates, the related default boot sources, the pipeline tasks, and the template validator.
 
-## About the OpenShift Virtualization Operator {#virt-about-virt-operator_virt-architecture}
+## OpenShift Virtualization Operator {#virt-about-virt-operator_virt-architecture}
 
 The OpenShift Virtualization Operator, `virt-operator`, deploys, upgrades, and manages OpenShift Virtualization without disrupting current virtual machine (VM) workloads. In addition, the OpenShift Virtualization Operator deploys the common instance types and common preferences.
 

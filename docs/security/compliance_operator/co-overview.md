@@ -17,9 +17,9 @@ The Compliance Operator makes recommendations based on generally available infor
 
 Learn about the Compliance Operator and the custom resource definitions it uses.
 
-[Understanding the Compliance Operator](/docs/security/compliance_operator/co-concepts/compliance-operator-understanding#compliance-operator-understanding)
+[About the Compliance Operator](/docs/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)
 
-[Understanding the Custom Resource Definitions](/docs/security/compliance_operator/co-concepts/compliance-operator-crd#custom-resource-definitions)
+[About the Compliance Operator custom resource definitions](/docs/security/compliance_operator/co-concepts/compliance-operator-crd#custom-resource-definitions)
 
 ## Compliance Operator management {#co-overview-operator-mgmt_co-overview}
 

@@ -1,15 +1,17 @@
 ---
-title: Understanding the Compliance Operator
+title: About the Compliance Operator
 sidebar_position: 1
 ---
 
-# Understanding the Compliance Operator {#understanding-compliance-operator}
+# About the Compliance Operator {#understanding-compliance-operator}
 
 <a id="understanding-compliance-operator"></a>
 
 The Compliance Operator evaluates your OpenShift Container Platform cluster against compliance benchmarks and identifies gaps so you can remediate them. The Operator uses profiles that target platform components, node configurations, or both depending on the compliance standard you need to meet.
 
 The Compliance Operator lets OpenShift Container Platform administrators describe the required compliance state of a cluster and provides them with an overview of gaps and ways to remediate them. The Compliance Operator assesses compliance of both the Kubernetes API resources of OpenShift Container Platform, and the nodes running the cluster. The Compliance Operator uses OpenSCAP, a NIST-certified tool, to scan and enforce security policies provided by the content.
+
+As of Compliance Operator 1.10.0, Common Expression Language (CEL) `Rule` and `CustomRule` objects are generally available (GA). CEL works alongside OpenSCAP as a scanning engine and does not replace Extensible Configuration Checklist Description Format (XCCDF) profiles.
 
 :::warning
 

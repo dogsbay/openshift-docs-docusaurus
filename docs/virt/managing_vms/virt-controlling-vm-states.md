@@ -11,9 +11,9 @@ You can use `virtctl` to manage virtual machine states and perform other actions
 
 You can stop, start, restart, reset, pause, and unpause virtual machines from the web console.
 
-## Configuring RBAC permissions for managing VM states by using the web console {#virt-configure-rbac-console-subresources-api_virt-controlling-vm-states}
+## Configure RBAC permissions for managing VM states {#virt-configure-rbac-console-subresources-api_virt-controlling-vm-states}
 
-To allow users to manage virtual machine (VM) states by using the OpenShift Container Platform web console, you must create an RBAC cluster role and cluster role binding. The cluster role uses the `subresources.kubevirt.io` API to define which resources can be controlled by certain users or groups.
+You can grant users permission to start and stop virtual machines (VMs) from the OpenShift Container Platform web console. Create a role-based access control (RBAC) cluster role and a cluster role binding to apply the permission.
 
 **Prerequisites**
 
@@ -125,9 +125,9 @@ To allow users to manage virtual machine (VM) states by using the OpenShift Cont
    yes
    ```
 
-## Enabling confirmations of virtual machine actions {#virt-enable-vm-action-confirmation-web_virt-controlling-vm-states}
+## Enable confirmations of VM actions {#virt-enable-vm-action-confirmation-web_virt-controlling-vm-states}
 
-The **Stop**, **Restart**, and **Pause** actions can display confirmation dialogs if confirmation is enabled. By default, confirmation is disabled.
+You can require a confirmation dialog before the **Stop**, **Restart**, and **Pause** actions run on a virtual machine (VM). Confirmation is disabled by default.
 
 **Procedure**
 
@@ -135,9 +135,9 @@ The **Stop**, **Restart**, and **Pause** actions can display confirmation dialog
 2. Click **VirtualMachine actions confirmation**.
 3. Toggle the **VirtualMachine actions confirmation** setting to **On**.
 
-## Starting a virtual machine {#virt-starting-vm-web_virt-controlling-vm-states}
+## Start a VM {#virt-starting-vm-web_virt-controlling-vm-states}
 
-You can start a virtual machine (VM) from the web console.
+You can start a virtual machine (VM) from the **VirtualMachines** page, the tree view, or the **VirtualMachine details** page of the OpenShift Container Platform web console.
 
 **Procedure**
 
@@ -158,9 +158,9 @@ You can start a virtual machine (VM) from the web console.
 
         :::
 
-## Stopping a virtual machine {#virt-stopping-vm-web_virt-controlling-vm-states}
+## Stop a VM {#virt-stopping-vm-web_virt-controlling-vm-states}
 
-You can stop a virtual machine (VM) from the web console.
+You can stop a virtual machine (VM) from the **VirtualMachines** page, the tree view, or the **VirtualMachine details** page of the OpenShift Container Platform web console.
 
 **Procedure**
 
@@ -179,9 +179,9 @@ You can stop a virtual machine (VM) from the web console.
      2. Click **Actions** → **Control** → **Stop**.
      3. If action confirmation is enabled, click **Stop** in the confirmation dialog.
 
-## Restarting a virtual machine {#virt-restarting-vm-web_virt-controlling-vm-states}
+## Restart a VM {#virt-restarting-vm-web_virt-controlling-vm-states}
 
-You can restart a running virtual machine (VM) from the web console.
+You can restart a running virtual machine (VM) from the OpenShift Container Platform web console. The **Restart** action shuts down the VM and starts a new pod for it.
 
 :::warning
 
@@ -208,11 +208,9 @@ To avoid errors, do not restart a VM while it has a status of **Importing**.
      2. Click **Actions** → **Restart**.
      3. If action confirmation is enabled, click **Restart** in the confirmation dialog.
 
-## Resetting a virtual machine {#virt-resetting-vm-web_virt-controlling-vm-states}
+## Reset a VM {#virt-resetting-vm-web_virt-controlling-vm-states}
 
-Unlike the **Restart** action, the **Reset** action preserves the pod in which the virtual machine (VM) is running and just hard resets the same VM inside it. When a VM is unresponsive or failed to boot, you can use the **Reset** action to bring it back immediately.
-
-You can reset a VM from the web console.
+You can reset a virtual machine (VM) from the OpenShift Container Platform web console when the VM is unresponsive or has failed to boot. Unlike **Restart**, the **Reset** action keeps the existing pod and hard resets the VM inside it.
 
 **Procedure**
 
@@ -231,9 +229,9 @@ You can reset a VM from the web console.
      2. Click **Actions** → **Control** → **Reset**.
      3. If action confirmation is enabled, click **Reset** in the confirmation dialog.
 
-## Pausing a virtual machine {#virt-pausing-vm-web_virt-controlling-vm-states}
+## Pause a VM {#virt-pausing-vm-web_virt-controlling-vm-states}
 
-You can pause a virtual machine (VM) from the web console.
+You can pause a virtual machine (VM) from the **VirtualMachines** page, the tree view, or the **VirtualMachine details** page of the OpenShift Container Platform web console.
 
 **Procedure**
 
@@ -252,9 +250,9 @@ You can pause a virtual machine (VM) from the web console.
      2. Click **Actions** → **Control** → **Pause**.
      3. If action confirmation is enabled, click **Pause** in the confirmation dialog.
 
-## Unpausing a virtual machine {#virt-unpausing-vm-web_virt-controlling-vm-states}
+## Unpause a VM {#virt-unpausing-vm-web_virt-controlling-vm-states}
 
-You can unpause a paused virtual machine (VM) from the web console.
+You can unpause a paused virtual machine (VM) from the **VirtualMachines** page, the tree view, or the **VirtualMachine details** page of the OpenShift Container Platform web console.
 
 **Prerequisites**
 
@@ -274,9 +272,9 @@ You can unpause a paused virtual machine (VM) from the web console.
      1. Access the **VirtualMachine details** page by clicking the name of the virtual machine.
      2. Click **Actions** → **Control** → **Unpause**.
 
-## Controlling the state of multiple virtual machines {#virt-controlling-multiple-vms-web_virt-controlling-vm-states}
+## Control the state of multiple VMs {#virt-controlling-multiple-vms-web_virt-controlling-vm-states}
 
-You can start, stop, restart, pause, and unpause multiple virtual machines (VMs) from the web console.
+You can start, stop, restart, pause, and unpause several virtual machines (VMs) at once from the OpenShift Container Platform web console. The action applies to every VM in a project or only to the VMs that you select.
 
 **Procedure**
 

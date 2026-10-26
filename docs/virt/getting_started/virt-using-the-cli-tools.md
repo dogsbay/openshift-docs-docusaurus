@@ -15,9 +15,9 @@ You can access and change VM disk images by using the `libguestfs` command-line 
 
 :::
 
-## Installing the virtctl binary on RHEL 9 or later, Linux, Windows, or macOS {#virt-installing-virtctl-binary_virt-using-the-cli-tools}
+## Install the virtctl binary {#virt-installing-virtctl-binary_virt-using-the-cli-tools}
 
-You can download the `virtctl` binary by using the OpenShift Container Platform web console and then install it on Red Hat Enterprise Linux (RHEL) 9 or later, Linux, Windows, or macOS.
+Download and install the `virtctl` binary that is available from the OpenShift Container Platform web console. You can run `virtctl` on Red Hat Enterprise Linux (RHEL) 9 or later, other Linux operating systems, Windows, or macOS.
 
 **Procedure**
 
@@ -66,7 +66,7 @@ You can download the `virtctl` binary by using the OpenShift Container Platform 
 
 ## virtctl information commands {#virtctl-information-commands_virt-using-the-cli-tools}
 
-You can use the following `virtctl` information commands to view information about the `virtctl` client.
+You can use the following `virtctl` commands to view the client and server versions and to list the commands and options that are available.
 
 **Information commands**
 
@@ -99,7 +99,7 @@ You can use the following `virtctl` information commands to view information abo
 
 ## VM information commands {#vm-information-commands_virt-using-the-cli-tools}
 
-You can use `virtctl` to view information about virtual machines (VMs) and virtual machine instances (VMIs).
+You can use the following `virtctl` commands to view the file systems, operating systems, and logged-in users of a guest machine.
 
 **VM information commands**
 
@@ -128,7 +128,7 @@ You can use `virtctl` to view information about virtual machines (VMs) and virtu
 
 ## VM manifest creation commands {#vm-manifest-creation-commands_virt-using-the-cli-tools}
 
-You can use the following `virtctl create` commands to create manifests for virtual machines, instance types, and preferences.
+You can use the following `virtctl create` commands to create manifests for virtual machines (VMs), instance types, and preferences.
 
 **VM manifest creation commands**
 
@@ -193,7 +193,7 @@ You can use the following `virtctl create` commands to create manifests for virt
 
 ## VM management commands {#vm-management-commands_virt-using-the-cli-tools}
 
-You can use the following `virtctl` commands to manage and migrate virtual machines (VMs) and VM instances (VMIs).
+You can use the following `virtctl` commands to start, stop, pause, restart, and migrate virtual machines (VMs).
 
 **VM management commands**
 
@@ -246,7 +246,7 @@ You can use the following `virtctl` commands to manage and migrate virtual machi
 
 ## VM connection commands {#vm-connection-commands_virt-using-the-cli-tools}
 
-You use can use the following `virtctl` commands to expose ports and connect to virtual machines (VMs) and VM instances (VMIs).
+You can use the following `virtctl` commands to connect to the console of a virtual machine (VM), open an SSH connection, copy files, and expose a port as a service.
 
 **VM connection commands**
 
@@ -295,7 +295,7 @@ You use can use the following `virtctl` commands to expose ports and connect to 
 
 ## VM export commands {#vm-export-commands_virt-using-the-cli-tools}
 
-Use `virtctl vmexport` commands to create, download, or delete a volume exported from a VM, VM snapshot, or persistent volume claim (PVC). Certain manifests also contain a header secret, which grants access to the endpoint to import a disk image in a format that OpenShift Virtualization can use.
+You can use the following `virtctl vmexport` commands to export a volume from a virtual machine (VM), a VM snapshot, or a persistent volume claim (PVC). These commands create the export, download the volume, and retrieve the manifest.
 
 **VM export commands**
 
@@ -352,7 +352,7 @@ Use `virtctl vmexport` commands to create, download, or delete a volume exported
 
 ## Hot plug and hot unplug commands {#hot-plug-and-hot-unplug-commands_virt-using-the-cli-tools}
 
-You can use the following `virtctl` commands to add or remove resources from running virtual machines (VMs) and VM instances (VMIs).
+You can use the following `virtctl` commands to add or remove a virtual disk while a virtual machine (VM) or virtual machine instance (VMI) is running.
 
 **Hot plug and hot unplug commands**
 
@@ -377,7 +377,7 @@ You can use the following `virtctl` commands to add or remove resources from run
 
 ## Image upload commands {#image-upload-commands_virt-using-the-cli-tools}
 
-You can use the following `virtctl image-upload` commands to upload a VM image to a data volume.
+You can use the following `virtctl image-upload` commands to upload a virtual machine (VM) image to a new or existing data volume.
 
 **Image upload commands**
 
@@ -404,9 +404,9 @@ You can use the following `virtctl image-upload` commands to upload a VM image t
 </tbody>
 </table>
 
-## Deploying libguestfs by using virtctl {#virt-deploying-libguestfs-with-virtctl_virt-using-the-cli-tools}
+## Deploy libguestfs by using virtctl {#virt-deploying-libguestfs-with-virtctl_virt-using-the-cli-tools}
 
-You can use the `virtctl guestfs` command to deploy an interactive container with `libguestfs-tools` and a persistent volume claim (PVC) attached to it.
+You can use the `virtctl guestfs` command to deploy an interactive container that has `libguestfs-tools` installed and a persistent volume claim (PVC) attached. Use the container to inspect and modify the VM disk on the PVC.
 
 **Procedure**
 
@@ -423,7 +423,7 @@ You can use the `virtctl guestfs` command to deploy an interactive container wit
 
 ## Libguestfs and virtctl guestfs commands {#virt-about-libguestfs-tools-virtctl-guestfs_virt-using-the-cli-tools}
 
-`Libguestfs` tools help you access and modify virtual machine (VM) disk images. You can use `libguestfs` tools to view and edit files in a guest, clone and build virtual machines, and format and resize disks.
+The `libguestfs` tools let you access and modify virtual machine (VM) disk images. You can run them in the container that `virtctl guestfs` deploys to view and edit files in a guest, clone VMs, and resize disks.
 
 You can also use the `virtctl guestfs` command and its sub-commands to modify, inspect, and debug VM disks on a PVC. To see a complete list of possible sub-commands, enter `virt-` on the command line and press the Tab key. For example:
 

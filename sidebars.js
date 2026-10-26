@@ -71,6 +71,7 @@ module.exports = {
         "disconnected/installing-mirroring-installation-images",
         "disconnected/installing",
         "disconnected/using-olm",
+        "disconnected/configuring-registry-external",
         {
           "type": "category",
           "label": "Updating a cluster in a disconnected environment",
@@ -1291,7 +1292,8 @@ module.exports = {
             "networking/ovn_kubernetes_network_provider/enabling-multicast",
             "networking/ovn_kubernetes_network_provider/disabling-multicast",
             "networking/ovn_kubernetes_network_provider/tracking-network-flows",
-            "networking/ovn_kubernetes_network_provider/configuring-hybrid-networking"
+            "networking/ovn_kubernetes_network_provider/configuring-hybrid-networking",
+            "networking/ovn_kubernetes_network_provider/increasing-cluster-network-hostprefix"
           ]
         },
         {
@@ -2353,6 +2355,7 @@ module.exports = {
             "observability/network_observability/network-observability-per-tenant-model",
             "observability/network_observability/network-observability-network-policy",
             "observability/network_observability/network-observability-dns-resolution-analysis",
+            "observability/network_observability/network-observability-optimizing-flowlogs-pipeline",
             "observability/network_observability/observing-network-traffic",
             "observability/network_observability/network-observability-health-rules",
             "observability/network_observability/network-observability-monitoring-tls-traffic",
@@ -2366,12 +2369,11 @@ module.exports = {
               "items": [
                 "observability/network_observability/netobserv_cli/netobserv-cli-install",
                 "observability/network_observability/netobserv_cli/netobserv-cli-using",
+                "observability/network_observability/netobserv_cli/netobserv-cli-plaintext-capture",
                 "observability/network_observability/netobserv_cli/netobserv-cli-reference"
               ]
             },
-            "observability/network_observability/flowcollector-api",
-            "observability/network_observability/flowmetric-api",
-            "observability/network_observability/json-flows-format-reference",
+            "observability/network_observability/network-observability-api-reference",
             "observability/network_observability/troubleshooting-network-observability"
           ]
         },
@@ -3552,7 +3554,7 @@ module.exports = {
             "virt/vm_networking/virt-networking-overview",
             "virt/vm_networking/virt-connecting-vm-to-default-pod-network",
             "virt/vm_networking/virt-connecting-vm-to-primary-udn",
-            "virt/vm_networking/virt-connecting-vm-to-secondary-udn",
+            "virt/vm_networking/virt-connecting-vm-to-physical-network-ovs-bridge",
             "virt/vm_networking/virt-exposing-vm-with-service",
             "virt/vm_networking/virt-accessing-vm-internal-fqdn",
             "virt/vm_networking/virt-connecting-vm-to-linux-bridge",

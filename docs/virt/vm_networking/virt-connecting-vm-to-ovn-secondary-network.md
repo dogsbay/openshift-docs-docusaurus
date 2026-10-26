@@ -28,7 +28,7 @@ Configuring IP address management (IPAM) by specifying the `spec.config.ipam.sub
 
 :::
 
-## Creating a NAD for layer 2 topology by using the CLI {#virt-creating-layer2-nad-cli_virt-connecting-vm-to-ovn-secondary-network}
+## Create a layer 2 NAD by using the CLI {#virt-creating-layer2-nad-cli_virt-connecting-vm-to-ovn-secondary-network}
 
 You can create a network attachment definition (NAD) which describes how to attach a pod to the layer 2 overlay network.
 
@@ -74,7 +74,7 @@ You can create a network attachment definition (NAD) which describes how to atta
    $ oc apply -f <filename>.yaml
    ```
 
-## Creating a NAD for layer 2 topology by using the web console {#virt-creating-nad-l2-overlay-console_virt-connecting-vm-to-ovn-secondary-network}
+## Create a layer 2 NAD by using the web console {#virt-creating-nad-l2-overlay-console_virt-connecting-vm-to-ovn-secondary-network}
 
 You can create a network attachment definition (NAD) that describes how to attach a pod to the layer 2 overlay network.
 
@@ -90,7 +90,7 @@ You can create a network attachment definition (NAD) that describes how to attac
 4. Select **OVN Kubernetes L2 overlay network** from the **Network Type** list.
 5. Click **Create**.
 
-## Attaching a virtual machine to an OVN-Kubernetes secondary network using the CLI {#virt-attaching-vm-to-ovn-secondary-nw-cli_virt-connecting-vm-to-ovn-secondary-network}
+## Attach a VM to a secondary overlay network {#virt-attaching-vm-to-ovn-secondary-nw-cli_virt-connecting-vm-to-ovn-secondary-network}
 
 You can connect a virtual machine (VM) to the OVN-Kubernetes secondary network by including the network details in the VM configuration.
 

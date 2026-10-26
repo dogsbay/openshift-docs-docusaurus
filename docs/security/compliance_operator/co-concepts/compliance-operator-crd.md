@@ -1,9 +1,9 @@
 ---
-title: Understanding the Custom Resource Definitions
+title: About the Compliance Operator custom resource definitions
 sidebar_position: 2
 ---
 
-# Understanding the Custom Resource Definitions {#custom-resource-definitions}
+# About the Compliance Operator custom resource definitions {#custom-resource-definitions}
 
 <a id="custom-resource-definitions"></a>
 

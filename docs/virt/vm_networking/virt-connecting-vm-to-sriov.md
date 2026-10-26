@@ -174,7 +174,7 @@ Do not modify or delete an `SriovNetwork` object if it is attached to pods or vi
    $ oc get net-attach-def -n <namespace>
    ```
 
-## Connecting a virtual machine to an SR-IOV network by using the CLI {#virt-attaching-vm-to-sriov-network_virt-connecting-vm-to-sriov}
+## Connect a VM to an SR-IOV network by using the CLI {#virt-attaching-vm-to-sriov-network_virt-connecting-vm-to-sriov}
 
 You can connect the virtual machine (VM) to the SR-IOV network by including the network details in the VM configuration.
 
@@ -218,7 +218,7 @@ You can connect the virtual machine (VM) to the SR-IOV network by including the 
    <dd>Specifies the name of the virtual machine YAML file.</dd>
    </dl>
 
-## Connecting a VM to an SR-IOV network by using the web console {#virt-attaching-vm-to-sriov-network-web-console_virt-connecting-vm-to-sriov}
+## Attach a VM to an SR-IOV network in the web console {#virt-attaching-vm-to-sriov-network-web-console_virt-connecting-vm-to-sriov}
 
 You can connect a VM to the SR-IOV network by including the network details in the VM configuration.
 

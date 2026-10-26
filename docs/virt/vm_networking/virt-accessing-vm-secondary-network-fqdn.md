@@ -17,7 +17,7 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 :::
 
-## Configuring a DNS server for secondary networks {#virt-configuring-secondary-dns-server_virt-accessing-vm-secondary-network-fqdn}
+## Configure a DNS server for secondary networks {#virt-configuring-secondary-dns-server_virt-accessing-vm-secondary-network-fqdn}
 
 The Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) server and monitoring components when you enable the `deployKubeSecondaryDNS` feature gate in the `HyperConverged` custom resource (CR).
 
@@ -103,7 +103,7 @@ The Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) se
     ns.vm.<FQDN>. IN A <kubeSecondaryDNSNameServerIP>
     ```
 
-## Connecting to a VM on a secondary network by using the cluster FQDN {#virt-connecting-vm-secondarynw-fqdn_virt-accessing-vm-secondary-network-fqdn}
+## Connect to a secondary network VM by using the FQDN {#virt-connecting-vm-secondarynw-fqdn_virt-accessing-vm-secondary-network-fqdn}
 
 You can access a running virtual machine (VM) attached to a secondary network interface by using the fully qualified domain name (FQDN) of the cluster.
 

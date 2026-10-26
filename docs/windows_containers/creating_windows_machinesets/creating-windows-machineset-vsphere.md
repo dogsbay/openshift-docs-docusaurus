@@ -18,7 +18,7 @@ For example, you might create infrastructure Windows machine sets and related ma
 - You must prepare your vSphere environment for Windows container workloads by creating the vSphere Windows VM golden image. See "Creating the vSphere Windows VM golden image" in this section.
 - You must enable communication with the internal API server for the WMCO. See "Enabling communication with the internal API server for the WMCO on vSphere" in this section.
 
-## Creating the vSphere Windows VM golden image {#creating-the-vsphere-windows-vm-golden-image_creating-windows-machineset-vsphere}
+## Create a Windows VM golden image for vSphere {#creating-the-vsphere-windows-vm-golden-image_creating-windows-machineset-vsphere}
 
 You must prepare your vSphere environment for Windows container workloads by creating the vSphere Windows VM golden image.
 
@@ -168,7 +168,7 @@ You must prepare your vSphere environment for Windows container workloads by cre
    </dl>
 10. Convert the Windows VM to a template in vCenter. For more information, see "vSphere Virtual Machine Administration (vSphere documentation)".
 
-## Enabling communication with the internal API server for the WMCO on vSphere {#enabling-internal-api-server-vsphere_creating-windows-machineset-vsphere}
+## Enable internal API server communication for the WMCO on vSphere {#enabling-internal-api-server-vsphere_creating-windows-machineset-vsphere}
 
 You must enable communication with the internal API server so that your Windows virtual machine (VM) can download the Ignition config files, and the kubelet on the configured VM can only communicate with the internal API server.
 
@@ -413,7 +413,7 @@ To dynamically manage machine compute resources, you can create your own compute
 
 **Additional resources**
 
-- [Configuring a secret for the Windows Machine Config Operator](/docs/windows_containers/enabling-windows-container-workloads#configuring-secret-for-wmco_enabling-windows-container-workloads)
+- [Configure a secret for the Windows Machine Config Operator](/docs/windows_containers/enabling-windows-container-workloads#configuring-secret-for-wmco_enabling-windows-container-workloads)
 - [VMware vSphere infrastructure requirements](/docs/installing/installing_vsphere/ipi/ipi-vsphere-installation-reqs#installation-vsphere-infrastructure_ipi-vsphere-installation-reqs)
 - [Overview of machine management](/docs/machine_management#overview-of-machine-management)
 - [Object Names and IDs specification (Kubernetes documentation)](https://kubernetes.io/docs/concepts/overview/working-with-objects/names)

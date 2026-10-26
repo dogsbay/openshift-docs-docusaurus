@@ -9,7 +9,7 @@ sidebar_position: 1
 
 OpenShift Virtualization provides a comprehensive virtualization solution that allows you to run and manage virtual machine workloads alongside container workloads in your OpenShift Container Platform cluster.
 
-## What you can do with OpenShift Virtualization {#virt-what-you-can-do-with-virt_about-virt}
+## OpenShift Virtualization capabilities {#virt-what-you-can-do-with-virt_about-virt}
 
 OpenShift Virtualization provides scalable, enterprise-grade virtualization functionality for your cluster. You can use it to manage virtual machines (VMs) exclusively or alongside container workloads.
 
@@ -50,9 +50,9 @@ You can check your OpenShift Virtualization cluster for compliance issues by ins
 
 For information about partnering with Independent Software Vendors (ISVs) and Services partners for specialized storage, networking, backup, and additional functionality, see the Red Hat Ecosystem Catalog.
 
-## Comparing OpenShift Virtualization to VMware vSphere {#virt-vmware-comparison_about-virt}
+## VMware vSphere to OpenShift Virtualization concept mapping {#virt-vmware-comparison_about-virt}
 
-If you are familiar with VMware vSphere, the following table lists OpenShift Virtualization components that you can use to accomplish similar tasks.
+If you are familiar with VMware vSphere, you can map its concepts to the OpenShift Virtualization components that accomplish similar tasks.
 
 However, because OpenShift Virtualization is conceptually different from vSphere, and much of its functionality comes from the underlying OpenShift Container Platform, OpenShift Virtualization does not have direct alternatives for all vSphere concepts or components.
 
@@ -77,16 +77,18 @@ However, because OpenShift Virtualization is conceptually different from vSphere
 </tr>
 <tr>
   <td>NSX</td>
-  <td> Multus  OVN-Kubernetes<br><br>  Third-party container network interface (CNI) plug-ins </td>
-  <td>Provides an overlay network configuration. There is no direct equivalent for NSX in OpenShift Virtualization, but you can use the OVN-Kubernetes network provider  or install certified third-party CNI plug-ins.</td>
 </tr>
 <tr>
+  <td>Multus OVN-Kubernetes<br><br>Third-party container network interface (CNI) plug-ins</td>
+  <td>Provides an overlay network configuration. There is no direct equivalent for NSX in OpenShift Virtualization, but you can use the OVN-Kubernetes network provider or install certified third-party CNI plug-ins.</td>
   <td>Storage Policy Based Management (SPBM)</td>
+</tr>
+<tr>
   <td>Storage class</td>
   <td>Provides policy-based storage selection. Storage classes represent various storage types and describe storage capabilities, such as quality of service, backup policy, reclaim policy, and whether volume expansion is allowed. A PVC can request a specific storage class to satisfy application requirements.</td>
+  <td>vCenter<br><br>vRealize Operations</td>
 </tr>
 <tr>
-  <td>vCenter<br><br>vRealize Operations</td>
   <td>OpenShift Metrics and Monitoring</td>
   <td>Provides host and VM metrics. You can view metrics and monitor the overall health of the cluster and VMs by using the OpenShift Container Platform web console.</td>
 </tr>
@@ -109,7 +111,7 @@ OpenShift Virtualization 4.22 is supported for use on OpenShift Container Platfo
 
 The latest stable release of OpenShift Virtualization 4.22 is 4.22.9.
 
-## About volume and access modes for virtual machine disks {#virt-about-storage-volumes-for-vm-disks_about-virt}
+## Volume and access modes for VM disks {#virt-about-storage-volumes-for-vm-disks_about-virt}
 
 If you use the storage API with known storage providers, the volume and access modes are selected automatically. However, if you use a storage class that does not have a storage profile, you must configure the volume and access mode.
 
@@ -132,9 +134,9 @@ For best results, use the `ReadWriteMany` (RWX) access mode and the `Block` volu
 
   :::
 
-## Single-node OpenShift differences {#virt-sno-differences_about-virt}
+## Single-node OpenShift feature support {#virt-sno-differences_about-virt}
 
-You can install OpenShift Virtualization on single-node OpenShift.
+You can install OpenShift Virtualization on single-node OpenShift. The topology does not support high availability, pod disruption, live migration, or eviction strategies.
 
 However, you should be aware that Single-node OpenShift does not support the following features:
 

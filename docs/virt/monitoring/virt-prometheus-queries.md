@@ -16,7 +16,7 @@ Monitor the consumption of cluster infrastructure resources by using the metrics
 
 :::
 
-## Querying metrics for all projects with the OpenShift Container Platform web console {#querying-metrics-for-all-projects-with-mon-dashboard_virt-prometheus-queries}
+## Query metrics for all projects by using the OpenShift Container Platform web console {#querying-metrics-for-all-projects-with-mon-dashboard_virt-prometheus-queries}
 
 Monitor the state of a cluster and any user-defined workloads by using the OpenShift Container Platform metrics query browser. The query browser uses Prometheus Query Language (PromQL) queries to examine metrics visualized on a plot.
 
@@ -83,7 +83,7 @@ As a cluster administrator or as a user with view permissions for all projects, 
 </tbody>
 </table>
 
-## Querying metrics for user-defined projects with the OpenShift Container Platform web console {#querying-metrics-for-user-defined-projects-with-mon-dashboard_virt-prometheus-queries}
+## Query metrics for user-defined projects by using the OpenShift Container Platform web console {#querying-metrics-for-user-defined-projects-with-mon-dashboard_virt-prometheus-queries}
 
 Monitor user-defined workloads by using the OpenShift Container Platform metrics query browser. The query browser uses Prometheus Query Language (PromQL) queries to examine metrics visualized on a plot.
 

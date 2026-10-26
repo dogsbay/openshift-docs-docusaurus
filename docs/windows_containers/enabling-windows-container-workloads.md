@@ -43,7 +43,7 @@ Due to a limitation within the Windows operating system, `clusterNetwork` CIDR a
 
 :::
 
-### Installing the Windows Machine Config Operator using the web console {#installing-wmco-using-web-console_enabling-windows-container-workloads}
+### Install the Windows Machine Config Operator by using the web console {#installing-wmco-using-web-console_enabling-windows-container-workloads}
 
 You can use the OpenShift Container Platform web console to install the Windows Machine Config Operator (WMCO).
 
@@ -74,7 +74,7 @@ Dual NIC is not supported on WMCO-managed Windows instances.
    :::
 6. Verify that the **Status** shows **Succeeded** to confirm successful installation of the WMCO.
 
-### Installing the Windows Machine Config Operator using the CLI {#installing-wmco-using-cli_enabling-windows-container-workloads}
+### Install the Windows Machine Config Operator by using the CLI {#installing-wmco-using-cli_enabling-windows-container-workloads}
 
 You can use the OpenShift CLI (`oc`) to install the Windows Machine Config Operator (WMCO).
 
@@ -187,7 +187,7 @@ Dual NIC is not supported on WMCO-managed Windows instances.
    windows-machine-config-operator.2.0.0   Windows Machine Config Operator   2.0.0                Succeeded
    ```
 
-## Configuring a secret for the Windows Machine Config Operator {#configuring-secret-for-wmco_enabling-windows-container-workloads}
+## Configure a secret for the Windows Machine Config Operator {#configuring-secret-for-wmco_enabling-windows-container-workloads}
 
 Before you can use the Windows Machine Config Operator (WMCO), you must create a secret in the same WMCO namespace as your private key.
 
@@ -222,7 +222,7 @@ This secret is required to allow the WMCO to communicate with the Windows virtua
 
   You must create the private key in the WMCO namespace, such as `openshift-windows-machine-config-operator`.
 
-## Configuring debug-level logging for the Windows Machine Config Operator {#wmco-configure-debug-logging_enabling-windows-container-workloads}
+## Configure debug-level logging for the Windows Machine Config Operator {#wmco-configure-debug-logging_enabling-windows-container-workloads}
 
 You can edit the WMCO `Subscription` object to change the Windows Machine Config Operator (WMCO) log level to `debug`, if you need more verbose output.
 
@@ -261,7 +261,7 @@ By default, the WMCO is configured to use the `info` log level.
 
    You can revert to the default `info` log level by removing the `name` and `value` parameters that you added.
 
-## Using Windows containers in a proxy-enabled cluster {#wmco-cluster-wide-proxy_enabling-windows-container-workloads}
+## Windows containers in a proxy-enabled cluster {#wmco-cluster-wide-proxy_enabling-windows-container-workloads}
 
 You can add Windows nodes and run workloads in a proxy-enabled cluster because Windows Machine Config Operator (WMCO) can consume and use the cluster-wide egress proxy when making external requests outside the cluster’s internal network.
 
@@ -279,7 +279,7 @@ Windows workloads created on Windows nodes in proxy-enabled clusters do not inhe
 
 For more information on the cluster-wide proxy, see "Configuring the cluster-wide proxy".
 
-## Using Windows containers with a mirror registry {#wmco-disconnected-cluster_enabling-windows-container-workloads}
+## Mirror registry support for Windows containers {#wmco-disconnected-cluster_enabling-windows-container-workloads}
 
 When using the Windows Machine Config Operator (WMCO), your Windows workloads can pull images from a registry mirror rather than from a public registry by using an `ImageDigestMirrorSet` (IDMS) or `ImageTagMirrorSet` (ITMS) object to configure your cluster to pull images from the mirror registry.
 
@@ -601,7 +601,7 @@ The following procedure demonstrates how to perform a graceful restart of a node
 - [Configuring hybrid networking](/docs/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking#configuring-hybrid-ovnkubernetes)
 - [Configuring the cluster-wide proxy](/docs/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)
 - [About disconnected installation mirroring](/docs/disconnected#installing-mirroring-disconnected-about)
-- [Using Windows containers with a mirror registry](/docs/windows_containers/enabling-windows-container-workloads#wmco-disconnected-cluster_enabling-windows-container-workloads)
+- [Mirror registry support for Windows containers](/docs/windows_containers/enabling-windows-container-workloads#wmco-disconnected-cluster_enabling-windows-container-workloads)
 - [Rebooting a OpenShift Container Platform node gracefully](/docs/nodes/nodes/nodes-nodes-rebooting#nodes-nodes-rebooting-gracefully_nodes-nodes-rebooting)
 - [Backing up etcd data](/docs/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)
 - [Generating a key pair for cluster node SSH access](/docs/installing/installing_azure/ipi/installing-azure-default#ssh-agent-using_installing-azure-default)

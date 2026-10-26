@@ -9,7 +9,7 @@ sidebar_position: 9
 
 The Data Plane Development Kit (DPDK) provides a set of libraries and drivers for fast packet processing. You can configure clusters and virtual machines (VMs) to run ultra-low latency packet processing workloads by using DPDK drivers with SR-IOV hardware.
 
-## Configuring a cluster for DPDK workloads {#virt-configuring-cluster-dpdk_virt-using-dpdk-with-sriov}
+## Prepare a cluster for DPDK workloads {#virt-configuring-cluster-dpdk_virt-using-dpdk-with-sriov}
 
 You can configure an OpenShift Container Platform cluster to run Data Plane Development Kit (DPDK) workloads for improved network performance.
 
@@ -134,7 +134,7 @@ You can configure an OpenShift Container Platform cluster to run Data Plane Deve
        feature.node.kubernetes.io/network-sriov.capable: "true"
    ```
 
-## Removing a custom machine config pool for high-availability clusters {#virt-removing-custom-mcp_virt-using-dpdk-with-sriov}
+## Remove a custom machine config pool for high-availability clusters {#virt-removing-custom-mcp_virt-using-dpdk-with-sriov}
 
 You can delete a custom machine config pool that you previously created for your high-availability cluster.
 
@@ -155,7 +155,7 @@ You can delete a custom machine config pool that you previously created for your
    $ oc delete mcp worker-dpdk
    ```
 
-## Configuring a project for DPDK workloads {#virt-configuring-vm-project-dpdk_virt-using-dpdk-with-sriov}
+## Configure a project for DPDK workloads {#virt-configuring-vm-project-dpdk_virt-using-dpdk-with-sriov}
 
 You can configure the project to run DPDK workloads on SR-IOV hardware.
 
@@ -201,9 +201,9 @@ You can configure the project to run DPDK workloads on SR-IOV hardware.
    - `spec.networkNamespace` defines the namespace where the `NetworkAttachmentDefinition` object is deployed.
    - `spec.resourceName` defines the value of the `spec.resourceName` attribute of the `SriovNetworkNodePolicy` object that was created when configuring the cluster for DPDK workloads.
 
-## Configuring a virtual machine for DPDK workloads {#virt-configuring-vm-dpdk_virt-using-dpdk-with-sriov}
+## Configure a VM for DPDK workloads {#virt-configuring-vm-dpdk_virt-using-dpdk-with-sriov}
 
-You can run Data Packet Development Kit (DPDK) workloads on virtual machines (VMs) to achieve lower latency and higher throughput for faster packet processing in the user space. DPDK uses the SR-IOV network for hardware-based I/O sharing.
+You can run Data Plane Development Kit (DPDK) workloads on virtual machines (VMs) to achieve lower latency and higher throughput for faster packet processing in the user space. DPDK uses the SR-IOV network for hardware-based I/O sharing.
 
 **Prerequisites**
 

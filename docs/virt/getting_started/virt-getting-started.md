@@ -15,7 +15,7 @@ Cluster configuration procedures require `cluster-admin` privileges.
 
 :::
 
-## Getting started tour {#virt-getting-started-tour_virt-getting-started}
+## Take the Getting started tour {#virt-getting-started-tour_virt-getting-started}
 
 The **Getting started** tour introduces several key aspects of using OpenShift Virtualization. There are two ways to start the tour.
 
@@ -28,7 +28,7 @@ The **Getting started** tour introduces several key aspects of using OpenShift V
 - If you see the **Welcome to OpenShift Virtualization** dialog, click **Start Tour**.
 - Otherwise, go to **Virtualization** → **Settings** → **User** → **Getting started resources** → **Guided tour**.
 
-## Quick start tours {#virt-quick-starts_virt-getting-started}
+## Take a quick start tour {#virt-quick-starts_virt-getting-started}
 
 You can explore several OpenShift Virtualization capabilities by taking quick start tours in the web console.
 

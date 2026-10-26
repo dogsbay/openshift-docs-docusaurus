@@ -250,7 +250,7 @@ For more information about these settings, see "LokiStack API reference".
 - [Loki object storage](https://docs.redhat.com/en/documentation/red_hat_openshift_logging/latest/html/configuring_logging/configuring-lokistack-storage#logging-loki-storage_configuring-the-log-store)
 - [Loki deployment sizing](https://docs.redhat.com/en/documentation/red_hat_openshift_logging/latest/html/configuring_logging/configuring-lokistack-storage.html#loki-sizing_configuring-the-log-store)
 - [LokiStack API reference](https://loki-operator.dev/docs/api.md/#loki-grafana-com-v1-IngestionLimitSpec)
-- [Flow Collector API Reference](/docs/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)
+- [Flow Collector API Reference](/docs/observability/network_observability/network-observability-api-reference#flowcollector-api_network_observability)
 - [Flow Collector sample resource](/docs/observability/network_observability/configuring-operator#network-observability-flowcollector-view_network_observability)
 
 ## Install the Network Observability Operator {#network-observability-operator-installation_network_observability}
@@ -310,7 +310,7 @@ Therefore, you can consider configuring the following options when creating the 
 - [Working with conversation tracking](/docs/observability/network_observability/observing-network-traffic#network-observability-working-with-conversations_nw-observe-network-traffic)
 - [Working with DNS tracking](/docs/observability/network_observability/observing-network-traffic#network-observability-dns-tracking_nw-observe-network-traffic)
 - [Working with packet drops](/docs/observability/network_observability/observing-network-traffic#network-observability-packet-drops_nw-observe-network-traffic)
-- [Flow Collector API Reference](/docs/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)
+- [Flow Collector API Reference](/docs/observability/network_observability/network-observability-api-reference#flowcollector-api_network_observability)
 - [Flow Collector sample resource](/docs/observability/network_observability/configuring-operator#network-observability-flowcollector-view_network_observability)
 - [Resource considerations](/docs/observability/network_observability/configuring-operator#network-observability-resources-table_network_observability)
 - [Troubleshooting network observability controller manager pod runs out of memory](/docs/observability/network_observability/troubleshooting-network-observability#controller-manager-pod-runs-out-of-memory_network-observability-troubleshooting)

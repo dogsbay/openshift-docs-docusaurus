@@ -61,7 +61,7 @@ Installing OpenShift Container Platform on a single node requires a discovery IS
 **Additional resources**
 
 - [Persistent storage using logical volume manager storage](/docs/storage/persistent_storage_local/persistent-storage-using-lvms#persistent-storage-using-lvms_logical-volume-manager-storage)
-- [What you can do with OpenShift Virtualization](/docs/virt/about_virt/about-virt#virt-what-you-can-do-with-virt_about-virt)
+- [OpenShift Virtualization capabilities](/docs/virt/about_virt/about-virt#virt-what-you-can-do-with-virt_about-virt)
 
 ### Installing single-node OpenShift with the Assisted Installer {#install-sno-installing-with-the-assisted-installer_install-sno-installing-sno-with-the-assisted-installer}
 

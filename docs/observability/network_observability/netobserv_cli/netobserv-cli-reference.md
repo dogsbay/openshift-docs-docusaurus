@@ -1,6 +1,6 @@
 ---
 title: Network Observability CLI (oc netobserv) reference
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Network Observability CLI (oc netobserv) reference {#netobserv-cli-reference}
@@ -95,7 +95,7 @@ $ oc netobserv flows --enable_pkt_drop  --enable_rtt --action=Accept --cidr=0.0.
 
 ### Packets capture options {#cli-reference-packet-capture-options_netobserv-cli-reference}
 
-You can filter packets capture data the as same as flows capture by using the filters. Certain features, such as packets drop, DNS, RTT, and network events, are only available for flows and metrics capture.
+You can filter packets capture data the as same as flows capture by using the filters. Certain features, such as packets drop, DNS, RTT, and network events, are only available for flows and metrics capture. To capture plaintext from dynamically linked OpenSSL applications, use `--enable_openssl` with a peer or port filter. The option requires a privileged agent and adds plaintext records to the packet capture output.
 
 ```terminal title="oc netobserv packets syntax"
 $ oc netobserv packets [<option>]
@@ -108,6 +108,11 @@ $ oc netobserv packets [<option>]
 | --log-level | components logs | info |
 | --max-time | maximum capture time | 5m |
 | --max-bytes | maximum capture bytes | 50000000 = 50MB |
+| --enable_openssl | capture TLS plaintext via OpenSSL uprobes | false; privileged agent; recommended: --peer_ip --port |
+| --tls_process_allowlist | restrict TLS uprobes to comma-separated process names | all non-infra; e.g. nginx,envoy |
+| --tls_plaintext_min_bytes | drop TLS plaintext events shorter than N bytes | 0; agent env TLS_PLAINTEXT_MIN_BYTES |
+| --tls_plaintext_preview_bytes | PlaintextPreview length; zero means full payload | 256 |
+| --tls-keylog | path to SSLKEYLOGFILE for pcapng decryption | collector setting |
 | --action | filter action | Accept |
 | --cidr | filter CIDR | 0.0.0.0/0 |
 | --direction | filter direction | - |

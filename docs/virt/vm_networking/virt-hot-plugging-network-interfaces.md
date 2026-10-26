@@ -31,7 +31,7 @@ The actual number of slots available for hot plugging also depends on the machin
 
 If you restart the VM after hot plugging an interface, that interface becomes part of the standard network interfaces.
 
-## Hot plugging a secondary network interface by using the CLI {#virt-hot-plugging-bridge-network-interface_virt-hot-plugging-network-interfaces}
+## Hot plug a secondary network interface by using the CLI {#virt-hot-plugging-bridge-network-interface_virt-hot-plugging-network-interfaces}
 
 You can hot plug a secondary network interface to a virtual machine (VM) while the VM is running.
 
@@ -136,7 +136,7 @@ You can hot plug a secondary network interface to a virtual machine (VM) while t
 
    The hot plugged interface appears in the VMI status.
 
-## Hot unplugging a secondary network interface by using the CLI {#virt-hot-unplugging-bridge-network-interface_virt-hot-plugging-network-interfaces}
+## Hot unplug a secondary network interface by using the CLI {#virt-hot-unplugging-bridge-network-interface_virt-hot-plugging-network-interfaces}
 
 You can remove a secondary network interface from a running virtual machine (VM).
 
@@ -203,4 +203,4 @@ Hot unplugging is not supported for Single Root I/O Virtualization (SR-IOV) inte
 - [About live migration permissions](/docs/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)
 - [Creating a Linux bridge network attachment definition](/docs/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)
 - [Creating an SR-IOV network attachment definition](/docs/virt/vm_networking/virt-connecting-vm-to-sriov#nw-sriov-additional-network_virt-connecting-vm-to-sriov)
-- [Connecting a virtual machine to an SR-IOV network](/docs/virt/vm_networking/virt-connecting-vm-to-sriov#virt-attaching-vm-to-sriov-network_virt-connecting-vm-to-sriov)
+- [Connect a VM to an SR-IOV network by using the CLI](/docs/virt/vm_networking/virt-connecting-vm-to-sriov#virt-attaching-vm-to-sriov-network_virt-connecting-vm-to-sriov)

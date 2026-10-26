@@ -9,7 +9,7 @@ sidebar_position: 9
 
 Use the NVIDIA GPU operator to create virtual GPUs (vGPUs) and assign them to virtual machines (VMs) in OpenShift Virtualization.
 
-## About using virtual GPUs with OpenShift Virtualization {#virt-about-using-virtual-gpus_virt-configuring-virtual-gpus}
+## Virtual GPUs in OpenShift Virtualization {#virt-about-using-virtual-gpus_virt-configuring-virtual-gpus}
 
 You can create vGPUs for your virtual machines (VMs) using supported GPU cards. Refer to your hardware vendor’s documentation for functionality and support details.
 
@@ -17,7 +17,7 @@ You can use the NVIDIA GPU Operator to manage vGPUs for your virtual machines (V
 
 A mediated device is a physical device that is divided into one or more virtual devices. vGPUs are a type of mediated device (mdev) where the performance of the physical GPU is divided among the virtual devices. You can assign mediated devices to one or more virtual machines (VMs), but the number of guests must be compatible with your GPU. Some GPUs do not support multiple guests.
 
-### Adding kernel arguments to enable the IOMMU driver {#virt-adding-kernel-arguments-enable-IOMMU_virt-configuring-virtual-gpus}
+### Add kernel arguments to enable the IOMMU driver {#virt-adding-kernel-arguments-enable-IOMMU_virt-configuring-virtual-gpus}
 
 You must enable the Input-Output Memory Management Unit (IOMMU) driver before you can configure mediated devices. To enable the IOMMU driver in the kernel, create the `MachineConfig` object and add the kernel arguments.
 
@@ -173,7 +173,7 @@ You can get support for the NVIDIA GPU Operator through NVIDIA. For more informa
    </dl>
 2. Use the NVIDIA GPU Operator to configure mediated devices. For more information see [NVIDIA GPU Operator with OpenShift Virtualization](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/openshift-virtualization.html).
 
-## Labeling nodes with a MIG-backed vGPU profile {#virt-label-nodes-with-mig-backed-profile_virt-configuring-virtual-gpus}
+## Label nodes with a MIG-backed vGPU profile {#virt-label-nodes-with-mig-backed-profile_virt-configuring-virtual-gpus}
 
 If you have GPUs that support NVIDIA Multi-Instance GPU (MIG), you can select a MIG-backed vGPU instance instead of time-sliced vGPU instances. When you use MIG, you give a partition of dedicated hardware to selected VMs.
 
@@ -198,7 +198,7 @@ If you have GPUs that support NVIDIA Multi-Instance GPU (MIG), you can select a 
     $ oc label node worker_1 --overwrite nvidia.com/vgpu.config=A30-1-6C
     ```
 
-## Creating and exposing mediated devices {#virt-creating-exposing-mediated-devices_virt-configuring-virtual-gpus}
+## Create and expose mediated devices {#virt-creating-exposing-mediated-devices_virt-configuring-virtual-gpus}
 
 As an administrator, you can create mediated devices and expose them to the cluster by editing the `HyperConverged` custom resource (CR). Before you edit the CR, explore a worker node to find the configuration values that are specific to your hardware devices.
 
@@ -307,7 +307,7 @@ As an administrator, you can create mediated devices and expose them to the clus
     | with_entries(select(.value != "0"))'
   ```
 
-## Removing mediated devices from the cluster {#virt-removing-mediated-device-from-cluster-cli_virt-configuring-virtual-gpus}
+## Remove mediated devices from the cluster {#virt-removing-mediated-device-from-cluster-cli_virt-configuring-virtual-gpus}
 
 As a cluster administrator you can remove mediated devices from the cluster so that you can reallocate GPU hardware. To remove a mediated device from the cluster, delete the information for that device from the `HyperConverged` CR.
 
@@ -339,9 +339,9 @@ As a cluster administrator you can remove mediated devices from the cluster so t
    - To remove the `GRID T4-2Q` device, delete the `mdevNameSelector` field and its corresponding `resourceName` field.
 3. Save your changes and exit the editor.
 
-## Assigning a vGPU to a VM by using the CLI {#virt-assigning-mdev-vm-cli_virt-configuring-virtual-gpus}
+## Assign a vGPU to a VM by using the CLI {#virt-assigning-mdev-vm-cli_virt-configuring-virtual-gpus}
 
-Assign mediated devices such as virtual GPUs (vGPUs) to virtual machines (VMs).
+After mediated devices are configured in the cluster, you can assign them to individual VMs so that VMs can access shared GPU resources.
 
 **Prerequisites**
 
@@ -376,7 +376,7 @@ Assign mediated devices such as virtual GPUs (vGPUs) to virtual machines (VMs).
   $ lspci -nnk | grep <device_name>
   ```
 
-## Assigning a vGPU to a VM by using the web console {#virt-assigning-vgpu-vm-web_virt-configuring-virtual-gpus}
+## Assign a vGPU to a VM by using the web console {#virt-assigning-vgpu-vm-web_virt-configuring-virtual-gpus}
 
 You can assign virtual GPUs to virtual machines by using the OpenShift Container Platform web console.
 

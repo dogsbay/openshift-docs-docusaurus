@@ -11,7 +11,7 @@ You can configure CPU models for your virtual machines at both the cluster level
 
 ## Configure the default CPU model {#virt-configuring-default-cpu-model_virt-configuring-default-cpu-model}
 
-Use the `defaultCPUModel` setting in the `HyperConverged` custom resource (CR) to define a cluster-wide default CPU model.
+Define a cluster-wide default CPU model. Every new virtual machine (VM) that does not specify its own CPU model uses the default, and runs only on nodes that support it.
 
 When you set a cluster-wide default CPU model:
 
@@ -56,9 +56,9 @@ A CPU model configured at the VM level always takes precedence over the cluster-
    </dl>
 3. Apply the YAML file to your cluster.
 
-## Configure a CPU model per-VM {#virt-per-vm-cpu-model-configuration_virt-configuring-default-cpu-model}
+## Configure a CPU model for a single VM {#virt-per-vm-cpu-model-configuration_virt-configuring-default-cpu-model}
 
-You can specify a named CPU model in the virtual machine (VM) specification. This per-VM configuration takes precedence over any cluster-wide default CPU model.
+Set a named CPU model on a single virtual machine (VM) when that VM needs a different CPU type from the cluster-wide default. A per-VM model always takes precedence over the default.
 
 The VM CPU model depends on the availability of CPU models within the VM and the cluster.
 

@@ -1,6 +1,6 @@
 ---
 title: Monitor the Network Observability Operator
-sidebar_position: 14
+sidebar_position: 15
 ---
 
 # Monitor the Network Observability Operator {#network-observability-operator-monitoring}

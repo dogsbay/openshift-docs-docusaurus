@@ -1,6 +1,6 @@
 ---
 title: Observing the network traffic
-sidebar_position: 10
+sidebar_position: 11
 ---
 
 # Observing the network traffic {#nw-observe-network-traffic}
@@ -17,32 +17,44 @@ The **Overview** view shows aggregate network traffic in your OpenShift Containe
 
 As an administrator, you can troubleshoot connectivity issues, detect unusual traffic patterns, and optimize application performance. It provides a quick overview of network behavior, making it easier to prioritize actions and ensure efficient resource usage.
 
-### Work with the Overview view {#network-observability-working-with-overview_nw-observe-network-traffic}
-
-Navigate to the network traffic **Overview** view in the OpenShift Container Platform console to visualize flow rate statistics and customize the display scope for monitoring cluster network activity.
-
-**Prerequisite**
-
-- Access to the cluster with administrator rights.
-
-**Procedure**
-
-1. Navigate to **Observe** → **Network Traffic**.
-2. In the **Network Traffic** page, click the **Overview** tab.
-3. Click the menu icon to configure the scope of each flow rate data.
-
-### Configure advanced options for the Overview view {#network-observability-configuring-options-overview_nw-observe-network-traffic}
+### Advanced options for the Overview view {#network-observability-configuring-options-overview_nw-observe-network-traffic}
 
 Customize the network traffic **Overview** view by configuring advanced options, such as graph scope, label truncation, and panel management, to refine the display of flow rate statistics and traffic data.
 
 To access the advanced options, click **Show advanced options**. You can configure the details in the graph by using the **Display options** drop-down menu. The options available are as follows:
 
-- **Scope**: Select to view the components that network traffic flows between. You can set the scope to **Node**, **Namespace**, **Owner**, **Zones**, **Cluster** or **Resource**. **Owner** is an aggregation of resources. **Resource** can be a pod, service, node, in case of host-network traffic, or an unknown IP address. The default value is **Namespace**.
+- **Scope**: Select to view the components that network traffic flows between. You can set the scope to **Node**, **Namespace**, **Owner**, **Zones**, **Cluster**, or **Resource**. **Owner** is an aggregation of resources. **Resource** can be a pod, service, node, in case of host-network traffic, or an unknown IP address. The default value is **Namespace**.
 - **Truncate labels**: Select the required width of the label from the drop-down list. The default value is **M**.
 
-#### Managing panels and display {#network-observability-cao-managing-panels-overview_nw-observe-network-traffic}
+#### Accessing feature-specific data with preconfigured views {#network-observability-cao-feature-views-overview_nw-observe-network-traffic}
+
+When specific network observability features are enabled, you can select preconfigured feature views that automatically display relevant panels and columns for that feature.
+
+Feature views reduce the number of clicks required to access feature-specific data.
+
+The following feature views are available when their corresponding features are enabled:
+
+- **Packet Drops**:: Displays packet drop panels and columns for analyzing network packet loss when packet drop tracking is enabled.
+- **DNS**:: Displays DNS tracking panels such as DNS response codes, DNS latencies, and DNS-specific columns when DNS tracking is enabled.
+- **Flow RTT**:: Displays round-trip time (RTT) metrics and related panels when RTT tracking is enabled.
+- **TLS Tracking**:: Displays TLS monitoring panels and TLS-specific columns when TLS tracking is enabled.
+- **UDN**:: Displays user-defined network mapping panels and columns when UDN is enabled.
+- **Network Events**:: Displays network events panels and columns when network events are enabled.
+- **Packet Translation**:: Displays packet translation analysis panels and columns when packet translation is enabled.
+
+When you change columns or panels in a feature view, the view name changes to **Custom** to indicate customization. To restore the default feature view configuration, click **Restore defaults** in the **Manage columns** or **Manage panels** dialog.
+
+:::note
+
+Preconfigured feature views are only available when the corresponding feature is enabled in the `FlowCollector` custom resource.
+
+:::
+
+#### Panels and display management {#network-observability-cao-managing-panels-overview_nw-observe-network-traffic}
 
 You can select the required panels to be displayed, reorder them, and focus on a specific panel. To add or remove panels, click **Manage panels**.
+
+When using a preconfigured feature view, the panels displayed by default are specific to that feature. Changing the panel configuration changes the view to **Custom**.
 
 The following panels are shown by default:
 
@@ -56,6 +68,21 @@ Other panels can be added in **Manage panels**:
 
 **Query options** allows you to choose whether to show the **Top 5**, **Top 10**, or **Top 15** rates.
 
+### Work with the Overview view {#network-observability-working-with-overview_nw-observe-network-traffic}
+
+Navigate to the network traffic **Overview** view in the OpenShift Container Platform console to visualize flow rate statistics and customize the display scope for monitoring cluster network activity.
+
+**Prerequisite**
+
+- Access to the cluster with administrator rights.
+
+**Procedure**
+
+1. Navigate to **Observe** → **Network Traffic**.
+2. In the **Network Traffic** page, click the **Overview** tab.
+3. Optional: When analyzing specific network features, select a preconfigured feature view from the view selector to instantly display feature-specific panels and columns.
+4. Click the menu icon to configure the scope of each flow rate data.
+
 ### Packet drop tracking {#network-observability-pktdrop-overview_nw-observe-network-traffic}
 
 Monitor and analyze network packet loss by using eBPF-based packet drop tracking, which identifies drop locations, detects host or OVS-specific drop reasons, and provides dedicated graphical panels in the **Overview** view.
@@ -65,6 +92,10 @@ You can configure graphical representation of network flow records with packet l
 - Identification: Pinpoint the exact locations and network paths where packet drops are occurring. Determine whether specific devices, interfaces, or routes are more prone to drops.
 - Root cause analysis: Examine the data collected by the eBPF program to understand the causes of packet drops. For example, are they a result of congestion, buffer issues, or specific network events?
 - Performance optimization: With a clearer picture of packet drops, you can take steps to optimize network performance, such as adjust buffer sizes, reconfigure routing paths, or implement Quality of Service (QoS) measures.
+
+#### Packet Drops feature view {#network-observability-pktdrop-feature-view_nw-observe-network-traffic}
+
+When packet-drop tracking is enabled, you can select the **Packet Drops** preconfigured feature view from the view selector in the **Network Traffic** page. This view automatically displays packet drop-specific panels and columns, simplifying packet drop analysis without manual configuration.
 
 When packet drop tracking is enabled, you can see the following panels in the **Overview** by default:
 
@@ -78,9 +109,11 @@ Other packet drop panels are available to add in **Manage panels**:
 - **Top X average dropped bytes rates**
 - **Top X dropped bytes rates stacked with total**
 
-#### Types of packet drops {#_types_of_packet_drops}
+#### Types of packet drops {#types-of-packet-drops_nw-observe-network-traffic}
 
-Two kinds of packet drops are detected by network observability: host drops and OVS drops. Host drops are prefixed with `SKB_DROP` and OVS drops are prefixed with `OVS_DROP`. Dropped flows are shown in the side panel of the **Traffic flows** table along with a link to a description of each drop type. Examples of host drop reasons are as follows:
+Two kinds of packet drops are detected by network observability: host drops and OVS drops. Host drops are prefixed with `SKB_DROP` and OVS drops are prefixed with `OVS_DROP`. Dropped flows are shown in the side panel of the **Traffic flows** table along with a link to a description of each drop type.
+
+Examples of host drop reasons are as follows:
 
 - `SKB_DROP_REASON_NO_SOCKET`: the packet dropped due to a missing socket.
 - `SKB_DROP_REASON_TCP_CSUM`: the packet dropped due to a TCP checksum error.
@@ -90,7 +123,7 @@ Examples of OVS drops reasons are as follows:
 - `OVS_DROP_LAST_ACTION`: OVS packets dropped due to an implicit drop action, for example due to a configured network policy.
 - `OVS_DROP_IP_TTL`: OVS packets dropped due to an expired IP TTL.
 
-See the *Additional resources* of this section for more information about enabling and working with packet drop tracking.
+See the "Additional resources" of this section for more information about enabling and working with packet drop tracking.
 
 ### Work with packet drops {#network-observability-packet-drops_nw-observe-network-traffic}
 
@@ -137,10 +170,10 @@ CPU and memory usage increases when this feature is enabled.
 **Verification**
 
 - When you refresh the **Network Traffic** page, the **Overview**, **Traffic Flow**, and **Topology** views display new information about packet drops:
-  1. Select new choices in **Manage panels** to choose which graphical visualizations of packet drops to display in the **Overview**.
-  2. Select new choices in **Manage columns** to choose which packet drop information to display in the **Traffic flows** table.
+  1. Select the **Packet Drops** feature view from the view selector to display preconfigured packet drop panels and columns, or select new choices in **Manage panels** to select which graphical visualizations of packet drops to display in the **Overview**.
+  2. Select new choices in **Manage columns** to select which packet drop information to display in the **Traffic flows** table.
      1. In the **Traffic Flows** view, you can also expand the side panel to view more information about packet drops. Host drops are prefixed with `SKB_DROP` and OVS drops are prefixed with `OVS_DROP`.
-  3. In the **Topology** view, red lines are displayed where drops are present.
+  3. In the **Topology** view, connections with packet drops are displayed with red lines.
 
 **Additional resources**
 
@@ -156,6 +189,10 @@ You can configure graphical representation of Domain Name System (DNS) tracking 
 - Security Analysis: Detect suspicious DNS activities, such as domain name generation algorithms (DGA) used by malware, or identify unauthorized DNS resolutions that might indicate a security breach.
 - Troubleshooting: Debug DNS-related issues by tracing DNS resolution steps, tracking latency, and identifying misconfigurations.
 
+#### DNS feature view {#network-observability-dns-feature-view_nw-observe-network-traffic}
+
+When DNS tracking is enabled, you can select the **DNS** preconfigured feature view from the view selector in the **Network Traffic** page. This view automatically displays DNS-specific panels and columns, providing faster access to DNS metrics without manual configuration.
+
 By default, when DNS tracking is enabled, you can see the following non-empty metrics represented in a donut or line chart in the **Overview**:
 
 - Top X DNS Response Code
@@ -170,7 +207,7 @@ Other DNS tracking panels can be added in **Manage panels**:
 
 This feature is supported for IPv4 and IPv6 UDP and TCP protocols.
 
-See the *Additional resources* in this section for more information about enabling and working with this view.
+See the "Additional resources" in this section for more information about enabling and working with this view.
 
 ### Work with DNS tracking {#network-observability-dns-tracking_nw-observe-network-traffic}
 
@@ -207,13 +244,13 @@ CPU and memory usage increases are observed in the eBPF agent when this feature 
 
    - You can set the `spec.agent.ebpf.features` parameter list to enable DNS tracking of each network flow in the web console.
    - You can set `sampling` to a value of `1` for more accurate metrics and to capture **DNS latency**. For a `sampling` value greater than 1, you can observe flows with **DNS Response Code** and **DNS Id**, and it is unlikely that **DNS Latency** can be observed.
-5. When you refresh the **Network Traffic** page, there are new DNS representations you can choose to view in the **Overview** and **Traffic Flow** views and new filters you can apply.
-   1. Select new DNS choices in **Manage panels** to display graphical visualizations and DNS metrics in the **Overview**.
+5. When you refresh the **Network Traffic** page, there are new DNS representations you can select to view in the **Overview** and **Traffic Flow** views and new filters you can apply.
+   1. Select the **DNS** feature view from the view selector to display preconfigured DNS panels and columns, or select new DNS choices in **Manage panels** to display graphical visualizations and DNS metrics in the **Overview**.
    2. Select new choices in **Manage columns** to add DNS columns to the **Traffic Flows** view.
-   3. Filter on specific DNS metrics, such as **DNS Id**, **DNS Error** **DNS Latency** and **DNS Response Code**, and see more information from the side panel. The **DNS Latency** and **DNS Response Code** columns are shown by default.
+   3. Filter on specific DNS metrics, such as **DNS Id**, **DNS Error** **DNS** and **DNS Response Code**, and see more information from the side panel. The **DNS** and **DNS Response Code** columns are shown by default.
       :::note
 
-      TCP handshake packets do not have DNS headers. TCP protocol flows without DNS headers are shown in the traffic flow data with **DNS Latency**, **ID**, and **Response code** values of "n/a". You can filter out flow data to view only flows that have DNS headers using the **Common** filter "DNSError" equal to "0".
+      TCP handshake packets do not have DNS headers. TCP protocol flows without DNS headers are shown in the traffic flow data with **DNS**, **ID**, and **Response code** values of "N/A". You can filter out flow data to view only flows that have DNS headers by using the **Common** filter "DNSError" equal to "0".
 
       :::
 
@@ -581,7 +618,13 @@ You can use the insights from tracking network events to help with the following
 - Network monitoring: Monitor allowed and blocked traffic, detecting whether packets are allowed or blocked based on network policies and admin network policies.
 - Network security: You can track outbound traffic and see whether it adheres to egress firewall rules. Detect unauthorized outbound connections and flag outbound traffic that violates egress rules.
 
-See the *Additional resources* in this section for more information about enabling and working with this view.
+#### Network Events feature view {#network-observability-networking-events-feature-view_nw-observe-network-traffic}
+
+When OVN-Kubernetes network event tracking is enabled, you can select the **Network Events** preconfigured feature view from the view selector in the **Network Traffic** page.
+
+This view automatically displays network event-specific panels and columns, providing faster access to network event data without manual configuration.
+
+See the "Additional resources" for more information about enabling and working with this view.
 
 ### View network events {#network-observability-viewing-network-events_nw-observe-network-traffic}
 
@@ -641,8 +684,9 @@ You can edit the `FlowCollector` to view information about network traffic event
 
 **Verification**
 
-1. Navigate to the **Network Traffic** view and select the **Traffic flows** table.
-2. You should see the new column, **Network Events**, where you can view information about impacts of one of the following network APIs you have enabled: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineAdminNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or egress firewalls.
+1. Navigate to the **Network Traffic** view.
+2. Select the **Network Events** feature view from the view selector to display preconfigured network event panels and columns, or select the **Traffic flows** table to manually view network event columns.
+3. The **Network Events** column displays information about impacts of one of the following network APIs you have enabled: `NetworkPolicy`, `AdminNetworkPolicy`, `BaselineAdminNetworkPolicy`, `UserDefinedNetwork` isolation, multicast, or egress firewalls.
    An example of the kind of events you could see in this column is as follows:
 
    ```text title="Example of Network Events output"

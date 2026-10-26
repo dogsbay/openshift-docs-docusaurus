@@ -28,9 +28,9 @@ You can also access a VM attached to a secondary network interface by using the 
 - You configured a secondary network such as Linux bridge or SR-IOV.
 - You created a network attachment definition for a Linux bridge network or the SR-IOV Network Operator created a network attachment definition when you created an `SriovNetwork` object.
 
-## Configuring a VM network interface by using the web console {#virt-vm-creating-nic-web_virt-using-secondary-networks-ssh}
+## Add a VM network interface in the web console {#virt-vm-creating-nic-web_virt-using-secondary-networks-ssh}
 
-You can configure a network interface for a virtual machine (VM) by using the OpenShift Container Platform web console.
+You can add a network interface to a virtual machine (VM) from the OpenShift Container Platform web console and attach it to an existing network attachment definition. Restart or live migrate the VM to apply the change.
 
 **Prerequisites**
 
@@ -46,7 +46,7 @@ You can configure a network interface for a virtual machine (VM) by using the Op
 6. Click **Save**.
 7. Restart or live migrate the VM to apply the changes.
 
-## Connecting to a VM attached to a secondary network by using SSH {#virt-connecting-secondary-network-ssh_virt-using-secondary-networks-ssh}
+## Connect to a VM on a secondary network by using SSH {#virt-connecting-secondary-network-ssh_virt-using-secondary-networks-ssh}
 
 You can connect to a virtual machine (VM) attached to a secondary network by using SSH.
 

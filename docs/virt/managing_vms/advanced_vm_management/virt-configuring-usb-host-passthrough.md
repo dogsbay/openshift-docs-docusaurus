@@ -11,7 +11,7 @@ You can enable passthrough of USB devices to allow a virtual machine (VM) to con
 
 To expose a USB device, first enable host passthrough and then configure the VM to use the USB device.
 
-## Enabling USB host passthrough {#virt-enabling-usb-host-passthrough_virt-configuring-usb-host-passthrough}
+## Enable USB host passthrough {#virt-enabling-usb-host-passthrough_virt-configuring-usb-host-passthrough}
 
 To attach a USB device to a virtual machine (VM), you must first enable USB host passthrough at the cluster level.
 
@@ -86,7 +86,7 @@ To do this, specify a resource name and USB device name for each device you want
    - `spec.permittedHostDevices.usbHostDevices` defines a list of available USB devices.
    - `spec.permittedHostDevices.usbHostDevices.resourceName` defines the USB device that you want to add and assign to the VM. In this example, the resource is bound to three devices, each of which is identified by `vendor` and `product` and is known as a `selector`.
 
-## Connecting a USB device to a virtual machine {#virt-configuring-vm-use-usb-device_virt-configuring-usb-host-passthrough}
+## Connect a USB device to a virtual machine {#virt-configuring-vm-use-usb-device_virt-configuring-usb-host-passthrough}
 
 You can configure virtual machine (VM) access to a USB device. This configuration enables the VM to connect to USB hardware that is attached to an OpenShift Container Platform node, as if the hardware and the VM are physically connected.
 

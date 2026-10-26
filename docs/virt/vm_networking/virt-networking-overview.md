@@ -81,7 +81,7 @@ Custom resource definition (CRD)
 `NodeNetworkConfigurationPolicy`
 : A CRD introduced by the nmstate project, describing the requested network configuration on nodes. You update the node network configuration, including adding and removing interfaces, by applying a `NodeNetworkConfigurationPolicy` manifest to the cluster.
 
-## Manage overlay networks {#virt-nw-overview-manage-overlay-nw_virt-networking-overview}
+## Overlay networks {#virt-nw-overview-manage-overlay-nw_virt-networking-overview}
 
 To ensure your virtual machines (VMs) connect reliably by using the standard OpenShift Container Platform networking model, configure the default pod network for cluster-wide connectivity.
 
@@ -105,10 +105,7 @@ Connect a VM to a custom secondary overlay network
 Configure external ingress by exposing a VM as a service
 : You can expose a VM within the cluster or outside the cluster by creating a `Service` object. For on-premise clusters, you can configure a load balancing service by using the MetalLB Operator. You can install the MetalLB Operator by using the OpenShift Container Platform web console or the CLI.
 
-Add a VM to a Service Mesh
-: OpenShift Virtualization is integrated with Red Hat OpenShift Service Mesh. You can monitor, visualize, and control traffic between pods and virtual machines on the default pod network with IPv4.
-
-## Connect to the provider’s physical network {#virt-nw-overview-connect-vm-to-physical-nw_virt-networking-overview}
+## VM physical network access methods {#virt-nw-overview-connect-vm-to-physical-nw_virt-networking-overview}
 
 To give virtual machines (VMs) access to the internet or other physical devices, you configure the node network, define the secondary network, and attach the VM to the secondary network.
 
@@ -149,16 +146,16 @@ Connect a VM to the physical network by using an SR-IOV device
 2. Define the SR-IOV secondary network by creating an `SriovNetwork` object.
 3. Connect the VM to the SR-IOV network by including the network details in the VM configuration.
 
-Connect a VM to the physical network by using DPDK drivers with SR-IOV hardware
+VM connectivity with DPDK and SR-IOV
 : The Data Plane Development Kit (DPDK) provides a set of libraries and drivers for fast packet processing. You can configure clusters and VMs to run DPDK workloads over SR-IOV networks by performing the following steps:
 
 1. Configure the node hardware.
 2. Configure the VM namespace for DPDK.
 3. Configure the VM and guest OS to run DPDK applications.
 
-### Comparing Linux bridge CNI and OVN-Kubernetes localnet topology {#virt-nw-overview-comparing-localnet-linuxbridge_virt-networking-overview}
+### Linux bridge CNI and OVN-Kubernetes localnet comparison {#virt-nw-overview-comparing-localnet-linuxbridge_virt-networking-overview}
 
-A comparison of features available when using the Linux bridge CNI compared to the localnet topology for an OVN-Kubernetes plugin.
+The following table compares the features available when you use the Linux bridge CNI with the OVN-Kubernetes localnet topology.
 
 **Linux bridge CNI compared to an OVN-Kubernetes localnet topology**
 
@@ -170,7 +167,7 @@ A comparison of features available when using the Linux bridge CNI compared to t
 | Network policies | No | Yes |
 | MAC spoof filtering | Yes | Yes (Always on) |
 
-## Manage VM network interface configuration {#virt-nw-overview-manage-vm-nw-config_virt-networking-overview}
+## VM network interface management options {#virt-nw-overview-manage-vm-nw-config_virt-networking-overview}
 
 Manage virtual machine (VM) network configuration to scale connectivity without incurring application downtime, troubleshoot network latency, define and automate management of MAC address pools, configure IP addresses, and isolate live migration traffic.
 
@@ -198,7 +195,10 @@ Manage MAC address pools for VM network interfaces
 Configure a dedicated network for live migration
 : You can configure a dedicated Multus network for live migration. A dedicated network minimizes the effects of network saturation on tenant workloads during live migration.
 
-## Configure VM SSH access {#virt-nw-overview-vm-ssh-config_virt-networking-overview}
+View network details in the web console
+: On the **VirtualMachine details** page, the **Configuration** → **Network** tab lists the VM’s network interfaces. Each network name is a link that opens the details page for the associated network resource, such as a network attachment definition (NAD), user-defined network (UDN), or cluster user-defined network (CUDN). Networks that use the default pod network display "Pod networking" as plain text because there is no corresponding network resource to go to.
+
+## VM SSH access {#virt-nw-overview-vm-ssh-config_virt-networking-overview}
 
 You can use SSH to securely access your virtual machines (VMs) from the command line.
 
@@ -225,14 +225,14 @@ Secondary network
 - [Connect a VM to a custom secondary overlay network](/docs/virt/vm_networking/virt-connecting-vm-to-ovn-secondary-network#virt-connecting-vm-to-ovn-secondary-network)
 - [Configure external ingress by exposing a VM as a service](/docs/virt/vm_networking/virt-exposing-vm-with-service#virt-exposing-vm-with-service)
 - [Add a VM to a Service Mesh](/docs/virt/vm_networking/virt-connecting-vm-to-service-mesh#virt-connecting-vm-to-service-mesh)
-- [Connect a VM to the physical network by using an Open vSwitch bridge](/docs/virt/vm_networking/virt-connecting-vm-to-secondary-udn#virt-connecting-vm-to-secondary-udn)
+- [Connect a VM to the physical network by using an Open vSwitch bridge](/docs/virt/vm_networking/virt-connecting-vm-to-physical-network-ovs-bridge#virt-connecting-vm-to-physical-network-ovs-bridge)
 - [Access a virtual machine by using its internal FQDN](/docs/virt/vm_networking/virt-accessing-vm-internal-fqdn#virt-accessing-vm-internal-fqdn)
 - [Installing the MetalLB Operator](/docs/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install)
 - [Connect a virtual machine to the physical network by using a Linux bridge](/docs/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)
 - [Install the Kubernetes NMState Operator](/docs/networking/networking_operators/k8s-nmstate-about-the-k8s-nmstate-operator#k8s-nmstate-about-the-k8s-nmstate-operator)
 - [Connect a VM to the physical network by using an SR-IOV device](/docs/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)
 - [Install the SR-IOV Network Operator](/docs/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator)
-- [Connect a VM to the physical network by using DPDK drivers with SR-IOV hardware](/docs/virt/vm_networking/virt-using-dpdk-with-sriov#virt-using-dpdk-with-sriov)
+- [VM connectivity with DPDK and SR-IOV](/docs/virt/vm_networking/virt-using-dpdk-with-sriov#virt-using-dpdk-with-sriov)
 - [Configure a dedicated network for live migration](/docs/virt/vm_networking/virt-dedicated-network-live-migration#virt-dedicated-network-live-migration)
 - [Access a VM by using its external FQDN](/docs/virt/vm_networking/virt-accessing-vm-secondary-network-fqdn#virt-accessing-vm-secondary-network-fqdn)
 - [Manage the link state of a virtual machine interface](/docs/virt/vm_networking/virt-setting-interface-link-state#virt-setting-interface-link-state)

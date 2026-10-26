@@ -1,6 +1,6 @@
 ---
 title: Secondary networks
-sidebar_position: 16
+sidebar_position: 17
 ---
 
 # Secondary networks {#network-observability-secondary-networks}

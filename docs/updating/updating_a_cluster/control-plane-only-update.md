@@ -239,4 +239,4 @@ The update to ODF &lt;4.y+2> can happen before or after worker machine pools hav
 - [Red Hat OpenShift Container Platform Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/?operator=logging&&ocp_versions=4.10,4.11,4.12)
 - [Performing a Control Plane Only update using the web console](/docs/updating/updating_a_cluster/control-plane-only-update#updating-control-plane-only-update-console_control-plane-only-update)
 - [Performing a Control Plane Only update using the CLI](/docs/updating/updating_a_cluster/control-plane-only-update#updating-control-plane-only-update-cli_control-plane-only-update)
-- [Preventing workload updates during a Control Plane Only update](/docs/virt/updating/upgrading-virt#virt-preventing-workload-updates-during-control-plane-only-update_upgrading-virt)
+- [Prevent workload updates during a Control Plane Only update](/docs/virt/updating/upgrading-virt#virt-preventing-workload-updates-during-control-plane-only-update_upgrading-virt)

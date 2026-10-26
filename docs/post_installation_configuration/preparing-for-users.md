@@ -145,7 +145,7 @@ where:
 
 Understand and apply role-based access control (RBAC) to manage user and service account permissions in your cluster.
 
-### RBAC overview {#authorization-overview_post-install-preparing-for-users}
+### Create and assign RBAC roles to users {#authorization-overview_post-install-preparing-for-users}
 
 You can use role-based access control to configure whether users and groups can perform specific actions on cluster or project resources by evaluating roles, rules, and bindings.
 
@@ -1173,30 +1173,17 @@ Alternatively, you can use the web console to manage catalog sources. From the *
 - [Image template for custom catalog sources](/docs/operators/understanding/olm/olm-understanding-olm#olm-catalogsource-image-template_olm-understanding-olm)
 - [Image pull policy](/docs/openshift_images/managing_images/image-pull-policy#image-pull-policy)
 
-## About Operator installation from the software catalog {#olm-installing-operators-from-software-catalog_post-install-preparing-for-users}
-
-The software catalog in OpenShift Container Platform is the interface for discovering Operators that Operator Lifecycle Manager (OLM) installs and manages on your cluster. You can choose installation settings such as install mode, namespace, and approval strategy during subscription.
-
-As a cluster administrator, you can install an Operator from the software catalog by using the OpenShift Container Platform web console or CLI. Subscribing an Operator to one or more namespaces makes the Operator available to developers on your cluster.
-
-During installation, you must determine the following initial settings for the Operator:
-
-Installation Mode
-: Choose **All namespaces on the cluster (default)** to have the Operator installed on all namespaces or choose individual namespaces, if available, to only install the Operator on selected namespaces. This example chooses **All namespaces...** to make the Operator available to all users and projects.
-
-Update Channel
-: If an Operator is available through multiple channels, you can choose which channel you want to subscribe to. For example, to deploy from the **stable** channel, if available, select it from the list.
-
-Approval Strategy
-: You can choose automatic or manual updates.
-
-  If you choose automatic updates for an installed Operator, when a new version of that Operator is available in the selected channel, Operator Lifecycle Manager (OLM) automatically upgrades the running instance of your Operator without human intervention.
-
-  If you select manual updates, when a newer version of an Operator is available, OLM creates an update request. As a cluster administrator, you must then manually approve that update request to have the Operator updated to the new version.
-
 ### Install from the software catalog by using the web console {#olm-installing-from-software-catalog-using-web-console_post-install-preparing-for-users}
 
 To install and subscribe to an Operator from the software catalog, you can use the OpenShift Container Platform web console. The console guides you through selecting an install mode, namespace, and approval strategy.
+
+:::warning
+
+Failed Operator installations do not automatically remove created permissions. Audit and remove remaining permissions to secure the namespace.
+
+For more information, see [Audit and secure delegated Operator installations (Red Hat Knowledgebase)](https://access.redhat.com/articles/7149230).
+
+:::
 
 **Prerequisites**
 
@@ -1269,9 +1256,13 @@ To install an Operator from the software catalog without using the web console, 
 
 For `SingleNamespace` install mode, you must also ensure an appropriate Operator group exists in the related namespace. An Operator group, defined by an `OperatorGroup` object, selects target namespaces in which to generate required RBAC access for all Operators in the same namespace as the Operator group.
 
-:::tip
-
 In most cases, the web console method of this procedure is preferred because it automates tasks in the background, such as handling the creation of `OperatorGroup` and `Subscription` objects automatically when choosing `SingleNamespace` mode.
+
+:::warning
+
+Failed Operator installations do not automatically remove created permissions. Audit and remove remaining permissions to secure the namespace.
+
+For more information, see [Audit and secure delegated Operator installations (Red Hat Knowledgebase)](https://access.redhat.com/articles/7149230).
 
 :::
 

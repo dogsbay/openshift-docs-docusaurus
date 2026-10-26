@@ -22,9 +22,9 @@ Enabling `virtio-net` multi-queue does not offer significant improvements when t
 - Message signaled interrupt (MSI) vectors are still consumed if `virtio-net` multi-queue is enabled in the host but not enabled in the guest operating system by the administrator.
 - Each `virtio-net` queue consumes 64 KiB of kernel memory for the `vhost` driver.
 
-## Enabling multi-queue functionality {#virt-enabling-multi-queue_virt-about-multi-queue}
+## Enable multi-queue for VirtIO network interfaces {#virt-enabling-multi-queue_virt-about-multi-queue}
 
-You can enable multi-queue functionality for interfaces configured with a VirtIO model.
+You can enable multi-queue functionality for network interfaces that use a VirtIO model, so that network traffic is processed across multiple vCPUs instead of one.
 
 **Procedure**
 

@@ -107,5 +107,5 @@ You can use the OpenShift CLI (`oc`) to perform a Control Plane Only update of t
 
 - [Updating installed Operators](/docs/operators/admin/olm-upgrading-operators#olm-upgrading-operators)
 - [Performing a Control Plane Only update](/docs/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)
-- [Installing the Windows Machine Config Operator using the CLI](/docs/windows_containers/enabling-windows-container-workloads#installing-wmco-using-cli_enabling-windows-container-workloads)
+- [Install the Windows Machine Config Operator by using the CLI](/docs/windows_containers/enabling-windows-container-workloads#installing-wmco-using-cli_enabling-windows-container-workloads)
 - [Deleting Operators from a cluster using the CLI](/docs/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operator-from-a-cluster-using-cli_olm-deleting-operators-from-a-cluster)

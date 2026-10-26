@@ -17,7 +17,7 @@ KubeMacPool does not handle virtual machine instances created independently from
 
 :::
 
-## Managing KubeMacPool by using the CLI {#virt-managing-kubemacpool-cli_virt-using-mac-address-pool-for-vms}
+## Manage KubeMacPool by using the CLI {#virt-managing-kubemacpool-cli_virt-using-mac-address-pool-for-vms}
 
 You can disable and re-enable KubeMacPool by using the command line.
 
@@ -38,7 +38,7 @@ KubeMacPool is enabled by default.
   $ oc label namespace <namespace1> <namespace2> mutatevirtualmachines.kubemacpool.io-
   ```
 
-## Customizing the MAC pool range {#virt-custom-kubemacpool-range_virt-using-mac-address-pool-for-vms}
+## Customize the MAC pool range {#virt-custom-kubemacpool-range_virt-using-mac-address-pool-for-vms}
 
 KubeMacPool works by allocating MAC addresses to VMs from a range. The `rangeStart` and `rangeEnd` parameters in the `HyperConverged` custom resource (CR) define the MAC pool range.
 

@@ -283,19 +283,20 @@ In this example, rather than using an actual data source, you are creating a fil
 
    - `spec.template.spec.containers.command`: Specifies the location and name of the file with the "Hello, world!" text. In this example, the location is "/mnt/example.txt".
    - `spec.template.spec.volumes.persistentVolumeClaim`: Specifies the name of the PVC you created in Step 2. In this example, it is `example-pvc`.
-3. Start the job by running the following command:
+3. Save the job manifest to a file called `example-job.yaml`.
+4. Create the job by running the following command:
    ```terminal
-   $ oc run example-job --image=busybox --command -- sleep 30 --restart=OnFailure
+   $ oc apply -f example-job.yaml
    ```
 
    ```terminal title="Example output"
-   pod/example-job created
+   job.batch/example-job created
    ```
-4. Wait for the job, and all of its dependencies, to finish by running the following command:
+5. Wait for the job to complete by running the following command:
    ```terminal
-   $ oc wait --for=condition=Complete pod/example-job
+   $ oc wait --for=condition=Complete job/example-job --timeout=120s
    ```
-5. Verify the contents collected by the job by running the following command:
+6. Verify the contents collected by the job by running the following command:
    ```terminal
    $ oc logs job/example-job
    ```

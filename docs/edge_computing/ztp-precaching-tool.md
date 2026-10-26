@@ -12,7 +12,7 @@ In environments with limited bandwidth where you use the GitOps Zero Touch Provi
 The factory-precaching-cli tool does the following:
 
 - Downloads the RHCOS rootfs image that is required by the minimal ISO to boot.
-- Creates a partition from the installation disk labelled as `data`.
+- Creates a partition from the installation disk labeled as `data`.
 - Formats the disk in xfs.
 - Creates a GUID Partition Table (GPT) data partition at the end of the disk, where the size of the partition is configurable by the tool.
 - Copies the container images required to install OpenShift Container Platform.

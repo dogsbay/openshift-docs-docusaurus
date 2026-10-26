@@ -21,7 +21,7 @@ You can configure eviction strategies for virtual machines (VMs) or for the clus
 2. If a VM blocks an upgrade, you must shut down the VM manually.
 3. Default eviction strategy for single-node OpenShift.
 
-## Configuring a VM eviction strategy using the CLI {#virt-configuring-vm-eviction-strategy-cli_virt-eviction-strategies}
+## Configure VM eviction strategy {#virt-configuring-vm-eviction-strategy-cli_virt-eviction-strategies}
 
 You can configure an eviction strategy for a virtual machine (VM) by using the command line.
 
@@ -64,7 +64,7 @@ You must set the eviction strategy of non-migratable VMs to `LiveMigrateIfPossib
    $ virtctl restart <vm_name> -n <namespace>
    ```
 
-## Configuring a cluster eviction strategy by using the CLI {#virt-configuring-cluster-eviction-strategy-cli_virt-eviction-strategies}
+## Configure cluster eviction strategy {#virt-configuring-cluster-eviction-strategy-cli_virt-eviction-strategies}
 
 You can configure an eviction strategy for a cluster by using the command line.
 
@@ -132,7 +132,7 @@ If a node in a cluster installed by using installer-provisioned infrastructure f
 
 :::
 
-## Configuring a VM run strategy by using the CLI {#virt-configuring-runstrategy-vm_virt-eviction-strategies}
+## Configure VM run strategy {#virt-configuring-runstrategy-vm_virt-eviction-strategies}
 
 You can configure a run strategy for a virtual machine (VM) by using the command line. The run strategy controls whether a VM automatically restarts after disruptions such as node failures or maintenance events.
 
@@ -157,7 +157,7 @@ You can configure a run strategy for a virtual machine (VM) by using the command
   # ...
   ```
 
-## Delete a failed node to trigger virtual machine failover {#virt-delete-failed-node-vm-failover_virt-eviction-strategies}
+## Trigger VM failover by deleting the failed node {#virt-delete-failed-node-vm-failover_virt-eviction-strategies}
 
 If a node fails and machine health checks are not deployed on your cluster, virtual machines (VMs) with `runStrategy: Always` configured are not automatically relocated to healthy nodes. To trigger VM failover, you must manually delete the `Node` object.
 

@@ -35,7 +35,7 @@ Also, if you upgrade the Windows nodes from one version to another, for example 
 
 :::
 
-## Creating a RuntimeClass object to encapsulate scheduling mechanisms {#creating-runtimeclass_scheduling-windows-workloads}
+## Create a RuntimeClass object for Windows scheduling {#creating-runtimeclass_scheduling-windows-workloads}
 
 To deploy Windows workloads, you must create a `RuntimeClass` object to map your Windows pods to a base Windows OS variant.
 

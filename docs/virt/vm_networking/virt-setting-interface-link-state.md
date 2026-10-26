@@ -17,7 +17,7 @@ OpenShift Virtualization does not support link state management for Single Root 
 
 You can specify the desired link state when you first create a VM, by editing the configuration of an existing VM that is stopped or running, or when you hot plug a new network interface to a running VM. If you edit a running VM, you do not need to restart or migrate the VM for the changes to be applied. The current link state of a VM interface is reported in the `status.interfaces.linkState` field of the `VirtualMachineInstance` manifest.
 
-## Setting the VM interface link state by using the web console {#virt-configuring-interface-link-state-web_virt-setting-interface-link-state}
+## Set the VM interface link state by using the web console {#virt-configuring-interface-link-state-web_virt-setting-interface-link-state}
 
 You can set the link state of a primary or secondary virtual machine (VM) network interface by using the web console.
 
@@ -35,7 +35,7 @@ You can set the link state of a primary or secondary virtual machine (VM) networ
    - If the current interface link state is `up`, select **Set link down**.
    - If the current interface link state is `down`, select **Set link up**.
 
-## Setting the VM interface link state by using the CLI {#virt-configuring-interface-link-state_virt-setting-interface-link-state}
+## Set the VM interface link state by using the CLI {#virt-configuring-interface-link-state_virt-setting-interface-link-state}
 
 You can set the link state of a primary or secondary virtual machine (VM) network interface by using the CLI.
 

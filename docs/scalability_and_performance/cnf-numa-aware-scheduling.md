@@ -445,13 +445,21 @@ For the NUMA Resources Operator to be fully operational, you must deploy the `NU
 
 ### Create the NUMAResourcesOperator custom resource {#cnf-creating-nrop-cr_numa-aware}
 
-After you have installed the NUMA Resources Operator, you can create the `NUMAResourcesOperator` custom resource (CR). This CR instructs the NUMA Resources Operator to install all the cluster infrastructure that is needed to support the NUMA-aware scheduler, including daemon sets and APIs.
+After you have installed the NUMA Resources Operator, you can create the `NUMAResourcesOperator` custom resource (CR). This CR instructs the NUMA Resources Operator to deploy the Resource Topology Exporter (RTE) as a daemon set on worker nodes and install all the cluster infrastructure that is needed to support the NUMA-aware scheduler.
 
 **Prerequisites**
 
-- Installed the OpenShift CLI (`oc`).
-- Logged in as a user with `cluster-admin` privileges.
-- Installed the NUMA Resources Operator.
+- You have installed the OpenShift CLI (`oc`).
+- You have logged in as a user with `cluster-admin` privileges.
+- You have installed the NUMA Resources Operator.
+
+:::warning
+
+Only cluster administrators should create or modify `NUMAResourcesOperator` custom resources. The Resource Topology Exporter (RTE) runs as a daemon set on worker nodes with elevated read privileges that allow it to discover hardware topology information, observe node resources, and report NUMA zone details.
+
+The `spec.imageSpec` field in the `NUMAResourcesOperator` custom resource controls which container image runs with these RTE privileges on worker nodes. Granting non-admin users write access to the `NUMAResourcesOperator` resource creates a security risk. An attacker with write access could substitute a malicious container image and potentially access sensitive node information or cluster topology data.
+
+:::
 
 **Procedure**
 
@@ -475,6 +483,12 @@ After you have installed the NUMA Resources Operator, you can create the `NUMARe
       ```terminal
       $ oc create -f nrop.yaml
       ```
+
+      :::note
+
+      Creating the `NUMAResourcesOperator` custom resource automatically deploys the Resource Topology Exporter (RTE) as a daemon set on the configured worker nodes. The RTE collects NUMA topology information and makes it available to the NUMA-aware scheduler.
+
+      :::
 2. Optional: To enable NUMA-aware scheduling for multiple machine config pools (MCPs), define a separate `NodeGroup` for each pool. For example, define three `NodeGroups` for `worker-cnf`, `worker-ht`, and `worker-other`, in the `NUMAResourcesOperator` CR as shown in the following example:
    ```yaml title="Example YAML definition for a NUMAResourcesOperator CR with multiple NodeGroups"
    apiVersion: nodetopology.openshift.io/v1
@@ -495,6 +509,27 @@ After you have installed the NUMA Resources Operator, you can create the `NUMARe
              machineconfiguration.openshift.io/role: worker-other
    # ...
    ```
+3. Optional: When you need to use a non-default Resource Topology Exporter (RTE) image, you can specify a custom image using the `spec.imageSpec` field:
+   ```yaml title="Example YAML definition for a NUMAResourcesOperator CR with custom RTE image"
+   apiVersion: nodetopology.openshift.io/v1
+   kind: NUMAResourcesOperator
+   metadata:
+     name: numaresourcesoperator
+   spec:
+     imageSpec: "registry.example.com/openshift4/ose-numaresources-operator@sha256:abcd1234..."
+     nodeGroups:
+     - machineConfigPoolSelector:
+         matchLabels:
+           pools.operator.machineconfiguration.openshift.io/worker: ""
+   # ...
+   ```
+
+   - The `spec.imageSpec` field is optional. If not specified, the operator uses the default RTE image for your OpenShift Container Platform release. Custom operand image override is restricted by default. To enable custom image override, set `EXPORTER_IMAGE_RESTRICTION=false` in the Operator’s environment variables.
+     :::note
+
+     For standard deployments, including disconnected environments that use image mirroring (ICSP or IDMS), omit the `spec.imageSpec` field to use the default RTE image. The cluster’s image mirroring configuration automatically redirects the default image to your internal registry. Only specify `spec.imageSpec` when you need to override the default image with a different version or custom build. When specifying a custom image, use a digest-based reference (SHA256) rather than a tag for security and reproducibility.
+
+     :::
 
 **Verification**
 
@@ -519,6 +554,12 @@ After you have installed the NUMA Resources Operator, you can create the `NUMARe
    pod/numaresourcesoperator-worker-crsht                  2/2     Running   0          97s
    pod/numaresourcesoperator-worker-jp9mw                  2/2     Running   0          97s
    ```
+
+   :::note
+
+   The `numaresourcesoperator-worker-*` pods are the Resource Topology Exporter (RTE) daemon set instances running on each configured worker node.
+
+   :::
 
 ### Create the NUMAResourcesOperator custom resource for hosted control planes {#cnf-creating-nrop-cr-hosted-control-plane_numa-aware}
 
@@ -632,6 +673,19 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 To optimize the placement of high-performance workloads, deploy the NUMA-aware secondary pod scheduler. This component aligns pods with specific NUMA zones to ensure efficient resource utilization in your cluster.
 
+**Prerequisites**
+
+- You have installed the OpenShift CLI (`oc`).
+- You have logged in as a user with `cluster-admin` privileges.
+
+:::warning
+
+Only cluster administrators should create or modify `NUMAResourcesScheduler` custom resources. The NUMA Resources scheduler runs with elevated privileges that allow it to bind pods to nodes, observe all pods and nodes across the cluster, and make scheduling decisions that affect workload placement.
+
+The `spec.imageSpec` field in the `NUMAResourcesScheduler` custom resource controls which container image runs with these scheduler privileges. Granting non-admin users write access to the `NUMAResourcesScheduler` resource creates a privilege escalation risk. An attacker with write access could substitute a malicious container image and run arbitrary code with scheduler privileges.
+
+:::
+
 **Procedure**
 
 1. Create the `NUMAResourcesScheduler` custom resource that deploys the NUMA-aware custom pod scheduler:
@@ -647,18 +701,18 @@ To optimize the placement of high-performance workloads, deploy the NUMA-aware s
       ```
 
       - `spec.imageSpec`: In a disconnected environment, make sure to configure the resolution of this image by either:
-   2. Create an `ImageTagMirrorSet` custom resource (CR). For more information, see "Configuring image registry repository mirroring" in the "Additional resources" section.
-   3. Set the URL to the disconnected registry.
-   4. Create the `NUMAResourcesScheduler` CR by running the following command:
-      ```terminal
-      $ oc create -f nro-scheduler.yaml
-      ```
+        1. Create an `ImageTagMirrorSet` custom resource (CR). For more information, see "Configuring image registry repository mirroring" in the "Additional resources" section.
+        2. Set the URL to the disconnected registry.
+        3. Create the `NUMAResourcesScheduler` CR by running the following command:
+           ```terminal
+           $ oc create -f nro-scheduler.yaml
+           ```
 
-      :::note
+           :::note
 
-      In a hosted control plane cluster, run this command on the hosted control plane node.
+           In a hosted control plane cluster, run this command on the hosted control plane node.
 
-      :::
+           :::
 2. After a few seconds, run the following command to confirm the successful deployment of the required resources:
    ```terminal
    $ oc get all -n openshift-numaresources
@@ -683,6 +737,269 @@ To optimize the placement of high-performance workloads, deploy the NUMA-aware s
    replicaset.apps/numaresources-controller-manager-7d9d84c58d   1         1         1       12m
    replicaset.apps/secondary-scheduler-847cb74f84                1         1         1       10m
    ```
+
+### Understanding NUMA image validation {#cnf-understanding-numa-image-validation_numa-aware}
+
+The NUMA Resources Operator validates scheduler images against a trusted digest list. By default, the Operator rejects a custom Resource Topology Exporter (RTE) image so that only the default RTE image runs on worker nodes.
+
+#### Scheduler image validation {#cnf-understanding-scheduler-image-validation_numa-aware}
+
+The NUMA Resources Operator validates scheduler images to ensure that only trusted images run with scheduler privileges.
+
+By default, the Operator enforces the following validation rules for images specified in the `NUMAResourcesScheduler` custom resource `spec.imageSpec` field:
+
+Digest-based references required
+: The image reference must use a SHA-256 digest format. For example, `registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9@sha256:abc123...` is valid, but `registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v5.0` is rejected.
+
+Trusted digest list
+: To be valid, the image digest must meet one of the following conditions:
+
+  - Included in the Operator’s trusted list of production scheduler images for the current release channel.
+  - The final digest released in the previous release channel.
+  - Added to the trusted list by setting the `SCHEDULER_IMAGE_DIGESTS` environment variable in the NUMA Resources Operator subscription. For more information, see "Extending the trusted scheduler image list".
+
+If you specify an image that does not meet these requirements, the Operator sets the `NUMAResourcesScheduler` resource status to `Degraded` with reason `InvalidSchedulerImage`, and the scheduler pods are not created. When validation fails, the `Degraded` condition reports the reason. For example:
+
+```terminal title="Example output"
+True - InvalidSchedulerImage: image "registry.example.com/custom-scheduler:v1.0" must be referenced by digest, not by tag
+```
+
+:::note
+
+The `spec.imageSpec` field is required. You must specify a scheduler image by using a digest-based reference. For standard deployments, use the production scheduler image for your OpenShift Container Platform release from `registry.redhat.io`. In disconnected environments, mirror this image to your registry and reference it by digest. If the digest changes from the original production digest, add the new digest to the trusted list by setting the `SCHEDULER_IMAGE_DIGESTS` environment variable in the NUMA Resources Operator subscription.
+
+:::
+
+#### RTE image validation {#cnf-understanding-rte-image-validation_numa-aware}
+
+By default, the NUMA Resources Operator does not allow a custom Resource Topology Exporter (RTE) image. If you set the exporter image in the `NUMAResourcesOperator` custom resource `spec.imageSpec` field, the Operator sets the resource status to `Degraded` with reason `CustomUserImage` and does not reconcile the resource. When validation fails, the `Degraded` condition reports the reason. For example:
+
+```terminal title="Example output"
+True - CustomUserImage: custom operand image is not supported: registry.example.com/custom-rte:v1.0
+```
+
+Leave `spec.imageSpec` unset so that the Operator uses the default RTE image for your OpenShift Container Platform release. The default RTE image is the same image as the Operator container. In a disconnected environment, the image mirroring configuration for the Operator container redirects that image to your internal registry.
+
+A cluster administrator can temporarily restore the previous behavior, which allows a custom RTE image, by setting the `EXPORTER_IMAGE_RESTRICTION` environment variable to `false` in the NUMA Resources Operator subscription.
+
+:::warning
+
+Setting `EXPORTER_IMAGE_RESTRICTION` to `false` allows a custom RTE image to run with RTE privileges on worker nodes. Use this override only when you must run a non-default RTE image.
+
+:::
+
+### Extending the trusted image list {#cnf-extending-trusted-numa-images_numa-aware}
+
+You can add a custom scheduler image digest to the NUMA Resources Operator trusted list by setting the `SCHEDULER_IMAGE_DIGESTS` environment variable in the operator subscription. To use a custom Resource Topology Exporter (RTE) image, see "RTE image validation".
+
+:::warning
+
+Adding a custom scheduler image to the trusted list allows that image to run with scheduler privileges. Verify that you trust the source and integrity of the image before you add it.
+
+Add a custom scheduler image only when your environment requires it.
+
+:::
+
+#### Extending the trusted scheduler image list {#cnf-extending-trusted-scheduler-images_numa-aware}
+
+You can extend the trusted scheduler image list by adding custom scheduler image digests to the `SCHEDULER_IMAGE_DIGESTS` environment variable. Supply a digest if your upgrade requires a scheduler image from another stream, or if the built-in list is missing the latest scheduler digest release.
+
+**Prerequisites**
+
+- You are logged in as a user with `cluster-admin` privileges.
+- You have the SHA-256 digest of your custom scheduler image.
+- You have verified the integrity and source of the custom scheduler image.
+
+**Procedure**
+
+1. Obtain the SHA-256 digest of your custom scheduler image by running the following command:
+   ```terminal
+   $ oc image info <your_custom_scheduler_image> -o json | jq -r '.digest'
+   ```
+
+   Below is an example of the output:
+
+   ```terminal
+   sha256:819186877851017bb783d0c291fb990b7136c64a1fac7b031942e4ee1e0c3d53
+   ```
+2. Add the digest to the NUMA Resources Operator subscription’s trusted list by running the following command:
+   ```terminal
+   $ oc patch subscription numaresources-operator \
+     -n openshift-numaresources \
+     --type=merge \
+     -p '{"spec":{"config":{"env":[{"name":"SCHEDULER_IMAGE_DIGESTS","value":"sha256:819186877851017bb783d0c291fb990b7136c64a1fac7b031942e4ee1e0c3d53"}]}}}'
+   ```
+
+   :::note
+
+   To add multiple custom digests, use a comma-separated list of digests in the `value` field.
+
+   For example:
+
+   ```terminal
+   $ oc patch subscription numaresources-operator \
+     -n openshift-numaresources \
+     --type=merge \
+     -p '{"spec":{"config":{"env":[{"name":"SCHEDULER_IMAGE_DIGESTS","value":"sha256:<digest_1>,sha256:<digest_2>"}]}}}'
+   ```
+
+   :::
+3. Run the following command with the `-w` option to watch the NUMA Resources Operator pod restart with the new configuration:
+   ```terminal
+   $ oc get pods -n openshift-numaresources -w
+   ```
+4. Update the `NUMAResourcesScheduler` custom resource to use the digest-based image reference by running the following command:
+   ```terminal
+   $ oc patch numaresourcesscheduler numaresourcesscheduler \
+     --type=merge \
+     -p '{"spec":{"imageSpec":"<your_registry>/<your_image>@sha256:819186877851017bb783d0c291fb990b7136c64a1fac7b031942e4ee1e0c3d53"}}'
+   ```
+
+**Verification**
+
+1. Verify that the NUMA Resources Operator deployment has the updated trusted image list by running the following command:
+   ```terminal
+   $ oc get deployment numaresources-controller-manager \
+     -n openshift-numaresources \
+     -o jsonpath='{.spec.template.spec.containers[0].env[?(@.name=="SCHEDULER_IMAGE_DIGESTS")].value}{"\n"}'
+   ```
+
+   ```terminal title="Example output"
+   sha256:819186877851017bb783d0c291fb990b7136c64a1fac7b031942e4ee1e0c3d53
+   ```
+2. Verify that the scheduler is not in a degraded state by running the following command:
+   ```terminal
+   $ oc get numaresourcesscheduler numaresourcesscheduler \
+     -o jsonpath='{range .status.conditions[?(@.type=="Degraded")]}{.status}{" - "}{.reason}{": "}{.message}{"\n"}{end}'
+   ```
+
+   ```terminal title="Example output"
+   False - Degraded:
+   ```
+
+   A status of `False` means that the scheduler is not degraded.
+3. Verify that the scheduler pods are running with your custom image by running the following command:
+   ```terminal
+   $ oc get pods -n openshift-numaresources -l app=secondary-scheduler \
+     -o jsonpath='{.items[0].spec.containers[0].image}{"\n"}'
+   ```
+
+### Disabling image validation {#cnf-disabling-numa-image-validation_numa-aware}
+
+You can disable scheduler or Resource Topology Exporter (RTE) image validation by setting the appropriate environment variables to `false` in the NUMA Resources Operator subscription.
+
+:::warning
+
+Disabling image validation removes important security controls. Any image that you set in the custom resource runs without filtering or validation. With validation disabled, users with write access to these custom resources can specify arbitrary container images that will run with elevated privileges.
+
+Only disable validation in exceptional circumstances. If you disable validation, ensure that only cluster administrators can change these resources, and implement additional security controls to verify image integrity.
+
+:::
+
+#### Disabling scheduler image validation {#cnf-disabling-scheduler-image-validation_numa-aware}
+
+You can disable scheduler image validation by setting the `SCHEDULER_IMAGE_VALIDATION` environment variable to `false`.
+
+:::warning
+
+Disabling scheduler image validation creates a significant privilege escalation risk. A malicious scheduler image can:
+
+- Access and manipulate all pods and nodes in the cluster
+- Bind workloads to nodes in ways that compromise security or stability
+- Observe sensitive cluster resource topology information
+- Run arbitrary code with scheduler service account permissions
+
+:::
+
+**Prerequisites**
+
+- You have installed the OpenShift CLI (`oc`).
+- You have logged in as a user with `cluster-admin` privileges.
+- You have installed the NUMA Resources Operator.
+
+**Procedure**
+
+1. Disable validation by running the following command:
+   ```terminal
+   $ oc patch subscription numaresources-operator \
+     -n openshift-numaresources \
+     --type=merge \
+     -p '{"spec":{"config":{"env":[{"name":"SCHEDULER_IMAGE_VALIDATION","value":"false"}]}}}'
+   ```
+2. Run the following command with the `-w` option to watch the NUMA Resources Operator pod restart with the new configuration:
+   ```terminal
+   $ oc get pods -n openshift-numaresources -w
+   ```
+
+**Verification**
+
+1. Verify that validation is disabled by running the following command:
+   ```terminal
+   $ oc exec -n openshift-numaresources deploy/numaresources-controller-manager -- \
+     printenv SCHEDULER_IMAGE_VALIDATION
+   ```
+
+   ```terminal title="Example output"
+   false
+   ```
+
+#### Disabling RTE image validation {#cnf-disabling-rte-image-validation_numa-aware}
+
+You can disable RTE image validation by setting the `EXPORTER_IMAGE_RESTRICTION` environment variable to `false`.
+
+:::warning
+
+Disabling RTE image validation creates a security risk. A malicious RTE image can:
+
+- Access sensitive hardware topology information about worker nodes
+- Observe node resource allocation and NUMA zone configurations
+- Read detailed system information that could facilitate other attacks
+- Run code with the RTE daemon set service account permissions
+
+:::
+
+**Prerequisites**
+
+- You have installed the OpenShift CLI (`oc`).
+- You have logged in as a user with `cluster-admin` privileges.
+- You have installed the NUMA Resources Operator.
+
+**Procedure**
+
+1. Disable validation by running the following command:
+   ```terminal
+   $ oc patch subscription numaresources-operator \
+     -n openshift-numaresources \
+     --type=merge \
+     -p '{"spec":{"config":{"env":[{"name":"EXPORTER_IMAGE_RESTRICTION","value":"false"}]}}}'
+   ```
+2. Run the following command with the `-w` option to watch the NUMA Resources Operator pod restart with the new configuration:
+   ```terminal
+   $ oc get pods -n openshift-numaresources -w
+   ```
+
+**Verification**
+
+1. Verify that validation is disabled by running the following command:
+   ```terminal
+   $ oc exec -n openshift-numaresources deploy/numaresources-controller-manager -- \
+     printenv EXPORTER_IMAGE_RESTRICTION
+   ```
+
+   ```terminal title="Example output"
+   false
+   ```
+2. Verify that the NUMA Resources Operator is not degraded by running the following command:
+   ```terminal
+   $ oc get numaresourcesoperator numaresourcesoperator \
+     -o jsonpath='{range .status.conditions[?(@.type=="Degraded")]}{.status}{" - "}{.reason}{": "}{.message}{"\n"}{end}'
+   ```
+
+   ```terminal title="Example output"
+   False - Degraded:
+   ```
+
+   A status of `False` means that the Operator is not degraded.
 
 **Additional resources**
 

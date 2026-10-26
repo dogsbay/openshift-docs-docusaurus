@@ -9,7 +9,7 @@ sidebar_position: 3
 
 To diagnose and resolve issues with virtual machine (VM) and cluster components, you can troubleshoot OpenShift Virtualization by using the web console or the OpenShift CLI (`oc`). These practices help ensure your virtualized infrastructure remains healthy.
 
-## Events {#virt-troubleshooting-events_virt-troubleshooting}
+## View VM and resource events {#virt-view-vm-and-resource-events_virt-troubleshooting}
 
 To monitor and troubleshoot virtual machine (VM), namespace, and resource issues, you can review OpenShift Container Platform events. Tracking this life-cycle information helps ensure you maintain a healthy cluster environment.
 
@@ -25,11 +25,13 @@ To monitor and troubleshoot virtual machine (VM), namespace, and resource issues
   $ oc describe <resource> <resource_name>
   ```
 
-## Pod logs {#virt-troubleshooting-pod-logs_virt-troubleshooting}
+## OpenShift Virtualization pod logs {#virt-troubleshooting-pod-logs_virt-troubleshooting}
 
-To diagnose issues and monitor OpenShift Virtualization pods, you can view logs using the web console or the CLI. You can also view aggregated logs using the LokiStack in the web console.
+To diagnose issues and monitor OpenShift Virtualization pods, you can view logs by using the web console or the CLI.
 
-### Configuring OpenShift Virtualization pod log verbosity {#virt-configuring-pod-log-verbosity_virt-troubleshooting}
+Pod logs exist only while the pod exists. If a container restarts within a pod, you can still retrieve the logs of the earlier container, but the cluster discards the logs when it replaces the pod itself. For evidence that must survive pod replacement, or that spans several virtual machines (VMs) or nodes, use aggregated logs instead.
+
+### Configure OpenShift Virtualization pod log verbosity {#virt-configuring-pod-log-verbosity_virt-troubleshooting}
 
 To gather more detailed diagnostic information for troubleshooting, you can configure the verbosity level of OpenShift Virtualization pod logs. Edit the `HyperConverged` custom resource (CR) to configure this setting.
 
@@ -62,7 +64,7 @@ To gather more detailed diagnostic information for troubleshooting, you can conf
    The log verbosity value must be an integer in the range `1–9`, where a higher number indicates a more detailed log. In this example, the `virtAPI` component logs are exposed if their priority level is `5` or higher.
 3. Apply your changes by saving and exiting the editor.
 
-### Viewing virt-launcher pod logs with the web console {#virt-viewing-virt-launcher-pod-logs-web_virt-troubleshooting}
+### View virt-launcher pod logs with the web console {#virt-viewing-virt-launcher-pod-logs-web_virt-troubleshooting}
 
 To diagnose and troubleshoot virtual machine issues, you can view the `virt-launcher` pod logs by using the OpenShift Container Platform web console.
 
@@ -73,7 +75,7 @@ To diagnose and troubleshoot virtual machine issues, you can view the `virt-laun
 3. On the **General** tile, click the pod name to open the **Pod details** page.
 4. Click the **Logs** tab to view the logs.
 
-### Viewing OpenShift Virtualization pod logs with the CLI {#virt-viewing-logs-cli_virt-troubleshooting}
+### View OpenShift Virtualization pod logs with the CLI {#virt-viewing-logs-cli_virt-troubleshooting}
 
 To diagnose issues and monitor OpenShift Virtualization pods, you can view logs by using the OpenShift CLI (`oc`).
 
@@ -141,7 +143,7 @@ If sensitive information such as credentials or other personally identifiable in
 
 :::
 
-### Enabling default access to guest system logs with the web console {#virt-enable-guest-log-default-web_virt-troubleshooting}
+### Enable default access to guest system logs with the web console {#virt-enable-guest-log-default-web_virt-troubleshooting}
 
 To troubleshoot issues more easily, you can enable default access to virtual machine (VM) guest system logs by using the web console.
 
@@ -152,7 +154,7 @@ To troubleshoot issues more easily, you can enable default access to virtual mac
 3. Set **Enable guest system log access** to on.
 4. Optional: If you want to hide the VM user credentials that were set by using cloud-init, set **Hide guest credentials for non-privileged users** to on.
 
-### Enabling default access to guest system logs with the CLI {#virt-enable-guest-log-default-cli_virt-troubleshooting}
+### Enable default access to guest system logs with the CLI {#virt-enable-guest-log-default-cli_virt-troubleshooting}
 
 To troubleshoot issues more easily, you can enable default access to virtual machine (VM) guest system logs by editing the `HyperConverged` custom resource (CR).
 
@@ -179,7 +181,7 @@ To troubleshoot issues more easily, you can enable default access to virtual mac
 
    Set the value of `disableSerialConsoleLog` to `false` if you want serial console access to be enabled on VMs by default.
 
-### Setting guest system log access for a single VM with the web console {#virt-set-guest-log-single-vm-web_virt-troubleshooting}
+### Set per-VM guest system log access with the web console {#virt-set-guest-log-single-vm-web_virt-troubleshooting}
 
 To troubleshoot a specific virtual machine (VM) without changing global settings, you can configure the guest system log access by using the web console.
 
@@ -190,7 +192,7 @@ To troubleshoot a specific virtual machine (VM) without changing global settings
 3. Click the **Configuration** tab.
 4. Set **Guest system log access** to on or off.
 
-### Setting guest system log access for a single VM with the CLI {#virt-set-guest-log-single-vm-cli_virt-troubleshooting}
+### Set per-VM guest system log access with the CLI {#virt-set-guest-log-single-vm-cli_virt-troubleshooting}
 
 To troubleshoot a specific virtual machine (VM) without changing global settings, you can configure the guest system log access by editing the `VirtualMachine` CR.
 
@@ -229,7 +231,7 @@ To troubleshoot a specific virtual machine (VM) without changing global settings
    $ virtctl restart <vm_name> -n <namespace>
    ```
 
-### Viewing guest system logs with the web console {#virt-view-guest-system-logs-web_virt-troubleshooting}
+### View guest system logs with the web console {#virt-view-guest-system-logs-web_virt-troubleshooting}
 
 To diagnose and troubleshoot issues with a virtual machine (VM) guest operating system, you can view the guest system logs by using the web console.
 
@@ -246,7 +248,7 @@ Guest system logs capture serial console output from the VM’s boot process, ke
 3. Click the **Diagnostics** tab.
 4. Click **Guest system logs** to load the serial console.
 
-### Viewing guest system logs with the CLI {#virt-view-guest-system-logs-cli_virt-troubleshooting}
+### View guest system logs with the CLI {#virt-view-guest-system-logs-cli_virt-troubleshooting}
 
 To diagnose and troubleshoot issues with a virtual machine (VM) guest operating system, you can view the guest system logs by running the `oc logs` command.
 
@@ -264,11 +266,11 @@ Guest system logs capture serial console output from the VM’s boot process, ke
   $ oc logs -n <namespace> -l kubevirt.io/domain=<vm_name> --tail=-1 -c guest-console-log
   ```
 
-## Log aggregation {#virt-troubleshooting-log-aggregation_virt-troubleshooting}
+## Log aggregation with Loki {#virt-troubleshooting-log-aggregation_virt-troubleshooting}
 
 To more easily diagnose and troubleshoot issues, you can aggregate and filter your logs.
 
-### Viewing aggregated OpenShift Virtualization logs with Loki {#virt-viewing-logs-loki_virt-troubleshooting}
+### View aggregated OpenShift Virtualization logs with Loki {#virt-viewing-logs-loki_virt-troubleshooting}
 
 You can use the Loki logging component to view aggregated logs for OpenShift Virtualization pods and containers in the web console. This is useful for troubleshooting issues and monitoring your OpenShift Virtualization environment.
 
@@ -388,11 +390,11 @@ Troubleshoot OpenShift Virtualization by reviewing common error messages found i
 `ErrImagePull` or `ImagePullBackOff`
 : Indicates an incorrect deployment configuration or problems with the images that are referenced.
 
-## Troubleshooting data volumes {#virt-troubleshooting-data-volumes_virt-troubleshooting}
+## Data volume troubleshooting {#virt-troubleshooting-data-volumes_virt-troubleshooting}
 
 To analyze and resolve issues, you can check the `Conditions` and `Events` sections of the `DataVolume` object.
 
-### About data volume conditions and events {#virt-about-dv-conditions-and-events_virt-troubleshooting}
+### Data volume conditions and events {#virt-about-dv-conditions-and-events_virt-troubleshooting}
 
 To diagnose data volume issues, you can examine the `Conditions` and `Events` sections of the `oc describe` command output.
 
@@ -421,7 +423,7 @@ An event is generated when the `Status`, `Reason`, or `Message` changes. Both co
 
 For example, if you misspell the URL during an import operation, the import generates a 404 message. That message change generates an event with a reason. The output in the `Conditions` section is updated as well.
 
-### Analyzing data volume conditions and events {#virt-analyzing-datavolume-conditions-and-events_virt-troubleshooting}
+### Data volume condition and event analysis {#virt-analyzing-datavolume-conditions-and-events_virt-troubleshooting}
 
 To determine the state of a data volume in relation to a Persistent Volume Claim (PVC) and whether or not an operation is actively running on the data volume, inspect the `Conditions` and `Events` section of the `oc describe` command output.
 
@@ -496,6 +498,8 @@ Examples of various combinations follow.
 
 - [OpenShift Container Platform events](/docs/nodes/clusters/nodes-containers-events#nodes-containers-events)
 - [List of events](/docs/nodes/clusters/nodes-containers-events#nodes-containers-events-list_nodes-containers-events)
-- [Aggregated logs](/docs/virt/support/virt-troubleshooting#virt-viewing-logs-loki_virt-troubleshooting)
+- [View aggregated OpenShift Virtualization logs with Loki](/docs/virt/support/virt-troubleshooting#virt-viewing-logs-loki_virt-troubleshooting)
 - [Connecting to virtual machine consoles](/docs/virt/managing_vms/virt-accessing-vm-consoles#virt-accessing-vm-consoles)
+- [List of known Windows BSOD issues on OpenShift Virtualization and RHEL KVM](https://access.redhat.com/articles/7141237)
+- [Recommendations when investigating Windows BSOD issues](https://access.redhat.com/articles/7129390)
 - [LogQL log queries](https://grafana.com/docs/loki/latest/logql/log_queries/)

@@ -19,9 +19,9 @@ You can migrate virtual machines between OpenShift Virtualization clusters by us
 
 :::
 
-## Creating a VirtualMachineExport custom resource {#virt-creating-virtualmachineexport_virt-exporting-vms}
+## Create a VirtualMachineExport custom resource {#virt-creating-virtualmachineexport_virt-exporting-vms}
 
-You can create a `VirtualMachineExport` custom resource (CR) to export persistent volume claims (PVCs) from a `VirtualMachine`, `VirtualMachineSnapshot`, or `PersistentVolumeClaim` CR.
+You can create a `VirtualMachineExport` custom resource (CR) to export the persistent volume claims (PVCs) of a virtual machine (VM), a VM snapshot, or a single PVC. The export provides links for downloading the volume.
 
 You can export the following objects:
 
@@ -139,9 +139,9 @@ The export server supports the following file formats:
    - `status.links.external` defines external links that are accessible from outside the cluster by using an `Ingress` or `Route`.
    - `status.links.internal` defines internal links that are valid only inside the cluster.
 
-## Accessing exported virtual machine manifests {#virt-accessing-exported-vm-manifests_virt-exporting-vms}
+## Access exported VM manifests {#virt-accessing-exported-vm-manifests_virt-exporting-vms}
 
-After you export a virtual machine (VM) or snapshot, you can get the `VirtualMachine` manifest and related information from the export server.
+You can retrieve the `VirtualMachine` manifest from the export server after you export a virtual machine (VM) or a VM snapshot. Use the manifest to create the VM on a target cluster.
 
 **Prerequisites**
 

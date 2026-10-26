@@ -11,7 +11,7 @@ Use the web console or OpenShift CLI (`oc`) to list your virtual machines (VMs).
 
 ## List virtual machines by using the CLI {#virt-listing-vms-cli_virt-list-vms}
 
-You can either list all of the virtual machines (VMs) in your cluster or limit the list to VMs in a specified namespace by using the OpenShift CLI (`oc`).
+You can list all of the virtual machines (VMs) in your cluster by using the OpenShift CLI (`oc`), or limit the list to a single namespace.
 
 **Prerequisites**
 
@@ -30,7 +30,7 @@ You can either list all of the virtual machines (VMs) in your cluster or limit t
 
 ## List virtual machines by using the web console {#virt-listing-vms-web_virt-list-vms}
 
-You can list all of the virtual machines (VMs) in your cluster by using the web console.
+You can list all the virtual machines (VMs) in your cluster by using the OpenShift Container Platform web console. Search and filter options narrow the list.
 
 **Procedure**
 
@@ -129,7 +129,7 @@ You can list all of the virtual machines (VMs) in your cluster by using the web 
 
 ## Organize virtual machines by using the web console {#virt-organize-vms-web_virt-list-vms}
 
-In addition to creating virtual machines (VMs) in different projects, you can use the tree view to further organize them in folders.
+You can move virtual machines (VMs) into folders in the tree view of the OpenShift Container Platform web console. Folders give you finer organization than projects alone.
 
 :::warning
 

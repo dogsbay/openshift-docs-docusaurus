@@ -57,7 +57,7 @@ Collecting data about malfunctioning virtual machines (VMs) minimizes the time r
 3. Collect memory dumps from VMs before remediation attempts.
 4. Record factors that the malfunctioning VMs have in common. For example, the VMs have the same host or network.
 
-## Using the must-gather tool for OpenShift Virtualization {#virt-using-virt-must-gather_virt-collecting-virt-data}
+## Use the must-gather tool for OpenShift Virtualization {#virt-using-virt-must-gather_virt-collecting-virt-data}
 
 You can collect data about OpenShift Virtualization resources by running the `must-gather` command with the OpenShift Virtualization image.
 
@@ -186,9 +186,9 @@ $ oc adm must-gather \
 | `/usr/bin/gather --vms_details` | \* For a namespace: `NS=<namespace_name>`<br>\* For a VM: `VM=<vm_name> NS=<namespace_name>`<br>\* `PROS=<number_of_processes>` |
 | `/usr/bin/gather --images` | \* `PROS=<number_of_processes>` |
 
-## Generating a VM memory dump {#virt-generating-a-vm-memory-dump_virt-collecting-virt-data}
+## Generate a VM memory dump {#virt-generating-a-vm-memory-dump_virt-collecting-virt-data}
 
-When a virtual machine (VM) terminates unexpectedly, you can use the `virtctl memory-dump` to generate a memory dump command to output a VM memory dump and save it on a persistent volume claim (PVC). Afterwards, you can analyze the memory dump to diagnose and troubleshoot issues on the VM.
+When a virtual machine (VM) terminates unexpectedly, you can run the `virtctl memory-dump` command to output a VM memory dump and save it on a persistent volume claim (PVC). Afterward, you can analyze the memory dump to diagnose and troubleshoot issues on the VM.
 
 **Procedure**
 
@@ -262,7 +262,7 @@ The self-service TSR provides a solid baseline for cluster health. If you need a
 - [Installing the QEMU guest agent on a Linux VM](/docs/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent-on-linux-vm_virt-installing-qemu-guest-agent)
 - [Installing VirtIO drivers from a SATA CD drive on an existing Windows VM](/docs/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms#virt-installing-virtio-drivers-existing-windows_virt-install-virtio-drivers-on-windows-vms)
 - [Connect to the desktop viewer by using the web console](/docs/virt/managing_vms/virt-accessing-vm-consoles#virt-connecting-desktop-viewer-web_virt-accessing-vm-consoles)
-- [Collect memory dumps from VMs](/docs/virt/support/virt-collecting-virt-data#virt-generating-a-vm-memory-dump_virt-collecting-virt-data)
+- [Generate a VM memory dump](/docs/virt/support/virt-collecting-virt-data#virt-generating-a-vm-memory-dump_virt-collecting-virt-data)
 - [Submitting a support case](/docs/support/getting-support#support-submitting-a-case_getting-support)
 - [Modifying retention time and size for Prometheus metrics data](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/storing-and-recording-data-uwm#modifying-retention-time-and-size-for-prometheus-metrics-data_storing-and-recording-data-uwm)
 - [Configuring the Alertmanager to capture relevant alerts and to send alert notifications to a dedicated mailbox](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/storing-and-recording-data-uwm#modifying-retention-time-and-size-for-prometheus-metrics-data_storing-and-recording-data-uwm)

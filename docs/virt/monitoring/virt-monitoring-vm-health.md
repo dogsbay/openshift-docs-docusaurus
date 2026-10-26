@@ -11,7 +11,7 @@ Define probes and watchdogs in the `VirtualMachine` resource to configure virtua
 
 You can configure VM health checks by defining readiness and liveness probes in the `VirtualMachine` resource.
 
-## About readiness and liveness probes {#virt-about-readiness-liveness-probes_virt-monitoring-vm-health}
+## Readiness and liveness probes for VM health {#virt-about-readiness-liveness-probes_virt-monitoring-vm-health}
 
 Use readiness and liveness probes to detect and handle unhealthy virtual machines (VMs). You can include one or more probes in the specification of the VM to ensure that traffic does not reach a VM that is not ready for it and that a new VM is created when a VM becomes unresponsive.
 
@@ -30,7 +30,7 @@ TCP socket
 Guest agent ping
 : The probe uses the `guest-ping` command to determine if the QEMU guest agent is running on the virtual machine.
 
-### Defining an HTTP readiness probe {#virt-define-http-readiness-probe_virt-monitoring-vm-health}
+### Define an HTTP readiness probe {#virt-define-http-readiness-probe_virt-monitoring-vm-health}
 
 You can define an HTTP readiness probe by setting the `spec.readinessProbe.httpGet` field of the virtual machine (VM) configuration.
 
@@ -82,7 +82,7 @@ You can define an HTTP readiness probe by setting the `spec.readinessProbe.httpG
    $ oc create -f <file_name>.yaml
    ```
 
-### Defining a TCP readiness probe {#virt-define-tcp-readiness-probe_virt-monitoring-vm-health}
+### Define a TCP readiness probe {#virt-define-tcp-readiness-probe_virt-monitoring-vm-health}
 
 You can define a TCP readiness probe by setting the `spec.readinessProbe.tcpSocket` field of the virtual machine (VM) configuration.
 
@@ -125,7 +125,7 @@ You can define a TCP readiness probe by setting the `spec.readinessProbe.tcpSock
    $ oc create -f <file_name>.yaml
    ```
 
-### Defining an HTTP liveness probe {#virt-define-http-liveness-probe_virt-monitoring-vm-health}
+### Define an HTTP liveness probe {#virt-define-http-liveness-probe_virt-monitoring-vm-health}
 
 Define an HTTP liveness probe by setting the `spec.livenessProbe.httpGet` field of the virtual machine (VM) configuration. You can define both HTTP and TCP tests for liveness probes in the same way as readiness probes. This procedure configures a sample liveness probe with an HTTP GET test.
 
@@ -173,7 +173,7 @@ Define an HTTP liveness probe by setting the `spec.livenessProbe.httpGet` field 
    $ oc create -f <file_name>.yaml
    ```
 
-## About watchdogs {#virt-defining-watchdogs_virt-monitoring-vm-health}
+## Watchdog devices and recovery actions {#virt-defining-watchdogs_virt-monitoring-vm-health}
 
 Watchdog devices monitor guest operating system responsiveness and trigger recovery actions when a virtual machine becomes unresponsive.
 
@@ -193,7 +193,7 @@ Watchdog functionality is not available for Windows VMs.
 
 To implement watchdog functionality, you must configure the watchdog device for the VM and install the watchdog agent on the guest operating system.
 
-### Configuring a watchdog device for the virtual machine {#virt-defining-watchdog-device-vm}
+### Configure a watchdog device for a virtual machine {#virt-defining-watchdog-device-vm}
 
 You configure a watchdog device for the virtual machine (VM).
 
@@ -260,7 +260,7 @@ You configure a watchdog device for the virtual machine (VM).
      # pkill -9 watchdog
      ```
 
-### Installing the watchdog agent on the guest {#virt-installing-watchdog-agent_virt-monitoring-vm-health}
+### Install the watchdog agent on the guest {#virt-installing-watchdog-agent_virt-monitoring-vm-health}
 
 You can install the watchdog agent on the guest and start the `watchdog` service.
 
@@ -288,7 +288,7 @@ You can install the watchdog agent on the guest and start the `watchdog` service
    # systemctl enable --now watchdog.service
    ```
 
-## Defining a guest agent ping probe {#virt-define-guest-agent-ping-probe_virt-monitoring-vm-health}
+## Define a guest agent ping probe {#virt-define-guest-agent-ping-probe_virt-monitoring-vm-health}
 
 You can define a guest agent ping probe by setting the `spec.readinessProbe.guestAgentPing` field of the virtual machine (VM) configuration.
 

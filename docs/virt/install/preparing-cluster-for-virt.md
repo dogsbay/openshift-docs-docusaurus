@@ -83,6 +83,39 @@ OpenShift Virtualization is also supported on Red Hat OpenShift Service on AWS 
 
 :::
 
+Before you set up your cluster, review the following summary of supported features and limitations:
+
+Installing
+: - You can install the cluster by using installer-provisioned infrastructure, ensuring that you specify bare-metal instance types for the worker nodes. For example, you can use the `c5n.metal` type value for a machine based on x86_64 architecture. You specify bare-metal instance types by editing the `install-config.yaml` file.
+
+  For more information, see the OpenShift Container Platform documentation about installing on AWS.
+
+Accessing virtual machines (VMs)
+: - There is no change to how you access VMs by using the `virtctl` CLI tool or the OpenShift Container Platform web console.
+  - You can expose VMs by using a `NodePort` or `LoadBalancer` service.
+
+  :::note
+
+  The load balancer approach is preferable because OpenShift Container Platform automatically creates the load balancer in AWS and manages its lifecycle. A security group is also created for the load balancer, and you can use annotations to attach existing security groups. When you remove the service, OpenShift Container Platform removes the load balancer and its associated resources.
+
+  :::
+
+Networking
+: - You cannot use Single Root I/O Virtualization (SR-IOV) or bridge Container Network Interface (CNI) networks, including virtual LAN (VLAN). If your application requires a flat layer 2 network or control over the IP pool, consider using OVN-Kubernetes secondary overlay networks.
+  - If your application requires a flat layer 2 network that does not need egress traffic, consider using OVN-Kubernetes secondary overlay networks with a `Layer2` topology.
+
+Storage
+: - You can use any storage solution that is certified by the storage vendor to work with the underlying platform.
+
+  :::warning
+
+  AWS bare metal, Red Hat OpenShift Service on AWS, and Red Hat OpenShift Service on AWS classic architecture clusters might have different supported storage solutions. Ensure that you confirm support with your storage vendor.
+
+  :::
+
+Hosted control planes (HCPs)
+: - You can run OpenShift Virtualization on HCP clusters that use AWS bare-metal nodes. However, using OpenShift Virtualization VMs as HCP nodes is not currently supported on AWS.
+
 ## ARM64 compatibility {#virt-arm-compatibility_preparing-cluster-for-virt}
 
 OpenShift Virtualization on ARM64 systems is generally available (GA) with specific limitations for operating systems and live migration.
@@ -135,13 +168,13 @@ Functionality differences
 
   - When deleting a virtual machine by using the web console, the **grace period** option is ignored. For more information, see "Deleting a virtual machine by using the web console" in the Additional resources section.
   - When configuring the default CPU model, the `spec.defaultCPUModel` value is `"gen15b"` for an IBM Z cluster. For more information, see "Configuring the default CPU model" in the Additional resources section.
-  - When configuring a downward metrics device, if you use a VM preference, the `spec.preference.name` value must be set to `rhel.9.s390x` or another available preference with the format `*.s390x`. For more information, see "Configuring a downward metrics device" in the Additional resources section.
+  - When configuring a downward metrics device, if you use a VM preference, the `spec.preference.name` value must be set to `rhel.9.s390x` or another available preference with the format `*.s390x`. For more information, see "Configure a downward metrics device" in the Additional resources section.
   - When creating virtual machines from instance types, you are not allowed to set `spec.domain.memory.maxGuest` because memory hot plugging is not supported on IBM Z(R). For more information, see "Creating virtual machines from instance types" in the Additional resources section.
   - Prometheus queries for VM guests could have inconsistent outcome in comparison to `x86`.
 
-## Important considerations for any platform {#virt-important-considerations_preparing-cluster-for-virt}
+## Deployment considerations {#virt-important-considerations_preparing-cluster-for-virt}
 
-Before installing OpenShift Virtualization, note key considerations about installation methods, storage, IPv6, and FIPS mode.
+Review platform requirements and configuration constraints before installing OpenShift Virtualization to ensure compatibility and avoid deployment issues with storage, networking, and security features.
 
 Installation method considerations
 : You can use any installation method, including user-provisioned, installer-provisioned, or Assisted Installer, to deploy OpenShift Container Platform. However, the installation method and the cluster topology might affect OpenShift Virtualization functionality, such as snapshots or live migration. For more information about live migration, see "Hardware, software, and operational requirements" in the Additional resources section.
@@ -177,7 +210,7 @@ OpenShift Virtualization
 - [Installing a FIPS-compliant cluster](/docs/installing/overview/installing-fips#installing-fips-mode_installing-fips)
 - [Configure CPU models](/docs/virt/managing_vms/cpu_models/virt-configuring-default-cpu-model#virt-configuring-default-cpu-model)
 - [Deleting a virtual machine by using the web console](/docs/virt/managing_vms/virt-delete-vms#virt-delete-vm-web_virt-delete-vms)
-- [Configuring a downward metrics device](/docs/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)
+- [Configure a downward metrics device](/docs/virt/monitoring/virt-exposing-downward-metrics#virt-configuring-downward-metrics_virt-exposing-downward-metrics)
 - [Instance types](/docs/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
 - [Networking overview](/docs/virt/vm_networking/virt-networking-overview#virt-networking)
 - [Connecting a virtual machine to an OVN-Kubernetes secondary network](/docs/virt/vm_networking/virt-connecting-vm-to-ovn-secondary-network#virt-connecting-vm-to-ovn-secondary-network)

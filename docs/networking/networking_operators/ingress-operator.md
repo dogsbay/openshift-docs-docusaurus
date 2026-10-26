@@ -364,7 +364,7 @@ You can view the status of a particular Ingress Controller.
   $ oc describe --namespace=openshift-ingress-operator ingresscontroller/<name>
   ```
 
-## Create a custom Ingress Controller {#nw-create-custom-ingress-controller_configuring-ingress}
+## Creating a custom Ingress Controller {#nw-create-custom-ingress-controller_configuring-ingress}
 
 As a cluster administrator, you can create a new custom Ingress Controller.
 
@@ -397,13 +397,13 @@ This example provides a minimal spec for a custom Ingress Controller. To further
 
    <dl>
    <dt><code>metadata.name</code></dt>
-   <dd>Specifies a custom <code>name</code> for the <code>IngressController</code> object.</dd>
+   <dd>Specifies the custom <code>name</code> for the <code>IngressController</code> object.</dd>
    <dt><code>spec.defaultCertificate.name</code></dt>
    <dd>Specifies the name of the secret with the custom wildcard certificate.</dd>
    <dt><code>spec.replicas</code></dt>
-   <dd>Specifies the number of replicas. Minimum replica needs to be ONE.</dd>
+   <dd>Specifies a minimum replica. The minimum value must be at least <code>1</code>.</dd>
    <dt><code>spec.domain</code></dt>
-   <dd>Specifies the domain to your domain name. The domain specified on the IngressController object and the domain used for the certificate must match. For example, if the domain value is "custom_domain.mycompany.com", then the certificate must have SAN *.custom_domain.mycompany.com (with the <code>*.</code> added to the domain).</dd>
+   <dd>Specifies the domain to your domain name. The domain specified on the <code>IngressController</code> object and the domain used for the certificate must match. For example, if the domain value is "custom_domain.mycompany.com", then the certificate must have SAN *.custom_domain.mycompany.com (with the <code>*.</code> added to the domain).</dd>
    </dl>
 2. Create the object by running the following command:
    ```terminal
@@ -411,6 +411,68 @@ This example provides a minimal spec for a custom Ingress Controller. To further
    ```
 
 ## Configuring the Ingress Controller {#configuring-ingress-controller}
+
+### HAProxy Dynamic Configuration Manager (DCM) {#about-haproxy-dynamic-configuration-manager_configuring-ingress}
+
+As an administrator, you can use Dynamic Configuration Manager (DCM) as an alternative update mechanism that configures a running HAProxy process through a domain socket. This approach eliminates the need to fork and reload the HAProxy process.
+
+The router automatically uses DCM for supported operations and falls back to fork-and-reload for operations that DCM cannot handle.
+
+After a router reload, the default HAProxy process forks a new child process and keeps the old process running until all existing connections close. If HAProxy reloads frequently while handling long-lived connections, old processes accumulate and consume excessive memory on the node. Accumulating processes can cause out-of-memory errors in environments with frequent route or endpoint changes.
+
+DCM addresses this problem by applying configuration updates directly to the running HAProxy process.
+
+DCM provides the following benefits over the default fork-and-reload model:
+
+- Reduced memory usage: Old HAProxy processes do not accumulate during frequent endpoint updates. The fork-and-reload model can cause each old process to consume hundreds of megabytes or several gigabytes of memory.
+- Improved metrics accuracy: After a fork-and-reload, the old HAProxy process cannot update metrics for its remaining connections. DCM preserves full metrics continuity because the process is not replaced.
+- Better load balancing: HAProxy load-balancing algorithms such as `roundrobin`, `random`, and `leastconn` track connection counts per backend server. After a reload, the new process has no data about connections managed by old processes. This lack of data causes uneven traffic distribution. DCM retains this data because the process persists.
+
+With fork-and-reload, scaling an application to any number of replicas triggers an HAProxy configuration reload. DCM handles the following scaling operations dynamically without triggering an HAProxy reload:
+
+- Any scale-out operation
+- Any scale-in operation
+
+With DCM, HAProxy still requires a reload for unsupported dynamic operations, including:
+
+- Adding, removing, or changes routes
+- Changing TLS certificates on a route
+- Changing route annotations
+- Global router configuration changes
+
+When DCM encounters an operation that it cannot handle dynamically, the router falls back to the standard fork-and-reload mechanism. This mechanism writes a new `haproxy.config` file and reloads HAProxy, which forks a new process to handle incoming connections. The Ingress Operator includes the `spec.tuningOptions.configurationManagement` API field for selecting between DCM and fork-and-reload to manage HAProxy configuration updates.
+
+### Enabling or disabling Dynamic Configuration Manager (DCM) {#enabling-disabling-dcm_configuring-ingress}
+
+To reduce HAProxy reloads when endpoints change, you can enable DCM. DCM is disabled by default.
+
+:::warning
+
+Enabling DCM is an experimental feature that is not intended for production use.
+
+:::
+
+Configure the `spec.tuningOptions.configurationManagement` field on the `IngressController` resource to select either DCM or the standard fork-and-reload mechanism.
+
+**Prerequisites**
+
+- You have access to the cluster as a user with the `cluster-admin` role.
+- You have installed the OpenShift CLI (`oc`).
+
+**Procedure**
+
+- If you need to enable dynamic updates by using DCM, enter the following command:
+  ```terminal
+  $ oc -n openshift-ingress-operator patch ingresscontrollers/default \
+    --type=merge \
+    --patch='{"spec":{"tuningOptions":{"configurationManagement":"Dynamic"}}}'
+  ```
+- If you need to disable DCM and revert to the fork-and-reload mechanism, enter the following command:
+  ```terminal
+  $ oc -n openshift-ingress-operator patch ingresscontrollers/default \
+    --type=merge \
+    --patch='{"spec":{"tuningOptions":{"configurationManagement":"ForkAndReload"}}}'
+  ```
 
 ### Set a custom default certificate {#nw-ingress-setting-a-custom-default-certificate_configuring-ingress}
 

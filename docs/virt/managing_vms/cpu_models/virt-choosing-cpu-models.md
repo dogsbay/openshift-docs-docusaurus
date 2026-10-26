@@ -9,11 +9,11 @@ sidebar_position: 1
 
 You can choose an appropriate CPU model for your virtual machines based on your environment. The host-model CPU provides maximum performance and feature access in homogeneous clusters. CPU models ensure compatibility and migration flexibility in heterogeneous clusters with different CPU types.
 
-## Host-model CPU {#virt-about-host-model_virt-choosing-cpu-models}
+## Host-model CPU for homogeneous clusters {#virt-about-host-model_virt-choosing-cpu-models}
 
-`host-model` is the default CPU configuration. When a virtual machine instance (VMI) is created, libvirt selects the CPU model closest to the physical node’s CPU, including required features in the VMI’s domain definition.
+By default, a virtual machine instance (VMI) uses the `host-model` CPU configuration, which selects the CPU model closest to the node’s physical CPU. This gives the VMI all CPU features that the node provides, and suits homogeneous clusters.
 
-The CPU model chosen by `host-model` is often not a standard named model supported by libvirt, which may  include additional CPU features. Libvirt creates a CPU definition that only includes the available features on the initial node. This approach ensures:
+The CPU model chosen by `host-model` is often not a standard named model supported by libvirt, which can include additional CPU features. Libvirt creates a CPU definition that only includes the available features on the initial node. This approach ensures:
 
 - The VMI can start successfully on the initial node.
 - Future live migrations only require the subset of CPU features used in the host-model, even if target nodes have different or additional features.
@@ -40,13 +40,13 @@ This approach guarantees that VM migrations only target nodes that provide the C
 
 :::warning
 
-Target nodes may support more CPU features than required, but they must support at minimum all features used by the VMI.
+Target nodes might support more CPU features than required, but they must support at minimum all features used by the VMI.
 
 :::
 
-## Named CPU models {#virt-about-named-cpu-models_virt-choosing-cpu-models}
+## Named CPU models for heterogeneous clusters {#virt-about-named-cpu-models_virt-choosing-cpu-models}
 
-Named CPU models allow you to explicitly select a CPU type for a virtual machine (VM). You can configure a named CPU model at the VM level or set a cluster-wide default using the `HyperConverged` custom resource (CR).
+You can use a named CPU model to select a specific CPU type for a virtual machine (VM), either for one VM or as a cluster-wide default. In a heterogeneous cluster, a common named model lets a VM migrate to more nodes.
 
 A node supports a named CPU model only if it includes all required CPU features defined by libvirt for that model. Nodes that support a specific CPU model are labeled with `cpu-model.node.kubevirt.io/<cpuModel>`. OpenShift Virtualization uses these labels to schedule VMs only to compatible nodes. When you configure a named CPU model, the VM receives a node selector that ensures it only runs on nodes labeled with that specific CPU model.
 
@@ -56,10 +56,10 @@ In a heterogeneous cluster, nodes have different CPU generations or feature sets
 
 A virtual machine instance (VMI) inherits the host model CPU feature of the node where it is first scheduled. If the initial node has CPU features unsupported by other nodes, it can prevent the VM from being migrated to them.
 
-Using a common named CPU model (for example, `EPYC-IBPB` or `Haswell`) is recommended for  CPU models in heterogeneous clusters, and provides the following benefits:
+Using a common named CPU model (for example, `EPYC-IBPB` or `Haswell`) is recommended for CPU models in heterogeneous clusters, and provides the following benefits:
 
 - Ensures that all nodes selected for migration support the required CPU features.
-- Maximizes VM migratability across nodes with different CPU types.
+- Maximizes the number of nodes with different CPU types that a VM can migrate to.
 - Prevents scheduling VMs on nodes that cannot support live migration targets.
 
 :::warning

@@ -13,9 +13,11 @@ The Peripheral Component Interconnect (PCI) passthrough feature enables you to a
 
 You can prevent GPU operands from deploying on worker nodes that you designated for GPU passthrough.
 
-### Preventing NVIDIA GPU operands from deploying on nodes {#virt-preventing-nvidia-gpu-operands-from-deploying-on-nodes_virt-configuring-pci-passthrough}
+### Prevent NVIDIA GPU operand deployment on nodes {#virt-preventing-nvidia-gpu-operands-from-deploying-on-nodes_virt-configuring-pci-passthrough}
 
-If you use the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/openshift/contents.html) in your cluster, you can apply the `nvidia.com/gpu.deploy.operands=false` label to nodes that you do not want to configure for GPU or vGPU operands. This prevents the creation of the pods that configure GPU or vGPU operands and terminates existing pods.
+If you use the NVIDIA GPU Operator in your cluster, you can apply the `nvidia.com/gpu.deploy.operands=false` label to nodes that you do not want to configure for GPU or vGPU operands.
+
+This prevents the creation of the pods that configure GPU or vGPU operands and terminates existing pods.
 
 **Prerequisites**
 
@@ -77,7 +79,7 @@ If you use the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-na
 
 ## Preparing host devices for PCI passthrough {#virt-preparing-host-devices-for-pci-passthrough}
 
-### About preparing a host device for PCI passthrough {#virt-about_pci-passthrough_virt-configuring-pci-passthrough}
+### Host device preparation for PCI passthrough {#virt-about_pci-passthrough_virt-configuring-pci-passthrough}
 
 To prepare a host device for PCI passthrough by using the CLI, create a `MachineConfig` object and add kernel arguments to enable the Input-Output Memory Management Unit (IOMMU).
 
@@ -118,7 +120,7 @@ spec:
     - rd.driver.blocklist=enic
 ```
 
-### Adding kernel arguments to enable the IOMMU driver {#virt-adding-kernel-arguments-enable-IOMMU_virt-configuring-pci-passthrough}
+### Add kernel arguments to enable the IOMMU driver {#virt-adding-kernel-arguments-enable-IOMMU_virt-configuring-pci-passthrough}
 
 You must enable the Input-Output Memory Management Unit (IOMMU) driver before you can configure mediated devices. To enable the IOMMU driver in the kernel, create the `MachineConfig` object and add the kernel arguments.
 
@@ -196,7 +198,7 @@ You must enable the Input-Output Memory Management Unit (IOMMU) driver before yo
      AMD: [ 0.000000] AMD-Vi: IOMMU Initialized
      ```
 
-### Binding PCI devices to the VFIO driver {#virt-binding-devices-vfio-driver_virt-configuring-pci-passthrough}
+### Bind PCI devices to the VFIO driver {#virt-binding-devices-vfio-driver_virt-configuring-pci-passthrough}
 
 To bind PCI devices to the VFIO (Virtual Function I/O) driver, obtain the values for the vendor ID and the device ID from each device and create a list with the values. Add this list to the `MachineConfig` object.
 
@@ -311,7 +313,7 @@ The `MachineConfig` Operator generates the `/etc/modprobe.d/vfio.conf` on the no
           Kernel modules: nouveau
   ```
 
-### Exposing PCI host devices in the cluster using the CLI {#virt-exposing-pci-device-in-cluster-cli_virt-configuring-pci-passthrough}
+### Expose PCI host devices in the cluster {#virt-exposing-pci-device-in-cluster-cli_virt-configuring-pci-passthrough}
 
 To expose PCI host devices in the cluster, add details about the PCI devices to the `spec.permittedHostDevices.pciHostDevices` array of the `HyperConverged` custom resource (CR).
 
@@ -419,7 +421,7 @@ To expose PCI host devices in the cluster, add details about the PCI devices to 
 
   :::
 
-### Removing PCI host devices from the cluster using the CLI {#virt-removing-pci-device-from-cluster_virt-configuring-pci-passthrough}
+### Remove PCI host devices from the cluster {#virt-removing-pci-device-from-cluster_virt-configuring-pci-passthrough}
 
 To remove a PCI host device from the cluster, delete the information for that device from the `HyperConverged` custom resource (CR).
 
@@ -491,7 +493,7 @@ To remove a PCI host device from the cluster, delete the information for that de
 
 After the PCI devices have been added to the cluster, you can assign them to virtual machines. The PCI devices are now available as if they are physically connected to the virtual machines.
 
-### Assigning a PCI device to a virtual machine {#virt-assigning-pci-device-virtual-machine_virt-configuring-pci-passthrough}
+### Assign a PCI device to a virtual machine {#virt-assigning-pci-device-virtual-machine_virt-configuring-pci-passthrough}
 
 When a PCI device is available in a cluster, you can assign it to a virtual machine and enable PCI passthrough.
 
@@ -532,7 +534,7 @@ When a PCI device is available in a cluster, you can assign it to a virtual mach
 
 On IBM Z(R) and IBM(R) LinuxONE, you can configure PCI passthrough for Network Express RoCE adapters and IBM(R) Internal Shared Memory (ISM) virtual PCI devices. Both use `vfio-pci` to pass devices directly to virtual machines.
 
-### Configure PCI passthrough for Network Express RoCE adapters on IBM Z {#virt-configuring-pci-passthrough-roce-ibm-z_virt-configuring-pci-passthrough}
+### Configure RoCE adapter passthrough on IBM Z {#virt-configuring-pci-passthrough-roce-ibm-z_virt-configuring-pci-passthrough}
 
 On IBM Z(R) and IBM(R) LinuxONE, you can configure PCI passthrough for Network Express RoCE adapters by using `vfio-pci`. This procedure applies only when the adapter is configured in RoCE mode through the Hardware Management Console (HMC).
 
@@ -705,7 +707,7 @@ To use `vfio-pci` for PCI passthrough of RoCE virtual function devices, you must
 
    :::
 
-### Configure PCI passthrough for IBM ISM virtual PCI devices on IBM Z {#virt-configuring-pci-passthrough-ism-ibm-z_virt-configuring-pci-passthrough}
+### Configure ISM device passthrough on IBM Z {#virt-configuring-pci-passthrough-ism-ibm-z_virt-configuring-pci-passthrough}
 
 On IBM Z(R) and IBM(R) LinuxONE, IBM(R) Internal Shared Memory (ISM) devices are exposed as virtual PCI devices. You can configure PCI passthrough for ISM devices by binding the device to the `vfio-pci` driver by using a single `MachineConfig`.
 

@@ -35,7 +35,7 @@ You must consider the following limitations before implementing a primary UDN:
 - You cannot use the `oc port-forward` command to forward ports to a VM.
 - You cannot use headless services to access a VM.
 
-## Create a primary user-defined network by using the web console {#virt-creating-primary-udn-web-intro_virt-connecting-vm-to-primary-udn}
+## Primary overlay network creation in the web console {#virt-creating-primary-udn-web-intro_virt-connecting-vm-to-primary-udn}
 
 You can use the OpenShift Container Platform web console to create a primary namespace-scoped `UserDefinedNetwork` (UDN) or a cluster-scoped `ClusterUserDefinedNetwork` custom resource definition (CRD).
 
@@ -43,7 +43,7 @@ The UDN serves as the default primary network for pods and VMs that you create i
 
 After you define the custom primary overlay network, you can create namespaces that are associated with the cluster-scoped UDN.
 
-### Creating a namespace for user-defined networks by using the web console {#virt-creating-udn-namespace-web_virt-connecting-vm-to-primary-udn}
+### Create a namespace for overlay networks by using the web console {#virt-creating-udn-namespace-web_virt-connecting-vm-to-primary-udn}
 
 You can create a namespace to be used with primary user-defined networks (UDNs) by using the OpenShift Container Platform web console.
 
@@ -61,7 +61,7 @@ You can create a namespace to be used with primary user-defined networks (UDNs) 
 6. Optional: Specify a default network policy.
 7. Click **Create** to create the namespace.
 
-### Creating a primary namespace-scoped user-defined network by using the web console {#virt-creating-primary-udn-web_virt-connecting-vm-to-primary-udn}
+### Create a namespace-scoped primary overlay network in the web console {#virt-creating-primary-udn-web_virt-connecting-vm-to-primary-udn}
 
 You can create an isolated primary network in your project namespace by creating a `UserDefinedNetwork` custom resource in the OpenShift Container Platform web console.
 
@@ -111,7 +111,7 @@ You can connect one or more projects to a physical network for direct layer 2 ac
 2. Click the **OVN localnet** tab.
 3. Verify that your new network is displayed in the list.
 
-### Creating a primary cluster-scoped user-defined network by using the web console {#virt-creating-primary-cluster-udn-web_virt-connecting-vm-to-primary-udn}
+### Create a cluster-scoped primary overlay network in the web console {#virt-creating-primary-cluster-udn-web_virt-connecting-vm-to-primary-udn}
 
 You can connect multiple namespaces to the same primary user-defined network (UDN) by creating a `ClusterUserDefinedNetwork` custom resource in the OpenShift Container Platform web console.
 
@@ -128,11 +128,11 @@ You can connect multiple namespaces to the same primary user-defined network (UD
 5. In the **Project(s) Match Labels** field, add the appropriate labels to select namespaces that the cluster UDN applies to.
 6. Click **Create**. The cluster-scoped UDN serves as the default primary network for pods and virtual machines located in namespaces that contain the labels that you specified in step 5.
 
-## Create a primary user-defined network by using the CLI {#virt-creating-primary-udn-cli-intro_virt-connecting-vm-to-primary-udn}
+## Primary overlay network creation by using the CLI {#virt-creating-primary-udn-cli-intro_virt-connecting-vm-to-primary-udn}
 
 You can create a primary `UserDefinedNetwork` or `ClusterUserDefinedNetwork` custom resource definition (CRD) by using the OpenShift CLI (`oc`). After you define the custom primary overlay network, you can create namespaces that are associated with the cluster-scoped UDN.
 
-### Creating a namespace for user-defined networks by using the CLI {#virt-creating-udn-namespace-cli_virt-connecting-vm-to-primary-udn}
+### Create a namespace for overlay networks by using the CLI {#virt-creating-udn-namespace-cli_virt-connecting-vm-to-primary-udn}
 
 You can create a namespace to be used with primary user-defined networks (UDNs) by using the OpenShift CLI (`oc`).
 
@@ -160,7 +160,7 @@ You can create a namespace to be used with primary user-defined networks (UDNs) 
    $ oc apply -f <filename>.yaml
    ```
 
-### Creating a primary namespace-scoped user-defined network by using the CLI {#virt-creating-a-primary-udn_virt-connecting-vm-to-primary-udn}
+### Create a namespace-scoped primary overlay network by using the CLI {#virt-creating-a-primary-udn_virt-connecting-vm-to-primary-udn}
 
 You can create an isolated primary network in your project namespace by using the CLI. You must use the OVN-Kubernetes layer 2 topology and enable persistent IP address allocation in the user-defined network (UDN) configuration to ensure VM live migration support.
 
@@ -201,7 +201,7 @@ You can create an isolated primary network in your project namespace by using th
    $ oc apply -f --validate=true <filename>.yaml
    ```
 
-### Creating a primary cluster-scoped user-defined network by using the CLI {#virt-creating-a-primary-cluster-udn_virt-connecting-vm-to-primary-udn}
+### Create a cluster-scoped primary overlay network by using the CLI {#virt-creating-a-primary-cluster-udn_virt-connecting-vm-to-primary-udn}
 
 You can connect multiple namespaces to the same primary user-defined network (UDN) to achieve native tenant isolation by using the CLI.
 
@@ -247,7 +247,7 @@ You can connect multiple namespaces to the same primary user-defined network (UD
    $ oc apply -f --validate=true <filename>.yaml
    ```
 
-## Attach a virtual machine to the primary user-defined network {#virt-attaching-vm-to-primary-udn-intro_virt-connecting-vm-to-primary-udn}
+## VM attachment to the primary overlay network {#virt-attaching-vm-to-primary-udn-intro_virt-connecting-vm-to-primary-udn}
 
 You can connect a virtual machine (VM) to the primary user-defined network (UDN) by requesting the pod network attachment and configuring the interface binding.
 
@@ -272,7 +272,7 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 :::
 
-### Creating a virtual machine in a namespace with a primary user-defined network by using the web console {#virt-creating-vm-in-primary-udn-web_virt-connecting-vm-to-primary-udn}
+### Create a VM with primary overlay access in the web console {#virt-creating-vm-in-primary-udn-web_virt-connecting-vm-to-primary-udn}
 
 You can create a virtual machine (VM) in a namespace that is configured to use a primary user-defined network (UDN) by using the OpenShift Container Platform web console.
 
@@ -296,7 +296,7 @@ When creating the virtual machine, verify that the default network interface typ
 3. Click **Create** → **With Wizard**.
 4. Configure the VM specifications in the wizard and click **Create VirtualMachine**.
 
-### Attaching a virtual machine to the primary user-defined network by using the CLI {#virt-attaching-vm-to-primary-udn_virt-connecting-vm-to-primary-udn}
+### Attach a VM to a primary overlay network {#virt-attaching-vm-to-primary-udn_virt-connecting-vm-to-primary-udn}
 
 You can connect a virtual machine (VM) to the primary user-defined network (UDN) by using the OpenShift CLI (`oc`).
 

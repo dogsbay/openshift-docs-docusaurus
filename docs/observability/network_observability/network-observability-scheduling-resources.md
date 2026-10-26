@@ -1,6 +1,6 @@
 ---
 title: Scheduling resources
-sidebar_position: 15
+sidebar_position: 16
 ---
 
 # Scheduling resources {#network-observability-scheduling-resources}
