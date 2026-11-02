@@ -22,7 +22,7 @@ After the drivers are installed, the `container-native-virtualization/virtio-win
 | **viorng** | VEN_1AF4&DEV_1005, VEN_1AF4&DEV_1044 | The entropy source driver. Sometimes labeled as a **PCI Device** in the **Other devices** group. |
 | **NetKVM** | VEN_1AF4&DEV_1000, VEN_1AF4&DEV_1041 | The network driver. Sometimes labeled as an **Ethernet Controller** in the **Other devices** group. Available only if a VirtIO NIC is configured. |
 
-## Downloading the VirtIO drivers ISO from the web console {#virt-downloading-virtio-win-iso_virt-install-virtio-drivers-on-windows-vms}
+## Download the VirtIO drivers ISO from the web console {#virt-downloading-virtio-win-iso_virt-install-virtio-drivers-on-windows-vms}
 
 You can download the `virtio-win` ISO file from the OpenShift Container Platform web console. The ISO file includes the VirtIO drivers and the QEMU guest agent installer for Microsoft Windows virtual machines (VMs).
 
@@ -39,7 +39,7 @@ If your cluster has Windows VMs, a notification on the **Virtualization** → **
 3. In the **Windows drivers** section, click **Download ISO**.
    The `virtio-win` ISO file downloads to your local machine.
 
-## Attaching VirtIO container disk to Windows VMs during installation {#virt-attaching-virtio-disk-to-windows_virt-install-virtio-drivers-on-windows-vms}
+## Attach a VirtIO container disk during Windows installation {#virt-attaching-virtio-disk-to-windows_virt-install-virtio-drivers-on-windows-vms}
 
 You must attach the VirtIO container disk to the Windows VM to install the necessary Windows drivers. This can be done during creation of the VM.
 
@@ -54,7 +54,7 @@ You must attach the VirtIO container disk to the Windows VM to install the neces
 
 After the VM is created, the `virtio-win` SATA CD disk will be attached to the VM.
 
-## Attaching VirtIO container disk to an existing Windows VM {#virt-attaching-virtio-disk-to-windows-existing_virt-install-virtio-drivers-on-windows-vms}
+## Attach a VirtIO container disk to an existing Windows VM {#virt-attaching-virtio-disk-to-windows-existing_virt-install-virtio-drivers-on-windows-vms}
 
 You must attach the VirtIO container disk to the Windows VM to install the necessary Windows drivers. This can be done to an existing VM.
 
@@ -66,7 +66,7 @@ You must attach the VirtIO container disk to the Windows VM to install the neces
 4. Click **Save**.
 5. Start the VM, and connect to a graphical console.
 
-## Installing VirtIO drivers from a container disk added as a SATA CD drive {#virt-adding-container-disk-as-cd_virt-install-virtio-drivers-on-windows-vms}
+## Install VirtIO drivers from a container disk SATA CD {#virt-adding-container-disk-as-cd_virt-install-virtio-drivers-on-windows-vms}
 
 You can install VirtIO drivers from a container disk that you add to a Windows virtual machine (VM) as a SATA CD drive.
 
@@ -115,7 +115,7 @@ You can also download the `virtio-win` ISO file from the OpenShift Container Pla
      ```
 3. After the VM has started, install the VirtIO drivers from the SATA CD drive.
 
-## Installing VirtIO drivers during Windows installation {#virt-installing-virtio-drivers-installing-windows_virt-install-virtio-drivers-on-windows-vms}
+## Install VirtIO drivers during Windows setup {#virt-installing-virtio-drivers-installing-windows_virt-install-virtio-drivers-on-windows-vms}
 
 You can install the VirtIO drivers while installing Windows on a virtual machine (VM).
 
@@ -145,7 +145,7 @@ This procedure uses a generic approach to the Windows installation and the insta
 
 If the **Virtio-Win** directory is present and contains a sub-directory for each driver, the installation was successful.
 
-## Installing VirtIO drivers from a SATA CD drive on an existing Windows VM {#virt-installing-virtio-drivers-existing-windows_virt-install-virtio-drivers-on-windows-vms}
+## Install VirtIO drivers from a SATA CD on an existing VM {#virt-installing-virtio-drivers-existing-windows_virt-install-virtio-drivers-on-windows-vms}
 
 You can install the VirtIO drivers from a SATA CD drive on an existing Windows virtual machine (VM).
 

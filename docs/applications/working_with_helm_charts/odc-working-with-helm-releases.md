@@ -82,8 +82,6 @@ If a release fails, you can rollback the Helm release to a previous version.
 
 **Procedure**
 
-To rollback a release using the **Helm** view:
-
 1. In the **Developer** perspective, navigate to the **Helm** view to see the **Helm Releases** in the namespace.
 2. Click the Options menu ![](/images/kebab.png "Options menu") adjoining the listed release, and select **Rollback**.
 3. In the **Rollback Helm Release** page, select the **Revision** you want to rollback to and click **Rollback**.
@@ -95,6 +93,8 @@ To rollback a release using the **Helm** view:
 6. If required, you can further use the Options menu ![](/images/kebab.png "Options menu") adjoining a particular revision and select the revision to rollback to.
 
 ## Deleting a Helm release {#odc-deleting-helm-release_working-with-helm-releases}
+
+You can delete a Helm release from the **Topology** view in the **Developer** perspective of the web console.
 
 **Procedure**
 

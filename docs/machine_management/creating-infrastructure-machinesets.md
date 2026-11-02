@@ -27,7 +27,7 @@ $ oc get infrastructure cluster -o jsonpath='{.status.platform}'
 
 :::
 
-## OpenShift Container Platform infrastructure components {#infrastructure-components_creating-infrastructure-machinesets}
+## Move components to infrastructure nodes to reduce costs {#infrastructure-components_creating-infrastructure-machinesets}
 
 To reduce subscription costs, you can review the following information to understand which components you can move to an infrastructure node. Components that you move to an infrastructure node do not need to be accounted for during sizing.
 

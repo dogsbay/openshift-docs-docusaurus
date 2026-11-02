@@ -335,14 +335,21 @@ You can create an index image based on the SQLite database format by using the `
 1. Start a new index:
    ```terminal
    $ opm index add \
-       --bundles <registry>/<namespace>/<bundle_image_name>:<tag> \ (1)
-       --tag <registry>/<namespace>/<index_image_name>:<tag> \ (2)
-       [--binary-image <registry_base_image>] (3)
+       --bundles <registry>/<namespace>/<bundle_image_name>:<tag> \
+       --tag <registry>/<namespace>/<index_image_name>:<tag> \
+       [--binary-image <registry_base_image>]
    ```
 
-   1. Comma-separated list of bundle images to add to the index.
-   2. The image tag that you want the index image to have.
-   3. Optional: An alternative registry base image to use for serving the catalog.
+   where:
+
+   <dl>
+   <dt><code>--bundles</code></dt>
+   <dd>Specifies a comma-separated list of bundle images to add to the index.</dd>
+   <dt><code>--tag</code></dt>
+   <dd>Specifies the image tag that you want the index image to have.</dd>
+   <dt><code>--binary-image</code></dt>
+   <dd>Optional: Specifies an alternative registry base image to use for serving the catalog.</dd>
+   </dl>
 2. Push the index image to a registry.
    1. If required, authenticate with your target registry:
       ```terminal
@@ -371,34 +378,38 @@ You can update an existing index image using the `opm index add` command.
 1. Update the existing index by adding bundle images:
    ```terminal
    $ opm index add \
-       --bundles <registry>/<namespace>/<new_bundle_image>@sha256:<digest> \ (1)
-       --from-index <registry>/<namespace>/<existing_index_image>:<existing_tag> \ (2)
-       --tag <registry>/<namespace>/<existing_index_image>:<updated_tag> \ (3)
-       --pull-tool podman (4)
+       --bundles <registry>/<namespace>/<new_bundle_image>@sha256:<digest> \
+       --from-index <registry>/<namespace>/<existing_index_image>:<existing_tag> \
+       --tag <registry>/<namespace>/<existing_index_image>:<updated_tag> \
+       --pull-tool podman
    ```
 
-   1. The `--bundles` flag specifies a comma-separated list of additional bundle images to add to the index.
-   2. The `--from-index` flag specifies the previously pushed index.
-   3. The `--tag` flag specifies the image tag to apply to the updated index image.
-   4. The `--pull-tool` flag specifies the tool used to pull container images.
-      where:
+   where:
 
-      <dl>
-      <dt><code>&lt;registry&gt;</code></dt>
-      <dd>Specifies the hostname of the registry, such as <code>quay.io</code> or <code>mirror.example.com</code>.</dd>
-      <dt><code>&lt;namespace&gt;</code></dt>
-      <dd>Specifies the namespace of the registry, such as <code>ocs-dev</code> or <code>abc</code>.</dd>
-      <dt><code>&lt;new_bundle_image&gt;</code></dt>
-      <dd>Specifies the new bundle image to add to the registry, such as <code>ocs-operator</code>.</dd>
-      <dt><code>&lt;digest&gt;</code></dt>
-      <dd>Specifies the SHA image ID, or digest, of the bundle image, such as <code>c7f11097a628f092d8bad148406aa0e0951094a03445fd4bc0775431ef683a41</code>.</dd>
-      <dt><code>&lt;existing_index_image&gt;</code></dt>
-      <dd>Specifies the previously pushed image, such as <code>abc-redhat-operator-index</code>.</dd>
-      <dt><code>&lt;existing_tag&gt;</code></dt>
-      <dd>Specifies a previously pushed image tag, such as <code>4.22</code>.</dd>
-      <dt><code>&lt;updated_tag&gt;</code></dt>
-      <dd>Specifies the image tag to apply to the updated index image, such as <code>4.22.1</code>.</dd>
-      </dl>
+   <dl>
+   <dt><code>--bundles</code></dt>
+   <dd>Specifies a comma-separated list of additional bundle images to add to the index.</dd>
+   <dt><code>--from-index</code></dt>
+   <dd>Specifies the previously pushed index.</dd>
+   <dt><code>--tag</code></dt>
+   <dd>Specifies the image tag to apply to the updated index image.</dd>
+   <dt><code>--pull-tool</code></dt>
+   <dd>Specifies the tool used to pull container images.</dd>
+   <dt><code>&lt;registry&gt;</code></dt>
+   <dd>Specifies the hostname of the registry, such as <code>quay.io</code> or <code>mirror.example.com</code>.</dd>
+   <dt><code>&lt;namespace&gt;</code></dt>
+   <dd>Specifies the namespace of the registry, such as <code>ocs-dev</code> or <code>abc</code>.</dd>
+   <dt><code>&lt;new_bundle_image&gt;</code></dt>
+   <dd>Specifies the new bundle image to add to the registry, such as <code>ocs-operator</code>.</dd>
+   <dt><code>&lt;digest&gt;</code></dt>
+   <dd>Specifies the SHA image ID, or digest, of the bundle image, such as <code>c7f11097a628f092d8bad148406aa0e0951094a03445fd4bc0775431ef683a41</code>.</dd>
+   <dt><code>&lt;existing_index_image&gt;</code></dt>
+   <dd>Specifies the previously pushed image, such as <code>abc-redhat-operator-index</code>.</dd>
+   <dt><code>&lt;existing_tag&gt;</code></dt>
+   <dd>Specifies a previously pushed image tag, such as <code>4.22</code>.</dd>
+   <dt><code>&lt;updated_tag&gt;</code></dt>
+   <dd>Specifies the image tag to apply to the updated index image, such as <code>4.22.1</code>.</dd>
+   </dl>
 
    ```terminal title="Example command"
    $ opm index add \
@@ -472,16 +483,24 @@ An index image, based on the Operator bundle format, is a containerized snapshot
 3. Run the following command to prune the source index of all but the specified packages:
    ```text
    $ opm index prune \
-       -f registry.redhat.io/redhat/redhat-operator-index:v4.22 \ (1)
-       -p advanced-cluster-management,jaeger-product,quay-operator \ (2)
-       [-i registry.redhat.io/openshift4/ose-operator-registry-rhel9:v4.22] \ (3)
-       -t <target_registry>:<port>/<namespace>/redhat-operator-index:v4.22 (4)
+       -f registry.redhat.io/redhat/redhat-operator-index:v4.22 \
+       -p advanced-cluster-management,jaeger-product,quay-operator \
+       [-i registry.redhat.io/openshift4/ose-operator-registry-rhel9:v4.22] \
+       -t <target_registry>:<port>/<namespace>/redhat-operator-index:v4.22
    ```
 
-   1. Index to prune.
-   2. Comma-separated list of packages to keep.
-   3. Required only for IBM Power(R) and IBM Z(R) images: Operator Registry base image with the tag that matches the target OpenShift Container Platform cluster major and minor version.
-   4. Custom tag for new index image being built.
+   where:
+
+   <dl>
+   <dt><code>-f</code></dt>
+   <dd>Specifies the index to prune.</dd>
+   <dt><code>-p</code></dt>
+   <dd>Specifies a comma-separated list of packages to keep.</dd>
+   <dt><code>-i</code></dt>
+   <dd>Required only for IBM Power(R) and IBM Z(R) images: Specifies the Operator Registry base image with the tag that matches the target OpenShift Container Platform cluster major and minor version.</dd>
+   <dt><code>-t</code></dt>
+   <dd>Specifies the custom tag for the new index image being built.</dd>
+   </dl>
 4. Run the following command to push the new index image to your target registry:
    ```text
    $ podman push <target_registry>:<port>/<namespace>/redhat-operator-index:v4.22
@@ -622,14 +641,20 @@ The SQLite database catalog format is deprecated, but still supported by Red Hat
    metadata:
    ...
      labels:
-       security.openshift.io/scc.podSecurityLabelSync: "false" (1)
+       security.openshift.io/scc.podSecurityLabelSync: "false"
        openshift.io/cluster-monitoring: "true"
-       pod-security.kubernetes.io/enforce: baseline (2)
+       pod-security.kubernetes.io/enforce: baseline
      name: "<namespace_name>"
    ```
 
-   1. Turn off pod security label synchronization by adding the `security.openshift.io/scc.podSecurityLabelSync=false` label to the namespace.
-   2. Apply the pod security admission `pod-security.kubernetes.io/enforce` label. Set the label to `baseline` or `privileged`. Use the `baseline` pod security profile unless other workloads in the namespace require a `privileged` profile.
+   where:
+
+   <dl>
+   <dt><code>metadata.labels.security.openshift.io/scc.podSecurityLabelSync</code></dt>
+   <dd>Turns off pod security label synchronization when set to <code>"false"</code>.</dd>
+   <dt><code>metadata.labels.pod-security.kubernetes.io/enforce</code></dt>
+   <dd>Specifies the pod security admission enforcement level. Set to <code>baseline</code> or <code>privileged</code>. Use the <code>baseline</code> profile unless other workloads in the namespace require a <code>privileged</code> profile.</dd>
+   </dl>
 
 ## Add a catalog source to a cluster {#olm-creating-catalog-from-index_olm-managing-custom-catalogs}
 
@@ -862,11 +887,11 @@ Operator and Operand images
      namespace: openshift-marketplace
    spec:
      sourceType: grpc
-     secrets: (1)
+     secrets:
      - "<secret_name_1>"
      - "<secret_name_2>"
      grpcPodConfig:
-       securityContextConfig: <security_mode> (2)
+       securityContextConfig: <security_mode>
      image: <registry>:<port>/<namespace>/<image>:<tag>
      displayName: My Operator Catalog
      publisher: <publisher_name>
@@ -875,13 +900,23 @@ Operator and Operand images
          interval: 30m
    ```
 
-   1. Add a `spec.secrets` section and specify any required secrets.
-   2. Specify the value of `legacy` or `restricted`. If the field is not set, the default value is `legacy`. In a future OpenShift Container Platform release, it is planned that the default value will be `restricted`.
-      :::note
+   -
 
-      If your catalog cannot run with `restricted` permissions, it is recommended that you manually set this field to `legacy`.
+   where:
 
-      :::
+   **`spec.secrets`**
+
+   Specifies required secrets. Add a `spec.secrets` section and specify any required secrets.
+
+   **`spec.grpcPodConfig.securityContextConfig`**
+
+   Specifies the security context value. Set to `legacy` or `restricted`. If the field is not set, the default value is `legacy`. In a future OpenShift Container Platform release, it is planned that the default value will be `restricted`.
+
+   :::note
+
+   If your catalog cannot run with `restricted` permissions, it is recommended that you manually set this field to `legacy`.
+
+   :::
 3. If any Operator or Operand images that are referenced by a subscribed Operator require access to a private registry, you can either provide access to all namespaces in the cluster, or individual target tenant namespaces.
    - To provide access to all namespaces in the cluster, add authentication details to the global cluster pull secret in the `openshift-config` namespace.
      :::warning
@@ -897,11 +932,18 @@ Operator and Operand images
      2. Update the `.dockerconfigjson` file with your authentication credentials for the required private registry or registries and save it as a new file:
         ```terminal
         $ cat .dockerconfigjson | \
-            jq --compact-output '.auths["<registry>:<port>/<namespace>/"] |= . + {"auth":"<token>"}' \ (1)
+            jq --compact-output '.auths["<registry>:<port>/<namespace>/"] |= . + {"auth":"<token>"}' \
             > new_dockerconfigjson
         ```
 
-        1. Replace `<registry>:<port>/<namespace>` with the private registry details and `<token>` with your authentication credentials.
+        where:
+
+        <dl>
+        <dt><code>&lt;registry&gt;:&lt;port&gt;/&lt;namespace&gt;</code></dt>
+        <dd>Specifies the private registry details.</dd>
+        <dt><code>&lt;token&gt;</code></dt>
+        <dd>Specifies your authentication credentials.</dd>
+        </dl>
      3. Update the global pull secret with the new file:
         ```terminal
         $ oc set data secret/pull-secret -n openshift-config \
@@ -917,20 +959,24 @@ Operator and Operand images
         ```
      2. Verify the name of the service account for the Operator by searching the tenant namespace:
         ```terminal
-        $ oc get sa -n <tenant_namespace> (1)
+        $ oc get sa -n <tenant_namespace>
         ```
 
-        1. If the Operator was installed in an individual namespace, search that namespace. If the Operator was installed for all namespaces, search the `openshift-operators` namespace.
+        -
 
-        ```terminal title="Example output"
+        :::note
+
+        If the Operator was installed in an individual namespace, search that namespace. If the Operator was installed for all namespaces, search the `openshift-operators` namespace.
+
+        :::
+
+        ```terminal
         NAME            SECRETS   AGE
         builder         2         6m1s
         default         2         6m1s
         deployer        2         6m1s
-        etcd-operator   2         5m18s (1)
+        etcd-operator   2         5m18s
         ```
-
-        1. Service account for an installed etcd Operator.
      3. Link the secret to the service account for the Operator:
         ```terminal
         $ oc secrets link <operator_sa> \

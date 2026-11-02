@@ -303,7 +303,9 @@ Worker nodes provisioned by using a `BareMetalHost` resource do not have an asso
 
 ## Verify DPU provisioning {#nw-dpf-verifying-dpu-provisioning_dpf-worker-nodes-provisioning}
 
-After the worker nodes join the management cluster, the `DPUSet` controller automatically detects nodes with the `feature.node.kubernetes.io/dpu-enabled` label, which the Node Feature Discovery Operator applies to DPU-equipped nodes. The controller then creates a `DPU` object for each node and starts the provisioning process. You can monitor the provisioning stages to verify progress.
+After the worker nodes join the management cluster, the `DPUSet` controller automatically detects nodes with the `feature.node.kubernetes.io/dpu-enabled` label, which the Node Feature Discovery Operator applies to DPU-equipped nodes.
+
+The controller then creates a `DPU` object for each node and starts the provisioning process. You can monitor the provisioning stages to verify progress.
 
 **Prerequisites**
 

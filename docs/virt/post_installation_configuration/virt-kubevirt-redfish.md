@@ -19,7 +19,7 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 :::
 
-## About KubeVirt Redfish {#con_virt-about-kubevirt-redfish_virt-kubevirt-redfish}
+## KubeVirt Redfish API for VM management {#con_virt-about-kubevirt-redfish_virt-kubevirt-redfish}
 
 KubeVirt Redfish is a Redfish-compatible API that exposes virtual machines (VMs) managed by OpenShift Virtualization on OpenShift Container Platform.
 
@@ -31,7 +31,7 @@ KubeVirt Redfish is deployed on the hosting cluster as a Deployment resource and
 
 Requests arrive at the KubeVirt Redfish endpoint, which is exposed as an OpenShift Container Platform Route. KubeVirt Redfish then translates supported Redfish operations into KubeVirt API calls to manage VM power state, inventory, and virtual media.
 
-## How KubeVirt Redfish differs from physical BMC Redfish {#con_virt-kubevirt-redfish-vs-bmc_virt-kubevirt-redfish}
+## KubeVirt Redfish compared to physical BMC Redfish {#con_virt-kubevirt-redfish-vs-bmc_virt-kubevirt-redfish}
 
 Redfish is commonly used with physical baseboard management controllers (BMCs) for bare metal deployments, where it manages hardware power state, boot configuration, and provisioning.
 

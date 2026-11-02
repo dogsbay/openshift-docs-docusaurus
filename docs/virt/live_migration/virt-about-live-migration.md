@@ -155,6 +155,10 @@ Post copy mode should not be used for critical data, or with unstable networks.
 
 ## VM migration support for RHCOS 10.x {#virt-vm-migration-dual-stream_virt-about-live-migration}
 
+```
+{VirtProductName} 4.22 and later supports live migration to, from, and between {op-system} 10.x worker nodes as a Technology Preview feature. This includes clusters that run a mix of {op-system} 9.x and 10.x worker nodes. {._abstract}
+```
+
 :::warning
 
 Live migration support for RHCOS 10.x is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
@@ -162,8 +166,6 @@ Live migration support for RHCOS 10.x is a Technology Preview feature only. Tech
 For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
 :::
-
-OpenShift Virtualization 4.22 and later versions supports live migration with RHCOS 10.x worker nodes as a Technology Preview feature.
 
 For information on configuring your cluster to use RHCOS 10.x, refer to the OpenShift Container Platform documentation.
 

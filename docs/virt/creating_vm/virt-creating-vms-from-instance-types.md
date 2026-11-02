@@ -9,7 +9,7 @@ sidebar_position: 5
 
 You can simplify virtual machine (VM) creation by using instance types, which define a reusable set of resources, such as CPU and memory. You can create instance types or change the VMs that use them.
 
-## About instance types {#virt-about-instance-types_virt-creating-vms-from-instance-types}
+## Instance types {#virt-about-instance-types_virt-creating-vms-from-instance-types}
 
 An instance type is a reusable object where you can define resources and characteristics to apply to new VMs. You can define custom instance types or use the variety that are included when you install OpenShift Virtualization.
 
@@ -106,7 +106,7 @@ When you create a VM by using an instance type, a `ControllerRevision` object re
 
 This snapshot is essential for versioning, and ensures that the VM instance created when starting a VM does not change if the underlying instance type object is updated while the VM is running.
 
-## Using flags to specify instance types and preferences {#virt-using-flags-specify_virt-creating-vms-from-instance-types}
+## Specify instance types and preferences with flags {#virt-using-flags-specify_virt-creating-vms-from-instance-types}
 
 You can specify instance types and preferences by using flags.
 
@@ -125,7 +125,7 @@ You can specify instance types and preferences by using flags.
    $ virtctl create vm --instancetype virtualmachineinstancetype/<my_instancetype> --preference virtualmachinepreference/<my_preference>
    ```
 
-## Inferring an instance type or preference {#virt-infer-instancetype-preference_virt-creating-vms-from-instance-types}
+## Infer instance types from volumes {#virt-infer-instancetype-preference_virt-creating-vms-from-instance-types}
 
 Inferring instance types, preferences, or both is enabled by default, and the `inferFromVolumeFailure` policy of the `inferFromVolume` attribute is set to `Ignore`. When inferring from the boot volume, errors are ignored, and the VM is created with the instance type and preference left unset.
 
@@ -152,7 +152,7 @@ You can use the `--infer-instancetype` and `--infer-preference` flags to infer w
     --infer-preference-from volume-b
   ```
 
-## Setting the inferFromVolume labels {#inferfromvolume-labels_virt-creating-vms-from-instance-types}
+## Set volume inference labels {#inferfromvolume-labels_virt-creating-vms-from-instance-types}
 
 Use the following labels on your PVC, data source, or data volume to instruct the inference mechanism which instance type, preference, or both to use when trying to boot from a volume.
 
@@ -183,7 +183,7 @@ Different instance types are optimized for specific use cases, so switching to a
 
 You can change the instance type for an existing VM using either the OpenShift Container Platform web console or the OpenShift CLI (`oc`).
 
-### Changing the instance type of a VM by using the web console {#virt-change-vm-instance-type_virt-creating-vms-from-instance-types}
+### Change a VM instance type in the web console {#virt-change-vm-instance-type_virt-creating-vms-from-instance-types}
 
 You can change the instance type associated with a running virtual machine (VM) by using the web console. The change takes effect immediately.
 
@@ -208,7 +208,7 @@ You can change the instance type associated with a running virtual machine (VM) 
 2. Click **Reload**.
 3. Review the VM YAML to confirm that the instance type changed.
 
-### Changing the instance type of a VM by using the CLI {#virt-change-vm-instance-type-cli_virt-creating-vms-from-instance-types}
+### Change a VM instance type from the CLI {#virt-change-vm-instance-type-cli_virt-creating-vms-from-instance-types}
 
 To change the instance type of a VM, change the `name` field in the VM spec. This triggers the update logic, which ensures that a new, immutable controller revision snapshot is taken of the new resource configuration.
 

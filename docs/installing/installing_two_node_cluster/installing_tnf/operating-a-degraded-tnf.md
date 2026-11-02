@@ -19,7 +19,9 @@ A degraded cluster has zero fault tolerance. If the surviving node also fails, t
 
 ## TNF cluster degradation causes {#tnf-cluster-degradation-causes_operating-a-degraded-tnf}
 
-A two-node OpenShift cluster with fencing (TNF) becomes degraded when one node fails or loses communication with the cluster. Identifying the specific cause of degradation is essential because it determines whether the cluster can automatically recover or if manual intervention, such as fencing or hardware repair, is required to prevent data corruption and maintain service availability.
+A two-node OpenShift cluster with fencing (TNF) becomes degraded when one node fails or loses communication with the cluster.
+
+Identifying the specific cause of degradation is essential because it determines whether the cluster can automatically recover or if manual intervention, such as fencing or hardware repair, is required to prevent data corruption and maintain service availability.
 
 Some common causes of cluster degradation include:
 
@@ -181,7 +183,9 @@ Pod disruption budget (PDB) enforcement
 
 ## Recovering a failed TNF node {#recovering-a-failed-tnf-node_operating-a-degraded-tnf}
 
-Recovery is automatic when the failed node is powered on and rejoins the network. Degraded operation is a temporary state. Restore the failed node as soon as possible to regain fault tolerance, fencing protection, and the ability to perform upgrades and maintenance. If the original node cannot be recovered, replace it.
+Recovery is automatic when the failed node is powered on and rejoins the network. Degraded operation is a temporary state.
+
+Restore the failed node as soon as possible to regain fault tolerance, fencing protection, and the ability to perform upgrades and maintenance. If the original node cannot be recovered, replace it.
 
 :::warning
 

@@ -115,7 +115,7 @@ OADP also provides plugins for OpenShift Container Platform resource backups, Op
 
 **Additional resources**
 
-- [Custom plugins](https://velero.io/docs/v1.16/custom-plugins/)
+- [Custom plugins](https://velero.io/docs/latest/custom-plugins/)
 
 ## About OADP Velero plugins {#oadp-configuring-velero-plugins_oadp-features-plugins}
 

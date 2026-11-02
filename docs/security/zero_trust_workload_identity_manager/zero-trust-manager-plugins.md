@@ -131,7 +131,9 @@ Install cert-manager Operator for Red Hat OpenShift and create an `Issuer` or `C
 
 ## Configuring the cert-manager upstream authority plugin {#zero-trust-manager-config-cert-manager_zero-trust-manager-plugins}
 
-Configure SPIRE Server to obtain intermediate signing certificates from cert-manager Operator for Red Hat OpenShift by setting `spec.upstreamAuthority.certManager` on the `SpireServer` custom resource. Zero Trust Workload Identity Manager generates SPIRE Server configuration and reconciles the SPIRE Server &#96;StatefulSet.
+Configure SPIRE Server to obtain intermediate signing certificates from cert-manager Operator for Red Hat OpenShift by setting `spec.upstreamAuthority.certManager` on the `SpireServer` custom resource.
+
+Zero Trust Workload Identity Manager generates SPIRE Server configuration and reconciles the SPIRE Server &#96;StatefulSet.
 
 **Prerequisites**
 
@@ -228,7 +230,9 @@ Configure SPIRE Server to obtain intermediate signing certificates from cert-man
 
 ## cert-manager upstream authority plugin reference {#zero-trust-manager-cert-manager-plugin-ref_zero-trust-manager-plugins}
 
-This reference describes `spec.upstreamAuthority.certManager` fields on the `SpireServer` custom resource and how Zero Trust Workload Identity Manager uses them to request intermediate certificates from cert-manager Operator for Red Hat OpenShift. Use it when you configure or troubleshoot the cert-manager Operator for Red Hat OpenShift UpstreamAuthority plugin and need field descriptions or defaults.
+This reference describes `spec.upstreamAuthority.certManager` fields on the `SpireServer` custom resource and how Zero Trust Workload Identity Manager uses them to request intermediate certificates from cert-manager Operator for Red Hat OpenShift.
+
+Use it when you configure or troubleshoot the cert-manager Operator for Red Hat OpenShift UpstreamAuthority plugin and need field descriptions or defaults.
 
 ### SpireServer CR fields {#cert-manager-plugin-spireserver-cr-reference_zero-trust-manager-plugins}
 
@@ -291,7 +295,9 @@ $ oc logs statefulset/spire-server -n zero-trust-workload-identity-manager -c sp
 
 ## About the SPIRE Vault UpstreamAuthority plugin {#zero-trust-manager-about-vault-plugin_zero-trust-manager-plugins}
 
-The Vault UpstreamAuthority plugin connects SPIRE Server to the HashiCorp Vault PKI secrets engine for automated intermediate CA certificate signing. Use this plugin when you centralize PKI in Vault and want SPIRE to obtain intermediate signing certificates through Vault policies and authentication method.
+The Vault UpstreamAuthority plugin connects SPIRE Server to the HashiCorp Vault PKI secrets engine for automated intermediate CA certificate signing.
+
+Use this plugin when you centralize PKI in Vault and want SPIRE to obtain intermediate signing certificates through Vault policies and authentication method.
 
 The SPIRE Vault UpstreamAuthority plugin provides the following features:
 
@@ -338,7 +344,9 @@ Kubernetes RBAC (when using Kubernetes authentication)
 
 ## Configuring the SPIRE Vault UpstreamAuthority plugin {#zero-trust-manager-spire-vault-config_zero-trust-manager-plugins}
 
-Configure SPIRE Server to obtain intermediate signing certificates from HashiCorp Vault by setting `spec.upstreamAuthority.vault` on the `SpireServer` custom resource (CR). Zero Trust Workload Identity Manager generates the SPIRE Server configuration, mounts Vault credentials into the SPIRE Server pod, and reconciles the SPIRE Server `StatefulSet`.
+Configure SPIRE Server to obtain intermediate signing certificates from HashiCorp Vault by setting `spec.upstreamAuthority.vault` on the `SpireServer` custom resource (CR).
+
+Zero Trust Workload Identity Manager generates the SPIRE Server configuration, mounts Vault credentials into the SPIRE Server pod, and reconciles the SPIRE Server `StatefulSet`.
 
 On OpenShift Container Platform, the `SpireServer` CR supports Vault authentication only through the Kubernetes auth method. Zero Trust Workload Identity Manager mounts a projected SPIRE Server `ServiceAccount` token and, when configured, a Vault CA certificate Secret at fixed paths inside the pod.
 

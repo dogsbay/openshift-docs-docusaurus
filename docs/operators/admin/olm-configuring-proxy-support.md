@@ -92,7 +92,9 @@ Operators must handle setting environment variables for proxy settings in the po
 
 When a cluster administrator
 
-adds a custom CA certificate to a cluster using a config map, the Cluster Network Operator merges the user-provided certificates and system CA certificates into a single bundle. You can inject this merged bundle into your Operator running on Operator Lifecycle Manager (OLM), which is useful if you have a man-in-the-middle HTTPS proxy.
+adds a custom CA certificate to a cluster using a config map, the Cluster Network Operator merges the user-provided certificates and system CA certificates into a single bundle.
+
+You can inject this merged bundle into your Operator running on Operator Lifecycle Manager (OLM), which is useful if you have a man-in-the-middle HTTPS proxy.
 
 **Prerequisites**
 
@@ -107,14 +109,19 @@ adds a custom CA certificate to a cluster using a config map, the Cluster Networ
    apiVersion: v1
    kind: ConfigMap
    metadata:
-     name: trusted-ca (1)
+     name: trusted-ca
      labels:
-       config.openshift.io/inject-trusted-cabundle: "true" (2)
+       config.openshift.io/inject-trusted-cabundle: "true"
    ```
 
-   1. Name of the config map.
-   2. Requests the Cluster Network Operator to inject the merged bundle.
-      After creating this config map, it is immediately populated with the certificate contents of the merged bundle.
+   where:
+
+   <dl>
+   <dt><code>metadata.name</code></dt>
+   <dd>Specifies the name of the config map.</dd>
+   <dt><code>metadata.labels.config.openshift.io/inject-trusted-cabundle</code></dt>
+   <dd>Requests the Cluster Network Operator to inject the merged bundle when set to <code>"true"</code>. After creating this config map, it is immediately populated with the certificate contents of the merged bundle.</dd>
+   </dl>
 2. Update the `Subscription` object to include a `spec.config` section that mounts the `trusted-ca` config map as a volume to each container within a pod that requires a custom CA:
    ```yaml
    apiVersion: operators.coreos.com/v1alpha1
@@ -124,29 +131,39 @@ adds a custom CA certificate to a cluster using a config map, the Cluster Networ
    spec:
      package: etcd
      channel: alpha
-     config: (1)
+     config:
        selector:
          matchLabels:
-           <labels_for_pods> (2)
-       volumes: (3)
+           <labels_for_pods>
+       volumes:
        - name: trusted-ca
          configMap:
            name: trusted-ca
            items:
-             - key: ca-bundle.crt (4)
-               path: tls-ca-bundle.pem (5)
-       volumeMounts: (6)
+             - key: ca-bundle.crt
+               path: tls-ca-bundle.pem
+       volumeMounts:
        - name: trusted-ca
          mountPath: /etc/pki/ca-trust/extracted/pem
          readOnly: true
    ```
 
-   1. Add a `config` section if it does not exist.
-   2. Specify labels to match pods that are owned by the Operator.
-   3. Create a `trusted-ca` volume.
-   4. `ca-bundle.crt` is required as the config map key.
-   5. `tls-ca-bundle.pem` is required as the config map path.
-   6. Create a `trusted-ca` volume mount.
+   where:
+
+   <dl>
+   <dt><code>spec.config</code></dt>
+   <dd>Specifies the configuration section. Add a <code>config</code> section if it does not exist.</dd>
+   <dt><code>spec.config.selector.matchLabels</code></dt>
+   <dd>Specifies labels to match pods that are owned by the Operator.</dd>
+   <dt><code>spec.config.volumes</code></dt>
+   <dd>Creates a <code>trusted-ca</code> volume.</dd>
+   <dt><code>spec.config.volumes[].configMap.items[].key</code></dt>
+   <dd>Specifies the config map key. <code>ca-bundle.crt</code> is required as the config map key.</dd>
+   <dt><code>spec.config.volumes[].configMap.items[].path</code></dt>
+   <dd>Specifies the config map path. <code>tls-ca-bundle.pem</code> is required as the config map path.</dd>
+   <dt><code>spec.config.volumeMounts</code></dt>
+   <dd>Creates a <code>trusted-ca</code> volume mount.</dd>
+   </dl>
 
    :::note
 

@@ -545,7 +545,9 @@ Baseboard Management Controller (BMC) details
 
 ### Configuring IPsec encryption for single-node OpenShift clusters using GitOps ZTP and ClusterInstance resources {#ztp-configuring-ipsec-using-ztp-and-siteconfig_ztp-deploying-far-edge-sites}
 
-You can enable IPsec encryption in managed single-node OpenShift clusters that you install using GitOps ZTP and Red Hat Advanced Cluster Management (RHACM). You can encrypt traffic between the managed cluster and IPsec endpoints external to the managed cluster. All network traffic between nodes on the OVN-Kubernetes cluster network is encrypted with IPsec in Transport mode.
+You can enable IPsec encryption in managed single-node OpenShift clusters that you install using GitOps ZTP and Red Hat Advanced Cluster Management (RHACM).
+
+You can encrypt traffic between the managed cluster and IPsec endpoints external to the managed cluster. All network traffic between nodes on the OVN-Kubernetes cluster network is encrypted with IPsec in Transport mode.
 
 :::warning
 
@@ -689,7 +691,9 @@ For information about verifying the IPsec encryption, see "Verifying the IPsec e
 
 ### Configuring IPsec encryption for multi-node clusters using GitOps ZTP and ClusterInstance resources {#ztp-configuring-ipsec-using-ztp-and-siteconfig-for-mno_ztp-deploying-far-edge-sites}
 
-You can enable IPsec encryption in managed multi-node clusters that you install using GitOps ZTP and Red Hat Advanced Cluster Management (RHACM). You can encrypt traffic between the managed cluster and IPsec endpoints external to the managed cluster. All network traffic between nodes on the OVN-Kubernetes cluster network is encrypted with IPsec in Transport mode.
+You can enable IPsec encryption in managed multi-node clusters that you install using GitOps ZTP and Red Hat Advanced Cluster Management (RHACM).
+
+You can encrypt traffic between the managed cluster and IPsec endpoints external to the managed cluster. All network traffic between nodes on the OVN-Kubernetes cluster network is encrypted with IPsec in Transport mode.
 
 **Prerequisites**
 
@@ -1286,7 +1290,9 @@ The ArgoCD pipeline uses the `ClusterInstance` and `PolicyGenerator` or `PolicyG
 
 ## Troubleshooting GitOps ZTP virtual media booting on SuperMicro servers {#ztp-troubleshooting-ztp-gitops-supermicro-tls_ztp-deploying-far-edge-sites}
 
-SuperMicro X11 servers do not support virtual media installations when the image is served using the `https` protocol. As a result, single-node OpenShift deployments for this environment fail to boot on the target node. To avoid this issue, log in to the hub cluster and disable Transport Layer Security (TLS) in the `Provisioning` resource. This ensures the image is not served with TLS even though the image address uses the `https` scheme.
+SuperMicro X11 servers do not support virtual media installations when the image is served using the `https` protocol.
+
+As a result, single-node OpenShift deployments for this environment fail to boot on the target node. To avoid this issue, log in to the hub cluster and disable Transport Layer Security (TLS) in the `Provisioning` resource. This ensures the image is not served with TLS even though the image address uses the `https` scheme.
 
 **Prerequisites**
 

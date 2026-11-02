@@ -29,7 +29,7 @@ After adding the `NoSchedule` taint on the infrastructure node, existing DNS pod
 
 :::
 
-## OpenShift Container Platform infrastructure components {#infrastructure-components_creating-infrastructure-nodes}
+## Move components to infrastructure nodes to reduce costs {#infrastructure-components_creating-infrastructure-nodes}
 
 To reduce subscription costs, you can review the following information to understand which components you can move to an infrastructure node. Components that you move to an infrastructure node do not need to be accounted for during sizing.
 

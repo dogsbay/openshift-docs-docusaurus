@@ -269,7 +269,7 @@ When you need more capacity in your hosted cluster and spare agents are availabl
 
 ### Disabling node auto-scaling for the hosted cluster {#hcp-bm-autoscale-disable_hcp-manage-non-bm}
 
-If needed, you can disable node auto-scaling.
+If needed, you can disable node auto-scaling for the hosted cluster.
 
 **Procedure**
 

@@ -11,7 +11,7 @@ To attach a storage device to a virtual machine (VM) without rebooting the VM, y
 
 This also makes it possible to install an operating system from a CD-ROM in the VM.
 
-## Inserting a CD-ROM in a live VM by using the command line {#virt-inserting-a-cd-rom-in-a-vm-by-using-the-command-line_virt-inserting-cd-roms-in-virtual-machines}
+## Insert a CD-ROM in a running VM by using the CLI {#virt-inserting-a-cd-rom-in-a-vm-by-using-the-command-line_virt-inserting-cd-roms-in-virtual-machines}
 
 To make data on a CD-ROM storage device available to a running virtual machine (VM), create a virtual CD-ROM drive in the VM and insert the CD-ROM into the drive as an ISO image.
 
@@ -87,7 +87,7 @@ Setting up a virtual CD-ROM drive requires rebooting the VM, but afterwards, you
 5. Optional: In the guest operating system, verify that the CD-ROM has been detected.
 6. Optional: Eject the CD-ROM volume. To do so, remove the `cdrom` volume from the `spec.template.spec.volumes` section of the VM configuration. You can do this while the VM is running.
 
-## Inserting a CD-ROM in a live VM by using the web console {#virt-inserting-a-cd-rom-in-a-vm-by-using-the-web-console_virt-inserting-cd-roms-in-virtual-machines}
+## Insert a CD-ROM into a running VM from the web console {#virt-inserting-a-cd-rom-in-a-vm-by-using-the-web-console_virt-inserting-cd-roms-in-virtual-machines}
 
 To make data on a CD-ROM storage device available to a running virtual machine (VM), create a virtual CD-ROM drive in the VM and insert the CD-ROM into the drive as an ISO image.
 

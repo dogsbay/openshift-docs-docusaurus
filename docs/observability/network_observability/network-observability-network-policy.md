@@ -181,7 +181,7 @@ The following example demonstrates how to provide your own certificates rather t
 
    <dl>
    <dt><code>spec.processor.service.tlsType</code></dt>
-   <dd>Specifies the TLS configuration mode: *   <code>Auto</code> (default): Communications are automatically secured by using OpenShift service CA annotations. This provides TLS encryption with zero configuration. *   <code>Disabled</code>: TLS is disabled. Communications between agents and FLP are not encrypted. Use this option only in development or testing environments. *   <code>Provided</code>: You provide your own certificates for TLS or mutual TLS. This option requires additional configuration by using the <code>caFile</code>, <code>serverCert</code>, and <code>clientCert</code> fields. When <code>clientCert</code> is omitted, TLS is configured rather than mTLS.</dd>
+   <dd>Specifies the TLS configuration mode. The default value, <code>Auto</code>, secures communications automatically by using OpenShift service CA annotations with zero configuration required. <code>Disabled</code> turns off TLS encryption; use only in development or testing environments. <code>Provided</code> lets you supply your own certificates for TLS or mutual TLS by using the <code>caFile</code>, <code>serverCert</code>, and <code>clientCert</code> fields. When <code>clientCert</code> is omitted, TLS is configured rather than mTLS</dd>
    </dl>
 
 `spec.processor.service.providedCertificates.caFile.type`

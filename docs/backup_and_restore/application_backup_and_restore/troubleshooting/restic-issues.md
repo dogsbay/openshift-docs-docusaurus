@@ -86,7 +86,9 @@ stderr=Fatal: unable to open config file: Stat: The specified key does not exist
 
 ## Troubleshoot restic restore partially failed issue on &#123;ocp&#125; 4.14 onward due to changed PSA policy {#oadp-restic-restore-failing-psa-policy_restic-issues}
 
-Resolve a partial failure of Restic restore on &#123;ocp&#125; 4.14 onward caused by Pod Security Admission (PSA) policy enforcement by adjusting the `restore-resource-priorities` field in your `DataProtectionApplication` (DPA) custom resource (CR). By doing so, you ensure that `SecurityContextConstraints` (SCC) resources are restored before pods. This helps you to complete restore operations successfully when PSA policies deny pod admission due to Velero resource restore order.
+Resolve a partial failure of Restic restore on &#123;ocp&#125; 4.14 onward caused by Pod Security Admission (PSA) policy enforcement by adjusting the `restore-resource-priorities` field in your `DataProtectionApplication` (DPA) custom resource (CR).
+
+By doing so, you ensure that `SecurityContextConstraints` (SCC) resources are restored before pods. This helps you to complete restore operations successfully when PSA policies deny pod admission due to Velero resource restore order.
 
 From 4.14 onward, &#123;ocp&#125; enforces a PSA policy that can hinder the readiness of pods during a Restic restore process. If an SCC resource is not found when a pod is created, and the PSA policy on the pod is not set up to meet the required standards, pod admission is denied.
 

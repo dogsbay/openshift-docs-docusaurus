@@ -96,7 +96,7 @@ The **Topology** view provides the details of the deployed components in the **O
 
 ## Adding components to an existing project {#odc-adding-components-to-an-existing-project_viewing-application-composition-using-topology-view}
 
-You can add components to a project.
+You can add components or services to an existing project from the **+Add** view in the **Developer** perspective.
 
 **Procedure**
 
@@ -107,11 +107,11 @@ You can add components to a project.
 
    ![odc_quick_search](/images/odc_quick_search.png)
 
-Alternatively, you can also use the available  options in the context menu, such as **Import from Git**, **Container Image**, **Database**, **From Catalog**, **Operator Backed**, **Helm Charts**, **Samples**, or **Upload JAR file**, by right-clicking in the topology **Graph view** to add a component to your project.
+   Alternatively, you can also use the available  options in the context menu, such as **Import from Git**, **Container Image**, **Database**, **From Catalog**, **Operator Backed**, **Helm Charts**, **Samples**, or **Upload JAR file**, by right-clicking in the topology **Graph view** to add a component to your project.
 
-**Figure 3. Context menu to add services**
+   **Figure 3. Context menu to add services**
 
-![odc_context_project](/images/odc_context_project.png)
+   ![odc_context_project](/images/odc_context_project.png)
 
 ## Grouping multiple components within an application {#odc-grouping-multiple-components_viewing-application-composition-using-topology-view}
 
@@ -128,14 +128,13 @@ You can use the **+Add** view to add multiple components or services to your pro
 
   ![odc_app_grouping_label](/images/odc_app_grouping_label.png)
 
-Alternatively, you can also add the component to an application as follows:
+  Alternatively, you can also add the component to an application as follows:
 
-1. Click the service pod to see the **Overview** panel to the right.
-2. Click the **Actions** drop-down menu and select **Edit Application Grouping**.
-3. In the **Edit Application Grouping** dialog box, click the **Application** drop-down list, and select an appropriate application group.
-4. Click **Save** to add the service to the application group.
-
-You can remove a component from an application group by selecting the component and using <kbd>Shift</kbd>+ drag to drag it out of the application group.
+  1. Click the service pod to see the **Overview** panel to the right.
+  2. Click the **Actions** drop-down menu and select **Edit Application Grouping**.
+  3. In the **Edit Application Grouping** dialog box, click the **Application** drop-down list, and select an appropriate application group.
+  4. Click **Save** to add the service to the application group.
+     You can remove a component from an application group by selecting the component and using <kbd>Shift</kbd>+ drag to drag it out of the application group.
 
 ## Adding services to your application {#odc-adding-services-to-your-application_viewing-application-composition-using-topology-view}
 
@@ -170,6 +169,8 @@ In the topology **Graph view** remove a service from your application using the 
 
 ## Labels and annotations used for the Topology view {#odc-labels-and-annotations-used-for-topology-view_viewing-application-composition-using-topology-view}
 
+The **Topology** view uses labels and annotations to display icons, source links, node connectors, and application groupings on the topology graph.
+
 The **Topology** view uses the following labels and annotations:
 
 Icon displayed in the node
@@ -184,7 +185,9 @@ Node Connector
 App grouping
 : The `app.kubernetes.io/part-of=<appname>` label is used to group the applications, services, and components.
 
-For detailed information on the labels and annotations OpenShift Container Platform applications must use, see [Guidelines for labels and annotations for OpenShift applications](https://github.com/redhat-developer/app-labels/blob/master/labels-annotation-for-openshift.adoc).
+**Additional resources**
+
+- [Guidelines for labels and annotations for OpenShift applications](https://github.com/redhat-developer/app-labels/blob/master/labels-annotation-for-openshift.adoc)
 
 **Additional resources**
 

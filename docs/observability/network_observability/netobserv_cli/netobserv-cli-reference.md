@@ -18,10 +18,14 @@ You can use the Network Observability CLI (`oc netobserv`) to pass command line 
 The basic syntax for `oc netobserv` commands:
 
 ```terminal title="oc netobserv syntax"
-$ oc netobserv [<command>] [<feature_option>] [<command_options>] (1)
+$ oc netobserv [<command>] [<feature_option>] [<command_options>]
 ```
 
-1. Feature options can only be used with the `oc netobserv flows` command. They cannot be used with the `oc netobserv packets` command.
+:::note
+
+Feature options can only be used with the `oc netobserv flows` command. They cannot be used with the `oc netobserv packets` command.
+
+:::
 
 ### Basic commands {#cli-basic-commands_netobserv-cli-reference}
 

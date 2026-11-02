@@ -13,7 +13,7 @@ When you configure your Windows VMs correctly, they activate automatically with 
 
 If you do not configure your Windows VMs so that they are license-compliant, they might fail to activate, suffer degraded system performance due to sub-optimal CPU pinning, and risk failing a licensing audit.
 
-## Create a license-compliant AWS EC2 Windows VM by using the web console {#virt-create-aws-li-windows-vm-web-console_virt-creating-vms-aws-li-windows}
+## Create an AWS-licensed Windows VM by using the web console {#virt-create-aws-li-windows-vm-web-console_virt-creating-vms-aws-li-windows}
 
 Create license-compliant Windows virtual machines (VMs) by enabling the `dedicatedCpuPlacement` attribute. This is enabled by default on **Dedicated vCPU** instance types.
 

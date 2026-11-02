@@ -15,31 +15,41 @@ Built on Red Hat Enterprise Linux (RHEL) and Kubernetes, OpenShift Container Pl
 
 ## About this release {#rn-ocp-about-this-release_release-notes}
 
-OpenShift Container Platform 4.22 release uses [Kubernetes 1.35](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.35.md) with CRI-O runtime. New features, changes, and known issues that pertain to OpenShift Container Platform 4.22 are included in this topic.
+OpenShift Container Platform 4.22 release uses Kubernetes 1.35 with CRI-O runtime. New features, changes, and known issues that pertain to OpenShift Container Platform 4.22 are included in this topic.
 
-OpenShift Container Platform 4.22 clusters are available at https://console.redhat.com/openshift. From the Red Hat Hybrid Cloud Console, you can deploy OpenShift Container Platform clusters to either on-premises or cloud environments.
+OpenShift Container Platform 4.22 clusters are available on the Red Hat Hybrid Cloud Console. From the Red Hat Hybrid Cloud Console, you can deploy OpenShift Container Platform clusters to either on-premises or cloud environments.
 
 You must use RHCOS machines for the control plane and for the compute machines.
 
-Starting from OpenShift Container Platform 4.14, the Extended Update Support (EUS) phase for even-numbered releases increases the total available lifecycle to 24 months on all supported architectures, including `x86_64`, 64-bit ARM (`aarch64`), IBM Power(R) (`ppc64le`), and IBM Z(R) (`s390x`) architectures. Beyond this, Red Hat also offers a 12-month additional EUS add-on, denoted as *Additional EUS Term 2*, that extends the total available lifecycle from 24 months to 36 months. The Additional EUS Term 2 is available on all architecture variants of OpenShift Container Platform. For more information about support for all versions, see the [Red Hat OpenShift Container Platform Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift).
+Starting from OpenShift Container Platform 4.14, the Extended Update Support (EUS) phase for even-numbered releases increases the total available lifecycle to 24 months on all supported architectures, including `x86_64`, 64-bit ARM (`aarch64`), IBM Power(R) (`ppc64le`), and IBM Z(R) (`s390x`) architectures. Beyond this, Red Hat also offers a 12-month additional EUS add-on, denoted as *Additional EUS Term 2*, that extends the total available lifecycle from 24 months to 36 months. The Additional EUS Term 2 is available on all architecture variants of OpenShift Container Platform.
 
 ### About FIPS compliance {#about-fips-compliance_release-notes}
 
 OpenShift Container Platform is designed for FIPS. When running Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS) booted in FIPS mode, OpenShift Container Platform core components use the RHEL cryptographic libraries that have been submitted to NIST for FIPS 140-2/140-3 Validation on only the `x86_64`, `ppc64le`, and `s390x` architectures.
 
-For more information about the NIST validation program, see [Cryptographic Module Validation Program](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules). For the latest NIST status for the individual versions of RHEL cryptographic libraries that have been submitted for validation, see [Compliance Activities and Government Standards](https://access.redhat.com/articles/2918071#fips-140-2-and-fips-140-3-2).
-
 ### About PQC compliance {#about-pqc-compliance_release-notes}
 
 OpenShift Container Platform supports post-quantum cryptography (PQC) readiness for secure cluster communication. When running on Red Hat Enterprise Linux (RHEL) or Red Hat Enterprise Linux CoreOS (RHCOS), core OpenShift Container Platform components use the cryptographic capabilities provided by the platform operating system and TLS 1.3 security profiles, including hybrid Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM) key exchange where enabled by the configured TLS security profile and supported by the component.
 
-For more information about NIST post-quantum cryptography standards, see [Post-Quantum Cryptography](https://csrc.nist.gov/projects/post-quantum-cryptography). For the latest compliance information for OpenShift Container Platform, RHEL, and Red Hat Enterprise Linux CoreOS (RHCOS), see [Compliance Activities and Government Standards](https://access.redhat.com/articles/2918071).
+**Additional resources**
+
+- [Kubernetes 1.35 changelog](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.35.md)
+- [Red Hat Hybrid Cloud Console](https://console.redhat.com/openshift)
+- [Red Hat OpenShift Container Platform Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift)
+- [Cryptographic Module Validation Program](https://csrc.nist.gov/Projects/cryptographic-module-validation-program/validated-modules)
+- [Compliance Activities and Government Standards (FIPS 140-2/140-3)](https://access.redhat.com/articles/2918071#fips-140-2-and-fips-140-3-2)
+- [Post-Quantum Cryptography](https://csrc.nist.gov/projects/post-quantum-cryptography)
+- [Compliance Activities and Government Standards](https://access.redhat.com/articles/2918071)
 
 ## OpenShift Container Platform layered and dependent component support and compatibility {#rn-ocp-4-22-add-on-support-status_release-notes}
 
 You can familiarize yourself with the scope of support for layered and dependent components of OpenShift Container Platform, which changes independently of the OpenShift Container Platform version.
 
-To determine the current support status and compatibility for an add-on, refer to its release notes. For more information, see the [Red Hat OpenShift Container Platform Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift).
+To determine the current support status and compatibility for an add-on, refer to its release notes.
+
+**Additional resources**
+
+- [Red Hat OpenShift Container Platform Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift)
 
 ## New features and enhancements {#rn-ocp-release-notes-new-features_release-notes}
 
@@ -651,6 +661,8 @@ Review the following tables based on various functions such as images, installat
 
 ## Deprecated features {#rn-ocp-release-notes-deprecated-features_release-notes}
 
+This section lists the features that are deprecated in OpenShift Container Platform 4.22 and may be removed in a future release.
+
 Deprecation of Fujitsu Integrated Remote Management Controller (iRMC) driver for bare-metal machines
 : As of OpenShift Container Platform 4.21, support for the Fujitsu iRMC baseboard management controller (BMC) driver has been deprecated and will be removed in a future release. If a `BareMetalHost` resource contains a BMC address with `irmc://` as its URI scheme, the resource must be updated to use another BMC scheme, such as `redfish://` or `ipmi://`. Once support for this driver is removed, hosts that use `irmc://` URI schemes will become unmanageable.
 
@@ -1139,7 +1151,7 @@ You can review the list of known issues in OpenShift Container Platform 4.22 to 
 
 ## Asynchronous errata updates {#rn-ocp-release-notes-async-errata-updates_release-notes}
 
-Security, bug fix, and enhancement updates for OpenShift Container Platform 4.22 are released as asynchronous errata through the Red Hat Network. All OpenShift Container Platform 4.22 errata is [available on the Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/). See the [OpenShift Container Platform Life Cycle](https://access.redhat.com/support/policy/updates/openshift) for more information about asynchronous errata. Red Hat Customer Portal users can enable errata notifications in the account settings for Red Hat Subscription Management (RHSM). When errata notifications are enabled, users are notified through email whenever new errata relevant to their registered systems are released.
+Security, bug fix, and enhancement updates for OpenShift Container Platform 4.22 are released as asynchronous errata through the Red Hat Network. All OpenShift Container Platform 4.22 errata is available on the Red Hat Customer Portal. Red Hat Customer Portal users can enable errata notifications in the account settings for Red Hat Subscription Management (RHSM). When errata notifications are enabled, users are notified through email whenever new errata relevant to their registered systems are released.
 
 :::note
 
@@ -1151,9 +1163,15 @@ This section will continue to be updated over time to provide notes on enhanceme
 
 :::warning
 
-For any OpenShift Container Platform release, always review the instructions on [updating your cluster](/docs/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console) properly.
+For any OpenShift Container Platform release, always review the instructions on "Updating your cluster" properly.
 
 :::
+
+**Additional resources**
+
+- [OpenShift Container Platform 4.22 errata on the Red Hat Customer Portal](https://access.redhat.com/downloads/content/290/)
+- [OpenShift Container Platform Life Cycle](https://access.redhat.com/support/policy/updates/openshift)
+- [updating your cluster](/docs/updating/updating_a_cluster/updating-cluster-web-console#updating-cluster-web-console)
 
 ### RHSA-2026:79154 - OpenShift Container Platform 4.22.18 bug fix and security update {#zstream-4-22-18_release-notes}
 

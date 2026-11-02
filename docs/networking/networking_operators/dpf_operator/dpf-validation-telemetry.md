@@ -505,7 +505,9 @@ OpenShift Container Platform includes Prometheus, but by default it only monitor
 
 ## Configure the DTS ServiceMonitor {#nw-dpf-configuring-dts-servicemonitor_dpf-validation-telemetry}
 
-Create a `ServiceMonitor` resource to instruct the user workload monitoring Prometheus instance to scrape the DOCA Telemetry Service (DTS) metrics endpoint. The `ServiceMonitor` selects the mirrored DTS service in the `dpf-operator-system` namespace and scrapes its `/metrics` path on the `httpserverport` every 30 seconds.
+Create a `ServiceMonitor` resource to instruct the user workload monitoring Prometheus instance to scrape the DOCA Telemetry Service (DTS) metrics endpoint.
+
+The `ServiceMonitor` selects the mirrored DTS service in the `dpf-operator-system` namespace and scrapes its `/metrics` path on the `httpserverport` every 30 seconds.
 
 **Prerequisites**
 

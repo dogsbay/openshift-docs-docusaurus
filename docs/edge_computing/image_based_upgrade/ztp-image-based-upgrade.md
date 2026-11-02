@@ -17,7 +17,9 @@ For more information about the image-based upgrade, see "Understanding the image
 
 ## Managing the image-based upgrade at scale using the ImageBasedGroupUpgrade CR on the hub {#ztp-image-based-upgrade-concept_ztp-gitops}
 
-The `ImageBasedGroupUpgrade` CR combines the `ImageBasedUpgrade` and `ClusterGroupUpgrade` APIs. For example, you can define the cluster selection and rollout strategy with the `ImageBasedGroupUpgrade` API in the same way as the `ClusterGroupUpgrade` API. The stage transitions are different from the `ImageBasedUpgrade` API. You can use the `ImageBasedGroupUpgrade` API to combine several stage transitions, also called actions, into one step that share one rollout strategy.
+The `ImageBasedGroupUpgrade` CR combines the `ImageBasedUpgrade` and `ClusterGroupUpgrade` APIs.
+
+For example, you can define the cluster selection and rollout strategy with the `ImageBasedGroupUpgrade` API in the same way as the `ClusterGroupUpgrade` API. The stage transitions are different from the `ImageBasedUpgrade` API. You can use the `ImageBasedGroupUpgrade` API to combine several stage transitions, also called actions, into one step that share one rollout strategy.
 
 **Example **`ImageBasedGroupUpgrade.yaml`
 
@@ -191,7 +193,9 @@ The `ImageBasedGroupUpgrade` CR ensures a better monitoring experience by aggreg
 
 ## Performing an image-based upgrade on managed clusters at scale in several steps {#ztp-image-based-upgrade-procedure-steps_ztp-gitops}
 
-For use cases when you need better control of when the upgrade interrupts your service, you can upgrade a set of your managed clusters by using the `ImageBasedGroupUpgrade` CR. You can use the `ImageBasedGroupUpgrade` CR to add actions after the earlier step is complete. After evaluating the results of the earlier steps, you can move to the next upgrade stage or troubleshoot any failed steps throughout the procedure.
+For use cases when you need better control of when the upgrade interrupts your service, you can upgrade a set of your managed clusters by using the `ImageBasedGroupUpgrade` CR. You can use the `ImageBasedGroupUpgrade` CR to add actions after the earlier step is complete.
+
+After evaluating the results of the earlier steps, you can move to the next upgrade stage or troubleshoot any failed steps throughout the procedure.
 
 :::warning
 
@@ -242,17 +246,15 @@ Only certain action combinations are supported and listed in *Supported action c
            timeout: 2400
    ```
 
-   Where:
+   where:
 
    - `clusterLabelSelectors`: Clusters to upgrade.
    - `seedImageRef`: Target platform version, the seed image, and the secret required to access the image.
+     :::note
 
-   :::note
+     If you add the seed image pull secret in the hub cluster, in the same namespace as the `ImageBasedGroupUpgrade` resource, the &#123;lco&#125; adds the secret to the manifest list for the `Prep` stage. The &#123;lco&#125; recreates the secret in each spoke cluster in the `openshift-lifecycle-agent` namespace.
 
-   If you add the seed image pull secret in the hub cluster, in the same namespace as the `ImageBasedGroupUpgrade` resource, the &#123;lco&#125; adds the secret to the manifest list for the `Prep` stage. The &#123;lco&#125; recreates the secret in each spoke cluster in the `openshift-lifecycle-agent` namespace.
-
-   :::
-
+     :::
    - `extraManifests`: Optional: Applies additional manifests, which are not in the seed image, to the target cluster. Also applies `ConfigMap` objects for custom catalog sources.
    - `oadpContent`: List of `ConfigMap` resources that contain the OADP `Backup` and `Restore` CRs.
    - `plan`: Upgrade plan details.
@@ -265,7 +267,9 @@ Only certain action combinations are supported and listed in *Supported action c
    $ oc get ibgu -o yaml
    ```
 
-   ```yaml title="Example output"
+   Example output:
+
+   ```yaml
    # ...
    status:
      clusters:
@@ -322,7 +326,9 @@ Only certain action combinations are supported and listed in *Supported action c
   $ oc get ibgu -o yaml
   ```
 
-  ```yaml title="Example output"
+  Example output:
+
+  ```yaml
   # ...
   status:
     clusters:
@@ -356,7 +362,9 @@ Only certain action combinations are supported and listed in *Supported action c
 
 ## Performing an image-based upgrade on managed clusters at scale in one step {#ztp-image-based-upgrade-procedure-one-step_ztp-gitops}
 
-For use cases when service interruption is not a concern, you can upgrade a set of your managed clusters by using the `ImageBasedGroupUpgrade` custom resource (CR). You can use the `ImageBasedGroupUpgrade` CR to combine several actions in one step with one rollout strategy. With one rollout strategy, you can reduce the upgrade time but you can only troubleshoot failed clusters after the upgrade plan is complete.
+For use cases when service interruption is not a concern, you can upgrade a set of your managed clusters by using the `ImageBasedGroupUpgrade` custom resource (CR).
+
+You can use the `ImageBasedGroupUpgrade` CR to combine several actions in one step with one rollout strategy. With one rollout strategy, you can reduce the upgrade time but you can only troubleshoot failed clusters after the upgrade plan is complete.
 
 **Prerequisites**
 
@@ -429,7 +437,9 @@ For use cases when service interruption is not a concern, you can upgrade a set 
   $ oc get ibgu -o yaml
   ```
 
-  ```yaml title="Example output"
+  Example output:
+
+  ```yaml
   # ...
   status:
     clusters:
@@ -589,7 +599,11 @@ Only certain action combinations are supported and listed in *Supported action c
   $ oc get ibgu -o yaml
   ```
 
-  ```yaml title="Example output"
+  -
+
+  .Example output
+
+  ```yaml
   # ...
   status:
     clusters:

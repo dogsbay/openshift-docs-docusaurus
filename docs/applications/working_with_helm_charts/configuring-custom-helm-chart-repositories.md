@@ -26,6 +26,8 @@ In the **Developer** perspective of the web console, you can use the **Helm** pa
 
 ## Installing a Helm chart on an OpenShift Container Platform cluster {#installing-a-helm-chart-on-an-openshift-cluster_configuring-custom-helm-chart-repositories}
 
+You can install a Helm chart on an OpenShift Container Platform cluster using the Helm CLI.
+
 **Prerequisites**
 
 - You have a running OpenShift Container Platform cluster and you have logged into it.
@@ -83,8 +85,6 @@ You can use either the **Developer** perspective in the web console or the CLI t
 
 **Procedure**
 
-To create Helm releases from the Helm charts provided in the **Developer Catalog**:
-
 1. In the **Developer** perspective, navigate to the **+Add** view and select a project. Then click **Helm Chart** option to see all the Helm Charts in the **Developer Catalog**.
 2. Select a chart and read the description, README, and other details about the chart.
 3. Click **Create**.
@@ -105,14 +105,15 @@ To create Helm releases from the Helm charts provided in the **Developer Catalog
 
       If a Helm chart creates workloads, the web console displays them on the **Topology** or **Helm release details** page. The workloads are `DaemonSet`, `CronJob`, `Pod`, `Deployment`, and `DeploymentConfig`.
    5. View the newly created Helm release in the **Helm Releases** page.
-
-You can upgrade, rollback, or delete a Helm release by using the **Actions** button on the side panel or by right-clicking a Helm release.
+      You can upgrade, rollback, or delete a Helm release by using the **Actions** button on the side panel or by right-clicking a Helm release.
 
 ## Using Helm in the web terminal {#_using_helm_in_the_web_terminal}
 
 You can use Helm by [Accessing the web terminal](/docs/web_console/web_terminal/odc-using-web-terminal#odc-access-web-terminal_odc-using-web-terminal) in the **Developer** perspective of the web console.
 
 ## Creating a custom Helm chart on OpenShift Container Platform {#creating-a-custom-helm-chart-on-openshift_configuring-custom-helm-chart-repositories}
+
+You can create a custom Helm chart on OpenShift Container Platform to package and deploy application resources using the Helm CLI.
 
 **Procedure**
 
@@ -130,18 +131,27 @@ You can use Helm by [Accessing the web terminal](/docs/web_console/web_terminal/
    ```
 4. Edit the `Chart.yaml` file  and add a description of your chart:
    ```yaml
-   apiVersion: v2 (1)
-   name: nodejs-ex-k (2)
-   description: A Helm chart for OpenShift (3)
-   icon: https://static.redhat.com/libs/redhat/brand-assets/latest/corp/logo.svg (4)
-   version: 0.2.1 (5)
+   apiVersion: v2
+   name: nodejs-ex-k
+   description: A Helm chart for OpenShift
+   icon: https://static.redhat.com/libs/redhat/brand-assets/latest/corp/logo.svg
+   version: 0.2.1
    ```
 
-   1. The chart API version. It should be `v2` for Helm charts that require at least Helm 3.
-   2. The name of your chart.
-   3. The description of your chart.
-   4. The URL to an image to be used as an icon.
-   5. The Version of your chart as per the Semantic Versioning (SemVer) 2.0.0 Specification.
+   where:
+
+   <dl>
+   <dt><code>apiVersion</code></dt>
+   <dd>Specifies the chart API version. It should be <code>v2</code> for Helm charts that require at least Helm 3.</dd>
+   <dt><code>name</code></dt>
+   <dd>Specifies the name of your chart.</dd>
+   <dt><code>description</code></dt>
+   <dd>Specifies the description of your chart.</dd>
+   <dt><code>icon</code></dt>
+   <dd>Specifies the URL to an image to be used as an icon.</dd>
+   <dt><code>version</code></dt>
+   <dd>Specifies the version of your chart as per the Semantic Versioning (SemVer) 2.0.0 Specification.</dd>
+   </dl>
 5. Verify that the chart is formatted properly:
    ```terminal
    $ helm lint
@@ -301,8 +311,6 @@ Some Helm chart repositories need credentials and custom certificate authority (
 
 **Procedure**
 
-To configure the credentials and certificates, and then add a Helm chart repository using the CLI:
-
 1. In the `openshift-config` namespace, create a `ConfigMap` object with a custom CA certificate in PEM encoded format, and store it under the `ca-bundle.crt` key within the config map:
    ```terminal
    $ oc create configmap helm-ca-cert \
@@ -382,14 +390,13 @@ You can filter Helm charts based on their certification level in the **Developer
 3. Use the filters to the left of the list of Helm charts to filter the required charts:
    - Use the **Chart Repositories** filter to filter charts provided by **Red Hat Certification Charts** or **OpenShift Helm Charts**.
    - Use the **Source** filter to filter charts sourced from **Partners**, **Community**, or **Red Hat**. Certified charts are indicated with the (![odc_verified_icon](/images/odc_verified_icon.png "Certified icon")) icon.
+     :::note
 
-   :::note
+     The **Source** filter will not be visible when there is only one provider type.
 
-   The **Source** filter will not be visible when there is only one provider type.
+     :::
 
-   :::
-
-You can now select the required chart and install it.
+     You can now select the required chart and install it.
 
 ## Disabling Helm Chart repositories {#helm-disabling-helm-chart-repositories_configuring-custom-helm-chart-repositories}
 

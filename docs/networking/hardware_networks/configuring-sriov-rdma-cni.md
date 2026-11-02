@@ -11,7 +11,7 @@ Remote Direct Memory Access (RDMA) allows direct memory access between two syste
 
 ## Configure SR-IOV RDMA CNI {#nw-sriov-configuring-sriov-rdma-cni_configuring-sriov-rdma-cni}
 
-Configure an RDMA CNI on SR-IOV.
+Configure an RDMA CNI on SR-IOV for Mellanox devices.
 
 :::note
 

@@ -17,7 +17,7 @@ Using RHACM and `PolicyGenerator` CRs is the recommended approach for managing p
 
 There are advantages to using `PolicyGenerator` CRs over `PolicyGenTemplate` CRs when it comes to patching OpenShift Container Platform resources with GitOps ZTP. Using the RHACM `PolicyGenerator` API provides a generic way of patching resources which is not possible with `PolicyGenTemplate` resources.
 
-The `PolicyGenerator` API is a part of the [Open Cluster Management](https://open-cluster-management.io/) standard, while the `PolicyGenTemplate` API is not. A comparison of `PolicyGenerator` and `PolicyGenTemplate` resource patching and placement strategies are described in the following table.
+The `PolicyGenerator` API is a part of the Open Cluster Management standard, while the `PolicyGenTemplate` API is not. A comparison of `PolicyGenerator` and `PolicyGenTemplate` resource patching and placement strategies are described in the following table.
 
 :::warning
 
@@ -31,21 +31,25 @@ For more information about `PolicyGenerator` resources, see the RHACM [Integrati
 
 | PolicyGenerator patching | PolicyGenTemplate patching |
 | --- | --- |
-| Uses Kustomize strategic merges for merging resources. For more information see [Declarative Management of Kubernetes Objects Using Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/). | Works by replacing variables with their values as defined by the patch. This is less flexible than Kustomize merge strategies. |
+| Uses Kustomize strategic merges for merging resources. | Works by replacing variables with their values as defined by the patch. This is less flexible than Kustomize merge strategies. |
 | Supports `ManagedClusterSet` and `Binding` resources. | Does not support `ManagedClusterSet` and `Binding` resources. |
 | Relies only on patching, no embedded variable substitution is required. | Overwrites variable values defined in the patch. |
 | Does not support merging lists in merge patches. Replacing a list in a merge patch is supported. | Merging and replacing lists is supported in a limited fashion - you can only merge one object in the list. |
-| Does not currently support the [OpenAPI specification](https://spec.openapis.org/oas/latest.html) for resource patching. This means that additional directives are required in the patch to merge content that does not follow a schema, for example, `PtpConfig` resources. | Works by replacing fields and values with values as defined by the patch. |
+| Does not currently support the OpenAPI specification for resource patching. This means that additional directives are required in the patch to merge content that does not follow a schema, for example, `PtpConfig` resources. | Works by replacing fields and values with values as defined by the patch. |
 | Requires additional directives, for example, `$patch: replace` in the patch to merge content that does not follow a schema. | Substitutes fields and values defined in the source CR with values defined in the patch, for example `$name`. |
 | Can patch the `Name` and `Namespace` fields defined in the reference source CR, but only if the CR file has a single object. | Can patch the `Name` and `Namespace` fields defined in the reference source CR. |
+
+**Additional resources**
+
+- [Open Cluster Management](https://open-cluster-management.io/)
+- [Declarative Management of Kubernetes Objects Using Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/)
+- [OpenAPI specification](https://spec.openapis.org/oas/latest.html)
 
 ## About the PolicyGenerator CRD {#ztp-the-policygentemplate_ztp-configuring-managed-clusters-policygenerator}
 
 The `PolicyGenerator` custom resource definition (CRD) tells the `PolicyGen` policy generator what custom resources (CRs) to include in the cluster configuration, how to combine the CRs into the generated policies, and what items in those CRs need to be updated with overlay content.
 
 The following example shows a `PolicyGenerator` CR (`acm-common-du-ranGen.yaml`) extracted from the `ztp-site-generate` reference container. The `acm-common-du-ranGen.yaml` file defines two Red Hat Advanced Cluster Management (RHACM) policies. The policies manage a collection of configuration CRs, one for each unique value of `policyName` in the CR. `acm-common-du-ranGen.yaml` creates a single placement binding and a placement rule to bind the policies to clusters based on the labels listed in the `policyDefaults.placement.labelSelector` section.
-
-**Example PolicyGenerator CR - acm-common-ranGen.yaml**
 
 ```yaml
 apiVersion: policy.open-cluster-management.io/v1
@@ -366,7 +370,9 @@ Grouping multiple configuration CRs into a single or limited number of policies 
 
 ## PolicyGenerator CRs for RAN deployments {#ztp-policygentemplates-for-ran_ztp-configuring-managed-clusters-policygenerator}
 
-Use `PolicyGenerator` custom resources (CRs) to customize the configuration applied to the cluster by using the GitOps Zero Touch Provisioning (ZTP) pipeline. The `PolicyGenerator` CR allows you to generate one or more policies to manage the set of configuration CRs on your fleet of clusters. The `PolicyGenerator` CR identifies the set of managed CRs, bundles them into policies, builds the policy wrapping around those CRs, and associates the policies with clusters by using label binding rules.
+Use `PolicyGenerator` custom resources (CRs) to customize the configuration applied to the cluster by using the GitOps Zero Touch Provisioning (ZTP) pipeline. The `PolicyGenerator` CR allows you to generate one or more policies to manage the set of configuration CRs on your fleet of clusters.
+
+The `PolicyGenerator` CR identifies the set of managed CRs, bundles them into policies, builds the policy wrapping around those CRs, and associates the policies with clusters by using label binding rules.
 
 The reference configuration, obtained from the GitOps ZTP container, is designed to provide a set of critical features and node tuning settings that ensure the cluster can support the stringent performance and resource utilization constraints typical of RAN (Radio Access Network) Distributed Unit (DU) applications. Changes or omissions from the baseline configuration can affect feature availability, performance, and resource utilization. Use the reference `PolicyGenerator` CRs as the basis to create a hierarchy of configuration files tailored to your specific site requirements.
 
@@ -499,18 +505,19 @@ The ArgoCD pipeline uses `PolicyGenerator` CRs in Git to generate the RHACM poli
    2. To check policy status from the RHACM web console, perform the following actions:
       1. Click **Governance** → **Find policies**.
       2. Click on a cluster policy to check its status.
+         :::note
 
-      :::note
+         When all of the cluster policies become compliant, GitOps ZTP installation and configuration for the cluster is complete. The `ztp-done` label is added to the cluster.
 
-      When all of the cluster policies become compliant, GitOps ZTP installation and configuration for the cluster is complete. The `ztp-done` label is added to the cluster.
+         In the reference configuration, the final policy that becomes compliant is the one defined in the `*-du-validator-policy` policy. This policy, when compliant on a cluster, ensures that all cluster configuration, Operator installation, and Operator configuration is complete.
 
-      In the reference configuration, the final policy that becomes compliant is the one defined in the `*-du-validator-policy` policy. This policy, when compliant on a cluster, ensures that all cluster configuration, Operator installation, and Operator configuration is complete.
-
-      :::
+         :::
 
 ## Coordinating reboots for configuration changes {#ztp-coordinating-reboots-for-config-changes_ztp-configuring-managed-clusters-policygenerator}
 
-You can use Topology Aware Lifecycle Manager (TALM) to coordinate reboots across a fleet of spoke clusters when configuration changes require a reboot, such as deferred tuning changes. TALM reboots all nodes in the targeted `MachineConfigPool` on the selected clusters when the reboot policy is applied.
+You can use Topology Aware Lifecycle Manager (TALM) to coordinate reboots across a fleet of spoke clusters when configuration changes require a reboot, such as deferred tuning changes.
+
+TALM reboots all nodes in the targeted `MachineConfigPool` on the selected clusters when the reboot policy is applied.
 
 Instead of rebooting nodes after each individual change, you can apply all configuration updates through policies and then trigger a single, coordinated reboot.
 
@@ -591,7 +598,9 @@ Instead of rebooting nodes after each individual change, you can apply all confi
 
 ## Validating the generation of configuration policy CRs {#ztp-validating-the-generation-of-configuration-policy-crs_ztp-configuring-managed-clusters-policygenerator}
 
-`Policy` custom resources (CRs) are generated in the same namespace as the `PolicyGenerator` from which they are created. The same troubleshooting flow applies to all policy CRs generated from a `PolicyGenerator` regardless of whether they are `ztp-common`, `ztp-group`, or `ztp-site` based, as shown using the following commands:
+`Policy` custom resources (CRs) are generated in the same namespace as the `PolicyGenerator` from which they are created.
+
+The same troubleshooting flow applies to all policy CRs generated from a `PolicyGenerator` regardless of whether they are `ztp-common`, `ztp-group`, or `ztp-site` based, as shown using the following commands:
 
 ```terminal
 $ export NS=<namespace>

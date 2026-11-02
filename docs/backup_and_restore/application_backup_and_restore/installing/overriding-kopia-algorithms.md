@@ -217,19 +217,19 @@ If you are using a storage provider other than AWS S3, you will need to add `--e
    $ kopia repository status
    ```
 
-**Example output**
+   ```terminal title="Example output"
 
-```terminal
-
-Hash:                BLAKE3-256
-Encryption:          CHACHA20-POLY1305-HMAC-SHA256
-Splitter:            DYNAMIC-8M-RABINKARP
-Format version:      3
-```
+   Hash:                BLAKE3-256
+   Encryption:          CHACHA20-POLY1305-HMAC-SHA256
+   Splitter:            DYNAMIC-8M-RABINKARP
+   Format version:      3
+   ```
 
 ## Benchmark Kopia hashing, encryption, and splitter algorithms {#oadp-kopia-algorithms-benchmarking_overriding-kopia-algorithms}
 
-Run Kopia commands to benchmark the hashing, encryption, and splitter algorithms. Based on the benchmarking results, you can select the most suitable algorithm for your workload. You run the Kopia benchmarking commands from a pod on the cluster. The benchmarking results can vary depending on CPU speed, available RAM, disk speed, current I/O load, and so on.
+Run Kopia commands to benchmark the hashing, encryption, and splitter algorithms.
+
+Based on the benchmarking results, you can select the most suitable algorithm for your workload. You run the Kopia benchmarking commands from a pod on the cluster. The benchmarking results can vary depending on CPU speed, available RAM, disk speed, current I/O load, and so on.
 
 :::note
 

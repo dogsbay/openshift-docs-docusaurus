@@ -43,7 +43,7 @@ Red Hat prioritizes the servicing of requests for deviations based on partner en
 
 :::
 
-## Hub cluster architecture overview {#telco-hub-architecture-overview_telco-hub}
+## Review how the hub cluster manages the fleet {#telco-hub-architecture-overview_telco-hub}
 
 Use the features and components running on the management hub cluster to manage many other clusters in a hub-and-spoke topology. The hub cluster provides a highly available and centralized interface for managing the configuration, lifecycle, and observability of the fleet of deployed clusters.
 
@@ -69,7 +69,7 @@ The telco management hub reference design specification (RDS) and the associated
 
 ![telco-hub-cluster-rds-architecture](/images/telco-hub-cluster-rds-architecture.png)
 
-## Telco management hub cluster use model {#telco-hub-telco-management-cluster-use-model_telco-hub}
+## Review the services the hub cluster provides {#telco-hub-telco-management-cluster-use-model_telco-hub}
 
 The hub cluster provides managed cluster installation, configuration, observability and ongoing lifecycle management for telco application and workload clusters.
 
@@ -131,7 +131,7 @@ Resource utilization was measured for deploying hub clusters in the following sc
 
 - [Comparison of hub cluster and managed cluster templates](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.15/html-single/governance/index#template-comparison-table)
 
-## Hub cluster topology {#telco-hub-cluster-topology_telco-hub}
+## Plan the hub cluster node layout {#telco-hub-cluster-topology_telco-hub}
 
 In production environments, the OpenShift Container Platform hub cluster must be highly available to maintain high availability of the management functions.
 
@@ -155,7 +155,9 @@ Engineering considerations
 
 ## Hub cluster networking {#telco-hub-networking_telco-hub}
 
-The reference hub cluster is designed to operate in a disconnected networking environment where direct access to the internet is not possible. As with all OpenShift Container Platform clusters, the hub cluster requires access to an image registry hosting all OpenShift and Day 2 Operator Lifecycle Manager (OLM) images.
+The reference hub cluster is designed to operate in a disconnected networking environment where direct access to the internet is not possible.
+
+As with all OpenShift Container Platform clusters, the hub cluster requires access to an image registry hosting all OpenShift and Day 2 Operator Lifecycle Manager (OLM) images.
 
 The hub cluster supports dual-stack networking support for IPv6 and IPv4 networks. IPv6 is typical in edge or far-edge network segments, while IPv4 is more prevalent for use with legacy equipment in the data center.
 
@@ -324,6 +326,10 @@ With these input values, the sizing calculator as described in the Red Hat Knowl
 
 ### Storage considerations {#telco-hub-storage-considerations_telco-hub}
 
+Storage in the OpenShift Container Platform telco hub cluster reference configuration must meet high availability, performance, and capacity requirements.
+
+The reference configuration uses Red Hat OpenShift Data Foundation, backed by the Local Storage Operator, for block, file, and object storage.
+
 Limits and requirements
 : - Minimum OpenShift Container Platform and Red Hat Advanced Cluster Management (RHACM) limits apply
   - High availability should be provided through a storage backend. The hub cluster reference configuration provides storage through Red Hat OpenShift Data Foundation.
@@ -346,7 +352,9 @@ Engineering considerations
 
 ## Git repository {#telco-hub-git-repository_telco-hub}
 
-The telco management hub cluster supports a GitOps-driven methodology for installing and managing the configuration of OpenShift clusters for various telco applications. This methodology requires an accessible Git repository that serves as the authoritative source of truth for cluster definitions and configuration artifacts.
+The telco management hub cluster supports a GitOps-driven methodology for installing and managing the configuration of OpenShift clusters for various telco applications.
+
+This methodology requires an accessible Git repository that serves as the authoritative source of truth for cluster definitions and configuration artifacts.
 
 Red Hat does not offer a commercially supported Git server. An existing Git server provided in the production environment can be used. Gitea and Gogs are examples of self-hosted Git servers that you can use.
 
@@ -366,6 +374,10 @@ Engineering considerations
 : - The Git repository is used by the GitOps Operator to ensure continuous deployment and a single source of truth for the applied configuration.
 
 ## OpenShift Container Platform installation on the hub cluster {#telco-hub-hub-cluster-openshift-deployment_telco-hub}
+
+The reference method for installing OpenShift Container Platform on the hub cluster uses the Agent-based Installer, which requires no additional centralized infrastructure.
+
+You can apply the reference configuration custom resources (CRs) manually or through ArgoCD after installation is complete.
 
 Description
 : The reference method for installing OpenShift Container Platform for the hub cluster is through the Agent-based Installer.
@@ -439,7 +451,9 @@ Limits and requirements
 
 ## Observability {#telco-hub-observability_telco-hub}
 
-The Red Hat Advanced Cluster Management (RHACM) multicluster engine Observability component provides centralized aggregation and visualization of metrics and alerts for all managed clusters. To balance performance and data analysis, the monitoring service maintains a subset list of aggregated metrics that are collected at a downsampled interval. The metrics can be accessed on the hub through a set of different preconfigured dashboards.
+The Red Hat Advanced Cluster Management (RHACM) multicluster engine Observability component provides centralized aggregation and visualization of metrics and alerts for all managed clusters.
+
+To balance performance and data analysis, the monitoring service maintains a subset list of aggregated metrics that are collected at a downsampled interval. The metrics can be accessed on the hub through a set of different preconfigured dashboards.
 
 Observability installation
 : The primary custom resource (CR) to enable and configure the observability service is the `MulticlusterObservability` CR, which defines the following settings:
@@ -495,6 +509,10 @@ Lifecycle management for spoke clusters can be divided into two different stages
 
 ### Managed cluster deployment {#telco-hub-managed-cluster-deployment_telco-hub}
 
+As of Red Hat Advanced Cluster Management (RHACM) 2.12, the SiteConfig Operator is the recommended method for deploying managed OpenShift Container Platform clusters.
+
+It introduces a unified `ClusterInstance` API that decouples cluster parameters from the deployment method and uses a GitOps workflow to generate installation manifests.
+
 Description
 : As of Red Hat Advanced Cluster Management (RHACM) 2.12, using the SiteConfig Operator is the recommended method for deploying managed clusters. The SiteConfig Operator introduces a unified ClusterInstance API that decouples the parameters that define the cluster from the manner in which it is deployed. The SiteConfig Operator uses a set of cluster templates that are instantiated using the data from a `ClusterInstance` custom resource (CR) to dynamically generate installation manifests. Following the GitOps methodology, the `ClusterInstance` CR is sourced from a Git repository through ArgoCD. The `ClusterInstance` CR can be used to initiate cluster installation by using either Assisted Installer, or the image-based installation available in multicluster engine.
 
@@ -514,6 +532,10 @@ Engineering considerations
 - [Creating the managed bare-metal host secrets](/docs/edge_computing/ztp-deploying-far-edge-sites#ztp-creating-the-site-secrets_ztp-deploying-far-edge-sites)
 
 ### Managed cluster updates {#telco-hub-managed-cluster-updates-and-upgrades_telco-hub}
+
+You can upgrade OpenShift Container Platform versions, Day 2 Operators, and managed cluster configurations by declaring the required versions in Policy custom resources (CRs).
+
+The Topology Aware Lifecycle Manager (TALM) manages progressive rollout of these changes across fleets of clusters.
 
 Description
 : You can upgrade versions of OpenShift Container Platform, Day 2 Operators, and managed cluster configurations, by declaring the required version in the `Policy` custom resources (CRs) that target the clusters to be upgraded.
@@ -566,7 +588,13 @@ Engineering considerations
 
 ## Hub cluster components {#telco-hub-hub-components_telco-hub}
 
+The following sections highly hub cluster components.
+
 ### Red Hat Advanced Cluster Management (RHACM) {#telco-hub-red-hat-advanced-cluster-management-rhacm_telco-hub}
+
+Red Hat Advanced Cluster Management (RHACM) provides multicluster engine installation and ongoing lifecycle management for OpenShift Container Platform clusters.
+
+You can manage cluster configuration and upgrades declaratively by applying Policy custom resources (CRs) during maintenance windows.
 
 New in this release
 : - No reference design updates in this release.
@@ -591,7 +619,7 @@ Description
   :::
 
 Limits and requirements
-: - For more information about limits on number of clusters managed by a single hub cluster, see "Telco management hub cluster use model".
+: - For more information about limits on number of clusters managed by a single hub cluster, see "Hub cluster scaling target".
   - The number of managed clusters that can be effectively managed by the hub depends on various factors, including:
     - Resource availability at each managed cluster
     - Policy complexity and cluster size
@@ -617,6 +645,10 @@ Engineering considerations
 
 ### Topology Aware Lifecycle Manager {#telco-hub-topology-aware-lifecycle-manager-talm_telco-hub}
 
+Topology Aware Lifecycle Manager is an Operator that runs on the OpenShift Container Platform hub cluster to manage the progressive rollout of cluster upgrades, Operator upgrades, and configuration changes to managed cluster fleets.
+
+It supports configurable batch sizes, per-cluster labeling, and optional pre-caching of images before upgrades.
+
 New in this release
 : - No reference design updates in this release.
 
@@ -639,6 +671,10 @@ Engineering considerations
   - TALM supports the use of hub-side templating with Red Hat Advanced Cluster Management policies.
 
 ### GitOps Operator and GitOps ZTP {#telco-hub-gitops-operator-and-ztp-plugins_telco-hub}
+
+GitOps Operator and GitOps ZTP provide a GitOps-based infrastructure for managing cluster deployment and configuration in OpenShift Container Platform.
+
+You can maintain cluster definitions as a declarative state in Git and apply `ClusterInstance` custom resources (CRs) to the hub cluster for rendering as installation CRs.
 
 New in this release
 : - No reference design updates in this release
@@ -664,6 +700,8 @@ Engineering considerations
 
 ### Local Storage Operator {#telco-hub-local-storage-operator_telco-hub}
 
+The Local Storage Operator creates persistent volumes (PVs) that applications in OpenShift Container Platform can consume as PersistentVolumeClaim (PVC) resources. The number and type of PVs you create depends on your storage requirements.
+
 New in this release
 : - No reference design updates in this release
 
@@ -675,6 +713,8 @@ Engineering considerations
   - Refer to the device listing in `LocalVolume` CRs by the hardware path used to access each device to ensure correct allocation of disks and partitions, for example, `/dev/disk/by-path/<id>`. Logical names (for example, `/dev/sda`) are not guaranteed to be consistent across node reboots.
 
 ### Red Hat OpenShift Data Foundation {#telco-hub-openshift-data-foundation_telco-hub}
+
+Red Hat OpenShift Data Foundation provides file, block, and object storage services to the OpenShift Container Platform hub cluster. It is the recommended storage solution for telco hub cluster deployments.
 
 New in this release
 : - No reference design updates in this release
@@ -699,11 +739,10 @@ Engineering considerations
 
 ### Logging {#telco-hub-logging_telco-hub}
 
+The Cluster Logging Operator collects and ships logs off OpenShift Container Platform hub cluster nodes for remote archival and analysis. The reference configuration uses Kafka to ship audit and infrastructure logs to a remote archive.
+
 New in this release
 : - No reference design updates in this release
-
-Description
-: Use the Cluster Logging Operator to collect and ship logs off the node for remote archival and analysis. The reference configuration uses Kafka to ship audit and infrastructure logs to a remote archive.
 
 Limits and requirements
 : - The reference configuration does not include local log storage.
@@ -714,6 +753,10 @@ Engineering considerations
   - The reference configuration does not include shipping of application logs. The inclusion of application logs in the configuration requires you to evaluate the application logging rate and have sufficient additional CPU resources allocated to the reserved set.
 
 ### OpenShift API for Data Protection {#telco-hub-oadp-operator_telco-hub}
+
+OpenShift API for Data Protection (OADP) is automatically installed and managed by Red Hat Advanced Cluster Management (RHACM) when the backup feature is enabled, facilitating backup and restore of workloads in OpenShift Container Platform clusters.
+
+Enabling OADP is required for RHACM disaster recovery solutions.
 
 New in this release
 : - No reference design updates in this release
@@ -837,7 +880,9 @@ You can extract the complete set of custom resources (CRs) for the telco hub pro
 
 ## Comparing a cluster with the telco hub reference configuration {#using-cluster-compare-telco_hub_telco-hub}
 
-After you deploy a telco hub cluster, you can use the `cluster-compare` plugin to assess the cluster’s compliance with the telco hub reference design specifications (RDS). The `cluster-compare` plugin is an OpenShift CLI (`oc`) plugin. The plugin uses a telco hub reference configuration to validate the cluster with the telco hub custom resources (CRs).
+After you deploy a telco hub cluster, you can use the `cluster-compare` plugin to assess the cluster’s compliance with the telco hub reference design specifications (RDS).
+
+The `cluster-compare` plugin is an OpenShift CLI (`oc`) plugin. The plugin uses a telco hub reference configuration to validate the cluster with the telco hub custom resources (CRs).
 
 The plugin-specific reference configuration for telco hub is packaged in a container image with the telco hub CRs.
 
@@ -847,7 +892,7 @@ The following example shows how to compare the configuration of a cluster to the
 
 :::note
 
-When comparing a cluster to the telco hub reference configuration by using `must-gather` data, you must use the `--all-images` flag when generating the `must-gather` data. You must also collect cluster-scoped resource information, as well as Operator and registry configurations. Without this data, the plugin might report false positives.
+When comparing a cluster to the telco hub reference configuration by using `must-gather` data, you must use the `--all-images` flag when generating the `must-gather` data. You must also collect cluster-scoped resource information and Operator and registry configurations. Without this data, the plugin might report false positives.
 
 :::
 

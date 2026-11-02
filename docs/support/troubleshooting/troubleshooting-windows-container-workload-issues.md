@@ -33,7 +33,7 @@ There are various reasons why a Windows Machine does not become a compute node. 
 
 ## Windows node access methods {#accessing-windows-node_troubleshooting-windows-container-workload-issues}
 
-Windows nodes cannot be accessed using the `oc debug node` command; the command requires running a privileged pod on the node, which is not supported for Windows. Instead, a Windows node can be accessed using a secure shell (SSH) or Remote Desktop Protocol (RDP). An SSH bastion is required for both methods.
+You cannot use the `oc debug node` command to access Windows nodes because it requires running a privileged pod, which Windows does not support. Instead, access a Windows node by using secure shell (SSH) or Remote Desktop Protocol (RDP) through an SSH bastion.
 
 ### Access a Windows node by using SSH {#accessing-windows-node-using-ssh_troubleshooting-windows-container-workload-issues}
 

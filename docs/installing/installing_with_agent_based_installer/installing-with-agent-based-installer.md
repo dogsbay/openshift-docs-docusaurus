@@ -853,9 +853,7 @@ After you have prepared the configuration inputs for your installation, create t
 
 ## Adding IBM Z agents with RHEL KVM {#installing-ocp-agent-ibm-z-kvm_installing-with-agent-based-installer}
 
-You can manually add IBM Z(R) agents with RHEL KVM.
-
-Only use this procedure for IBM Z(R) clusters with RHEL KVM.
+You can manually add IBM Z(R) agents with RHEL KVM. Only use this procedure for IBM Z(R) clusters with RHEL KVM.
 
 :::note
 

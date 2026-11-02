@@ -77,4 +77,4 @@ Create a `Backup` custom resource (CR) to back up applications by using File Sys
 
 **Additional resources**
 
-- [FSB limitations](https://velero.io/docs/v1.12/file-system-backup/#limitations)
+- [FSB limitations](https://velero.io/docs/latest/file-system-backup/#limitations)

@@ -248,11 +248,15 @@ Instead, use `Deployment` objects or another alternative to provide declarative 
 
 ### Design {#deployments-design_what-deployments-are}
 
-One important difference between `Deployment` and `DeploymentConfig` objects is the properties of the [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem) that each design has chosen for the rollout process. `DeploymentConfig` objects  prefer consistency, whereas `Deployments` objects take availability over consistency.
+One important difference between `Deployment` and `DeploymentConfig` objects is the properties of the "CAP theorem" that each design has chosen for the rollout process. `DeploymentConfig` objects  prefer consistency, whereas `Deployments` objects take availability over consistency.
 
 For `DeploymentConfig` objects, if a node running a deployer pod goes down, it will not get replaced. The process waits until the node comes back online or is manually deleted. Manually deleting the node also deletes the corresponding pod. This means that you can not delete the pod to unstick the rollout, as the kubelet is responsible for deleting the associated pod.
 
 However, deployment rollouts are driven from a controller manager. The controller manager runs in high availability mode on masters and uses leader election algorithms to value availability over consistency. During a failure it is possible for other masters to act on the same deployment at the same time, but this issue will be reconciled shortly after the failure occurs.
+
+**Additional resources**
+
+- [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem)
 
 ### Deployment-specific features {#deployment-specific-features_what-deployments-are}
 

@@ -116,7 +116,9 @@ This pod definition does not include attributes that are filled by OpenShift Con
 
 ## Understanding resource requests and limits {#nodes-pods-understanding-requests-limits_nodes-pods-using-ssy}
 
-To manage how your applications consume compute resources, you can define CPU and memory requests and limits in your pod specifications. Requests ensure a minimum amount of resources for scheduling, where limits prevent a container from consuming excessive resources that could impact other pods on the node.
+To manage how your applications consume compute resources, you can define CPU and memory requests and limits in your pod specifications.
+
+Requests ensure a minimum amount of resources for scheduling, where limits prevent a container from consuming excessive resources that could impact other pods on the node.
 
 CPU and memory *requests* specify the minimum amount of a resource that a pod needs to run, helping OpenShift Container Platform to schedule pods on nodes with sufficient resources.
 

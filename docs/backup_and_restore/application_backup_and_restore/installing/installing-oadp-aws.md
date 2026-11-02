@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="installing-oadp-aws"></a>
 
-Install the OpenShift API for Data Protection (OADP) with Amazon Web Services (AWS) S3 compatible storage by installing the OADP Operator. The Operator installs Velero 1.16.
+Install the OpenShift API for Data Protection (OADP) with Amazon Web Services (AWS) S3 compatible storage by installing the OADP Operator. The Operator installs Velero 1.18.
 
 You configure AWS for Velero, create a default `Secret`, and then install the Data Protection Application. For more details, see *Installing the OADP Operator*.
 
@@ -462,11 +462,11 @@ You install the Data Protection Application (DPA) by creating an instance of the
 
 **Prerequisites**
 
-- You must install the OADP Operator.
-- You must configure object storage as a backup location.
-- If you use snapshots to back up PVs, your cloud provider must support either a native snapshot API or Container Storage Interface (CSI) snapshots.
-- If the backup and snapshot locations use the same credentials, you must create a `Secret` with the default name for your storage provider: `cloud-credentials` for AWS, Multicloud Object Gateway (MCG), Red Hat OpenShift Data Foundation (ODF), IBM Cloud, or KubeVirt; `cloud-credentials-azure` for Azure; or `cloud-credentials-gcp` for GCP.
-- If the backup and snapshot locations use different credentials, you must create two `Secrets`:
+- You have installed the OADP Operator.
+- You have configured object storage as a backup location.
+- If you use snapshots to back up PVs, your cloud provider supports either a native snapshot API or Container Storage Interface (CSI) snapshots.
+- If the backup and snapshot locations use the same credentials, you have created a `Secret` with the default name for your storage provider: `cloud-credentials` for AWS, Multicloud Object Gateway (MCG), Red Hat OpenShift Data Foundation (ODF), IBM Cloud, or KubeVirt; `cloud-credentials-azure` for Azure; or `cloud-credentials-gcp` for GCP.
+- If the backup and snapshot locations use different credentials, you have created two `Secrets`:
   - `Secret` with a custom name for the backup location. You add this `Secret` to the `DataProtectionApplication` CR.
   - `Secret` with another custom name for the snapshot location. You add this `Secret` to the `DataProtectionApplication` CR.
     :::note
@@ -1154,7 +1154,9 @@ The Data Protection Application (DPA) uses the `nodeSelector` field to select wh
 
 ## Configure the backup storage location with a MD5 checksum algorithm {#oadp-configuring-aws-md5sum_installing-oadp-aws}
 
-You can configure the Backup Storage Location (BSL) in the Data Protection Application (DPA) to use a MD5 checksum algorithm for both Amazon Simple Storage Service (Amazon S3) and S3-compatible storage providers. The checksum algorithm calculates the checksum for uploading and downloading objects to Amazon S3. You can use one of the following options to set the `checksumAlgorithm` field in the `spec.backupLocations.velero.config.checksumAlgorithm` section of the DPA.
+You can configure the Backup Storage Location (BSL) in the Data Protection Application (DPA) to use a MD5 checksum algorithm for both Amazon Simple Storage Service (Amazon S3) and S3-compatible storage providers.
+
+The checksum algorithm calculates the checksum for uploading and downloading objects to Amazon S3. You can use one of the following options to set the `checksumAlgorithm` field in the `spec.backupLocations.velero.config.checksumAlgorithm` section of the DPA.
 
 - `CRC32`
 - `CRC32C`
@@ -1843,7 +1845,7 @@ If you are not using `Restic`, `Kopia`, or `DataMover` for your backups, you can
 **Additional resources**
 
 - [Installing the OADP Operator](/docs/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
-- [Velero 1.16](https://velero.io/docs/v1.16/)
+- [Velero 1.18](https://velero.io/docs/)
 - [Using Operator Lifecycle Manager in disconnected environments](/docs/disconnected/using-olm#olm-restricted-networks)
 - [Installing the Data Protection Application with the `kubevirt` and `openshift` plugins](/docs/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt#oadp-installing-dpa_installing-oadp-kubevirt)
 - [Running tasks in pods using jobs](/docs/nodes/jobs/nodes-nodes-jobs#nodes-nodes-jobs)

@@ -25,13 +25,15 @@ Use the following REST API v2 endpoints to subscribe the `cloud-event-consumer` 
 
 ## PTP events REST API v2 endpoints {#cnf-fast-event-notifications-v2-api-refererence_using-ptp-hardware-fast-events-framework-v2}
 
+Use the PTP events REST API v2 endpoints to create and manage event subscriptions and to poll the current state of PTP events on cluster nodes.
+
 ### api/ocloudNotifications/v2/subscriptions {#api-ocloud-notifications-v2-subscriptions_using-ptp-hardware-fast-events-framework-v2}
 
-#### HTTP method {#_http_method}
+### HTTP method {#_http_method}
 
 `GET api/ocloudNotifications/v2/subscriptions`
 
-#### Description {#_description}
+### Description {#_description}
 
 Returns a list of subscriptions. If subscriptions exist, a `200 OK` status code is returned along with the list of subscriptions.
 
@@ -70,11 +72,11 @@ Returns a list of subscriptions. If subscriptions exist, a `200 OK` status code 
 ]
 ```
 
-#### HTTP method {#_http_method}
+### HTTP method {#_http_method}
 
 `POST api/ocloudNotifications/v2/subscriptions`
 
-#### Description {#_description}
+### Description {#_description}
 
 Creates a new subscription for the required event by passing the appropriate payload.
 
@@ -147,11 +149,11 @@ The following subscription status events are possible:
 | `404 Not Found` | Indicates that the subscription resource is not available |
 | `409 Conflict` | Indicates that the subscription already exists |
 
-#### HTTP method {#_http_method}
+### HTTP method {#_http_method}
 
 `DELETE api/ocloudNotifications/v2/subscriptions`
 
-#### Description {#_description}
+### Description {#_description}
 
 Deletes all subscriptions.
 
@@ -163,11 +165,11 @@ Deletes all subscriptions.
 
 ### api/ocloudNotifications/v2/subscriptions/&#123;subscription_id&#125; {#api-ocloud-notifications-v2-subscriptions-subscription_id_using-ptp-hardware-fast-events-framework-v2}
 
-#### HTTP method {#_http_method}
+### HTTP method {#_http_method}
 
 `GET api/ocloudNotifications/v2/subscriptions/{subscription_id}`
 
-#### Description {#_description}
+### Description {#_description}
 
 Returns details for the subscription with ID `subscription_id`.
 
@@ -186,11 +188,11 @@ Returns details for the subscription with ID `subscription_id`.
 }
 ```
 
-#### HTTP method {#_http_method}
+### HTTP method {#_http_method}
 
 `DELETE api/ocloudNotifications/v2/subscriptions/{subscription_id}`
 
-#### Description {#_description}
+### Description {#_description}
 
 Deletes the subscription with ID `subscription_id`.
 
@@ -208,11 +210,11 @@ Deletes the subscription with ID `subscription_id`.
 
 ### api/ocloudNotifications/v2/health {#api-ocloudnotifications-v2-health_using-ptp-hardware-fast-events-framework-v2}
 
-#### HTTP method {#_http_method}
+### HTTP method {#_http_method}
 
 `GET api/ocloudNotifications/v2/health/`
 
-#### Description {#_description}
+### Description {#_description}
 
 Returns the health status for the `ocloudNotifications` REST API.
 
@@ -224,11 +226,11 @@ Returns the health status for the `ocloudNotifications` REST API.
 
 ### api/ocloudNotifications/v2/publishers {#api-ocloudnotifications-v2-publishers_using-ptp-hardware-fast-events-framework-v2}
 
-#### HTTP method {#_http_method}
+### HTTP method {#_http_method}
 
 `GET api/ocloudNotifications/v2/publishers`
 
-#### Description {#_description}
+### Description {#_description}
 
 Returns a list of publisher details for the cluster node. The system generates notifications when the relevant equipment state changes.
 
@@ -277,7 +279,7 @@ You can use equipment synchronization status subscriptions together to deliver a
 
 ### api/ocloudNotifications/v2/&#123;resource_address&#125;/CurrentState {#resource-address-current-state-v2_using-ptp-hardware-fast-events-framework-v2}
 
-#### HTTP method {#_http_method}
+### HTTP method {#_http_method}
 
 `GET api/ocloudNotifications/v2/cluster/node/{node_name}/sync/ptp-status/lock-state/CurrentState`
 
@@ -289,7 +291,7 @@ You can use equipment synchronization status subscriptions together to deliver a
 
 `GET api/ocloudNotifications/v2/cluster/node/{node_name}/sync/gnss-status/gnss-sync-state/CurrentState`
 
-#### Description {#_description}
+### Description {#_description}
 
 Returns the current state of the `os-clock-sync-state`, `clock-class`, `lock-state`, `gnss-sync-status`, or `sync-state` events for the cluster node.
 

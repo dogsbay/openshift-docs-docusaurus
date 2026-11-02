@@ -33,7 +33,15 @@ OADP versions before 1.3.0 are not supported for back up and restore of OpenShif
 
 ## Install and configure OADP with OpenShift Virtualization {#install-and-configure-oadp-kubevirt_installing-oadp-kubevirt}
 
-As a cluster administrator, you can install the OpenShift API for Data Protection (OADP) with OpenShift Virtualization by installing the OADP Operator and configuring a backup location. You can then install the Data Protection Application.
+As a cluster administrator, you can install the OpenShift API for Data Protection (OADP) with OpenShift Virtualization by installing the OADP Operator and configuring a backup location. You can then install the Data Protection Application to back up and restore virtual machines.
+
+:::warning
+
+Red Hat only supports the combination of OADP versions 1.3.0 and later, and OpenShift Virtualization versions 4.14 and later.
+
+OADP versions before 1.3.0 are not supported for back up and restore of OpenShift Virtualization.
+
+:::
 
 To install the OADP Operator in a restricted network environment, you must first disable the default software catalog sources and mirror the Operator catalog.
 
@@ -49,7 +57,7 @@ The following storage options are excluded:
 - File system backup and restore
 - Volume snapshot backup and restore
 
-The latest version of the OADP Operator installs Velero 1.16.
+The latest version of the OADP Operator installs Velero 1.18.
 
 :::
 
@@ -64,7 +72,7 @@ Red Hat support is limited to only the following options:
 
 **Prerequisites**
 
-- Access to the cluster as a user with the `cluster-admin` role.
+- You have access to the cluster as a user with the `cluster-admin` role.
 
 **Procedure**
 
@@ -79,11 +87,11 @@ You install the Data Protection Application (DPA) by creating an instance of the
 
 **Prerequisites**
 
-- You must install the OADP Operator.
-- You must configure object storage as a backup location.
-- If you use snapshots to back up PVs, your cloud provider must support either a native snapshot API or Container Storage Interface (CSI) snapshots.
-- If the backup and snapshot locations use the same credentials, you must create a `Secret` with the default name for your storage provider: `cloud-credentials` for AWS, Multicloud Object Gateway (MCG), Red Hat OpenShift Data Foundation (ODF), IBM Cloud, or KubeVirt; `cloud-credentials-azure` for Azure; or `cloud-credentials-gcp` for GCP.
-- If the backup and snapshot locations use different credentials, you must create two `Secrets`:
+- You have installed the OADP Operator.
+- You have configured object storage as a backup location.
+- If you use snapshots to back up PVs, your cloud provider supports either a native snapshot API or Container Storage Interface (CSI) snapshots.
+- If the backup and snapshot locations use the same credentials, you have created a `Secret` with the default name for your storage provider: `cloud-credentials` for AWS, Multicloud Object Gateway (MCG), Red Hat OpenShift Data Foundation (ODF), IBM Cloud, or KubeVirt; `cloud-credentials-azure` for Azure; or `cloud-credentials-gcp` for GCP.
+- If the backup and snapshot locations use different credentials, you have created two `Secrets`:
   - `Secret` with a custom name for the backup location. You add this `Secret` to the `DataProtectionApplication` CR.
   - `Secret` with another custom name for the snapshot location. You add this `Secret` to the `DataProtectionApplication` CR.
     :::note
@@ -664,7 +672,9 @@ After you have backed up a single virtual machine (VM) by using the label select
 
 ## Restore a single VM from a backup of multiple VMs {#oadp-restore-single-vm-from-multiple-vm-backup_installing-oadp-kubevirt}
 
-If you have a backup containing multiple virtual machines (VMs), and you want to restore only one VM, you can use the `LabelSelectors` section in the `Restore` CR to select the VM to restore. To ensure that the persistent volume claim (PVC) attached to the VM is correctly restored, and the restored VM is not stuck in a `Provisioning` status, use both the `app: <vm_name>` and the `kubevirt.io/created-by` labels. To match the `kubevirt.io/created-by` label, use the UID of `DataVolume` of the VM.
+If you have a backup containing multiple virtual machines (VMs), and you want to restore only one VM, you can use the `LabelSelectors` section in the `Restore` CR to select the VM to restore.
+
+To ensure that the persistent volume claim (PVC) attached to the VM is correctly restored, and the restored VM is not stuck in a `Provisioning` status, use both the `app: <vm_name>` and the `kubevirt.io/created-by` labels. To match the `kubevirt.io/created-by` label, use the UID of `DataVolume` of the VM.
 
 **Prerequisites**
 
@@ -1337,4 +1347,4 @@ The CSI Data Mover backups use Kopia regardless of `uploaderType`.
 - [`Backup` custom resource (CR)](/docs/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
 - [`Restore` CR](/docs/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications#restoring-applications)
 - [Using Operator Lifecycle Manager in disconnected environments](/docs/disconnected/using-olm#olm-restricted-networks)
-- [Velero 1.16](https://velero.io/docs/v1.16)
+- [Velero 1.18](https://velero.io/docs)

@@ -9,7 +9,7 @@ sidebar_position: 9
 
 Configure certificate rotation parameters to replace existing certificates.
 
-## Configure certificate rotation in `HyperConverged` CR {#virt-configuring-certificate-rotation_virt-configuring-certificate-rotation}
+## Configure certificate rotation {#virt-configuring-certificate-rotation_virt-configuring-certificate-rotation}
 
 If you did not configure certificate rotation during OpenShift Virtualization installation in the web console, you can use the `HyperConverged` custom resource (CR) to apply the configuration after installation.
 

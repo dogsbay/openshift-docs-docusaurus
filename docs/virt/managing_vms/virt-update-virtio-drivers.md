@@ -9,7 +9,7 @@ sidebar_position: 4
 
 Update VirtIO drivers and the QEMU guest agent in guest operating systems. Using the latest VirtIO drivers increases performance and stability.
 
-## Downloading the VirtIO drivers ISO from the web console {#virt-downloading-virtio-win-iso_virt-update-virtio-drivers}
+## Download the VirtIO drivers ISO from the web console {#virt-downloading-virtio-win-iso_virt-update-virtio-drivers}
 
 You can download the `virtio-win` ISO file from the OpenShift Container Platform web console. The ISO file includes the VirtIO drivers and the QEMU guest agent installer for Microsoft Windows virtual machines (VMs).
 

@@ -507,8 +507,6 @@ For more information about related features and functionality, see the Microsoft
 
 1. In a text editor, open the YAML file for an existing machine set or create a new one.
 2. Edit the following section under the `providerSpec` field:
-   **Sample configuration**
-
    ```yaml
 
    apiVersion: machine.openshift.io/v1

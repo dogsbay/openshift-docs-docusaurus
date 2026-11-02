@@ -88,6 +88,7 @@ The range must be large enough to accommodate your workload. The address block m
 
 - [Cluster Network Operator configuration](/docs/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
 - [Configuring the cluster network range](/docs/networking/configuring_network_settings/configuring-cluster-network-range#configuring-cluster-network-range)
+- [Increasing the cluster network hostPrefix](/docs/networking/ovn_kubernetes_network_provider/increasing-cluster-network-hostprefix#increasing-cluster-network-hostprefix)
 
 ## Host prefix {#host-prefix-description_cidr-range-definitions}
 

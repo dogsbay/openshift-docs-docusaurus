@@ -79,12 +79,11 @@ The impersonated user can belong to zero or more groups.
 3. Optional: In the **Groups** field, choose one or more groups that are associated with the user.
    The dialog displays a warning message explaining that impersonation applies the effective permissions of the specified user and any selected groups.
 4. Click **Impersonate** to impersonate your selected user, groups, or both.
+   :::note
 
-:::note
+   Selecting one group uses the existing single-group impersonation behavior. Selecting no groups uses regular single-user impersonation.
 
-Selecting one group uses the existing single-group impersonation behavior. Selecting no groups uses regular single-user impersonation.
-
-:::
+   :::
 
 ## Start impersonation from the Users or Groups pages {#starting-impersonation-users-groups-pages_impersonating-system-admin}
 

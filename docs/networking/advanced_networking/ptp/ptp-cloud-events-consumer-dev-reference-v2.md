@@ -25,9 +25,13 @@ Use the Precision Time Protocol (PTP) fast event REST API v2 to subscribe cluste
 
 :::note
 
-The fast events notifications framework uses a REST API for communication. The PTP events REST API v2 is based on the *O-RAN O-Cloud Notification API Specification for Event Consumers 4.0* that is available from [O-RAN ALLIANCE Specifications](https://orandownloadsweb.azurewebsites.net/specifications).
+The fast events notifications framework uses a REST API for communication. The PTP events REST API v2 is based on the *O-RAN O-Cloud Notification API Specification for Event Consumers 4.0* that is available from "O-RAN ALLIANCE Specifications".
 
 :::
+
+**Additional resources**
+
+- [O-RAN ALLIANCE Specifications](https://orandownloadsweb.azurewebsites.net/specifications)
 
 ## Retrieving PTP events with the PTP events REST API v2 {#cnf-about-ptp-events-using-ptp-event-producer-with-o-ran-api_ptp-consumer}
 
@@ -73,10 +77,10 @@ To start using PTP fast event notifications for a network interface in your clus
         daemonNodeSelector:
           node-role.kubernetes.io/worker: ""
         ptpEventConfig:
-          enableEventPublisher: true (1)
+          enableEventPublisher: true
       ```
 
-      1. Enable PTP fast event notifications by setting `enableEventPublisher` to `true`.
+      - `enableEventPublisher`: Enable PTP fast event notifications by setting `enableEventPublisher` to `true`.
    2. Update the `PtpOperatorConfig` CR:
       ```terminal
       $ oc apply -f ptp-operatorconfig.yaml
@@ -87,25 +91,27 @@ To start using PTP fast event notifications for a network interface in your clus
      profile:
      - name: "profile1"
        interface: "enp5s0f0"
-       ptp4lOpts: "-2 -s --summary_interval -4" (1)
-       phc2sysOpts: "-a -r -m -n 24 -N 8 -R 16" (2)
-       ptp4lConf: "" (3)
-       ptpClockThreshold: (4)
+       ptp4lOpts: "-2 -s --summary_interval -4"
+       phc2sysOpts: "-a -r -m -n 24 -N 8 -R 16"
+       ptp4lConf: ""
+       ptpClockThreshold:
          holdOverTimeout: 5
          maxOffsetThreshold: 100
          minOffsetThreshold: -100
    ```
 
-   1. Append `--summary_interval -4` to use PTP fast events.
-   2. Required `phc2sysOpts` values. `-m` prints messages to `stdout`. The `linuxptp-daemon` `DaemonSet` parses the logs and generates Prometheus metrics.
-   3. Specify a string that contains the configuration to replace the default `/etc/ptp4l.conf` file. To use the default configuration, leave the field empty.
-   4. Optional. If the `ptpClockThreshold` stanza is not present, default values are used for the `ptpClockThreshold` fields. The stanza shows default `ptpClockThreshold` values. The `ptpClockThreshold` values configure how long after the PTP master clock is disconnected before PTP events are triggered. `holdOverTimeout` is the time value in seconds before the PTP clock event state changes to `FREERUN` when the PTP master clock is disconnected. The `maxOffsetThreshold` and `minOffsetThreshold` settings configure offset values in nanoseconds that compare against the values for `CLOCK_REALTIME` (`phc2sys`) or master offset (`ptp4l`). When the `ptp4l` or `phc2sys` offset value is outside this range, the PTP clock state is set to `FREERUN`. When the offset value is within this range, the PTP clock state is set to `LOCKED`.
+   - `ptp4lOpts`: Append `--summary_interval -4` to use PTP fast events.
+   - `phc2sysOpts`: Required `phc2sysOpts` values. `-m` prints messages to `stdout`. The `linuxptp-daemon` `DaemonSet` parses the logs and generates Prometheus metrics.
+   - `ptp4lConf`: Specify a string that contains the configuration to replace the default `/etc/ptp4l.conf` file. To use the default configuration, leave the field empty.
+   - `ptpClockThreshold`: Optional. If the `ptpClockThreshold` stanza is not present, default values are used for the `ptpClockThreshold` fields. The stanza shows default `ptpClockThreshold` values. The `ptpClockThreshold` values configure how long after the PTP master clock is disconnected before PTP events are triggered. `holdOverTimeout` is the time value in seconds before the PTP clock event state changes to `FREERUN` when the PTP master clock is disconnected. The `maxOffsetThreshold` and `minOffsetThreshold` settings configure offset values in nanoseconds that compare against the values for `CLOCK_REALTIME` (`phc2sys`) or master offset (`ptp4l`). When the `ptp4l` or `phc2sys` offset value is outside this range, the PTP clock state is set to `FREERUN`. When the offset value is within this range, the PTP clock state is set to `LOCKED`.
 
 **Additional resources**
 
 - [Configuring linuxptp services as ordinary clock](/docs/networking/advanced_networking/ptp/configuring-ptp#configuring-linuxptp-services-as-ordinary-clock_configuring-ptp)
 
 ## PTP events REST API v2 consumer application reference {#ptp-events-consumer-application-v2_ptp-consumer}
+
+Use this reference to understand the required features and example implementation for PTP event consumer applications that use the PTP events REST API v2.
 
 PTP event consumer applications require the following features:
 
@@ -155,7 +161,7 @@ func createSubscription(resourceAddress string) (sub pubsub.PubSub, err error) {
   var status int
   apiPath := "/api/ocloudNotifications/v2/"
   localAPIAddr := "consumer-events-subscription-service.cloud-events.svc.cluster.local:9043" // vDU service API address
-  apiAddr := "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043" (1)
+  apiAddr := "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043"
   apiVersion := "2.0"
 
   subURL := &types.URI{URL: url.URL{Scheme: "http",
@@ -182,14 +188,18 @@ func createSubscription(resourceAddress string) (sub pubsub.PubSub, err error) {
 }
 ```
 
-1. Replace `<node_name>` with the FQDN of the node that is generating the PTP events. For example, `compute-1.example.com`.
+:::note
+
+Replace `<node_name>` with the FQDN of the node that is generating the PTP events. For example, `compute-1.example.com`.
+
+:::
 
 ```go title="Example PTP events consumer getCurrentState function in Go"
 //Get PTP event state for the resource
 func getCurrentState(resource string) {
   //Create publisher
   url := &types.URI{URL: url.URL{Scheme: "http",
-    Host: "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043", (1)
+    Host: "ptp-event-publisher-service-<node_name>.openshift-ptp.svc.cluster.local:9043",
     Path: fmt.SPrintf("/api/ocloudNotifications/v2/%s/CurrentState",resource}}
   rc := restclient.New()
   status, event := rc.Get(url)
@@ -201,7 +211,11 @@ func getCurrentState(resource string) {
 }
 ```
 
-1. Replace `<node_name>` with the FQDN of the node that is generating the PTP events. For example, `compute-1.example.com`.
+:::note
+
+Replace `<node_name>` with the FQDN of the node that is generating the PTP events. For example, `compute-1.example.com`.
+
+:::
 
 ## Reference event consumer deployment and service CRs using PTP events REST API v2 {#ptp-reference-deployment-and-service-crs-v2_ptp-consumer}
 
@@ -297,6 +311,8 @@ spec:
 ```
 
 ## Subscribing to PTP events with the REST API v2 {#ptp-subscribing-consumer-app-to-events-v2_ptp-consumer}
+
+You can subscribe PTP event consumer applications to PTP events posted by the `cloud-event-proxy` container managed by the PTP Operator.
 
 Deploy your `cloud-event-consumer` application container and subscribe the `cloud-event-consumer` application to PTP events posted by the `cloud-event-proxy` container in the pod managed by the PTP Operator.
 

@@ -105,7 +105,7 @@ The `summary` field must adhere to the following format:
 
 #### Example annotation keys {#security-example-annotation-keys_security-container-content}
 
-The following are example annotation keys:
+The following text shows you example of four annotation keys.
 
 ```
 quality.images.openshift.io/vulnerability.blackduck: {}
@@ -178,7 +178,7 @@ Use the `images.openshift.io/deny-execution` image policy to programmatically co
 
 #### Example annotation {#security-controlling-pod-execution-example-annotation_security-container-content}
 
-The following is an example annotation:
+The preceding YAML shows you an example annotation.
 
 ```yaml
 annotations:

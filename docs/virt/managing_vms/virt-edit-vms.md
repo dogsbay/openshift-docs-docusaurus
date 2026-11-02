@@ -11,7 +11,7 @@ You can update virtual machine (VM) configuration details like CPU, memory, and 
 
 To edit a VM to configure disk sharing by using virtual disks or LUN, see "Configuring shared volumes for virtual machines".
 
-## Changing the instance type of a VM by using the web console {#virt-change-vm-instance-type_virt-edit-vms}
+## Change a VM instance type in the web console {#virt-change-vm-instance-type_virt-edit-vms}
 
 You can change the instance type associated with a running virtual machine (VM) by using the web console. The change takes effect immediately.
 
@@ -36,7 +36,7 @@ You can change the instance type associated with a running virtual machine (VM) 
 2. Click **Reload**.
 3. Review the VM YAML to confirm that the instance type changed.
 
-## Hot plugging memory on a virtual machine {#virt-hot-plugging-memory_virt-edit-vms}
+## Change VM memory without a restart {#virt-hot-plugging-memory_virt-edit-vms}
 
 You can add or remove the amount of memory allocated to a virtual machine (VM) without having to restart the VM by using the OpenShift Container Platform web console.
 
@@ -67,7 +67,7 @@ You can add or remove the amount of memory allocated to a virtual machine (VM) w
 
    :::
 
-## Hot plugging CPUs on a virtual machine {#virt-hot-plugging-cpu_virt-edit-vms}
+## Change VM CPU sockets without a restart {#virt-hot-plugging-cpu_virt-edit-vms}
 
 You can increase or decrease the number of CPU sockets allocated to a virtual machine (VM) without having to restart the VM by using the OpenShift Container Platform web console.
 
@@ -96,7 +96,68 @@ You can increase or decrease the number of CPU sockets allocated to a virtual ma
 
    :::
 
-## Editing a virtual machine by using the CLI {#virt-editing-vm-cli_virt-edit-vms}
+### Supported platforms and versions for CPU hot-plug {#virt-hot-plugging-cpu-support_virt-edit-vms}
+
+Different operating systems provide different levels of support for hot-plugging CPUs.
+
+<table>
+<tbody>
+<tr>
+  <td>Operating system</td>
+  <td>Version</td>
+  <td>Architecture</td>
+  <td>Hot plug support</td>
+</tr>
+<tr>
+  <td>Red&#160;Hat Enterprise Linux (RHEL)</td>
+  <td>8.10</td>
+  <td>x86</td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td>Red&#160;Hat Enterprise Linux (RHEL)</td>
+  <td>9.0 and later</td>
+  <td>x86</td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td>Red&#160;Hat Enterprise Linux (RHEL)</td>
+  <td>10</td>
+  <td>x86</td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td>Windows Server 2016</td>
+  <td>All</td>
+  <td>x86</td>
+  <td>Yes (hot unplug not supported)</td>
+</tr>
+<tr>
+  <td>Windows Server 2019</td>
+  <td>All</td>
+  <td>x86</td>
+  <td>Yes (hot unplug not supported)</td>
+</tr>
+<tr>
+  <td>Windows Server 2022</td>
+  <td>All</td>
+  <td>x86</td>
+  <td>Yes (hot unplug not supported)</td>
+</tr>
+<tr>
+  <td>Windows Server 2025</td>
+  <td>All</td>
+  <td>x86</td>
+  <td>Yes  (hot unplug not supported)</td>
+</tr>
+</tbody>
+</table>
+
+For information on how to troubleshoot issues with offline hot plugged CPUs, see [Hotplugged CPU is offline in the RHEL Guest, unable to bring online](https://access.redhat.com/solutions/7134081).
+
+OpenShift Virtualization may inadverently pass nested virtualization extensions (VMX, SVM) to the guest. Nested Virtualization is not officially supported and generally not recommended, except in specific cases. For more information about this issue, see [CNV-68983: Nested Virtualization may get enabled inadvertently if no default cluster cpu model set](https://redhat.atlassian.net/browse/CNV-68983).
+
+## Edit a virtual machine by using the CLI {#virt-editing-vm-cli_virt-edit-vms}
 
 You can edit a virtual machine (VM) by using the command line.
 
@@ -118,7 +179,7 @@ You can edit a virtual machine (VM) by using the command line.
      $ oc apply vm <vm_name> -n <namespace>
      ```
 
-## Adding a disk to a virtual machine {#virt-add-disk-to-vm_virt-edit-vms}
+## Add a disk to a virtual machine {#virt-add-disk-to-vm_virt-edit-vms}
 
 You can add a virtual disk to a virtual machine (VM) by using the OpenShift Container Platform web console.
 
@@ -137,7 +198,7 @@ You can add a virtual disk to a virtual machine (VM) by using the OpenShift Cont
 
    :::
 
-### Storage fields {#virt-storage-wizard-fields-web_virt-edit-vms}
+### Virtual machine storage fields {#virt-storage-wizard-fields-web_virt-edit-vms}
 
 To optimize storage performance and ensure data availability for your workloads, configure the storage fields to define the source, size, and disk characteristics of your virtual machine (VM).
 
@@ -234,7 +295,7 @@ If you do not specify these parameters, the system uses the default storage prof
 </tbody>
 </table>
 
-## Mounting a Windows driver disk on a virtual machine {#virt-mounting-windows-driver-disk-on-vm_virt-edit-vms}
+## Mount a Windows driver disk on a virtual machine {#virt-mounting-windows-driver-disk-on-vm_virt-edit-vms}
 
 You can mount a Windows driver disk on a virtual machine (VM) by using the OpenShift Container Platform web console.
 
@@ -246,7 +307,7 @@ You can mount a Windows driver disk on a virtual machine (VM) by using the OpenS
 4. Select the **Mount Windows drivers disk** checkbox.
    The Windows driver disk is displayed in the list of mounted disks.
 
-## Adding a secret, config map, or service account to a virtual machine {#virt-adding-secret-configmap-service-account-to-vm_virt-edit-vms}
+## Add a secret, config map, or service account to a VM {#virt-adding-secret-configmap-service-account-to-vm_virt-edit-vms}
 
 You can add a secret, config map, or service account to a virtual machine by using the OpenShift Container Platform web console.
 
@@ -275,7 +336,7 @@ If the virtual machine is running, changes do not take effect until you restart 
 
 You can now mount the secret, config map, or service account as you would mount any other disk.
 
-## Updating multiple virtual machines {#virt-updating-multiple-vms_virt-edit-vms}
+## Update multiple virtual machines {#virt-updating-multiple-vms_virt-edit-vms}
 
 You can use the command line interface (CLI) to update multiple virtual machines (VMs) at the same time.
 
@@ -353,7 +414,7 @@ You can use the command line interface (CLI) to update multiple virtual machines
    <dd>Specifies which VMs receive the job action. If you want the job to go over all VMs in the cluster, do not assign a value to the parameter.</dd>
    </dl>
 
-### Performing bulk actions on virtual machines {#virt-performing-actions-on-multiple-virtual-machines_virt-edit-vms}
+### Bulk actions on virtual machines {#virt-performing-actions-on-multiple-virtual-machines_virt-edit-vms}
 
 You can perform bulk actions on multiple virtual machines (VMs) simultaneously by using the **VirtualMachines** list view in the web console. This allows you to efficiently manage a group of VMs with minimal manual effort.
 
@@ -365,7 +426,7 @@ Available bulk actions:
 - **LiveMigration** - Perform live migration of multiple selected VMs. The confirmation dialog displays the number of VMs selected for migration. The target node is chosen automatically; there is no option of specifying it.
 - **Take snapshot** - Take snapshots of multiple VMs. The **Take snapshots** dialog allows you to enter a suffix for the names of the resulting snapshots.
 
-## Configuring multiple I/O threads for fast storage access {#virt-configure-multiple-iothreads_virt-edit-vms}
+## Configure multiple I/O threads for fast storage access {#virt-configure-multiple-iothreads_virt-edit-vms}
 
 You can improve storage performance by configuring multiple I/O threads for a virtual machine (VM) that uses fast storage, such as solid-state drive (SSD) or non-volatile memory express (NVMe). This configuration option is only available by editing YAML of the VM.
 

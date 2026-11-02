@@ -70,7 +70,9 @@ Although PTP provides superior accuracy over NTP, you can configure NTP as a bac
 
 ## Overview of linuxptp and gpsd in OpenShift Container Platform nodes {#ptp-linuxptp-introduction_about-ptp}
 
-OpenShift Container Platform uses the PTP Operator with `linuxptp` and `gpsd` packages for high precision network synchronization. The `linuxptp` package provides tools and daemons for PTP timing in networks. Cluster hosts with Global Navigation Satellite System (GNSS) capable NICs use `gpsd` to interface with GNSS clock sources.
+OpenShift Container Platform uses the PTP Operator with `linuxptp` and `gpsd` packages for high precision network synchronization.
+
+The `linuxptp` package provides tools and daemons for PTP timing in networks. Cluster hosts with Global Navigation Satellite System (GNSS) capable NICs use `gpsd` to interface with GNSS clock sources.
 
 The `linuxptp` package includes the `ts2phc`, `pmc`, `ptp4l`, and `phc2sys` programs for system clock synchronization.
 
@@ -126,11 +128,17 @@ Digital Phase-Locked Loop (DPLL)
 
 ### Handling leap second events in GNSS-synced PTP grandmaster clocks {#handling-leap-second-events-in-gnss_about-ptp}
 
-A leap second is a one-second adjustment that is occasionally applied to Coordinated Universal Time (UTC) to keep it synchronized with International Atomic Time (TAI). UTC leap seconds are unpredictable. Internationally agreed leap seconds are listed in [leap-seconds.list](https://hpiers.obspm.fr/iers/bul/bulc/ntp/leap-seconds.list). This file is regularly updated by the International Earth Rotation and Reference Systems Service (IERS). An unhandled leap second can have a significant impact on far edge RAN networks. It can cause the far edge RAN application to immediately disconnect voice calls and data sessions.
+A leap second is a one-second adjustment that is occasionally applied to Coordinated Universal Time (UTC) to keep it synchronized with International Atomic Time (TAI). UTC leap seconds are unpredictable. Internationally agreed leap seconds are listed in the `leap-seconds.list` file, which is regularly updated by the International Earth Rotation and Reference Systems Service (IERS). An unhandled leap second can have a significant impact on far edge RAN networks. It can cause the far edge RAN application to immediately disconnect voice calls and data sessions.
+
+**Additional resources**
+
+- [leap-seconds.list](https://hpiers.obspm.fr/iers/bul/bulc/ntp/leap-seconds.list)
 
 ## About PTP and clock synchronization error events {#cnf-about-ptp-and-clock-synchronization_about-ptp}
 
-Cloud native applications such as virtual RAN (vRAN) require access to notifications about hardware timing events that are critical to the functioning of the overall network. PTP clock synchronization errors can negatively affect the performance and reliability of your low-latency application, for example, a vRAN application running in a distributed unit (DU).
+Cloud native applications such as virtual RAN (vRAN) require access to notifications about hardware timing events that are critical to the functioning of the overall network.
+
+PTP clock synchronization errors can negatively affect the performance and reliability of your low-latency application, for example, a vRAN application running in a distributed unit (DU).
 
 Loss of PTP synchronization is a critical error for a RAN network. If synchronization is lost on a node, the radio might be shut down and the network Over the Air (OTA) traffic might be shifted to another node in the wireless network. Fast event notifications mitigate against workload errors by allowing cluster nodes to communicate PTP clock sync status to the vRAN application running in the DU.
 
@@ -173,7 +181,11 @@ Highly available system clock with dual-NIC boundary clocks
 
   Each NIC is connected to the same upstream leader clock. Highly available boundary clocks use multiple PTP domains to synchronize with the target system clock. When a T-BC is highly available, the host system clock can maintain the correct offset even if one or more `ptp4l` instances syncing the NIC PHC clock fails. If any single SFP port or cable failure occurs, the boundary clock stays in sync with the leader clock.
 
-  Boundary clock leader source selection is done using the A-BMCA algorithm. For more information, see [ITU-T recommendation G.8275.1](https://www.itu.int/rec/T-REC-G.8275.1/en).
+  Boundary clock leader source selection is done using the A-BMCA algorithm. For more information, see "ITU-T recommendation G.8275.1".
+
+**Additional resources**
+
+- [ITU-T recommendation G.8275.1](https://www.itu.int/rec/T-REC-G.8275.1/en)
 
 ## Using dual-port NICs to improve redundancy for PTP ordinary clocks {#ptp-dual-ports-oc_about-ptp}
 
@@ -196,9 +208,15 @@ For AArch64 architecture nodes, you can use the following dual-port NICs only:
 
 - NVIDIA ConnectX-7 series
 - NVIDIA BlueField-3 series, in NIC mode
-  - You must configure the NVIDIA BlueField-3 series DPU in NIC mode before configuring the interface as an ordinary clock with improved redundancy. For further information about configuring NIC mode, see [NIC Mode for BlueField-3](https://docs.nvidia.com/networking/display/bluefielddpubspv422/modes+of+operation#src-141856548_ModesofOperation-NICModeforBlueField-3) (NVIDIA documentation), [BlueField Management](https://docs.nvidia.com/networking/display/bluefieldbmcv2504/bluefield+managementink) (NVIDIA documentation), and [Configuring NIC Mode on BlueField-3 from Host BIOS HII UEFI Menu](https://docs.nvidia.com/networking/display/bluefielddpuosv470/modes+of+operation#src-2821766680_ModesofOperation-ConfiguringNICModeonBlueField-3fromHostHIIUEFI) (NVIDIA documentation).
-  - You must restart the card after changing to NIC mode. For more information about restarting the card, see [NVIDIA BlueField Reset and Reboot Procedures](https://docs.nvidia.com/doca/sdk/nvidia+bluefield+reset+and+reboot+procedures/index.html) (NVIDIA documentation).
+  - You must configure the NVIDIA BlueField-3 series DPU in NIC mode before configuring the interface as an ordinary clock with improved redundancy. For further information about configuring NIC mode, see "NIC Mode for BlueField-3" (NVIDIA documentation), "BlueField Management" (NVIDIA documentation), and "Configuring NIC Mode on BlueField-3 from Host BIOS HII UEFI Menu" (NVIDIA documentation).
+  - You must restart the card after changing to NIC mode. For more information about restarting the card, see "NVIDIA BlueField Reset and Reboot Procedures" (NVIDIA documentation).
 - Use the latest supported NVIDIA drivers and firmware to ensure proper PTP support and to expose a single PHC per NIC.
+
+**Additional resources**
+
+- [NIC Mode for BlueField-3](https://docs.nvidia.com/networking/display/bluefielddpubspv422/modes+of+operation#src-141856548_ModesofOperation-NICModeforBlueField-3)
+- [BlueField Management](https://docs.nvidia.com/networking/display/bluefieldbmcv2504/bluefield+managementink)
+- [Configuring NIC Mode on BlueField-3 from Host BIOS HII UEFI Menu](https://docs.nvidia.com/networking/display/bluefielddpuosv470/modes+of+operation#src-2821766680_ModesofOperation-ConfiguringNICModeonBlueField-3fromHostHIIUEFI)
 
 ## 3-card Intel E810 PTP grandmaster clock {#ptp-three-card-grandmaster_about-ptp}
 

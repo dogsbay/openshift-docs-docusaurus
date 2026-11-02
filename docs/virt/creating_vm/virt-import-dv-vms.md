@@ -430,7 +430,7 @@ The Containerized Data Importer (CDI) supports the following content types for V
 - ISO
 - Archive (`tar.gz`)
 
-## Troubleshoot data volume imports {#ref-troubleshooting-datavolume-imports_virt-import-dv-vms}
+## Data volume import troubleshooting {#ref-troubleshooting-datavolume-imports_virt-import-dv-vms}
 
 You can diagnose and resolve common issues with data volume imports by inspecting data volume conditions and events. Understanding these conditions helps you identify the root cause of failed or stalled imports.
 

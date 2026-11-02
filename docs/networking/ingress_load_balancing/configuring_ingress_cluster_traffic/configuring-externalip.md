@@ -61,7 +61,7 @@ If routed correctly, external traffic from the configured external IP address bl
 
 :::warning
 
-As a cluster administrator, you must configure routing to externalIPs. You must also ensure that the IP address block you assign terminates at one or more nodes in your cluster. For more information, see [Kubernetes External IPs](https://kubernetes.io/docs/concepts/services-networking/service/#external-ips).
+As a cluster administrator, you must configure routing to externalIPs. You must also ensure that the IP address block you assign terminates at one or more nodes in your cluster. For more information, see the Kubernetes documentation.
 
 :::
 
@@ -109,6 +109,10 @@ $ oc -n openshift-ingress-operator patch ingresscontrollers/ingress-controller-w
 ```
 
 After you run this command, the Ingress Controller restricts access to routes for OpenShift Container Platform applications to internal networks only.
+
+**Additional resources**
+
+- [External IPs](https://kubernetes.io/docs/concepts/services-networking/service/#external-ips)
 
 ## Applying restrictions on the assignment of an external IP address {#restrictions-on-ip-assignment_configuring-externalip}
 

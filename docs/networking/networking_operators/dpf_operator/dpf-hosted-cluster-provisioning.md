@@ -11,7 +11,9 @@ The DPF HCP Provisioner Operator automates the creation and lifecycle management
 
 ## DPU hosted cluster provisioning with the DPF HCP Provisioner Operator {#nw-dpf-hosted-cluster-overview_dpf-hosted-cluster-provisioning}
 
-The DPF HCP Provisioner Operator abstracts hosted control plane complexity for DPF by orchestrating the full lifecycle of hosted clusters for DPU environments. The Operator treats the hosted control plane as a black box and maintains a 1:1:1 relationship: each `DPFHCPProvisioner` custom resource maps to exactly one `DPUCluster` and one `HostedCluster`.
+The DPF HCP Provisioner Operator abstracts hosted control plane complexity for DPF by orchestrating the full lifecycle of hosted clusters for DPU environments.
+
+The Operator treats the hosted control plane as a black box and maintains a 1:1:1 relationship: each `DPFHCPProvisioner` custom resource maps to exactly one `DPUCluster` and one `HostedCluster`.
 
 The Operator provides the following capabilities:
 

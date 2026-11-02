@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="installing-oadp-gcp"></a>
 
-You install the OpenShift API for Data Protection (OADP) with Google Cloud by installing the OADP Operator. The Operator installs Velero 1.16.
+You install the OpenShift API for Data Protection (OADP) with Google Cloud by installing the OADP Operator. The Operator installs Velero 1.18.
 
 You configure Google Cloud for Velero, create a default `Secret`, and then install the Data Protection Application.
 
@@ -517,7 +517,7 @@ If you do not use Google workload identity federation cloud authentication, cont
 
 **Prerequisites**
 
-- You have installed a cluster in manual mode with [Google Cloud Workload Identity configured](https://docs.openshift.com/container-platform/latest/installing/installing_gcp/installing-gcp-customizations.html#installing-gcp-with-short-term-creds_installing-gcp-customizations).
+- You have installed a cluster in manual mode with Google Cloud Workload Identity configured.
 - You have access to the Cloud Credential Operator utility (`ccoctl`) and to the associated workload identity pool.
 
 **Procedure**
@@ -585,11 +585,11 @@ You install the Data Protection Application (DPA) by creating an instance of the
 
 **Prerequisites**
 
-- You must install the OADP Operator.
-- You must configure object storage as a backup location.
-- If you use snapshots to back up PVs, your cloud provider must support either a native snapshot API or Container Storage Interface (CSI) snapshots.
-- If the backup and snapshot locations use the same credentials, you must create a `Secret` with the default name for your storage provider: `cloud-credentials` for AWS, Multicloud Object Gateway (MCG), Red Hat OpenShift Data Foundation (ODF), IBM Cloud, or KubeVirt; `cloud-credentials-azure` for Azure; or `cloud-credentials-gcp` for GCP.
-- If the backup and snapshot locations use different credentials, you must create two `Secrets`:
+- You have installed the OADP Operator.
+- You have configured object storage as a backup location.
+- If you use snapshots to back up PVs, your cloud provider supports either a native snapshot API or Container Storage Interface (CSI) snapshots.
+- If the backup and snapshot locations use the same credentials, you have created a `Secret` with the default name for your storage provider: `cloud-credentials` for AWS, Multicloud Object Gateway (MCG), Red Hat OpenShift Data Foundation (ODF), IBM Cloud, or KubeVirt; `cloud-credentials-azure` for Azure; or `cloud-credentials-gcp` for GCP.
+- If the backup and snapshot locations use different credentials, you have created two `Secrets`:
   - `Secret` with a custom name for the backup location. You add this `Secret` to the `DataProtectionApplication` CR.
   - `Secret` with another custom name for the snapshot location. You add this `Secret` to the `DataProtectionApplication` CR.
     :::note
@@ -1722,7 +1722,7 @@ If you are not using `Restic`, `Kopia`, or `DataMover` for your backups, you can
 
 **Additional resources**
 
-- [Velero 1.16](https://velero.io/docs/v1.16/)
+- [Velero 1.18](https://velero.io/docs/)
 - [Installing the OADP Operator](/docs/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
 - [Using Operator Lifecycle Manager in disconnected environments](/docs/disconnected/using-olm#olm-restricted-networks)
 - [Installing the Data Protection Application with the `kubevirt` and `openshift` plugins](/docs/backup_and_restore/application_backup_and_restore/installing/installing-oadp-kubevirt#oadp-installing-dpa_installing-oadp-kubevirt)

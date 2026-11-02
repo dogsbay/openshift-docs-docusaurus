@@ -13,7 +13,7 @@ Use the use model and system level information to plan telco RAN DU workloads, c
 
 Specific limits, requirements, and engineering considerations for individual components are described in individual sections.
 
-## Reference design specifications for telco RAN DU 5G deployments {#telco-ref-design-overview_telco-ran-du}
+## Review the validated RAN DU reference design {#telco-ref-design-overview_telco-ran-du}
 
 Red Hat and certified partners offer deep technical expertise and support for networking and operational capabilities required to run telco applications on OpenShift Container Platform 4.22 clusters.
 
@@ -74,7 +74,7 @@ Red Hat prioritizes the servicing of requests for deviations based on partner en
 
 :::
 
-## Engineering considerations for the RAN DU use model {#telco-ran-engineering-considerations-for-the-ran-du-use-model_telco-ran-du}
+## Plan a RAN DU cluster within the validated limits {#telco-ran-engineering-considerations-for-the-ran-du-use-model_telco-ran-du}
 
 The RAN DU use model configures an OpenShift Container Platform cluster running on commodity hardware for hosting RAN distributed unit (DU) workloads.
 
@@ -85,7 +85,7 @@ For details of the telco RAN DU RDS KPI test results, see the [telco RAN DU 4.22
 :::
 
 Cluster topology
-: The recommended topology for RAN DU workloads is single-node OpenShift. DU workloads may be run on other cluster topologies such as 3-node compact cluster, high availability (3 control plane + n worker nodes), or SNO+1 as needed. Multiple SNO clusters, or a highly-available 3-node compact cluster, are recommended over the SNO+1 topology.
+: The recommended topology for RAN DU workloads is single-node OpenShift. DU workloads can be run on other cluster topologies such as 3-node compact cluster, high availability (3 control plane + n worker nodes), or single-node OpenShift configured with one additional dedicated worker node, as needed. Multiple single-node OpenShift clusters, or a highly-available 3-node compact cluster, are recommended over the single-node OpenShift configured with one additional dedicated worker node topology.
 
   Under the standard cluster topology case (3+n), a mixed architecture cluster is allowed only if:
 
@@ -107,14 +107,14 @@ Supported cluster topologies for RAN DU
 **Supported cluster topologies for RAN DU**
 ```
 
-:   | Architecture | SNO | SNO+1 | 3-node  | Standard  | RWN | | --- | --- | --- | --- | --- | --- | | x86_64 | Yes | Yes | Yes | Yes | No | | aarch64 | Yes | No | No | No | No | | mixed | N/A | No | No | Yes  | No |
+:   | Architecture | single-node OpenShift | single-node OpenShift configured with one additional dedicated worker node | 3-node  | Standard  | RWN | | --- | --- | --- | --- | --- | --- | | x86_64 | Yes | Yes | Yes | Yes | No | | aarch64 | Yes | No | No | No | No | | mixed | N/A | No | No | Yes  | No |
 
 ```
 *   The standard mixed-architecture topology uses `x86_64` control plane nodes and `AArch64` worker nodes.
 ```
 
 Workloads
-: 1. DU workloads are described in [Telco RAN DU application workloads](/docs/scalability_and_performance/telco-ran-du-rds#telco-ran-du-application-workloads_telco-ran-du).
+: 1. DU workloads are described in [Review the application limits for a RAN DU workload](/docs/scalability_and_performance/telco-ran-du-rds#telco-ran-du-application-workloads_telco-ran-du).
   2. DU worker nodes are Intel 3rd Generation Xeon (Ice Lake) 2.20 GHz or newer with host firmware tuned for maximum performance.
 
 Resources
@@ -174,7 +174,7 @@ Hub cluster management characteristics
 
   1. Use a maximum of 10 RHACM configuration policies, comprising 5 Red Hat provided policies and up to 5 custom configuration policies with a compliant evaluation interval of not less than 10 minutes.
   2. Use a minimal number (up to 10) of managed cluster templates in cluster policies. Use hub-side templating.
-  3. Disable RHACM addons with the exception of the `policyController` and configure observability with the default configuration.
+  3. Disable RHACM add-ons with the exception of the `policyController` and configure observability with the default configuration.
 
   The following table describes resource utilization under reference application load.
 
@@ -194,7 +194,7 @@ Disconnected environment
 
 - [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/docs/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
 
-## Telco RAN DU application workloads {#telco-ran-du-application-workloads_telco-ran-du}
+## Review the application limits for a RAN DU workload {#telco-ran-du-application-workloads_telco-ran-du}
 
 Develop RAN DU applications that are subject to the following requirements and limitations.
 
@@ -949,7 +949,9 @@ Use the following custom resources (CRs) to configure machine settings for the t
 
 ## Comparing a cluster with the telco RAN DU reference configuration {#using-cluster-compare-telco-ran_ran-ref-design-crs}
 
-After you deploy a telco RAN DU cluster, you can use the `cluster-compare` plugin to assess the cluster’s compliance with the telco RAN DU reference design specifications (RDS). The `cluster-compare` plugin is an OpenShift CLI (`oc`) plugin. The plugin uses a telco RAN DU reference configuration to validate the cluster with the telco RAN DU custom resources (CRs).
+After you deploy a telco RAN DU cluster, you can use the `cluster-compare` plugin to assess the cluster’s compliance with the telco RAN DU reference design specifications (RDS).
+
+The `cluster-compare` plugin is an OpenShift CLI (`oc`) plugin. The plugin uses a telco RAN DU reference configuration to validate the cluster with the telco RAN DU custom resources (CRs).
 
 The plugin-specific reference configuration for telco RAN DU is packaged in a container image with the telco RAN DU CRs.
 

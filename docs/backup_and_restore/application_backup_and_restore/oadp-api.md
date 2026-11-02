@@ -50,7 +50,7 @@ The following are `DataProtectionApplicationSpec` OADP APIs:
 
 ## BackupLocation type {#backuplocation-type_oadp-api}
 
-The following are `BackupLocation` OADP APIs:
+Use the `BackupLocation` OADP API type to define where OADP stores backups in OpenShift Container Platform. You can specify a Velero backup storage location or an automatically provisioned cloud storage bucket.
 
 **BackupLocation**
 
@@ -73,7 +73,7 @@ For more information about the support scope of Red Hat Technology Preview featu
 
 ## SnapshotLocation type {#snapshotlocation-type_oadp-api}
 
-The following are `SnapshotLocation` OADP APIs:
+Use the `SnapshotLocation` OADP API type to define where OADP stores volume snapshots in OpenShift Container Platform. It uses the Velero `VolumeSnapshotLocationSpec` to specify the snapshot storage backend.
 
 **SnapshotLocation**
 
@@ -87,7 +87,7 @@ The following are `SnapshotLocation` OADP APIs:
 
 ## ApplicationConfig type {#applicationconfig-type_oadp-api}
 
-The following are `ApplicationConfig` OADP APIs:
+Use the `ApplicationConfig` OADP API type to define Velero and Restic server configuration for OADP backup and restore operations in OpenShift Container Platform.
 
 **ApplicationConfig**
 
@@ -102,7 +102,7 @@ The following are `ApplicationConfig` OADP APIs:
 
 ## VeleroConfig type {#veleroconfig-type_oadp-api}
 
-The following are `VeleroConfig` OADP APIs:
+Use the `VeleroConfig` OADP API type to configure the Velero server instance for OADP in OpenShift Container Platform. It controls plugins, feature flags, pod configuration, and logging for the Velero server.
 
 **VeleroConfig**
 
@@ -122,7 +122,7 @@ The following are `VeleroConfig` OADP APIs:
 
 ## CustomPlugin type {#customplugin-type_oadp-api}
 
-The following are `CustomPlugin` OADP APIs:
+Use the `CustomPlugin` OADP API type to define the name and container image of a custom Velero plugin for OADP in OpenShift Container Platform.
 
 **CustomPlugin**
 
@@ -137,7 +137,7 @@ The following are `CustomPlugin` OADP APIs:
 
 ## ResticConfig type {#resticconfig-type_oadp-api}
 
-The following are `ResticConfig` OADP APIs:
+Use the `ResticConfig` OADP API type to enable and configure Restic-based backup and restore in OpenShift Container Platform. It defines the Restic timeout, supplemental groups, and pod configuration.
 
 **ResticConfig**
 
@@ -154,7 +154,7 @@ The following are `ResticConfig` OADP APIs:
 
 ## PodConfig type {#podconfig-type_oadp-api}
 
-The following are `PodConfig` OADP APIs:
+Use the `PodConfig` OADP API type to configure pod-level settings for Velero and Restic pods in OpenShift Container Platform. It defines node selectors, tolerations, resource limits, and labels for backup and restore pods.
 
 **PodConfig**
 
@@ -167,7 +167,7 @@ The following are `PodConfig` OADP APIs:
 
 ## Features type {#features-type_oadp-api}
 
-The following are `Features` OADP APIs:
+Use the `Features` OADP API type to configure optional OADP features in OpenShift Container Platform. It defines the Data Mover configuration for volume snapshot data movement.
 
 **Features**
 
@@ -181,7 +181,7 @@ The following are `Features` OADP APIs:
 
 ## DataMover type {#datamover-type_oadp-api}
 
-The following are `DataMover` OADP APIs:
+Use the `DataMover` OADP API type to enable and configure the volume snapshot mover controller and CSI Data Mover plugin in OpenShift Container Platform. It controls data movement for volume snapshot backup and restore operations.
 
 **DataMover**
 

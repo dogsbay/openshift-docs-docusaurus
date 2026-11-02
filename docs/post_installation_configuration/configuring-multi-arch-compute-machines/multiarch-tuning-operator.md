@@ -15,6 +15,8 @@ By default, the scheduler does not consider the architecture of a pod’s contai
 
 To enable architecture-aware workload scheduling, you must create the `ClusterPodPlacementConfig` object. When you create the `ClusterPodPlacementConfig` object, the Multiarch Tuning Operator deploys the necessary operands to support architecture-aware workload scheduling. You can also use the `nodeAffinityScoring` plugin in the `ClusterPodPlacementConfig` object to set cluster-wide scores for node architectures. If you enable the `nodeAffinityScoring` plugin, the scheduler first filters nodes with compatible architectures and then places the pod on the node with the highest score.
 
+At the namespace level, you can use the `celArchitecturePlacement` plugin in a `PodPlacementConfig` object to place workloads on specific architectures based on Common Expression Language (CEL) expressions that evaluate pod metadata.
+
 When a pod is created, the operands perform the following actions:
 
 1. Add the `multiarch.openshift.io/scheduling-gate` scheduling gate that prevents the scheduling of the pod.
@@ -24,17 +26,23 @@ When a pod is created, the operands perform the following actions:
 
 :::warning
 
-Note the following operand behaviors:
+The following exclusions apply before CEL placement or image-based architecture detection:
 
-- If the `nodeSelector` field is already configured with the `kubernetes.io/arch` label for a workload, the operand does not update the `nodeAffinity` field for that workload.
-- If the `nodeSelector` field is not configured with the `kubernetes.io/arch` label for a workload, the operand updates the `nodeAffinity` field for that workload. For the `nodeAffinity` field, the operand updates only the node selector terms that are not configured with the `kubernetes.io/arch` label.
-- If the `nodeName` field is already set, the Multiarch Tuning Operator does not process the pod.
-- If the pod is owned by a DaemonSet, the operand does not update the `nodeAffinity` field.
-- If `nodeSelector` or `nodeAffinity` and `preferredAffinity` fields are set for the `kubernetes.io/arch` label, the operand does not update the `nodeAffinity` field.
-- If only the `nodeSelector` or the `nodeAffinity` field is set for the `kubernetes.io/arch` label and the `nodeAffinityScoring` plugin is disabled, the operand does not update the `nodeAffinity` field.
-- If the `nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution` field already contains terms that score nodes based on the `kubernetes.io/arch` label, the operand ignores the configuration in the `nodeAffinityScoring` plugin.
+- The Operator ignores pods with `spec.nodeName` already set and pods owned by a DaemonSet.
+- The Operator ignores pods in its own namespace, pods in namespaces with the `kube-` prefix, and pods with a control-plane node selector.
+- If a pod has a `kubernetes.io/arch` node selector, or architecture constraints in every required node affinity term, together with architecture-based preferred node affinity, the Operator ignores the pod. This combination prevents CEL from overriding the existing architecture constraints.
+
+For otherwise eligible pods, CEL can replace architecture selectors and required node affinity while preserving preferred node affinity. If a pod already has architecture-based preferred node affinity, the Operator skips `nodeAffinityScoring`, not CEL placement.
+
+For image-based architecture detection, the Operator preserves existing architecture selectors and required affinity constraints. When neither a matching namespace-scoped placement plugin nor cluster-wide `nodeAffinityScoring` requires processing, pods with existing architecture constraints are not processed.
 
 :::
+
+Before installing the Operator, ensure that existing network policies allow its pods to reach the Kubernetes API server. If egress isolation blocks that access, configure the required allow policy before installation so that the Operator can create its managed network policies. An ingress-only default-deny policy does not block this egress.
+
+**Additional resources**
+
+- [Network policies created by the Multiarch Tuning Operator](/docs/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multi-arch-tuning-operator-network-policies_multiarch-tuning-operator)
 
 ## Installing the Multiarch Tuning Operator by using the CLI {#multi-architecture-installing-using-cli_multiarch-tuning-operator}
 
@@ -196,7 +204,9 @@ The following table describes the labels that the Multiarch Tuning Operator adds
 
 ## The ClusterPodPlacementConfig object {#multi-architecture-creating-podplacement-config_multiarch-tuning-operator}
 
-After installing the Multiarch Tuning Operator, you must create a `ClusterPodPlacementConfig` object. The object instructs the Operator to deploy its operand, which enables architecture-aware workload scheduling across your cluster.
+After installing the Multiarch Tuning Operator, create a `ClusterPodPlacementConfig` object to enable architecture-aware workload scheduling across your cluster.
+
+The object instructs the Operator to deploy its operands and network policies that restrict network traffic to and from the operands.
 
 The `ClusterPodPlacementConfig` object supports two optional plugins:
 
@@ -362,11 +372,17 @@ To deploy the pod placement operand that enables architecture-aware workload sch
 
 - On the **Cluster Pod Placement Config** page, check that the `ClusterPodPlacementConfig` object is in the `Ready` state.
 
+**Additional resources**
+
+- [Network policies created by the Multiarch Tuning Operator](/docs/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multi-arch-tuning-operator-network-policies_multiarch-tuning-operator)
+
 ## Creating the namespace-scoped PodPlacementConfig object {#multi-arch-creating-namespace-podplacement-config_multiarch-tuning-operator}
 
 After creating the `ClusterPodPlacementConfig` object, you can configure pod placement at the namespace level by creating namespace-scoped `PodPlacementConfig` objects.
 
 `PodPlacementConfig` objects modify the pod placement controller’s behavior at the namespace level, and take precedence over the `ClusterPodPlacementConfig` object.
+
+The `PodPlacementConfig` object supports the `nodeAffinityScoring` plugin and the `celArchitecturePlacement` plugin. The `celArchitecturePlacement` plugin uses Common Expression Language (CEL) expressions to place workloads on specific architectures based on pod metadata such as labels and annotations, instead of relying on image inspection.
 
 **Prerequisites**
 
@@ -419,6 +435,177 @@ After creating the `ClusterPodPlacementConfig` object, you can configure pod pla
    ```
 
    Replace `<filename>` with the name of the `PodPlacementConfig` configuration file.
+
+**Additional resources**
+
+- [Configuring architecture placement rules by using CEL expressions](/docs/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multi-arch-creating-namespace-podplacement-config-cel_multiarch-tuning-operator)
+
+## Configuring architecture placement rules by using CEL expressions {#multi-arch-creating-namespace-podplacement-config-cel_multiarch-tuning-operator}
+
+You can use Common Expression Language (CEL) rules in a namespace-scoped `PodPlacementConfig` object to select pod architectures from pod metadata instead of image inspection.
+
+The `celArchitecturePlacement` plugin can place workloads on specific architectures based on workload characteristics, such as placing database pods on `ppc64le` nodes and web server pods on `amd64` nodes.
+
+For eligible pods, the first rule that evaluates to `true` determines the target architectures. The plugin removes the `kubernetes.io/arch` entry from the pod `nodeSelector` field and replaces architecture constraints in required node affinity. Existing preferred node affinity is preserved. If no rule matches and at least one rule evaluates successfully, the plugin applies `fallbackArchitectures`. An empty or omitted rule list also applies the fallback.
+
+:::warning
+
+- Ensure that the container images used by the selected pods support every architecture specified by the matching rule or fallback. CEL-based placement overrides image-based architecture detection. Selecting an incompatible architecture can cause `ENOEXEC` errors.
+- If a pod combines an architecture node selector, or architecture constraints in every required node affinity term, with architecture-based preferred node affinity, the Operator ignores the pod before evaluating CEL. CEL does not override architecture constraints for this combination. Preferred architecture affinity alone does not disable CEL; for otherwise eligible pods, the Operator preserves those preferred terms and skips `nodeAffinityScoring`.
+- Matching `PodPlacementConfig` objects with the `celArchitecturePlacement` plugin enabled are evaluated in descending priority order. The first configuration that produces architectures takes precedence. Rules are not merged across objects, and each object in a namespace must have a different priority value.
+- If every rule in a configuration fails at runtime, the Operator skips that configuration without applying its fallback and considers lower-priority configurations. If no CEL configuration applies, processing can continue to image-based detection. This runtime behavior is separate from validation of expressions when you create or update the configuration.
+
+:::
+
+**Prerequisites**
+
+- You have installed the OpenShift CLI (`oc`).
+- You have logged in to `oc` as a user with `cluster-admin` privileges.
+- You have created the `ClusterPodPlacementConfig` object.
+- You have created the namespace where you want to apply the configuration. For the following example and verification steps, use a dedicated test namespace that is selected for processing by `ClusterPodPlacementConfig` and has no other `PodPlacementConfig` objects.
+- Your cluster has schedulable nodes for the architectures that you select. The following example requires `amd64` and `ppc64le` nodes.
+- Your workload images support all architectures that the rules or fallback can select.
+
+**Procedure**
+
+1. Using a text editor, create a YAML file based on the following example and modify the example with your namespace values:
+   ```yaml title="Example PodPlacementConfig object with the celArchitecturePlacement plugin"
+   apiVersion: multiarch.openshift.io/v1beta1
+   kind: PodPlacementConfig
+   metadata:
+     name: my-namespace-cel-config
+     namespace: my-namespace
+   spec:
+     priority: 10
+     plugins:
+       celArchitecturePlacement:
+         enabled: true
+         fallbackArchitectures:
+           - amd64
+         rules:
+           - name: database-on-ppc64le
+             expression: |
+               'app.kubernetes.io/component' in self.metadata.labels &&
+               self.metadata.labels['app.kubernetes.io/component'] == 'database'
+             architectures:
+               - ppc64le
+           - name: web-server-on-amd64
+             expression: |
+               'app.kubernetes.io/component' in self.metadata.labels &&
+               self.metadata.labels['app.kubernetes.io/component'] in ['frontend', 'backend']
+             architectures:
+               - amd64
+   ```
+
+   where:
+
+   <dl>
+   <dt><code>spec.priority</code></dt>
+   <dd>Optional parameter. Specifies a priority in case multiple <code>PodPlacementConfig</code> objects exist in one namespace. Higher priorities take precedence. Valid values are <code>0-255</code>, and the default value is <code>0</code>. If you specify multiple <code>PodPlacementConfig</code> objects in one namespace, they must have different priority values.</dd>
+   <dt><code>spec.plugins.celArchitecturePlacement.enabled</code></dt>
+   <dd>Set this field to <code>true</code> to enable the <code>celArchitecturePlacement</code> plugin.</dd>
+   <dt><code>spec.plugins.celArchitecturePlacement.fallbackArchitectures</code></dt>
+   <dd>Required parameter. Specifies the architectures to use when the rule list is empty or when at least one rule evaluates successfully but no rule matches. If every rule fails at runtime, the configuration is skipped without applying its fallback. You must specify at least one architecture, and you can specify up to four architectures. Valid values are <code>arm64</code>, <code>amd64</code>, <code>ppc64le</code>, and <code>s390x</code>.</dd>
+   <dt><code>spec.plugins.celArchitecturePlacement.rules</code></dt>
+   <dd>Optional parameter. Specifies up to 1000 rules that are evaluated in order. For eligible pods, the first matching rule determines the target architectures. If you omit the rules or specify an empty list, the plugin uses the fallback architectures.</dd>
+   <dt><code>spec.plugins.celArchitecturePlacement.rules[].name</code></dt>
+   <dd>Required parameter. Specifies a descriptive name of 1–253 characters for the rule.</dd>
+   <dt><code>spec.plugins.celArchitecturePlacement.rules[].expression</code></dt>
+   <dd>Required parameter. Specifies a CEL expression of 1–1024 characters that returns a boolean value. The expression is evaluated against the pod by using the <code>self</code> variable, and can access only the <code>metadata.name</code>, <code>metadata.generateName</code>, <code>metadata.namespace</code>, <code>metadata.labels</code>, and <code>metadata.annotations</code> fields of the pod. References to the <code>spec</code> or <code>status</code> fields of the pod, such as container images, environment variables, or volumes, are rejected when the <code>PodPlacementConfig</code> object is created or updated.</dd>
+   <dt><code>spec.plugins.celArchitecturePlacement.rules[].architectures</code></dt>
+   <dd>Required parameter. Specifies the target architectures to use when the rule matches. You must specify at least one architecture, and you can specify up to four architectures. Valid values are <code>arm64</code>, <code>amd64</code>, <code>ppc64le</code>, and <code>s390x</code>.</dd>
+   </dl>
+
+   The example omits `spec.labelSelector`, so it applies to all eligible pods in the namespace. Pods labeled `app.kubernetes.io/component=database` select `ppc64le`; pods labeled `frontend` or `backend` select `amd64`. Other eligible pods receive the `amd64` fallback. Add a label selector if you want to limit the configuration to a subset of pods.
+
+   Expressions inspect pod metadata. For controller-managed workloads, such as Deployments, put the labels or annotations on the pod template, not only on the controller object.
+2. Apply the configuration file by running the following command:
+   ```terminal
+   $ oc create -f <filename>
+   ```
+
+   Replace `<filename>` with the name of the `PodPlacementConfig` configuration file.
+
+**Verification**
+
+- Confirm that the example `PodPlacementConfig` object is created:
+  ```terminal
+  $ oc get podplacementconfig my-namespace-cel-config -n <namespace>
+  ```
+
+  Replace `<namespace>` in the following commands with the test namespace where you created the configuration.
+- Create test pods for both rules, the fallback, and the existing-affinity exclusion:
+  ```terminal
+  $ oc run cel-database-test -n <namespace> --restart=Never \
+      --image=<multi_arch_image> --labels=app.kubernetes.io/component=database \
+      --overrides='{"spec":{"affinity":{"nodeAffinity":{"preferredDuringSchedulingIgnoredDuringExecution":[{"weight":100,"preference":{"matchExpressions":[{"key":"kubernetes.io/arch","operator":"In","values":["amd64"]}]}}]}}}}' \
+      --command -- sleep 3600
+  $ oc run cel-web-test -n <namespace> --restart=Never \
+      --image=<multi_arch_image> --labels=app.kubernetes.io/component=frontend \
+      --command -- sleep 3600
+  $ oc run cel-fallback-test -n <namespace> --restart=Never \
+      --image=<multi_arch_image> --command -- sleep 3600
+  $ oc run cel-excluded-test -n <namespace> --restart=Never \
+      --image=<multi_arch_image> --labels=app.kubernetes.io/component=database \
+      --overrides='{"spec":{"nodeSelector":{"kubernetes.io/arch":"amd64"},"affinity":{"nodeAffinity":{"preferredDuringSchedulingIgnoredDuringExecution":[{"weight":100,"preference":{"matchExpressions":[{"key":"kubernetes.io/arch","operator":"In","values":["amd64"]}]}}]}}}}' \
+      --command -- sleep 3600
+  ```
+
+  Replace `<multi_arch_image>` with a container image that supports both `amd64` and `ppc64le` and includes the `sleep` command. The database test has preferred affinity only; the excluded test combines preferred affinity with an architecture node selector.
+- Wait for the test pods to become ready:
+  ```terminal
+  $ oc wait --for=condition=Ready pod/cel-database-test pod/cel-web-test pod/cel-fallback-test pod/cel-excluded-test -n <namespace> --timeout=120s
+  ```
+- Inspect the required architecture constraints and assigned nodes:
+  ```terminal
+  $ oc get pods cel-database-test cel-web-test cel-fallback-test cel-excluded-test -n <namespace> -o custom-columns='NAME:.metadata.name,ARCHITECTURES:.spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[*].matchExpressions[*].values[*],NODE:.spec.nodeName'
+  ```
+
+  For the example configuration, the database test must have required `ppc64le` affinity. The web and fallback tests must have required `amd64` affinity. The excluded test must not receive CEL-required `ppc64le` affinity because its existing selector and preferred affinity exclude it from processing.
+- Confirm that the database test retains its preferred `amd64` affinity and that the excluded test retains its `amd64` node selector:
+  ```terminal
+  $ oc get pod cel-database-test -n <namespace> -o jsonpath='{.spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution}{"\n"}'
+  $ oc get pod cel-excluded-test -n <namespace> -o jsonpath='{.spec.nodeSelector}{"\n"}'
+  ```
+
+  The database test must retain the preferred `kubernetes.io/arch` expression with value `amd64` and weight `100`, even though its required architecture is `ppc64le`. The excluded test must retain `kubernetes.io/arch: amd64` in its node selector.
+- Compare the assigned node names with their architecture labels:
+  ```terminal
+  $ oc get nodes -L kubernetes.io/arch
+  ```
+
+  The database test must run on a `ppc64le` node. The web, fallback, and excluded tests must run on `amd64` nodes.
+- Remove the test pods when you finish verification:
+  ```terminal
+  $ oc delete pod cel-database-test cel-web-test cel-fallback-test cel-excluded-test -n <namespace>
+  ```
+
+## Network policies created by the Multiarch Tuning Operator {#multi-arch-tuning-operator-network-policies_multiarch-tuning-operator}
+
+The Multiarch Tuning Operator restricts network traffic to and from its workloads by creating `NetworkPolicy` objects. The policies are created at runtime by the Operator and are not part of the Operator bundle.
+
+The Operator creates the following network policies:
+
+- A policy that protects the Operator’s own controller manager workload. The Operator recreates this policy if it is deleted.
+- Policies that protect the pod placement operands, such as the pod placement controller, the pod placement webhook, and the ENOEXEC event handler workloads. These policies are created when you create the `ClusterPodPlacementConfig` object and are deleted when you delete the `ClusterPodPlacementConfig` object.
+
+Depending on the workload, the network policies allow the following traffic:
+
+- DNS egress on TCP and UDP port `5353` to the `openshift-dns` namespace.
+- TCP egress on port `6443` to any destination, to allow access to the Kubernetes API server.
+- Metrics ingress on TCP port `8443` from the `openshift-monitoring` namespace.
+- Admission webhook ingress on TCP port `9443` from any source, to allow access from the API server.
+- TCP egress on all ports to any destination for workloads that inspect container images, to support registries, mirrors, and proxies that use arbitrary hosts and ports.
+
+The API and webhook rules restrict ports, but do not restrict destination and source addresses, respectively. The image-inspection rule permits all TCP egress, not only connections to image registries.
+
+:::warning
+
+Before installing the Multiarch Tuning Operator, ensure that existing network policies allow its pods to reach the Kubernetes API server. If egress isolation blocks that access, configure the required allow policy before installation so that the Operator can create its managed network policies. An ingress-only default-deny policy does not block this egress, and an egress-deny policy can coexist with a separate policy that allows the required access.
+
+Because `NetworkPolicy` rules are additive, you can create additional policies to allow more traffic to or from the Operator workloads, but you cannot restrict the traffic further by using additional policies.
+
+:::
 
 ## Deleting the ClusterPodPlacementConfig object by using the CLI {#multi-architecture-deleting-podplacement-config-using-cli_multiarch-tuning-operator}
 

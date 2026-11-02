@@ -447,7 +447,7 @@ Create VMs on the hosting cluster that will become the control plane nodes for y
    $ oc apply -f master-0.yaml
    ```
 
-If required, create further VMs for `master-1` and `master-2`, for example.
+   If required, create further VMs for `master-1` and `master-2`, for example.
 
 **Verification**
 

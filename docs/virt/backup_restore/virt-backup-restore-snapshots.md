@@ -30,7 +30,7 @@ The QEMU guest agent takes a consistent snapshot by attempting to quiesce the VM
 
 The conditions under which a snapshot is taken are reflected in the snapshot indications that are displayed in the web console or CLI. If these conditions do not meet your requirements, try creating the snapshot again or use an offline snapshot
 
-## About snapshots {#virt-about-vm-snapshots_virt-backup-restore-snapshots}
+## VM snapshot concepts and components {#virt-about-vm-snapshots_virt-backup-restore-snapshots}
 
 A *snapshot* represents the state and data of a virtual machine (VM) at a specific point in time. You can use a snapshot to restore an existing VM to a previous state (represented by the snapshot) for backup and disaster recovery or to rapidly roll back to a previous development version.
 
@@ -63,7 +63,7 @@ The VM snapshot feature introduces three new API objects defined as custom resou
 
 The VM snapshot controller binds a `VirtualMachineSnapshotContent` object with the `VirtualMachineSnapshot` object for which it was created, with a one-to-one mapping.
 
-## About application-consistent snapshots and backups {#virt-about-application-consistent-backups_virt-backup-restore-snapshots}
+## Application-consistent snapshots and backups {#virt-about-application-consistent-backups_virt-backup-restore-snapshots}
 
 You can configure application-consistent snapshots and backups for Linux or Windows virtual machines (VMs) through a cycle of freezing and thawing. For any application, you can configure a script on a Linux VM or register on a Windows VM to be notified when a snapshot or backup is due to begin.
 
@@ -77,7 +77,7 @@ Immediately after a Windows VM starts, the QEMU GA and VSS might not yet be full
 
 :::
 
-## Creating a snapshot by using the web console {#virt-creating-vm-snapshot-web_virt-backup-restore-snapshots}
+## Create a snapshot by using the web console {#virt-creating-vm-snapshot-web_virt-backup-restore-snapshots}
 
 You can create a snapshot of a virtual machine (VM) by using the OpenShift Container Platform web console.
 
@@ -100,7 +100,7 @@ You can create a snapshot of a virtual machine (VM) by using the OpenShift Conta
 6. If your VM has disks that cannot be included in the snapshot and you wish to proceed, select **I am aware of this warning and wish to proceed**.
 7. Click **Save**.
 
-## Creating a snapshot by using the CLI {#virt-creating-vm-snapshot-cli_virt-backup-restore-snapshots}
+## Create a snapshot by using the CLI {#virt-creating-vm-snapshot-cli_virt-backup-restore-snapshots}
 
 You can create a virtual machine (VM) snapshot for an offline or online VM by creating a `VirtualMachineSnapshot` object.
 
@@ -229,9 +229,9 @@ You can create a virtual machine (VM) snapshot for an offline or online VM by cr
    </dl>
 3. Check the `includedVolumes` section in the snapshot description to verify that the expected PVCs are included in the snapshot.
 
-## Verifying online snapshots by using snapshot indications {#virt-verifying-online-snapshot-creation-with-snapshot-indications_virt-backup-restore-snapshots}
+## Verify online snapshots by using snapshot indications {#virt-verifying-online-snapshot-creation-with-snapshot-indications_virt-backup-restore-snapshots}
 
-Snapshot indications are contextual information about online virtual machine (VM) snapshot operations. Indications are not available for offline virtual machine (VM) snapshot operations. Indications are helpful in describing details about the online snapshot creation.
+Snapshot indications are contextual information about online virtual machine (VM) snapshot operations. Indications are not available for offline VM snapshot operations. Indications are helpful in describing details about the online snapshot creation.
 
 **Prerequisites**
 
@@ -248,7 +248,7 @@ Snapshot indications are contextual information about online virtual machine (VM
    - `NoGuestAgent` indicates that the QEMU guest agent was not installed, or not ready to quiesce the file system during the online snapshot. This results in a crash-consistent snapshot, which captures the VM’s state like an abrupt power-off. As a result, application consistency is not guaranteed, which causes a risk of data issues for critical applications. For higher reliability, install and run the guest agent, or retry the snapshot.
    - `QuiesceFailed` indicates that an attempt to quiesce the file system failed during the online snapshot process. This means that the snapshot was created, but it is not necessarily application-consistent. To achieve proper consistency, retry the snapshot.
 
-## Restoring a VM from a snapshot by using the web console {#virt-restoring-vm-from-snapshot-web_virt-backup-restore-snapshots}
+## Restore a VM from a snapshot by using the web console {#virt-restoring-vm-from-snapshot-web_virt-backup-restore-snapshots}
 
 You can restore a virtual machine (VM) to a previous configuration represented by a snapshot in the OpenShift Container Platform web console.
 
@@ -270,14 +270,14 @@ You can restore a virtual machine (VM) to a previous configuration represented b
    2. Provide a name for the new VM.
    3. Click **Create**
 
-## Restoring a VM from a snapshot by using the CLI {#virt-restoring-vm-from-snapshot-cli_virt-backup-restore-snapshots}
+## Restore a VM from a snapshot by using the CLI {#virt-restoring-vm-from-snapshot-cli_virt-backup-restore-snapshots}
 
-You can restore an existing virtual machine (VM) to a previous configuration by using the command line. You can only restore from an offline VM snapshot.
+You can restore an existing virtual machine (VM) to a previous configuration by using the CLI. You can only restore from an offline VM snapshot.
 
 **Prerequisites**
 
-- Install the OpenShift CLI (`oc`).
-- Power down the VM you want to restore.
+- You have installed the OpenShift CLI (`oc`).
+- You have powered down the VM you want to restore.
 - Optional: Adjust what happens if the target VM is not fully stopped (*ready*). To do so, set the `targetReadinessPolicy` parameter in the `vmrestore` YAML configuration to one of the following values:
   - `FailImmediate` - The restore process fails immediately if the VM is not ready.
   - `StopTarget` - If the VM is not ready, it gets stopped, and the restore process starts.
@@ -407,7 +407,7 @@ You can restore an existing virtual machine (VM) to a previous configuration by 
 
   :::
 
-## Deleting a snapshot by using the web console {#virt-deleting-vm-snapshot-web_virt-backup-restore-snapshots}
+## Delete a snapshot by using the web console {#virt-deleting-vm-snapshot-web_virt-backup-restore-snapshots}
 
 You can delete an existing virtual machine (VM) snapshot by using the web console.
 
@@ -419,7 +419,7 @@ You can delete an existing virtual machine (VM) snapshot by using the web consol
 4. Click the Options menu ![](/images/kebab.png "Options menu") beside a snapshot and select **Delete snapshot**.
 5. Click **Delete**.
 
-## Deleting a virtual machine snapshot in the CLI {#virt-deleting-vm-snapshot-cli_virt-backup-restore-snapshots}
+## Delete a snapshot by using the CLI {#virt-deleting-vm-snapshot-cli_virt-backup-restore-snapshots}
 
 You can delete an existing virtual machine (VM) snapshot by deleting the appropriate `VirtualMachineSnapshot` object.
 

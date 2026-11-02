@@ -44,7 +44,9 @@ If you have already set the `spec.loadBalancerSourceRanges` parameter or the loa
 
 ## Migrating to load balancer allowed source ranges {#nw-configuring-lb-allowed-source-ranges-migration_configuring-ingress-cluster-traffic-lb-allowed-source-ranges}
 
-If you have already set the annotation `service.beta.kubernetes.io/load-balancer-source-ranges`, you can migrate to load balancer allowed source ranges. When you set the `AllowedSourceRanges`, the Ingress Controller sets the `spec.loadBalancerSourceRanges` field based on the `AllowedSourceRanges` value and unsets the `service.beta.kubernetes.io/load-balancer-source-ranges` annotation.
+If you have already set the annotation `service.beta.kubernetes.io/load-balancer-source-ranges`, you can migrate to load balancer allowed source ranges.
+
+When you set the `AllowedSourceRanges`, the Ingress Controller sets the `spec.loadBalancerSourceRanges` field based on the `AllowedSourceRanges` value and unsets the `service.beta.kubernetes.io/load-balancer-source-ranges` annotation.
 
 :::note
 

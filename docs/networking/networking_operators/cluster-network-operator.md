@@ -192,7 +192,9 @@ The CNO configuration inherits the following fields during cluster installation 
 
 :::note
 
-After cluster installation, you can only modify the `clusterNetwork` IP address range. The `serviceNetwork` range cannot be modified post-installation, either directly or by using the `ServiceCIDR` API.
+- After cluster installation, you can modify the `clusterNetwork` IP address CIDR range.You can also increase the effective per-node pod subnet size.
+- Do not patch `Network.config.openshift.io` to change `hostPrefix`, because the Cluster Network Operator rejects that change.For more information about increasing the per-node subnet size, see "Increasing the cluster network hostPrefix".
+- The `serviceNetwork` range cannot be modified post-installation, either directly or by using the `ServiceCIDR` API.
 
 :::
 
@@ -557,4 +559,5 @@ spec:
 
 - [`Network` API in the `operator.openshift.io` API group](/docs/rest_api/operator_apis/network-operator-openshift-io-v1#network-operator-openshift-io-v1)
 - [Expanding the cluster network IP address range](/docs/networking/configuring_network_settings/configuring-cluster-network-range#nw-cluster-network-range-edit_configuring-cluster-network-range)
+- [Increasing the cluster network hostPrefix](/docs/networking/ovn_kubernetes_network_provider/increasing-cluster-network-hostprefix#increasing-cluster-network-hostprefix)
 - [How to configure OVN to use kernel routing table](https://access.redhat.com/solutions/6969174)

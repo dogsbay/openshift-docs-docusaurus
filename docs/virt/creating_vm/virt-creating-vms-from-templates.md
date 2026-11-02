@@ -9,7 +9,7 @@ sidebar_position: 6
 
 You can create, customize, and manage the virtual machine (VM) templates that you use to create VMs. To create a VM from a template, use the web console creation wizard.
 
-## About VM templates {#virt-about-vm-templates_virt-creating-vms-from-templates}
+## VM templates {#virt-about-vm-templates_virt-creating-vms-from-templates}
 
 VM templates define a reusable VM configuration. You can create a VM from a template to deploy a standardized VM quickly.
 
@@ -30,7 +30,7 @@ Customize before starting the VM
 Single-node OpenShift
 : Due to differences in storage behavior, some templates are incompatible with single-node OpenShift. To ensure compatibility, do not set the `evictionStrategy` field for templates or VMs that use data volumes or storage profiles.
 
-## Creating a custom VM template in the web console {#virt-creating-template_virt-creating-vms-from-templates}
+## Create a custom VM template in the web console {#virt-creating-template_virt-creating-vms-from-templates}
 
 You can create a virtual machine template by editing a YAML file example in the OpenShift Container Platform web console.
 
@@ -44,7 +44,7 @@ You can create a virtual machine template by editing a YAML file example in the 
    The template is displayed on the **Templates** page.
 6. Optional: Click **Download** to download and save the YAML file.
 
-## Enabling dedicated resources for a virtual machine template {#virt-dedicated-resources-vm-template_virt-creating-vms-from-templates}
+## Enable dedicated resources for a VM template {#virt-dedicated-resources-vm-template_virt-creating-vms-from-templates}
 
 You can enable dedicated resources for a virtual machine (VM) template in the OpenShift Container Platform web console. VMs that are created from this template will be scheduled with dedicated resources.
 
@@ -56,7 +56,7 @@ You can enable dedicated resources for a virtual machine (VM) template in the Op
 4. Select **Schedule this workload with dedicated resources (guaranteed policy)**.
 5. Click **Save**.
 
-## Removing a deprecated designation from a customized VM template by using the web console {#virt-customizing-vm-template-web_virt-creating-vms-from-templates}
+## Undeprecate a customized VM template in the web console {#virt-customizing-vm-template-web_virt-creating-vms-from-templates}
 
 You can customize an existing virtual machine (VM) template before you start the VM, by modifying the VM or template parameters, such as data sources, cloud-init, or SSH keys.
 

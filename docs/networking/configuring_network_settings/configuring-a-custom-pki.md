@@ -151,7 +151,9 @@ To verify that your custom CA certificate has been successfully added to the Ope
 
 ## Certificate injection using Operators {#certificate-injection-using-operators_configuring-a-custom-pki}
 
-In OpenShift Container Platform, certificate injection using Operators merges your custom Certificate Authorities (CAs) with system certificates and injects the merged bundle into Operators that request it. You can use this feature so your Operators trust custom certificates without requiring manual certificate bundle management.
+In OpenShift Container Platform, certificate injection using Operators merges your custom Certificate Authorities (CAs) with system certificates and injects the merged bundle into Operators that request it.
+
+You can use this feature so your Operators trust custom certificates without requiring manual certificate bundle management.
 
 :::warning
 

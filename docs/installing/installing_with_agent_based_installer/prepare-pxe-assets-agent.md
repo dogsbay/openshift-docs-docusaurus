@@ -402,9 +402,7 @@ If you are using an OSA network device in Processor Resource/Systems Manager (PR
 
 ### Adding IBM Z agents with z/VM {#installing-ocp-agent-ibm-z-zvm_prepare-pxe-assets-agent}
 
-You can manually add IBM Z(R) agents with z/VM.
-
-Only use this procedure for IBM Z(R) clusters with z/VM.
+You can manually add IBM Z(R) agents with z/VM. Only use this procedure for IBM Z(R) clusters with z/VM.
 
 **Prerequisites**
 
@@ -476,9 +474,7 @@ Only use this procedure for IBM Z(R) clusters with z/VM.
 
 ### Adding IBM Z agents with RHEL KVM {#installing-ocp-agent-ibm-z-kvm_prepare-pxe-assets-agent}
 
-You can manually add IBM Z(R) agents with RHEL KVM.
-
-Only use this procedure for IBM Z(R) clusters with RHEL KVM.
+You can manually add IBM Z(R) agents with RHEL KVM. Only use this procedure for IBM Z(R) clusters with RHEL KVM.
 
 :::note
 

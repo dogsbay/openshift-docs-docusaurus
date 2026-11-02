@@ -16,7 +16,7 @@ You configure disk sharing by exposing the storage as either of these types:
 
 In addition to configuring disk sharing, you can also set an error policy for each ordinary VM disk or LUN disk. The error policy controls how the hypervisor behaves when an input/output error occurs on a disk Read or Write.
 
-## Configuring disk sharing by using virtual machine disks {#virt-configuring-vm-disk-sharing_virt-configuring-shared-volumes-for-vms}
+## Share a block disk between multiple VMs {#virt-configuring-vm-disk-sharing_virt-configuring-shared-volumes-for-vms}
 
 You can configure block volumes so that multiple virtual machines (VMs) can share storage.
 
@@ -74,7 +74,7 @@ You can accept the default behavior, or you can set the error policy to one of t
    - `spec.template.spec.domain.devices.disks.shareable` defines whether multiple virtual machines (VMs) can use the same underlying disk.
 2. Save the `VirtualMachine` manifest file to apply your changes.
 
-## Configuring disk sharing by using LUN {#virt-configuring-disk-sharing-lun_virt-configuring-shared-volumes-for-vms}
+## Share a LUN-backed disk between multiple VMs {#virt-configuring-disk-sharing-lun_virt-configuring-shared-volumes-for-vms}
 
 To secure data on your VM from outside access, you can enable SCSI persistent reservation and configure a LUN-backed virtual machine disk to be shared among multiple virtual machines.
 
@@ -138,7 +138,7 @@ For a LUN disk with an SCSi connection and a persistent reservation, as required
    - `spec.template.spec.domain.devices.disks.serial` specifies an alphanumeric serial number for the disk. The serial number is visible to the guest operating system and can be used to identify the disk inside the VM.
 2. Save the `VirtualMachine` manifest file to apply your changes.
 
-### Configuring disk sharing by using LUN and the web console {#virt-configuring-disk-sharing-lun-web_virt-configuring-shared-volumes-for-vms}
+### Share a LUN-backed disk by using the web console {#virt-configuring-disk-sharing-lun-web_virt-configuring-shared-volumes-for-vms}
 
 You can use the OpenShift Container Platform web console to configure disk sharing by using LUN.
 
@@ -159,7 +159,7 @@ You can use the OpenShift Container Platform web console to configure disk shari
 9. Expand **Advanced Settings**, and select both checkboxes.
 10. Click **Save**.
 
-### Configuring disk sharing by using LUN and the CLI {#virt-configuring-disk-sharing-lun-cli_virt-configuring-shared-volumes-for-vms}
+### Share a LUN-backed disk by using the CLI {#virt-configuring-disk-sharing-lun-cli_virt-configuring-shared-volumes-for-vms}
 
 You can use the command line to configure disk sharing by using LUN.
 
@@ -201,7 +201,7 @@ You can use the command line to configure disk sharing by using LUN.
    - `spec.template.spec.domain.devices.disks.serial` specifies an alphanumeric serial number for the disk. The serial number is visible to the guest operating system and can be used to identify the disk inside the VM.
 2. Save the `VirtualMachine` manifest file to apply your changes.
 
-## Enabling the PersistentReservation feature gate {#virt-enabling-persistentreservation-feature-gate_virt-configuring-shared-volumes-for-vms}
+## SCSI persistent reservation for shared LUN disks {#virt-enabling-persistentreservation_virt-configuring-shared-volumes-for-vms}
 
 You can enable the SCSI `persistentReservation` feature gate and allow a LUN-backed block mode virtual machine (VM) disk to be shared among multiple virtual machines.
 
@@ -213,7 +213,7 @@ The `persistentReservation` feature gate is disabled by default. You can enable 
 - The volume access mode `ReadWriteMany` (RWX) is required if the VMs that are sharing disks are running on different nodes. If the VMs that are sharing disks are running on the same node, the `ReadWriteOnce` (RWO) volume access mode is sufficient.
 - The storage provider must support a Container Storage Interface (CSI) driver that uses Fibre Channel (FC), Fibre Channel over Ethernet (FCoE), or iSCSI storage protocols.
 
-### Enabling the PersistentReservation feature gate by using the web console {#virt-enabling-persistentreservation-feature-gate-web_virt-configuring-shared-volumes-for-vms}
+### Enable SCSI persistent reservation by using the web console {#virt-enabling-persistentreservation-web_virt-configuring-shared-volumes-for-vms}
 
 You must enable the PersistentReservation feature gate to allow a LUN-backed block mode virtual machine (VM) disk to be shared among multiple virtual machines. Enabling the feature gate requires cluster administrator privileges.
 

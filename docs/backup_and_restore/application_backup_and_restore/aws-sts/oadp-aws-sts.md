@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <a id="oadp-aws-sts"></a>
 
-Install the OpenShift API for Data Protection (OADP) with Amazon Web Services (AWS) by installing the OADP Operator. The Operator installs [Velero 1.16](https://velero.io/docs/v1.16/).
+Install the OpenShift API for Data Protection (OADP) with Amazon Web Services (AWS) by installing the OADP Operator. The Operator installs Velero 1.18.
 
 You configure AWS for Velero, create a default `Secret`, and then install the Data Protection Application. For more details, see *Installing the OADP Operator*.
 
@@ -420,13 +420,6 @@ restic:
 
 If you want to use two different clusters for backing up and restoring, the two clusters must have the same AWS S3 storage names in both the cloud storage CR and the OADP `DataProtectionApplication` configuration.
 
-**Additional resources**
-
-- [Installing the OADP Operator](/docs/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
-- [Using Operator Lifecycle Manager in disconnected environments](/docs/disconnected/using-olm#olm-restricted-networks)
-- [Installing from the software catalog using the web console](/docs/operators/user/olm-installing-operators-in-namespace#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace)
-- [Backing up applications](/docs/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)
-
 ## Perform a backup with OADP and AWS STS {#performing-a-backup-oadp-aws-sts_oadp-aws-sts-backing-up-applications}
 
 Perform a backup by using OpenShift API for Data Protection (OADP) with Amazon Web Services (AWS) (AWS STS). The following `hello-world` example application has no persistent volumes (PVs) attached.
@@ -610,3 +603,11 @@ Uninstall the OpenShift API for Data Protection (OADP) Operator together with th
     ```terminal
     $ aws iam delete-role --role-name "${ROLE_NAME}"
     ```
+
+**Additional resources**
+
+- [Velero 1.18](https://velero.io/docs/)
+- [Installing the OADP Operator](/docs/backup_and_restore/application_backup_and_restore/installing/oadp-installing-operator#oadp-installing-operator-doc)
+- [Using Operator Lifecycle Manager in disconnected environments](/docs/disconnected/using-olm#olm-restricted-networks)
+- [Installing from the software catalog using the web console](/docs/operators/user/olm-installing-operators-in-namespace#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace)
+- [Backing up applications](/docs/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/backing-up-applications#backing-up-applications)

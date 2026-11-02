@@ -73,9 +73,9 @@ Service accounts associated with platform components automatically have their ke
 
 ## Authentication and authorization {#security-platform-authentication_security-platform}
 
-### Controlling access using OAuth {#security-platform-auth-controlling-access_security-platform}
-
 You can use API access control through authentication and authorization for securing your container platform. The OpenShift Container Platform master includes a built-in OAuth server. Users can obtain OAuth access tokens to authenticate themselves to the API.
+
+### Controlling access using OAuth {#security-platform-auth-controlling-access_security-platform}
 
 As an administrator, you can configure OAuth to authenticate using an *identity provider*, such as LDAP, GitHub, or Google. The identity provider is used by default for new OpenShift Container Platform deployments, but you can configure this at initial installation time or postinstallation.
 

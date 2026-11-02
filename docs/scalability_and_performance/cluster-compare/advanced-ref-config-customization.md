@@ -77,7 +77,7 @@ You can create a patch file in two ways:
 - Use the `cluster-compare` plugin to generate a patch YAML file.
 - Create your own patch file.
 
-### Using the cluster-compare plugin to generate a patch {#_using_the_cluster-compare_plugin_to_generate_a_patch}
+## Using the cluster-compare plugin to generate a patch {#cluster-compare-generate-patch_advanced-ref-config-customization}
 
 You can use the `cluster-compare` plugin to generate a patch for specific template files. The plugin adjusts the template to ensure it matches with the cluster custom resource (CR). Any previously valid differences in the patched template are not reported. The plugin highlights the patched files in the output.
 
@@ -99,7 +99,9 @@ You can use the `cluster-compare` plugin to generate a patch for specific templa
      :::
    - `<path_to_patches_file>` specifies the filename and path for your patch.
 2. Optional: Review the patch file before applying to the reference configuration:
-   ```yaml title="Example patch-config file"
+   Example `patch-config` file:
+
+   ```yaml
    - apiVersion: storage.k8s.io/v1
      kind: StorageClass
      name: crc-csi-hostpath-provisioner
@@ -126,28 +128,27 @@ You can use the `cluster-compare` plugin to generate a patch for specific templa
 
    - `-r` specifies the path to the metadata.yaml file of the reference configuration.
    - `-p` specifies the path to the patch file.
+     The following is example output:
 
-The following is example output:
+     ```terminal
+     ...
 
-```terminal
-...
+     Cluster CR: storage.k8s.io/v1_StorageClass_crc-csi-hostpath-provisioner
+     Reference File: optional/local-storage-operator/StorageClass.yaml
+     Description: Component description
+     Diff Output: None
+     Patched with patch
+     Patch Reasons:
+     - A valid reason for the override
 
-Cluster CR: storage.k8s.io/v1_StorageClass_crc-csi-hostpath-provisioner
-Reference File: optional/local-storage-operator/StorageClass.yaml
-Description: Component description
-Diff Output: None
-Patched with patch
-Patch Reasons:
-- A valid reason for the override
+     ...
 
-...
+     No CRs are unmatched to reference CRs
+     Metadata Hash: bb2165004c496b32e0c8509428fb99c653c3cf4fba41196ea6821bd05c3083ab
+     Cluster CRs with patches applied: 1
+     ```
 
-No CRs are unmatched to reference CRs
-Metadata Hash: bb2165004c496b32e0c8509428fb99c653c3cf4fba41196ea6821bd05c3083ab
-Cluster CRs with patches applied: 1
-```
-
-### Creating a patch file manually {#_creating_a_patch_file_manually}
+## Creating a patch file manually {#cluster-compare-create-patch-manually_advanced-ref-config-customization}
 
 You can write a patch file to handle expected deviations in a cluster configuration.
 
@@ -166,7 +167,9 @@ The following example shows the same patch using all three different formats.
 **Procedure**
 
 1. Create a patch file to match your use case. Use the following structure as an example:
-   ```yaml title="Example patch-config"
+   Example `patch-config`:
+
+   ```yaml
    - apiVersion: v1
      kind: Namespace
      name: openshift-storage
@@ -232,25 +235,24 @@ The following example shows the same patch using all three different formats.
 
    - `-r` specifies the path to the metadata.yaml file of the reference configuration.
    - `p` specifies the path to the patch file.
+     The following is example output:
 
-The following is example output:
+     ```terminal
+     ...
 
-```terminal
-...
+     Cluster CR: storage.k8s.io/v1_StorageClass_crc-csi-hostpath-provisioner
+     Reference File: namespace.yaml
+     Description: Component description
+     Diff Output: None
+     Patched with patch
+     Patch Reasons:
+     - known deviation
+     - known deviation
+     - known deviation
 
-Cluster CR: storage.k8s.io/v1_StorageClass_crc-csi-hostpath-provisioner
-Reference File: namespace.yaml
-Description: Component description
-Diff Output: None
-Patched with patch
-Patch Reasons:
-- known deviation
-- known deviation
-- known deviation
+     ...
 
-...
-
-No CRs are unmatched to reference CRs
-Metadata Hash: bb2165004c496b32e0c8509428fb99c653c3cf4fba41196ea6821bd05c3083ab
-Cluster CRs with patches applied: 1
-```
+     No CRs are unmatched to reference CRs
+     Metadata Hash: bb2165004c496b32e0c8509428fb99c653c3cf4fba41196ea6821bd05c3083ab
+     Cluster CRs with patches applied: 1
+     ```

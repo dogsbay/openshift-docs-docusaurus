@@ -21,13 +21,19 @@ For information about developing cloud-native applications on OpenShift Containe
 
 ## Getting Support {#support-getting-support_troubleshooting-intro}
 
-If you experience difficulty with a procedure, visit the [Red Hat Customer Portal](https://access.redhat.com/). From the Customer Portal, you can find help in various ways:
+If you experience difficulty with a procedure, visit the "Red Hat Customer Portal". &#123;.\_abstract&#125;
+
+From the Customer Portal, you can find help in various ways:
 
 - Search or browse through the Red Hat Knowledgebase of articles and solutions about Red Hat products.
 - Submit a support case to Red Hat Support.
 - Access other product documentation.
 
 To identify issues with your deployment, you can use the debugging tool or check the health endpoint of your deployment. After you have debugged or obtained health information about your deployment, you can search the Red Hat Knowledgebase for a solution or file a support ticket.
+
+**Additional resources**
+
+- [Red Hat Customer Portal](https://access.redhat.com/)
 
 ### About the Red Hat Knowledgebase {#support-knowledgebase-about_troubleshooting-intro}
 

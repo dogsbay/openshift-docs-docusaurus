@@ -40,7 +40,7 @@ Prepare your OADP resources to restore your application after an upgrade.
 
    The `source-crs/ibu/PlatformBackupRestoreWithIBGU.yaml` file is provided in the ZTP container image.
 
-   **PlatformBackupRestoreWithIBGU.yaml**
+   `PlatformBackupRestoreWithIBGU.yaml`:
 
    ```yaml
    apiVersion: velero.io/v1
@@ -94,7 +94,7 @@ Prepare your OADP resources to restore your application after an upgrade.
 
    If you use LVM Storage to create persistent volumes, you can use the `source-crs/ibu/PlatformBackupRestoreLvms.yaml` provided in the ZTP container image to back up your LVM Storage resources.
 
-   **PlatformBackupRestoreLvms.yaml**
+   `PlatformBackupRestoreLvms.yaml`:
 
    ```yaml
    apiVersion: velero.io/v1
@@ -128,9 +128,7 @@ Prepare your OADP resources to restore your application after an upgrade.
 
    - The `lca.openshift.io/apply-wave` value must be lower than the values specified in the application `Restore` CRs.
 2. If you need to restore applications after the upgrade, create the OADP `Backup` and `Restore` CRs for your application in the `openshift-adp` namespace:
-   1. Create the OADP CRs for cluster-scoped application artifacts in the `openshift-adp` namespace:
-      **Example OADP CRs for cluster-scoped application artifacts for LSO and &#123;LVMS&#125;**
-
+   1. Create the OADP CRs for cluster-scoped application artifacts in the `openshift-adp` namespace: Example OADP CRs for cluster-scoped application artifacts for LSO and &#123;LVMS&#125;:
       ```yaml
       apiVersion: velero.io/v1
       kind: Backup
@@ -166,9 +164,7 @@ Prepare your OADP resources to restore your application after an upgrade.
 
       - Replace the example resource names in the `lca.openshift.io/apply-label` field with your actual resources.
       - The value in the `lca.openshift.io/apply-wave` field must be higher than the value in the platform `Restore` CRs and lower than the value in the application namespace-scoped `Restore` CR.
-   2. Create the OADP CRs for your namespace-scoped application artifacts in the `source-crs/custom-crs` directory:
-      **Example OADP CRs namespace-scoped application artifacts when LSO is used**
-
+   2. Create the OADP CRs for your namespace-scoped application artifacts in the `source-crs/custom-crs` directory: Example OADP CRs namespace-scoped application artifacts when LSO is used:
       ```yaml
       apiVersion: velero.io/v1
       kind: Backup
@@ -210,7 +206,7 @@ Prepare your OADP resources to restore your application after an upgrade.
 
       - Define custom resources for your application in the `includedNamespaceScopedResources` field.
 
-      **Example OADP CRs namespace-scoped application artifacts when LVM Storage is used**
+      Example OADP CRs namespace-scoped application artifacts when LVM Storage is used:
 
       ```yaml
       apiVersion: velero.io/v1

@@ -15,7 +15,7 @@ With **Boot Order** in the **VirtualMachine details** page, you can:
 - Edit the order of the disks or NICs in the boot order list.
 - Remove a disk or NIC from the boot order list, and return it back to the inventory of bootable sources.
 
-## Adding items to a boot order list in the web console {#virt-add-boot-order-web_virt-edit-boot-order}
+## Add items to a boot order list in the web console {#virt-add-boot-order-web_virt-edit-boot-order}
 
 You can add items to a boot order list by using the web console.
 
@@ -38,7 +38,7 @@ You can add items to a boot order list by using the web console.
 
    :::
 
-## Editing a boot order list in the web console {#virt-edit-boot-order-web_virt-edit-boot-order}
+## Edit a boot order list in the web console {#virt-edit-boot-order-web_virt-edit-boot-order}
 
 You can edit the boot order list in the web console.
 
@@ -62,7 +62,7 @@ You can edit the boot order list in the web console.
 
    :::
 
-## Editing a boot order list in the YAML configuration file {#virt-edit-boot-order-yaml-web_virt-edit-boot-order}
+## Edit a boot order list by using the CLI {#virt-edit-boot-order-yaml-web_virt-edit-boot-order}
 
 You can edit the boot order list in a YAML configuration file by using the CLI.
 
@@ -100,7 +100,7 @@ You can edit the boot order list in a YAML configuration file by using the CLI.
    - `interfaces.bootOrder` defines the boot order value specified for the network interface controller.
 3. Save the YAML file.
 
-## Removing items from a boot order list in the web console {#virt-remove-boot-order-item-web_virt-edit-boot-order}
+## Remove items from a boot order list in the web console {#virt-remove-boot-order-item-web_virt-edit-boot-order}
 
 Remove items from a boot order list by using the web console.
 
@@ -112,7 +112,7 @@ Remove items from a boot order list by using the web console.
 4. Click the **Configuration** tab.
 5. Expand **Boot management**.
 6. Click the pencil icon that is located on the right side of **Boot Order**.
-7. Click the **Remove** icon ![](/images/delete.png "Delete") next to the item. The item is removed from the boot order list and saved in the list of available boot sources. If you remove all items from the boot order list, the following message displays: **No resource selected. VM will attempt to boot from disks by order of appearance in YAML file.**
+7. Click the **Remove** icon ![delete](/images/delete.png "Delete") next to the item. The item is removed from the boot order list and saved in the list of available boot sources. If you remove all items from the boot order list, the following message displays: **No resource selected. VM will attempt to boot from disks by order of appearance in YAML file.**
    :::note
 
    If the virtual machine is running, changes to **Boot Order** will not take effect until you restart the virtual machine.

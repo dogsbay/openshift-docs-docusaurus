@@ -9,13 +9,13 @@ sidebar_position: 3
 
 The telco core reference design specifications (RDS) configures an OpenShift Container Platform cluster running on commodity hardware to host telco core workloads.
 
-## Telco core RDS use model overview {#telco-core-rds-product-version-use-model-overview_telco-core}
+## Review which core functions the reference design supports {#telco-core-rds-product-version-use-model-overview_telco-core}
 
 The Telco core reference design specification (RDS) describes a platform that supports large-scale telco applications including control plane and centralized data plane functions such as user plane functions (UPF).
 
 These functions generally require scalability, complex networking support, resilient software-defined storage, and performance requirements that are less stringent than far-edge deployments such as RAN.
 
-## About the telco core cluster use model {#telco-core-about-the-telco-core-cluster-use-model_telco-core}
+## Check that your workloads fit the telco core use model {#telco-core-about-the-telco-core-cluster-use-model_telco-core}
 
 The telco core cluster use model supports large-scale telco applications on commodity hardware, including control plane functions and centralized data plane functions such as 5G user plane functions (UPF).
 
@@ -63,20 +63,20 @@ Red Hat prioritizes the servicing of requests for deviations based on partner en
 
 :::
 
-## Telco core common baseline model {#telco-core-common-baseline-model_telco-core}
+## Review the baseline common to every telco core cluster {#telco-core-common-baseline-model_telco-core}
 
 The following configurations and use models are applicable to all telco core use cases. The telco core use cases build on this common baseline of features.
 
 Cluster topology
 : The telco core reference design supports two distinct cluster configuration variants:
 
-  - A non-schedulable control plane variant, where user workloads are strictly prohibited from running on master nodes.
-  - A schedulable control plane variant, which allows for user workloads to run on master nodes to optimize resource utilization. This variant is only applicable to bare-metal control plane nodes and must be configured at installation time.
+  - A non-schedulable control plane variant, where user workloads are strictly prohibited from running on control plane nodes.
+  - A schedulable control plane variant, which allows for user workloads to run on control plane nodes to optimize resource utilization. This variant is only applicable to bare-metal control plane nodes and must be configured at installation time.
 
-  All clusters, regardless of the variant, must conform to the following requirements:
+All clusters, regardless of the variant, must conform to the following requirements:
 
-  - A highly available control plane consisting of three or more nodes.
-  - The use of multiple machine config pools.
+- A highly available control plane consisting of three or more nodes.
+- The use of multiple machine config pools.
 
 Storage
 : Telco core use cases require highly available persistent storage as provided by an external storage solution. OpenShift Data Foundation might be used to manage access to the external storage.
@@ -84,19 +84,21 @@ Storage
 Networking
 : Telco core cluster networking conforms to the following requirements:
 
-  - Dual stack IPv4/IPv6 (IPv4 primary).
-  - Fully disconnected - clusters do not have access to public networking at any point in their lifecycle.
-  - Supports multiple networks. Segmented networking provides isolation between operations, administration and maintenance (OAM), signaling, and storage traffic.
-  - Cluster network type is OVN-Kubernetes as required for IPv6 support.
-  - Telco core clusters have multiple layers of networking supported by underlying RHCOS, SR-IOV Network Operator, Load Balancer and other components. These layers include the following:
-    - Cluster networking layer. The cluster network configuration is defined and applied through the installation configuration. Update the configuration during Day 2 operations with the NMState Operator. Use the initial configuration to establish the following:
-      - Host interface configuration.
-      - Active/active bonding (LACP).
-    - Secondary/additional network layer. Configure the OpenShift Container Platform CNI through network `additionalNetwork` or `NetworkAttachmentDefinition` CRs. Use the initial configuration to configure MACVLAN virtual network interfaces.
-    - Application workload layer. User plane networking runs in cloud-native network functions (CNFs).
+- Dual stack IPv4/IPv6 (IPv4 primary).
+- Fully disconnected - clusters do not have access to public networking at any point in their lifecycle.
+- Supports multiple networks. Segmented networking provides isolation between operations, administration and maintenance (OAM), signaling, and storage traffic.
+- Cluster network type is OVN-Kubernetes as required for IPv6 support.
+- Telco core clusters have multiple layers of networking supported by underlying RHCOS, SR-IOV Network Operator, Load Balancer and other components. These layers include the following:
+  - Cluster networking layer. The cluster network configuration is defined and applied through the installation configuration. Update the configuration during Day 2 operations with the NMState Operator. Use the initial configuration to establish the following:
+    - Host interface configuration.
+    - Active/active bonding (LACP).
+  - Secondary/additional network layer. Configure the OpenShift Container Platform CNI through network `additionalNetwork` or `NetworkAttachmentDefinition` CRs. Use the initial configuration to configure MACVLAN virtual network interfaces.
+  - Application workload layer. User plane networking runs in cloud-native network functions (CNFs).
 
-Service Mesh
-: Telco CNFs can use Service Mesh. Telco core clusters typically include a Service Mesh implementation. The choice of implementation and configuration is outside the scope of this specification.
+  <dl>
+  <dt>Service Mesh</dt>
+  <dd>Telco CNFs can use Service Mesh. Telco core clusters typically include a Service Mesh implementation. The choice of implementation and configuration is outside the scope of this specification.</dd>
+  </dl>
 
 ## Deployment planning {#telco-core-deployment-planning_telco-core}
 

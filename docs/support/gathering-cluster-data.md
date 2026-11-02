@@ -484,7 +484,9 @@ You can gather network logs on all nodes in a cluster.
 
 ### Changing the must-gather storage limit {#must-gather-storage-limit_gathering-cluster-data}
 
-When using the `oc adm must-gather` command to collect data the default maximum storage for the information is 30% of the storage capacity of the container. After the 30% limit is reached the container is killed and the gathering process stops. Information already gathered is downloaded to your local storage. To run the must-gather command again, you need either a container with more storage capacity or to adjust the maximum volume percentage.
+When using the `oc adm must-gather` command to collect data the default maximum storage for the information is 30% of the storage capacity of the container.
+
+After the 30% limit is reached the container is killed and the gathering process stops. Information already gathered is downloaded to your local storage. To run the must-gather command again, you need either a container with more storage capacity or to adjust the maximum volume percentage.
 
 **Prerequisites**
 

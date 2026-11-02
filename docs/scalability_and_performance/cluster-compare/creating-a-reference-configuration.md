@@ -11,7 +11,9 @@ Configure a reference configuration to validate configuration resources from a c
 
 ## Structure of the metadata.yaml file {#cluster-compare-metadata-structure_creating-a-reference-configuration}
 
-The `metadata.yaml` file provides a central configuration point to define and configure the templates in a reference configuration. The file features a hierarchy of `parts` and `components`. `parts` are groups of `components` and `components` are groups of templates. Under each component, you can configure template dependencies, validation rules, and add descriptive metadata.
+The `metadata.yaml` file provides a central configuration point to define and configure the templates in a reference configuration.
+
+The file features a hierarchy of `parts` and `components`. `parts` are groups of `components` and `components` are groups of templates. Under each component, you can configure template dependencies, validation rules, and add descriptive metadata.
 
 ```yaml title="Example metadata.yaml file"
 apiVersion: v2
@@ -273,7 +275,7 @@ You can configure exclusions in the `metadata.yaml` file in the following ways:
 
   :::
 
-### Excluding all fields not specified in a template {#cluster-compare-ignore-all-fields_creating-a-reference-configuration}
+## Excluding all fields not specified in a template {#cluster-compare-ignore-all-fields_creating-a-reference-configuration}
 
 During the comparison process, the `cluster-compare` plugin renders a template by merging fields from the corresponding custom resource (CR). If you configure the `ignore-unspecified-fields` to `true`, all fields that are present in the CR, but not in the template, are excluded from the merge. Use this approach when you want to focus the comparison on the fields specified in the template only.
 
@@ -300,14 +302,16 @@ During the comparison process, the `cluster-compare` plugin renders a template b
   <dd>Specify <code>true</code> to exclude from the comparison all fields in a CR that are not explicitly configured in the corresponding <code>namespace.yaml</code> template.</dd>
   </dl>
 
-### Excluding specific fields by setting default exclusion fields {#cluster-compare-ignore-default-fields_creating-a-reference-configuration}
+## Excluding specific fields by setting default exclusion fields {#cluster-compare-ignore-default-fields_creating-a-reference-configuration}
 
 You can exclude fields by defining a default value for `fieldsToOmitRefs` in the `defaultOmitRef` field. This default exclusion applies to all templates, unless overridden by the `config.fieldsToOmitRefs` field for a specific template.
 
 **Procedure**
 
 - Create a `metadata.yaml` file to match your use case. Use the following structure as an example:
-  ```yaml title="Example metadata.yaml file"
+  Example `metadata.yaml` file:
+
+  ```yaml
   apiVersion: v2
   parts:
 
@@ -329,14 +333,16 @@ You can exclude fields by defining a default value for `fieldsToOmitRefs` in the
   <dd>The value is excluded for all templates.</dd>
   </dl>
 
-### Excluding specific fields {#cluster-compare-ignore-specified-fields_creating-a-reference-configuration}
+## Excluding specific fields {#cluster-compare-ignore-specified-fields_creating-a-reference-configuration}
 
 You can specify fields to exclude by defining the path to the field, and then referencing the definition in the `config` section for a template.
 
 **Procedure**
 
 - Create a `metadata.yaml` file to match your use case. Use the following structure as an example:
-  ```yaml title="Example metadata.yaml file"
+  Example `metadata.yaml` file:
+
+  ```yaml
   apiVersion: v2
   parts:
     - name: Part1
@@ -370,14 +376,16 @@ You can specify fields to exclude by defining the path to the field, and then re
 
   :::
 
-### Excluding specific fields by setting default exclusion groups {#cluster-compare-ignore-default-groups_creating-a-reference-configuration}
+## Excluding specific fields by setting default exclusion groups {#cluster-compare-ignore-default-groups_creating-a-reference-configuration}
 
 You can create default groups of fields to exclude. A group of exclusions can reference another group to avoid duplication when defining exclusions.
 
 **Procedure**
 
 - Create a `metadata.yaml` file to match your use case. Use the following structure as an example:
-  ```yaml title="Example metadata.yaml file"
+  Example `metadata.yaml` file:
+
+  ```yaml
   apiVersion: v2
   parts:
 
@@ -417,7 +425,7 @@ The `cluster-compare` plugin provides two functions for inline validation:
 
 When you use either the `regex` or `capturegroups` function for inline validation, the `cluster-compare` plugin enforces that identically named capture groups have the same values across multiple fields within a template. This means that if a named capture group, such as `(?<username>[a-z0-9]+)`, appears in multiple fields, the values for that group must be consistent throughout the template.
 
-### Configuring inline validation with the regex function {#cluster-compare-configure-regex_creating-a-reference-configuration}
+## Configuring inline validation with the regex function {#cluster-compare-configure-regex_creating-a-reference-configuration}
 
 Use the `regex` inline function to validate fields using regular expressions.
 
@@ -459,7 +467,7 @@ Use the `regex` inline function to validate fields using regular expressions.
        It also has a place where (?<username>[a-z0-9]+) would put in their own name. (?<username>[a-z0-9]+) would put in their own name.
    ```
 
-### Configuring inline validation with the capturegroups function {#cluster-compare-configure-capturegroups_creating-a-reference-configuration}
+## Configuring inline validation with the capturegroups function {#cluster-compare-configure-capturegroups_creating-a-reference-configuration}
 
 Use the `capturegroups` inline function for more precise validation of fields featuring multi-line strings. This function also ensures that identically named capture groups have the same values across multiple fields.
 
@@ -510,11 +518,11 @@ Use the `capturegroups` inline function for more precise validation of fields fe
 
    If the username value captured in the `data.username` field does not match the value captured in `bigTextBlock`, the `cluster-compare` plugin warns you about the inconsistent matching.
 
-The following is example output with a warning about the inconsistent matching:
+   The following is example output with a warning about the inconsistent matching:
 
-```terminal
-WARNING: Capturegroup (?<username>…) matched multiple values: « mismatchuser | exampleuser »
-```
+   ```terminal
+   WARNING: Capturegroup (?<username>…) matched multiple values: « mismatchuser | exampleuser »
+   ```
 
 ## Configuring descriptions for the output {#cluster-compare-output-description_creating-a-reference-configuration}
 

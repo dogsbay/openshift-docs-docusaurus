@@ -9,7 +9,7 @@ sidebar_position: 5
 
 OpenShift Virtualization supports using disaster recovery (DR) solutions to ensure that your environment can recover after a site outage. To use these methods, you must plan your OpenShift Virtualization deployment in advance.
 
-## About disaster recovery methods {#virt-about-dr-methods_virt-disaster-recovery}
+## Disaster recovery methods {#virt-about-dr-methods_virt-disaster-recovery}
 
 The two primary DR methods for OpenShift Virtualization are Metropolitan Disaster Recovery (Metro-DR) and Regional-DR.
 
@@ -23,9 +23,9 @@ Metro-DR uses synchronous replication. It writes to storage at both the primary 
 
 Regional-DR uses asynchronous replication. The data in the primary site is synchronized with the secondary site at regular intervals. For this type of replication, you can have a higher latency connection between the primary and secondary sites.
 
-## Defining applications for disaster recovery {#virt-disaster-recovery-defining-apps_virt-disaster-recovery}
+## Definition of applications for disaster recovery {#virt-disaster-recovery-defining-apps_virt-disaster-recovery}
 
-Define applications for disaster recovery by using VMs that Red Hat Advanced Cluster Management (RHACM) manages or discovers.
+You can define applications for disaster recovery by using VMs that Red Hat Advanced Cluster Management (RHACM) manages or discovers.
 
 ### Best practices when defining an RHACM-managed VM {#best-practices-rhacm-managed-vm_virt-disaster-recovery}
 
@@ -100,7 +100,7 @@ OpenShift Virtualization supports the Metro-DR solution for OpenShift Data Found
 
   :::
 
-For more information about using the Metro-DR solution for OpenShift Data Foundation with OpenShift Virtualization, see IBM's OpenShift Data Foundation Metro-DR documentation.
+For more information about using the Metro-DR solution for OpenShift Data Foundation with OpenShift Virtualization, see IBM’s OpenShift Data Foundation Metro-DR documentation.
 
 ### Regional-DR for Red Hat OpenShift Data Foundation {#regional-dr-odf_virt-disaster-recovery}
 
@@ -112,7 +112,7 @@ OpenShift Virtualization supports the Regional-DR solution for OpenShift Data Fo
 - Regional-DR uses RBD snapshots to replicate data asynchronously. Currently, your applications must be resilient to small variances between VM disks. You can prevent these variances by using single disk VMs.
 - Using the import method when selecting a population source for your VM disk is recommended. However, you can protect VMs that use cloned PVCs if you select a `VolumeReplicationClass` that enables image flattening. For more information, see the OpenShift Data Foundation documentation.
 
-For more information about using the Regional-DR solution for OpenShift Data Foundation with OpenShift Virtualization, see IBM's OpenShift Data Foundation Regional-DR documentation.
+For more information about using the Regional-DR solution for OpenShift Data Foundation with OpenShift Virtualization, see IBM’s OpenShift Data Foundation Regional-DR documentation.
 
 **Additional resources**
 

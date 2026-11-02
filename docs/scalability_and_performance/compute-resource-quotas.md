@@ -712,7 +712,9 @@ To monitor usage statistics against defined hard limits, navigate to the **Quota
 
 ### Configuring quota synchronization period {#configuring-quota-synchronization-period_using-quotas-and-limit-ranges}
 
-When a set of resources are deleted, the synchronization time frame of resources is determined by the `resource-quota-sync-period` setting in the `/etc/origin/master/master-config.yaml` file. You can change the `resource-quota-sync-period` setting to have the set of resources regenerate in the needed amount of time (in seconds) for the resources to be once again available.
+When a set of resources are deleted, the synchronization time frame of resources is determined by the `resource-quota-sync-period` setting in the `/etc/origin/master/master-config.yaml` file.
+
+You can change the `resource-quota-sync-period` setting to have the set of resources regenerate in the needed amount of time (in seconds) for the resources to be once again available.
 
 :::note
 

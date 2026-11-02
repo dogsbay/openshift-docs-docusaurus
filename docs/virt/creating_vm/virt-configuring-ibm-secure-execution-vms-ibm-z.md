@@ -13,7 +13,7 @@ IBM(R) Secure Execution for Linux is a s390x security technology that is introdu
 
 Hardware administrators, KVM administrators, and KVM code cannot access data in an IBM(R) Secure Execution guest VM.
 
-## Enabling VMs to run IBM Secure Execution on IBM Z and IBM LinuxONE {#virt-enabling-vms-ibm-secure-execution-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}
+## Enable Secure Execution for VMs on IBM Z {#virt-enabling-vms-ibm-secure-execution-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}
 
 To enable IBM(R) Secure Execution virtual machines (VMs) on IBM Z(R) and IBM(R) LinuxONE on the compute nodes of your cluster, you must ensure that you meet the prerequisites and complete the following steps.
 
@@ -51,11 +51,11 @@ To enable IBM(R) Secure Execution virtual machines (VMs) on IBM Z(R) and IBM(R) 
 
    The Machine Config Operator (MCO) applies the changes and reboots the nodes in a controlled rollout.
 
-## Launching an IBM Secure Execution VM on IBM Z and IBM LinuxONE {#virt-launching-ibm-secure-execution-vm-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}
+## IBM Secure Execution VM deployment {#virt-launching-ibm-secure-execution-vm-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}
 
 Before launching an IBM(R) Secure Execution VM on IBM Z(R) and IBM(R) LinuxONE, you must add the `launchSecurity` parameter to the VM manifest. Otherwise, the VM does not start correctly because it does not have access to the devices.
 
-### Launching an IBM Secure Execution VM by using the CLI {#virt-launching-ibm-secure-execution-vm-using-cli-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}
+### Launch a Secure Execution VM from the CLI {#virt-launching-ibm-secure-execution-vm-using-cli-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}
 
 You can launch an IBM(R) Secure Execution VM on IBM Z(R) and IBM(R) LinuxONE by using the command-line interface.
 
@@ -110,7 +110,7 @@ To launch IBM(R) Secure Execution VMs, you must include the `launchSecurity` par
 
   :::
 
-### Launching an IBM Secure Execution VM by using a common instance type  {#virt-launching-ibm-secure-execution-vm-using-common-instance-type-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}
+### Launch a Secure Execution VM from an instance type {#virt-launching-ibm-secure-execution-vm-using-common-instance-type-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}
 
 You can launch an IBM(R) Secure Execution VM on IBM Z(R) and IBM(R) LinuxONE by using a common instance type.
 
@@ -134,7 +134,7 @@ You can launch an IBM(R) Secure Execution VM on IBM Z(R) and IBM(R) LinuxONE by 
 4. Click **Save**.
 5. Click **Create VirtualMachine**.
 
-## Creating a bootable and encrypted IBM Secure Execution VM image on IBM Z and IBM LinuxONE {#virt-creating-bootable-encrypted-ibm-secure-execution-vm-image-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}
+## Create an encrypted Secure Execution VM image for IBM Z {#virt-creating-bootable-encrypted-ibm-secure-execution-vm-image-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}
 
 You can create a bootable and encrypted IBM Secure Execution VM image for Red Hat Enterprise Linux (RHEL) on IBM Z and IBM LinuxONE.
 

@@ -11,7 +11,9 @@ Key concepts for understanding Operator Lifecycle Manager (OLM) include cluster 
 
 ## About Operator Lifecycle Manager (OLM) Classic {#olm-overview_olm-understanding-olm}
 
-Operator Lifecycle Manager (OLM) Classic helps users install, update, and manage the lifecycle of Kubernetes native applications (Operators) and their associated services running across their OpenShift Container Platform clusters. Operator Lifecycle Manager (OLM) Classic forms part of the Operator Framework, an open source toolkit designed to manage Operators in an effective, automated, and scalable way.
+Operator Lifecycle Manager (OLM) Classic helps users install, update, and manage the lifecycle of Kubernetes native applications (Operators) and their associated services running across their OpenShift Container Platform clusters.
+
+Operator Lifecycle Manager (OLM) Classic forms part of the Operator Framework, an open source toolkit designed to manage Operators in an effective, automated, and scalable way.
 
 **Figure 1. OLM (Classic) workflow**
 
@@ -81,7 +83,9 @@ A CSV is also a source of technical information required to run the Operator, su
 
 ### Catalog source {#olm-catalogsource_olm-understanding-olm}
 
-A *catalog source* represents a store of metadata, typically by referencing an *index image* stored in a container registry. Operator Lifecycle Manager (OLM) queries catalog sources to discover and install Operators and their dependencies. The software catalog in the OpenShift Container Platform web console also displays the Operators provided by catalog sources.
+A *catalog source* represents a store of metadata, typically by referencing an *index image* stored in a container registry. Operator Lifecycle Manager (OLM) queries catalog sources to discover and install Operators and their dependencies.
+
+The software catalog in the OpenShift Container Platform web console also displays the Operators provided by catalog sources.
 
 :::tip
 
@@ -225,7 +229,9 @@ spec:
 
 #### Image template for custom catalog sources {#olm-catalogsource-image-template_olm-understanding-olm}
 
-Operator compatibility with the underlying cluster can be expressed by a catalog source in various ways. One way, which is used for the default Red Hat-provided catalog sources, is to identify image tags for index images that are specifically created for a particular platform release, for example OpenShift Container Platform 4.22.
+Operator compatibility with the underlying cluster can be expressed by a catalog source in various ways.
+
+One way, which is used for the default Red Hat-provided catalog sources, is to identify image tags for index images that are specifically created for a particular platform release, for example OpenShift Container Platform 4.22.
 
 During a cluster upgrade, the index image tag for the default Red Hat-provided catalog sources are updated automatically by the Cluster Version Operator (CVO) so that Operator Lifecycle Manager (OLM) pulls the updated version of the catalog. For example during an upgrade from OpenShift Container Platform 4.21 to 4.22 4.22, the `spec.image` field in the `CatalogSource` object for the `redhat-operators` catalog is updated from:
 

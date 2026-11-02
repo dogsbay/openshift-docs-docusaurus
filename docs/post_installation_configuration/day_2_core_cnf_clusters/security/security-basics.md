@@ -129,7 +129,9 @@ The `kubeadmin` user with the `cluster-admin` privileges is created on every clu
 
 ## Security considerations {#security-sec-considerations-security-basics}
 
-Workloads might handle sensitive data and demand high reliability. A single security vulnerability might lead to broader, cluster-wide compromises. With numerous components running on an OpenShift Container Platform cluster, you must secure each component to prevent any breach from escalating. Ensuring security across the entire infrastructure, including all components, is essential to maintaining the integrity of the network and avoiding vulnerabilities.
+Workloads might handle sensitive data and demand high reliability. A single security vulnerability might lead to broader, cluster-wide compromises.
+
+With numerous components running on an OpenShift Container Platform cluster, you must secure each component to prevent any breach from escalating. Ensuring security across the entire infrastructure, including all components, is essential to maintaining the integrity of the network and avoiding vulnerabilities.
 
 The following key security features are essential for all industries that handle sensitive data:
 
@@ -139,7 +141,9 @@ The following key security features are essential for all industries that handle
 
 ## Advancement of pod security in Kubernetes and OpenShift Container Platform {#security-pod-sec-in-kub-and-ocp_security-basics}
 
-Kubernetes initially had limited pod security. When OpenShift Container Platform integrated Kubernetes, Red Hat added pod security through Security Context Constraints (SCCs). In Kubernetes version 1.3, `PodSecurityPolicy` (PSP) was introduced as a similar feature. However, Pod Security Admission (PSA) was introduced in Kubernetes version 1.21, which resulted in the deprecation of PSP in Kubernetes version 1.25.
+Kubernetes initially had limited pod security. When OpenShift Container Platform integrated Kubernetes, Red Hat added pod security through Security Context Constraints (SCCs).
+
+In Kubernetes version 1.3, `PodSecurityPolicy` (PSP) was introduced as a similar feature. However, Pod Security Admission (PSA) was introduced in Kubernetes version 1.21, which resulted in the deprecation of PSP in Kubernetes version 1.25.
 
 PSA also became available in OpenShift Container Platform version 4.11. While PSA improves pod security, it lacks features provided by SCCs that are still necessary for certain use cases. Therefore, OpenShift Container Platform continues to support both PSA and SCCs.
 
@@ -155,7 +159,9 @@ Network requirements
 
 ## Lifecycle management {#security-lifecycle-mgmnt_security-basics}
 
-Upgrades are critical for security. When a vulnerability is discovered, it is patched in the latest z-stream release. This fix is then rolled back through each lower y-stream release until all supported versions are patched. Releases that are no longer supported do not receive patches. Therefore, it is important to upgrade OpenShift Container Platform clusters regularly to stay within a supported release and ensure they remain protected against vulnerabilities.
+Upgrades are critical for security. When a vulnerability is discovered, it is patched in the latest z-stream release.
+
+This fix is then rolled back through each lower y-stream release until all supported versions are patched. Releases that are no longer supported do not receive patches. Therefore, it is important to upgrade OpenShift Container Platform clusters regularly to stay within a supported release and ensure they remain protected against vulnerabilities.
 
 For more information about lifecycle management and upgrades, see "Upgrading OpenShift Container Platform clusters".
 

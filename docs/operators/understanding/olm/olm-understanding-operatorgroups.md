@@ -120,7 +120,9 @@ All annotations except `olm.targetNamespaces` are included with copied CSVs. Omi
 
 ## Provided APIs annotation {#olm-operatorgroups-provided-apis-annotation_olm-understanding-operatorgroups}
 
-A *group/version/kind (GVK)* is a unique identifier for a Kubernetes API. Information about what GVKs are provided by an Operator group are shown in an `olm.providedAPIs` annotation. The value of the annotation is a string consisting of `<kind>.<version>.<group>` delimited with commas. The GVKs of CRDs and API services provided by all active member CSVs of an Operator group are included.
+A *group/version/kind (GVK)* is a unique identifier for a Kubernetes API. Information about what GVKs are provided by an Operator group are shown in an `olm.providedAPIs` annotation.
+
+The value of the annotation is a string consisting of `<kind>.<version>.<group>` delimited with commas. The GVKs of CRDs and API services provided by all active member CSVs of an Operator group are included.
 
 Review the following example of an `OperatorGroup` object with a single active member CSV that provides the `PackageManifest` resource:
 
@@ -377,6 +379,8 @@ All other scenarios are not supported, because the integrity of the cluster data
 - [Allowing non-cluster administrators to install Operators](/docs/operators/admin/olm-creating-policy#olm-creating-policy)
 
 ## Troubleshooting Operator groups {#olm-operatorgroups-troubleshooting_olm-understanding-operatorgroups}
+
+Use the following information to troubleshoot common Operator group issues in Operator Lifecycle Manager (OLM).
 
 ### Membership {#olm-operatorgroups-troubleshooting-membership_olm-understanding-operatorgroups}
 

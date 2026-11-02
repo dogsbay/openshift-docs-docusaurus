@@ -420,6 +420,8 @@ To create an additional SR-IOV network attachment with the CNI virtual routing a
 
 - Install the OpenShift CLI (`oc`).
 - Log in to the OpenShift Container Platform cluster as a user with cluster-admin privileges.
+- The SR-IOV Network Operator is installed.
+- The SR-IOV network devices are configured for the `resourceName` you specify.
 
 **Procedure**
 
@@ -1046,7 +1048,9 @@ The procedure requires that you create SR-IOV resources and then parallel drain 
 
 ## Excluding the SR-IOV network topology for NUMA-aware scheduling {#nw-sriov-configure-exclude-topology-manager_configuring-sriov-net-attach}
 
-To exclude advertising the SR-IOV network resource’s Non-Uniform Memory Access (NUMA) node to the Topology Manager, you can configure the `excludeTopology` specification in the `SriovNetworkNodePolicy` custom resource. Use this configuration for more flexible SR-IOV network deployments during NUMA-aware pod scheduling.
+To exclude advertising the SR-IOV network resource’s Non-Uniform Memory Access (NUMA) node to the Topology Manager, you can configure the `excludeTopology` specification in the `SriovNetworkNodePolicy` custom resource.
+
+Use this configuration for more flexible SR-IOV network deployments during NUMA-aware pod scheduling.
 
 **Prerequisites**
 

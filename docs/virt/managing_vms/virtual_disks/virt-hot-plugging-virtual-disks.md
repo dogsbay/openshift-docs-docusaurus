@@ -21,7 +21,7 @@ When you hot plug disks to the VirtIO (`virtio-blk`) bus, each disk uses a PCI E
 
 :::
 
-## Hot plugging and hot unplugging a disk by using the web console {#virt-hot-plugging-disks-ui_virt-hot-plugging-virtual-disks}
+## Hot plug and unplug disks by using the web console {#virt-hot-plugging-disks-ui_virt-hot-plugging-virtual-disks}
 
 You can hot plug a disk by attaching it to a virtual machine (VM) while the VM is running by using the OpenShift Container Platform web console.
 
