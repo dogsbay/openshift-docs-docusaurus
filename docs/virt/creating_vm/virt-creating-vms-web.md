@@ -9,6 +9,12 @@ sidebar_position: 1
 
 You can create virtual machines (VMs) by using the OpenShift Container Platform web console. The web console creation wizard provides workflows for configuring a custom VM, creating a VM from a template, and cloning an existing VM.
 
+:::warning
+
+You must install VirtIO drivers on Windows VMs. Download VirtIO drivers only from official Red Hat sources. For more information, see "Additional resources".
+
+:::
+
 ## VM creation methods {#virt-choosing-vm-creation-method-web_virt-creating-vms-web}
 
 The web console creation wizard provides three workflows for creating a virtual machine (VM). Choose the workflow that matches your situation.
@@ -252,3 +258,9 @@ The optional **Customization** step groups advanced settings into tabs. The foll
 | Initialization method | Initial run | Configures first-boot settings by using **cloud-init** for Linux guests or **Sysprep** for Windows guests. |
 | Dynamic SSH key injection | SSH | Injects a public SSH key that is applied without restarting the VM. When it is not enabled, keys are applied through `virtctl`. |
 | Labels and annotations | Metadata | **Labels** are key-value pairs that you can query to organize and select VMs. **Annotations** store arbitrary metadata that cannot be queried. |
+
+**Additional resources**
+
+- [Red Hat VirtIO drivers download page](https://access.redhat.com/downloads/content/virtio-win)
+- [How to check virtio-win drivers version on Windows guest](https://access.redhat.com/solutions/764103)
+- [Installing and updating VirtIO drivers for Windows virtual machines](https://access.redhat.com/solutions/6957701)

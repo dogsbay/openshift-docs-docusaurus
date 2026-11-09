@@ -860,7 +860,7 @@ You can configure the following video device types:
 - [Instance types](/docs/virt/creating_vm/virt-creating-vms-from-instance-types#virt-creating-vms-from-instance-types)
 - [Installing the QEMU guest agent](/docs/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)
 - [Installing VirtIO drivers on Windows VMs](/docs/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms#virt-install-virtio-drivers-on-windows-vms)
-- [Red Hat VirtIO drivers download page](https://access.redhat.com/downloads/content/479/virtio-win/noarch/package-latest)
+- [Red Hat VirtIO drivers download page](https://access.redhat.com/downloads/content/virtio-win)
 - [How to check virtio-win drivers version on Windows guest](https://access.redhat.com/solutions/764103)
 - [Installing and updating VirtIO drivers for Windows virtual machines](https://access.redhat.com/solutions/6957701)
 - link:https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation\[Sysprep (Generalize) a Windows installation\]

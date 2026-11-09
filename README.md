@@ -4,9 +4,9 @@ Generated. Do not edit by hand; the next build overwrites everything.
 
 | | |
 |---|---|
-| Source | [dogsbay/openshift-docs-markdown@`d52001e3`](https://github.com/dogsbay/openshift-docs-markdown/commit/d52001e39cef15cf78085a63da3f4c7c36759909) (branch `enterprise-4.22`) |
+| Source | [dogsbay/openshift-docs-markdown@`12dec34c`](https://github.com/dogsbay/openshift-docs-markdown/commit/12dec34c0d5b70d0db0242e51b4d206082aa3998) (branch `enterprise-4.22`) |
 | Pages | 1806 |
-| Exported by | dogsbay 0.2.0-beta.156 (`site build --to docusaurus`) |
+| Exported by | dogsbay 0.2.0-beta.169 (`site build --to docusaurus`) |
 
 `npm install && npx docusaurus build` here reproduces the published
 site. Regenerate from the [`main`](../../tree/main) branch:
