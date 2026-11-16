@@ -785,24 +785,83 @@ Each of these custom resource objects identify the following information:
 - The source of the container image repository you want to mirror.
 - A separate entry for each mirror repository you want to offer the content
 
-Note the following actions and how they affect node drain behavior:
+The following table shows how specific actions on these custom resource objects affect node drain behavior.
 
-- If you create an IDMS or ICSP CR object, the MCO does not drain or reboot the node.
-- If you create an ITMS CR object, the MCO drains and reboots the node.
-- If you delete an ITMS, IDMS, or ICSP CR object, the MCO drains and reboots the node.
-- If you modify an ITMS, IDMS, or ICSP CR object, the MCO drains and reboots the node.
-  :::warning
+**Node actions and drain/reboot behahior**
 
-  - When the MCO detects any of the following changes, it applies the update without draining or rebooting the node:
-    - Changes to the SSH key in the `spec.config.passwd.users.sshAuthorizedKeys` parameter of a machine config.
-    - Changes to the global pull secret or pull secret in the `openshift-config` namespace.
-    - Automatic rotation of the `/etc/kubernetes/kubelet-ca.crt` certificate authority (CA) by the Kubernetes API Server Operator.
-  - When the MCO detects changes to the `/etc/containers/registries.conf` file, such as editing an `ImageDigestMirrorSet`, `ImageTagMirrorSet`, or `ImageContentSourcePolicy` object, it drains the corresponding nodes, applies the changes, and uncordons the nodes. The node drain does not happen for the following changes:
-    - The addition of a registry with the `pull-from-mirror = "digest-only"` parameter set for each mirror.
-    - The addition of a mirror with the `pull-from-mirror = "digest-only"` parameter set in a registry.
-    - The addition of items to the `unqualified-search-registries` list.
+<table>
+<thead>
+<tr>
+  <th>Object</th>
+  <th>Operation</th>
+  <th>Drain</th>
+  <th>Reboot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td rowspan="3">IDMS</td>
+  <td>Create</td>
+  <td>No</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Modify</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Delete</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td rowspan="3">ITMS</td>
+  <td>Create</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Modify</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Delete</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td rowspan="3">ISCP</td>
+  <td>Create</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Modify</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>Delete</td>
+  <td>Yes</td>
+  <td>No</td>
+</tr>
+</tbody>
+</table>
 
-  :::
+:::warning
+
+- When the MCO detects any of the following changes, it applies the update without draining or rebooting the node:
+  - Changes to the SSH key in the `spec.config.passwd.users.sshAuthorizedKeys` parameter of a machine config.
+  - Changes to the global pull secret or pull secret in the `openshift-config` namespace.
+  - Automatic rotation of the `/etc/kubernetes/kubelet-ca.crt` certificate authority (CA) by the Kubernetes API Server Operator.
+- When the MCO detects changes to the `/etc/containers/registries.conf` file, such as editing an `ImageDigestMirrorSet`, `ImageTagMirrorSet`, or `ImageContentSourcePolicy` object, it drains the corresponding nodes, applies the changes, and uncordons the nodes. The node drain does not happen for the following changes:
+  - The addition of a registry with the `pull-from-mirror = "digest-only"` parameter set for each mirror.
+  - The addition of a mirror with the `pull-from-mirror = "digest-only"` parameter set in a registry.
+  - The addition of items to the `unqualified-search-registries` list.
+
+:::
 
 For new clusters, you can use IDMS, ITMS, and ICSP CRs objects as needed. However, using IDMS and ITMS is recommended.
 

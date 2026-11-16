@@ -1199,7 +1199,7 @@ The following issues are fixed for this release:
 - Before this update, JSON merge patches could bypass field-level Common Expression Language (CEL) immutability rules on the `HostedCluster` custom resource by removing the `spec.infraID` or `spec.clusterID` specifications. As a consequence, the controller re-provisioned the infrastructure and orphaned existing resources. With this release, parent-level CEL validation rules reject API requests attempting to clear these fields. ([OCPBUGS-129442](https://issues.redhat.com/browse/OCPBUGS-129442))
 - Before this update, when reconciling virtual machines (VMs) on Microsoft Azure, a creation operation could fail and leave a virtual network interface controller (NIC) attached to a load balancer without a corresponding VM. As a consequence, the load balancer could not be used until the orphaned NIC was removed. With this release, the reconciler cleans up orphaned NICs when VM creation fails. As a result, load balancers are not blocked by orphaned NICs after failed VM creation. ([OCPBUGS-133098](https://issues.redhat.com/browse/OCPBUGS-133098))
 - Before this update, during etcd encryption key rotation, data in namespaces deleted with remaining etcd content was skipped. As a consequence, premature key retirement and API server failures occurred. With this release, this type of data is automatically rewritten with the current encryption key before retiring older keys. As a result, the API server remains available. ([OCPBUGS-133399](https://redhat.atlassian.net/browse/OCPBUGS-133399))
-- Before this update, missing domain name system (DNS) subject alternative names (SANs) for the headless `etcd-client` service caused intermittent peer transport layer security (TLS) rejections due to duplicate PTR records. This release adds the missing DNS name. As a result, preventing connection rejections are prevented and etcd reliability in bare metal deployments is improved. ([OCPBUGS-133444](https://issues.redhat.com/browse/OCPBUGS-133444))
+- Before this update, missing domain name system (DNS) subject alternative names (SANs) for the headless `etcd-client` service caused intermittent peer transport layer security (TLS) rejections due to duplicate PTR records. This release adds the missing DNS name. As a result, connection rejections are prevented and etcd reliability in bare metal deployments is improved. ([OCPBUGS-133444](https://issues.redhat.com/browse/OCPBUGS-133444))
 - Before this update, a race condition during two-node &#123;ocp&#125; with fencing (TNF) installations could fail to sync the `external-etcd-pod` `ConfigMap` across all nodes. As a consequence, installation failures occurred. With this release the race condition is fixed. As a result, TNF installations are successful. ([OCPBUGS-133467](https://issues.redhat.com/browse/OCPBUGS-133467))
 - Before this update, revealed values on the **Secret** details page could automatically become hidden when the page refreshed. With this release, the reveal state is preserved so that values remain visible until you click **Hide values**. As a result, secret values are not unexpectedly hidden. ([OCPBUGS-134589](https://issues.redhat.com/browse/OCPBUGS-134589))
 
@@ -1229,6 +1229,60 @@ The following issues are fixed for this release:
 - Before this update, on the **Observe** → **Metrics** page, multiple queries previously restarted their color index at `0`. As a consequence, series color squares were misaligned with graph lines. With this release, the color index is correctly offset by counting series from earlier queries. As a result, each color square matches its corresponding graph line. ([OCPBUGS-132931](https://issues.redhat.com/browse/OCPBUGS-132931))
 
 #### Updating {#zstream-4-22-21-updating_release-notes}
+
+To update an OpenShift Container Platform 4.22 cluster to this latest release, see [Updating a cluster using the CLI](/docs/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli).
+
+### RHSA-2026:89198 - OpenShift Container Platform 4.22.20 bug fix and security update {#zstream-4-22-20_release-notes}
+
+Issued: 27 October 2026
+
+OpenShift Container Platform release 4.22.20 is now available. The list of packages and bug fixes included in the update are documented in the [RHSA-2026:89198](https://access.redhat.com/errata/RHSA-2026:89198) advisory. The RPM packages included in this release are provided by the [RHSA-2026:89196](https://access.redhat.com/errata/RHSA-2026:89196) advisory.
+
+Space precluded documenting all of the container images for this release in the advisory.
+
+You can view the container images in this release by running the following command:
+
+```
+$ oc adm release info 4.22.20 --pullspecs
+```
+
+#### Fixed issues {#zstream-4-22-20-fixed-issues_release-notes}
+
+- Before this update, an upgrade with a control plane 'MachineConfig`might have caused quorum loss. As a consequence, the upgrade caused prolonged API and etcd downtime, leading to service interruption. With this release, the cluster-etcd Operator now keeps guard pods that prevent a`MachineConfig&#96; from draining the node, which ensures etcd maintains quorum during upgrades. ([OCPBUGS-94058](https://issues.redhat.com/browse/OCPBUGS-94058))
+- Before this update, Red Hat Enterprise Linux (RHEL) 8 binaries were included in critical path CNI images but were no longer necessary. As a consequence, the images were larger than required, slowing node bootstrapping. With this release, unused RHEL 8 binaries have been removed from CNI images. As a result, nodes bootstrap more quickly. ([OCPBUGS-120707](https://issues.redhat.com/browse/OCPBUGS-120707))
+- Before this update, KubeVirt hosted clusters that used Multus as the primary network received `nmstate` IPv6 configuration that was intended for the default OVN network. As a consequence, affected compute nodes could not obtain an IPv6 address through Stateless Address AutoConfiguration (SLAAC), and could not become Ready. With this release, hosted control planes conditionally overrides the configuration for IPv6-enabled Multus-primary node pools. As a result, compute nodes can obtain their IPv6 addresses through SLAAC and become Ready. ([OCPBUGS-121867](https://issues.redhat.com/browse/OCPBUGS-121867))
+- Before this update, large numbers of firing alerts could make the OpenShift Container Platform web console slow or unresponsive. With this release, the notification drawer displays up to 50 alerts per group and dashboards display up to 50 alerts per list, improving responsiveness while preserving full counts and links to all alerts. ([OCPBUGS-129621](https://issues.redhat.com/browse/OCPBUGS-129621))
+- Before this update, AWS Network Load Balancers (NLBs) had native client IP preservation enabled by default. As a consequence, hairpin connection failures occurred when a pod connected to an internal NLB route that returned traffic to a router pod on the same node, causing connection timeouts. With this release, a protocol field is added to the `IngressController` API, and new NLB Ingress Controllers default to `PROXY` protocol version 2, which disables native client IP preservation. As a result, hairpin connections do not fail, and an informational alert notifies administrators to configure the protocol field when upgrading. ([OCPBUGS-130606](https://issues.redhat.com/browse/OCPBUGS-130606))
+- Before this update, the terminal ResizeObserver could access uninitialized xterm render service dimensions. As a consequence, pod terminal pages crashed with "Cannot read properties of undefined" errors in e2e tests. With this release, the terminal ResizeObserver guards against uninitialized xterm internals. As a result, the pod terminal loads reliably without resize-related crashes. ([OCPBUGS-130937](https://issues.redhat.com/browse/OCPBUGS-130937))
+
+#### Updating {#zstream-4-22-20-updating_release-notes}
+
+To update an OpenShift Container Platform 4.22 cluster to this latest release, see [Updating a cluster using the CLI](/docs/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli).
+
+### RHSA-2026:83541 - OpenShift Container Platform 4.22.19 bug fix and security update {#zstream-4-22-19_release-notes}
+
+Issued: 20 October 2026
+
+OpenShift Container Platform release 4.22.19 is now available. The list of fixed issues that are included in the update is documented in the [RHSA-2026:83541](https://access.redhat.com/errata/RHSA-2026:83541) advisory. The RPM packages that are included in the update are provided by the [RHBA-2026:83539](https://access.redhat.com/errata/RHBA-2026:83539) advisory.
+
+Space precluded documenting all of the container images for this release in the advisory.
+
+You can view the container images in this release by running the following command:
+
+```terminal
+$ oc adm release info 4.22.19 --pullspecs
+```
+
+#### Fixed issues {#zstream-4-22-19-fixed-issues_release-notes}
+
+- Before this update, when the ingress capability was disabled on a hosted cluster, the console Operator still attempted to reconcile unavailable ingress resources and run route health checks. As a consequence, the console Operator reported degraded or progressing conditions. With this release, the Operator skips route and health check controllers and ingress-dependent reconciliation when ingress is disabled, and resumes normal operation if ingress is later enabled. As a result, the console Operator no longer reports those conditions when ingress is disabled. ([OCPBUGS-113612](https://issues.redhat.com/browse/OCPBUGS-113612))
+- Before this update, the Namespace column was hidden on the **Node Pods** tab when a specific namespace was selected. As a consequence, you could not identify which namespace pods belonged to on the **Node Details** page, even though nodes are cluster-scoped and can display pods from multiple namespaces. With this release, the Namespace column displays on the **Node Pods** tab regardless of project selector state. As a result, you can identify the namespace for each pod on the **Node Details** page. ([OCPBUGS-123201](https://issues.redhat.com/browse/OCPBUGS-123201))
+- Before this update, the `nmstate-metrics` deployment retained an obsolete `kube-rbac-proxy` sidecar with an empty image, causing API validation errors, Operator degradation, and `CrashLoopBackOff` due to port 8443 conflicts during 4.22 upgrades. With this release, the unused sidecar plumbing is removed. As a result, successful Operator reconciliation and normal pod execution is enabled after upgrading to 4.22. ([OCPBUGS-127277](https://issues.redhat.com/browse/OCPBUGS-127277))
+- Before this update, the boot image controller required an exact match between a `MachineSet` `providerSpec` workspace and an `Infrastructure` failure domain on all five fields. As a consequence, `MachineSet` resources on clusters without failure domains or with a datastore not listed in any failure domain were silently skipped for boot image management, and boot image skew could grow over time. With this release, matching logic is improved so that eligible `MachineSet` resources are not skipped in those cases. As a result, boot images stay managed for `MachineSet` resources that had no matching failure domain. ([OCPBUGS-129268](https://issues.redhat.com/browse/OCPBUGS-129268))
+- Before this update, when 4.21 clusters that used the multi-arch payload upgraded to 4.22.15 or later, nodes could fail to update in place because of an `rpm-ostree` defect that omitted Open vSwitch (OVS) binaries from the Red Hat Enterprise Linux CoreOS (RHCOS) image. As a consequence, affected nodes could become unrecoverable during the update. With this release, the Machine Config Daemon works around that `rpm-ostree` defect so that nodes update properly across this transition. As a result, multi-arch payload clusters can complete the update and clusters that use a single-arch payload are not affected. ([OCPBUGS-129375](https://issues.redhat.com/browse/OCPBUGS-129375))
+- Before this update, VMware vSphere machine reconciliation made redundant vCenter API calls and repeated operations. As a consequence, heavy API load, duplicate tasks, and slower provisioning in large clusters occurred. With this release, VM state and tag lookups are cached, queries are batched, and task references are retained. As a result, provisioning is more reliable and vCenter load is reduced. ([OCPBUGS-129423](https://issues.redhat.com/browse/OCPBUGS-129423))
+
+#### Updating {#zstream-4-22-19-updating_release-notes}
 
 To update an OpenShift Container Platform 4.22 cluster to this latest release, see [Updating a cluster using the CLI](/docs/updating/updating_a_cluster/updating-cluster-cli#updating-cluster-cli).
 
