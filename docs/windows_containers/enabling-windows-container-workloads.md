@@ -403,6 +403,10 @@ The IDMS and ITMS objects must be created before you can add Windows nodes using
 
 :::
 
+**Additional resources**
+
+- [Using node disruption policies to minimize disruption from machine config changes](/docs/machine_configuration/machine-config-node-disruption#machine-config-node-disruption)
+
 ### Configure image registry repository mirroring {#images-configuration-registry-mirror-configuring_enabling-windows-container-workloads}
 
 You can create postinstallation mirror configuration custom resources (CR) to redirect image pull requests from a source image registry to a mirrored image registry.

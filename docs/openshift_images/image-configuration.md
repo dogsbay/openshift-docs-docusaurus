@@ -856,10 +856,12 @@ The following table shows how specific actions on these custom resource objects 
   - Changes to the SSH key in the `spec.config.passwd.users.sshAuthorizedKeys` parameter of a machine config.
   - Changes to the global pull secret or pull secret in the `openshift-config` namespace.
   - Automatic rotation of the `/etc/kubernetes/kubelet-ca.crt` certificate authority (CA) by the Kubernetes API Server Operator.
-- When the MCO detects changes to the `/etc/containers/registries.conf` file, such as editing an `ImageDigestMirrorSet`, `ImageTagMirrorSet`, or `ImageContentSourcePolicy` object, it drains the corresponding nodes, applies the changes, and uncordons the nodes. The node drain does not happen for the following changes:
+- When the MCO detects changes to the `/etc/containers/registries.conf` file, such as editing or deleting an `ImageDigestMirrorSet`, `ImageTagMirrorSet`, or `ImageContentSourcePolicy` object, it drains the corresponding nodes, applies the changes, and uncordons the nodes. The node drain does not happen for the following changes:
   - The addition of a registry with the `pull-from-mirror = "digest-only"` parameter set for each mirror.
   - The addition of a mirror with the `pull-from-mirror = "digest-only"` parameter set in a registry.
   - The addition of items to the `unqualified-search-registries` list.
+
+  You can create a node disruption policy to prevent the MCO from draining and rebooting nodes upon the modification of these objects. For more information, see "Using node disruption policies to minimize disruption from machine config changes".
 
 :::
 
@@ -1407,3 +1409,4 @@ For more information about `ImageDigestMirrorSet` or `ImageTagMirrorSet` objects
 - [Understanding feature gates](/docs/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling)
 - [Updating the global cluster pull secret](/docs/openshift_images/managing_images/using-image-pull-secrets#images-update-global-pull-secret_using-image-pull-secrets)
 - [Configuring project-scoped image pull secrets for mirrored registries](/docs/openshift_images/image-configuration#images-configuration-registry-mirror-project-secret_image-configuration)
+- [Using node disruption policies to minimize disruption from machine config changes](/docs/machine_configuration/machine-config-node-disruption#machine-config-node-disruption)

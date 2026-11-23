@@ -123,7 +123,7 @@ The `commonConfigs` specifies the common configurations available for all operan
 </tbody>
 </table>
 
-## componentConfig {#eso-comoponent-config_external-secrets-operator-api}
+## componentConfig {#eso-component-config_external-secrets-operator-api}
 
 The `componentConfig` field defines configuration overrides for a specific `external-secrets` component.
 
@@ -154,15 +154,22 @@ The `componentConfig` field defines configuration overrides for a specific `exte
 </tr>
 <tr>
   <td><code>overrideEnv</code></td>
-  <td><strong>EnvVar</strong><br><br><em>array</em></td>
-  <td><code>overrideEnv</code> specifies custom environment variables for this component's container. These are merged with operator-managed environment variables, with user-defined values taking precedence. Environment variable names starting with <code>HOSTNAME</code>, <code>KUBERNETES_</code> or <code>EXTERNAL_SECRETS_</code> are reserved and are not allowed.</td>
+  <td><strong>EnvVar</strong> <em>array</em></td>
+  <td><code>overrideEnv</code> specifies custom environment variables for this component's container. These are merged with operator-managed environment variables, with user-defined values taking precedence. Environment variable names starting with <code>HOSTNAME</code>, <code>KUBERNETES_</code> <code>EXTERNAL_SECRETS_</code>, <code>SSL_CERT_DIR</code>, and <code>SSL_CERT_FILE</code> are reserved and are not allowed.</td>
   <td></td>
   <td>The maximum number of items is 50.</td>
+</tr>
+<tr>
+  <td><code>advancedOverrides</code></td>
+  <td><em>RawExtension</em></td>
+  <td><code>advancedOverrides</code> applies a raw strategic merge patch onto the Operator-generated <code>Deployment</code> specification. Do not use the <code>advancedOverrides</code> field unless you understand the impact. Setting fields outside the <code>allowlist</code> causes validation to fail and puts the <code>ExternalSecretsConfig</code> custom resource (CR) into a <code>Degraded</code> condition.<br><br>Only the following <code>Deployment</code> field paths are allowed in the <code>advancedOverrides</code> field:<br><br><ul><li><code>spec.template.spec.affinity</code></li><li><code>spec.template.spec.tolerations</code></li><li><code>spec.template.spec.nodeSelector</code></li><li><code>spec.template.spec.topologySpreadConstraints</code></li><li><code>spec.template.spec.containers[*].args</code></li><li><code>spec.template.spec.containers[*].resources</code></li></ul>If an allowed field overlaps a first-class setting in the <code>ExternalSecretsConfig</code> CR, the <code>advancedOverrides</code> value takes precedence.</td>
+  <td></td>
+  <td>Optional</td>
 </tr>
 </tbody>
 </table>
 
-## componentName {#eso-comoponent-name_external-secrets-operator-api}
+## componentName {#eso-component-name_external-secrets-operator-api}
 
 The `componentName` field represents the different external-secrets components that can have network policies applied.
 
@@ -299,26 +306,10 @@ The `controllerStatus` field tracks the health and synchronization state of the 
 
 The `deploymentConfig` field defines configuration overrides for a Kubernetes Deployment resource.
 
-<table>
-<thead>
-<tr>
-  <th>Field</th>
-  <th>Type</th>
-  <th>Description</th>
-  <th>Default</th>
-  <th>Validation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>revisionHistoryLimit</code></td>
-  <td><em>integer</em></td>
-  <td><code>revisionHistoryLimit</code> specifies the number of old <code>ReplicaSets</code> to retain for rollback purposes. This allows rolling back to previous deployment versions using the command <code>oc rollout undo</code>. Must be at least 1 to ensure rollback capability.</td>
-  <td>10</td>
-  <td>The maximum value is 50.<br><br>The minimum value is 1.</td>
-</tr>
-</tbody>
-</table>
+| Field | Type | Description | Default | Validation |
+| --- | --- | --- | --- | --- |
+| `revisionHistoryLimit` | *integer* | `revisionHistoryLimit` specifies the number of old `ReplicaSets` to retain for rollback purposes. This allows rolling back to previous deployment versions using the command `oc rollout undo`. Must be at least 1 to ensure rollback capability. | 10 | The maximum value is 50.<br>The minimum value is 1. |
+| `replicas` | *integer* | `replicas` specifies the desired number of pod replicas for the deployment of this component. The Operator always enables leader election for the `ExternalSecretsCoreController` and `CertController` components, so only one replica process changes at a time.<br> Leader election stays enabled even when `replicas` is 1 because rolling updates can briefly run two pods. The `Webhook` and `BitwardenSDKServer` components do not use leader election, regardless of the replica count. | 1 | The maximum value is 10.<br>The minimum value is 1.<br>Optional |
 
 ## externalSecretsConfig {#eso-external-secrets_external-secrets-operator-api}
 
